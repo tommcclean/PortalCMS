@@ -1,5 +1,6 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.Authentication;
+using Portal.CMS.Services.Shared;
 using System;
 using System.Linq;
 
@@ -31,7 +32,7 @@ namespace Portal.CMS.Services.Authentication
             var userAccount = new User()
             {
                 EmailAddress = emailAddress,
-                Password = password,
+                Password = SecurityHelper.GenerateSecurePassword(password),
                 GivenName = givenName,
                 FamilyName = familyName,
                 DateAdded = DateTime.Now,

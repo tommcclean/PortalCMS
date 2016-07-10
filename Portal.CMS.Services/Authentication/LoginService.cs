@@ -1,4 +1,5 @@
 ﻿using Portal.CMS.Entities;
+using Portal.CMS.Services.Shared;
 using System;
 using System.Linq;
 
@@ -29,7 +30,7 @@ namespace Portal.CMS.Services.Authentication
             if (userAccount == null)
                 return null;
 
-            if (!userAccount.Password.Equals(password, StringComparison.OrdinalIgnoreCase))
+            if (!SecurityHelper.CompareSecurePassword(password, userAccount.Password))
                 return null;
 
             return userAccount.UserId;
