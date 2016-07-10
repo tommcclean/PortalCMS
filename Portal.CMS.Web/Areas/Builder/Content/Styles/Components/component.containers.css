@@ -1,0 +1,44 @@
+﻿.admin .component-container
+{
+    border: 1px dashed gray;
+    border-radius: 5px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.admin .row
+{
+    border-color: red;
+}
+
+.admin .col-xs-2, .admin .col-xs-3, .admin .col-xs-4, .admin .col-xs-6, .admin .col-xs-12
+{
+    border-color: green;
+}
+
+.admin .component-container.selected
+{
+    border: 1px solid;
+    background-image: url('../../../Admin/Content/Images/block_black_light.png');
+}
+
+section:after, .row:after
+{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+section .vertical-alignment
+{
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    padding: 0 10% 0 10%;
+}

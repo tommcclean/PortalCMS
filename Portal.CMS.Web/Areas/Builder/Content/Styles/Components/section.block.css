@@ -1,0 +1,25 @@
+﻿section.block
+{
+    text-align: center;
+    background-color: black;
+    color: white;
+    background-size: cover;
+    background-position: center center;
+}
+
+    section.block h1
+    {
+        display: inline-block;
+        margin: 0;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-top: 25px;
+        line-height: 50px;
+        font-size: 25px;
+    }
+
+    section.block p
+    {
+        line-height: 100px;
+        margin-bottom: 10px;
+    }

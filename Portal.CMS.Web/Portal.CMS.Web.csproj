@@ -374,7 +374,10 @@
     <Content Include="Areas\Builder\Content\Styles\Components\bundle.min.css">
       <DependentUpon>bundle.css</DependentUpon>
     </Content>
+    <Content Include="Areas\Builder\Content\Styles\Components\component.containers.css" />
     <Content Include="Areas\Builder\Content\Styles\Components\component.glass.css" />
+    <Content Include="Areas\Builder\Content\Styles\Components\component.image.css" />
+    <Content Include="Areas\Builder\Content\Styles\Components\section.block.css" />
     <Content Include="Areas\Builder\Content\Styles\Components\section.contact.css" />
     <Content Include="Areas\Builder\Content\Styles\Components\section.quote.css" />
     <Content Include="Areas\Builder\Content\Styles\pagebuilder.min.css">

@@ -1,0 +1,28 @@
+﻿.image
+{
+    display: inline-block;
+    height: 125px;
+    width: 125px;
+    background-image: url('../../Images/Sample/Sample-6.jpg');
+    background-size: cover;
+    background-position: center center;
+    margin: 10px;
+    margin-top: 20px;
+}
+
+    .image.image-circle
+    {
+        border-radius: 50%;
+    }
+
+    .image.image-icon
+    {
+        height: 64px;
+        width: 64px;
+    }
+
+    .image.image-standard
+    {
+        width: 300px;
+        height: 225px;
+    }
