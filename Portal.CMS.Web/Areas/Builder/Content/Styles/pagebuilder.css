@@ -25,6 +25,7 @@
 
     section.header
     {
+        max-height: calc(100vh - 50px);
         background-image: url('../Images/Sample/Sample-2.jpg');
         color: white;
     }
@@ -82,4 +83,12 @@
     {
         margin-top: 10px;
         font-size: 28px;
+    }
+
+    @media (max-width: 1024)
+    {
+        section.background-parallax
+        {
+            background-attachment: scroll;
+        }
     }
