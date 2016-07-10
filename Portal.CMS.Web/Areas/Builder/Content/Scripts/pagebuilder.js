@@ -1,114 +1,84 @@
-﻿$(document).ready(function ()
-{
+﻿$(document).ready(function () {
     $(".add-component").click(function (event) {
         var sectionId = $(this).attr("data-sectionid");
 
         var targetContainer = $("#section-" + sectionId + " .component-container.selected:first").attr("id");
 
-        if (targetContainer === undefined)
-        {
-            // GENERATE: Modal URL
+        if (targetContainer === undefined) {
             var href = "/Builder/Component/Add?pageSectionId=" + sectionId + "&elementId=section-" + sectionId;
-
-            // OPEN: Modal Editor
             showModalEditor("Add Component", href);
         }
-        else
-        {
-            // GENERATE: Modal URL
+        else {
             var href = "/Builder/Component/Add?pageSectionId=" + sectionId + "&elementId=" + targetContainer;
-
-            // OPEN: Modal Editor
             showModalEditor("Add Component", href);
         }
     });
 
     $(".admin .component-editor").click(function (event) {
         var elementId = $(this).attr("id");
-        var elementParts = elementId.split('-');
-        var sectionId = elementParts[elementParts.length - 1];
+        var sectionId = ExtractSectionId($(this));
 
         var targetContainer = $("#section-" + sectionId + " .component-container.selected:first").attr("id");
 
-        // GENERATE: Modal URL
         var href = "/Builder/Container/Edit?pageSectionId=" + sectionId + "&elementId=" + targetContainer;
-
-        // OPEN: Modal Editor
-        showModalEditor("Edit Container", href);
+        showModalEditor("Edit Container Properties", href);
     });
 
-$(".admin section p, .admin section h1, .admin section h2, .admin section h3, .admin section h4").click(function(event)
-{
-    // GET: Element ID
-    var elementId = event.target.id;
+    $(".admin section a").click(function (event) {
+        var elementId = $(this).attr("id");
+        var sectionId = ExtractSectionId($(this));
 
-    var elementParts = elementId.split('-');
+        var href = "/Builder/Component/Anchor?pageSectionId=" + sectionId + "&elementId=" + elementId;
+        showModalEditor("Edit Anchor Properties", href);
+    });
 
-    // GENERATE: Modal URL
-    var href = "/Builder/Build/Element?sectionId=" + elementParts[elementParts.length - 1] + "&elementId=" + elementId;
+    $(".admin section p, .admin section h1, .admin section h2, .admin section h3, .admin section h4").click(function (event) {
+        var elementId = event.target.id;
+        var sectionId = ExtractSectionId($(this));
 
-    // OPEN: Modal Editor
-    showModalEditor("Edit Element Content", href);
-});
+        var href = "/Builder/Build/Element?sectionId=" + sectionId + "&elementId=" + elementId;
+        showModalEditor("Edit Element Properties", href);
+    });
 
-$(".admin section .image").click(function (event) {
+    $(".admin section .image").click(function (event) {
+        var elementId = event.target.id;
+        var sectionId = ExtractSectionId($(this));
 
-    // GET: Element ID
-    var elementId = event.target.id;
+        var href = "/Builder/Image/Edit?pageSectionId=" + sectionId + "&elementId=" + elementId;
+        showModalEditor("Edit Image Properties", href);
+    });
 
-    var elementParts = elementId.split('-');
+    $(".admin .component-container").click(function (event) {
+        var elementId = $(this).attr("id");
+        var sectionId = ExtractSectionId($(this));
 
-    // GENERATE: Modal URL
-    var href = "/Builder/Image/Edit?pageSectionId=" + elementParts[elementParts.length - 1] + "&elementId=" + elementId;
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+            $('#container-editor-' + sectionId).fadeOut();
+        }
+        else {
+            $('.component-container').removeClass('selected');
+            $('.component-editor').fadeOut();
+            $('#container-editor-' + sectionId).fadeIn();
+            $(this).addClass('selected');
+        }
+    }).children().click(function (e) {
+        return false;
+    });;
 
-    // OPEN: Modal Editor
-    showModalEditor("Edit Element Content", href);
-});
-
-$(".admin section a").click(function (event) {
-
-    // GET: Element ID
-    var elementId = $(this).attr("id");
-    var elementParts = elementId.split('-');
-    var sectionId = elementParts[elementParts.length - 1]
-
-    // GENERATE: Modal URL
-    var href = "/Builder/Component/Anchor?pageSectionId=" + sectionId + "&elementId=" + elementId;
-
-    // OPEN: Modal Editor
-    showModalEditor("Edit Anchor", href);
-});
-
-$(".admin .component-container").click(function (event)
-{
-    var elementId = $(this).attr("id");
-    var elementParts = elementId.split('-');
-    var sectionId = elementParts[elementParts.length - 1];
-
-    if ($(this).hasClass('selected'))
-    {
-        $(this).removeClass('selected');
+    $(".admin section").click(function (event) {
+        var elementId = $(this).attr("id");
+        var sectionId = ExtractSectionId($(this));
+        $(this).find('.component-container').removeClass('selected');
         $('#container-editor-' + sectionId).fadeOut();
-    }
-    else
-    {
-        $('.component-container').removeClass('selected');
-        $('.component-editor').fadeOut();
-        $('#container-editor-' + sectionId).fadeIn();
-        $(this).addClass('selected');
-    }
-}).children().click(function (e) {
-    return false;
-});;
+    }).children().click(function (e) {
+        return false;
+    });
+});
 
-$(".admin section").click(function (event)
-{
-    var elementId = $(this).attr("id");
+function ExtractSectionId(element) {
+    var elementId = $(element).attr("id");
     var elementParts = elementId.split('-');
     var sectionId = elementParts[elementParts.length - 1];
-    $(this).find('.component-container').removeClass('selected');
-    $('#container-editor-' + sectionId).fadeOut();
-}).children().click(function (e) {
-    return false;
-});
-});
+    return sectionId;
+}

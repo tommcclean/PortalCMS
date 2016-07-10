@@ -367,6 +367,9 @@
     <Content Include="Areas\Admin\Content\Styles\Pages\posts.css" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox-thumbs.js" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox.js" />
+    <Content Include="Areas\Builder\Content\Scripts\pagebuilder.min.js">
+      <DependentUpon>pagebuilder.js</DependentUpon>
+    </Content>
     <Content Include="Areas\Builder\Content\Styles\Components\bundle.css" />
     <Content Include="Areas\Builder\Content\Styles\Components\bundle.min.css">
       <DependentUpon>bundle.css</DependentUpon>
@@ -374,6 +377,9 @@
     <Content Include="Areas\Builder\Content\Styles\Components\component.glass.css" />
     <Content Include="Areas\Builder\Content\Styles\Components\section.contact.css" />
     <Content Include="Areas\Builder\Content\Styles\Components\section.quote.css" />
+    <Content Include="Areas\Builder\Content\Styles\pagebuilder.min.css">
+      <DependentUpon>pagebuilder.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\base.css" />
     <Content Include="Content\Styles\header.css" />
     <Content Include="Areas\Builder\Content\Styles\pagebuilder.css" />

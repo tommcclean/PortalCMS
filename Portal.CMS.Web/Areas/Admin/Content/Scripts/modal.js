@@ -1,24 +1,14 @@
 ﻿"use strict";
 
-// USAGE: <a href="@Url.Action("Upload", "PhotoGallery", new { @gallery = Model.GalleryType })" data-title="Upload Image" class="launch-modal"></a>
-
 $(document).ready(function () {
     $('body').on('click', '.launch-modal', function (e) {
-        if ($(this).hasClass('no-modal')) {
-            return;
-        }
-
         e.preventDefault();
         showModalEditor($(this).data('title'), $(this).attr('href'));
-
-        return;
     });
 });
 
 function showModalEditor(title, url) {
     if ($('#ContentEditor').length == 0) {
-
-        // The editor modal HTML doesn't exist, so add it to the page
         var html = [];
         html.push('<div class="modal" id="ContentEditor" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content">');
         html.push('<div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">Edit content</h4></div>');
@@ -30,7 +20,7 @@ function showModalEditor(title, url) {
     }
 
     $('#ContentEditor .modal-title').text(title);
-    setModalEditorContent('<p>Please wait...</p>');
+    setModalEditorContent('<p>Loading Please wait...</p>');
     $('#ContentEditor').modal('show');
 
     $.ajax({

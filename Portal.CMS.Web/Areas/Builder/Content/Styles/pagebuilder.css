@@ -5,6 +5,7 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
+
 .admin .vertical-alignment
 {
     min-height: 80px;
@@ -45,15 +46,15 @@ section
     min-height: 300px;
 }
 
-section:after, .row:after
-{
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-}
+    section:after, .row:after
+    {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }
 
     section.height-tall
     {
@@ -188,14 +189,14 @@ section p, section a
     margin-bottom: 20px;
 }
 
-.builder-item:hover
-{
-    background-image: url('../../../Admin/Content/Images/texture-dark.png');
-    border: 1px solid #D8D8D8;
-}
+    .builder-item:hover
+    {
+        background-image: url('../../../Admin/Content/Images/texture-dark.png');
+        border: 1px solid #D8D8D8;
+    }
 
-.builder-item h1
-{
-    margin-top: 10px;
-    font-size: 28px;
-}
+    .builder-item h1
+    {
+        margin-top: 10px;
+        font-size: 28px;
+    }

@@ -67,5 +67,17 @@
       "Areas/Builder/Content/Styles/Components/section.quote.css",
       "Areas/Builder/Content/Styles/Components/component.glass.css"
     ]
+  },
+  {
+    "outputFileName": "Areas/Builder/Content/Scripts/pagebuilder.min.js",
+    "inputFiles": [
+      "Areas/Builder/Content/Scripts/pagebuilder.js"
+    ]
+  },
+  {
+    "outputFileName": "Areas/Builder/Content/Styles/pagebuilder.min.css",
+    "inputFiles": [
+      "Areas/Builder/Content/Styles/pagebuilder.css"
+    ]
   }
 ]
