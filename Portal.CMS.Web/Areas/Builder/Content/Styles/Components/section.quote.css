@@ -15,9 +15,8 @@
 section.quote h1
 {
     font-size: 30px;
-    padding-top: 50px;
-    padding-left: 300px;
-    padding-right: 300px;
+    padding-left: 250px;
+    padding-right: 250px;
     margin: 0;
     margin-bottom: 40px;
 }
@@ -57,9 +56,8 @@ section.quote .quote-image-right
 {
     section.quote h1
     {
-        padding-top: 100px;
-        padding-left: 175px;
-        padding-right: 175px;
+        padding-left: 125px;
+        padding-right: 125px;
     }
 
     section.quote .quote-image-left
@@ -88,9 +86,7 @@ section.quote .quote-image-right
 
     section.quote h1
     {
-        padding-top: 0;
-        padding-left: 15px;
-        padding-right: 15px;
+padding: 0;
     }
 
     section.quote
@@ -98,5 +94,10 @@ section.quote .quote-image-right
         height: auto;
         padding-top: 75px;
         padding-bottom: 75px;
+    }
+
+    section.quote p
+    {
+        display: none;
     }
 }
