@@ -1,4 +1,9 @@
-﻿.admin .component-container
+﻿.component-container
+{
+    margin-bottom: 20px;
+}
+
+.admin .component-container
 {
     border: 1px dashed gray;
     border-radius: 5px;
