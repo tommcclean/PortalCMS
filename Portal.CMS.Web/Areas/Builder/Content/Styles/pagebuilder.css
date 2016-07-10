@@ -85,7 +85,7 @@
         font-size: 28px;
     }
 
-    @media (max-width: 1024)
+    @media (max-width: 1024px)
     {
         section.background-parallax
         {
