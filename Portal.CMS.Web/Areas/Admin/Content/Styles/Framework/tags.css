@@ -1,0 +1,20 @@
+﻿.tag
+{
+    display: inline-block;
+    background-color: #E0E0E0;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    color: black;
+}
+
+.tag:hover
+{
+    background-color: #EAEAEA;
+    color: black;
+    text-decoration: none;
+}

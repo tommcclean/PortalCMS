@@ -1,0 +1,208 @@
+﻿.clear
+{
+    clear: both;
+}
+
+.float-container:after
+{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.overlay-dark
+{
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../Images/block_black_dark.png');
+}
+
+.overlay-light
+{
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../Images/block_black_light.png');
+}
+
+.overlay-medium
+{
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../Images/block_black_medium.png');
+}
+
+.upper
+{
+    text-transform: uppercase;
+}
+
+.glyphicon
+{
+    margin-right: 10px;
+}
+
+.field-validation-error
+{
+    background-color: #B12D2D;
+    color: white;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.action-container
+{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    height: 60px;
+    z-index: 50;
+}
+
+.action
+{
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #D32D27;
+    font-size: 18px;
+    color: white;
+    line-height: 52px;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+    .action:hover
+    {
+        background-color: #BA2823;
+    }
+
+    .action .glyphicon, .admin-item .glyphicon
+    {
+        margin: 0;
+    }
+
+.action-container.absolute
+{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: auto;
+}
+
+.action-container.absolute .action
+{
+    background-color: black;
+    border: 1px dashed #333333;
+}
+
+.action-container.absolute .action:hover
+{
+    color: white;
+}
+
+#popup-container
+{
+    display: none;
+}
+
+.admin-container
+{
+    position: absolute;
+    bottom: 7px;
+    width: 93%;
+    margin-bottom: 10px;
+    border-top: 1px solid #E6E6ED;
+    padding-top: 5px;
+    margin: 0 auto;
+    z-index: 10;
+}
+
+    .admin-container .admin-item
+    {
+        display: inline-block;
+        width: 24%;
+        text-align: center;
+        padding: 10px;
+        color: #9D9FAB;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+        .admin-container .admin-item .glyphicon
+        {
+            margin-right: 15px;
+        }
+
+.dark .admin-container .admin-item
+{
+    color: white;
+}
+
+.admin-container .admin-item:hover
+{
+    color: black;
+}
+
+.dark .admin-container .admin-item:hover
+{
+    color: white;
+}
+
+.admin-container.x3 .admin-item
+{
+    width: 32.5%;
+}
+
+.admin-container.x2 .admin-item
+{
+    width: 49%;
+}
+
+.admin-container.x1 .admin-item
+{
+    width: 100%;
+}
+
+.no-border
+{
+    border: 0;
+}
+
+.hover
+{
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.image:hover .hover
+{
+    opacity: 1;
+}
+
+.footer
+{
+    text-align: right;
+}

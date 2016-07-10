@@ -1,0 +1,18 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Users.DeleteViewModel
+@{
+    Layout = "";
+}
+
+@using (Html.BeginForm("Delete", "Users", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.UserId)
+
+    <span class="field-validation-error">Please confirm, if you delete this User Account they will not be able to Login.</span>
+
+    <div class="footer">
+        <button class="btn primary">Delete Account</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

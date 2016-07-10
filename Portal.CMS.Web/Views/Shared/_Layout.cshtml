@@ -1,0 +1,92 @@
+﻿@using Portal.CMS.Web.Areas.Admin.Helpers;
+@{
+    var controller = @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@SettingHelper.Get("Website Name"): @ViewBag.Title</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://code.jquery.com/ui/1.12.0-beta.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.min.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/Content/Styles/Framework/bundle.min.css" rel="stylesheet" />
+    <link href="~/Areas/Builder/Content/Styles/Components/bundle.css" rel="stylesheet" />
+
+    <link href="~/Content/Styles/base.css" rel="stylesheet" />
+    <link href="~/Content/Styles/header.css" rel="stylesheet" />
+    <link href="~/Content/Styles/Pages/posts.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
+    <script src="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.js"></script>
+    <script src="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.js"></script>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="~/Areas/Admin/Content/Scripts/modal.js"></script>
+    <script src="~/Areas/Admin/Content/Scripts/plugins.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    @{ var menu = MenuHelper.Get("Main Menu"); }
+                    @if (menu != null)
+                    {
+                        foreach (var item in menu.MenuItems)
+                        {
+                            <li class="@(controller == item.LinkController ? "active" : "")"><a href="@Url.Action(item.LinkAction, item.LinkController, new { area = item.LinkArea })">@Html.Raw(item.LinkText)</a></li>
+                        }
+
+                    }
+                </ul>
+
+                @if (UserHelper.IsLoggedIn)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>@UserHelper.FullName<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Logout", "Authentication", new { area = "Admin" })"><span class="glyphicon glyphicon-lock"></span>Logout</a></li>
+                            </ul>
+                        </li>
+                        @if (UserHelper.IsAdmin)
+                        {
+                            <li><a href="@Url.Action("Index", "Dashboard", new { area = "Admin" })"><span class="glyphicon glyphicon-cog"></span>Admin</a></li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="@Url.Action("Login", "Authentication", new { area = "Admin" })" class="launch-modal" data-title="Sign In"><span class="glyphicon glyphicon-lock"></span>Login</a></li>
+                        <li><a href="@Url.Action("Register", "Authentication", new { area = "Admin" })" class="launch-modal" data-title="Register Account"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </nav>
+
+    <div id="container-fluid">
+        @RenderBody()
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+﻿.control-group
+{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+    .control-group.split
+    {
+        display: inline-block;
+        margin-right: 1%;
+        width: 49%;
+    }
+
+        .control-group.split.last
+        {
+            margin-right: 0;
+        }
+
+    .control-group label
+    {
+        float: left;
+        line-height: 43px;
+        background-color: #eee;
+        border: 1px solid #ccc;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 110px;
+        font-size: 16px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        font-weight: normal;
+        text-align: center;
+    }
+
+    .control-group input, .control-group select
+    {
+        height: 45px;
+        float: left;
+        width: calc(100% - 110px);
+        border: 1px solid #ccc;
+        background-color: #fff;
+        border-left: 0;
+        font-size: 16px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+input, textarea, select
+{
+    padding: 5px 10px 5px 10px;
+}
+
+.button-group
+{
+    width: 80%;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.btn
+{
+    background-color: #DDDDDD;
+    color: black;
+    padding: 10px 20px 10px 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+    .btn.primary
+    {
+        background-color: #337AB7;
+        color: white;
+    }
+
+    .btn.delete
+    {
+        background-color: red;
+        color: white;
+    }
+
+textarea
+{
+    height: 300px;
+}
+
+input[readonly]
+{
+    cursor: not-allowed;
+}

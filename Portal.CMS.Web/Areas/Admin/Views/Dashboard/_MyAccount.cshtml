@@ -1,0 +1,23 @@
+﻿@using Portal.CMS.Web.Areas.Admin.Helpers;
+
+<div class="col-xs-12 col-md-6 col-lg-4">
+    <div class="box">
+        <div class="box-title">My Account</div>
+
+        <div class="row" style="height: 150px;">
+            <div class="col-xs-4 vertical-alignment">
+                <img src="~/Areas/Admin/Content/Images/profile-image-male.png" />
+            </div>
+            <div class="col-xs-8 vertical-alignment" style="text-align: left;">
+                <h3>@UserHelper.FullName</h3>
+                <p>@UserHelper.EmailAddress</p>
+            </div>
+        </div>
+
+        <div class="admin-container x3">
+            <a href="@Url.Action("Details", "Users", new { userId = UserHelper.UserId })" class="admin-item launch-modal" data-title="Edit Details"><span class="glyphicon glyphicon-pencil"></span>Details</a>
+            <a href="@Url.Action("Roles", "Users", new { userId = UserHelper.UserId })" class="admin-item launch-modal" data-title="Edit Roles"><span class="glyphicon glyphicon-tower"></span>Roles</a>
+            <a href="@Url.Action("Logout", "Authentication")" class="admin-item" data-title="Logout"><span class="glyphicon glyphicon-lock"></span>Logout</a>
+        </div>
+    </div>
+</div>

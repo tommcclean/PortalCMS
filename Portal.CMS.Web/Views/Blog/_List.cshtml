@@ -1,0 +1,18 @@
+﻿@model List<Portal.CMS.Entities.Entities.Posts.Post>
+@using Portal.CMS.Entities.Entities.Posts;
+
+@foreach (var post in Model)
+{
+    var postImage = "";
+
+    if (post.PostImages.Any(x => x.PostImageType == PostImageType.Banner))
+    {
+        postImage = post.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
+    }
+
+    <a href="@Url.Action("Read", "Blog", new { @postId = post.PostId })" class="float-container">
+        <img class="thumbnail" src="@postImage" />
+        <h1>@post.PostTitle</h1>
+        <p>@post.PostDescription</p>
+    </a>
+}

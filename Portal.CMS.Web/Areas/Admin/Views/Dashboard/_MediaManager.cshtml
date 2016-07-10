@@ -1,0 +1,39 @@
+﻿@model List<Portal.CMS.Entities.Entities.Generic.Image>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="col-xs-12 col-md-6 col-lg-4">
+        <div class="box">
+            <div class="box-title">Media Manager</div>
+
+            <h3>No Media Found</h3>
+            <p>You haven't added any Media yet, but don't worry as soon as you do it will show up on your Dashboard.</p>
+
+            <div class="admin-container x1">
+                <a href="@Url.Action("Upload", "Media")" class="admin-item launch-modal" data-title="Upload Image"><span class="glyphicon glyphicon-plus"></span>Upload</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-xs-12 col-md-6 col-lg-4">
+        <div class="box" style="padding-top: 60px;">
+            <div class="box-title">Media Manager</div>
+
+            <div class="media-container">
+                @foreach (var image in Model)
+                {
+                    <a class="fancybox-thumb" rel="fancybox-thumb" href="@image.ImagePath" title="Media Manager">
+                        <img class="thumbnail media-img" src="@image.ImagePath" alt="" />
+                    </a>
+                }
+            </div>
+
+            <div class="admin-container x2">
+                <a href="@Url.Action("Upload", "Media")" class="admin-item launch-modal" data-title="Upload Image"><span class="glyphicon glyphicon-plus"></span>Upload</a>
+                <a href="@Url.Action("Index", "Media")" class="admin-item" data-title="Manage Posts"><span class="glyphicon glyphicon-th-list"></span>More</a>
+            </div>
+        </div>
+    </div>
+}

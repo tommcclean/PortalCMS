@@ -1,0 +1,48 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.MenuItem.CreateViewModel
+@{
+    Layout = "";
+
+    var menuList = Model.MenuList.Select(x => new SelectListItem { Value = x.MenuId.ToString(), Text = x.MenuName});
+}
+
+@using (Html.BeginForm("Create", "MenuItem", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationMessage("MenuId")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.MenuId)
+        @Html.DropDownListFor(m => m.MenuId, menuList)
+    </div>
+
+    @Html.ValidationMessage("LinkText")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.LinkText)
+        @Html.TextBoxFor(x => x.LinkText, new { placeholder = "Link Text" })
+    </div>
+
+    @Html.ValidationMessage("LinkAction")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.LinkAction)
+        @Html.TextBoxFor(x => x.LinkAction, new { placeholder = "Link Action" })
+    </div>
+
+    @Html.ValidationMessage("LinkController")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.LinkController)
+        @Html.TextBoxFor(x => x.LinkController, new { placeholder = "Link Controller" })
+    </div>
+
+    @Html.ValidationMessage("LinkArea")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.LinkArea)
+        @Html.TextBoxFor(x => x.LinkArea, new { placeholder = "Link Area" })
+    </div>
+
+    <br />
+
+    <div class="footer">
+        <button class="btn primary">Save</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

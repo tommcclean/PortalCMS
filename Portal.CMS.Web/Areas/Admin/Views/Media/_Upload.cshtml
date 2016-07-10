@@ -1,0 +1,30 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Media.UploadViewModel
+@{
+    ViewBag.Title = "Upload Image";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-media.png";
+    Layout = "";
+}
+
+@using (Html.BeginForm("Upload", "Media", FormMethod.Post, new { id = "uploadImageForm", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.PostId)
+
+    @Html.ValidationMessage("AttachedImage")
+
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.AttachedImage)
+        @Html.TextBoxFor(m => m.AttachedImage, new { @type = "file" })
+    </div>
+
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.ImageCategory)
+        @Html.EnumDropDownListFor(m => m.ImageCategory, new { @class = "form-control" })
+    </div>
+
+    <div class="footer">
+        <button class="btn primary">Upload Image</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

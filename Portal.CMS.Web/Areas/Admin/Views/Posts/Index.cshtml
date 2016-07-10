@@ -1,0 +1,50 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Posts.PostsViewModel
+@{
+    ViewBag.Title = "Manage Posts";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-articles.png";
+}
+
+<link href="~/Areas/Admin/Content/Styles/Pages/posts.css" rel="stylesheet" />
+
+<a href="@Url.Action("Create", "Posts")" class="action-container launch-modal" data-title="Create Post">
+    <div class="action"><span class="glyphicon glyphicon-plus"></span></div>
+</a>
+
+<div class="row">
+    @foreach (var post in Model.Posts)
+    {
+        string bannerImagePath = "";
+        bool hasBannerImage = false;
+
+        if (post.PostImages.Any(x => x.PostImageType == Portal.CMS.Entities.Entities.Posts.PostImageType.Banner))
+        {
+            bannerImagePath = post.PostImages.First(x => x.PostImageType == Portal.CMS.Entities.Entities.Posts.PostImageType.Banner).Image.ImagePath;
+            hasBannerImage = true;
+        }
+
+        <div class="col-xs-12 col-md-6 col-lg-4">
+            <div class="box article-item float-container @(hasBannerImage ? "dark" : "light")" style="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? string.Format("background-image: url('{0}'); color: white;", bannerImagePath) : "")">
+                <div class="inner">
+                    <div class="category-item">@post.PostCategory.ToString()</div>
+                    <h3>@(post.IsPublished ? "" : "Draft: ") @post.PostTitle</h3>
+                    <p>@post.PostDescription</p>
+
+                    <div class="admin-container x3">
+                        @if (post.IsPublished)
+                        {
+                            <a href="@Url.Action("Draft", "Posts", new { postId = @post.PostId })" class="admin-item" data-title="Set as Draft"><span class="glyphicon glyphicon-eye-close"></span>Draft</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Publish", "Posts", new { postId = @post.PostId })" class="admin-item" data-title="Publish Post"><span class="glyphicon glyphicon-eye-open"></span>Publish</a>
+                        }
+
+                        <a href="@Url.Action("Edit", "Posts", new { postId = @post.PostId })" class="admin-item launch-modal" data-title="Edit Post: @post.PostTitle"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+                        <a href="@Url.Action("Delete", "Posts", new { postId = @post.PostId })" class="admin-item" data-title="Delete Post"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                    </div>
+                </div>
+                <div class="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? "overlay-medium" : "")"></div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{13103A2E-FF04-442F-95F6-C2E8EDB0F274}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Portal.CMS.Entities</RootNamespace>
+    <AssemblyName>Portal.CMS.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel.Activities" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Authentication\Role.cs" />
+    <Compile Include="Entities\Authentication\User.cs" />
+    <Compile Include="Entities\Authentication\UserRole.cs" />
+    <Compile Include="Entities\Copy\Copy.cs" />
+    <Compile Include="Entities\Generic\Image.cs" />
+    <Compile Include="Entities\Generic\ImageCategory.cs" />
+    <Compile Include="Entities\Generic\PublicationState.cs" />
+    <Compile Include="Entities\Menu\Menu.cs" />
+    <Compile Include="Entities\Menu\MenuItem.cs" />
+    <Compile Include="Entities\PageBuilder\Page.cs" />
+    <Compile Include="Entities\PageBuilder\PageComponentType.cs" />
+    <Compile Include="Entities\PageBuilder\PageComponentTypeCategory.cs" />
+    <Compile Include="Entities\PageBuilder\PageSection.cs" />
+    <Compile Include="Entities\PageBuilder\PageSectionBackgroundType.cs" />
+    <Compile Include="Entities\PageBuilder\PageSectionHeight.cs" />
+    <Compile Include="Entities\PageBuilder\PageSectionType.cs" />
+    <Compile Include="Entities\Posts\Post.cs" />
+    <Compile Include="Entities\Posts\PostCategory.cs" />
+    <Compile Include="Entities\Posts\PostComment.cs" />
+    <Compile Include="Entities\Posts\PostImage.cs" />
+    <Compile Include="Entities\Posts\PostImageType.cs" />
+    <Compile Include="Entities\Settings\Setting.cs" />
+    <Compile Include="Migrations\201607091707192_InitialPortalCMSSchema.cs" />
+    <Compile Include="Migrations\201607091707192_InitialPortalCMSSchema.Designer.cs">
+      <DependentUpon>201607091707192_InitialPortalCMSSchema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PortalEntityModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seed\MenuSeed.cs" />
+    <Compile Include="Seed\PageComponentTypeSeed.cs" />
+    <Compile Include="Seed\PageSectionTypeSeed.cs" />
+    <Compile Include="Seed\PageSeed.cs" />
+    <Compile Include="Seed\RoleSeed.cs" />
+    <Compile Include="Seed\SettingSeed.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201607091707192_InitialPortalCMSSchema.resx">
+      <DependentUpon>201607091707192_InitialPortalCMSSchema.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

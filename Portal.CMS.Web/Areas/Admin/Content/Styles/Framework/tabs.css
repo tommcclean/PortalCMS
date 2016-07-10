@@ -1,0 +1,50 @@
+﻿/* CSS used here will be applied after bootstrap.css */
+.tab-content .tab-pane {
+    position: relative;
+}
+
+.nav-tabs > li > a
+{
+    color: black;
+    font-size: 15px;
+}
+
+.tab-pane {
+    min-height: 500px;
+    border: 1px solid #ddd;
+    background-color: white;
+    border-top: 0;
+    padding: 20px 20px 30px 20px;
+}
+
+    .tab-pane img.thumbnail {
+        float: left;
+        width: 100%;
+        height: 180px;
+        margin-right: 20px;
+    }
+
+    .tab-pane h1 {
+        font-size: 25px;
+        padding: 10px 20px 10px 20px;
+        margin-bottom: 10px;
+        color: black;
+    }
+
+    .tab-pane p {
+        font-size: 16px;
+        color: black;
+    }
+
+    .tab-pane a:hover {
+        text-decoration: none;
+    }
+
+    @media (max-width: 767px)
+    {
+        .tab-pane
+        {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+        }
+    }

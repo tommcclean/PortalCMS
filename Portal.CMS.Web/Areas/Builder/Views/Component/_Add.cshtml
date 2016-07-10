@@ -1,0 +1,71 @@
+﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Component.AddViewModel
+@{
+    Layout = "";
+}
+
+<script type="text/javascript">
+    $('.builder-item').on('click', function (e) {
+        var componentTypeId = $(this).attr("data-componentypeid");
+
+        $('#PageComponentTypeId').val(componentTypeId);
+
+        $('#submit-button').click();
+    });
+</script>
+
+@using (Html.BeginForm("Add", "Component", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.PageSectionId)
+    @Html.HiddenFor(x => x.PageComponentTypeId)
+    @Html.HiddenFor(x => x.ContainerElementId)
+
+    <button id="submit-button" type="submit" style="display: none;"></button>
+}
+
+<ul class="nav nav-tabs nav-justified">
+    <li role="presentation" class="active"><a href="#tab-markup" aria-controls="tab-general" role="tab" data-toggle="tab">Markup</a></li>
+    <li role="presentation" class=""><a href="#tab-bootstrap" aria-controls="tab-icon" role="tab" data-toggle="tab">Bootstrap</a></li>
+    <li role="presentation" class=""><a href="#tab-control" aria-controls="tab-screenshot" role="tab" data-toggle="tab">Control</a></li>
+</ul>
+<div class="row builder-picker">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active float-container" id="tab-markup">
+            <br />
+            @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Markup))
+            {
+                <div class="col-xs-12 col-md-6">
+                    <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId">
+                        <h1 style="padding-top: 10px;">@componentType.PageComponentTypeName</h1>
+                        <p>@componentType.PageComponentTypeDescription</p>
+                    </div>
+                </div>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane float-container" id="tab-bootstrap">
+            <br />
+            @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Bootstrap))
+            {
+                <div class="col-xs-12 col-md-6">
+                    <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId">
+                        <h1 style="padding-top: 10px;">@componentType.PageComponentTypeName</h1>
+                        <p>@componentType.PageComponentTypeDescription</p>
+                    </div>
+                </div>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-control">
+            <br />
+            @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Control))
+            {
+                <div class="col-xs-12 col-md-6">
+                    <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId">
+                        <h1 style="padding-top: 10px;">@componentType.PageComponentTypeName</h1>
+                        <p>@componentType.PageComponentTypeDescription</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

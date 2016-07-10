@@ -1,0 +1,34 @@
+﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Build.CustomViewModel
+@using Portal.CMS.Web.Areas.Admin.Helpers;
+@{
+    ViewBag.Title = Model.Page.PageName;
+}
+
+<link href="~/Areas/Builder/Content/Styles/pagebuilder.css" rel="stylesheet" />
+<script src="~/Areas/Builder/Content/Scripts/pagebuilder.js"></script>
+
+@if (UserHelper.IsAdmin)
+{
+    <div class="action-container">
+        <a href="@Url.Action("Upload", "Media", new { area = "Admin" })" class="launch-modal"><div class="action"><span class="glyphicon glyphicon-picture"></span></div></a>
+        <a href="@Url.Action("Index", "Pages", new { area = "Admin" }) "><div class="action"><span class="glyphicon glyphicon-book"></span></div></a>
+        <a href="@Url.Action("Add", "Build", new { area = "Builder", pageId = Model.Page.PageId })" class="launch-modal"><div class="action"><span class="glyphicon glyphicon-plus"></span></div></a>
+    </div>
+}
+
+@foreach (var section in Model.Page.PageSections)
+{
+    <div class="section-wrapper @(UserHelper.IsAdmin ? "admin" : "")" style="position: relative">
+        @Html.Raw(section.PageSectionBody)
+
+        @if (UserHelper.IsAdmin)
+        {
+            <div class="action-container absolute">
+                <a class="action add-component" data-title="Add Component" data-sectionid="@(section.PageSectionId)"><span class="glyphicon glyphicon-plus"></span></a>
+                <a class="action launch-modal" data-title="Edit Markup" href="@Url.Action("Markup", "Section", new { area = "Builder", pageSectionId = section.PageSectionId })"><span class="glyphicon glyphicon-console"></span></a>
+                <a class="action launch-modal" data-title="Edit Section" href="@Url.Action("Section", "Build", new { area = "Builder", sectionId = section.PageSectionId })"><span class="glyphicon glyphicon-cog"></span></a>
+                <a id="container-editor-@(section.PageSectionId)" class="action component-editor" style="display: none;" data-title="Edit Container"><span class="glyphicon glyphicon-unchecked"></span></a>
+            </div>
+        }
+    </div>
+}

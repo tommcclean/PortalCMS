@@ -1,0 +1,27 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Users.RolesViewModel
+@{
+    Layout = "";
+}
+
+<style>
+    #SelectedRoleList
+    {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+    }
+</style>
+
+@using (Html.BeginForm("Roles", "Users", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.UserId)
+
+    @Html.ListBoxFor(m => m.SelectedRoleList, Model.RoleList.Select(r => new SelectListItem { Text = r.RoleName, Value = r.RoleName.ToString(), Selected = Model.SelectedRoleList != null && Model.SelectedRoleList.Contains(r.RoleName) }))
+
+    <div class="footer">
+        <button class="btn primary">Save Changes</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

@@ -1,0 +1,25 @@
+﻿.image-selector
+{
+    text-align: center;
+}
+
+.tab-pane .image-selector img.thumbnail
+{
+    float: left;
+    width: 100%;
+    height: 140px;
+    margin-right: 20px;
+}
+
+.image-selector img.thumbnail.selected
+{
+    border: 2px solid red;
+}
+
+@media (max-width: 1024px)
+{
+    .tab-pane .image-selector img.thumbnail
+    {
+        height: 180px;
+    }
+}

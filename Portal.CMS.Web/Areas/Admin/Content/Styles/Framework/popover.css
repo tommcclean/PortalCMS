@@ -1,0 +1,15 @@
+﻿.popover
+{
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px #D2D2D8;
+    border: 1px solid #D6D7D8;
+}
+
+.popover-title
+{
+    text-transform: uppercase;
+    color: #333333;
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+}

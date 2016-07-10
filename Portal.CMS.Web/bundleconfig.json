@@ -1,0 +1,71 @@
+[
+  {
+    "outputFileName": "Areas/Admin/Content/Scripts/Global/modal.min.js",
+    "inputFiles": [
+      "Areas/Admin/Content/Scripts/Global/modal.js"
+    ]
+  },
+  {
+    "outputFileName": "Areas/Admin/Content/Scripts/Global/admin.min.js",
+    "inputFiles": [
+      "Areas/Admin/Content/Scripts/Global/admin.js"
+    ]
+  },
+  {
+    "outputFileName": "Areas/Admin/Content/Styles/Framework/boxes.min.css",
+    "inputFiles": [
+      "Areas/Admin/Content/Styles/Framework/boxes.css"
+    ]
+  },
+  {
+    "outputFileName": "Areas/Admin/Content/Styles/Framework/bundle.css",
+    "inputFiles": [
+      "Areas/Admin/Content/Styles/Framework/boxes.css",
+      "Areas/Admin/Content/Styles/Framework/fields.css",
+      "Areas/Admin/Content/Styles/Framework/fonts.css",
+      "Areas/Admin/Content/Styles/Framework/helper.css",
+      "Areas/Admin/Content/Styles/Framework/imagepicker.css",
+      "Areas/Admin/Content/Styles/Framework/modal.css",
+      "Areas/Admin/Content/Styles/Framework/popover.css",
+      "Areas/Admin/Content/Styles/Framework/table.css",
+      "Areas/Admin/Content/Styles/Framework/tabs.css",
+      "Areas/Admin/Content/Styles/Framework/tags.css",
+      "Areas/Admin/Content/Styles/Framework/toggle.css",
+      "Areas/Admin/Content/Styles/Framework/toolbar.css",
+      "Areas/Admin/Content/Styles/Framework/verticalallignment.css"
+    ]
+  },
+  {
+    "outputFileName": "Areas/Admin/Content/Plugins/FancyBox/bundle.js",
+    "inputFiles": [
+      "Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.js",
+      "Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.js"
+    ]
+  },
+  {
+    "outputFileName": "Areas/Admin/Content/Scripts/Global/plugins.min.js",
+    "inputFiles": [
+      "Areas/Admin/Content/Scripts/Global/plugins.js"
+    ]
+  },
+  {
+    "outputFileName": "Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.min.css",
+    "inputFiles": [
+      "Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.css"
+    ]
+  },
+  {
+    "outputFileName": "Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.min.css",
+    "inputFiles": [
+      "Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.css"
+    ]
+  },
+  {
+    "outputFileName": "Areas/Builder/Content/Styles/Components/bundle.css",
+    "inputFiles": [
+      "Areas/Builder/Content/Styles/Components/section.contact.css",
+      "Areas/Builder/Content/Styles/Components/section.quote.css",
+      "Areas/Builder/Content/Styles/Components/component.glass.css"
+    ]
+  }
+]

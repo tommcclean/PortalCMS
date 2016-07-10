@@ -1,0 +1,46 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Users.UsersViewModel
+@using Portal.CMS.Web.Areas.Admin.Helpers;
+@{
+    ViewBag.Title = "Manage Users";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-users.png";
+}
+
+<a href="@Url.Action("Create", "Users")" class="action-container launch-modal" data-title="Register User">
+    <div class="action"><span class="glyphicon glyphicon-plus"></span></div>
+</a>
+
+<div class="row">
+    @foreach (var user in Model.Users)
+    {
+        <div class="col-xs-12 col-md-6 col-lg-4">
+            <div class="box float-container">
+
+                <div class="row" style="height: 120px;">
+                    <div class="col-xs-3 vertical-alignment">
+                        <img src="~/Areas/Admin/Content/Images/profile-image-male.png" />
+                    </div>
+                    <div class="col-xs-9 vertical-alignment" style="text-align: left;">
+                        <h3>@user.GivenName @user.FamilyName</h3>
+                        <p>@user.EmailAddress</p>
+                    </div>
+                </div>
+
+                @if (user.UserId == UserHelper.UserId)
+                {
+                    <div class="admin-container x2">
+                        <a href="@Url.Action("Details", "Users", new { userId = @user.UserId })" class="admin-item launch-modal" data-title="Edit Details"><span class="glyphicon glyphicon-pencil"></span>Details</a>
+                        <a href="@Url.Action("Roles", "Users", new { userId = @user.UserId })" class="admin-item launch-modal" data-title="Edit Roles"><span class="glyphicon glyphicon-tower"></span>Roles</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="admin-container x3">
+                        <a href="@Url.Action("Details", "Users", new { userId = @user.UserId })" class="admin-item launch-modal" data-title="Edit Details"><span class="glyphicon glyphicon-pencil"></span>Details</a>
+                        <a href="@Url.Action("Roles", "Users", new { userId = @user.UserId })" class="admin-item launch-modal" data-title="Edit Roles"><span class="glyphicon glyphicon-tower"></span>Roles</a>
+                        <a href="@Url.Action("Delete", "Users", new { userId = @user.UserId })" class="admin-item launch-modal" data-title="Delete Account (@user.GivenName @user.FamilyName)"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

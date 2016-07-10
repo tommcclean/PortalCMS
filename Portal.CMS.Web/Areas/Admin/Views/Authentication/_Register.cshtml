@@ -1,0 +1,40 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Authentication.RegisterViewModel
+@{
+    Layout = "";
+}
+
+@using (Html.BeginForm("Register", "Authentication", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationMessage("EmailAddress")
+    @Html.ValidationMessage("Password")
+    @Html.ValidationMessage("GivenName")
+    @Html.ValidationMessage("FamilyName")
+    @Html.ValidationMessage("EmailAddressUsed")
+
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.GivenName)
+        @Html.TextBoxFor(x => x.GivenName, new { placeholder = "First Name" })
+    </div>
+
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.FamilyName)
+        @Html.TextBoxFor(x => x.FamilyName, new { placeholder = "Last Name" })
+    </div>
+
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.EmailAddress)
+        @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
+    </div>
+
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.Password)
+        @Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
+    </div>
+
+    <div class="button-group float-container">
+        <button class="btn primary">Register</button>
+        <button class="btn">Forgot Account</button>
+    </div>
+}

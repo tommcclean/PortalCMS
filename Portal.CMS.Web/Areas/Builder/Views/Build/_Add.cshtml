@@ -1,0 +1,36 @@
+﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Build.AddViewModel
+@{
+    Layout = "";
+}
+
+<script type="text/javascript">
+    $('.builder-item').on('click', function (e) {
+        var sectionTypeId = $(this).attr("data-sectiontypeid");
+
+        $('#PageSectionTypeId').val(sectionTypeId);
+
+        $('#submit-button').click();
+    });
+</script>
+
+@using (Html.BeginForm("Add", "Build", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.PageId)
+    @Html.HiddenFor(x => x.PageSectionTypeId);
+
+    <button id="submit-button" type="submit" style="display: none;"></button>
+}
+
+    <div class="row builder-picker">
+        @foreach (var sectionType in Model.SectionTypeList)
+        {
+            <div class="col-xs-12 col-md-6">
+                <div class="builder-item" data-sectiontypeid="@sectionType.PageSectionTypeId">
+                    <h1 style="padding-top: 10px;">@sectionType.PageSectionTypeName</h1>
+                    <p>This is the description which accompanies a section type, this should be added to the Section Type model.</p>
+                </div>
+            </div>
+        }
+    </div>

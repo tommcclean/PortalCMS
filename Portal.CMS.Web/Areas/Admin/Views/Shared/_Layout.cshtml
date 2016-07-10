@@ -1,0 +1,39 @@
+﻿@using Portal.CMS.Web.Areas.Admin.Helpers;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@SettingHelper.Get("Website Name"): @ViewBag.Title</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://code.jquery.com/ui/1.12.0-beta.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.min.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/Content/Styles/Framework/bundle.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/Styles/Pages/portal.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.js"></script>
+    <script src="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.js"></script>
+    <script src="~/Areas/Admin/Content/Scripts/plugins.min.js"></script>
+    <script src="~/Areas/Admin/Content/Scripts/modal.min.js"></script>
+</head>
+<body>
+    @Html.Partial("_Header")
+
+    @Html.Partial("_Sidebar")
+
+    <div id="page-container">
+        @RenderBody()
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>

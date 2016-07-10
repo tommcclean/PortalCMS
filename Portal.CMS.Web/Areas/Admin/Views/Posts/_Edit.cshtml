@@ -1,0 +1,111 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Posts.EditPostviewModel
+@{
+    ViewBag.Title = "Create Post";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-articles.png";
+    Layout = "";
+    var textareaSelector = DateTime.Now.ToString("ddMMyyyyHHmmss");
+}
+
+<script src="~/Areas/Admin/Content/Scripts/imageselector.js"></script>
+
+<script type="text/javascript">
+    tinymce.init({
+        selector: "#@textareaSelector",
+        theme: "modern",
+        plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor colorpicker textpattern imagetools"
+        ],
+        toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+        toolbar2: "print preview media | forecolor backcolor emoticons",
+        image_advtab: true,
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ]
+    });
+</script>
+
+@using (Html.BeginForm("Edit", "Posts", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.PostId)
+
+    @Html.HiddenFor(x => x.BannerImageId)
+    @Html.HiddenFor(x => x.GalleryImageList)
+
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation" class="active"><a href="#tab-post" aria-controls="tab-post" role="tab" data-toggle="tab">Edit Post</a></li>
+        <li role="presentation" class=""><a href="#tab-banner" aria-controls="tab-banner" role="tab" data-toggle="tab">Banner Image</a></li>
+        <li role="presentation" class=""><a href="#tab-gallery" aria-controls="tab-gallery" role="tab" data-toggle="tab">Gallery Images</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab-post">
+            @Html.ValidationMessage("PostTitle")
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.PostTitle)
+                @Html.TextBoxFor(x => x.PostTitle, new { placeholder = "Headline" })
+            </div>
+
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.PublicationState)
+                @Html.EnumDropDownListFor(m => m.PublicationState, new { @class = "form-control" })
+            </div>
+
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.PostCategory)
+                @Html.EnumDropDownListFor(m => m.PostCategory, new { @class = "form-control" })
+            </div>
+
+            @Html.ValidationMessage("PostDescription")
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.PostDescription)
+                @Html.TextBoxFor(x => x.PostDescription, new { placeholder = "Description" })
+            </div>
+
+            @Html.ValidationMessage("PostBody")
+            @Html.TextAreaFor(x => x.PostBody, new { id = textareaSelector })
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-banner">
+            @if (!Model.ImageList.Any())
+            {
+                <h2>No Media Uploads</h2>
+                <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
+            }
+
+            <div id="banner-selector" class="image-selector single float-container">
+                @foreach (var image in Model.ImageList)
+                {
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                        <img class="thumbnail @(Model.BannerImageId == image.ImageId ? "selected" : "")" d data-parent="banner-selector" data-target="BannerImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
+                    </div>
+                }
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-gallery">
+            @if (!Model.ImageList.Any())
+            {
+                <h2>No Media Uploads</h2>
+                <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
+            }
+            <div id="gallery-selector" class="image-selector multiple float-container">
+                @foreach (var image in Model.ImageList)
+                {
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                        <img class="thumbnail @(Model.ExistingGalleryImageList.Contains(image.ImageId) ? "selected" : "")" data-parent="gallery-selector" data-target="GalleryImageList" data-identifier="@image.ImageId" src="@image.ImagePath" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="footer">
+        <button class="btn primary">Save Changes</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

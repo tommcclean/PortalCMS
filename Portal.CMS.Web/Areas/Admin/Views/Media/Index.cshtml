@@ -1,0 +1,88 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Media.MediaViewModel
+@{
+    ViewBag.Title = "Manage Media";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-media.png";
+}
+
+<link href="~/Areas/Admin/Content/Styles/Pages/media.css" rel="stylesheet" />
+
+<a href="@Url.Action("Upload", "Media")" class="action-container launch-modal" data-title="Upload Image">
+    <div class="action"><span class="glyphicon glyphicon-plus"></span></div>
+</a>
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab">General</a></li>
+    <li role="presentation" class=""><a href="#tab-icon" aria-controls="tab-icon" role="tab" data-toggle="tab">Icon</a></li>
+    <li role="presentation" class=""><a href="#tab-screenshot" aria-controls="tab-screenshot" role="tab" data-toggle="tab">Screenshot</a></li>
+    <li role="presentation" class=""><a href="#tab-texture" aria-controls="tab-texture" role="tab" data-toggle="tab">Texture</a></li>
+</ul>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="tab-general">
+        <div class="row">
+            @foreach (var image in Model.Images.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.General))
+            {
+                <div class="col-xs-12 col-sm-6 col-lg-3 image @image.ImageCategory.ToString().ToLower() dark">
+                    <img class="thumbnail" src="@image.ImagePath" />
+
+                    <div class="hover">
+                        <div class="overlay-light"></div>
+                        <div class="admin-container x1 no-border">
+                            <a href="@Url.Action("Delete", "Media", new { imageId = @image.ImageId })" class="admin-item" data-title="Delete Image"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab-icon">
+        <div class="row">
+            @foreach (var image in Model.Images.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon))
+            {
+                <div class="col-xs-12 col-sm-6 col-lg-3 image @image.ImageCategory.ToString().ToLower() dark">
+                    <img class="thumbnail" src="@image.ImagePath" />
+
+                    <div class="hover">
+                        <div class="overlay-light"></div>
+                        <div class="admin-container x1 no-border">
+                            <a href="@Url.Action("Delete", "Media", new { imageId = @image.ImageId })" class="admin-item" data-title="Delete Image"><span class="glyphicon glyphicon-trash"></span></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab-screenshot">
+        <div class="row">
+            @foreach (var image in Model.Images.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Screenshot))
+            {
+                <div class="col-xs-12 col-sm-6 col-lg-3 image @image.ImageCategory.ToString().ToLower() dark">
+                    <img class="thumbnail" src="@image.ImagePath" />
+
+                    <div class="hover">
+                        <div class="overlay-light"></div>
+                        <div class="admin-container x1 no-border">
+                            <a href="@Url.Action("Delete", "Media", new { imageId = @image.ImageId })" class="admin-item" data-title="Delete Image"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab-texture">
+        <div class="row">
+            @foreach (var image in Model.Images.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Texture))
+            {
+                <div class="col-xs-12 col-sm-6 col-lg-3 image @image.ImageCategory.ToString().ToLower() dark">
+                    <img class="thumbnail" src="@image.ImagePath" />
+
+                    <div class="hover">
+                        <div class="overlay-light"></div>
+                        <div class="admin-container x1 no-border">
+                            <a href="@Url.Action("Delete", "Media", new { imageId = @image.ImageId })" class="admin-item" data-title="Delete Image"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

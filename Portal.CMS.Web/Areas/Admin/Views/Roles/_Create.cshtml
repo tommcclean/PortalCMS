@@ -1,0 +1,23 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Roles.CreateViewModel
+@{
+    Layout = "";
+}
+
+@using (Html.BeginForm("Create", "Roles", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationMessage("SettingName")
+
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.RoleName)
+        @Html.TextBoxFor(x => x.RoleName, new { placeholder = "Role Name" })
+    </div>
+
+    <br />
+
+    <div class="footer">
+        <button class="btn primary">Save</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

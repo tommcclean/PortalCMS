@@ -1,0 +1,48 @@
+﻿.glass
+{
+    position: absolute;
+    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
+}
+
+.glass-dark
+{
+    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
+}
+
+.glass-top
+{
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    height: 20px;
+}
+
+.glass-bottom
+{
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    height: 20px;
+}
+
+.glass-left
+{
+    left: 0px;
+    top: 20px;
+    bottom: 20px;
+    width: 20px;
+}
+
+.glass-right
+{
+    right: 0px;
+    top: 20px;
+    bottom: 20px;
+    width: 20px;
+}
+
+    .glass-left.full, .glass-right.full
+    {
+        top: 0px;
+        bottom: 0px;
+    }

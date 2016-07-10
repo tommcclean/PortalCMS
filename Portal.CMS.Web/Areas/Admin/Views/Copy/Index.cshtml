@@ -1,0 +1,28 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Copy.CopyViewModel
+@{
+    ViewBag.Title = "Manage Copy";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-copy.png";
+}
+
+<a href="@Url.Action("Create", "Copy")" class="action-container launch-modal" data-title="Create Copy">
+    <div class="action"><span class="glyphicon glyphicon-plus"></span></div>
+</a>
+
+<div class="row">
+    @foreach (var copyItem in Model.CopyList)
+    {
+        <div class="col-xs-12 col-md-6 col-lg-4">
+            <div class="box article-item float-container light">
+                <div class="inner">
+                    <h3>@copyItem.CopyName</h3>
+                    <p>Last Updated: @copyItem.DateUpdated.ToString("dd/MM/yyyy HH:mm")</p>
+
+                    <div class="admin-container x2">
+                        <a href="@Url.Action("Edit", "Copy", new { copyId = @copyItem.CopyId })" class="admin-item launch-modal" data-title="Edit Copy: @copyItem.CopyName"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+                        <a href="@Url.Action("Delete", "Copy", new { copyId = @copyItem.CopyId })" class="admin-item" data-title="Delete Post"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

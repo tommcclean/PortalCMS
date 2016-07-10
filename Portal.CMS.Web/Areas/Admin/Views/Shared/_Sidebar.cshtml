@@ -1,0 +1,32 @@
+﻿<div id="sidebar">
+    <a href="@Url.Action("Index", "Dashboard")" class="link first"  data-toggle="popover" data-trigger="hover" data-container="body" data-title="Dashboard" data-content="Review concise information about Portal CMS.">
+        <img src="~/Areas/Admin/Content/Images/icon-dashboard.png" />
+    </a>
+    <a href="@Url.Action("Index", "Posts")" class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Manage Posts" data-content="Create and Edit Posts to allow your visitors to read custom content.">
+        <img src="~/Areas/Admin/Content/Images/icon-articles.png" />
+    </a>
+    @*<a href="@Url.Action("Index", "Comments")" class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Review Comments" data-content="Read and administer Comments left by your visitors.">
+        <img src="~/Areas/Admin/Content/Images/icon-comments.png" />
+    </a>*@
+    <a href="@Url.Action("Index", "Media")" cl class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Manage Media" data-content="Review and Upload Media for use in Portal CMS.">
+        <img src="~/Areas/Admin/Content/Images/icon-media.png" />
+    </a>
+    <a href="@Url.Action("Index", "Pages")" class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Manage Pages" data-content="Create and Edit Custom Pages for your Website.">
+        <img src="~/Areas/Admin/Content/Images/icon-pages.png" />
+    </a>
+    <a href="@Url.Action("Index", "Copy")" class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Manage Copy" data-content="Create and Edit Copy sections to output custom markup onto your Website.">
+        <img src="~/Areas/Admin/Content/Images/icon-copy.png" />
+    </a>
+    <a href="@Url.Action("Index", "Users")" class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Manage Users" data-content="Register and edit users of this Website.">
+        <img src="~/Areas/Admin/Content/Images/icon-users.png" />
+    </a>
+    <a href="@Url.Action("Index", "Settings")" class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Manage Settings" data-content="Manage Portal CMS and your Websites settings.">
+        <img src="~/Areas/Admin/Content/Images/icon-settings.png" />
+    </a>
+    <a href="@Url.Action("Index", "Home", new { area = "" })" class="link"  data-toggle="popover" data-trigger="hover" data-container="body" data-title="Exit" data-content="Return to the Website and stay logged in.">
+        <img src="~/Areas/Admin/Content/Images/icon-exit.png" />
+    </a>
+    <a href="@Url.Action("Logout", "Authentication")" class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Logout" data-content="Logout of your account and return to the Website.">
+        <img src="~/Areas/Admin/Content/Images/icon-logout.png" />
+    </a>
+</div>

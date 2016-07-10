@@ -1,0 +1,20 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Dashboard.DashboardViewModel
+@using Portal.CMS.Web.Areas.Admin.Helpers;
+@using Portal.CMS.Entities.Entities.Posts
+@{
+    ViewBag.Title = "Portal CMS Dashboard";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-dashboard.png";
+}
+<link href="~/Areas/Admin/Content/Styles/Pages/dashboard.css" rel="stylesheet" />
+
+<div class="row">
+    @Html.Partial("_Welcome")
+
+    @Html.Partial("_MyAccount")
+
+    @Html.Partial("_LatestPost", new ViewDataDictionary(Model.LatestPost))
+
+    @Html.Partial("_LatestComments", new ViewDataDictionary(Model.LatestComments))
+
+    @Html.Partial("_MediaManager", new ViewDataDictionary(Model.Media))
+</div>

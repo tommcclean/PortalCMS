@@ -1,0 +1,61 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Settings.SettingsViewModel
+@{
+    ViewBag.Title = "Manage Settings";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-settings.png";
+}
+
+<link href="~/Areas/Admin/Content/Styles/Pages/dashboard.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <div class="box">
+            <div class="box-title">Website Settings</div>
+
+            <div class="float-container" style="margin-top: 25px;">
+                @foreach (var setting in Model.SettingList)
+                {
+                    <a href="@Url.Action("Edit", "Settings", new { settingId = @setting.SettingId })" class="tag launch-modal" data-title="Change: @setting.SettingName"><strong><span class="glyphicon glyphicon-cog"></span>@setting.SettingName: </strong> @setting.SettingValue</a>
+                }
+            </div>
+
+            <div class="admin-container x1">
+                <a href="@Url.Action("Create", "Settings")" class="admin-item launch-modal" data-title="Create Setting"><span class="glyphicon glyphicon-plus"></span>Create Setting</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-6">
+        <div class="box">
+            <div class="box-title">Role Management</div>
+
+            <div class="float-container" style="margin-top: 25px;">
+                @foreach (var role in Model.RoleList)
+                {
+                    <a href="@Url.Action("Edit", "Roles", new { roleId = @role.RoleId })" cl class="tag launch-modal" data-title="Change: @role.RoleName"><span class="glyphicon glyphicon-tower"></span>@role.RoleName</a>
+                }
+            </div>
+
+            <div class="admin-container x1">
+                <a href="@Url.Action("Create", "Roles")" class="admin-item launch-modal" data-title="Create Role"><span class="glyphicon glyphicon-plus"></span>Create Role</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-6">
+        <div class="box">
+            <div class="box-title">Manage Menus</div>
+
+            <div class="float-container" style="margin-top: 25px;">
+                @foreach (var menu in Model.MenuList)
+                {
+                    <a href="@Url.Action("Edit", "Menu", new { menuId = @menu.MenuId})" cl class="tag launch-modal" data-title="Change: @menu.MenuName"><span class="glyphicon glyphicon-th-list"></span>@menu.MenuName (@menu.MenuItems.Count)</a>
+                }
+            </div>
+
+            <div class="admin-container x2">
+                <a href="@Url.Action("Create", "Menu")" class="admin-item launch-modal" data-title="Create Menu"><span class="glyphicon glyphicon-plus"></span>Create Menu</a>
+                <a href="@Url.Action("Create", "MenuItem")" class="admin-item launch-modal" data-title="Add Menu Item"><span class="glyphicon glyphicon-plus"></span>Add Item</a>
+            </div>
+        </div>
+    </div>
+</div>

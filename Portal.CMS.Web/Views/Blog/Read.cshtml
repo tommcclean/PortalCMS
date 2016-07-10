@@ -1,0 +1,71 @@
+﻿@model Portal.CMS.Web.ViewModels.Blog.ReadViewModel
+@using Portal.CMS.Entities.Entities.Posts;
+@{
+    ViewBag.Title = "Read";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="post">
+    <div class="post-banner" style="background-image: url('@Model.CurrentPost.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath');">
+        <div class="overlay-light"></div>
+        <div class="inner vertical-alignment">
+            <h1 class="post-title">@Model.CurrentPost.PostTitle</h1>
+            <h2 class="post-updated">Last Updated: @Model.CurrentPost.DateUpdated.ToString("dd/MM/yyyy HH:mm")</h2>
+            <p class="post-description">@Model.CurrentPost.PostDescription</p>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-md-7 col-lg-8">
+
+                <div class="post-body">
+                    @Html.Raw(Model.CurrentPost.PostBody)
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-5 col-lg-4">
+                <ul class="nav nav-tabs nav-justified">
+                    <li role="presentation" class="active"><a href="#tab-recent-posts" aria-controls="tab-recent-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-time"></span>Recent (@Model.RecentPosts.Count())</a></li>
+                    <li role="presentation"><a href="#tab-similiar-posts" aria-controls="tab-similiar-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span>Similiar (@Model.SimiliarPosts.Count())</a></li>
+                    <li role="presentation"><a href="#tab-gallery" aria-controls="tab-gallery" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span>Gallery (@Model.CurrentPost.PostImages.Where(x => x.PostImageType == Portal.CMS.Entities.Entities.Posts.PostImageType.Gallery).Count())</a></li>
+                    <li role="presentation"><a href="#tab-comments" aria-controls="tab-gallery" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-comment"></span>Comments (@Model.CurrentPost.PostComments.Count())</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="tab-recent-posts">
+                        @Html.Partial("_List", Model.RecentPosts)
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab-similiar-posts">
+                        @Html.Partial("_List", Model.SimiliarPosts)
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab-gallery">
+                        @foreach (var image in Model.CurrentPost.PostImages.Where(x => x.PostImageType == PostImageType.Gallery))
+                        {
+                            <a class="fancybox-thumb" rel="fancybox-thumb" href="@image.Image.ImagePath" title="@Model.CurrentPost.PostTitle">
+                                <img class="thumbnail" src="@image.Image.ImagePath" alt="" />
+                            </a>
+                        }
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab-comments">
+                        @foreach (var comment in Model.CurrentPost.PostComments)
+                        {
+                            <div class="float-container comment-item">
+                                <h1>@comment.User.GivenName @comment.User.FamilyName</h1>
+                                <p>@comment.CommentBody</p>
+                            </div>
+                        }
+
+                        @using (Html.BeginForm("Comment", "Blog", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.Hidden("postId", Model.CurrentPost.PostId)
+
+                            <textarea id="commentBody" name="commentBody"></textarea>
+
+                            <button>Submit</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
