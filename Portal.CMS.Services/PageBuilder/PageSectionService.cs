@@ -69,12 +69,14 @@ namespace Portal.CMS.Services.PageBuilder
             if (pageSection == null)
                 return;
 
-            var sectionBody = DocumentHelper.UpdateElementContent(pageSection.PageSectionBody, elementId, elementValue);
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.UpdateElementContent(elementId, elementValue);
 
             if (!string.IsNullOrWhiteSpace(elementColour))
-                sectionBody = DocumentHelper.UpdateElementColour(pageSection.PageSectionBody, elementId, elementColour);
+                document.UpdateElementAttribute(elementId, "style", string.Format("color: {0};", elementColour), true);
 
-            pageSection.PageSectionBody = sectionBody;
+            pageSection.PageSectionBody = document.OuterHtml;
 
             _context.SaveChanges();
         }
@@ -91,12 +93,16 @@ namespace Portal.CMS.Services.PageBuilder
             if (image == null)
                 return;
 
-            pageSection.PageSectionBody = DocumentHelper.UpdateElementStyle(pageSection.PageSectionBody, string.Format("section-{0}", pageSectionId), image.ImagePath);
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.UpdateElementAttribute(string.Format("section-{0}", pageSectionId), "style", string.Format("background-image: url('{0}');", image.ImagePath), true);
 
             if (image.ImageCategory == Entities.Entities.Generic.ImageCategory.Texture)
-                pageSection.PageSectionBody = DocumentHelper.UpdateElementAttribute(pageSection.PageSectionBody, string.Format("section-{0}", pageSectionId), "style", "background-size: initial;", false);
+                document.UpdateElementAttribute(string.Format("section-{0}", pageSectionId), "style", "background-size: initial;", false);
             else
-                pageSection.PageSectionBody = DocumentHelper.UpdateElementAttribute(pageSection.PageSectionBody, string.Format("section-{0}", pageSectionId), "style", "background-size: cover;", false);
+                document.UpdateElementAttribute(string.Format("section-{0}", pageSectionId), "style", "background-size: cover;", false);
+
+            pageSection.PageSectionBody = document.OuterHtml;
 
             _context.SaveChanges();
         }

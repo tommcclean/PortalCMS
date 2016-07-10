@@ -53,14 +53,15 @@ namespace Portal.CMS.Services.PageBuilder
             if (pageSection == null)
                 return;
 
-            var sectionBody = DocumentHelper.UpdateElementContent(pageSection.PageSectionBody, elementId, elementText);
+            var document = new Document(pageSection.PageSectionBody);
 
-            sectionBody = DocumentHelper.UpdateElementAttribute(sectionBody, elementId, "href", elementTarget, true);
+            document.UpdateElementContent(elementId, elementText);
+            document.UpdateElementAttribute(elementId, "href", elementTarget, true);
 
             if (!string.IsNullOrWhiteSpace(elementColour))
-                sectionBody = DocumentHelper.UpdateElementColour(sectionBody, elementId, elementColour);
+                document.UpdateElementAttribute(elementId, "style", string.Format("color: {0};", elementColour), true);
 
-            pageSection.PageSectionBody = sectionBody;
+            pageSection.PageSectionBody = document.OuterHtml;
 
             _context.SaveChanges();
         }

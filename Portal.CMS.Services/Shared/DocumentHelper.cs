@@ -50,29 +50,9 @@ namespace Portal.CMS.Services.Shared
             return document.DocumentNode.OuterHtml;
         }
 
-        public static string UpdateElementContent(string htmlBody, string elementId, string elementValue)
-        {
-            var document = LoadDocument(htmlBody);
 
-            var element = document.GetElementbyId(elementId);
 
-            element.InnerHtml = elementValue;
 
-            return document.DocumentNode.OuterHtml;
-        }
-
-        public static string UpdateElementColour(string htmlBody, string elementId, string elementColour)
-        {
-            var document = LoadDocument(htmlBody);
-
-            var element = document.GetElementbyId(elementId);
-
-            var colorStyle = string.Format("color: " + elementColour);
-
-            element.SetAttributeValue("style", colorStyle);
-
-            return document.DocumentNode.OuterHtml;
-        }
 
         public static string UpdateElementStyle(string htmlBody, string elementId, string imagePath)
         {
@@ -129,30 +109,6 @@ namespace Portal.CMS.Services.Shared
             htmlBody = htmlBody.Replace("<sectionId>", pageSectionId.ToString());
 
             return htmlBody;
-        }
-
-        public static string UpdateElementAttribute(string htmlBody, string elementId, string attributeName, string attributeValue, bool replaceValue)
-        {
-            var document = LoadDocument(htmlBody);
-
-            var element = document.GetElementbyId(elementId);
-
-            if (replaceValue)
-            {
-                var existingAttribute = element.Attributes.FirstOrDefault(x => x.Name == attributeName);
-                var existingValue = string.Empty;
-
-                if (existingValue != null)
-                    existingValue = existingAttribute.Value;
-
-                element.SetAttributeValue(attributeName, existingValue + attributeValue);
-            }
-            else
-            {
-                element.SetAttributeValue(attributeName, attributeValue);
-            }
-
-            return document.DocumentNode.OuterHtml;
         }
 
         public static string GetElementAttribute(string htmlBody, string elementId, string attributeName)

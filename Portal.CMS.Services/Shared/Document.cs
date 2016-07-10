@@ -9,7 +9,15 @@ namespace Portal.CMS.Services.Shared
 {
     public class Document
     {
-        public HtmlDocument _document { get; set; }
+        private HtmlDocument _document { get; set; }
+
+        public string OuterHtml
+        {
+            get
+            {
+                return _document.DocumentNode.OuterHtml;
+            }
+        }
 
         public Document(string htmlBody)
         {
@@ -18,11 +26,22 @@ namespace Portal.CMS.Services.Shared
             _document.LoadHtml(htmlBody);
         }
 
+        public void UpdateElementContent(string elementId, string elementValue)
+        {
+            var element = _document.GetElementbyId(elementId);
+
+            element.InnerHtml = elementValue;
+        }
+
         public void UpdateElementAttribute(string elementId, string attributeName, string attributeValue, bool replaceValue)
         {
             var element = _document.GetElementbyId(elementId);
 
             if (replaceValue)
+            {
+                element.SetAttributeValue(attributeName, attributeValue);
+            }
+            else
             {
                 var existingAttribute = element.Attributes.FirstOrDefault(x => x.Name == attributeName);
                 var existingValue = string.Empty;
@@ -31,10 +50,6 @@ namespace Portal.CMS.Services.Shared
                     existingValue = existingAttribute.Value;
 
                 element.SetAttributeValue(attributeName, existingValue + attributeValue);
-            }
-            else
-            {
-                element.SetAttributeValue(attributeName, attributeValue);
             }
         }
     }
