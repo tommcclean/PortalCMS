@@ -24,7 +24,11 @@ namespace Portal.CMS.Services.PageBuilder
             if (pageSection == null)
                 return;
 
-            pageSection.PageSectionBody = DocumentHelper.RemoveElementById(pageSection.PageSectionBody, componentId);
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.DeleteElement(componentId);
+
+            pageSection.PageSectionBody = document.OuterHtml;
 
             _context.SaveChanges();
         }
@@ -41,7 +45,11 @@ namespace Portal.CMS.Services.PageBuilder
             if (image == null)
                 return;
 
-            pageSection.PageSectionBody = DocumentHelper.UpdateElementStyle(pageSection.PageSectionBody, elementId, image.ImagePath);
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.UpdateElementAttribute(elementId, "style", string.Format("background-image: url('{0}');", image.ImagePath), true);
+
+            pageSection.PageSectionBody = document.OuterHtml;
 
             _context.SaveChanges();
         }

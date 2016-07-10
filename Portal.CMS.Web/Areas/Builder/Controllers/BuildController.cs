@@ -1,5 +1,6 @@
 ﻿using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
+using Portal.CMS.Services.Shared;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Build;
 using System.Web.Mvc;
@@ -92,12 +93,14 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             var pageSection = _pageSectionService.Get(sectionId);
 
+            var document = new Document(pageSection.PageSectionBody);
+
             var model = new ElementViewModel()
             {
                 PageId = pageSection.PageId,
                 SectionId = sectionId,
                 ElementId = elementId,
-                ElementValue = _pageSectionService.Get(sectionId, elementId)
+                ElementValue = document.GetContent(elementId)
             };
 
             return View("_Element", model);

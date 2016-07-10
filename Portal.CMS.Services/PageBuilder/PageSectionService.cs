@@ -26,18 +26,6 @@ namespace Portal.CMS.Services.PageBuilder
             return pageSection;
         }
 
-        public string Get(int pageSectionId, string elementId)
-        {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
-
-            if (pageSection == null)
-                return string.Empty;
-
-            var result = DocumentHelper.GetElementContent(pageSection.PageSectionBody, elementId);
-
-            return result;
-        }
-
         public int Add(int pageId, int pageSectionTypeId)
         {
             var sectionType = _context.PageSectionTypes.FirstOrDefault(x => x.PageSectionTypeId == pageSectionTypeId);
@@ -55,7 +43,9 @@ namespace Portal.CMS.Services.PageBuilder
 
             _context.SaveChanges();
 
-            newPageSection.PageSectionBody = DocumentHelper.ReplaceTokens(newPageSection.PageSectionBody, newPageSection.PageSectionId);
+            var document = new Document(newPageSection.PageSectionBody);
+
+            newPageSection.PageSectionBody = document.ReplaceTokens(newPageSection.PageSectionBody, newPageSection.PageSectionId);
 
             _context.SaveChanges();
 
@@ -126,7 +116,11 @@ namespace Portal.CMS.Services.PageBuilder
             if (pageSection == null)
                 return;
 
-            pageSection.PageSectionBody = DocumentHelper.UpdateSectionHeight(pageSection.PageSectionBody, string.Format("section-{0}", pageSectionId), height);
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.UpdateSectionHeight(string.Format("section-{0}", pageSectionId), height);
+
+            pageSection.PageSectionBody = document.OuterHtml;
 
             _context.SaveChanges();
         }
@@ -138,7 +132,11 @@ namespace Portal.CMS.Services.PageBuilder
             if (pageSection == null)
                 return;
 
-            pageSection.PageSectionBody = DocumentHelper.UpdateBackgroundType(pageSection.PageSectionBody, string.Format("section-{0}", pageSectionId), backgroundType);
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.UpdateBackgroundType(string.Format("section-{0}", pageSectionId), backgroundType);
+
+            pageSection.PageSectionBody = document.OuterHtml;
 
             _context.SaveChanges();
         }

@@ -61,12 +61,14 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             var pageSection = _pageSectionService.Get(pageSectionId);
 
+            var document = new Document(pageSection.PageSectionBody);
+
             var model = new AnchorViewModel()
             {
                 SectionId = pageSectionId,
                 ElementId = elementId,
-                ElementText = DocumentHelper.GetElementContent(pageSection.PageSectionBody, elementId),
-                ElementTarget = DocumentHelper.GetElementAttribute(pageSection.PageSectionBody, elementId, "href"),
+                ElementText = document.GetContent(elementId),
+                ElementTarget = document.GetAttribute(elementId, "href"),
                 ElementColour = ""
             };
 

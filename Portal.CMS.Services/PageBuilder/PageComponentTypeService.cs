@@ -1,7 +1,6 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.PageBuilder;
 using Portal.CMS.Services.Shared;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -46,9 +45,11 @@ namespace Portal.CMS.Services.PageBuilder
             if (pageComponentType == null)
                 return;
 
-            var componentBody = pageComponentType.PageComponentBody.Replace("<componentStamp>", DateTime.Now.ToString("ddMMyyyHHmmss")).Replace("<sectionId>", pageSectionId.ToString());
+            var document = new Document(pageSection.PageSectionBody);
 
-            pageSection.PageSectionBody = DocumentHelper.AppendComponent(pageSection.PageSectionBody, pageSectionId, containerElementId, componentBody);
+            document.AddElement(pageSection.PageSectionId, containerElementId, pageComponentType.PageComponentBody);
+
+            pageSection.PageSectionBody = document.OuterHtml;
 
             _context.SaveChanges();
         }

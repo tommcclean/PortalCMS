@@ -72,7 +72,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\SettingService.cs" />
     <Compile Include="Shared\Document.cs" />
-    <Compile Include="Shared\DocumentHelper.cs" />
     <Compile Include="Shared\SecurityHelper.cs" />
   </ItemGroup>
   <ItemGroup>
