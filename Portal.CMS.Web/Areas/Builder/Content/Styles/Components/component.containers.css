@@ -21,7 +21,7 @@
 .admin .component-container.selected
 {
     border: 1px solid;
-    background-image: url('../../../Admin/Content/Images/block_black_light.png');
+    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
 }
 
 section:after, .row:after
