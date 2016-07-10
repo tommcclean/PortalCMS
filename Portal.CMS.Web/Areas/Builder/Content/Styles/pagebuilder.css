@@ -138,6 +138,7 @@ section:after, .row:after
     background-size: cover;
     background-position: center center;
     margin: 10px;
+    margin-top: 20px;
 }
 
     .image.image-circle
