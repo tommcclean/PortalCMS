@@ -55,7 +55,7 @@ namespace Portal.CMS.Services.PageBuilder
 
             var sectionBody = DocumentHelper.UpdateElementContent(pageSection.PageSectionBody, elementId, elementText);
 
-            sectionBody = DocumentHelper.UpdateElementAttribute(sectionBody, elementId, "href", elementTarget);
+            sectionBody = DocumentHelper.UpdateElementAttribute(sectionBody, elementId, "href", elementTarget, true);
 
             if (!string.IsNullOrWhiteSpace(elementColour))
                 sectionBody = DocumentHelper.UpdateElementColour(sectionBody, elementId, elementColour);

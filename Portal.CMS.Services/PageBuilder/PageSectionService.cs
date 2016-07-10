@@ -93,6 +93,11 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = DocumentHelper.UpdateElementStyle(pageSection.PageSectionBody, string.Format("section-{0}", pageSectionId), image.ImagePath);
 
+            if (image.ImageCategory == Entities.Entities.Generic.ImageCategory.Texture)
+                pageSection.PageSectionBody = DocumentHelper.UpdateElementAttribute(pageSection.PageSectionBody, string.Format("section-{0}", pageSectionId), "style", "background-size: initial;", false);
+            else
+                pageSection.PageSectionBody = DocumentHelper.UpdateElementAttribute(pageSection.PageSectionBody, string.Format("section-{0}", pageSectionId), "style", "background-size: cover;", false);
+
             _context.SaveChanges();
         }
 

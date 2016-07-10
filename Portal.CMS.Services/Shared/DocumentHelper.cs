@@ -131,13 +131,26 @@ namespace Portal.CMS.Services.Shared
             return htmlBody;
         }
 
-        public static string UpdateElementAttribute(string htmlBody, string elementId, string attributeName, string attributeValue)
+        public static string UpdateElementAttribute(string htmlBody, string elementId, string attributeName, string attributeValue, bool replaceValue)
         {
             var document = LoadDocument(htmlBody);
 
             var element = document.GetElementbyId(elementId);
 
-            element.SetAttributeValue(attributeName, attributeValue);
+            if (replaceValue)
+            {
+                var existingAttribute = element.Attributes.FirstOrDefault(x => x.Name == attributeName);
+                var existingValue = string.Empty;
+
+                if (existingValue != null)
+                    existingValue = existingAttribute.Value;
+
+                element.SetAttributeValue(attributeName, existingValue + attributeValue);
+            }
+            else
+            {
+                element.SetAttributeValue(attributeName, attributeValue);
+            }
 
             return document.DocumentNode.OuterHtml;
         }
