@@ -9,7 +9,7 @@
     <title>@SettingHelper.Get("Website Name"): @ViewBag.Title</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    @*@Html.Raw(CopyHelper.Get("Description Meta-Tag"))*@
+    @Html.Raw(CopyHelper.Get("Description Meta-Tag"))
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://code.jquery.com/ui/1.12.0-beta.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
@@ -88,7 +88,7 @@
         @RenderBody()
     </div>
 
-    @*@Html.Raw(CopyHelper.Get("Analytics"))*@
+    @Html.Raw(CopyHelper.Get("Analytics"))
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
