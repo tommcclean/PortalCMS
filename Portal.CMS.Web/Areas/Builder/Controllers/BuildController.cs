@@ -38,27 +38,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         [HttpGet, AdminFilter]
-        public ActionResult Add(int pageId)
-        {
-            var model = new AddViewModel()
-            {
-                PageId = pageId,
-                SectionTypeList = _pageSectionTypeService.Get()
-            };
-
-            return View("_Add", model);
-        }
-
-        [HttpPost, AdminFilter]
-        [ValidateAntiForgeryToken]
-        public ActionResult Add(AddViewModel model)
-        {
-            _pageSectionService.Add(model.PageId, model.PageSectionTypeId);
-
-            return this.Content("Refresh");
-        }
-
-        [HttpGet, AdminFilter]
         public ActionResult Section(int sectionId)
         {
             var pageSection = _pageSectionService.Get(sectionId);
