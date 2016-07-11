@@ -37,35 +37,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return View("PageBuilder", model);
         }
 
-        [HttpGet, AdminFilter]
-        public ActionResult Section(int sectionId)
-        {
-            var pageSection = _pageSectionService.Get(sectionId);
 
-            var model = new SectionViewModel()
-            {
-                PageId = pageSection.PageId,
-                SectionId = sectionId,
-                ImageList = _imageService.Get(),
-                PageSectionHeight = _pageSectionService.DetermineSectionHeight(sectionId),
-                PageSectionBackgroundType = _pageSectionService.DetermineBackgroundType(sectionId)
-            };
-
-            return View("_Section", model);
-        }
-
-        [HttpPost, AdminFilter]
-        [ValidateAntiForgeryToken]
-        public ActionResult Section(SectionViewModel model)
-        {
-            if (model.BackgroundImageId > 0)
-                _pageSectionService.Background(model.SectionId, model.BackgroundImageId);
-
-            _pageSectionService.Height(model.SectionId, model.PageSectionHeight);
-            _pageSectionService.BackgroundType(model.SectionId, model.PageSectionBackgroundType);
-
-            return this.Content("Refresh");
-        }
 
         [HttpGet, AdminFilter]
         public ActionResult Element(int sectionId, string elementId)

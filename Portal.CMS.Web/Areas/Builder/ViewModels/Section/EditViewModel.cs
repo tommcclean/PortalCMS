@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Portal.CMS.Web.Areas.Builder.ViewModels.Build
+namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
 {
-    public class SectionViewModel
+    public class EditViewModel
     {
         public int PageId { get; set; }
 

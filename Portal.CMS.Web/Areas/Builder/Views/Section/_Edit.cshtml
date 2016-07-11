@@ -1,11 +1,11 @@
-﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Build.SectionViewModel
+﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Section.EditViewModel
 @{
     Layout = "";
 }
 
 <script src="~/Areas/Admin/Content/Scripts/imageselector.js"></script>
 
-@using (Html.BeginForm("Section", "Build", FormMethod.Post))
+@using (Html.BeginForm("Edit", "Section", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

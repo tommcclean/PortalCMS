@@ -290,7 +290,7 @@
     <Compile Include="Areas\Builder\ViewModels\Section\AddViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Build\CustomViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Build\ElementViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Build\SectionViewModel.cs" />
+    <Compile Include="Areas\Builder\ViewModels\Section\EditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Content\Images\icon-pages.png" />
@@ -547,7 +547,7 @@
     <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
     <Content Include="Areas\Builder\Views\Build\_Element.cshtml" />
-    <Content Include="Areas\Builder\Views\Build\_Section.cshtml" />
+    <Content Include="Areas\Builder\Views\Section\_Edit.cshtml" />
     <Content Include="Views\Shared\PageBuilder.cshtml" />
   </ItemGroup>
   <PropertyGroup>

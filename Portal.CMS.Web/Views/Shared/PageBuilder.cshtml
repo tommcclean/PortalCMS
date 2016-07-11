@@ -25,7 +25,7 @@
             <div class="action-container absolute">
                 <a class="action add-component" data-title="Add Component" data-sectionid="@(section.PageSectionId)"><span class="glyphicon glyphicon-plus"></span></a>
                 <a class="action launch-modal" data-title="Edit Markup" href="@Url.Action("Markup", "Section", new { area = "Builder", pageSectionId = section.PageSectionId })"><span class="glyphicon glyphicon-console"></span></a>
-                <a class="action launch-modal" data-title="Edit Section" href="@Url.Action("Section", "Build", new { area = "Builder", sectionId = section.PageSectionId })"><span class="glyphicon glyphicon-cog"></span></a>
+                <a class="action launch-modal" data-title="Edit Section" href="@Url.Action("Edit", "Section", new { area = "Builder", sectionId = section.PageSectionId })"><span class="glyphicon glyphicon-cog"></span></a>
                 <a id="container-editor-@(section.PageSectionId)" class="action component-editor" style="display: none;" data-title="Edit Container"><span class="glyphicon glyphicon-unchecked"></span></a>
             </div>
         }
