@@ -16,6 +16,11 @@ namespace Portal.CMS.Entities.Seed
             {
                 context.Settings.Add(new Setting() { SettingName = "Description Meta Tag", SettingValue = "Portal CMS is a fully featured content management system with a powerful integrated page builder." });
             }
+
+            if (!context.Settings.Any(x => x.SettingName == "Google Analytics Tracking ID"))
+            {
+                context.Settings.Add(new Setting() { SettingName = "Google Analytics Tracking ID", SettingValue = "" });
+            }
         }
     }
 }

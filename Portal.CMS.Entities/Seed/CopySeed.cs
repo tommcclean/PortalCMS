@@ -9,10 +9,7 @@ namespace Portal.CMS.Entities.Seed
     {
         public static void Seed(PortalEntityModel context)
         {
-            if (!context.CopySections.Any())
-            {
-                context.CopySections.Add(new Entities.Copy.Copy() { CopyName = "Analytics Script", CopyBody = "<script type=\"text/javascript\"></script>", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
-            }
+
         }
     }
 }
