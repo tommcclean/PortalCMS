@@ -25,7 +25,7 @@
 
     section.header
     {
-        max-height: calc(100vh - 50px);
+        max-height: calc(100vh - 50px) !important;
         background-image: url('../Images/Sample/Sample-2.jpg');
         color: white;
     }
@@ -85,10 +85,36 @@
         font-size: 28px;
     }
 
-    @media (max-width: 1024px)
+@media (max-width: 1024px)
+{
+    section.background-parallax
     {
-        section.background-parallax
-        {
-            background-attachment: scroll;
-        }
+        background-attachment: scroll;
     }
+}
+
+@media (max-width: 968px)
+{
+    section.height-tall
+    {
+        min-height: 80vh;
+    }
+
+    section.height-medium
+    {
+        min-height: 80vh;
+    }
+}
+
+@media (max-width: 736px)
+{
+    section.height-tall
+    {
+        min-height: 80vh;
+    }
+
+    section.height-medium
+    {
+        min-height: 80vh;
+    }
+}
