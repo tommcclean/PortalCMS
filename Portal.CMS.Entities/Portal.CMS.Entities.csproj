@@ -74,6 +74,9 @@
     <Compile Include="Entities\Posts\PostImage.cs" />
     <Compile Include="Entities\Posts\PostImageType.cs" />
     <Compile Include="Entities\Settings\Setting.cs" />
+    <Compile Include="Initialisers\DropAndMigrateDatabaseToLatestVersion.cs" />
+    <Compile Include="Initialisers\Environments\DefaultInitialiser.cs" />
+    <Compile Include="Initialisers\MigrateDatabaseToLatestVersion.cs" />
     <Compile Include="Migrations\201607091707192_InitialPortalCMSSchema.cs" />
     <Compile Include="Migrations\201607091707192_InitialPortalCMSSchema.Designer.cs">
       <DependentUpon>201607091707192_InitialPortalCMSSchema.cs</DependentUpon>
