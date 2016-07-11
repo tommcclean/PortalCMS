@@ -23,14 +23,21 @@
     <button id="submit-button" type="submit" style="display: none;"></button>
 }
 
-    <div class="row builder-picker">
-        @foreach (var sectionType in Model.SectionTypeList)
-        {
-            <div class="col-xs-12 col-md-6">
-                <div class="builder-item" data-sectiontypeid="@sectionType.PageSectionTypeId">
-                    <h1 style="padding-top: 10px;">@sectionType.PageSectionTypeName</h1>
-                    <p>This is the description which accompanies a section type, this should be added to the Section Type model.</p>
+<ul class="nav nav-tabs nav-justified">
+    <li role="presentation" class="active"><a href="#tab-all" aria-controls="tab-all" role="tab" data-toggle="tab">All</a></li>
+</ul>
+
+<div class="row builder-picker">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active float-container" id="tab-markup">
+            @foreach (var sectionType in Model.SectionTypeList)
+            {
+                <div class="col-xs-12 col-md-6">
+                    <div class="builder-item" data-sectiontypeid="@sectionType.PageSectionTypeId">
+                        <h1 style="padding-top: 10px;">@sectionType.PageSectionTypeName</h1>
+                    </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
+</div>

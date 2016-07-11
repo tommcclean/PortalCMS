@@ -32,7 +32,6 @@
 <div class="row builder-picker">
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active float-container" id="tab-markup">
-            <br />
             @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Markup))
             {
                 <div class="col-xs-12 col-md-6">
@@ -44,7 +43,6 @@
             }
         </div>
         <div role="tabpanel" class="tab-pane float-container" id="tab-bootstrap">
-            <br />
             @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Bootstrap))
             {
                 <div class="col-xs-12 col-md-6">
@@ -56,7 +54,6 @@
             }
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-control">
-            <br />
             @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Control))
             {
                 <div class="col-xs-12 col-md-6">

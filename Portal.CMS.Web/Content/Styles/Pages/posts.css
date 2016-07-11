@@ -49,25 +49,6 @@
         text-align: center;
     }
 
-.nav-tabs {
-    margin-top: 20px;
-}
-
-.tab-pane {
-    min-height: 500px;
-    border: 1px solid #ddd;
-    background-color: white;
-    border-top: 0;
-    padding: 5px 10px 5px 10px;
-}
-
-    .tab-pane img.thumbnail {
-        float: left;
-        width: 220px;
-        height: 150px;
-        margin-right: 20px;
-    }
-
     .tab-pane h1 {
         font-size: 25px;
         padding: 10px 20px 10px 20px;

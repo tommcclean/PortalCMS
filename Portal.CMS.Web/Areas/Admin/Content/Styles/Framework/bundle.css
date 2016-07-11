@@ -496,17 +496,15 @@ table th
     text-transform: uppercase;
 }
 /* CSS used here will be applied after bootstrap.css */
-.tab-content .tab-pane {
-    position: relative;
-}
 
 .nav-tabs > li > a
 {
     color: black;
-    font-size: 15px;
+    font-size: 14px;
 }
 
-.tab-pane {
+.tab-content .tab-pane {
+    position: relative;
     min-height: 500px;
     border: 1px solid #ddd;
     background-color: white;
@@ -536,6 +534,7 @@ table th
     .tab-pane a:hover {
         text-decoration: none;
     }
+
 
     @media (max-width: 767px)
     {
