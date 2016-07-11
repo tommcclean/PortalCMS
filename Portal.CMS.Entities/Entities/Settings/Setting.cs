@@ -10,7 +10,6 @@ namespace Portal.CMS.Entities.Entities.Settings
         [Required]
         public string SettingName { get; set; }
 
-        [Required]
         public string SettingValue { get; set; }
     }
 }

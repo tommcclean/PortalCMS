@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201607091707192_InitialPortalCMSSchema.Designer.cs">
       <DependentUpon>201607091707192_InitialPortalCMSSchema.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607112115093_RemoveRequirementForSettingID.cs" />
+    <Compile Include="Migrations\201607112115093_RemoveRequirementForSettingID.Designer.cs">
+      <DependentUpon>201607112115093_RemoveRequirementForSettingID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,6 +103,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201607091707192_InitialPortalCMSSchema.resx">
       <DependentUpon>201607091707192_InitialPortalCMSSchema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607112115093_RemoveRequirementForSettingID.resx">
+      <DependentUpon>201607112115093_RemoveRequirementForSettingID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
