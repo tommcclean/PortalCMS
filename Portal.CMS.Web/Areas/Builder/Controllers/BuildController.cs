@@ -37,8 +37,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return View("PageBuilder", model);
         }
 
-
-
         [HttpGet, AdminFilter]
         public ActionResult Element(int sectionId, string elementId)
         {

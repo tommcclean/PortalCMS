@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.CMS.Entities.Initialisers
+﻿namespace Portal.CMS.Entities.Initialisers
 {
     using System.Data.Entity;
     using System.Data.Entity.Migrations;

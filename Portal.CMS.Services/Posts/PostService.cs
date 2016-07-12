@@ -71,7 +71,7 @@ namespace Portal.CMS.Services.Posts
                 PostTitle = postTitle,
                 PostCategoryId = postCategoryId,
                 PostAuthorUserId = postAuthorUserId,
-                PostDescription = postDescription,               
+                PostDescription = postDescription,
                 PostBody = postBody,
                 DateAdded = DateTime.Now,
                 DateUpdated = DateTime.Now,

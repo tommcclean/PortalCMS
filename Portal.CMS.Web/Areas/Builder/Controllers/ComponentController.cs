@@ -84,6 +84,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return this.Content("Refresh");
         }
 
-        #endregion
+        #endregion Anchor Component
     }
 }

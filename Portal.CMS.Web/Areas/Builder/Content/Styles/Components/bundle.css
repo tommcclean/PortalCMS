@@ -1,6 +1,5 @@
 body {
 }
-
 section.quote
 {
     position: relative;
@@ -13,7 +12,6 @@ section.quote
     background-color: transparent;
     color: #F7F7F7;
 }
-
 
 section.quote h1
 {
@@ -221,7 +219,6 @@ section .vertical-alignment
         top: 0px;
         bottom: 0px;
     }
-
 .image
 {
     display: inline-block;
