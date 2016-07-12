@@ -22,11 +22,5 @@ namespace Portal.CMS.Entities.Entities.PageBuilder
         public virtual PageSectionType PageSectionType { get; set; }
 
         public string PageSectionBody { get; set; }
-
-        [Required]
-        public DateTime DateAdded { get; set; }
-
-        [Required]
-        public DateTime DateUpdated { get; set; }
     }
 }

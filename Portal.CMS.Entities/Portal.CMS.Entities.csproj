@@ -77,21 +77,9 @@
     <Compile Include="Initialisers\DropAndMigrateDatabaseToLatestVersion.cs" />
     <Compile Include="Initialisers\Environments\DefaultInitialiser.cs" />
     <Compile Include="Initialisers\MigrateDatabaseToLatestVersion.cs" />
-    <Compile Include="Migrations\201607091707192_InitialPortalCMSSchema.cs" />
-    <Compile Include="Migrations\201607091707192_InitialPortalCMSSchema.Designer.cs">
-      <DependentUpon>201607091707192_InitialPortalCMSSchema.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607112115093_RemoveRequirementForSettingID.cs" />
-    <Compile Include="Migrations\201607112115093_RemoveRequirementForSettingID.Designer.cs">
-      <DependentUpon>201607112115093_RemoveRequirementForSettingID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607121958237_ExtendPostsToIncludeAuthorAndCategory.cs" />
-    <Compile Include="Migrations\201607121958237_ExtendPostsToIncludeAuthorAndCategory.Designer.cs">
-      <DependentUpon>201607121958237_ExtendPostsToIncludeAuthorAndCategory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607122008422_ExtendPostsFurtherToSupportCategoryId.cs" />
-    <Compile Include="Migrations\201607122008422_ExtendPostsFurtherToSupportCategoryId.Designer.cs">
-      <DependentUpon>201607122008422_ExtendPostsFurtherToSupportCategoryId.cs</DependentUpon>
+    <Compile Include="Migrations\201607122131202_InitialPortalCMSSchema.cs" />
+    <Compile Include="Migrations\201607122131202_InitialPortalCMSSchema.Designer.cs">
+      <DependentUpon>201607122131202_InitialPortalCMSSchema.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
@@ -110,17 +98,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201607091707192_InitialPortalCMSSchema.resx">
-      <DependentUpon>201607091707192_InitialPortalCMSSchema.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607112115093_RemoveRequirementForSettingID.resx">
-      <DependentUpon>201607112115093_RemoveRequirementForSettingID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607121958237_ExtendPostsToIncludeAuthorAndCategory.resx">
-      <DependentUpon>201607121958237_ExtendPostsToIncludeAuthorAndCategory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607122008422_ExtendPostsFurtherToSupportCategoryId.resx">
-      <DependentUpon>201607122008422_ExtendPostsFurtherToSupportCategoryId.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607122131202_InitialPortalCMSSchema.resx">
+      <DependentUpon>201607122131202_InitialPortalCMSSchema.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,13 +7,13 @@ namespace Portal.CMS.Entities.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RemoveRequirementForSettingID : IMigrationMetadata
+    public sealed partial class InitialPortalCMSSchema : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveRequirementForSettingID));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialPortalCMSSchema));
         
         string IMigrationMetadata.Id
         {
-            get { return "201607112115093_RemoveRequirementForSettingID"; }
+            get { return "201607122131202_InitialPortalCMSSchema"; }
         }
         
         string IMigrationMetadata.Source

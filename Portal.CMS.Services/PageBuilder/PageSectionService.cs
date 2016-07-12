@@ -34,9 +34,7 @@ namespace Portal.CMS.Services.PageBuilder
             {
                 PageId = pageId,
                 PageSectionTypeId = pageSectionTypeId,
-                PageSectionBody = sectionType.PageSectionTypeBody,
-                DateAdded = DateTime.Now,
-                DateUpdated = DateTime.Now,
+                PageSectionBody = sectionType.PageSectionTypeBody
             };
 
             _context.PageSections.Add(newPageSection);

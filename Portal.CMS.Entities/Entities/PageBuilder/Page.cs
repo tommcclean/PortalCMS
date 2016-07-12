@@ -12,12 +12,6 @@ namespace Portal.CMS.Entities.Entities.PageBuilder
         [Required]
         public string PageName { get; set; }
 
-        [Required]
-        public DateTime DateAdded { get; set; }
-
-        [Required]
-        public DateTime DateUpdated { get; set; }
-
         public string PageArea { get; set; }
 
         [Required]
@@ -25,6 +19,12 @@ namespace Portal.CMS.Entities.Entities.PageBuilder
 
         [Required]
         public string PageAction { get; set; }
+
+        [Required]
+        public DateTime DateAdded { get; set; }
+
+        [Required]
+        public DateTime DateUpdated { get; set; }
 
         public virtual ICollection<PageSection> PageSections { get; set; }
     }
