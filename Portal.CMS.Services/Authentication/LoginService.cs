@@ -15,16 +15,11 @@ namespace Portal.CMS.Services.Authentication
 
         private readonly PortalEntityModel _context = new PortalEntityModel();
 
-        //public LoginService(PortalEntityModel context)
-        //{
-        //    _context = context;
-        //}
-
         #endregion Dependencies
 
         public int? Login(string emailAddress, string password)
         {
-            var userAccount = _context.Users.FirstOrDefault(x => x.EmailAddress == emailAddress);
+            var userAccount = _context.Users.FirstOrDefault(x => x.EmailAddress.Equals(emailAddress, System.StringComparison.OrdinalIgnoreCase));
 
             if (userAccount == null)
                 return null;

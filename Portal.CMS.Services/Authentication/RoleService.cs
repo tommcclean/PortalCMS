@@ -17,13 +17,9 @@ namespace Portal.CMS.Services.Authentication
 
         void Edit(int roleId, string roleName);
 
-        bool Validate(int userId, string roleName);
-
         void Update(int userId, List<string> roleList);
 
         void Delete(int roleId);
-
-        void Remove(int userId);
     }
 
     public class RoleService : IRoleService
@@ -31,11 +27,6 @@ namespace Portal.CMS.Services.Authentication
         #region Dependencies
 
         private readonly PortalEntityModel _context = new PortalEntityModel();
-
-        //public RoleService(PortalEntityModel context)
-        //{
-        //    _context = context;
-        //}
 
         #endregion Dependencies
 
@@ -58,13 +49,6 @@ namespace Portal.CMS.Services.Authentication
             var role = _context.Roles.FirstOrDefault(x => x.RoleId == roleId);
 
             return role;
-        }
-
-        public bool Validate(int userId, string roleName)
-        {
-            var result = _context.UserRoles.Any(x => x.UserId == userId && x.Role.RoleName.Equals(roleName));
-
-            return result;
         }
 
         public int Add(string roleName)
@@ -128,16 +112,6 @@ namespace Portal.CMS.Services.Authentication
 
                 _context.UserRoles.Add(userRole);
             }
-
-            _context.SaveChanges();
-        }
-
-        public void Remove(int userId)
-        {
-            var userRoles = _context.UserRoles.Where(x => x.UserId == userId);
-
-            foreach (var userRole in userRoles)
-                _context.UserRoles.Remove(userRole);
 
             _context.SaveChanges();
         }

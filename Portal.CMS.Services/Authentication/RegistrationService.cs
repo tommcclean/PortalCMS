@@ -17,11 +17,6 @@ namespace Portal.CMS.Services.Authentication
 
         private readonly PortalEntityModel _context = new PortalEntityModel();
 
-        //public RegistrationService(PortalEntityModel context)
-        //{
-        //    _context = context;
-        //}
-
         #endregion Dependencies
 
         public int? Register(string emailAddress, string password, string givenName, string familyName)
