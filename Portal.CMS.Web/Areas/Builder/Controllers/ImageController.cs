@@ -1,10 +1,12 @@
 ﻿using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
+using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Image;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
 {
+    [AdminFilter]
     public class ImageController : Controller
     {
         #region Dependencies
@@ -43,7 +45,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             _pageComponentService.EditImage(model.SectionId, model.ElementId, model.SelectedImageId);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
     }
 }

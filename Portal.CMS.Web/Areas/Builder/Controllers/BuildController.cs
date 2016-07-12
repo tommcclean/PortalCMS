@@ -61,7 +61,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             _pageSectionService.Element(model.SectionId, model.ElementId, model.ElementValue, model.ElementColour);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet, AdminFilter]

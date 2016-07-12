@@ -1,10 +1,12 @@
 ﻿using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Services.Shared;
+using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Component;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
 {
+    [AdminFilter]
     public class ComponentController : Controller
     {
         #region Dependencies
@@ -41,7 +43,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             _pageComponentTypeService.Add(model.PageSectionId, model.ContainerElementId, model.PageComponentTypeId);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet]
@@ -53,8 +55,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
             return RedirectToAction("Index", "Build", new { pageId = pageSection.PageId });
         }
-
-        #region Anchor Component
 
         [HttpGet]
         public ActionResult Anchor(int pageSectionId, string elementId)
@@ -81,9 +81,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             _pageComponentService.Anchor(model.SectionId, model.ElementId, model.ElementText, model.ElementTarget, model.ElementColour);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
-
-        #endregion Anchor Component
     }
 }

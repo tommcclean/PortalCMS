@@ -1,9 +1,11 @@
 ﻿using Portal.CMS.Services.PageBuilder;
+using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Container;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
 {
+    [AdminFilter]
     public class ContainerController : Controller
     {
         #region Dependencies

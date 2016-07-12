@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
 {
+    [AdminFilter]
     public class SectionController : Controller
     {
         #region Dependencies
@@ -23,7 +24,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
         #endregion Dependencies
 
-        [HttpGet, AdminFilter]
+        [HttpGet]
         public ActionResult Edit(int sectionId)
         {
             var pageSection = _pageSectionService.Get(sectionId);
@@ -40,7 +41,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return View("_Edit", model);
         }
 
-        [HttpPost, AdminFilter]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditViewModel model)
         {
@@ -50,10 +51,10 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             _pageSectionService.Height(model.SectionId, model.PageSectionHeight);
             _pageSectionService.BackgroundType(model.SectionId, model.PageSectionBackgroundType);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
-        [HttpGet, AdminFilter]
+        [HttpGet]
         public ActionResult Add(int pageId)
         {
             var model = new AddViewModel()
@@ -65,16 +66,16 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return View("_Add", model);
         }
 
-        [HttpPost, AdminFilter]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Add(AddViewModel model)
         {
             _pageSectionService.Add(model.PageId, model.PageSectionTypeId);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
-        [HttpGet, AdminFilter]
+        [HttpGet]
         public ActionResult Markup(int pageSectionId)
         {
             var pageSection = _pageSectionService.Get(pageSectionId);
@@ -88,14 +89,14 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return View("_Markup", model);
         }
 
-        [HttpPost, AdminFilter]
+        [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Markup(MarkupViewModel model)
         {
             _pageSectionService.Markup(model.PageSectionId, model.PageSectionBody);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
     }
 }

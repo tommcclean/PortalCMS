@@ -4,10 +4,6 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
 {
     public class AnchorViewModel
     {
-        public int SectionId { get; set; }
-
-        public string ElementId { get; set; }
-
         [DisplayName("Text")]
         public string ElementText { get; set; }
 
@@ -16,5 +12,13 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
 
         [DisplayName("Colour")]
         public string ElementColour { get; set; }
+
+        #region Hidden Properties
+
+        public int SectionId { get; set; }
+
+        public string ElementId { get; set; }
+
+        #endregion Hidden Properties
     }
 }
