@@ -111,16 +111,16 @@
     right: auto;
 }
 
-.action-container.absolute .action
-{
-    background-color: black;
-    border: 1px dashed #333333;
-}
+    .action-container.absolute .action
+    {
+        background-color: black;
+        border: 1px dashed #333333;
+    }
 
-.action-container.absolute .action:hover
-{
-    color: white;
-}
+        .action-container.absolute .action:hover
+        {
+            color: white;
+        }
 
 #popup-container
 {

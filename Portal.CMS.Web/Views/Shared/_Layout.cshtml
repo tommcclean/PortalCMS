@@ -1,5 +1,6 @@
 ﻿@using Portal.CMS.Web.Areas.Admin.Helpers;
 @{
+    var menu = MenuHelper.Get("Main Menu");
     var controller = @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
 }
 
@@ -7,22 +8,17 @@
 <html>
 <head>
     <title>@SettingHelper.Get("Website Name"): @ViewBag.Title</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <meta name="description" content="@SettingHelper.Get("Description Meta Tag")">
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://code.jquery.com/ui/1.12.0-beta.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
-
     <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.min.css" rel="stylesheet" />
     <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.min.css" rel="stylesheet" />
-
     <link href="~/Areas/Admin/Content/Styles/Framework/bundle.min.css" rel="stylesheet" />
-    <link href="~/Areas/Builder/Content/Styles/Components/bundle.css" rel="stylesheet" />
-
-    <link href="~/Content/Styles/base.css" rel="stylesheet" />
-    <link href="~/Content/Styles/header.css" rel="stylesheet" />
-    <link href="~/Content/Styles/Pages/posts.css" rel="stylesheet" />
+    <link href="~/Areas/Builder/Content/Styles/Components/bundle.min.css" rel="stylesheet" />
+    <link href="~/Content/Styles/header.min.css" rel="stylesheet" />
+    <link href="~/Content/Styles/Pages/posts.min.css" rel="stylesheet" />
 
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
@@ -46,7 +42,6 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    @{ var menu = MenuHelper.Get("Main Menu"); }
                     @if (menu != null)
                     {
                         foreach (var item in menu.MenuItems)
@@ -63,9 +58,7 @@
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>@UserHelper.FullName<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="@Url.Action("Logout", "Authentication", new { area="Admin"})"><span class="glyphicon glyphicon-lock"></span>Logout</a></li>
-                            </ul>
+                            <ul class="dropdown-menu"><li><a href="@Url.Action("Logout", "Authentication", new { area="Admin"})"><span class="glyphicon glyphicon-lock"></span>Logout</a></li></ul>
                         </li>
                         @if (UserHelper.IsAdmin)
                         {

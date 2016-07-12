@@ -82,5 +82,17 @@
     "inputFiles": [
       "Areas/Builder/Content/Styles/pagebuilder.css"
     ]
+  },
+  {
+    "outputFileName": "Content/Styles/header.min.css",
+    "inputFiles": [
+      "Content/Styles/header.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/Styles/Pages/posts.min.css",
+    "inputFiles": [
+      "Content/Styles/Pages/posts.css"
+    ]
   }
 ]

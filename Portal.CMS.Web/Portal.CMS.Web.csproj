@@ -309,6 +309,9 @@
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
     <Content Include="Areas\Admin\Content\Images\Pages\Dashboard\image-comments.jpg" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
+    <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox-thumbs.min.css">
+      <DependentUpon>jquery.fancybox-thumbs.css</DependentUpon>
+    </Content>
     <Content Include="Areas\Admin\Content\Plugins\JQColorPicker\jqColorPicker.min.js" />
     <Content Include="Areas\Builder\Content\Images\Sample\pattern-1.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\quote-image-left.png" />
@@ -324,9 +327,6 @@
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\bundle.js" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\bundle.min.js">
       <DependentUpon>bundle.js</DependentUpon>
-    </Content>
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox-thumbs.min.css">
-      <DependentUpon>jquery.fancybox-thumbs.css</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox.min.css">
       <DependentUpon>jquery.fancybox.css</DependentUpon>
@@ -383,9 +383,11 @@
     <Content Include="Areas\Builder\Content\Styles\pagebuilder.min.css">
       <DependentUpon>pagebuilder.css</DependentUpon>
     </Content>
-    <Content Include="Content\Styles\base.css" />
     <Content Include="Content\Styles\header.css" />
     <Content Include="Areas\Builder\Content\Styles\pagebuilder.css" />
+    <Content Include="Content\Styles\header.min.css">
+      <DependentUpon>header.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\Pages\posts.css" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\blank.gif" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\fancybox_loading%402x.gif" />
@@ -395,6 +397,9 @@
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\fancybox_sprite.png" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox-thumbs.css" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox.css" />
+    <Content Include="Content\Styles\Pages\posts.min.css">
+      <DependentUpon>posts.css</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
