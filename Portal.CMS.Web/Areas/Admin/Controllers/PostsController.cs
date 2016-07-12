@@ -1,9 +1,13 @@
-﻿using Portal.CMS.Entities.Entities.Posts;
+﻿using Portal.CMS.Entities.Entities.Generic;
+using Portal.CMS.Entities.Entities.Posts;
+using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
+using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Posts;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -17,12 +21,16 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         private readonly PostService _postService;
         private readonly PostImageService _postImageService;
         private readonly ImageService _imageService;
+        private readonly PostCategoryService _postCategoryService;
+        private readonly UserService _userService;
 
-        public PostsController(PostService postService, PostImageService postImageService, ImageService imageService)
+        public PostsController(PostService postService, PostImageService postImageService, ImageService imageService, PostCategoryService postCategoryService, UserService userService)
         {
             _postService = postService;
             _postImageService = postImageService;
             _imageService = imageService;
+            _postCategoryService = postCategoryService;
+            _userService = userService;
         }
 
         #endregion Dependencies
@@ -30,10 +38,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var model = new PostsViewModel()
-            {
-                Posts = _postService.Get(null)
-            };
+            var model = new PostsViewModel() { Posts = _postService.Get(null) };
 
             return View(model);
         }
@@ -41,9 +46,15 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            var postCategories = _postCategoryService.Get();
+
             var model = new CreatePostViewModel()
             {
-                ImageList = _imageService.Get()
+                PostCategoryId = postCategories.First().PostCategoryId,
+                PostAuthorUserId = UserHelper.UserId,
+                PostCategoryList = postCategories,
+                UserList = _userService.Get(new List<string>() { "Admin" }),
+                ImageList = _imageService.Get(),
             };
 
             return View("_Create", model);
@@ -57,13 +68,15 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 model.ImageList = _imageService.Get();
+                model.PostCategoryList = _postCategoryService.Get();
+                model.UserList = _userService.Get(new List<string>() { "Admin" });
 
                 return View("_Create", model);
             }
 
-            var postId = _postService.Create(model.PostTitle, model.PostCategory, model.PostDescription, model.PostBody);
+            var postId = _postService.Create(model.PostTitle, model.PostCategoryId, model.PostAuthorUserId, model.PostDescription, model.PostBody);
 
-            if (model.PublicationState == Entities.Entities.Generic.PublicationState.Published)
+            if (model.PublicationState == PublicationState.Published)
                 _postService.Publish(postId);
 
             UpdateBanner(postId, model.BannerImageId);
@@ -81,11 +94,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 PostId = post.PostId,
                 PostTitle = post.PostTitle,
-                PostCategory = post.PostCategory,
                 PostDescription = post.PostDescription,
                 PostBody = post.PostBody,
+                PostCategoryId = post.PostCategoryId,
+                PostAuthorUserId = post.PostAuthorUserId,
+                ExistingGalleryImageList = post.PostImages.Where(x => x.PostImageType == PostImageType.Gallery).Select(x => x.ImageId).ToList(),
+                PostCategoryList = _postCategoryService.Get(),
+                UserList = _userService.Get(new List<string>() { "Admin" }),
                 ImageList = _imageService.Get(),
-                ExistingGalleryImageList = post.PostImages.Where(x => x.PostImageType == PostImageType.Gallery).Select(x => x.ImageId).ToList()
             };
 
             if (post.IsPublished)
@@ -105,11 +121,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 model.ImageList = _imageService.Get();
+                model.PostCategoryList = _postCategoryService.Get();
+                model.UserList = _userService.Get(new List<string>() { "Admin" });
 
                 return View("_Edit", model);
             }
 
-            _postService.Edit(model.PostId, model.PostTitle, model.PostCategory, model.PostDescription, model.PostBody);
+            _postService.Edit(model.PostId, model.PostTitle, model.PostCategoryId, model.PostAuthorUserId, model.PostDescription, model.PostBody);
 
             if (model.PublicationState == Entities.Entities.Generic.PublicationState.Published)
                 _postService.Publish(model.PostId);

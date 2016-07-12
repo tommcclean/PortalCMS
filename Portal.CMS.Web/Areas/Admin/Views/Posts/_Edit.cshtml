@@ -4,6 +4,9 @@
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-articles.png";
     Layout = "";
     var textareaSelector = DateTime.Now.ToString("ddMMyyyyHHmmss");
+
+    var postCategoryList = Model.PostCategoryList.Select(x => new SelectListItem { Value = x.PostCategoryId.ToString(), Text = x.PostCategoryName });
+    var userList = Model.UserList.Select(x => new SelectListItem { Value = x.UserId.ToString(), Text = string.Format("{0} {1}", x.GivenName, x.FamilyName) });
 }
 
 <script src="~/Areas/Admin/Content/Scripts/imageselector.js"></script>
@@ -38,9 +41,10 @@
     @Html.HiddenFor(x => x.GalleryImageList)
 
     <ul class="nav nav-tabs nav-justified">
-        <li role="presentation" class="active"><a href="#tab-post" aria-controls="tab-post" role="tab" data-toggle="tab">Edit Post</a></li>
-        <li role="presentation" class=""><a href="#tab-banner" aria-controls="tab-banner" role="tab" data-toggle="tab">Banner Image</a></li>
-        <li role="presentation" class=""><a href="#tab-gallery" aria-controls="tab-gallery" role="tab" data-toggle="tab">Gallery Images</a></li>
+        <li role="presentation" class="active"><a href="#tab-post" aria-controls="tab-post" role="tab" data-toggle="tab">Post</a></li>
+        <li role="presentation" class=""><a href="#tab-publication" aria-controls="tab-publication" role="tab" data-toggle="tab">Publication</a></li>
+        <li role="presentation" class=""><a href="#tab-banner" aria-controls="tab-banner" role="tab" data-toggle="tab">Banner</a></li>
+        <li role="presentation" class=""><a href="#tab-gallery" aria-controls="tab-gallery" role="tab" data-toggle="tab">Gallery</a></li>
     </ul>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab-post">
@@ -48,16 +52,6 @@
             <div class="control-group float-container">
                 @Html.LabelFor(x => x.PostTitle)
                 @Html.TextBoxFor(x => x.PostTitle, new { placeholder = "Headline" })
-            </div>
-
-            <div class="control-group float-container">
-                @Html.LabelFor(x => x.PublicationState)
-                @Html.EnumDropDownListFor(m => m.PublicationState, new { @class = "form-control" })
-            </div>
-
-            <div class="control-group float-container">
-                @Html.LabelFor(x => x.PostCategory)
-                @Html.EnumDropDownListFor(m => m.PostCategory, new { @class = "form-control" })
             </div>
 
             @Html.ValidationMessage("PostDescription")
@@ -69,34 +63,52 @@
             @Html.ValidationMessage("PostBody")
             @Html.TextAreaFor(x => x.PostBody, new { id = textareaSelector })
         </div>
+        <div role="tabpanel" class="tab-pane" id="tab-publication">
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.PublicationState)
+                @Html.EnumDropDownListFor(m => m.PublicationState, new { @class = "form-control" })
+            </div>
+
+            @Html.ValidationMessage("PostCategoryId")
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.PostCategoryId)
+                @Html.DropDownListFor(m => m.PostCategoryId, postCategoryList)
+            </div>
+
+            @Html.ValidationMessage("PostAuthorUserId")
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.PostAuthorUserId)
+                @Html.DropDownListFor(m => m.PostAuthorUserId, userList)
+            </div>
+        </div>
         <div role="tabpanel" class="tab-pane" id="tab-banner">
             @if (!Model.ImageList.Any())
             {
-                <h2>No Media Uploads</h2>
-                <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
+            <h2>No Media Uploads</h2>
+            <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
             }
 
             <div id="banner-selector" class="image-selector single float-container">
                 @foreach (var image in Model.ImageList)
                 {
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <img class="thumbnail @(Model.BannerImageId == image.ImageId ? "selected" : "")" d data-parent="banner-selector" data-target="BannerImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                    </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <img class="thumbnail @(Model.BannerImageId == image.ImageId ? "selected" : "")" d data-parent="banner-selector" data-target="BannerImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
+                </div>
                 }
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-gallery">
             @if (!Model.ImageList.Any())
             {
-                <h2>No Media Uploads</h2>
-                <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
+            <h2>No Media Uploads</h2>
+            <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
             }
             <div id="gallery-selector" class="image-selector multiple float-container">
                 @foreach (var image in Model.ImageList)
                 {
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <img class="thumbnail @(Model.ExistingGalleryImageList.Contains(image.ImageId) ? "selected" : "")" data-parent="gallery-selector" data-target="GalleryImageList" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                    </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <img class="thumbnail @(Model.ExistingGalleryImageList.Contains(image.ImageId) ? "selected" : "")" data-parent="gallery-selector" data-target="GalleryImageList" data-identifier="@image.ImageId" src="@image.ImagePath" />
+                </div>
                 }
             </div>
         </div>

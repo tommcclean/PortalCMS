@@ -16,7 +16,7 @@
         <div class="box article-item @(hasBannerImage ? "dark" : "light")" style="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? string.Format("background-image: url('{0}'); color: white;", bannerImagePath) : "")">
             <div class="box-title">Latest Post</div>
             <div class="inner">
-                <div class="category-item">@Model.PostCategory.ToString()</div>
+                <div class="category-item">@Model.PostCategory.PostCategoryName</div>
                 <h3>@(Model.IsPublished ? "" : "Draft: ") @Model.PostTitle</h3>
                 <p>@Model.PostDescription</p>
 

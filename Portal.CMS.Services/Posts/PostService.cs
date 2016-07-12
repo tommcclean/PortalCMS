@@ -10,13 +10,13 @@ namespace Portal.CMS.Services.Posts
     {
         Post Get(int postId);
 
-        List<Post> Get(PostCategory? postCategory);
+        List<Post> Get(string postCategoryName);
 
         Post GetLatest();
 
-        int Create(string postTitle, PostCategory postCategory, string postDescription, string postBody);
+        int Create(string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody);
 
-        void Edit(int postId, string postTitle, PostCategory postCategory, string postDescription, string postBody);
+        void Edit(int postId, string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody);
 
         void Delete(int postId);
 
@@ -45,12 +45,12 @@ namespace Portal.CMS.Services.Posts
             return result;
         }
 
-        public List<Post> Get(PostCategory? postCategory)
+        public List<Post> Get(string postCategoryName)
         {
             List<Post> results;
 
-            if (postCategory.HasValue)
-                results = _context.Posts.Where(x => x.PostCategory == postCategory.Value).ToList();
+            if (!string.IsNullOrWhiteSpace(postCategoryName))
+                results = _context.Posts.Where(x => x.PostCategory.PostCategoryName.Equals(postCategoryName, StringComparison.OrdinalIgnoreCase)).ToList();
             else
                 results = _context.Posts.ToList();
 
@@ -64,13 +64,14 @@ namespace Portal.CMS.Services.Posts
             return result;
         }
 
-        public int Create(string postTitle, PostCategory postCategory, string postDescription, string postBody)
+        public int Create(string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody)
         {
             var post = new Post()
             {
                 PostTitle = postTitle,
-                PostCategory = postCategory,
-                PostDescription = postDescription,
+                PostCategoryId = postCategoryId,
+                PostAuthorUserId = postAuthorUserId,
+                PostDescription = postDescription,               
                 PostBody = postBody,
                 DateAdded = DateTime.Now,
                 DateUpdated = DateTime.Now,
@@ -83,7 +84,7 @@ namespace Portal.CMS.Services.Posts
             return post.PostId;
         }
 
-        public void Edit(int postId, string postTitle, PostCategory postCategory, string postDescription, string postBody)
+        public void Edit(int postId, string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody)
         {
             var post = _context.Posts.FirstOrDefault(x => x.PostId == postId);
 
@@ -91,7 +92,8 @@ namespace Portal.CMS.Services.Posts
                 return;
 
             post.PostTitle = postTitle;
-            post.PostCategory = postCategory;
+            post.PostCategoryId = postCategoryId;
+            post.PostAuthorUserId = postAuthorUserId;
             post.PostDescription = postDescription;
             post.PostBody = postBody;
             post.DateUpdated = DateTime.Now;

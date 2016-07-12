@@ -18,6 +18,7 @@ namespace Portal.CMS.Entities.Migrations
             RoleSeed.Seed(context);
             SettingSeed.Seed(context);
             MenuSeed.Seed(context);
+            PostCategorySeed.Seed(context);
             CopySeed.Seed(context);
             PageSectionTypeSeed.Seed(context);
             PageComponentTypeSeed.Seed(context);

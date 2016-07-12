@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portal.CMS.Entities.Entities.Posts
 {
@@ -19,13 +20,19 @@ namespace Portal.CMS.Entities.Entities.Posts
         public string PostBody { get; set; }
 
         [Required]
+        public int PostAuthorUserId { get; set; }
+
+        [Required]
         public DateTime DateAdded { get; set; }
 
         [Required]
         public DateTime DateUpdated { get; set; }
 
         [Required]
-        public PostCategory PostCategory { get; set; }
+        [ForeignKey("PostCategory")]
+        public int PostCategoryId { get; set; }
+
+        public virtual PostCategory PostCategory { get; set; }
 
         [Required]
         public bool IsPublished { get; set; }

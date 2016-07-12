@@ -29,6 +29,8 @@ namespace Portal.CMS.Entities
 
         public virtual DbSet<Post> Posts { get; set; }
 
+        public virtual DbSet<PostCategory> PostCategories { get; set; }
+
         public virtual DbSet<PostImage> PostImages { get; set; }
 
         public virtual DbSet<PostComment> PostComments { get; set; }

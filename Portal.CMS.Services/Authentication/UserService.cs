@@ -11,6 +11,8 @@ namespace Portal.CMS.Services.Authentication
 
         IEnumerable<User> Get();
 
+        IEnumerable<User> Get(List<string> roleNames);
+
         void UpdateUser(int userId, string emailAddress, string givenName, string familyName);
 
         void DeleteUser(int userId);
@@ -43,6 +45,22 @@ namespace Portal.CMS.Services.Authentication
             var userList = _context.Users.OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName).ThenBy(x => x.UserId);
 
             return userList;
+        }
+
+        public IEnumerable<User> Get(List<string> roleNames)
+        {
+            var results = new List<User>();
+
+            foreach (var user in _context.Users)
+            {
+                foreach (var roleName in roleNames)
+                {
+                    if (user.Roles.Any(x => x.Role.RoleName == roleName))
+                        results.Add(user);
+                }
+            }
+
+            return results.Distinct().OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName).ThenBy(x => x.UserId);
         }
 
         public int GetUserCount()

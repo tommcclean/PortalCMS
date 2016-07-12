@@ -1,8 +1,16 @@
-﻿namespace Portal.CMS.Entities.Entities.Posts
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace Portal.CMS.Entities.Entities.Posts
 {
-    public enum PostCategory
+    public class PostCategory
     {
-        General = 0,
-        Blog = 1
+        [Key]
+        public int PostCategoryId { get; set; }
+
+        [Required]
+        public string PostCategoryName { get; set; }
+
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

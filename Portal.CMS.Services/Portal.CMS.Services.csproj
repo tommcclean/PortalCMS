@@ -66,6 +66,7 @@
     <Compile Include="PageBuilder\PageSectionService.cs" />
     <Compile Include="PageBuilder\PageSectionTypeService.cs" />
     <Compile Include="PageBuilder\PageService.cs" />
+    <Compile Include="Posts\PostCategoryService.cs" />
     <Compile Include="Posts\PostCommentService.cs" />
     <Compile Include="Posts\PostImageService.cs" />
     <Compile Include="Posts\PostService.cs" />

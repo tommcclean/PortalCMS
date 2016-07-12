@@ -49,7 +49,7 @@ namespace Portal.CMS.Web.Controllers
                 return RedirectToAction("Index", "Home");
 
             model.RecentPosts = _postService.Get(null).Where(x => x.PostId != model.CurrentPost.PostId).ToList();
-            model.SimiliarPosts = _postService.Get(model.CurrentPost.PostCategory).Where(x => x.PostId != model.CurrentPost.PostId).ToList();
+            model.SimiliarPosts = _postService.Get(model.CurrentPost.PostCategory.ToString()).Where(x => x.PostId != model.CurrentPost.PostId).ToList();
 
             return View(model);
         }

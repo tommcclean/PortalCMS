@@ -85,6 +85,14 @@
     <Compile Include="Migrations\201607112115093_RemoveRequirementForSettingID.Designer.cs">
       <DependentUpon>201607112115093_RemoveRequirementForSettingID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607121958237_ExtendPostsToIncludeAuthorAndCategory.cs" />
+    <Compile Include="Migrations\201607121958237_ExtendPostsToIncludeAuthorAndCategory.Designer.cs">
+      <DependentUpon>201607121958237_ExtendPostsToIncludeAuthorAndCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607122008422_ExtendPostsFurtherToSupportCategoryId.cs" />
+    <Compile Include="Migrations\201607122008422_ExtendPostsFurtherToSupportCategoryId.Designer.cs">
+      <DependentUpon>201607122008422_ExtendPostsFurtherToSupportCategoryId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,6 +101,7 @@
     <Compile Include="Seed\PageSectionTypeSeed.cs" />
     <Compile Include="Seed\CopySeed.cs" />
     <Compile Include="Seed\PageSeed.cs" />
+    <Compile Include="Seed\PostCategorySeed.cs" />
     <Compile Include="Seed\RoleSeed.cs" />
     <Compile Include="Seed\SettingSeed.cs" />
   </ItemGroup>
@@ -106,6 +115,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607112115093_RemoveRequirementForSettingID.resx">
       <DependentUpon>201607112115093_RemoveRequirementForSettingID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607121958237_ExtendPostsToIncludeAuthorAndCategory.resx">
+      <DependentUpon>201607121958237_ExtendPostsToIncludeAuthorAndCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607122008422_ExtendPostsFurtherToSupportCategoryId.resx">
+      <DependentUpon>201607122008422_ExtendPostsFurtherToSupportCategoryId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
