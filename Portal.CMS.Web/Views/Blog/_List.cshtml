@@ -1,35 +1,20 @@
 ﻿@model List<Portal.CMS.Entities.Entities.Posts.Post>
 @using Portal.CMS.Entities.Entities.Posts;
 
-@*@foreach (var post in Model)
-{
-    var postImage = "";
-
-    if (post.PostImages.Any(x => x.PostImageType == PostImageType.Banner))
-    {
-        postImage = post.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
-    }
-
-    <a href="@Url.Action("Read", "Blog", new { @postId = post.PostId })" class="float-container">
-        <img class="thumbnail" src="@postImage" />
-        <h1>@post.PostTitle</h1>
-        <p>@post.PostDescription</p>
-    </a>
-}*@
-
 @foreach (var post in Model)
 {
     string bannerImagePath = "";
-    bool hasBannerImage = false;
-
-    if (post.PostImages.Any(x => x.PostImageType == Portal.CMS.Entities.Entities.Posts.PostImageType.Banner))
+    if (post.PostImages.Any(x => x.PostImageType == PostImageType.Banner))
     {
-        bannerImagePath = post.PostImages.First(x => x.PostImageType == Portal.CMS.Entities.Entities.Posts.PostImageType.Banner).Image.ImagePath;
-        hasBannerImage = true;
+        bannerImagePath = post.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
+    }
+    else
+    {
+        bannerImagePath = "/Areas/Builder/Content/Images/Sample/Sample-1.jpg";
     }
 
     <a class="col-xs-12" href="@Url.Action("Read", "Blog", new { area = "", postId = @post.PostId })">
-        <div class="box article-item float-container @(hasBannerImage ? "dark" : "light")" style="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? string.Format("background-image: url('{0}'); color: white;", bannerImagePath) : "")">
+        <div class="box article-item float-container" style="@string.Format("background-image: url('{0}'); color: white;", bannerImagePath)">
             <div class="inner">
                 <div class="category-item">@post.PostCategory.PostCategoryName</div>
                 <h3>@(post.IsPublished ? "" : "Draft: ") @post.PostTitle</h3>

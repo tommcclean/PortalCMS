@@ -209,10 +209,16 @@
 
 .category-item
 {
-    padding: 5px 8px 5px 8px;
-    background-color: black;
+    padding: 7px 10px 7px 10px;
+    background-image: url('../../Images/block_black_dark.png');
     display: inline-block;
     color: white;
     border-radius: 5px;
     text-transform: uppercase;
+    margin-right: 10px;
+}
+
+a.category-item:hover
+{
+    color: white;
 }

@@ -108,24 +108,24 @@
             height: 100px;
             overflow: hidden;
             font-size: 17px;
+            color: white;
         }
 
-    .article-item.dark .inner h3
+        .article-item .inner h3
+        {
+            color: white;
+        }
+
+
+@media (max-width: 736px)
+{
+    .post .post-banner
     {
-        color: white;
+        height: 600px;
     }
 
-    .article-item.dark .inner p
+    .post .post-body
     {
-        color: white;
+        text-align: center;
     }
-
-    .article-item.light .inner h3
-    {
-        color: black;
-    }
-
-    .article-item.light .inner p
-    {
-        color: black;
-    }
+}
