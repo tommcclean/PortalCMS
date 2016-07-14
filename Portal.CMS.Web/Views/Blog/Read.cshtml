@@ -21,6 +21,16 @@
     }
 }
 
+<script type="text/javascript">
+    $.ajax({
+        type: 'POST',
+        cache: false,
+        url: '@Url.Action("Analytic", "Blog", new { postId = Model.CurrentPost.PostId })',
+        success: function (data) {
+        },
+    });
+</script>
+
 <div class="post">
     <div class="post-banner" style="@string.Format("background-image: url('{0}'); color: white;", bannerImagePath)">
         <div class="overlay-medium"></div>

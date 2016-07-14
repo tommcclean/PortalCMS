@@ -1,4 +1,5 @@
-﻿using Portal.CMS.Services.Posts;
+﻿using Portal.CMS.Services.Analytics;
+using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.ViewModels.Blog;
 using System.Linq;
@@ -12,11 +13,13 @@ namespace Portal.CMS.Web.Controllers
 
         private readonly IPostService _postService;
         private readonly IPostCommentService _postCommentService;
+        private readonly AnalyticsService _analyticsService;
 
-        public BlogController(PostService postService, PostCommentService postCommentService)
+        public BlogController(PostService postService, PostCommentService postCommentService, AnalyticsService analyticsService)
         {
             _postService = postService;
             _postCommentService = postCommentService;
+            _analyticsService = analyticsService;
         }
 
         #endregion Dependencies
@@ -61,6 +64,16 @@ namespace Portal.CMS.Web.Controllers
             _postCommentService.Add(UserHelper.UserId, postId, commentBody);
 
             return RedirectToAction("Read", "Blog", new { postId = postId });
+        }
+
+        public ActionResult Analytic(int postId)
+        {
+            if (UserHelper.IsLoggedIn)
+                _analyticsService.AnalysePostView(postId, Request.UrlReferrer.AbsoluteUri, UserHelper.UserId);
+            else
+                _analyticsService.AnalysePostView(postId, Request.UrlReferrer.AbsoluteUri, null);
+
+            return Json(new { Success = true });
         }
     }
 }
