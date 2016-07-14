@@ -1,7 +1,9 @@
-﻿using Portal.CMS.Services.Generic;
+﻿using Portal.CMS.Services.Analytics;
+using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Services.Shared;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
+using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Build;
 using System.Web.Mvc;
 
@@ -15,13 +17,15 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         private readonly PageSectionService _pageSectionService;
         private readonly PageSectionTypeService _pageSectionTypeService;
         private readonly IImageService _imageService;
+        private readonly AnalyticsService _analyticService;
 
-        public BuildController(PageService pageService, PageSectionService pageSectionService, PageSectionTypeService pageSectionTypeService, ImageService imageService)
+        public BuildController(PageService pageService, PageSectionService pageSectionService, PageSectionTypeService pageSectionTypeService, ImageService imageService, AnalyticsService analyticService)
         {
             _pageService = pageService;
             _pageSectionService = pageSectionService;
             _pageSectionTypeService = pageSectionTypeService;
             _imageService = imageService;
+            _analyticService = analyticService;
         }
 
         #endregion Dependencies
@@ -70,6 +74,18 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             _pageSectionService.Delete(sectionId);
 
             return RedirectToAction("Index", "Build", new { pageId = pageId });
+        }
+
+        public ActionResult Analytic(int pageId)
+        {
+            var page = _pageService.Get(pageId);
+
+            if (UserHelper.IsLoggedIn)
+                _analyticService.AnalysePageView(page.PageArea, page.PageController, page.PageAction, Request.UrlReferrer.AbsoluteUri, UserHelper.UserId);
+            else
+                _analyticService.AnalysePageView(page.PageArea, page.PageController, page.PageAction, Request.UrlReferrer.AbsoluteUri, null);
+
+            return Json(new { State = true });
         }
     }
 }

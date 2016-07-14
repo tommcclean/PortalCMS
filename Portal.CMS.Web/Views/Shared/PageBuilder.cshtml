@@ -6,6 +6,16 @@
 <link href="~/Areas/Builder/Content/Styles/pagebuilder.min.css" rel="stylesheet" />
 <script src="~/Areas/Builder/Content/Scripts/pagebuilder.min.js"></script>
 
+<script type="text/javascript">
+    $.ajax({
+        type: 'POST',
+        cache: false,
+        url: '@Url.Action("Analytic", "Build", new { area = "Builder", pageId = Model.Page.PageId })',
+        success: function (data) {
+        },
+    });
+</script>
+
 @if (UserHelper.IsAdmin)
 {
     <div class="action-container">

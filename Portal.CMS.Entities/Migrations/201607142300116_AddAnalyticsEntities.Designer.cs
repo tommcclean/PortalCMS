@@ -7,13 +7,13 @@ namespace Portal.CMS.Entities.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CreateAnalyticEntities : IMigrationMetadata
+    public sealed partial class AddAnalyticsEntities : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateAnalyticEntities));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddAnalyticsEntities));
         
         string IMigrationMetadata.Id
         {
-            get { return "201607142227514_CreateAnalyticEntities"; }
+            get { return "201607142300116_AddAnalyticsEntities"; }
         }
         
         string IMigrationMetadata.Source

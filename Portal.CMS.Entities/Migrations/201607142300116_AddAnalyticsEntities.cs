@@ -3,7 +3,7 @@ namespace Portal.CMS.Entities.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreateAnalyticEntities : DbMigration
+    public partial class AddAnalyticsEntities : DbMigration
     {
         public override void Up()
         {
@@ -12,7 +12,7 @@ namespace Portal.CMS.Entities.Migrations
                 c => new
                     {
                         AnalyticPageViewId = c.Int(nullable: false, identity: true),
-                        Area = c.String(nullable: false),
+                        Area = c.String(),
                         Controller = c.String(nullable: false),
                         Action = c.String(nullable: false),
                         ReferredUrl = c.String(nullable: false),

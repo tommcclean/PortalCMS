@@ -12,7 +12,6 @@ namespace Portal.CMS.Entities.Entities.Analytics
         [Key]
         public int AnalyticPageViewId { get; set; }
 
-        [Required]
         public string Area { get; set; }
 
         [Required]

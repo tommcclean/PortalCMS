@@ -73,7 +73,7 @@ namespace Portal.CMS.Web.Controllers
             else
                 _analyticsService.AnalysePostView(postId, Request.UrlReferrer.AbsoluteUri, null);
 
-            return Json(new { Success = true });
+            return Json(new { State = true });
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Portal.CMS.Services.Analytics
         {
             var newAnalyticPageView = new AnalyticPageView()
             {
-                Area = area,
+                Area = area ?? "",
                 Controller = controller,
                 Action = action,
                 ReferredUrl = referredUrl,
