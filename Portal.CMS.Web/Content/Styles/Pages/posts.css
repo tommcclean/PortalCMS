@@ -158,4 +158,10 @@
     {
         text-align: center;
     }
+
+    .post-details
+    {
+        text-align: left;
+        padding-bottom: 15px;
+    }
 }
