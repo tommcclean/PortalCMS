@@ -6,7 +6,12 @@
     font-size: 14px;
 }
 
-.tab-content .tab-pane {
+.nav-tabs .active li
+{
+}
+
+.tab-content .tab-pane
+{
     position: relative;
     min-height: 500px;
     border: 1px solid #ddd;
@@ -30,8 +35,7 @@
     }
 
     .tab-pane p {
-        font-size: 16px;
-        color: black;
+
     }
 
     .tab-pane a:hover {

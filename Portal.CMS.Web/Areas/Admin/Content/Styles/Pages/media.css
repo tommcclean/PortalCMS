@@ -5,6 +5,11 @@
     max-height: 300px;
 }
 
+.image.icon
+{
+    margin-right: 20px;
+}
+
 .thumbnail
 {
     min-height: 300px;

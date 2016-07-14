@@ -1,0 +1,22 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.PostCategories.AddViewModel
+@{
+    Layout = "";
+}
+
+@using (Html.BeginForm("Add", "PostCategories", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationMessage("PostCategoryName")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.PostCategoryName)
+        @Html.TextBoxFor(x => x.PostCategoryName, new { placeholder = "Post Category Name" })
+    </div>
+
+    <br />
+
+    <div class="footer">
+        <button class="btn primary">Save</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

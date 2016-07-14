@@ -17,28 +17,40 @@
     transition: box-shadow 0.2s ease-in-out;
 }
 
-    .box.high
-    {
-        min-height: 540px;
-    }
-
     .box:hover
     {
         box-shadow: 1px 1px 20px #CACACE;
     }
 
-    .box .inner
+.tab-pane .box
+{
+    box-shadow: 1px 1px 30px #C5C5C9;
+}
+
+    .tab-pane .box:hover
     {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 20px;
-        z-index: 10;
+        box-shadow: 1px 1px 50px #ABABAD;
     }
 
-    .box .row img
-    {
-        width: 100%;
-    }
+.box.high
+{
+    min-height: 540px;
+}
+
+
+
+.box .inner
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    z-index: 10;
+}
+
+.box .row img
+{
+    width: 100%;
+}

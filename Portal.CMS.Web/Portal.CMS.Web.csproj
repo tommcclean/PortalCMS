@@ -228,6 +228,7 @@
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuItemController.cs" />
     <Compile Include="Areas\Admin\Controllers\PagesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
@@ -252,6 +253,8 @@
     <Compile Include="Areas\Admin\ViewModels\Pages\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Pages\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Pages\PagesViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\PostCategories\EditViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\PostCategories\AddViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Posts\CreatePostViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Posts\EditPostviewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Posts\PostsViewModel.cs" />
@@ -549,6 +552,8 @@
     <Content Include="Areas\Builder\Views\Section\_Markup.cshtml" />
     <Content Include="Areas\Builder\Views\Container\_Edit.cshtml" />
     <Content Include="Areas\Builder\Views\Component\_Anchor.cshtml" />
+    <Content Include="Areas\Admin\Views\PostCategories\_Add.cshtml" />
+    <Content Include="Areas\Admin\Views\PostCategories\_Edit.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
     <Content Include="Areas\Builder\Views\Build\_Element.cshtml" />

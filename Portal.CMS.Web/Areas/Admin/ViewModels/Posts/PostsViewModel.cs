@@ -6,5 +6,6 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.Posts
     public class PostsViewModel
     {
         public List<Post> Posts { get; set; }
+        public IEnumerable<PostCategory> PostCategories { get; set; }
     }
 }
