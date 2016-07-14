@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analytics\AnalyticsService.cs" />
     <Compile Include="Authentication\LoginService.cs" />
     <Compile Include="Authentication\RegistrationService.cs" />
     <Compile Include="Authentication\RoleService.cs" />
