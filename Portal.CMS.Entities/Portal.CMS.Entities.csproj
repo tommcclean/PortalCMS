@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Analytics\AnalyticPageView.cs" />
+    <Compile Include="Entities\Analytics\AnalyticPostView.cs" />
     <Compile Include="Entities\Authentication\Role.cs" />
     <Compile Include="Entities\Authentication\User.cs" />
     <Compile Include="Entities\Authentication\UserRole.cs" />
@@ -81,6 +83,10 @@
     <Compile Include="Migrations\201607122131202_InitialPortalCMSSchema.Designer.cs">
       <DependentUpon>201607122131202_InitialPortalCMSSchema.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607142227514_CreateAnalyticEntities.cs" />
+    <Compile Include="Migrations\201607142227514_CreateAnalyticEntities.Designer.cs">
+      <DependentUpon>201607142227514_CreateAnalyticEntities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +106,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201607122131202_InitialPortalCMSSchema.resx">
       <DependentUpon>201607122131202_InitialPortalCMSSchema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607142227514_CreateAnalyticEntities.resx">
+      <DependentUpon>201607142227514_CreateAnalyticEntities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

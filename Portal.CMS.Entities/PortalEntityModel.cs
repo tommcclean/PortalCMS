@@ -1,5 +1,6 @@
 namespace Portal.CMS.Entities
 {
+    using Entities.Analytics;
     using Entities.Authentication;
     using Entities.Copy;
     using Entities.Generic;
@@ -24,6 +25,14 @@ namespace Portal.CMS.Entities
         public virtual DbSet<UserRole> UserRoles { get; set; }
 
         #endregion Authentication Entities
+
+        #region Analytic Entities
+
+        public DbSet<AnalyticPageView> AnalyticPageViews { get; set; }
+
+        public DbSet<AnalyticPostView> AnalyticPostViews { get; set; }
+
+        #endregion Analytic Entities
 
         #region Post Entities
 
