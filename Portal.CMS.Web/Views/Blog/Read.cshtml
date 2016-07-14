@@ -3,48 +3,51 @@
 @{
     ViewBag.Title = "Read";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var galleryCount = Model.CurrentPost.PostImages.Where(x => x.PostImageType == PostImageType.Gallery).Count();
+    var commentCount = Model.CurrentPost.PostComments.Count();
+    var recentCount = Model.RecentPosts.Count();
+    var similiarCount = Model.SimiliarPosts.Count();
+
+    string bannerImagePath = "";
+    bool hasBannerImage = false;
+
+    if (Model.CurrentPost.PostImages.Any(x => x.PostImageType == PostImageType.Banner))
+    {
+        bannerImagePath = Model.CurrentPost.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
+        hasBannerImage = true;
+    }
 }
 
 <div class="post">
-    <div class="post-banner" style="background-image: url('@Model.CurrentPost.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath');">
-        <div class="overlay-light"></div>
+    <div class="post-banner  @(hasBannerImage ? "dark" : "light")" style="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? string.Format("background-image: url('{0}'); color: white;", bannerImagePath) : "")">
+        <div class="overlay-medium"></div>
         <div class="inner vertical-alignment">
-            <h1 class="post-title">@Model.CurrentPost.PostTitle</h1>
-            <h2 class="post-updated">Last Updated: @Model.CurrentPost.DateUpdated.ToString("dd/MM/yyyy HH:mm")</h2>
-            <p class="post-description">@Model.CurrentPost.PostDescription</p>
+            <div class="row">
+                <div class="col-xs-12 col-md-8">
+                    <div class="category-item hidden-xs">@Model.CurrentPost.PostCategory.PostCategoryName</div>
+                    <h1 class="post-title">@Model.CurrentPost.PostTitle</h1>
+                    <p class="post-description">@Model.CurrentPost.PostDescription</p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12 col-md-7 col-lg-8">
-
                 <div class="post-body">
                     @Html.Raw(Model.CurrentPost.PostBody)
                 </div>
             </div>
-            <div class="col-xs-12 col-md-5 col-lg-4">
+            <div class="col-xs-12 col-md-5 col-lg-4 blog-sidebar">
                 <ul class="nav nav-tabs nav-justified">
-                    <li role="presentation" class="active"><a href="#tab-recent-posts" aria-controls="tab-recent-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-time"></span>Recent (@Model.RecentPosts.Count())</a></li>
-                    <li role="presentation"><a href="#tab-similiar-posts" aria-controls="tab-similiar-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span>Similiar (@Model.SimiliarPosts.Count())</a></li>
-                    <li role="presentation"><a href="#tab-gallery" aria-controls="tab-gallery" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span>Gallery (@Model.CurrentPost.PostImages.Where(x => x.PostImageType == Portal.CMS.Entities.Entities.Posts.PostImageType.Gallery).Count())</a></li>
-                    <li role="presentation"><a href="#tab-comments" aria-controls="tab-gallery" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-comment"></span>Comments (@Model.CurrentPost.PostComments.Count())</a></li>
+                    <li role="presentation" class="active"><a href="#tab-comments" aria-controls="tab-gallery" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-comment"></span>Comments (@commentCount)</a></li>
+                    <li role="presentation" class=""><a href="#tab-gallery" aria-controls="tab-gallery" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span>Gallery (@galleryCount)</a></li>
+                    <li role="presentation" class=""><a href="#tab-recent-posts" aria-controls="tab-recent-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-time"></span>Recent (@recentCount)</a></li>
+                    <li role="presentation" class=""><a href="#tab-similiar-posts" aria-controls="tab-similiar-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span>Similiar (@similiarCount)</a></li>                   
                 </ul>
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="tab-recent-posts">
-                        @Html.Partial("_List", Model.RecentPosts)
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="tab-similiar-posts">
-                        @Html.Partial("_List", Model.SimiliarPosts)
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="tab-gallery">
-                        @foreach (var image in Model.CurrentPost.PostImages.Where(x => x.PostImageType == PostImageType.Gallery))
-                        {
-                            <a class="fancybox-thumb" rel="fancybox-thumb" href="@image.Image.ImagePath" title="@Model.CurrentPost.PostTitle">
-                                <img class="thumbnail" src="@image.Image.ImagePath" alt="" />
-                            </a>
-                        }
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="tab-comments">
+                    <div role="tabpanel" class="tab-pane active" id="tab-comments">
                         @foreach (var comment in Model.CurrentPost.PostComments)
                         {
                             <div class="float-container comment-item">
@@ -63,6 +66,24 @@
 
                             <button>Submit</button>
                         }
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab-gallery">
+                        <div class="row">
+                            @foreach (var image in Model.CurrentPost.PostImages.Where(x => x.PostImageType == PostImageType.Gallery))
+                            {
+                                <div class="col-xs-12 col-sm-6">
+                                    <a class="fancybox-thumb" rel="fancybox-thumb" href="@image.Image.ImagePath" title="@Model.CurrentPost.PostTitle">
+                                        <img class="thumbnail" src="@image.Image.ImagePath" alt="" />
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab-recent-posts">
+                        @Html.Partial("_List", Model.RecentPosts)
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab-similiar-posts">
+                        @Html.Partial("_List", Model.SimiliarPosts)
                     </div>
                 </div>
             </div>

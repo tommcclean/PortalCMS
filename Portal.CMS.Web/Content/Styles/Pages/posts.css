@@ -1,4 +1,11 @@
-﻿.post .post-banner {
+﻿.blog-sidebar
+{
+    padding-right: 0;
+}
+
+
+.post .post-banner
+{
     position: relative;
     height: 50vh;
     min-height: 300px;
@@ -8,12 +15,14 @@
     border-bottom: 1px solid #ddd;
 }
 
-    .post .post-banner .inner {
+    .post .post-banner .inner
+    {
         padding: 5%;
         text-align: left;
     }
 
-        .post .post-banner .inner .post-title {
+        .post .post-banner .inner .post-title
+        {
             color: white;
             text-transform: none;
             word-spacing: 5px;
@@ -21,25 +30,29 @@
             font-size: 48px;
         }
 
-        .post .post-banner .inner .post-updated {
+        .post .post-banner .inner .post-updated
+        {
             color: white;
             font-size: 20px;
             text-transform: uppercase;
             margin-bottom: 30px;
         }
 
-        .post .post-banner .inner .post-description {
+        .post .post-banner .inner .post-description
+        {
             color: white;
             font-size: 25px;
             letter-spacing: 0.75px;
         }
 
-.post .post-body {
+.post .post-body
+{
     padding: 4% 4% 4% 4%;
 }
 
-    .post .post-body p {
-        font-size:20px;
+    .post .post-body p
+    {
+        font-size: 20px;
         margin-bottom: 20px;
     }
 
@@ -49,31 +62,70 @@
         text-align: center;
     }
 
-    .tab-pane h1 {
-        font-size: 25px;
-        padding: 10px 20px 10px 20px;
-        margin-bottom: 10px;
-        color: black;
-    }
-
-    .tab-pane p {
-        font-size: 16px;
-        color: black;
-    }
-
-    .tab-pane a:hover {
-        text-decoration: none;
-    }
-
-.comment-item {
+.comment-item
+{
     border-bottom: 1px solid #ddd;
     margin-bottom: 10px;
 }
 
-    .comment-item h1 {
+    .comment-item h1
+    {
         margin-bottom: 10px;
     }
 
-    .comment-item p {
+    .comment-item p
+    {
         padding: 0 20px 10px 20px;
+    }
+
+.article-item
+{
+    height: 250px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    opacity: 0.9;
+    transition: all 0.2s ease-in;
+}
+
+    .article-item:hover
+    {
+        opacity: 1;
+    }
+
+    .article-item .inner
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 20px;
+        z-index: 10;
+    }
+
+        .article-item .inner p
+        {
+            height: 100px;
+            overflow: hidden;
+            font-size: 17px;
+        }
+
+    .article-item.dark .inner h3
+    {
+        color: white;
+    }
+
+    .article-item.dark .inner p
+    {
+        color: white;
+    }
+
+    .article-item.light .inner h3
+    {
+        color: black;
+    }
+
+    .article-item.light .inner p
+    {
+        color: black;
     }

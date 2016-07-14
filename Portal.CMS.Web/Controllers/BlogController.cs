@@ -26,7 +26,7 @@ namespace Portal.CMS.Web.Controllers
         {
             var model = new BlogViewModel()
             {
-                Posts = _postService.Get(null)
+                Posts = _postService.Get(null, true)
             };
 
             if (!model.Posts.Any())
@@ -48,8 +48,8 @@ namespace Portal.CMS.Web.Controllers
             if (model.CurrentPost == null || model.CurrentPost.IsPublished == false)
                 return RedirectToAction("Index", "Home");
 
-            model.RecentPosts = _postService.Get(null).Where(x => x.PostId != model.CurrentPost.PostId).ToList();
-            model.SimiliarPosts = _postService.Get(model.CurrentPost.PostCategory.ToString()).Where(x => x.PostId != model.CurrentPost.PostId).ToList();
+            model.RecentPosts = _postService.Get(string.Empty, true).Where(x => x.PostId != model.CurrentPost.PostId).Take(10).ToList();
+            model.SimiliarPosts = _postService.Get(model.CurrentPost.PostCategory.PostCategoryName, true).Where(x => x.PostId != model.CurrentPost.PostId).Take(10).ToList();
 
             return View(model);
         }

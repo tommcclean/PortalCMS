@@ -10,7 +10,7 @@ namespace Portal.CMS.Services.Posts
     {
         Post Get(int postId);
 
-        List<Post> Get(string postCategoryName);
+        List<Post> Get(string postCategoryName, bool published);
 
         Post GetLatest();
 
@@ -45,16 +45,11 @@ namespace Portal.CMS.Services.Posts
             return result;
         }
 
-        public List<Post> Get(string postCategoryName)
+        public List<Post> Get(string postCategoryName, bool published)
         {
-            List<Post> results;
+            var results = _context.Posts.Where(x => (x.PostCategory.PostCategoryName.Equals(postCategoryName, StringComparison.OrdinalIgnoreCase) || postCategoryName == string.Empty) && (published && x.IsPublished || published == false));
 
-            if (!string.IsNullOrWhiteSpace(postCategoryName))
-                results = _context.Posts.Where(x => x.PostCategory.PostCategoryName.Equals(postCategoryName, StringComparison.OrdinalIgnoreCase)).ToList();
-            else
-                results = _context.Posts.ToList();
-
-            return results;
+            return results.OrderByDescending(x => x.DateUpdated).ThenByDescending(x => x.PostId).ToList();
         }
 
         public Post GetLatest()

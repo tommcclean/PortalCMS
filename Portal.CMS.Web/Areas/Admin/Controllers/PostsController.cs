@@ -38,7 +38,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var model = new PostsViewModel() { Posts = _postService.Get(null) };
+            var model = new PostsViewModel() { Posts = _postService.Get(string.Empty, false) };
 
             return View(model);
         }

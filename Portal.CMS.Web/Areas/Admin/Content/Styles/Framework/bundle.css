@@ -313,16 +313,16 @@ input
     right: auto;
 }
 
-.action-container.absolute .action
-{
-    background-color: black;
-    border: 1px dashed #333333;
-}
+    .action-container.absolute .action
+    {
+        background-color: black;
+        border: 1px dashed #333333;
+    }
 
-.action-container.absolute .action:hover
-{
-    color: white;
-}
+        .action-container.absolute .action:hover
+        {
+            color: white;
+        }
 
 #popup-container
 {
@@ -407,6 +407,16 @@ input
 .footer
 {
     text-align: right;
+}
+
+.category-item
+{
+    padding: 5px 8px 5px 8px;
+    background-color: black;
+    display: inline-block;
+    color: white;
+    border-radius: 5px;
+    text-transform: uppercase;
 }
 .image-selector
 {
