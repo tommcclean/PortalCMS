@@ -47,13 +47,19 @@
 
 .post .post-body
 {
-    padding: 4% 4% 4% 4%;
+    padding: 2% 4% 4% 4%;
 }
 
     .post .post-body p
     {
-        font-size: 20px;
-        margin-bottom: 20px;
+        font-size: 23px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+
+    .post .post-body strong
+    {
+        font-size: 25px;
     }
 
     .post .post-body img
@@ -117,8 +123,32 @@
         }
 
 
+        .post-details
+        {
+            padding-bottom: 30px;
+            border-bottom: 1px dotted silver;
+        }
+
+        .post-details img.author-image
+        {
+            height: 100px;
+            width: 100px;
+            margin-right: 30px;
+        }
+
+        .post .post-body .post-details p
+        {
+            margin-top: 12.5px;
+            margin-bottom: 10px;
+        }
+
 @media (max-width: 736px)
 {
+    .post-details img.author-image
+    {
+        display: none;
+    }
+
     .post .post-banner
     {
         height: 600px;
