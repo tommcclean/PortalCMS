@@ -1,0 +1,48 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Analytics.ChartViewModel
+@using Portal.CMS.Entities.Entities.Analytics
+    @{
+        string bootstrapSelector = string.Empty;
+
+        switch (Model.ChartSize)
+        {
+            case ChartSize.Fill:
+                bootstrapSelector = "";
+                break;
+            case ChartSize.Half:
+                bootstrapSelector = "col-md-6";
+                break;
+            case ChartSize.Quarter:
+                bootstrapSelector = "col-md-3";
+                break;
+            case ChartSize.Third:
+                bootstrapSelector = "col-md-4";
+                break;
+        }
+    }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var chart = c3.generate({
+                bindto: '@string.Format("#{0}", Model.ChartId)',
+                data: {
+                    columns: [
+                        @foreach(var column in Model.ChartColumns)
+                    {
+                        <text>['@column.ColumnName', @string.Join(",", column.ColumnValues)],</text>
+                    }
+                    ],
+                    type: '@Model.ChartType.ToString().ToLower()',
+                    onclick: function (d, i) { console.log("onclick", d, i); },
+                    onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                    onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+                }
+            });
+        });
+    </script>
+
+    <div class="col-xs-12 @bootstrapSelector">
+        <div class="box">
+            <div class="box-title">@Model.ChartName</div>
+            <div id="@Model.ChartId"></div>
+        </div>
+    </div>

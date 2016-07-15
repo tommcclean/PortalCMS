@@ -47,5 +47,37 @@ namespace Portal.CMS.Services.Analytics
 
             _context.SaveChanges();
         }
+
+        public List<KeyValuePair<string, int>> GetTopPages()
+        {
+            var results = new List<KeyValuePair<string, int>>();
+
+            var analyticPageViews = _context.AnalyticPageViews.ToList();
+
+            foreach(var page in _context.Pages.ToList())
+            {
+                var pageViews = analyticPageViews.Count(x => x.Area == (page.PageArea ?? "") && x.Controller == page.PageController && x.Action == page.PageAction);
+
+                results.Add(new KeyValuePair<string, int>(page.PageName, pageViews));
+            }
+
+            return results.Where(x => x.Value > 0).OrderBy(x => x.Key).ToList();
+        }
+
+        public List<KeyValuePair<string, int>> GetTopPosts()
+        {
+            var results = new List<KeyValuePair<string, int>>();
+
+            var analyticPostViews = _context.AnalyticPostViews.ToList();
+
+            foreach (var post in _context.Posts.ToList())
+            {
+                var pageViews = analyticPostViews.Count(x => x.PostId == post.PostId);
+
+                results.Add(new KeyValuePair<string, int>(post.PostTitle, pageViews));
+            }
+
+            return results.Where(x => x.Value > 0).OrderBy(x => x.Key).ToList();
+        }
     }
 }

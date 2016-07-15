@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="Entities\Analytics\AnalyticPageView.cs" />
     <Compile Include="Entities\Analytics\AnalyticPostView.cs" />
+    <Compile Include="Entities\Analytics\ChartSize.cs" />
+    <Compile Include="Entities\Analytics\ChartType.cs" />
     <Compile Include="Entities\Authentication\Role.cs" />
     <Compile Include="Entities\Authentication\User.cs" />
     <Compile Include="Entities\Authentication\UserRole.cs" />

@@ -94,5 +94,11 @@
     "inputFiles": [
       "Content/Styles/Pages/posts.css"
     ]
+  },
+  {
+    "outputFileName": "Areas/Admin/Content/Plugins/C3Graphing/c3.min.css",
+    "inputFiles": [
+      "Areas/Admin/Content/Plugins/C3Graphing/c3.css"
+    ]
   }
 ]

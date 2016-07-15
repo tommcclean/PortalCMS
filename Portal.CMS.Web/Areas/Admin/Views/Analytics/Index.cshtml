@@ -1,0 +1,12 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Pages.PagesViewModel
+@{
+    ViewBag.Title = "Website Analytics";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-reports.png";
+}
+
+<link href="~/Areas/Admin/Content/Styles/Pages/dashboard.css" rel="stylesheet" />
+
+<div class="row">
+    @Html.Action("TopPages", "Analytics", null)
+    @Html.Action("TopPosts", "Analytics", null)
+</div>

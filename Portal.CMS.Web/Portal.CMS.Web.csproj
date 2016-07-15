@@ -220,6 +220,7 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Areas\Admin\ActionFilters\AdminFilter.cs" />
     <Compile Include="Areas\Admin\ActionFilters\LoggedInFilter.cs" />
+    <Compile Include="Areas\Admin\Controllers\AnalyticsController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthenticationController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CopyController.cs" />
@@ -238,6 +239,8 @@
     <Compile Include="Areas\Admin\Helpers\MenuHelper.cs" />
     <Compile Include="Areas\Admin\Helpers\SettingHelper.cs" />
     <Compile Include="Areas\Admin\Helpers\UserHelper.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Analytics\ChartViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Analytics\ColumnViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\LoginViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\RegisterViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Comments\CommentsViewModel.cs" />
@@ -312,6 +315,12 @@
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
     <Content Include="Areas\Admin\Content\Images\Pages\Dashboard\image-comments.jpg" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
+    <Content Include="Areas\Admin\Content\Plugins\C3Graphing\c3.css" />
+    <Content Include="Areas\Admin\Content\Plugins\C3Graphing\c3.min.css">
+      <DependentUpon>c3.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Content\Plugins\C3Graphing\c3.min.js" />
+    <Content Include="Areas\Admin\Content\Plugins\C3Graphing\d3.min.js" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox-thumbs.min.css">
       <DependentUpon>jquery.fancybox-thumbs.css</DependentUpon>
     </Content>
@@ -554,6 +563,8 @@
     <Content Include="Areas\Builder\Views\Component\_Anchor.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Add.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Analytics\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Analytics\_DisplayChart.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
     <Content Include="Areas\Builder\Views\Build\_Element.cshtml" />
