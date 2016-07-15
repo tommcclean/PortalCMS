@@ -61,6 +61,9 @@ namespace Portal.CMS.Services.Analytics
                 results.Add(new KeyValuePair<string, int>(page.PageName, pageViews));
             }
 
+            // TAKE: 5 Top Posts
+            results = results.OrderBy(x => x.Value).Take(5).ToList();
+
             return results.Where(x => x.Value > 0).OrderBy(x => x.Key).ToList();
         }
 
@@ -76,6 +79,33 @@ namespace Portal.CMS.Services.Analytics
 
                 results.Add(new KeyValuePair<string, int>(post.PostTitle, pageViews));
             }
+
+            // TAKE: 5 Top Posts
+            results = results.OrderBy(x => x.Value).Take(5).ToList();
+
+            return results.Where(x => x.Value > 0).OrderBy(x => x.Key).ToList();
+        }
+
+        public List<KeyValuePair<string, int>> GetTopPostCategories()
+        {
+            var results = new List<KeyValuePair<string, int>>();
+
+            var analyticPostViews = _context.AnalyticPostViews.ToList();
+
+            foreach (var postCategory in _context.PostCategories.ToList())
+            {
+                int pageViews = 0;
+
+                foreach(var post in postCategory.Posts)
+                {
+                    pageViews += analyticPostViews.Count(x => x.PostId == post.PostId);
+                }
+
+                results.Add(new KeyValuePair<string, int>(postCategory.PostCategoryName, pageViews));
+            }
+
+            // TAKE: 5 Top Posts
+            results = results.OrderBy(x => x.Value).Take(5).ToList();
 
             return results.Where(x => x.Value > 0).OrderBy(x => x.Key).ToList();
         }

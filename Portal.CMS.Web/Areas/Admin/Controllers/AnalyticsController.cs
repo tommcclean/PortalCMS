@@ -70,5 +70,26 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             return PartialView("_DisplayChart", model);
         }
+
+        public ActionResult TopPostCategories()
+        {
+            var dataSet = _analyticsService.GetTopPostCategories();
+
+            var model = new ChartViewModel()
+            {
+                ChartId = "chart-top-post-categories",
+                ChartName = "Top Post Categories",
+                ChartSize = ChartSize.Third,
+                ChartType = ChartType.Pie,
+                ChartColumns = new List<ColumnViewModel>()
+            };
+
+            foreach (var item in dataSet)
+            {
+                model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0} ({1})", item.Key, item.Value), ColumnValues = new List<int>() { item.Value } });
+            }
+
+            return PartialView("_DisplayChart", model);
+        }
     }
 }
