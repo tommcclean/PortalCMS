@@ -48,6 +48,26 @@ namespace Portal.CMS.Services.Analytics
             _context.SaveChanges();
         }
 
+        public List<KeyValuePair<string, int>> GetPageViewsByDay()
+        {
+            var results = new List<KeyValuePair<string, int>>();
+
+            var analyticPageViews = _context.AnalyticPageViews.ToList();
+
+            for(int loop = 1; loop < 8; loop += 1)
+            {
+                var date = DateTime.Now.AddDays(-7).AddDays(loop);
+
+                var pageViews = analyticPageViews.Count(x => x.DateAdded.Year == date.Year && x.DateAdded.Month == date.Month && x.DateAdded.Day == date.Day);
+
+                var label = (date == DateTime.Now ? date.DayOfWeek.ToString() + " (Today)" : date.DayOfWeek.ToString());
+
+                results.Add(new KeyValuePair<string, int>(label, pageViews));
+            }
+
+            return results;
+        }
+
         public List<KeyValuePair<string, int>> GetTopPages()
         {
             var results = new List<KeyValuePair<string, int>>();

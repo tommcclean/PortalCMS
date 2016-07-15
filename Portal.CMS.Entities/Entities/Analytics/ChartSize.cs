@@ -9,8 +9,9 @@ namespace Portal.CMS.Entities.Entities.Analytics
     public enum ChartSize
     {
         Fill = 0,
-        Half = 1,
-        Quarter = 2,
-        Third = 3,
+        TwoThirds = 1,
+        Half = 2,
+        Quarter = 3,
+        Third = 4,
     }
 }
