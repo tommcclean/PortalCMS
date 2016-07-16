@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    //[LoggedInFilter, AdminFilter]
+    [LoggedInFilter, AdminFilter]
     public class AnalyticsController : Controller
     {
         #region Dependencies
@@ -25,7 +25,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult PageViewsByDay()
+        public ActionResult PageViewsByDay(ChartSize chartSize)
         {
             var dataSet = _analyticsService.GetPageViewsByDay();
 
@@ -33,7 +33,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 ChartId = "chart-page-views-by-date",
                 ChartName = "Page Views This Week",
-                ChartSize = ChartSize.Half,
+                ChartSize = chartSize,
                 ChartType = ChartType.Bar,
                 ChartColumns = new List<ColumnViewModel>()
             };
@@ -46,7 +46,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
-        public ActionResult TopPages()
+        public ActionResult TopPages(ChartSize chartSize)
         {
             var dataSet = _analyticsService.GetTopPages();
 
@@ -54,7 +54,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 ChartId = "chart-top-pages",
                 ChartName = "Top Pages",
-                ChartSize = ChartSize.Half,
+                ChartSize = chartSize,
                 ChartType = ChartType.Pie,
                 ChartColumns = new List<ColumnViewModel>()
             };
@@ -67,7 +67,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
-        public ActionResult TopPosts()
+        public ActionResult TopPosts(ChartSize chartSize)
         {
             var dataSet = _analyticsService.GetTopPosts();
 
@@ -75,7 +75,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 ChartId = "chart-top-posts",
                 ChartName = "Top Posts",
-                ChartSize = ChartSize.Half,
+                ChartSize = chartSize,
                 ChartType = ChartType.Pie,
                 ChartColumns = new List<ColumnViewModel>()
             };
@@ -88,7 +88,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
-        public ActionResult TopPostCategories()
+        public ActionResult TopPostCategories(ChartSize chartSize)
         {
             var dataSet = _analyticsService.GetTopPostCategories();
 
@@ -96,7 +96,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 ChartId = "chart-top-post-categories",
                 ChartName = "Top Post Categories",
-                ChartSize = ChartSize.Half,
+                ChartSize = chartSize,
                 ChartType = ChartType.Pie,
                 ChartColumns = new List<ColumnViewModel>()
             };

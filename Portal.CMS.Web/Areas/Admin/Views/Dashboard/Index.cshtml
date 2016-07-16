@@ -1,6 +1,7 @@
 ﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Dashboard.DashboardViewModel
 @using Portal.CMS.Web.Areas.Admin.Helpers;
-@using Portal.CMS.Entities.Entities.Posts
+@using Portal.CMS.Entities.Entities.Posts;
+@using Portal.CMS.Entities.Entities.Analytics;
 @{
     ViewBag.Title = "Portal CMS Dashboard";
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-dashboard.png";
@@ -17,4 +18,8 @@
     @Html.Partial("_LatestComments", new ViewDataDictionary(Model.LatestComments))
 
     @Html.Partial("_MediaManager", new ViewDataDictionary(Model.Media))
+
+    @Html.Action("TopPages", "Analytics", new { chartSize = ChartSize.Half })
+
+    @Html.Action("TopPosts", "Analytics", new { chartSize = ChartSize.Half })
 </div>
