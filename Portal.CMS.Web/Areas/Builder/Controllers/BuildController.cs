@@ -38,10 +38,8 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 Page = _pageService.Get(pageId)
             };
 
-            return View("PageBuilder", model);
+            return View("/Areas/Builder/Views/Build/Index.cshtml", model);
         }
-
-
 
         public ActionResult Analytic(int pageId)
         {

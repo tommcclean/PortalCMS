@@ -434,9 +434,7 @@
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Builder\Views\Build\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
   </ItemGroup>
@@ -567,11 +565,11 @@
     <Content Include="Areas\Admin\Views\PostCategories\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Analytics\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Analytics\_DisplayChart.cshtml" />
+    <Content Include="Areas\Builder\Views\Build\Index.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
     <Content Include="Areas\Builder\Views\Component\_Element.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Edit.cshtml" />
-    <Content Include="Views\Shared\PageBuilder.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
