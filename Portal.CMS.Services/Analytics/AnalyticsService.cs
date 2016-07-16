@@ -3,8 +3,6 @@ using Portal.CMS.Entities.Entities.Analytics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Analytics
 {
@@ -54,7 +52,7 @@ namespace Portal.CMS.Services.Analytics
 
             var analyticPageViews = _context.AnalyticPageViews.ToList();
 
-            for(int loop = 1; loop < 8; loop += 1)
+            for (int loop = 1; loop < 8; loop += 1)
             {
                 var date = DateTime.Now.AddDays(-7).AddDays(loop);
 
@@ -74,7 +72,7 @@ namespace Portal.CMS.Services.Analytics
 
             var analyticPageViews = _context.AnalyticPageViews.ToList();
 
-            foreach(var page in _context.Pages.ToList())
+            foreach (var page in _context.Pages.ToList())
             {
                 var pageViews = analyticPageViews.Count(x => x.Area == (page.PageArea ?? "") && x.Controller == page.PageController && x.Action == page.PageAction);
 
@@ -116,7 +114,7 @@ namespace Portal.CMS.Services.Analytics
             {
                 int pageViews = 0;
 
-                foreach(var post in postCategory.Posts)
+                foreach (var post in postCategory.Posts)
                 {
                     pageViews += analyticPostViews.Count(x => x.PostId == post.PostId);
                 }

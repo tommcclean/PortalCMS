@@ -1,9 +1,5 @@
 ﻿using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Areas.Admin.ViewModels.PostCategories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -50,7 +46,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             var model = new EditViewModel()
             {
-                PostCategoryId  = postCategoryId,
+                PostCategoryId = postCategoryId,
                 PostCategoryName = postCategory.PostCategoryName
             };
 

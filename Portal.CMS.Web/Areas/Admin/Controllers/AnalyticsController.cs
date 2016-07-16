@@ -1,11 +1,7 @@
 ﻿using Portal.CMS.Entities.Entities.Analytics;
 using Portal.CMS.Services.Analytics;
-using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Analytics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -63,7 +59,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 ChartColumns = new List<ColumnViewModel>()
             };
 
-            foreach(var item in dataSet)
+            foreach (var item in dataSet)
             {
                 model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0} ({1})", item.Key, item.Value), ColumnValues = new List<int>() { item.Value } });
             }

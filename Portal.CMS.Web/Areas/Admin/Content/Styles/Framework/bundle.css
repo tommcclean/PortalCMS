@@ -37,8 +37,6 @@
     min-height: 540px;
 }
 
-
-
 .box .inner
 {
     position: absolute;
@@ -54,7 +52,6 @@
 {
     width: 100%;
 }
-
 .control-group
 {
     width: 100%;
@@ -561,7 +558,6 @@ table th
     }
 
     .tab-pane p {
-
     }
 
     .tab-pane a:hover {
