@@ -58,7 +58,10 @@
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>@UserHelper.FullName<span class="caret"></span></a>
-                            <ul class="dropdown-menu"><li><a href="@Url.Action("Logout", "Authentication", new { area="Admin"})"><span class="glyphicon glyphicon-lock"></span>Logout</a></li></ul>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Password", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Change Password"><span class="glyphicon glyphicon-pencil"></span>Change Password</a></li>
+                                <li><a href="@Url.Action("Logout", "Authentication", new { area="Admin"})"><span class="glyphicon glyphicon-lock"></span>Logout</a></li>
+                            </ul>
                         </li>
                         @if (UserHelper.IsAdmin)
                         {

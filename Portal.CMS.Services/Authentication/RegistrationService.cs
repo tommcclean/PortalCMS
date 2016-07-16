@@ -9,6 +9,8 @@ namespace Portal.CMS.Services.Authentication
     public interface IRegistrationService
     {
         int? Register(string emailAddress, string password, string givenName, string familyName);
+
+        void ChangePassword(int userId, string newPassword);
     }
 
     public class RegistrationService : IRegistrationService
@@ -39,6 +41,19 @@ namespace Portal.CMS.Services.Authentication
             _context.SaveChanges();
 
             return userAccount.UserId;
+        }
+
+        public void ChangePassword(int userId, string newPassword)
+        {
+            var userAccount = _context.Users.FirstOrDefault(x => x.UserId == userId);
+
+            if (userAccount == null)
+                return;
+
+            userAccount.Password = GenerateSecurePassword(newPassword);
+            userAccount.DateUpdated = DateTime.Now;
+
+            _context.SaveChanges();
         }
 
         private string GenerateSecurePassword(string password)

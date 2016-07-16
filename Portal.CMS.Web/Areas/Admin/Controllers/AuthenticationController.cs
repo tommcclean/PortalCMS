@@ -1,4 +1,6 @@
 ﻿using Portal.CMS.Services.Authentication;
+using Portal.CMS.Web.Areas.Admin.ActionFilters;
+using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Authentication;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -100,6 +102,36 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
                     return this.Content("Refresh");
             }
+        }
+
+        [HttpGet, LoggedInFilter]
+        public ActionResult Password()
+        {
+            var model = new PasswordViewModel();
+
+            return View("_Password", model);
+        }
+
+        [HttpPost, LoggedInFilter]
+        [ValidateAntiForgeryToken]
+        public ActionResult Password(PasswordViewModel model)
+        {
+            if (ModelState.IsValid && !model.NewPassword.Equals(model.ConfirmPassword, System.StringComparison.OrdinalIgnoreCase))
+            {
+                ModelState.AddModelError("NewPasswordMismatch", "Your new password and confirm password do not match...");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.NewPassword = string.Empty;
+                model.ConfirmPassword = string.Empty;
+
+                return View("_Password", model);
+            }
+
+            _registrationService.ChangePassword(UserHelper.UserId, model.NewPassword);
+
+            return Content("Refresh");
         }
     }
 }
