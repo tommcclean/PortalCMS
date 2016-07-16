@@ -35,6 +35,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var model = new CreateViewModel()
             {
+                
             };
 
             return View("_Create", model);

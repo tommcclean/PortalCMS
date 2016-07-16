@@ -1,8 +1,6 @@
 ﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Pages.CreateViewModel
 @{
     Layout = "";
-
-    var postCategoryList = Model.PostCategories.Select(x => new SelectListItem { Value = x.MenuId.ToString(), Text = x.MenuName });
 }
 
 @using (Html.BeginForm("Create", "Pages", FormMethod.Post))

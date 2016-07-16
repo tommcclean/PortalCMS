@@ -19,7 +19,14 @@
 
                     <div class="admin-container x3">
                         <a href="@Url.Action("Edit", "Pages", new { pageId = @pageItem.PageId })" class="admin-item launch-modal" data-title="Edit Copy: @pageItem.PageName"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
-                        <a href="@Url.Action(pageItem.PageAction, pageItem.PageController, new { area = pageItem.PageArea })" class="admin-item" data-title="Build Page"><span class="glyphicon glyphicon-briefcase"></span>Build</a>
+                        @if (string.IsNullOrWhiteSpace(pageItem.PageArea))
+                        {
+                            <a href="@Url.Action(pageItem.PageAction, pageItem.PageController, new { Area = "" })" class="admin-item" data-title="Build Page"><span class="glyphicon glyphicon-briefcase"></span>Build</a>
+                        }
+                        else
+                        {
+                            <a href="/@pageItem.PageArea/@pageItem.PageController/@pageItem.PageAction" class="admin-item" data-title="Build Page"><span class="glyphicon glyphicon-briefcase"></span>Build</a>
+                        }
                         <a href="@Url.Action("Delete", "Pages", new { pageId = @pageItem.PageId })" class="admin-item" data-title="Delete Post"><span class="glyphicon glyphicon-trash"></span>Delete</a>
                     </div>
                 </div>
