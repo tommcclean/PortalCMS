@@ -10,9 +10,6 @@
         }
     });
 
-    // Bootstrap Tabs
-    $('#tabs').tab();
-
     // FancyBox Image Viewer
     $('.fancybox').fancybox();
     $(".fancybox-thumb").fancybox({
