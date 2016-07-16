@@ -3,6 +3,31 @@
     Layout = "";
 }
 
+<script type="text/javascript">
+    function Delete()
+    {
+        $('#@Model.ContainerElementId').remove();
+
+        var dataParams = { "pageSectionId": @Model.PageSectionId , "componentId": "@Model.ContainerElementId", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+
+        $('#container-editor-' + @Model.PageSectionId).fadeOut();
+
+        $.ajax({
+            data: dataParams,
+            type: 'POST',
+            cache: false,
+            url: '@Url.Action("Delete", "Component", new { area = "Builder" })',
+            success: function (data) {
+                if (data.State === false)
+                {
+                    alert("Error: The document has lost synchronisation. Reloading document...");
+                    location.reload();
+                }
+            },
+        });
+    }
+</script>
+
 @using (Html.BeginForm("Edit", "Container", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -14,7 +39,7 @@
 
     <div class="footer">
         <button class="btn primary">Save</button>
-        <a href="@Url.Action("Delete", "Container", new { pageSectionId = Model.PageSectionId, elementId = Model.ContainerElementId})" class="btn delete">Delete</a>
+        <a onclick="Delete()" data-dismiss="modal" class="btn delete">Delete</a>
         <button class="btn" data-dismiss="modal">Cancel</button>
     </div>
 }
