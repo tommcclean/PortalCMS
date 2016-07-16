@@ -10,6 +10,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <script src="~/Areas/Admin/Content/Plugins/JQTouch/jquery.ui.touch-punch.min.js"></script>
 
+@* AJAX Page Tracking *@
 <script type="text/javascript">
     var dataParams = { "pageId": @Model.Page.PageId, "referrer": "@Request.UrlReferrer", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
 
@@ -23,6 +24,7 @@
     });
 </script>
 
+@* Change Section Order *@
 <script type="text/javascript">
     function ChangeOrder() {
         $('#page-wrapper').toggleClass("zoom");
@@ -35,13 +37,11 @@
     function SaveOrder() {
         var sectionList = [];
         var orderId = 1;
-
         $("#page-wrapper .sortable").each(function (index) {
             var sectionId = $(this).attr("data-section");
             sectionList.push(orderId + "-" + sectionId);
             orderId += 1;
         });
-
         $('#order-list').val(sectionList);
         $('#order-submit').click();
     }
@@ -70,7 +70,7 @@
 }
 
 <div id="page-wrapper">
-    @foreach (var section in Model.Page.PageSections)
+    @foreach (var section in Model.Page.PageSections.OrderBy(x => x.PageSectionOrder).ThenBy(x => x.PageSectionId))
     {
         <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper @(UserHelper.IsAdmin ? "admin" : "") sortable" data-section="@(section.PageSectionId)" style="position: relative">
             @Html.Raw(section.PageSectionBody)

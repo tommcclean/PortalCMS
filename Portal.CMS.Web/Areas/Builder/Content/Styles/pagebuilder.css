@@ -6,7 +6,7 @@
 
 section
 {
-    position: relative;    
+    position: relative;
 }
 
     section.height-tall
@@ -91,16 +91,16 @@ section
         font-size: 28px;
     }
 
-    #page-wrapper.zoom
-    {
-        width: 40%;
-        max-width: 80%;
-        overflow: hidden;
-        margin: 0 auto;
-        margin-top: 40px;
-        margin-bottom: 30px;
-        border: 1px dashed white;
-    }
+#page-wrapper.zoom
+{
+    width: 40%;
+    max-width: 80%;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    border: 1px dashed white;
+}
 
     #page-wrapper.zoom .section-wrapper section
     {

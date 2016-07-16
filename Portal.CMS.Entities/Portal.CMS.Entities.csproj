@@ -89,6 +89,10 @@
     <Compile Include="Migrations\201607142300116_AddAnalyticsEntities.Designer.cs">
       <DependentUpon>201607142300116_AddAnalyticsEntities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607161849511_AddPageSectionOrderToPageSections.cs" />
+    <Compile Include="Migrations\201607161849511_AddPageSectionOrderToPageSections.Designer.cs">
+      <DependentUpon>201607161849511_AddPageSectionOrderToPageSections.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607142300116_AddAnalyticsEntities.resx">
       <DependentUpon>201607142300116_AddAnalyticsEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607161849511_AddPageSectionOrderToPageSections.resx">
+      <DependentUpon>201607161849511_AddPageSectionOrderToPageSections.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

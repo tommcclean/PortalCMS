@@ -80,33 +80,31 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-    //    public void Order(int userId, int pageId, string sectionList)
-    //    {
-    //        EyeDentityConnection _database = new EyeDentityConnection();
+        public void Order(int pageId, string sectionList)
+        {
+            var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
 
-    //        var page = _database.Pages.SingleOrDefault(x => x.isDeleted == false && x.UserId == userId && x.PageId == pageId);
+            if (page == null)
+                return;
 
-    //        if (page == null)
-    //            return;
+            var sections = sectionList.Split(',');
 
-    //        var sections = sectionList.Split(',');
+            foreach (var sectionProperties in sections)
+            {
+                var properties = sectionProperties.Split('-');
 
-    //        foreach (var sectionProperties in sections)
-    //        {
-    //            var properties = sectionProperties.Split('-');
+                var orderId = properties[0];
+                var sectionId = properties[1];
 
-    //            var orderId = properties[0];
-    //            var sectionId = properties[1];
+                var section = page.PageSections.FirstOrDefault(x => x.PageSectionId.ToString() == sectionId.ToString());
 
-    //            var section = page.Sections.FirstOrDefault(x => x.isDeleted == false && x.SectionId.ToString() == sectionId.ToString());
+                if (section == null)
+                    continue;
 
-    //            if (section == null)
-    //                continue;
+                section.PageSectionOrder = Convert.ToInt32(orderId);
+            }
 
-    //            section.SectionOrder = Convert.ToInt32(orderId);
-    //        }
-
-    //        _database.SaveChanges();
-    //    }
+            _context.SaveChanges();
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Portal.CMS.Services.Analytics;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
-using Portal.CMS.Services.Shared;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Build;
@@ -56,10 +55,10 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [HttpPost, AdminFilter]
         public ActionResult Order(int pageId, string sectionList)
         {
-            //if (sectionList != null && sectionList.Length > 2)
-            //    _pageService.Order(UserHelper.UserId, pageId, sectionList);
+            if (sectionList != null && sectionList.Length > 2)
+                _pageService.Order(pageId, sectionList);
 
-            return RedirectToAction("Edit", "Pages", new { id = pageId });
+            return RedirectToAction("Index", "Build", new { pageId = pageId });
         }
     }
 }
