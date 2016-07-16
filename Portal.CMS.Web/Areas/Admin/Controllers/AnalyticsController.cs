@@ -1,5 +1,6 @@
 ﻿using Portal.CMS.Entities.Entities.Analytics;
 using Portal.CMS.Services.Analytics;
+using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Analytics;
 using System.Collections.Generic;
 using System.Web.Mvc;
