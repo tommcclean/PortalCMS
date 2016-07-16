@@ -76,29 +76,29 @@
         }
     }
 
-        <div id="page-wrapper">
-            @if (UserHelper.IsAdmin && !Model.Page.PageSections.Any())
-            {
-                <section class="blank">
-                    <h1>This Page is Empty</h1>
-                    <p>To get started click the <span class="glyphicon glyphicon-plus" style="margin-left: 10px;"></span>button in the bottom corner to add your first section.</p>
-                </section>
-            }
+    <div id="page-wrapper">
+        @if (UserHelper.IsAdmin && !Model.Page.PageSections.Any())
+        {
+            <section class="blank">
+                <h1>This Page is Empty</h1>
+                <p>To get started click the <span class="glyphicon glyphicon-plus" style="margin-left: 10px;"></span>button in the bottom corner to add your first section.</p>
+            </section>
+        }
 
-            @foreach (var section in Model.Page.PageSections.OrderBy(x => x.PageSectionOrder).ThenBy(x => x.PageSectionId))
-            {
-                <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper @(UserHelper.IsAdmin ? "admin sortable" : "")" data-section="@(section.PageSectionId)">
-                    @Html.Raw(section.PageSectionBody)
+        @foreach (var section in Model.Page.PageSections.OrderBy(x => x.PageSectionOrder).ThenBy(x => x.PageSectionId))
+        {
+            <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper @(UserHelper.IsAdmin ? "admin sortable" : "")" data-section="@(section.PageSectionId)">
+                @Html.Raw(section.PageSectionBody)
 
-                    @if (UserHelper.IsAdmin)
+                @if (UserHelper.IsAdmin)
                 {
-                        <div class="action-container absolute">
-                            <a class="action add-component" data-title="Add Component" data-sectionid="@(section.PageSectionId)"><span class="glyphicon glyphicon-plus"></span></a>
-                            <a class="action launch-modal" data-title="Edit Markup" href="@Url.Action("Markup", "Section", new { area = "Builder", pageSectionId = section.PageSectionId })"><span class="glyphicon glyphicon-console"></span></a>
-                            <a class="action launch-modal" data-title="Edit Section" href="@Url.Action("Edit", "Section", new { area = "Builder", sectionId = section.PageSectionId })"><span class="glyphicon glyphicon-cog"></span></a>
-                            <a id="container-editor-@(section.PageSectionId)" class="action component-editor" style="display: none;" data-title="Edit Container"><span class="glyphicon glyphicon-unchecked"></span></a>
-                        </div>
-                    }
-                </div>
-            }
-        </div>
+                    <div class="action-container absolute">
+                        <a class="action add-component" data-title="Add Component" data-sectionid="@(section.PageSectionId)"><span class="glyphicon glyphicon-plus"></span></a>
+                        <a class="action launch-modal" data-title="Edit Markup" href="@Url.Action("Markup", "Section", new { area = "Builder", pageSectionId = section.PageSectionId })"><span class="glyphicon glyphicon-console"></span></a>
+                        <a class="action launch-modal" data-title="Edit Section" href="@Url.Action("Edit", "Section", new { area = "Builder", sectionId = section.PageSectionId })"><span class="glyphicon glyphicon-cog"></span></a>
+                        <a id="container-editor-@(section.PageSectionId)" class="action component-editor" style="display: none;" data-title="Edit Container"><span class="glyphicon glyphicon-unchecked"></span></a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
