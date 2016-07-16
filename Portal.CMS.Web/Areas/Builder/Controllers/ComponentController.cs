@@ -88,7 +88,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 ElementId = elementId,
                 ElementText = document.GetContent(elementId),
                 ElementTarget = document.GetAttribute(elementId, "href"),
-                ElementColour = ""
+                ElementColour = document.GetInlineStyle(elementId, "color")
             };
 
             return View("_Anchor", model);
