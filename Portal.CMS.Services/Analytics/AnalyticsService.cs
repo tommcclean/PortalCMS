@@ -16,6 +16,9 @@ namespace Portal.CMS.Services.Analytics
 
         public void AnalysePageView(string area, string controller, string action, string referredUrl, int? userId)
         {
+            if (string.IsNullOrWhiteSpace(referredUrl))
+                referredUrl = "N/A";
+
             var newAnalyticPageView = new AnalyticPageView()
             {
                 Area = area ?? "",
@@ -33,6 +36,9 @@ namespace Portal.CMS.Services.Analytics
 
         public void AnalysePostView(int postId, string referredUrl, int? UserId)
         {
+            if (string.IsNullOrWhiteSpace(referredUrl))
+                referredUrl = "N/A";
+
             var analyticPostView = new AnalyticPostView()
             {
                 PostId = postId,

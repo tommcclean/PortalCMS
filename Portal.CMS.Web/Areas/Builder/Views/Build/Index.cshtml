@@ -7,10 +7,13 @@
 <script src="~/Areas/Builder/Content/Scripts/pagebuilder.min.js"></script>
 
 <script type="text/javascript">
+    var dataParams = { "pageId": @Model.Page.PageId, "referrer": "@Request.UrlReferrer", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+
     $.ajax({
+        data: dataParams,
         type: 'POST',
         cache: false,
-        url: '@Url.Action("Analytic", "Build", new { area = "Builder", pageId = Model.Page.PageId })',
+        url: '@Url.Action("Analytic", "Build", new { area = "Builder" })',
         success: function (data) {
         },
     });

@@ -41,14 +41,14 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return View("/Areas/Builder/Views/Build/Index.cshtml", model);
         }
 
-        public ActionResult Analytic(int pageId)
+        public ActionResult Analytic(int pageId, string referrer)
         {
             var page = _pageService.Get(pageId);
 
             if (UserHelper.IsLoggedIn)
-                _analyticService.AnalysePageView(page.PageArea, page.PageController, page.PageAction, Request.UrlReferrer.AbsoluteUri, UserHelper.UserId);
+                _analyticService.AnalysePageView(page.PageArea, page.PageController, page.PageAction, referrer, UserHelper.UserId);
             else
-                _analyticService.AnalysePageView(page.PageArea, page.PageController, page.PageAction, Request.UrlReferrer.AbsoluteUri, null);
+                _analyticService.AnalysePageView(page.PageArea, page.PageController, page.PageAction, referrer, null);
 
             return Json(new { State = true });
         }

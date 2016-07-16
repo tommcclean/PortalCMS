@@ -66,12 +66,12 @@ namespace Portal.CMS.Web.Controllers
             return RedirectToAction("Read", "Blog", new { postId = postId });
         }
 
-        public ActionResult Analytic(int postId)
+        public ActionResult Analytic(int postId, string referrer)
         {
             if (UserHelper.IsLoggedIn)
-                _analyticsService.AnalysePostView(postId, Request.UrlReferrer.AbsoluteUri, UserHelper.UserId);
+                _analyticsService.AnalysePostView(postId, referrer, UserHelper.UserId);
             else
-                _analyticsService.AnalysePostView(postId, Request.UrlReferrer.AbsoluteUri, null);
+                _analyticsService.AnalysePostView(postId, referrer, null);
 
             return Json(new { State = true });
         }
