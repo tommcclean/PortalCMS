@@ -4,16 +4,10 @@
     background-image: unset;
 }
 
-section
+.section-wrapper, section
 {
     position: relative;
 }
-
-    section.blank
-    {
-        min-height: calc(100vh - 50px);
-        background-image: url('../../../Admin/Content/Images/texture.png');
-    }
 
     section.height-tall
     {
@@ -35,13 +29,6 @@ section
         min-height: 100px;
     }
 
-    section.header
-    {
-        max-height: calc(100vh - 50px) !important;
-        background-image: url('../Images/Sample/Sample-2.jpg');
-        color: white;
-    }
-
     section.background-static
     {
         background-size: cover;
@@ -55,25 +42,25 @@ section
         background-position: center center;
     }
 
+    section.header
+    {
+        max-height: calc(100vh - 50px);
+        background-image: url('../Images/Sample/Sample-2.jpg');
+        color: white;
+    }
+
     section.blank
     {
-        padding-top: 50px;
-        padding-bottom: 50px;
-        padding-left: 2.5%;
-        padding-right: 2.5%;
+        min-height: calc(100vh - 50px);
+        background-image: url('../../../Admin/Content/Images/texture.png');
+        padding: 50px 2.5% 50px 2.5%;
         text-align: center;
     }
 
     section p, section a
     {
         margin-bottom: 20px;
-        font-size: 20px;
     }
-
-.builder-picker
-{
-    text-align: center;
-}
 
 .builder-item
 {
@@ -82,7 +69,8 @@ section
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     border: 1px solid #E0E0E0;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    text-align: center;
 }
 
     .builder-item:hover
@@ -99,16 +87,16 @@ section
 
 #page-wrapper.zoom
 {
-    width: 40%;
+    width: 30%;
     overflow: hidden;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 30px;
     border: 1px dashed white;
 }
 
     #page-wrapper.zoom .section-wrapper section
     {
-        zoom: 0.35;
+        zoom: 0.3;
     }
 
     #page-wrapper.zoom .section-wrapper .action-container
@@ -116,16 +104,16 @@ section
         display: none;
     }
 
-.section-wrapper
-{
-    position: relative;
-}
-
 @media (max-width: 1024px)
 {
     section.background-parallax
     {
         background-attachment: scroll;
+    }
+    
+    #page-wrapper.zoom .section-wrapper section
+    {
+        zoom: 0.25;
     }
 
     #page-wrapper.zoom
@@ -146,7 +134,7 @@ section
         min-height: 80vh;
     }
 
-        #page-wrapper.zoom
+    #page-wrapper.zoom
     {
         width: 80%;
     }
