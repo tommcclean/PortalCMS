@@ -35,7 +35,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var model = new CreateViewModel()
             {
-                
+
             };
 
             return View("_Create", model);
@@ -78,12 +78,21 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditViewModel model)
         {
+            var page = _pageService.Get(model.PageId);
+
+            var restartRequired = false;
+
+            if (!string.IsNullOrWhiteSpace(page.PageArea).Equals(string.IsNullOrWhiteSpace(model.PageArea)) || !page.PageController.Equals(model.PageController) || !page.PageAction.Equals(model.PageAction))
+                restartRequired = true;
+
             if (!ModelState.IsValid)
                 return View("_Create", model);
 
             _pageService.Edit(model.PageId, model.PageName, model.PageArea, model.PageController, model.PageAction);
 
-            System.Web.HttpRuntime.UnloadAppDomain();
+            // RESET: Routing by Starting the Website.
+            if (restartRequired)
+                System.Web.HttpRuntime.UnloadAppDomain();
 
             return this.Content("Refresh");
         }
