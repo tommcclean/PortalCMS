@@ -74,24 +74,43 @@
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="tab-comments">
-                        @foreach (var comment in Model.CurrentPost.PostComments)
+                        <div class="comment-item">
+                            @if (UserHelper.IsLoggedIn)
+                            {
+                                using (Html.BeginForm("Comment", "Blog", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    @Html.Hidden("postId", Model.CurrentPost.PostId)
+
+                                    <textarea id="commentBody" name="commentBody"></textarea>
+
+                                    <button class="btn btn">Add Comment</button>
+                                }
+                            }
+                            else
+                            {
+                                <p><span class="glyphicon glyphicon-lock"></span>You need to <a href="@Url.Action("Login", "Authentication", new { area = "Admin" })" class="launch-modal" data-title="Sign In">Login</a> or <a href="@Url.Action("Register", "Authentication", new { area = "Admin" })" class="launch-modal" data-title="Register Account">Register</a> to comment.</p>
+                            }
+                        </div>
+
+                        @if (!Model.CurrentPost.PostComments.Any())
                         {
                             <div class="float-container comment-item">
-                                <h1>@comment.User.GivenName @comment.User.FamilyName</h1>
-                                <p>@comment.CommentBody</p>
+                                <h4>No Comments Left Yet</h4>
+                                <p>Why not add your own comments or thoughts to get the chat started?</p>
                             </div>
                         }
-
-                        @using (Html.BeginForm("Comment", "Blog", FormMethod.Post))
+                        else
                         {
-                            @Html.AntiForgeryToken()
-
-                            @Html.Hidden("postId", Model.CurrentPost.PostId)
-
-                            <textarea id="commentBody" name="commentBody"></textarea>
-
-                            <button>Submit</button>
-                        }
+                            foreach (var comment in Model.CurrentPost.PostComments)
+                            {
+                                <div class="float-container comment-item">
+                                    <h4>@comment.User.GivenName @comment.User.FamilyName <span class="small">at @comment.DateAdded.ToString("dd MMM yyyy HH:mm")</span></h4>
+                                    <p>@comment.CommentBody</p>
+                                </div>
+                            }
+                        }                        
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tab-gallery">
                         <div class="row">

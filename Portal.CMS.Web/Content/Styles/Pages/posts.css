@@ -67,22 +67,6 @@
         text-align: center;
     }
 
-.comment-item
-{
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
-}
-
-    .comment-item h1
-    {
-        margin-bottom: 10px;
-    }
-
-    .comment-item p
-    {
-        padding: 0 20px 10px 20px;
-    }
-
 .article-item
 {
     height: 250px;
@@ -163,3 +147,38 @@
         padding-bottom: 15px;
     }
 }
+
+#tab-comments
+{
+
+}
+
+#tab-comments textarea
+{
+    width: 100%;
+    height: 100px;
+    border-radius: 5px;
+}
+
+#tab-comments .comment-item
+{
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding-top: 5px;
+}
+
+    #tab-comments .comment-item h4
+    {
+        padding: 0 10px 10px 10px;
+        margin-bottom: 10px;
+    }
+
+    #tab-comments .comment-item h4 span.small
+    {
+        letter-spacing: 1px;
+    }
+
+    #tab-comments .comment-item p
+    {
+        padding: 0 10px 10px 10px;
+    }
