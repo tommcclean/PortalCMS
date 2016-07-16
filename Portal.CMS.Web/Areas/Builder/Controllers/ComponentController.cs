@@ -59,7 +59,8 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 PageId = pageSection.PageId,
                 SectionId = sectionId,
                 ElementId = elementId,
-                ElementValue = document.GetContent(elementId)
+                ElementValue = document.GetContent(elementId),
+                ElementColour = document.GetInlineStyle(elementId, "color")
             };
 
             return View("_Element", model);

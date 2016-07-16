@@ -32,6 +32,33 @@ namespace Portal.CMS.Services.Shared
             return element.GetAttributeValue(attributeName, "");
         }
 
+        public string GetInlineStyle(string elementId, string attributeName)
+        {
+            var element = _document.GetElementbyId(elementId);
+
+            var styleAttribute = element.Attributes.FirstOrDefault(x => x.Name == "style");
+
+            if (styleAttribute == null)
+                return string.Empty;
+
+            var styleAttributeList = styleAttribute.Value.Split(';');
+
+            foreach(var attribute in styleAttributeList)
+            {
+                if (attribute.Contains(attributeName))
+                {
+                    var index = attribute.IndexOf(":");
+
+                    var result = attribute.Substring(index + 1);
+
+                    return result.Trim();
+                }
+            }
+
+
+            return string.Empty;
+        }
+
         public string GetContent(string elementId)
         {
             var element = _document.GetElementbyId(elementId);
