@@ -1,6 +1,6 @@
 ﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Pages.PagesViewModel
 @{
-    ViewBag.Title = "Manage Pages";
+    ViewBag.Title = "Page Manager";
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-pages.png";
 }
 
@@ -9,7 +9,7 @@
 </a>
 
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#tab-all" aria-controls="tab-all" role="tab" data-toggle="tab">All Pages</a></li>
+    <li role="presentation" class="active"><a href="#tab-all" aria-controls="tab-all" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th-large"></span>All Pages</a></li>
     @foreach (var area in Model.PageAreas)
     {
         <li role="presentation" class=""><a href="#tab-@area" aria-controls="tab-@area" role="tab" data-toggle="tab">@area</a></li>

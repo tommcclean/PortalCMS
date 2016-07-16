@@ -1,6 +1,6 @@
 ﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Media.MediaViewModel
 @{
-    ViewBag.Title = "Manage Media";
+    ViewBag.Title = "Media Manager";
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-media.png";
 }
 
@@ -11,10 +11,10 @@
 </a>
 
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab">General</a></li>
-    <li role="presentation" class=""><a href="#tab-icon" aria-controls="tab-icon" role="tab" data-toggle="tab">Icon</a></li>
-    <li role="presentation" class=""><a href="#tab-screenshot" aria-controls="tab-screenshot" role="tab" data-toggle="tab">Screenshot</a></li>
-    <li role="presentation" class=""><a href="#tab-texture" aria-controls="tab-texture" role="tab" data-toggle="tab">Texture</a></li>
+    <li role="presentation" class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span>General</a></li>
+    <li role="presentation" class=""><a href="#tab-icon" aria-controls="tab-icon" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-unchecked"></span>Icon</a></li>
+    <li role="presentation" class=""><a href="#tab-screenshot" aria-controls="tab-screenshot" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-camera"></span>Screenshot</a></li>
+    <li role="presentation" class=""><a href="#tab-texture" aria-controls="tab-texture" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-leaf"></span>Texture</a></li>
 </ul>
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="tab-general">
