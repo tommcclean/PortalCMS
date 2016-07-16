@@ -36,7 +36,7 @@
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
 
-        var href = "/Builder/Build/Element?sectionId=" + sectionId + "&elementId=" + elementId;
+        var href = "/Builder/Component/Element?sectionId=" + sectionId + "&elementId=" + elementId;
         showModalEditor("Edit Element Properties", href);
     });
 

@@ -41,32 +41,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return View("PageBuilder", model);
         }
 
-        [HttpGet, AdminFilter]
-        public ActionResult Element(int sectionId, string elementId)
-        {
-            var pageSection = _pageSectionService.Get(sectionId);
 
-            var document = new Document(pageSection.PageSectionBody);
-
-            var model = new ElementViewModel()
-            {
-                PageId = pageSection.PageId,
-                SectionId = sectionId,
-                ElementId = elementId,
-                ElementValue = document.GetContent(elementId)
-            };
-
-            return View("_Element", model);
-        }
-
-        [HttpPost, AdminFilter]
-        [ValidateAntiForgeryToken]
-        public ActionResult Element(ElementViewModel model)
-        {
-            _pageSectionService.Element(model.SectionId, model.ElementId, model.ElementValue, model.ElementColour);
-
-            return Content("Refresh");
-        }
 
         public ActionResult Analytic(int pageId)
         {

@@ -1,4 +1,4 @@
-﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Build.ElementViewModel
+﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Component.ElementViewModel
 @{
     Layout = "";
 }
@@ -34,7 +34,7 @@
     }
 </script>
 
-@using (Html.BeginForm("Element", "Build", FormMethod.Post))
+@using (Html.BeginForm("Element", "Component", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

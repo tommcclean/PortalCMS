@@ -295,7 +295,7 @@
     <Compile Include="ViewModels\Blog\ReadViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\AddViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Build\CustomViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Build\ElementViewModel.cs" />
+    <Compile Include="Areas\Builder\ViewModels\Component\ElementViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\EditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -434,7 +434,9 @@
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Builder\Views\Build\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
   </ItemGroup>
@@ -567,7 +569,7 @@
     <Content Include="Areas\Admin\Views\Analytics\_DisplayChart.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
-    <Content Include="Areas\Builder\Views\Build\_Element.cshtml" />
+    <Content Include="Areas\Builder\Views\Component\_Element.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Edit.cshtml" />
     <Content Include="Views\Shared\PageBuilder.cshtml" />
   </ItemGroup>

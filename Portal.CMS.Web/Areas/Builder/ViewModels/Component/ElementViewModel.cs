@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Portal.CMS.Web.Areas.Builder.ViewModels.Build
+namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
 {
     public class ElementViewModel
     {
