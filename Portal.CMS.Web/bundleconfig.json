@@ -100,5 +100,11 @@
     "inputFiles": [
       "Areas/Admin/Content/Plugins/C3Graphing/c3.css"
     ]
+  },
+  {
+    "outputFileName": "Areas/Admin/Content/Scripts/plugins.min.js",
+    "inputFiles": [
+      "Areas/Admin/Content/Scripts/plugins.js"
+    ]
   }
 ]
