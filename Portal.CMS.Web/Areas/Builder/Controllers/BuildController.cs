@@ -68,14 +68,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet, AdminFilter]
-        public ActionResult Delete(int pageId, int sectionId)
-        {
-            _pageSectionService.Delete(sectionId);
-
-            return RedirectToAction("Index", "Build", new { pageId = pageId });
-        }
-
         public ActionResult Analytic(int pageId)
         {
             var page = _pageService.Get(pageId);

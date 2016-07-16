@@ -27,7 +27,7 @@
 
 @foreach (var section in Model.Page.PageSections)
 {
-    <div class="section-wrapper @(UserHelper.IsAdmin ? "admin" : "")" style="position: relative">
+    <div id="section-wrapper-@(section.PageSectionId)"class="section-wrapper @(UserHelper.IsAdmin ? "admin" : "")" style="position: relative">
         @Html.Raw(section.PageSectionBody)
 
         @if (UserHelper.IsAdmin)

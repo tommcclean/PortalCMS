@@ -2,6 +2,7 @@
 using Portal.CMS.Services.Shared;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Component;
+using System;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
@@ -47,16 +48,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int pageSectionId, string componentId)
-        {
-            var pageSection = _pageSectionService.Get(pageSectionId);
-
-            _pageComponentService.Delete(pageSectionId, componentId);
-
-            return RedirectToAction("Index", "Build", new { pageId = pageSection.PageId });
-        }
-
-        [HttpGet]
         public ActionResult Anchor(int pageSectionId, string elementId)
         {
             var pageSection = _pageSectionService.Get(pageSectionId);
@@ -82,6 +73,22 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             _pageComponentService.Anchor(model.SectionId, model.ElementId, model.ElementText, model.ElementTarget, model.ElementColour);
 
             return Content("Refresh");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int pageSectionId, string componentId)
+        {
+            try
+            {
+                _pageComponentService.Delete(pageSectionId, componentId);
+
+                return Json(new { State = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { State = false });
+            }
         }
     }
 }

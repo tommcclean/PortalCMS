@@ -2,6 +2,7 @@
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Section;
+using System;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
@@ -97,6 +98,22 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             _pageSectionService.Markup(model.PageSectionId, model.PageSectionBody);
 
             return Content("Refresh");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int pageSectionId)
+        {
+            try
+            {
+                _pageSectionService.Delete(pageSectionId);
+
+                return Json(new { State = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { State = false });
+            }
         }
     }
 }

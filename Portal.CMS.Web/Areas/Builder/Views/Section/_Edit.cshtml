@@ -5,6 +5,29 @@
 
 <script src="~/Areas/Admin/Content/Scripts/imageselector.js"></script>
 
+<script type="text/javascript">
+    function Delete()
+    {
+        $('#section-wrapper-@Model.SectionId').remove();
+
+        var dataParams = { "pageSectionId": @Model.SectionId, "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+
+        $.ajax({
+            data: dataParams,
+            type: 'POST',
+            cache: false,
+            url: '@Url.Action("Delete", "Section", new { area = "Builder" })',
+            success: function (data) {
+                if (data.State === false)
+                {
+                    alert("Error: The document has lost synchronisation. Reloading document...");
+                    location.reload();
+                }
+            },
+        });
+    }
+</script>
+
 @using (Html.BeginForm("Edit", "Section", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -44,7 +67,7 @@
 
     <div class="footer">
         <button class="btn primary">Save</button>
-        <a href="@Url.Action("Delete", "Build", new { pageId = Model.PageId, sectionId = Model.SectionId })" class="btn delete">Delete</a>
+        <a onclick="Delete();" data-dismiss="modal" class="btn delete">Delete</a>
         <button class="btn" data-dismiss="modal">Cancel</button>
     </div>
 }
