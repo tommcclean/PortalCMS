@@ -1,6 +1,8 @@
 ﻿using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Pages;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -24,8 +26,17 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var model = new PagesViewModel()
             {
-                PageList = _pageService.Get()
+                PageList = _pageService.Get(),
+                PageAreas = new List<string>()
             };
+
+            foreach(var pageArea in model.PageList.GroupBy(x => x.PageArea))
+            {
+                if (pageArea.Key == null)
+                    continue;
+
+                model.PageAreas.Add(pageArea.Key);
+            }
 
             return View(model);
         }

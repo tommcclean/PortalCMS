@@ -8,28 +8,71 @@
     <div class="action"><span class="glyphicon glyphicon-plus"></span></div>
 </a>
 
-<div class="row">
-    @foreach (var pageItem in Model.PageList)
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#tab-all" aria-controls="tab-all" role="tab" data-toggle="tab">All Pages</a></li>
+    @foreach (var area in Model.PageAreas)
     {
-        <div class="col-xs-12 col-md-6 col-lg-4">
-            <div class="box article-item float-container light">
-                <div class="inner">
-                    <h3>@pageItem.PageName</h3>
-                    <p>Last Updated: @pageItem.DateUpdated.ToString("dd/MM/yyyy HH:mm")</p>
+        <li role="presentation" class=""><a href="#tab-@area" aria-controls="tab-@area" role="tab" data-toggle="tab">@area</a></li>
+    }
+</ul>
 
-                    <div class="admin-container x3">
-                        <a href="@Url.Action("Edit", "Pages", new { pageId = @pageItem.PageId })" class="admin-item launch-modal" data-title="Edit Copy: @pageItem.PageName"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
-                        @if (string.IsNullOrWhiteSpace(pageItem.PageArea))
-                        {
-                            <a href="@Url.Action(pageItem.PageAction, pageItem.PageController, new { Area = "" })" class="admin-item" data-title="Build Page"><span class="glyphicon glyphicon-briefcase"></span>Build</a>
-                        }
-                        else
-                        {
-                            <a href="/@pageItem.PageArea/@pageItem.PageController/@pageItem.PageAction" class="admin-item" data-title="Build Page"><span class="glyphicon glyphicon-briefcase"></span>Build</a>
-                        }
-                        <a href="@Url.Action("Delete", "Pages", new { pageId = @pageItem.PageId })" class="admin-item" data-title="Delete Post"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="tab-all">
+        <div class="row">
+            @foreach (var pageItem in Model.PageList)
+            {
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <div class="box article-item float-container light">
+                        <div class="inner">
+                            <h3>@pageItem.PageName</h3>
+                            <p>Last Updated: @pageItem.DateUpdated.ToString("dd/MM/yyyy HH:mm")</p>
+
+                            <div class="admin-container x3">
+                                <a href="@Url.Action("Edit", "Pages", new { pageId = @pageItem.PageId })" class="admin-item launch-modal" data-title="Edit Copy: @pageItem.PageName"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+                                @if (string.IsNullOrWhiteSpace(pageItem.PageArea))
+                                {
+                                    <a href="@Url.Action(pageItem.PageAction, pageItem.PageController, new { Area = "" })" class="admin-item" data-title="Build Page"><span class="glyphicon glyphicon-briefcase"></span>Build</a>
+                                }
+                                else
+                                {
+                                    <a href="/@pageItem.PageArea/@pageItem.PageController/@pageItem.PageAction" class="admin-item" data-title="Build Page"><span class="glyphicon glyphicon-briefcase"></span>Build</a>
+                                }
+                                <a href="@Url.Action("Delete", "Pages", new { pageId = @pageItem.PageId })" class="admin-item" data-title="Delete Post"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            }
+        </div>
+    </div>
+    @foreach (var area in Model.PageAreas)
+    {
+        <div role="tabpanel" class="tab-pane" id="tab-@area">
+            <div class="row">
+                @foreach (var pageItem in Model.PageList.Where(x => x.PageArea == area))
+                {
+                    <div class="col-xs-12 col-md-6 col-lg-4">
+                        <div class="box article-item float-container light">
+                            <div class="inner">
+                                <h3>@pageItem.PageName</h3>
+                                <p>Last Updated: @pageItem.DateUpdated.ToString("dd/MM/yyyy HH:mm")</p>
+
+                                <div class="admin-container x3">
+                                    <a href="@Url.Action("Edit", "Pages", new { pageId = @pageItem.PageId })" class="admin-item launch-modal" data-title="Edit Copy: @pageItem.PageName"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+                                    @if (string.IsNullOrWhiteSpace(pageItem.PageArea))
+                                    {
+                                        <a href="@Url.Action(pageItem.PageAction, pageItem.PageController, new { Area = "" })" class="admin-item" data-title="Build Page"><span class="glyphicon glyphicon-briefcase"></span>Build</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/@pageItem.PageArea/@pageItem.PageController/@pageItem.PageAction" class="admin-item" data-title="Build Page"><span class="glyphicon glyphicon-briefcase"></span>Build</a>
+                                    }
+                                    <a href="@Url.Action("Delete", "Pages", new { pageId = @pageItem.PageId })" class="admin-item" data-title="Delete Post"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     }

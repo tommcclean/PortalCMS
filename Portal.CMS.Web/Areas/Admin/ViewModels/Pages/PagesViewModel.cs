@@ -6,5 +6,7 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.Pages
     public class PagesViewModel
     {
         public IEnumerable<Page> PageList { get; set; }
+
+        public List<string> PageAreas { get; set; }
     }
 }
