@@ -62,8 +62,9 @@
             @foreach (var postCategory in Model.PostCategories)
             {
                 <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="box float-container" style="height: 160px; min-height: 160px;">
+                    <div class="box float-container" style="height: 220px; min-height: 220px;">
                         <h3>@postCategory.PostCategoryName</h3>
+                        <p>Total Posts: @postCategory.Posts.Count()</p>
 
                         <div class="admin-container x2">
                             <a href="@Url.Action("Edit", "PostCategories", new { postCategoryId = postCategory.PostCategoryId })" class="admin-item launch-modal" data-title="Edit Post Category"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
