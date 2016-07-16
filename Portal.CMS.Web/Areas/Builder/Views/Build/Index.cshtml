@@ -6,6 +6,10 @@
 <link href="~/Areas/Builder/Content/Styles/pagebuilder.min.css" rel="stylesheet" />
 <script src="~/Areas/Builder/Content/Scripts/pagebuilder.min.js"></script>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="~/Areas/Admin/Content/Plugins/JQTouch/jquery.ui.touch-punch.min.js"></script>
+
 <script type="text/javascript">
     var dataParams = { "pageId": @Model.Page.PageId, "referrer": "@Request.UrlReferrer", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
 
@@ -19,28 +23,67 @@
     });
 </script>
 
+<script type="text/javascript">
+    function ChangeOrder() {
+        $('#page-wrapper').toggleClass("zoom");
+        $('#page-wrapper').toggleClass("change-order");
+        $('#page-wrapper.change-order').sortable({ placeholder: "ui-state-highlight", helper: 'clone' });
+        $('.action-container.global').fadeOut();
+        $('.action-container.order').fadeIn();
+    }
+
+    function SaveOrder() {
+        var sectionList = [];
+        var orderId = 1;
+
+        $("#page-wrapper .sortable").each(function (index) {
+            var sectionId = $(this).attr("data-section");
+            sectionList.push(orderId + "-" + sectionId);
+            orderId += 1;
+        });
+
+        $('#order-list').val(sectionList);
+        $('#order-submit').click();
+    }
+</script>
+
 @if (UserHelper.IsAdmin)
 {
-    <div class="action-container">
+    <div class="action-container global">
         <a href="@Url.Action("Upload", "Media", new { area = "Admin" })" class="launch-modal" data-title="Upload Image"><div class="action"><span class="glyphicon glyphicon-picture"></span></div></a>
         <a href="@Url.Action("Index", "Pages", new { area = "Admin" }) "><div class="action"><span class="glyphicon glyphicon-book"></span></div></a>
+        <div onclick="ChangeOrder();" class="action"><span class="glyphicon glyphicon-resize-vertical"></span></div>
         <a href="@Url.Action("Add", "Section", new { area = "Builder", pageId = Model.Page.PageId })" data-title="Add Section" class="launch-modal"><div class="action"><span class="glyphicon glyphicon-plus"></span></div></a>
     </div>
-}
 
-@foreach (var section in Model.Page.PageSections)
-{
-    <div id="section-wrapper-@(section.PageSectionId)"class="section-wrapper @(UserHelper.IsAdmin ? "admin" : "")" style="position: relative">
-        @Html.Raw(section.PageSectionBody)
-
-        @if (UserHelper.IsAdmin)
-        {
-            <div class="action-container absolute">
-                <a class="action add-component" data-title="Add Component" data-sectionid="@(section.PageSectionId)"><span class="glyphicon glyphicon-plus"></span></a>
-                <a class="action launch-modal" data-title="Edit Markup" href="@Url.Action("Markup", "Section", new { area = "Builder", pageSectionId = section.PageSectionId })"><span class="glyphicon glyphicon-console"></span></a>
-                <a class="action launch-modal" data-title="Edit Section" href="@Url.Action("Edit", "Section", new { area = "Builder", sectionId = section.PageSectionId })"><span class="glyphicon glyphicon-cog"></span></a>
-                <a id="container-editor-@(section.PageSectionId)" class="action component-editor" style="display: none;" data-title="Edit Container"><span class="glyphicon glyphicon-unchecked"></span></a>
-            </div>
-        }
+    <div class="action-container order" style="display: none;">
+        <div onclick="SaveOrder();" class="action"><span class="glyphicon glyphicon-ok"></span></div>
+        <div onclick="location.reload();" class="action"><span class="glyphicon glyphicon-remove"></span></div>
     </div>
+
+    using (Html.BeginForm("Order", "Build", FormMethod.Post, new { @style = "display: none;" }))
+    {
+        <input id="order-list" name="sectionList" />
+        <input id="order-pageId" value="@Model.Page.PageId" name="pageId" />
+        <button id="order-submit"></button>
+    }
 }
+
+<div id="page-wrapper">
+    @foreach (var section in Model.Page.PageSections)
+    {
+        <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper @(UserHelper.IsAdmin ? "admin" : "") sortable" data-section="@(section.PageSectionId)" style="position: relative">
+            @Html.Raw(section.PageSectionBody)
+
+            @if (UserHelper.IsAdmin)
+            {
+                <div class="action-container absolute">
+                    <a class="action add-component" data-title="Add Component" data-sectionid="@(section.PageSectionId)"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a class="action launch-modal" data-title="Edit Markup" href="@Url.Action("Markup", "Section", new { area = "Builder", pageSectionId = section.PageSectionId })"><span class="glyphicon glyphicon-console"></span></a>
+                    <a class="action launch-modal" data-title="Edit Section" href="@Url.Action("Edit", "Section", new { area = "Builder", sectionId = section.PageSectionId })"><span class="glyphicon glyphicon-cog"></span></a>
+                    <a id="container-editor-@(section.PageSectionId)" class="action component-editor" style="display: none;" data-title="Edit Container"><span class="glyphicon glyphicon-unchecked"></span></a>
+                </div>
+            }
+        </div>
+    }
+</div>

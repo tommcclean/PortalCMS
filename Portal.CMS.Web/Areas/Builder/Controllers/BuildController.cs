@@ -52,5 +52,14 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
             return Json(new { State = true });
         }
+
+        [HttpPost, AdminFilter]
+        public ActionResult Order(int pageId, string sectionList)
+        {
+            //if (sectionList != null && sectionList.Length > 2)
+            //    _pageService.Order(UserHelper.UserId, pageId, sectionList);
+
+            return RedirectToAction("Edit", "Pages", new { id = pageId });
+        }
     }
 }

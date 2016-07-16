@@ -79,5 +79,34 @@ namespace Portal.CMS.Services.PageBuilder
 
             _context.SaveChanges();
         }
+
+    //    public void Order(int userId, int pageId, string sectionList)
+    //    {
+    //        EyeDentityConnection _database = new EyeDentityConnection();
+
+    //        var page = _database.Pages.SingleOrDefault(x => x.isDeleted == false && x.UserId == userId && x.PageId == pageId);
+
+    //        if (page == null)
+    //            return;
+
+    //        var sections = sectionList.Split(',');
+
+    //        foreach (var sectionProperties in sections)
+    //        {
+    //            var properties = sectionProperties.Split('-');
+
+    //            var orderId = properties[0];
+    //            var sectionId = properties[1];
+
+    //            var section = page.Sections.FirstOrDefault(x => x.isDeleted == false && x.SectionId.ToString() == sectionId.ToString());
+
+    //            if (section == null)
+    //                continue;
+
+    //            section.SectionOrder = Convert.ToInt32(orderId);
+    //        }
+
+    //        _database.SaveChanges();
+    //    }
     }
 }

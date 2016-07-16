@@ -43,7 +43,7 @@ namespace Portal.CMS.Services.Shared
 
             var styleAttributeList = styleAttribute.Value.Split(';');
 
-            foreach(var attribute in styleAttributeList)
+            foreach (var attribute in styleAttributeList)
             {
                 if (attribute.Contains(attributeName))
                 {
@@ -54,7 +54,6 @@ namespace Portal.CMS.Services.Shared
                     return result.Trim();
                 }
             }
-
 
             return string.Empty;
         }

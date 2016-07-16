@@ -30,7 +30,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PageAreas = new List<string>()
             };
 
-            foreach(var pageArea in model.PageList.GroupBy(x => x.PageArea))
+            foreach (var pageArea in model.PageList.GroupBy(x => x.PageArea))
             {
                 if (pageArea.Key == null)
                     continue;
@@ -46,7 +46,6 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var model = new CreateViewModel()
             {
-
             };
 
             return View("_Create", model);

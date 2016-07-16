@@ -1,6 +1,12 @@
-﻿section
+﻿body
 {
-    position: relative;
+    background-color: black;
+    background-image: unset;
+}
+
+section
+{
+    position: relative;    
 }
 
     section.height-tall
@@ -83,6 +89,27 @@
     {
         margin-top: 10px;
         font-size: 28px;
+    }
+
+    #page-wrapper.zoom
+    {
+        width: 40%;
+        max-width: 80%;
+        overflow: hidden;
+        margin: 0 auto;
+        margin-top: 40px;
+        margin-bottom: 30px;
+        border: 1px dashed white;
+    }
+
+    #page-wrapper.zoom .section-wrapper section
+    {
+        zoom: 0.4;
+    }
+
+    #page-wrapper.zoom .section-wrapper .action-container
+    {
+        display: none;
     }
 
 @media (max-width: 1024px)
