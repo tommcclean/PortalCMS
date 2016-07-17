@@ -5,6 +5,7 @@
         Scatter = 0,
         Pie = 1,
         Bar = 2,
-        Line = 3
+        Line = 3,
+        Donut = 4
     }
 }

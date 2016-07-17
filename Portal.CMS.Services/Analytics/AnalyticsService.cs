@@ -12,6 +12,8 @@ namespace Portal.CMS.Services.Analytics
 
         void LogPostView(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId);
 
+        List<KeyValuePair<string, int>> TotalHitsToday();
+
         List<KeyValuePair<string, int>> TotalHitsThisWeek();
 
         List<KeyValuePair<string, int>> TotalHitsThisMonth();
@@ -66,7 +68,27 @@ namespace Portal.CMS.Services.Analytics
 
             _context.SaveChanges();
         }
-   
+
+        public List<KeyValuePair<string, int>> TotalHitsToday()
+        {
+            var results = new List<KeyValuePair<string, int>>();
+
+            var analyticPageViews = _context.AnalyticPageViews.ToList();
+            var analyticPostViews = _context.AnalyticPostViews.ToList();
+
+            var pageViewsToday = analyticPageViews.Count(x => x.DateAdded.Year == DateTime.Now.Year && x.DateAdded.Month == DateTime.Now.Month && x.DateAdded.Day == DateTime.Now.Day);
+            var postViewsToday = analyticPostViews.Count(x => x.DateAdded.Year == DateTime.Now.Year && x.DateAdded.Month == DateTime.Now.Month && x.DateAdded.Day == DateTime.Now.Day);
+
+            results.Add(new KeyValuePair<string, int>("Today", (pageViewsToday + postViewsToday)));
+
+            var pageViewsMonth = analyticPageViews.Count(x => x.DateAdded.Year == DateTime.Now.Year && x.DateAdded.Month == DateTime.Now.Month);
+            var postViewsMonth = analyticPostViews.Count(x => x.DateAdded.Year == DateTime.Now.Year && x.DateAdded.Month == DateTime.Now.Month);
+
+            results.Add(new KeyValuePair<string, int>("This Month", (pageViewsMonth + postViewsMonth)));
+
+            return results;
+        }
+
         public List<KeyValuePair<string, int>> TotalHitsThisWeek()
         {
             var results = new List<KeyValuePair<string, int>>();

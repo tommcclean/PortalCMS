@@ -24,6 +24,7 @@
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="tab-day">
         <div class="row">
+            @Html.Action("TotalHitsToday", "Analytics", new { chartSize = ChartSize.Half })
             @Html.Action("TopPages", "Analytics", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Today })
             @Html.Action("TopPosts", "Analytics", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Today })
             @Html.Action("TopPostCategories", "Analytics", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Today })
@@ -31,7 +32,7 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="tab-week">
         <div class="row">
-            @Html.Action("TotalHitsWeekly", "Analytics", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Week })
+            @Html.Action("TotalHitsWeekly", "Analytics", new { chartSize = ChartSize.Half })
             @Html.Action("TopPages", "Analytics", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Week })
             @Html.Action("TopPosts", "Analytics", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Week })
             @Html.Action("TopPostCategories", "Analytics", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Week })
@@ -39,7 +40,7 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="tab-month">
         <div class="row">
-            @Html.Action("TotalHitsMonthly", "Analytics", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Month })
+            @Html.Action("TotalHitsMonthly", "Analytics", new { chartSize = ChartSize.Half })
             @Html.Action("TopPages", "Analytics", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Month })
             @Html.Action("TopPosts", "Analytics", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Month })
             @Html.Action("TopPostCategories", "Analytics", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Month })

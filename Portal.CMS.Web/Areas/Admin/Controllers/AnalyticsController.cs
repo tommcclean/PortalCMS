@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    //[LoggedInFilter, AdminFilter]
+    [LoggedInFilter, AdminFilter]
     public class AnalyticsController : Controller
     {
         #region Dependencies
@@ -26,6 +26,27 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult TotalHitsToday(ChartSize chartSize)
+        {
+            var dataSet = _analyticsService.TotalHitsToday();
+
+            var model = new ChartViewModel()
+            {
+                ChartId = "chart-total-hits-today",
+                ChartName = "Total Hits Today",
+                ChartSize = chartSize,
+                ChartType = ChartType.Donut,
+                ChartColumns = new List<ColumnViewModel>()
+            };
+
+            foreach (var item in dataSet)
+            {
+                model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0} ({1})", item.Key, item.Value), ColumnValues = new List<int>() { item.Value } });
+            }
+
+            return PartialView("_DisplayChart", model);
         }
 
         public ActionResult TotalHitsWeekly(ChartSize chartSize)

@@ -19,7 +19,7 @@
 
     @Html.Partial("_MediaManager", new ViewDataDictionary(Model.Media))
 
-    @Html.Action("TopPages", "Analytics", new { chartSize = ChartSize.Half })
+    @Html.Action("TopPages", "Analytics", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.All })
 
-    @Html.Action("TopPosts", "Analytics", new { chartSize = ChartSize.Half })
+    @Html.Action("TopPosts", "Analytics", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.All })
 </div>
