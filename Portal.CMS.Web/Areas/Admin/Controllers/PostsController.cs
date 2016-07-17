@@ -58,6 +58,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PostAuthorUserId = UserHelper.UserId,
                 PostCategoryList = postCategories,
                 UserList = _userService.Get(new List<string>() { "Admin" }),
+                PublicationState = PublicationState.Published,
                 ImageList = _imageService.Get(),
             };
 
