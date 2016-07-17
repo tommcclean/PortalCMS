@@ -1,4 +1,5 @@
 ﻿using Portal.CMS.Services.Analytics;
+using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.ViewModels.Blog;
@@ -14,12 +15,14 @@ namespace Portal.CMS.Web.Controllers
         private readonly IPostService _postService;
         private readonly IPostCommentService _postCommentService;
         private readonly AnalyticsService _analyticsService;
+        private readonly IUserService _userService;
 
-        public BlogController(PostService postService, PostCommentService postCommentService, AnalyticsService analyticsService)
+        public BlogController(PostService postService, PostCommentService postCommentService, AnalyticsService analyticsService, UserService userService)
         {
             _postService = postService;
             _postCommentService = postCommentService;
             _analyticsService = analyticsService;
+            _userService = userService;
         }
 
         #endregion Dependencies
@@ -50,6 +53,8 @@ namespace Portal.CMS.Web.Controllers
 
             if (model.CurrentPost == null || model.CurrentPost.IsPublished == false)
                 return RedirectToAction("Index", "Home");
+
+            model.Author = _userService.GetUser(model.CurrentPost.PostAuthorUserId);
 
             model.RecentPosts = _postService.Get(string.Empty, true).Where(x => x.PostId != model.CurrentPost.PostId).Take(10).ToList();
             model.SimiliarPosts = _postService.Get(model.CurrentPost.PostCategory.PostCategoryName, true).Where(x => x.PostId != model.CurrentPost.PostId).Take(10).ToList();

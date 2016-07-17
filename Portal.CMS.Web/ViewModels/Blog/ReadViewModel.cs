@@ -1,4 +1,5 @@
-﻿using Portal.CMS.Entities.Entities.Posts;
+﻿using Portal.CMS.Entities.Entities.Authentication;
+using Portal.CMS.Entities.Entities.Posts;
 using System.Collections.Generic;
 
 namespace Portal.CMS.Web.ViewModels.Blog
@@ -10,5 +11,7 @@ namespace Portal.CMS.Web.ViewModels.Blog
         public List<Post> RecentPosts { get; set; }
 
         public List<Post> SimiliarPosts { get; set; }
+
+        public User Author { get; set; }
     }
 }
