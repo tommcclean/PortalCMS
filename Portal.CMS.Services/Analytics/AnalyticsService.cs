@@ -14,11 +14,13 @@ namespace Portal.CMS.Services.Analytics
 
         List<KeyValuePair<string, int>> TotalHitsThisWeek();
 
-        List<KeyValuePair<string, int>> GetTopPages();
+        List<KeyValuePair<string, int>> TotalHitsThisMonth();
 
-        List<KeyValuePair<string, int>> GetTopPosts();
+        List<KeyValuePair<string, int>> GetTopPages(DateTime? earliest);
 
-        List<KeyValuePair<string, int>> GetTopPostCategories();
+        List<KeyValuePair<string, int>> GetTopPosts(DateTime? earliest);
+
+        List<KeyValuePair<string, int>> GetTopPostCategories(DateTime? earliest);
     }
 
     public class AnalyticsService : IAnalyticsService
@@ -64,7 +66,7 @@ namespace Portal.CMS.Services.Analytics
 
             _context.SaveChanges();
         }
-
+   
         public List<KeyValuePair<string, int>> TotalHitsThisWeek()
         {
             var results = new List<KeyValuePair<string, int>>();
@@ -87,17 +89,44 @@ namespace Portal.CMS.Services.Analytics
             return results;
         }
 
-        public List<KeyValuePair<string, int>> GetTopPages()
+        public List<KeyValuePair<string, int>> TotalHitsThisMonth()
         {
             var results = new List<KeyValuePair<string, int>>();
 
-            var customPages = _context.Pages.ToList();
-
             var analyticPageViews = _context.AnalyticPageViews.ToList();
+            var analyticPostViews = _context.AnalyticPostViews.ToList();
 
+            var daysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+
+            for (int loop = 1; loop < 31; loop += 7)
+            {
+                var weekEarliest = new DateTime(DateTime.Now.Year, DateTime.Now.Month, loop);
+
+                var lastDay = (loop + 6);
+
+                if (lastDay > daysInMonth)
+                    lastDay = daysInMonth;
+
+                var weekLatest = new DateTime(DateTime.Now.Year, DateTime.Now.Month, lastDay);
+
+                var pageViews = analyticPageViews.Count(x => x.DateAdded > weekEarliest && x.DateAdded < weekLatest);
+                var postViews = analyticPostViews.Count(x => x.DateAdded > weekEarliest && x.DateAdded < weekLatest);
+
+                results.Add(new KeyValuePair<string, int>(string.Format("{0} to {1}", loop, lastDay), (pageViews + postViews)));
+            }
+
+            return results;
+        }
+
+        public List<KeyValuePair<string, int>> GetTopPages(DateTime? earliest)
+        {
+            var customPages = _context.Pages.ToList();
+            var analyticPageViews = _context.AnalyticPageViews.Where(x => !earliest.HasValue || x.DateAdded > earliest.Value).ToList();
             var analyticPages = analyticPageViews.GroupBy(page => new { page.Area, page.Controller, page.Action });
 
-            foreach(var page in analyticPages)
+            var results = new List<KeyValuePair<string, int>>();
+
+            foreach (var page in analyticPages)
             {
                 var customPage = customPages.FirstOrDefault(x => (x.PageArea ?? "") == page.Key.Area && x.PageController == page.Key.Controller && x.PageAction == page.Key.Action);
 
@@ -107,16 +136,14 @@ namespace Portal.CMS.Services.Analytics
                     results.Add(new KeyValuePair<string, int>(customPage.PageName, page.Count()));
             }
 
-            PruneAndOrder(results);
-
-            return results;
+            return PruneAndOrder(results);
         }
 
-        public List<KeyValuePair<string, int>> GetTopPosts()
+        public List<KeyValuePair<string, int>> GetTopPosts(DateTime? earliest)
         {
             var results = new List<KeyValuePair<string, int>>();
 
-            var analyticPostViews = _context.AnalyticPostViews.ToList();
+            var analyticPostViews = _context.AnalyticPostViews.Where(x => !earliest.HasValue || x.DateAdded > earliest.Value).ToList();
 
             foreach (var post in _context.Posts.ToList())
             {
@@ -125,16 +152,14 @@ namespace Portal.CMS.Services.Analytics
                 results.Add(new KeyValuePair<string, int>(post.PostTitle, pageViews));
             }
 
-            PruneAndOrder(results);
-
-            return results;
+            return PruneAndOrder(results);
         }
 
-        public List<KeyValuePair<string, int>> GetTopPostCategories()
+        public List<KeyValuePair<string, int>> GetTopPostCategories(DateTime? earliest)
         {
             var results = new List<KeyValuePair<string, int>>();
 
-            var analyticPostViews = _context.AnalyticPostViews.ToList();
+            var analyticPostViews = _context.AnalyticPostViews.Where(x => !earliest.HasValue || x.DateAdded > earliest.Value).ToList();
 
             foreach (var postCategory in _context.PostCategories.ToList())
             {
@@ -148,18 +173,18 @@ namespace Portal.CMS.Services.Analytics
                 results.Add(new KeyValuePair<string, int>(postCategory.PostCategoryName, pageViews));
             }
 
-            PruneAndOrder(results);
-
-            return results;
+            return PruneAndOrder(results);
         }
 
-        private void PruneAndOrder(List<KeyValuePair<string, int>> results)
+        private List<KeyValuePair<string, int>> PruneAndOrder(List<KeyValuePair<string, int>> results)
         {
             // REMOVE: Empty Items
             results = results.Where(x => x.Value > 0).ToList();
 
             // TAKE: Top 5 Results
             results = results.OrderByDescending(x => x.Value).Take(5).ToList();
+
+            return results;
         }
     }
 }

@@ -2,12 +2,14 @@
 using Portal.CMS.Services.Analytics;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Analytics;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [LoggedInFilter, AdminFilter]
+    //[LoggedInFilter, AdminFilter]
     public class AnalyticsController : Controller
     {
         #region Dependencies
@@ -26,13 +28,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult TotalHitsThisWeek(ChartSize chartSize)
+        public ActionResult TotalHitsWeekly(ChartSize chartSize)
         {
             var dataSet = _analyticsService.TotalHitsThisWeek();
 
             var model = new ChartViewModel()
             {
-                ChartId = "chart-page-views-by-date",
+                ChartId = "chart-total-hits-weekly",
                 ChartName = "Total Hits This Week",
                 ChartSize = chartSize,
                 ChartType = ChartType.Bar,
@@ -47,14 +49,35 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
-        public ActionResult TopPages(ChartSize chartSize)
+        public ActionResult TotalHitsMonthly(ChartSize chartSize)
         {
-            var dataSet = _analyticsService.GetTopPages();
+            var dataSet = _analyticsService.TotalHitsThisMonth();
 
             var model = new ChartViewModel()
             {
-                ChartId = "chart-top-pages",
-                ChartName = "Top Pages",
+                ChartId = "chart-total-hits-monthly",
+                ChartName = "Total Hits Per Week This Month",
+                ChartSize = chartSize,
+                ChartType = ChartType.Bar,
+                ChartColumns = new List<ColumnViewModel>()
+            };
+
+            foreach (var item in dataSet)
+            {
+                model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0}", item.Key), ColumnValues = new List<int>() { item.Value } });
+            }
+
+            return PartialView("_DisplayChart", model);
+        }
+
+        public ActionResult TopPages(ChartSize chartSize, TimePeriod timePeriod)
+        {
+            var dataSet = _analyticsService.GetTopPages(DetermineTimePeriod(timePeriod));
+
+            var model = new ChartViewModel()
+            {
+                ChartId = string.Format("chart-top-pages-{0}", timePeriod.ToString().ToLower()),
+                ChartName = string.Format("Top Pages ({0})", timePeriod.ToString()),
                 ChartSize = chartSize,
                 ChartType = ChartType.Pie,
                 ChartColumns = new List<ColumnViewModel>()
@@ -68,14 +91,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
-        public ActionResult TopPosts(ChartSize chartSize)
+        public ActionResult TopPosts(ChartSize chartSize, TimePeriod timePeriod)
         {
-            var dataSet = _analyticsService.GetTopPosts();
+            var dataSet = _analyticsService.GetTopPosts(DetermineTimePeriod(timePeriod));
 
             var model = new ChartViewModel()
             {
-                ChartId = "chart-top-posts",
-                ChartName = "Top Posts",
+                ChartId = string.Format("chart-top-posts-{0}", timePeriod.ToString().ToLower()),
+                ChartName = string.Format("Top Posts ({0})", timePeriod.ToString()),
                 ChartSize = chartSize,
                 ChartType = ChartType.Pie,
                 ChartColumns = new List<ColumnViewModel>()
@@ -89,14 +112,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
-        public ActionResult TopPostCategories(ChartSize chartSize)
+        public ActionResult TopPostCategories(ChartSize chartSize, TimePeriod timePeriod)
         {
-            var dataSet = _analyticsService.GetTopPostCategories();
+            var dataSet = _analyticsService.GetTopPostCategories(DetermineTimePeriod(timePeriod));
 
             var model = new ChartViewModel()
             {
-                ChartId = "chart-top-post-categories",
-                ChartName = "Top Post Categories",
+                ChartId = string.Format("chart-top-post-categories-{0}", timePeriod.ToString().ToLower()),
+                ChartName = string.Format("Top Post Categories ({0})", timePeriod.ToString()),
                 ChartSize = chartSize,
                 ChartType = ChartType.Pie,
                 ChartColumns = new List<ColumnViewModel>()
@@ -108,6 +131,32 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             }
 
             return PartialView("_DisplayChart", model);
+        }
+
+        private DateTime? DetermineTimePeriod(TimePeriod timePeriod)
+        {
+            DateTime? earliest;
+
+            switch (timePeriod)
+            {
+                case TimePeriod.All:
+                    earliest = null;
+                    break;
+                case TimePeriod.Month:
+                    earliest = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                    break;
+                case TimePeriod.Week:
+                    earliest = DateTime.Now.AddDays(-7);
+                    break;
+                case TimePeriod.Today:
+                    earliest = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                    break;
+                default:
+                    earliest = null;
+                    break;
+            }
+
+            return earliest;
         }
     }
 }
