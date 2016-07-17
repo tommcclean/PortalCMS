@@ -4,7 +4,6 @@ using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Analytics;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -163,15 +162,19 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 case TimePeriod.All:
                     earliest = null;
                     break;
+
                 case TimePeriod.Month:
                     earliest = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                     break;
+
                 case TimePeriod.Week:
                     earliest = DateTime.Now.AddDays(-7);
                     break;
+
                 case TimePeriod.Today:
                     earliest = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
                     break;
+
                 default:
                     earliest = null;
                     break;

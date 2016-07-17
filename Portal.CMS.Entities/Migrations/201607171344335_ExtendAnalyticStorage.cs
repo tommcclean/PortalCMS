@@ -1,8 +1,7 @@
 namespace Portal.CMS.Entities.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class ExtendAnalyticStorage : DbMigration
     {
         public override void Up()
@@ -12,7 +11,7 @@ namespace Portal.CMS.Entities.Migrations
             AddColumn("dbo.AnalyticPostViews", "IPAddress", c => c.String(nullable: false));
             AddColumn("dbo.AnalyticPostViews", "UserAgent", c => c.String(nullable: false));
         }
-        
+
         public override void Down()
         {
             DropColumn("dbo.AnalyticPostViews", "UserAgent");
