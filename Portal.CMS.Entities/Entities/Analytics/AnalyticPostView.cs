@@ -9,9 +9,14 @@ namespace Portal.CMS.Entities.Entities.Analytics
         public int AnalyticPageViewId { get; set; }
 
         [Required]
-        public int PostId { get; set; }
+        public string IPAddress { get; set; }
 
         [Required]
+        public string UserAgent { get; set; }
+
+        [Required]
+        public int PostId { get; set; }
+
         public string ReferredUrl { get; set; }
 
         [Required]

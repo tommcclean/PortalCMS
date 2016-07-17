@@ -93,6 +93,14 @@
     <Compile Include="Migrations\201607161849511_AddPageSectionOrderToPageSections.Designer.cs">
       <DependentUpon>201607161849511_AddPageSectionOrderToPageSections.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607171344335_ExtendAnalyticStorage.cs" />
+    <Compile Include="Migrations\201607171344335_ExtendAnalyticStorage.Designer.cs">
+      <DependentUpon>201607171344335_ExtendAnalyticStorage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607171347205_RemoveRequirementForReferralAnalytic.cs" />
+    <Compile Include="Migrations\201607171347205_RemoveRequirementForReferralAnalytic.Designer.cs">
+      <DependentUpon>201607171347205_RemoveRequirementForReferralAnalytic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,6 +126,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607161849511_AddPageSectionOrderToPageSections.resx">
       <DependentUpon>201607161849511_AddPageSectionOrderToPageSections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607171344335_ExtendAnalyticStorage.resx">
+      <DependentUpon>201607171344335_ExtendAnalyticStorage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607171347205_RemoveRequirementForReferralAnalytic.resx">
+      <DependentUpon>201607171347205_RemoveRequirementForReferralAnalytic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

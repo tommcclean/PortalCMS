@@ -69,9 +69,9 @@ namespace Portal.CMS.Web.Controllers
         public ActionResult Analytic(int postId, string referrer)
         {
             if (UserHelper.IsLoggedIn)
-                _analyticsService.LogPostView(postId, referrer, UserHelper.UserId);
+                _analyticsService.LogPostView(postId, referrer, Request.UserHostAddress, Request.Browser.Browser, UserHelper.UserId);
             else
-                _analyticsService.LogPostView(postId, referrer, null);
+                _analyticsService.LogPostView(postId, referrer, Request.UserHostAddress, Request.Browser.Browser, null);
 
             return Json(new { State = true });
         }

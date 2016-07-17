@@ -45,9 +45,9 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             var page = _pageService.Get(pageId);
 
             if (UserHelper.IsLoggedIn)
-                _analyticService.LogPageView(page.PageArea, page.PageController, page.PageAction, referrer, UserHelper.UserId);
+                _analyticService.LogPageView(page.PageArea, page.PageController, page.PageAction, referrer, Request.UserHostAddress, Request.Browser.Browser, UserHelper.UserId);
             else
-                _analyticService.LogPageView(page.PageArea, page.PageController, page.PageAction, referrer, null);
+                _analyticService.LogPageView(page.PageArea, page.PageController, page.PageAction, referrer, Request.UserHostAddress, Request.Browser.Browser, null);
 
             return Json(new { State = true });
         }

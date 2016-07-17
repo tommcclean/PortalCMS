@@ -8,9 +8,9 @@ namespace Portal.CMS.Services.Analytics
 {
     public interface IAnalyticsService
     {
-        void LogPageView(string area, string controller, string action, string referredUrl, int? userId);
+        void LogPageView(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, int? userId);
 
-        void LogPostView(int postId, string referredUrl, int? UserId);
+        void LogPostView(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId);
 
         List<KeyValuePair<string, int>> TotalHitsThisWeek();
 
@@ -29,17 +29,16 @@ namespace Portal.CMS.Services.Analytics
 
         #endregion Dependencies
 
-        public void LogPageView(string area, string controller, string action, string referredUrl, int? userId)
+        public void LogPageView(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, int? userId)
         {
-            if (string.IsNullOrWhiteSpace(referredUrl))
-                referredUrl = "N/A";
-
             var newAnalyticPageView = new AnalyticPageView()
             {
                 Area = area ?? "",
                 Controller = controller,
                 Action = action,
                 ReferredUrl = referredUrl,
+                IPAddress = ipAddress,
+                UserAgent = userAgent,
                 UserId = userId ?? 0,
                 DateAdded = DateTime.Now
             };
@@ -49,15 +48,14 @@ namespace Portal.CMS.Services.Analytics
             _context.SaveChanges();
         }
 
-        public void LogPostView(int postId, string referredUrl, int? UserId)
+        public void LogPostView(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId)
         {
-            if (string.IsNullOrWhiteSpace(referredUrl))
-                referredUrl = "N/A";
-
             var analyticPostView = new AnalyticPostView()
             {
                 PostId = postId,
                 ReferredUrl = referredUrl,
+                IPAddress = ipAddress,
+                UserAgent = userAgent,
                 UserId = UserId ?? 0,
                 DateAdded = DateTime.Now
             };
@@ -93,13 +91,20 @@ namespace Portal.CMS.Services.Analytics
         {
             var results = new List<KeyValuePair<string, int>>();
 
+            var customPages = _context.Pages.ToList();
+
             var analyticPageViews = _context.AnalyticPageViews.ToList();
 
-            foreach (var page in _context.Pages.ToList())
-            {
-                var pageViews = analyticPageViews.Count(x => x.Area == (page.PageArea ?? "") && x.Controller == page.PageController && x.Action == page.PageAction);
+            var analyticPages = analyticPageViews.GroupBy(page => new { page.Area, page.Controller, page.Action });
 
-                results.Add(new KeyValuePair<string, int>(page.PageName, pageViews));
+            foreach(var page in analyticPages)
+            {
+                var customPage = customPages.FirstOrDefault(x => (x.PageArea ?? "") == page.Key.Area && x.PageController == page.Key.Controller && x.PageAction == page.Key.Action);
+
+                if (customPage == null)
+                    results.Add(new KeyValuePair<string, int>(string.Format("{0}/{1}/{2}", page.Key.Area, page.Key.Controller, page.Key.Action), page.Count()));
+                else
+                    results.Add(new KeyValuePair<string, int>(customPage.PageName, page.Count()));
             }
 
             PruneAndOrder(results);
@@ -148,7 +153,7 @@ namespace Portal.CMS.Services.Analytics
             return results;
         }
 
-        private void PruneAndOrder (List<KeyValuePair<string, int>> results)
+        private void PruneAndOrder(List<KeyValuePair<string, int>> results)
         {
             // REMOVE: Empty Items
             results = results.Where(x => x.Value > 0).ToList();
