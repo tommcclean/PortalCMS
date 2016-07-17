@@ -6,7 +6,7 @@
 .post .post-banner
 {
     position: relative;
-    height: 50vh;
+    height: 60vh;
     min-height: 300px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -122,6 +122,15 @@
 {
     margin-top: 12.5px;
     margin-bottom: 10px;
+}
+
+@media (max-width: 1024px)
+{
+    .post .post-banner
+{
+    height: 75vh;
+
+}
 }
 
 @media (max-width: 736px)
