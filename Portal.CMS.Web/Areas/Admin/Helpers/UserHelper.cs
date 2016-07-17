@@ -52,6 +52,26 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
             }
         }
 
+        public static string GivenName
+        {
+            get
+            {
+                User userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+
+                return userAccount.GivenName;
+            }
+        }
+
+        public static string FamilyName
+        {
+            get
+            {
+                User userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+
+                return userAccount.FamilyName;
+            }
+        }
+
         public static string EmailAddress
         {
             get

@@ -13,14 +13,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         private readonly ILoginService _loginService;
         private readonly IRegistrationService _registrationService;
-        private readonly IUserService _userservice;
+        private readonly IUserService _userService;
         private readonly IRoleService _roleService;
 
         public AuthenticationController(LoginService loginService, RegistrationService registrationService, UserService userService, RoleService roleService)
         {
             _loginService = loginService;
             _registrationService = registrationService;
-            _userservice = userService;
+            _userService = userService;
             _roleService = roleService;
         }
 
@@ -54,7 +54,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View("_Login", model);
             }
 
-            var userAccount = _userservice.GetUser(userId.Value);
+            var userAccount = _userService.GetUser(userId.Value);
 
             Session.Add("UserAccount", userAccount);
 
@@ -91,17 +91,50 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     return View("_Register", model);
 
                 default:
-                    if (_userservice.GetUserCount() == 1)
+                    if (_userService.GetUserCount() == 1)
                         _roleService.Update(userId.Value, new List<string>() { "Admin", "Authenticated" });
                     else
                         _roleService.Update(userId.Value, new List<string>() { "Authenticated" });
 
-                    var userAccount = _userservice.GetUser(userId.Value);
+                    var userAccount = _userService.GetUser(userId.Value);
 
                     Session.Add("UserAccount", userAccount);
 
                     return this.Content("Refresh");
             }
+        }
+
+        [HttpGet, LoggedInFilter]
+        public ActionResult Account()
+        {
+            var model = new AccountViewModel()
+            {
+                EmailAddress = UserHelper.EmailAddress,
+                GivenName = UserHelper.GivenName,
+                FamilyName = UserHelper.FamilyName
+            };
+
+            return View("_Account", model);
+        }
+
+        [HttpPost, LoggedInFilter]
+        [ValidateAntiForgeryToken]
+        public ActionResult Account(AccountViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("_Account", model);
+            }
+
+            _userService.UpdateUser(UserHelper.UserId, model.EmailAddress, model.GivenName, model.FamilyName);
+
+            var userId = UserHelper.UserId;
+
+            Session.Remove("UserAccount");
+
+            Session.Add("UserAccount", _userService.GetUser(userId));
+
+            return Content("Refresh");
         }
 
         [HttpGet, LoggedInFilter]
