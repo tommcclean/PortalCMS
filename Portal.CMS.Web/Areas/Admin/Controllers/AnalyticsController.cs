@@ -12,7 +12,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly AnalyticsService _analyticsService;
+        private readonly IAnalyticsService _analyticsService;
 
         public AnalyticsController(AnalyticsService analyticsService)
         {
@@ -26,14 +26,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult PageViewsByDay(ChartSize chartSize)
+        public ActionResult TotalHitsThisWeek(ChartSize chartSize)
         {
-            var dataSet = _analyticsService.GetPageViewsByDay();
+            var dataSet = _analyticsService.TotalHitsThisWeek();
 
             var model = new ChartViewModel()
             {
                 ChartId = "chart-page-views-by-date",
-                ChartName = "Page Views This Week",
+                ChartName = "Total Hits This Week",
                 ChartSize = chartSize,
                 ChartType = ChartType.Bar,
                 ChartColumns = new List<ColumnViewModel>()
@@ -41,7 +41,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             foreach (var item in dataSet)
             {
-                model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0} ({1})", item.Key, item.Value), ColumnValues = new List<int>() { item.Value } });
+                model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0})", item.Key), ColumnValues = new List<int>() { item.Value } });
             }
 
             return PartialView("_DisplayChart", model);

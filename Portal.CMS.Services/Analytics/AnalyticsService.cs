@@ -6,7 +6,22 @@ using System.Linq;
 
 namespace Portal.CMS.Services.Analytics
 {
-    public class AnalyticsService
+    public interface IAnalyticsService
+    {
+        void LogPageView(string area, string controller, string action, string referredUrl, int? userId);
+
+        void LogPostView(int postId, string referredUrl, int? UserId);
+
+        List<KeyValuePair<string, int>> TotalHitsThisWeek();
+
+        List<KeyValuePair<string, int>> GetTopPages();
+
+        List<KeyValuePair<string, int>> GetTopPosts();
+
+        List<KeyValuePair<string, int>> GetTopPostCategories();
+    }
+
+    public class AnalyticsService : IAnalyticsService
     {
         #region Dependencies
 
@@ -14,7 +29,7 @@ namespace Portal.CMS.Services.Analytics
 
         #endregion Dependencies
 
-        public void AnalysePageView(string area, string controller, string action, string referredUrl, int? userId)
+        public void LogPageView(string area, string controller, string action, string referredUrl, int? userId)
         {
             if (string.IsNullOrWhiteSpace(referredUrl))
                 referredUrl = "N/A";
@@ -34,7 +49,7 @@ namespace Portal.CMS.Services.Analytics
             _context.SaveChanges();
         }
 
-        public void AnalysePostView(int postId, string referredUrl, int? UserId)
+        public void LogPostView(int postId, string referredUrl, int? UserId)
         {
             if (string.IsNullOrWhiteSpace(referredUrl))
                 referredUrl = "N/A";
@@ -52,21 +67,23 @@ namespace Portal.CMS.Services.Analytics
             _context.SaveChanges();
         }
 
-        public List<KeyValuePair<string, int>> GetPageViewsByDay()
+        public List<KeyValuePair<string, int>> TotalHitsThisWeek()
         {
             var results = new List<KeyValuePair<string, int>>();
 
             var analyticPageViews = _context.AnalyticPageViews.ToList();
+            var analyticPostViews = _context.AnalyticPostViews.ToList();
 
             for (int loop = 1; loop < 8; loop += 1)
             {
                 var date = DateTime.Now.AddDays(-7).AddDays(loop);
 
                 var pageViews = analyticPageViews.Count(x => x.DateAdded.Year == date.Year && x.DateAdded.Month == date.Month && x.DateAdded.Day == date.Day);
+                var postViews = analyticPostViews.Count(x => x.DateAdded.Year == date.Year && x.DateAdded.Month == date.Month && x.DateAdded.Day == date.Day);
 
                 var label = (date == DateTime.Now ? date.DayOfWeek.ToString() + " (Today)" : date.DayOfWeek.ToString());
 
-                results.Add(new KeyValuePair<string, int>(label, pageViews));
+                results.Add(new KeyValuePair<string, int>(label, (pageViews + postViews)));
             }
 
             return results;
@@ -85,10 +102,9 @@ namespace Portal.CMS.Services.Analytics
                 results.Add(new KeyValuePair<string, int>(page.PageName, pageViews));
             }
 
-            // TAKE: 5 Top Posts
-            results = results.OrderBy(x => x.Value).Take(5).ToList();
+            PruneAndOrder(results);
 
-            return results.Where(x => x.Value > 0).OrderBy(x => x.Key).ToList();
+            return results;
         }
 
         public List<KeyValuePair<string, int>> GetTopPosts()
@@ -104,10 +120,9 @@ namespace Portal.CMS.Services.Analytics
                 results.Add(new KeyValuePair<string, int>(post.PostTitle, pageViews));
             }
 
-            // TAKE: 5 Top Posts
-            results = results.OrderBy(x => x.Value).Take(5).ToList();
+            PruneAndOrder(results);
 
-            return results.Where(x => x.Value > 0).OrderBy(x => x.Key).ToList();
+            return results;
         }
 
         public List<KeyValuePair<string, int>> GetTopPostCategories()
@@ -128,10 +143,18 @@ namespace Portal.CMS.Services.Analytics
                 results.Add(new KeyValuePair<string, int>(postCategory.PostCategoryName, pageViews));
             }
 
-            // TAKE: 5 Top Posts
-            results = results.OrderBy(x => x.Value).Take(5).ToList();
+            PruneAndOrder(results);
 
-            return results.Where(x => x.Value > 0).OrderBy(x => x.Key).ToList();
+            return results;
+        }
+
+        private void PruneAndOrder (List<KeyValuePair<string, int>> results)
+        {
+            // REMOVE: Empty Items
+            results = results.Where(x => x.Value > 0).ToList();
+
+            // TAKE: Top 5 Results
+            results = results.OrderByDescending(x => x.Value).Take(5).ToList();
         }
     }
 }

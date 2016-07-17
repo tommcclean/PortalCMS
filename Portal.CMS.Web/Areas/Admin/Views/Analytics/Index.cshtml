@@ -8,7 +8,7 @@
     <link href="~/Areas/Admin/Content/Styles/Pages/dashboard.css" rel="stylesheet" />
 
     <div class="row">
-        @Html.Action("PageViewsByDay", "Analytics", new { chartSize = ChartSize.Half })
+        @Html.Action("TotalHitsThisWeek", "Analytics", new { chartSize = ChartSize.Half })
         @Html.Action("TopPages", "Analytics", new { chartSize = ChartSize.Half })
         @Html.Action("TopPosts", "Analytics", new { chartSize = ChartSize.Half })
         @Html.Action("TopPostCategories", "Analytics", new { chartSize = ChartSize.Half })
