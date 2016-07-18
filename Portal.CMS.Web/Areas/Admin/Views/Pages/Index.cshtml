@@ -37,7 +37,7 @@
                                 {
                                     <a href="/@pageItem.PageArea/@pageItem.PageController/@pageItem.PageAction" class="admin-item" data-title="Build Page"><span class="glyphicon glyphicon-briefcase"></span>Build</a>
                                 }
-                                <a href="@Url.Action("Delete", "Pages", new { pageId = @pageItem.PageId })" class="admin-item" data-title="Delete Post"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                                <a href="@Url.Action("Delete", "Pages", new { pageId = @pageItem.PageId })" class="admin-item" data-toggle="confirmation" data-placement="top"><span class="glyphicon glyphicon-trash"></span>Delete</a>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                                     {
                                         <a href="/@pageItem.PageArea/@pageItem.PageController/@pageItem.PageAction" class="admin-item" data-title="Build Page"><span class="glyphicon glyphicon-briefcase"></span>Build</a>
                                     }
-                                    <a href="@Url.Action("Delete", "Pages", new { pageId = @pageItem.PageId })" class="admin-item" data-title="Delete Post"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                                    <a href="@Url.Action("Delete", "Pages", new { pageId = @pageItem.PageId })" class="admin-item" data-toggle="confirmation" data-placement="top"><span class="glyphicon glyphicon-trash"></span>Delete</a>
                                 </div>
                             </div>
                         </div>

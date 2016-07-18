@@ -48,7 +48,7 @@
                                 }
 
                                 <a href="@Url.Action("Edit", "Posts", new { postId = @post.PostId })" class="admin-item launch-modal" data-title="Edit Post: @post.PostTitle"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
-                                <a href="@Url.Action("Delete", "Posts", new { postId = @post.PostId })" class="admin-item" data-title="Delete Post"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                                <a href="@Url.Action("Delete", "Posts", new { postId = @post.PostId })" class="admin-item" data-title="Delete Post" data-container="body" data-toggle="confirmation" data-placement="top"><span class="glyphicon glyphicon-trash"></span>Delete</a>
                             </div>
                         </div>
                         <div class="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? "overlay-medium" : "")"></div>
@@ -68,7 +68,7 @@
 
                         <div class="admin-container x2">
                             <a href="@Url.Action("Edit", "PostCategories", new { postCategoryId = postCategory.PostCategoryId })" class="admin-item launch-modal" data-title="Edit Post Category"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
-                            <a href="@Url.Action("Delete", "PostCategories", new { postCategoryId = postCategory.PostCategoryId })" class="admin-item" data-title="Delete Post Category"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                            <a href="@Url.Action("Delete", "PostCategories", new { postCategoryId = postCategory.PostCategoryId })" class="admin-item" data-title="Delete Post Category" data-toggle="confirmation" data-placement="top"><span class="glyphicon glyphicon-trash"></span>Delete</a>
                         </div>
                     </div>
                 </div>
