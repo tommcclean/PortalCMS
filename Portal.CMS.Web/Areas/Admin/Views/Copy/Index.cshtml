@@ -19,7 +19,7 @@
 
                     <div class="admin-container x2">
                         <a href="@Url.Action("Edit", "Copy", new { copyId = @copyItem.CopyId })" class="admin-item launch-modal" data-title="Edit Copy: @copyItem.CopyName"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
-                        <a href="@Url.Action("Delete", "Copy", new { copyId = @copyItem.CopyId })" class="admin-item" data-title="Delete Post"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                        <a href="@Url.Action("Delete", "Copy", new { copyId = @copyItem.CopyId })" class="admin-item" data-toggle="confirmation" data-placement="top"><span class="glyphicon glyphicon-trash"></span>Delete</a>
                     </div>
                 </div>
             </div>

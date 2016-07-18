@@ -25,4 +25,11 @@
             }
         }
     });
+
+    // Bootstrap Confirmation
+    $('[data-toggle="confirmation"]').confirmation({
+        href: function (elem) {
+            return $(elem).attr('href');
+        }
+    });
 });

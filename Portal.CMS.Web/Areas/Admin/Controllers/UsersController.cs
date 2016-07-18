@@ -147,19 +147,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Delete(int userId)
         {
-            var model = new DeleteViewModel()
-            {
-                UserId = userId
-            };
-
-            return View("_Delete", model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(DeleteViewModel model)
-        {
-            _userService.DeleteUser(model.UserId);
+            _userService.DeleteUser(userId);
 
             return Content("Refresh");
         }

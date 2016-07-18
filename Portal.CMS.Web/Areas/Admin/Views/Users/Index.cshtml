@@ -37,7 +37,7 @@
                     <div class="admin-container x3">
                         <a href="@Url.Action("Details", "Users", new { userId = @user.UserId })" class="admin-item launch-modal" data-title="Edit Details"><span class="glyphicon glyphicon-pencil"></span>Details</a>
                         <a href="@Url.Action("Roles", "Users", new { userId = @user.UserId })" class="admin-item launch-modal" data-title="Edit Roles"><span class="glyphicon glyphicon-tower"></span>Roles</a>
-                        <a href="@Url.Action("Delete", "Users", new { userId = @user.UserId })" class="admin-item launch-modal" data-title="Delete Account (@user.GivenName @user.FamilyName)"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                        <a href="@Url.Action("Delete", "Users", new { userId = @user.UserId })" class="admin-item" data-toggle="confirmation" data-placement="top" data-container="body"><span class="glyphicon glyphicon-trash"></span>Delete</a>
                     </div>
                 }
             </div>
