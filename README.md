@@ -1,6 +1,8 @@
 # Portal CMS
 Portal CMS is a fully featured content management system with a powerful integrated page builder.
 
+Find out more about Portal CMS at its dedicated website: http://www.portalcms.online
+
 The technology has been designed to make it quick and easy to get started, simply download the code and run it. Portal CMS will automatically create the database objects and data it needs.
 
 You can use Portal CMS as a framework for your own websites, or you can use it as it is as your entire website by using the integrated Page Builder.
