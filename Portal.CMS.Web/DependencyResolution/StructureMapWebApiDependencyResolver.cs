@@ -23,7 +23,7 @@ namespace Portal.CMS.Web.DependencyResolution
     /// <summary>
     /// The structure map dependency resolver.
     /// </summary>
-    public class StructureMapWebApiDependencyResolver : StructureMapWebApiDependencyScope, IDependencyResolver
+    internal class StructureMapWebApiDependencyResolver : StructureMapWebApiDependencyScope, IDependencyResolver
     {
         #region Constructors and Destructors
 

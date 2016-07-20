@@ -72,32 +72,25 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         private string SaveImage(HttpPostedFileBase imageFile, string actionName)
         {
-            try
-            {
-                string extension = Path.GetExtension(imageFile.FileName).ToUpper();
+            string extension = Path.GetExtension(imageFile.FileName).ToUpper();
 
-                if (extension != ".PNG" && extension != ".JPG" && extension != ".GIF")
-                    throw new ArgumentException("Unexpected Image Format Provided");
+            if (extension != ".PNG" && extension != ".JPG" && extension != ".GIF")
+                throw new ArgumentException("Unexpected Image Format Provided");
 
-                var destinationDirectory = Path.Combine(Server.MapPath(IMAGE_DIRECTORY));
+            var destinationDirectory = Path.Combine(Server.MapPath(IMAGE_DIRECTORY));
 
-                if (!Directory.Exists(destinationDirectory))
-                    Directory.CreateDirectory(destinationDirectory);
+            if (!Directory.Exists(destinationDirectory))
+                Directory.CreateDirectory(destinationDirectory);
 
-                var imageFileName = string.Format("media-{0}-{1}", DateTime.Now.ToString("ddMMyyyyHHmmss"), imageFile.FileName);
-                var path = Path.Combine(Server.MapPath(IMAGE_DIRECTORY), imageFileName);
+            var imageFileName = string.Format("media-{0}-{1}", DateTime.Now.ToString("ddMMyyyyHHmmss"), imageFile.FileName);
+            var path = Path.Combine(Server.MapPath(IMAGE_DIRECTORY), imageFileName);
 
-                imageFile.SaveAs(path);
+            imageFile.SaveAs(path);
 
-                var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace(string.Format("Admin/Media/{0}", actionName), string.Empty);
-                var relativeFilePath = string.Format("{0}{1}/{2}", siteURL, IMAGE_DIRECTORY, imageFileName);
+            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace(string.Format("Admin/Media/{0}", actionName), string.Empty);
+            var relativeFilePath = string.Format("{0}{1}/{2}", siteURL, IMAGE_DIRECTORY, imageFileName);
 
-                return relativeFilePath;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return relativeFilePath;
         }
     }
 }
