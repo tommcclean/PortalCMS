@@ -14,10 +14,10 @@ namespace Portal.CMS.Web.Controllers
 
         private readonly IPostService _postService;
         private readonly IPostCommentService _postCommentService;
-        private readonly AnalyticsService _analyticsService;
+        private readonly IAnalyticsService _analyticsService;
         private readonly IUserService _userService;
 
-        public BlogController(PostService postService, PostCommentService postCommentService, AnalyticsService analyticsService, UserService userService)
+        public BlogController(IPostService postService, IPostCommentService postCommentService, IAnalyticsService analyticsService, IUserService userService)
         {
             _postService = postService;
             _postCommentService = postCommentService;

@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DefaultRegistry.cs" company="Web Advanced">
+// <copyright file="StructureMapWebApiDependencyScope.cs" company="Web Advanced">
 // Copyright 2012 Web Advanced (www.webadvanced.com)
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,26 +15,22 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http.Dependencies;
+using Microsoft.Practices.ServiceLocation;
+using StructureMap;
+
 namespace Portal.CMS.Web.DependencyResolution
 {
-    using StructureMap;
-    using StructureMap.Graph;
-
-    public class DefaultRegistry : Registry
+    /// <summary>
+    /// The structure map web api dependency scope.
+    /// </summary>
+    public class StructureMapWebApiDependencyScope : StructureMapDependencyScope, IDependencyScope
     {
-        #region Constructors and Destructors
-
-        public DefaultRegistry()
-        {
-            Scan(
-                scan =>
-                {
-                    scan.TheCallingAssembly();
-                    scan.WithDefaultConventions();
-                    scan.Assembly("Portal.CMS.Services");
-                });
+        public StructureMapWebApiDependencyScope(IContainer container)
+            : base(container) {
         }
-
-        #endregion Constructors and Destructors
     }
 }
