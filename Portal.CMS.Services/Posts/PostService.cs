@@ -29,12 +29,12 @@ namespace Portal.CMS.Services.Posts
     {
         #region Dependencies
 
-        private readonly PortalEntityModel _context = new PortalEntityModel();
+        private readonly PortalEntityModel _context;
 
-        //public PostService(PortalEntityModel context)
-        //{
-        //    _context = context;
-        //}
+        public PostService(PortalEntityModel context)
+        {
+            _context = context;
+        }
 
         #endregion Dependencies
 

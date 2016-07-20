@@ -112,7 +112,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new { State = false });
+                return Json(new { State = false, Message = ex.InnerException.Message });
             }
         }
     }

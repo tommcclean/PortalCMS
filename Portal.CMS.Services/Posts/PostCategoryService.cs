@@ -7,7 +7,16 @@ namespace Portal.CMS.Services.Posts
 {
     public class PostCategoryService
     {
-        public PortalEntityModel _context = new PortalEntityModel();
+        #region Dependencies
+
+        public PortalEntityModel _context;
+
+        public PostCategoryService(PortalEntityModel context)
+        {
+            _context = context;
+        }
+
+        #endregion Dependencies
 
         public PostCategory Get(int postCategoryId)
         {
