@@ -330,6 +330,12 @@
     <Content Include="Areas\Admin\Content\Plugins\JQColorPicker\jqColorPicker.min.js" />
     <Content Include="Areas\Admin\Content\Plugins\JQTouch\jquery.ui.touch-punch.min.js" />
     <Content Include="Areas\Admin\Content\Styles\Framework\confirmation.css" />
+    <Content Include="Areas\Builder\Content\Images\Sample\icon-1.png" />
+    <Content Include="Areas\Builder\Content\Images\Sample\icon-2.png" />
+    <Content Include="Areas\Builder\Content\Images\Sample\icon-3.png" />
+    <Content Include="Areas\Builder\Content\Images\Sample\icon-4.png" />
+    <Content Include="Areas\Builder\Content\Images\Sample\icon-5.png" />
+    <Content Include="Areas\Builder\Content\Images\Sample\icon-6.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\pattern-1.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\quote-image-left.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\quote-image-right.png" />

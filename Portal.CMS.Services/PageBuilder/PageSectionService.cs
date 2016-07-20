@@ -31,12 +31,17 @@ namespace Portal.CMS.Services.PageBuilder
 
             var sectionType = _context.PageSectionTypes.FirstOrDefault(x => x.PageSectionTypeId == pageSectionTypeId);
 
+            var sectionPosition = 1;
+
+            if (page.PageSections.Any())
+                sectionPosition = (page.PageSections.Max(x => x.PageSectionId) + 1);
+
             var newPageSection = new PageSection()
             {
                 PageId = pageId,
                 PageSectionTypeId = pageSectionTypeId,
                 PageSectionBody = sectionType.PageSectionTypeBody,
-                PageSectionOrder = (page.PageSections.Max(x => x.PageSectionId) + 1)
+                PageSectionOrder = sectionPosition
             };
 
             _context.PageSections.Add(newPageSection);
