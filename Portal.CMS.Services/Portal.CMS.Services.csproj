@@ -60,6 +60,7 @@
     <Compile Include="Authentication\UserService.cs" />
     <Compile Include="Copy\CopyService.cs" />
     <Compile Include="Generic\ImageService.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Menu\MenuItemService.cs" />
     <Compile Include="Menu\MenuService.cs" />
     <Compile Include="PageBuilder\PageComponentService.cs" />

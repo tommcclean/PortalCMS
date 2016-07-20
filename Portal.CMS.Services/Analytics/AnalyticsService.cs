@@ -40,7 +40,7 @@ namespace Portal.CMS.Services.Analytics
 
         public void LogPageView(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, int? userId)
         {
-            var newAnalyticPageView = new AnalyticPageView()
+            var newAnalyticPageView = new AnalyticPageView
             {
                 Area = area ?? "",
                 Controller = controller,
@@ -59,7 +59,7 @@ namespace Portal.CMS.Services.Analytics
 
         public void LogPostView(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId)
         {
-            var analyticPostView = new AnalyticPostView()
+            var analyticPostView = new AnalyticPostView
             {
                 PostId = postId,
                 ReferredUrl = referredUrl,
@@ -108,7 +108,7 @@ namespace Portal.CMS.Services.Analytics
                 var pageViews = analyticPageViews.Count(x => x.DateAdded.Year == date.Year && x.DateAdded.Month == date.Month && x.DateAdded.Day == date.Day);
                 var postViews = analyticPostViews.Count(x => x.DateAdded.Year == date.Year && x.DateAdded.Month == date.Month && x.DateAdded.Day == date.Day);
 
-                var label = (date == DateTime.Now ? date.DayOfWeek.ToString() + " (Today)" : date.DayOfWeek.ToString());
+                var label = (date == DateTime.Now ? date.DayOfWeek + " (Today)" : date.DayOfWeek.ToString());
 
                 results.Add(new KeyValuePair<string, int>(label, (pageViews + postViews)));
             }
@@ -190,7 +190,7 @@ namespace Portal.CMS.Services.Analytics
 
             foreach (var postCategory in _context.PostCategories.ToList())
             {
-                int pageViews = 0;
+                var pageViews = 0;
 
                 foreach (var post in postCategory.Posts)
                 {
@@ -203,7 +203,7 @@ namespace Portal.CMS.Services.Analytics
             return PruneAndOrder(results);
         }
 
-        private List<KeyValuePair<string, int>> PruneAndOrder(List<KeyValuePair<string, int>> results)
+        private static List<KeyValuePair<string, int>> PruneAndOrder(List<KeyValuePair<string, int>> results)
         {
             // REMOVE: Empty Items
             results = results.Where(x => x.Value > 0).ToList();

@@ -50,7 +50,7 @@ namespace Portal.CMS.Web.DependencyResolution
         /// </returns>
         public IDependencyScope BeginScope()
         {
-            IContainer child = this.Container.GetNestedContainer();
+            var child = this.Container.GetNestedContainer();
             return new StructureMapWebApiDependencyResolver(child);
         }
 

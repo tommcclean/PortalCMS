@@ -32,7 +32,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var model = new MediaViewModel()
+            var model = new MediaViewModel
             {
                 Images = _imageService.Get()
             };
@@ -55,7 +55,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View("_Upload", model);
 
-            var imageFilePath = SaveImage(model.AttachedImage, "Upload");
+            var imageFilePath = SaveImage(model.AttachedImage, nameof(Upload));
 
             var imageId = _imageService.Create(imageFilePath, model.ImageCategory);
 
@@ -67,12 +67,12 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _imageService.Delete(imageId);
 
-            return RedirectToAction("Index", "Media");
+            return RedirectToAction(nameof(Index), "Media");
         }
 
         private string SaveImage(HttpPostedFileBase imageFile, string actionName)
         {
-            string extension = Path.GetExtension(imageFile.FileName).ToUpper();
+            var extension = Path.GetExtension(imageFile.FileName).ToUpper();
 
             if (extension != ".PNG" && extension != ".JPG" && extension != ".GIF")
                 throw new ArgumentException("Unexpected Image Format Provided");
