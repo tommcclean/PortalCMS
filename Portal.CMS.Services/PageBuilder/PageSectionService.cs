@@ -5,7 +5,30 @@ using System.Linq;
 
 namespace Portal.CMS.Services.PageBuilder
 {
-    public class PageSectionService
+    public interface IPageSectionService
+    {
+        PageSection Get(int pageSectionId);
+
+        int Add(int pageId, int pageSectionTypeId);
+
+        void Element(int pageSectionId, string elementId, string elementValue, string elementColour);
+
+        void Background(int pageSectionId, int backgroundImageId);
+
+        void Delete(int pageSectionId);
+
+        void Height(int pageSectionId, PageSectionHeight height);
+
+        void BackgroundType(int pageSectionId, PageSectionBackgroundType backgroundType);
+
+        PageSectionHeight DetermineSectionHeight(int pageSectionId);
+
+        PageSectionBackgroundType DetermineBackgroundType(int pageSectionId);
+
+        void Markup(int pageSectionId, string htmlBody);
+    }
+
+    public class PageSectionService : IPageSectionService
     {
         #region Dependencies
 

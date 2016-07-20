@@ -18,6 +18,7 @@
 namespace Portal.CMS.Web.DependencyResolution
 {
     using StructureMap;
+    using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
 
     public class DefaultRegistry : Registry
@@ -31,6 +32,7 @@ namespace Portal.CMS.Web.DependencyResolution
                 {
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
+                    scan.With(new ControllerConvention());
                     scan.Assembly("Portal.CMS.Services");
                 });
         }

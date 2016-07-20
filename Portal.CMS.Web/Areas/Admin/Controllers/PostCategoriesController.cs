@@ -8,9 +8,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly PostCategoryService _postCategoryService;
+        private readonly IPostCategoryService _postCategoryService;
 
-        public PostCategoriesController(PostCategoryService postCategoryService)
+        public PostCategoriesController(IPostCategoryService postCategoryService)
         {
             _postCategoryService = postCategoryService;
         }

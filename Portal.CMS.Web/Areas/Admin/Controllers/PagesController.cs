@@ -12,9 +12,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly PageService _pageService;
+        private readonly IPageService _pageService;
 
-        public PagesController(PageService pageService)
+        public PagesController(IPageService pageService)
         {
             _pageService = pageService;
         }

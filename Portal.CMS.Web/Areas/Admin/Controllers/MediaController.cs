@@ -14,13 +14,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly ImageService _imageService;
-        private readonly PostService _postService;
-        private readonly PostImageService _postImageService;
+        private readonly IImageService _imageService;
+        private readonly IPostService _postService;
+        private readonly IPostImageService _postImageService;
 
         private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
 
-        public MediaController(PostService postService, PostImageService postImageService, ImageService imageService)
+        public MediaController(IPostService postService, IPostImageService postImageService, IImageService imageService)
         {
             _postService = postService;
             _postImageService = postImageService;

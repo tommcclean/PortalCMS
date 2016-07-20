@@ -13,7 +13,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         private readonly IPostCommentService _postCommentService;
 
-        public CommentsController(PostCommentService postCommentService)
+        public CommentsController(IPostCommentService postCommentService)
         {
             _postCommentService = postCommentService;
         }

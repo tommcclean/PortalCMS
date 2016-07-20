@@ -12,11 +12,11 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
     {
         #region Dependencies
 
-        private readonly PageSectionService _pageSectionService;
-        private readonly PageComponentTypeService _pageComponentTypeService;
-        private readonly PageComponentService _pageComponentService;
+        private readonly IPageSectionService _pageSectionService;
+        private readonly IPageComponentTypeService _pageComponentTypeService;
+        private readonly IPageComponentService _pageComponentService;
 
-        public ComponentController(PageSectionService pageSectionService, PageComponentTypeService pageComponentTypeService, PageComponentService pageComponentService)
+        public ComponentController(IPageSectionService pageSectionService, IPageComponentTypeService pageComponentTypeService, IPageComponentService pageComponentService)
         {
             _pageSectionService = pageSectionService;
             _pageComponentTypeService = pageComponentTypeService;

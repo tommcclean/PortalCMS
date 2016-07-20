@@ -5,7 +5,12 @@ using System.Linq;
 
 namespace Portal.CMS.Services.PageBuilder
 {
-    public class PageSectionTypeService
+    public interface IPageSectionTypeService
+    {
+        IEnumerable<PageSectionType> Get();
+    }
+
+    public class PageSectionTypeService : IPageSectionTypeService
     {
         #region Dependencies
 

@@ -12,7 +12,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         private readonly ICopyService _copyService;
 
-        public CopyController(CopyService copyService)
+        public CopyController(ICopyService copyService)
         {
             _copyService = copyService;
         }

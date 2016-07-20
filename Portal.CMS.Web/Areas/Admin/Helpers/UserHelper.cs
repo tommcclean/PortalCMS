@@ -1,4 +1,5 @@
 ﻿using Portal.CMS.Entities.Entities.Authentication;
+using Portal.CMS.Services.Authentication;
 using System.Linq;
 
 namespace Portal.CMS.Web.Areas.Admin.Helpers
@@ -20,10 +21,14 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
         {
             get
             {
-                User userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                User userSession = (User)System.Web.HttpContext.Current.Session["UserAccount"];
 
-                if (userAccount == null)
+                if (userSession == null)
                     return false;
+
+                var userService = new UserService(new Entities.PortalEntityModel());
+
+                var userAccount = userService.GetUser(userSession.UserId);
 
                 if (userAccount.Roles.Any(x => x.Role.RoleName == "Admin"))
                     return true;

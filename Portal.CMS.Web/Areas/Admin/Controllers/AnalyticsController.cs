@@ -15,7 +15,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         private readonly IAnalyticsService _analyticsService;
 
-        public AnalyticsController(AnalyticsService analyticsService)
+        public AnalyticsController(IAnalyticsService analyticsService)
         {
             _analyticsService = analyticsService;
         }

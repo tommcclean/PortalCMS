@@ -10,6 +10,8 @@ namespace Portal.CMS.Services.Generic
     {
         List<Image> Get();
 
+        int Create(string imageFilePath, ImageCategory imageCategory);
+
         void Delete(int imageId);
     }
 

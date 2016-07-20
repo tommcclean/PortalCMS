@@ -6,7 +6,16 @@ using System.Linq;
 
 namespace Portal.CMS.Services.PageBuilder
 {
-    public class PageComponentTypeService
+    public interface IPageComponentTypeService
+    {
+        IEnumerable<PageComponentType> Get();
+
+        PageComponentType Get(int pageComponentTypeId);
+
+        void Add(int pageSectionId, string containerElementId, int componentTypeId);
+    }
+
+    public class PageComponentTypeService : IPageComponentTypeService
     {
         #region Dependencies
 

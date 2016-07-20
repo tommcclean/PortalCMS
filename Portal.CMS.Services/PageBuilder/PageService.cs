@@ -6,7 +6,22 @@ using System.Linq;
 
 namespace Portal.CMS.Services.PageBuilder
 {
-    public class PageService
+    public interface IPageService
+    {
+        IEnumerable<Page> Get();
+
+        Page Get(int pageId);
+
+        int Add(string pageName, string area, string controller, string action);
+
+        void Edit(int pageId, string pageName, string area, string controller, string action);
+
+        void Delete(int pageId);
+
+        void Order(int pageId, string sectionList);
+    }
+
+    public class PageService : IPageService
     {
         #region Dependencies
 

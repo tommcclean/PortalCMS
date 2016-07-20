@@ -18,13 +18,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly PostService _postService;
-        private readonly PostImageService _postImageService;
-        private readonly ImageService _imageService;
-        private readonly PostCategoryService _postCategoryService;
-        private readonly UserService _userService;
+        private readonly IPostService _postService;
+        private readonly IPostImageService _postImageService;
+        private readonly IImageService _imageService;
+        private readonly IPostCategoryService _postCategoryService;
+        private readonly IUserService _userService;
 
-        public PostsController(PostService postService, PostImageService postImageService, ImageService imageService, PostCategoryService postCategoryService, UserService userService)
+        public PostsController(IPostService postService, IPostImageService postImageService, IImageService imageService, IPostCategoryService postCategoryService, IUserService userService)
         {
             _postService = postService;
             _postImageService = postImageService;

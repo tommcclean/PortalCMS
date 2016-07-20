@@ -5,7 +5,20 @@ using System.Linq;
 
 namespace Portal.CMS.Services.Posts
 {
-    public class PostCategoryService
+    public interface IPostCategoryService
+    {
+        PostCategory Get(int postCategoryId);
+
+        IEnumerable<PostCategory> Get();
+
+        int Add(string postCategoryName);
+
+        void Edit(int postCategoryId, string postCategoryName);
+
+        void Delete(int postCategoryId);
+    }
+
+    public class PostCategoryService : IPostCategoryService
     {
         #region Dependencies
 

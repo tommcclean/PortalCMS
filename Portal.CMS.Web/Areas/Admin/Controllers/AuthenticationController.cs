@@ -16,7 +16,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         private readonly IUserService _userService;
         private readonly IRoleService _roleService;
 
-        public AuthenticationController(LoginService loginService, RegistrationService registrationService, UserService userService, RoleService roleService)
+        public AuthenticationController(ILoginService loginService, IRegistrationService registrationService, IUserService userService, IRoleService roleService)
         {
             _loginService = loginService;
             _registrationService = registrationService;

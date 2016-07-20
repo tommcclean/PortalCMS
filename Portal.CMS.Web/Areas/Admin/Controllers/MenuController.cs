@@ -13,7 +13,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         private readonly IMenuService _menuService;
 
-        public MenuController(MenuService menuService)
+        public MenuController(IMenuService menuService)
         {
             _menuService = menuService;
         }

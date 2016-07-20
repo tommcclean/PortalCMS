@@ -12,7 +12,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         private readonly IRoleService _roleService;
 
-        public RolesController(RoleService roleService)
+        public RolesController(IRoleService roleService)
         {
             _roleService = roleService;
         }

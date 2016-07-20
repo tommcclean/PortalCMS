@@ -16,7 +16,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         private readonly IRoleService _roleService;
         private readonly IMenuService _menuService;
 
-        public SettingsController(SettingService settingService, RoleService roleService, MenuService menuService)
+        public SettingsController(ISettingService settingService, IRoleService roleService, IMenuService menuService)
         {
             _settingService = settingService;
             _roleService = roleService;

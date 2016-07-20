@@ -4,7 +4,16 @@ using System.Linq;
 
 namespace Portal.CMS.Services.PageBuilder
 {
-    public class PageComponentService
+    public interface IPageComponentService
+    {
+        void Delete(int pageSectionId, string componentId);
+
+        void EditImage(int pageSectionId, string elementId, int selectedImageId);
+
+        void Anchor(int pageSectionId, string elementId, string elementText, string elementTarget, string elementColour);
+    }
+
+    public class PageComponentService : IPageComponentService
     {
         #region Dependencies
 

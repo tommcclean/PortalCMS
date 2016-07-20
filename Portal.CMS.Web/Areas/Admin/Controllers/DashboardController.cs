@@ -16,7 +16,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         private readonly IPostCommentService _commentService;
         private readonly IImageService _imageService;
 
-        public DashboardController(PostService postService, PostCommentService commentService, ImageService imageService)
+        public DashboardController(IPostService postService, IPostCommentService commentService, IImageService imageService)
         {
             _postService = postService;
             _commentService = commentService;
