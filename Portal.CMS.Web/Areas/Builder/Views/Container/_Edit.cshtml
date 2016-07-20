@@ -28,18 +28,9 @@
     }
 </script>
 
-@using (Html.BeginForm("Edit", "Container", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-
-    @Html.HiddenFor(x => x.PageSectionId)
-    @Html.HiddenFor(x => x.ContainerElementId)
-
     <br />
 
     <div class="footer">
-        <button class="btn primary">Save</button>
         <a onclick="Delete()" data-dismiss="modal" class="btn delete">Delete</a>
         <button class="btn" data-dismiss="modal">Cancel</button>
     </div>
-}
