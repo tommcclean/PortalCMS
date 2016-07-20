@@ -27,13 +27,16 @@ namespace Portal.CMS.Services.PageBuilder
 
         public int Add(int pageId, int pageSectionTypeId)
         {
+            var page = _context.Pages.FirstOrDefault(x => x.PageId == pageId);
+
             var sectionType = _context.PageSectionTypes.FirstOrDefault(x => x.PageSectionTypeId == pageSectionTypeId);
 
             var newPageSection = new PageSection()
             {
                 PageId = pageId,
                 PageSectionTypeId = pageSectionTypeId,
-                PageSectionBody = sectionType.PageSectionTypeBody
+                PageSectionBody = sectionType.PageSectionTypeBody,
+                PageSectionOrder = (page.PageSections.Max(x => x.PageSectionId) + 1)
             };
 
             _context.PageSections.Add(newPageSection);
