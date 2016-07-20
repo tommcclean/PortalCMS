@@ -10,12 +10,12 @@ namespace Portal.CMS.Services.PageBuilder
     {
         #region Dependencies
 
-        private readonly PortalEntityModel _context = new PortalEntityModel();
+        private readonly PortalEntityModel _context;
 
-        //public PageService(PortalEntityModel context)
-        //{
-        //    _context = context;
-        //}
+        public PageService(PortalEntityModel context)
+        {
+            _context = context;
+        }
 
         #endregion Dependencies
 

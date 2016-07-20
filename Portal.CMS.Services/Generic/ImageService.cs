@@ -17,12 +17,12 @@ namespace Portal.CMS.Services.Generic
     {
         #region Dependencies
 
-        private readonly PortalEntityModel _context = new PortalEntityModel();
+        private readonly PortalEntityModel _context;
 
-        //public ImageService(PortalEntityModel context)
-        //{
-        //    _context = context;
-        //}
+        public ImageService(PortalEntityModel context)
+        {
+            _context = context;
+        }
 
         #endregion Dependencies
 

@@ -14,7 +14,12 @@ namespace Portal.CMS.Services.Authentication
     {
         #region Dependencies
 
-        private readonly PortalEntityModel _context = new PortalEntityModel();
+        private readonly PortalEntityModel _context;
+
+        public LoginService(PortalEntityModel context)
+        {
+            _context = context;
+        }
 
         #endregion Dependencies
 

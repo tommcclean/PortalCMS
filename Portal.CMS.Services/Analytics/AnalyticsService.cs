@@ -29,7 +29,12 @@ namespace Portal.CMS.Services.Analytics
     {
         #region Dependencies
 
-        private readonly PortalEntityModel _context = new PortalEntityModel();
+        private readonly PortalEntityModel _context;
+
+        public AnalyticsService(PortalEntityModel context)
+        {
+            _context = context;
+        }
 
         #endregion Dependencies
 
