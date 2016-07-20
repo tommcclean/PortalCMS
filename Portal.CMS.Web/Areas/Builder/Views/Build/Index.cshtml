@@ -77,14 +77,6 @@
     }
 
     <div id="page-wrapper">
-        @if (UserHelper.IsAdmin && !Model.Page.PageSections.Any())
-        {
-            <section class="blank">
-                <h1>This Page is Empty</h1>
-                <p>To get started click the <span class="glyphicon glyphicon-plus" style="margin-left: 10px;"></span>button in the bottom corner to add your first section.</p>
-            </section>
-        }
-
         @foreach (var section in Model.Page.PageSections.OrderBy(x => x.PageSectionOrder).ThenBy(x => x.PageSectionId))
         {
             <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper @(UserHelper.IsAdmin ? "admin sortable" : "")" data-section="@(section.PageSectionId)">
