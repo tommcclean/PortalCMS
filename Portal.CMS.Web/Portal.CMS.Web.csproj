@@ -355,6 +355,7 @@
       <DependentUpon>jquery.fancybox.css</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Content\Scripts\imageselector.js" />
+    <Content Include="Areas\Builder\Content\Images\Sample\sample-7.jpg" />
     <Content Include="Areas\Builder\Content\Scripts\pagebuilder.js" />
     <Content Include="Areas\Admin\Content\Scripts\plugins.js" />
     <Content Include="Areas\Admin\Content\Scripts\modal.js" />
@@ -406,6 +407,7 @@
     <Content Include="Areas\Builder\Content\Styles\pagebuilder.min.css">
       <DependentUpon>pagebuilder.css</DependentUpon>
     </Content>
+    <Content Include="Areas\Builder\Content\Styles\Sections\section.contact.css" />
     <Content Include="Content\Styles\header.css" />
     <Content Include="Areas\Builder\Content\Styles\pagebuilder.css" />
     <Content Include="Content\Styles\header.min.css">

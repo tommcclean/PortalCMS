@@ -60,5 +60,11 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
             return RedirectToAction("Index", "Build", new { pageId = pageId });
         }
+
+        [HttpPost]
+        public ActionResult Contact(int pageId, string senderName, string senderEmail, string senderSubject, string senderMessage)
+        {
+            return RedirectToAction("Index", new { pageId = pageId });
+        }
     }
 }
