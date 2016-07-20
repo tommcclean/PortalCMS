@@ -114,12 +114,15 @@
     .action-container.absolute .action
     {
         background-color: black;
-        border: 1px dashed #333333;
+        border: 2px dashed #191919;
+        transition: all 0.2s ease-out;
     }
 
         .action-container.absolute .action:hover
         {
             color: white;
+            background-color: #191919;
+            border: 2px dashed #424242;
         }
 
 #popup-container
