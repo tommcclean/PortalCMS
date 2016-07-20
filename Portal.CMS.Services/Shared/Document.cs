@@ -109,7 +109,7 @@ namespace Portal.CMS.Services.Shared
 
             var selectedHeight = string.Format("height-{0}", height.ToString()).ToLower();
 
-            var heightClasses = new List<string>() { "height-tall", "height-medium", "height-small", "height-tiny" };
+            var heightClasses = new List<string>() { "height-tall", "height-medium", "height-small", "height-tiny", "height-standard" };
 
             var classAttribute = element.Attributes.FirstOrDefault(x => x.Name == "class");
 

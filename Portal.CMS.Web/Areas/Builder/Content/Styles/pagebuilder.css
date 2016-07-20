@@ -19,6 +19,11 @@
         min-height: 600px;
     }
 
+section.height-standard
+{
+    min-height: 375px;
+}
+
     section.height-small
     {
         min-height: 200px;
@@ -54,6 +59,12 @@
         background-image: url('../../../Admin/Content/Images/texture.png');
         padding: 50px 2.5% 50px 2.5%;
         text-align: center;
+    }
+
+    section.highlight
+    {
+        background-image: url('../Images/Sample/Sample-5.jpg');
+
     }
 
     section p, section a

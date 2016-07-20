@@ -4,7 +4,8 @@
     {
         Tall = 0,
         Medium = 1,
-        Small = 2,
-        Tiny = 3
+        Standard = 2,
+        Small = 3,
+        Tiny = 4
     }
 }

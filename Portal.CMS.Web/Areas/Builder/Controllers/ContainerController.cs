@@ -1,6 +1,7 @@
 ﻿using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Container;
+using System;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
@@ -33,13 +34,20 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return View("_Edit", model);
         }
 
-        public ActionResult Delete(int pageSectionId, string elementId)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int pageSectionId, string componentId)
         {
-            var pageSection = _pageSectionService.Get(pageSectionId);
+            try
+            {
+                _pageComponentService.Delete(pageSectionId, componentId);
 
-            _pageComponentService.Delete(pageSectionId, elementId);
-
-            return RedirectToAction("Index", "Build", new { pageId = pageSection.PageId });
+                return Json(new { State = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { State = false });
+            }
         }
     }
 }
