@@ -15,8 +15,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Web.Http.Dependencies;
 using StructureMap;
+using System.Web.Http.Dependencies;
 
 namespace Portal.CMS.Web.DependencyResolution
 {
@@ -38,7 +38,7 @@ namespace Portal.CMS.Web.DependencyResolution
         {
         }
 
-        #endregion
+        #endregion Constructors and Destructors
 
         #region Public Methods and Operators
 
@@ -54,6 +54,6 @@ namespace Portal.CMS.Web.DependencyResolution
             return new StructureMapWebApiDependencyResolver(child);
         }
 
-        #endregion
+        #endregion Public Methods and Operators
     }
 }

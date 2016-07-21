@@ -17,8 +17,8 @@
 
 namespace Portal.CMS.Web.DependencyResolution
 {
-    using System.Web.Http.Dependencies;
     using StructureMap;
+    using System.Web.Http.Dependencies;
 
     /// <summary>
     /// The structure map dependency resolver.
@@ -38,7 +38,7 @@ namespace Portal.CMS.Web.DependencyResolution
         {
         }
 
-        #endregion
+        #endregion Constructors and Destructors
 
         #region Public Methods and Operators
 
@@ -54,6 +54,6 @@ namespace Portal.CMS.Web.DependencyResolution
             return new StructureMapDependencyResolver(child);
         }
 
-        #endregion
+        #endregion Public Methods and Operators
     }
 }

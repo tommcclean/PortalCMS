@@ -450,7 +450,7 @@ a.category-item:hover
     margin-right: 20px;
 }
 
-.image-selector img.thumbnail.selected
+.image-selector img.selected
 {
     border: 2px solid red;
 }
@@ -467,26 +467,17 @@ a.category-item:hover
     text-transform: uppercase;
 }
 
-.modal-header
-{
-}
-
-.modal-body
+.modal-body, .modal-footer
 {
     background-image: url('../../Images/texture.png');
 }
 
-.modal-body img.thumbnail
+.modal-body img
 {
     float: left;
     margin-right: 20px;
     width: 100%;
     height: 140px;
-}
-
-.modal-footer
-{
-    background-image: url('../../Images/texture.png');
 }
 
 @media (min-width: 768px)

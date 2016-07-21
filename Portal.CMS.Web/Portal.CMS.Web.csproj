@@ -257,6 +257,7 @@
     <Compile Include="Areas\Admin\ViewModels\Authentication\AccountViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\PasswordViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\RegisterViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Authentication\AvatarViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Comments\CommentsViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Copy\CopyViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Copy\CreateViewModel.cs" />
@@ -585,6 +586,7 @@
     <Content Include="Areas\Builder\Views\Build\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Password.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Account.cshtml" />
+    <Content Include="Areas\Admin\Views\Authentication\_Avatar.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
     <Content Include="Areas\Builder\Views\Component\_Element.cshtml" />

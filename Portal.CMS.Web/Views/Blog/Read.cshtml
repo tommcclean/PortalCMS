@@ -19,6 +19,13 @@
     {
         bannerImagePath = "/Areas/Builder/Content/Images/Sample/Sample-1.jpg";
     }
+
+    var authorAvatarPath = "/Areas/Admin/Content/Images/profile-image-male.png";
+
+    if (!string.IsNullOrWhiteSpace(Model.Author.AvatarImagePath))
+    {
+        authorAvatarPath = Model.Author.AvatarImagePath;
+    }
 }
 
 @if (UserHelper.IsAdmin)
@@ -63,7 +70,7 @@
             <div class="col-xs-12 col-md-7">
                 <div class="post-body">
                     <div class="post-details float-container">
-                        <img class="pull-left author-image" src="~/Areas/Admin/Content/Images/profile-image-male.png" />
+                        <img class="pull-left author-image" src="@authorAvatarPath" style="border-radius: 50%;" />
                         <div class="pull-left">
                             <p><strong>Author: </strong>@Model.Author.GivenName @Model.Author.FamilyName</p>
                             <p><strong>Updated: </strong>@Model.CurrentPost.DateUpdated.ToString("dd MMM yyyy HH:mm")</p>

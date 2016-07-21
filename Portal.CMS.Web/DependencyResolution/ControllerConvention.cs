@@ -1,11 +1,11 @@
 namespace Portal.CMS.Web.DependencyResolution
 {
-    using System;
-    using System.Web.Mvc;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
     using StructureMap.Pipeline;
     using StructureMap.TypeRules;
+    using System;
+    using System.Web.Mvc;
 
     public class ControllerConvention : IRegistrationConvention
     {
@@ -19,6 +19,6 @@ namespace Portal.CMS.Web.DependencyResolution
             }
         }
 
-        #endregion
+        #endregion Public Methods and Operators
     }
 }

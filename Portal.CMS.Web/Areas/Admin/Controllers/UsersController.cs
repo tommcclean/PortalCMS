@@ -96,7 +96,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View("_Details", model);
 
-            _userService.UpdateUser(model.UserId, model.EmailAddress, model.GivenName, model.FamilyName);
+            _userService.UpdateDetails(model.UserId, model.EmailAddress, model.GivenName, model.FamilyName);
 
             if (model.UserId == UserHelper.UserId)
             {

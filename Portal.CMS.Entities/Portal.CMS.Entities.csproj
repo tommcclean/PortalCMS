@@ -79,6 +79,7 @@
     <Compile Include="Entities\Posts\PostImage.cs" />
     <Compile Include="Entities\Posts\PostImageType.cs" />
     <Compile Include="Entities\Settings\Setting.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Initialisers\DropAndMigrateDatabaseToLatestVersion.cs" />
     <Compile Include="Initialisers\Environments\DefaultInitialiser.cs" />
     <Compile Include="Initialisers\MigrateDatabaseToLatestVersion.cs" />
@@ -101,6 +102,10 @@
     <Compile Include="Migrations\201607171347205_RemoveRequirementForReferralAnalytic.cs" />
     <Compile Include="Migrations\201607171347205_RemoveRequirementForReferralAnalytic.Designer.cs">
       <DependentUpon>201607171347205_RemoveRequirementForReferralAnalytic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607211935456_AddAvatarPathToUserEntity.cs" />
+    <Compile Include="Migrations\201607211935456_AddAvatarPathToUserEntity.Designer.cs">
+      <DependentUpon>201607211935456_AddAvatarPathToUserEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
@@ -134,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607171347205_RemoveRequirementForReferralAnalytic.resx">
       <DependentUpon>201607171347205_RemoveRequirementForReferralAnalytic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607211935456_AddAvatarPathToUserEntity.resx">
+      <DependentUpon>201607211935456_AddAvatarPathToUserEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

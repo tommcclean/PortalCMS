@@ -2,7 +2,10 @@
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Authentication;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -15,6 +18,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         private readonly IRegistrationService _registrationService;
         private readonly IUserService _userService;
         private readonly IRoleService _roleService;
+
+        private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/Avatars";
 
         public AuthenticationController(ILoginService loginService, IRegistrationService registrationService, IUserService userService, IRoleService roleService)
         {
@@ -29,7 +34,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "Home", new { area = "" });
+            return RedirectToAction(nameof(Index), "Home", new { area = "" });
         }
 
         [HttpGet]
@@ -66,7 +71,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             Session.Clear();
 
-            return RedirectToAction("Index", "Home", new { area = "" });
+            return RedirectToAction(nameof(Index), "Home", new { area = "" });
         }
 
         [HttpGet]
@@ -92,9 +97,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
                 default:
                     if (_userService.GetUserCount() == 1)
-                        _roleService.Update(userId.Value, new List<string>() { "Admin", "Authenticated" });
+                        _roleService.Update(userId.Value, new List<string> { nameof(Admin), "Authenticated" });
                     else
-                        _roleService.Update(userId.Value, new List<string>() { "Authenticated" });
+                        _roleService.Update(userId.Value, new List<string> { "Authenticated" });
 
                     var userAccount = _userService.GetUser(userId.Value);
 
@@ -107,7 +112,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet, LoggedInFilter]
         public ActionResult Account()
         {
-            var model = new AccountViewModel()
+            var model = new AccountViewModel
             {
                 EmailAddress = UserHelper.EmailAddress,
                 GivenName = UserHelper.GivenName,
@@ -126,7 +131,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View("_Account", model);
             }
 
-            _userService.UpdateUser(UserHelper.UserId, model.EmailAddress, model.GivenName, model.FamilyName);
+            _userService.UpdateDetails(UserHelper.UserId, model.EmailAddress, model.GivenName, model.FamilyName);
 
             var userId = UserHelper.UserId;
 
@@ -135,6 +140,36 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             Session.Add("UserAccount", _userService.GetUser(userId));
 
             return Content("Refresh");
+        }
+
+        [HttpGet, LoggedInFilter]
+        public ActionResult Avatar()
+        {
+            var model = new AvatarViewModel();
+
+            return View("_Avatar", model);
+        }
+
+        [HttpPost, LoggedInFilter]
+        [ValidateAntiForgeryToken]
+        public ActionResult Avatar(AvatarViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("_Avatar", model);
+            }
+
+            var imageFilePath = SaveImage(model.AttachedImage, nameof(Avatar));
+
+            _userService.UpdateAvatar(UserHelper.UserId, imageFilePath);
+
+            var userId = UserHelper.UserId;
+
+            Session.Remove("UserAccount");
+
+            Session.Add("UserAccount", _userService.GetUser(userId));
+
+            return this.Content("Refresh");
         }
 
         [HttpGet, LoggedInFilter]
@@ -165,6 +200,29 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             _registrationService.ChangePassword(UserHelper.UserId, model.NewPassword);
 
             return Content("Refresh");
+        }
+
+        private string SaveImage(HttpPostedFileBase imageFile, string actionName)
+        {
+            var extension = Path.GetExtension(imageFile.FileName).ToUpper();
+
+            if (extension != ".PNG" && extension != ".JPG" && extension != ".GIF")
+                throw new ArgumentException("Unexpected Image Format Provided");
+
+            var destinationDirectory = Path.Combine(Server.MapPath(IMAGE_DIRECTORY));
+
+            if (!Directory.Exists(destinationDirectory))
+                Directory.CreateDirectory(destinationDirectory);
+
+            var imageFileName = string.Format("media-{0}-{1}-{2}", DateTime.Now.ToString("ddMMyyyyHHmmss"), UserHelper.UserId, imageFile.FileName);
+            var path = Path.Combine(Server.MapPath(IMAGE_DIRECTORY), imageFileName);
+
+            imageFile.SaveAs(path);
+
+            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace(string.Format("Admin/Authentication/{0}", actionName), string.Empty);
+            var relativeFilePath = string.Format("{0}{1}/{2}", siteURL, IMAGE_DIRECTORY, imageFileName);
+
+            return relativeFilePath;
         }
     }
 }

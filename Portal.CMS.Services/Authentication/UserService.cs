@@ -13,7 +13,9 @@ namespace Portal.CMS.Services.Authentication
 
         IEnumerable<User> Get(List<string> roleNames);
 
-        void UpdateUser(int userId, string emailAddress, string givenName, string familyName);
+        void UpdateDetails(int userId, string emailAddress, string givenName, string familyName);
+
+        void UpdateAvatar(int userId, string avatarImagePath);
 
         void DeleteUser(int userId);
 
@@ -68,13 +70,22 @@ namespace Portal.CMS.Services.Authentication
             return _context.Users.Count();
         }
 
-        public void UpdateUser(int userId, string emailAddress, string givenName, string familyName)
+        public void UpdateDetails(int userId, string emailAddress, string givenName, string familyName)
         {
             var user = _context.Users.FirstOrDefault(x => x.UserId == userId);
 
             user.EmailAddress = emailAddress;
             user.GivenName = givenName;
             user.FamilyName = familyName;
+
+            _context.SaveChanges();
+        }
+
+        public void UpdateAvatar(int userId, string avatarImagePath)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.UserId == userId);
+
+            user.AvatarImagePath = avatarImagePath;
 
             _context.SaveChanges();
         }

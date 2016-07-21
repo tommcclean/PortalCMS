@@ -15,12 +15,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http.Dependencies;
-using Microsoft.Practices.ServiceLocation;
 using StructureMap;
+using System.Web.Http.Dependencies;
 
 namespace Portal.CMS.Web.DependencyResolution
 {
@@ -30,7 +26,8 @@ namespace Portal.CMS.Web.DependencyResolution
     internal class StructureMapWebApiDependencyScope : StructureMapDependencyScope, IDependencyScope
     {
         public StructureMapWebApiDependencyScope(IContainer container)
-            : base(container) {
+            : base(container)
+        {
         }
     }
 }

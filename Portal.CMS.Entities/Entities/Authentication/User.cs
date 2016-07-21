@@ -27,6 +27,8 @@ namespace Portal.CMS.Entities.Entities.Authentication
         [Required]
         public DateTime DateUpdated { get; set; }
 
+        public string AvatarImagePath { get; set; }
+
         public virtual ICollection<UserRole> Roles { get; set; }
     }
 }
