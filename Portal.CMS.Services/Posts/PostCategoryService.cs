@@ -47,7 +47,7 @@ namespace Portal.CMS.Services.Posts
 
         public int Add(string postCategoryName)
         {
-            var newPostCategory = new PostCategory()
+            var newPostCategory = new PostCategory
             {
                 PostCategoryName = postCategoryName
             };

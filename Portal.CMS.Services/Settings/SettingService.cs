@@ -56,7 +56,7 @@ namespace Portal.CMS.Services.Settings
 
         public int Add(string settingName, string settingValue)
         {
-            var newSetting = new Setting()
+            var newSetting = new Setting
             {
                 SettingName = settingName,
                 SettingValue = settingValue

@@ -17,7 +17,7 @@ namespace Portal.CMS.Services.Authentication
 
         void Edit(int roleId, string roleName);
 
-        void Update(int userId, List<string> roleList);
+        void UpdateUserRoles(int userId, List<string> roleList);
 
         void Delete(int roleId);
     }
@@ -58,7 +58,7 @@ namespace Portal.CMS.Services.Authentication
 
         public int Add(string roleName)
         {
-            var newRole = new Role()
+            var newRole = new Role
             {
                 RoleName = roleName
             };
@@ -91,7 +91,7 @@ namespace Portal.CMS.Services.Authentication
             _context.SaveChanges();
         }
 
-        public void Update(int userId, List<string> roleList)
+        public void UpdateUserRoles(int userId, List<string> roleList)
         {
             var user = _context.Users.FirstOrDefault(x => x.UserId == userId);
             if (user == null) return;
@@ -109,7 +109,7 @@ namespace Portal.CMS.Services.Authentication
                 if (matchedRole == null)
                     continue;
 
-                var userRole = new UserRole()
+                var userRole = new UserRole
                 {
                     RoleId = matchedRole.RoleId,
                     UserId = user.UserId

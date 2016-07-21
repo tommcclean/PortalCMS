@@ -28,7 +28,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var model = new UsersViewModel()
+            var model = new UsersViewModel
             {
                 Users = _userService.Get()
             };
@@ -39,11 +39,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var model = new CreateViewModel()
-            {
-            };
-
-            return View("_Create", model);
+            return View("_Create", new CreateViewModel());
         }
 
         [HttpPost]
@@ -63,7 +59,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
                 default:
                     if (_userService.GetUserCount() == 1)
-                        _roleService.Update(userId.Value, new List<string>() { "Admin" });
+                        _roleService.UpdateUserRoles(userId.Value, new List<string> { nameof(Admin) });
 
                     if (!UserHelper.IsLoggedIn)
                         Session.Add("UserAccount", _userService.GetUser(userId.Value));
@@ -77,7 +73,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var user = _userService.GetUser(userId);
 
-            var model = new DetailsViewModel()
+            var model = new DetailsViewModel
             {
                 UserId = userId,
                 EmailAddress = user.EmailAddress,
@@ -111,7 +107,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Roles(int userId)
         {
-            var model = new RolesViewModel()
+            var model = new RolesViewModel
             {
                 UserId = userId,
                 RoleList = _roleService.Get()
@@ -132,7 +128,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View("_Roles", model);
 
-            _roleService.Update(model.UserId, model.SelectedRoleList);
+            _roleService.UpdateUserRoles(model.UserId, model.SelectedRoleList);
 
             if (model.UserId == UserHelper.UserId)
             {

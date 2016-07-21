@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Portal.CMS.Entities.Seed
 {
-    public class PageSectionTypeSeed
+    public static class PageSectionTypeSeed
     {
         public static void Seed(PortalEntityModel context)
         {

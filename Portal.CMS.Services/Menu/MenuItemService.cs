@@ -27,7 +27,7 @@ namespace Portal.CMS.Services.Menu
 
         public int Create(int menuId, string linkText, string linkAction, string linkController, string linkArea)
         {
-            var newMenuItem = new Entities.Entities.Menu.MenuItem()
+            var newMenuItem = new Entities.Entities.Menu.MenuItem
             {
                 MenuId = menuId,
                 LinkText = linkText,

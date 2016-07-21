@@ -37,7 +37,7 @@ namespace Portal.CMS.Services.Generic
 
         public int Create(string imageFilePath, ImageCategory imageCategory)
         {
-            var image = new Image()
+            var image = new Image
             {
                 ImagePath = imageFilePath,
                 ImageCategory = imageCategory

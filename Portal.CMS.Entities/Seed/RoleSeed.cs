@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Portal.CMS.Entities.Seed
 {
-    public class RoleSeed
+    public static class RoleSeed
     {
         public static void Seed(PortalEntityModel context)
         {

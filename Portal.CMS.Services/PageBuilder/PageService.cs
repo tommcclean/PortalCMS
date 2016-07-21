@@ -50,7 +50,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public int Add(string pageName, string area, string controller, string action)
         {
-            var newPage = new Page()
+            var newPage = new Page
             {
                 PageName = pageName,
                 PageArea = area,

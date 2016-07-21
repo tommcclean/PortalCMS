@@ -59,7 +59,7 @@ namespace Portal.CMS.Services.PageBuilder
             if (page.PageSections.Any())
                 sectionPosition = (page.PageSections.Max(x => x.PageSectionId) + 1);
 
-            var newPageSection = new PageSection()
+            var newPageSection = new PageSection
             {
                 PageId = pageId,
                 PageSectionTypeId = pageSectionTypeId,
@@ -73,7 +73,7 @@ namespace Portal.CMS.Services.PageBuilder
 
             var document = new Document(newPageSection.PageSectionBody);
 
-            newPageSection.PageSectionBody = document.ReplaceTokens(newPageSection.PageSectionBody, newPageSection.PageSectionId);
+            newPageSection.PageSectionBody = Document.ReplaceTokens(newPageSection.PageSectionBody, newPageSection.PageSectionId);
 
             _context.SaveChanges();
 
@@ -182,10 +182,8 @@ namespace Portal.CMS.Services.PageBuilder
                 return PageSectionHeight.Medium;
             if (pageSection.PageSectionBody.Contains("height-small"))
                 return PageSectionHeight.Small;
-            if (pageSection.PageSectionBody.Contains("height-tiny"))
-                return PageSectionHeight.Tiny;
-            else
-                return PageSectionHeight.Tall;
+
+            return pageSection.PageSectionBody.Contains("height-tiny") ? PageSectionHeight.Tiny : PageSectionHeight.Tall;
         }
 
         public PageSectionBackgroundType DetermineBackgroundType(int pageSectionId)
@@ -197,10 +195,8 @@ namespace Portal.CMS.Services.PageBuilder
 
             if (pageSection.PageSectionBody.Contains("background-static"))
                 return PageSectionBackgroundType.Static;
-            else if (pageSection.PageSectionBody.Contains("background-parallax"))
-                return PageSectionBackgroundType.Parallax;
-            else
-                return PageSectionBackgroundType.Static;
+
+            return pageSection.PageSectionBody.Contains("background-parallax") ? PageSectionBackgroundType.Parallax : PageSectionBackgroundType.Static;
         }
 
         public void Markup(int pageSectionId, string htmlBody)

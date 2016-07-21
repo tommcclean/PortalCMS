@@ -30,12 +30,12 @@ namespace Portal.CMS.Services.Posts
 
         public void Add(int userId, int postId, string commentBody)
         {
-            var comment = new PostComment()
+            var comment = new PostComment
             {
                 UserId = userId,
                 PostId = postId,
                 CommentBody = commentBody,
-                DateAdded = DateTime.Now,
+                DateAdded = DateTime.Now
             };
 
             _context.PostComments.Add(comment);

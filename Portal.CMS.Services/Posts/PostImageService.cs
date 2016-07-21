@@ -38,7 +38,7 @@ namespace Portal.CMS.Services.Posts
 
         public void Add(int postId, int imageId, PostImageType postImageType)
         {
-            var postImage = new PostImage()
+            var postImage = new PostImage
             {
                 PostId = postId,
                 PostImageType = postImageType,

@@ -47,7 +47,7 @@ namespace Portal.CMS.Services.Shared
             {
                 if (attribute.Contains(attributeName))
                 {
-                    var index = attribute.IndexOf(":");
+                    var index = attribute.IndexOf(":", StringComparison.CurrentCulture);
 
                     var result = attribute.Substring(index + 1);
 
@@ -69,7 +69,7 @@ namespace Portal.CMS.Services.Shared
         {
             componentBody = ReplaceTokens(componentBody, pageSectionId);
 
-            HtmlNode newNode = HtmlNode.CreateNode(componentBody);
+            var newNode = HtmlNode.CreateNode(componentBody);
 
             var containerElement = _document.GetElementbyId(containerElementId);
 
@@ -107,9 +107,9 @@ namespace Portal.CMS.Services.Shared
         {
             var element = _document.GetElementbyId(elementId);
 
-            var selectedHeight = string.Format("height-{0}", height.ToString()).ToLower();
+            var selectedHeight = string.Format("height-{0}", height).ToLower();
 
-            var heightClasses = new List<string>() { "height-tall", "height-medium", "height-small", "height-tiny", "height-standard" };
+            var heightClasses = new List<string> { "height-tall", "height-medium", "height-small", "height-tiny", "height-standard" };
 
             var classAttribute = element.Attributes.FirstOrDefault(x => x.Name == "class");
 
@@ -121,9 +121,9 @@ namespace Portal.CMS.Services.Shared
         {
             var element = _document.GetElementbyId(elementId);
 
-            var selectedHeight = string.Format("background-{0}", backgroundType.ToString()).ToLower();
+            var selectedHeight = string.Format("background-{0}", backgroundType).ToLower();
 
-            var heightClasses = new List<string>() { "background-static", "background-parallax" };
+            var heightClasses = new List<string> { "background-static", "background-parallax" };
 
             var classAttribute = element.Attributes.FirstOrDefault(x => x.Name == "class");
 
@@ -138,7 +138,7 @@ namespace Portal.CMS.Services.Shared
             element.Remove();
         }
 
-        public string ReplaceTokens(string htmlBody, int pageSectionId)
+        public static string ReplaceTokens(string htmlBody, int pageSectionId)
         {
             htmlBody = htmlBody.Replace("<componentStamp>", DateTime.Now.ToString("ddMMyyHHmmss"));
             htmlBody = htmlBody.Replace("<sectionId>", pageSectionId.ToString());

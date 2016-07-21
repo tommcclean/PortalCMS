@@ -2,7 +2,7 @@
 
 namespace Portal.CMS.Entities.Seed
 {
-    public class PostCategorySeed
+    public static class PostCategorySeed
     {
         public static void Seed(PortalEntityModel context)
         {

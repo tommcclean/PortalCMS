@@ -35,7 +35,7 @@ namespace Portal.CMS.Services.Copy
 
         public int Create(string copyName, string copyBody)
         {
-            var newCopy = new Portal.CMS.Entities.Entities.Copy.Copy()
+            var newCopy = new Portal.CMS.Entities.Entities.Copy.Copy
             {
                 CopyName = copyName,
                 CopyBody = copyBody,
@@ -82,10 +82,7 @@ namespace Portal.CMS.Services.Copy
         {
             var copyItem = _context.CopySections.FirstOrDefault(x => x.CopyName == copyName);
 
-            if (copyItem == null)
-                return string.Empty;
-            else
-                return copyItem.CopyBody;
+            return copyItem == null ? string.Empty : copyItem.CopyBody;
         }
 
         public void Delete(int copyId)

@@ -16,7 +16,6 @@ namespace Portal.CMS.Entities.Migrations
             SettingSeed.Seed(context);
             MenuSeed.Seed(context);
             PostCategorySeed.Seed(context);
-            CopySeed.Seed(context);
             PageSectionTypeSeed.Seed(context);
             PageComponentTypeSeed.Seed(context);
             MediaSeed.Seed(context);

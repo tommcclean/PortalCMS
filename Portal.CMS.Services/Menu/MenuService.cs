@@ -55,7 +55,7 @@ namespace Portal.CMS.Services.Menu
 
         public int Create(string menuName)
         {
-            var newMenu = new Entities.Entities.Menu.Menu()
+            var newMenu = new Entities.Entities.Menu.Menu
             {
                 MenuName = menuName
             };

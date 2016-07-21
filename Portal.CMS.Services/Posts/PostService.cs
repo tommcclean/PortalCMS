@@ -47,7 +47,7 @@ namespace Portal.CMS.Services.Posts
 
         public List<Post> Get(string postCategoryName, bool published)
         {
-            var results = _context.Posts.Where(x => (x.PostCategory.PostCategoryName.Equals(postCategoryName, StringComparison.OrdinalIgnoreCase) || postCategoryName == string.Empty) && (published && x.IsPublished || published == false));
+            var results = _context.Posts.Where(x => (x.PostCategory.PostCategoryName.Equals(postCategoryName, StringComparison.OrdinalIgnoreCase) || postCategoryName == string.Empty) && (published && x.IsPublished || !published));
 
             return results.OrderByDescending(x => x.DateUpdated).ThenByDescending(x => x.PostId).ToList();
         }
@@ -61,7 +61,7 @@ namespace Portal.CMS.Services.Posts
 
         public int Create(string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody)
         {
-            var post = new Post()
+            var post = new Post
             {
                 PostTitle = postTitle,
                 PostCategoryId = postCategoryId,
@@ -69,7 +69,7 @@ namespace Portal.CMS.Services.Posts
                 PostDescription = postDescription,
                 PostBody = postBody,
                 DateAdded = DateTime.Now,
-                DateUpdated = DateTime.Now,
+                DateUpdated = DateTime.Now
             };
 
             _context.Posts.Add(post);

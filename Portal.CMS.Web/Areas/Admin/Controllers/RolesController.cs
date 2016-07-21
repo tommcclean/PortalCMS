@@ -28,7 +28,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var model = new CreateViewModel()
+            var model = new CreateViewModel
             {
             };
 
@@ -52,7 +52,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var role = _roleService.Fetch(roleId);
 
-            var model = new EditViewModel()
+            var model = new EditViewModel
             {
                 RoleId = role.RoleId,
                 RoleName = role.RoleName

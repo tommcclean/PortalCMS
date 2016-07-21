@@ -36,23 +36,25 @@ namespace Portal.CMS.Services.Authentication
             return userAccount.UserId;
         }
 
-        private bool CompareSecurePassword(string passwordAttempt, string passwordActual)
+        static bool CompareSecurePassword(string passwordAttempt, string passwordActual)
         {
-            string savedPasswordHash = passwordActual;
+            var savedPasswordHash = passwordActual;
             /* Extract the bytes */
-            byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
+            var hashBytes = Convert.FromBase64String(savedPasswordHash);
             /* Get the salt */
-            byte[] salt = new byte[16];
+            var salt = new byte[16];
             Array.Copy(hashBytes, 0, salt, 0, 16);
             /* Compute the hash on the password the user entered */
-            var pbkdf2 = new Rfc2898DeriveBytes(passwordAttempt, salt, 10000);
-            byte[] hash = pbkdf2.GetBytes(20);
-            /* Compare the results */
-            for (int i = 0; i < 20; i++)
-                if (hashBytes[i + 16] != hash[i])
-                    return false;
+            using (var pbkdf2 = new Rfc2898DeriveBytes(passwordAttempt, salt, 10000))
+            {
+                var hash = pbkdf2.GetBytes(20);
+                /* Compare the results */
+                for (int i = 0; i < 20; i++)
+                    if (hashBytes[i + 16] != hash[i])
+                        return false;
 
-            return true;
+                return true;
+            }
         }
     }
 }

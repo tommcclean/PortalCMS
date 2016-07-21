@@ -31,14 +31,14 @@ namespace Portal.CMS.Services.Authentication
             if (_context.Users.Any(x => x.EmailAddress.Equals(emailAddress, StringComparison.OrdinalIgnoreCase)))
                 return -1;
 
-            var userAccount = new User()
+            var userAccount = new User
             {
                 EmailAddress = emailAddress,
                 Password = GenerateSecurePassword(password),
                 GivenName = givenName,
                 FamilyName = familyName,
                 DateAdded = DateTime.Now,
-                DateUpdated = DateTime.Now,
+                DateUpdated = DateTime.Now
             };
 
             _context.Users.Add(userAccount);
@@ -61,23 +61,28 @@ namespace Portal.CMS.Services.Authentication
             _context.SaveChanges();
         }
 
-        private string GenerateSecurePassword(string password)
+        static string GenerateSecurePassword(string password)
         {
             // http://stackoverflow.com/questions/4181198/how-to-hash-a-password
 
             byte[] salt;
-            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+            using (var rNGCryptoServiceProvider = new RNGCryptoServiceProvider())
+            {
+                rNGCryptoServiceProvider.GetBytes(salt = new byte[16]);
 
-            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000);
-            byte[] hash = pbkdf2.GetBytes(20);
+                using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000))
+                {
+                    var hash = pbkdf2.GetBytes(20);
 
-            byte[] hashBytes = new byte[36];
-            Array.Copy(salt, 0, hashBytes, 0, 16);
-            Array.Copy(hash, 0, hashBytes, 16, 20);
+                    var hashBytes = new byte[36];
+                    Array.Copy(salt, 0, hashBytes, 0, 16);
+                    Array.Copy(hash, 0, hashBytes, 16, 20);
 
-            string savedPasswordHash = Convert.ToBase64String(hashBytes);
+                    var savedPasswordHash = Convert.ToBase64String(hashBytes);
 
-            return savedPasswordHash;
+                    return savedPasswordHash;
+                }
+            }
         }
     }
 }
