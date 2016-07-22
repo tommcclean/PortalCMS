@@ -178,10 +178,15 @@ namespace Portal.CMS.Services.PageBuilder
 
             if (pageSection.PageSectionBody.Contains("height-tall"))
                 return PageSectionHeight.Tall;
-            else if (pageSection.PageSectionBody.Contains("height-medium"))
+
+            if (pageSection.PageSectionBody.Contains("height-medium"))
                 return PageSectionHeight.Medium;
+
             if (pageSection.PageSectionBody.Contains("height-small"))
                 return PageSectionHeight.Small;
+
+            if (pageSection.PageSectionBody.Contains("height-standard"))
+                return PageSectionHeight.Standard;
 
             return pageSection.PageSectionBody.Contains("height-tiny") ? PageSectionHeight.Tiny : PageSectionHeight.Tall;
         }
