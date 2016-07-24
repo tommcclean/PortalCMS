@@ -14,16 +14,6 @@
         }
     });
 
-    $(".admin .component-editor").click(function (event) {
-        var elementId = $(this).attr("id");
-        var sectionId = ExtractSectionId($(this));
-
-        var targetContainer = $("#section-" + sectionId + " .component-container.selected:first").attr("id");
-
-        var href = "/Builder/Container/Edit?pageSectionId=" + sectionId + "&elementId=" + targetContainer;
-        showModalEditor("Edit Container Properties", href);
-    });
-
     $(".admin section .image").click(function (event) {
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
@@ -39,6 +29,24 @@
         $('#container-editor-' + sectionId).fadeOut();
     }).children().click(function (e) {
         return false;
+    });
+
+    $(".admin .component-editor").click(function (event) {
+        var elementId = $(this).attr("id");
+        var sectionId = ExtractSectionId($(this));
+
+        var targetContainer = $("#section-" + sectionId + " .component-container.selected:first").attr("id");
+
+        $('#' + targetContainer).remove();
+
+        var dataParams = { "pageSectionId": sectionId, "elementId": targetContainer };
+        $.ajax({
+            data: dataParams,
+            type: 'POST',
+            cache: false,
+            url: '/Builder/Component/Delete',
+            success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } },
+        });
     });
 
     $(".admin .component-container").click(function (event) {
@@ -155,4 +163,24 @@ function ExtractSectionId(element) {
     var elementParts = elementId.split('-');
     var sectionId = elementParts[elementParts.length - 1];
     return sectionId;
+}
+
+function ChangeOrder() {
+    $('#page-wrapper').toggleClass("zoom");
+    $('#page-wrapper').toggleClass("change-order");
+    $('#page-wrapper.change-order').sortable({ placeholder: "ui-state-highlight", helper: 'clone' });
+    $('.action-container.global').fadeOut();
+    $('.action-container.section-order').fadeIn();
+}
+
+function SaveOrder() {
+    var sectionList = [];
+    var orderId = 1;
+    $("#page-wrapper .sortable").each(function (index) {
+        var sectionId = $(this).attr("data-section");
+        sectionList.push(orderId + "-" + sectionId);
+        orderId += 1;
+    });
+    $('#order-list').val(sectionList);
+    $('#order-submit').click();
 }

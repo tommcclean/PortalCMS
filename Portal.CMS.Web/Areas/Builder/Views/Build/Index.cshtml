@@ -5,7 +5,7 @@
 }
 @* Page Builder Specific Assets *@
 <link href="~/Areas/Builder/Content/Styles/pagebuilder.min.css" rel="stylesheet" />
-<script src="~/Areas/Builder/Content/Scripts/pagebuilder.js"></script>
+<script src="~/Areas/Builder/Content/Scripts/pagebuilder.min.js"></script>
 <link href="~/Areas/Builder/Content/Styles/Sections/section.contact.css" rel="stylesheet" />
 
 @* Drag and Drop Specific Assets *@
@@ -13,29 +13,6 @@
 {
     <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <script src="~/Areas/Admin/Content/Plugins/JQTouch/jquery.ui.touch-punch.min.js"></script>
-
-    @* Change Section Order *@
-    <script type="text/javascript">
-        function ChangeOrder() {
-            $('#page-wrapper').toggleClass("zoom");
-            $('#page-wrapper').toggleClass("change-order");
-            $('#page-wrapper.change-order').sortable({ placeholder: "ui-state-highlight", helper: 'clone' });
-            $('.action-container.global').fadeOut();
-            $('.action-container.section-order').fadeIn();
-        }
-
-        function SaveOrder() {
-            var sectionList = [];
-            var orderId = 1;
-            $("#page-wrapper .sortable").each(function (index) {
-                var sectionId = $(this).attr("data-section");
-                sectionList.push(orderId + "-" + sectionId);
-                orderId += 1;
-            });
-            $('#order-list').val(sectionList);
-            $('#order-submit').click();
-        }
-    </script>
 }
 
     @* AJAX Page Tracking *@
@@ -89,7 +66,7 @@
                         <a class="action add-component" data-title="Add Component" data-sectionid="@(section.PageSectionId)"><span class="glyphicon glyphicon-plus"></span></a>
                         <a class="action launch-modal" data-title="Edit Markup" href="@Url.Action("Markup", "Section", new { area = "Builder", pageSectionId = section.PageSectionId })"><span class="glyphicon glyphicon-console"></span></a>
                         <a class="action launch-modal" data-title="Edit Section" href="@Url.Action("Edit", "Section", new { area = "Builder", sectionId = section.PageSectionId })"><span class="glyphicon glyphicon-cog"></span></a>
-                        <a id="container-editor-@(section.PageSectionId)" class="action component-editor" style="display: none;" data-title="Edit Container"><span class="glyphicon glyphicon-unchecked"></span></a>
+                        <a id="container-editor-@(section.PageSectionId)" class="action component-editor" style="display: none;" data-title="Delete Container"><span class="glyphicon glyphicon-trash"></span></a>
                     </div>
                 }
             </div>

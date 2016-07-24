@@ -19,10 +19,10 @@
         min-height: 600px;
     }
 
-section.height-standard
-{
-    min-height: 375px;
-}
+    section.height-standard
+    {
+        min-height: 375px;
+    }
 
     section.height-small
     {
@@ -74,6 +74,9 @@ section.height-standard
 .builder-item
 {
     padding: 25px;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     border: 1px solid #C9C9C9;
@@ -105,6 +108,7 @@ section.height-standard
 
     #page-wrapper.zoom .section-wrapper section
     {
+        -ms-zoom: 0.3;
         zoom: 0.3;
     }
 
@@ -122,6 +126,7 @@ section.height-standard
 
     #page-wrapper.zoom .section-wrapper section
     {
+        -ms-zoom: 0.25;
         zoom: 0.25;
     }
 
