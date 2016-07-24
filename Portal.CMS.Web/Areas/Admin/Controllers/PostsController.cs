@@ -169,6 +169,15 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction("Index", "Posts");
         }
 
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Inline(int postId, string markup)
+        {
+            _postService.Inline(postId, markup);
+
+            return Content("Refresh");
+        }
+
         #region Private Methods
 
         private void UpdateBanner(int postId, int bannerImageId)

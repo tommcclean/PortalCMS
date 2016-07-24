@@ -18,6 +18,8 @@ namespace Portal.CMS.Services.Posts
 
         void Edit(int postId, string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody);
 
+        void Inline(int postId, string postBody);
+
         void Delete(int postId);
 
         void Publish(int postId);
@@ -90,6 +92,19 @@ namespace Portal.CMS.Services.Posts
             post.PostCategoryId = postCategoryId;
             post.PostAuthorUserId = postAuthorUserId;
             post.PostDescription = postDescription;
+            post.PostBody = postBody;
+            post.DateUpdated = DateTime.Now;
+
+            _context.SaveChanges();
+        }
+
+        public void Inline(int postId, string postBody)
+        {
+            var post = _context.Posts.FirstOrDefault(x => x.PostId == postId);
+
+            if (post == null)
+                return;
+
             post.PostBody = postBody;
             post.DateUpdated = DateTime.Now;
 
