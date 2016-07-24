@@ -130,14 +130,12 @@
                         }
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tab-viewgallery">
-                        <div class="row">
+                        <div class="row image-container x3">
                             @foreach (var image in Model.CurrentPost.PostImages.Where(x => x.PostImageType == PostImageType.Gallery))
                             {
-                                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-6">
-                                    <a class="fancybox-thumb" rel="fancybox-thumb" href="@image.Image.ImagePath" title="@Model.CurrentPost.PostTitle">
-                                        <img class="thumbnail" src="@image.Image.ImagePath" alt="" />
-                                    </a>
-                                </div>
+                                <a class="fancybox-thumb" rel="fancybox-thumb" href="@image.Image.ImagePath" title="@Model.CurrentPost.PostTitle">
+                                    <img class="thumbnail" src="@image.Image.ImagePath" alt="" />
+                                </a>
                             }
                         </div>
                     </div>

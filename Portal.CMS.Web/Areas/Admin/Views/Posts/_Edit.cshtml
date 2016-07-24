@@ -84,31 +84,27 @@
         <div role="tabpanel" class="tab-pane" id="tab-banner">
             @if (!Model.ImageList.Any())
             {
-            <h2>No Media Uploads</h2>
-            <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
+                <h2>No Media Uploads</h2>
+                <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
             }
 
             <div id="banner-selector" class="image-selector single float-container">
-                @foreach (var image in Model.ImageList)
+                @foreach (var image in Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.General))
                 {
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <img class="thumbnail @(Model.BannerImageId == image.ImageId ? "selected" : "")" d data-parent="banner-selector" data-target="BannerImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                </div>
                 }
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-gallery">
             @if (!Model.ImageList.Any())
             {
-            <h2>No Media Uploads</h2>
-            <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
+                <h2>No Media Uploads</h2>
+                <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
             }
-            <div id="gallery-selector" class="image-selector multiple float-container">
-                @foreach (var image in Model.ImageList)
+            <div id="gallery-selector" class="image-selector x4 multiple float-container">
+                @foreach (var image in Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.General || x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Screenshot))
                 {
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <img class="thumbnail @(Model.ExistingGalleryImageList.Contains(image.ImageId) ? "selected" : "")" data-parent="gallery-selector" data-target="GalleryImageList" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                </div>
                 }
             </div>
         </div>

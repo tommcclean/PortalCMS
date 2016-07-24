@@ -43,42 +43,34 @@
         <li role="presentation" class=""><a href="#tab-screenshot" aria-controls="tab-screenshot" role="tab" data-toggle="tab">Screenshot</a></li>
         <li role="presentation" class=""><a href="#tab-texture" aria-controls="tab-texture" role="tab" data-toggle="tab">Texture</a></li>
     </ul>
-    <div id="banner-selector" class="image-selector single float-container">
+    <div id="banner-selector" class="image-selector x4 single float-container">
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="tab-general">
                 <br />
                 @foreach (var image in Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.General))
                 {
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <img class="thumbnail" data-parent="banner-selector" data-target="SelectedImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                    </div>
+                    <img class="thumbnail" data-parent="banner-selector" data-target="SelectedImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
                 }
             </div>
             <div role="tabpanel" class="tab-pane" id="tab-icon">
                 <br />
                 @foreach (var image in Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon))
                 {
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <img class="thumbnail" data-parent="banner-selector" data-target="SelectedImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                    </div>
+                    <img class="thumbnail" data-parent="banner-selector" data-target="SelectedImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
                 }
             </div>
             <div role="tabpanel" class="tab-pane" id="tab-screenshot">
                 <br />
                 @foreach (var image in Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Screenshot))
                 {
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <img class="thumbnail" data-parent="banner-selector" data-target="SelectedImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                    </div>
+                    <img class="thumbnail" data-parent="banner-selector" data-target="SelectedImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
                 }
             </div>
             <div role="tabpanel" class="tab-pane" id="tab-texture">
                 <br />
                 @foreach (var image in Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Texture))
                 {
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <img class="thumbnail" data-parent="banner-selector" data-target="SelectedImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                    </div>
+                    <img class="thumbnail" data-parent="banner-selector" data-target="SelectedImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
                 }
             </div>
         </div>

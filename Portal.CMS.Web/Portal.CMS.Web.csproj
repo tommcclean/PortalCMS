@@ -348,6 +348,7 @@
     <Content Include="Areas\Admin\Content\Plugins\JQColorPicker\jqColorPicker.min.js" />
     <Content Include="Areas\Admin\Content\Plugins\JQTouch\jquery.ui.touch-punch.min.js" />
     <Content Include="Areas\Admin\Content\Styles\Framework\confirmation.css" />
+    <Content Include="Areas\Admin\Content\Styles\Framework\images.css" />
     <Content Include="Areas\Builder\Content\Images\Sample\icon-1.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\icon-2.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\icon-3.png" />
@@ -403,7 +404,6 @@
     <Content Include="Areas\Admin\Content\Styles\Framework\fonts.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\helper.css" />
     <Content Include="Areas\Admin\Content\Styles\Pages\dashboard.css" />
-    <Content Include="Areas\Admin\Content\Styles\Pages\media.css" />
     <Content Include="Areas\Admin\Content\Styles\Pages\portal.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\table.css" />
     <Content Include="Areas\Admin\Content\Styles\Pages\posts.css" />

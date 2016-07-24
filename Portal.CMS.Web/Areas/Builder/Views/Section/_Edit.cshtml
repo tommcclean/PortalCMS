@@ -52,12 +52,10 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-background">
-            <div id="banner-selector" class="image-selector single float-container">
+            <div id="banner-selector" class="image-selector x4 single float-container">
                 @foreach (var image in Model.ImageList.Where(x => x.ImageCategory != Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon))
                 {
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <img class="thumbnail" data-parent="banner-selector" data-target="BackgroundImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                    </div>
+                    <img class="thumbnail" data-parent="banner-selector" data-target="BackgroundImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
                 }
             </div>
         </div>

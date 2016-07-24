@@ -8,14 +8,6 @@
     background-image: url('../../Images/texture.png');
 }
 
-.modal-body img
-{
-    float: left;
-    margin-right: 20px;
-    width: 100%;
-    height: 140px;
-}
-
 @media (min-width: 768px)
 {
     .modal-dialog

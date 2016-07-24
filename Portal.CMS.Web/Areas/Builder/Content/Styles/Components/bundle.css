@@ -205,7 +205,7 @@ section .vertical-alignment
 
 .glass-right
 {
-    right: 0px;
+    right: 0;
     top: 20px;
     bottom: 20px;
     width: 20px;
@@ -213,8 +213,8 @@ section .vertical-alignment
 
     .glass-left.full, .glass-right.full
     {
-        top: 0px;
-        bottom: 0px;
+        top: 0;
+        bottom: 0;
     }
 .image
 {

@@ -1,0 +1,63 @@
+﻿.tab-pane img.thumbnail
+{
+    border: 2px solid white;
+    display: inline-block;
+    max-width: calc((100% - 90px) / 4);
+    margin-right: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+.image-container
+{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.x2 img.thumbnail
+{
+    max-width: calc((100% - 45px) / 2);
+}
+
+.x3 img.thumbnail
+{
+    max-width: calc((100% - 70px) / 3);
+}
+
+.x4 img.thumbail
+{
+    max-width: calc((100% - 90px) / 4);
+}
+
+.x5 img.thumbnail
+{
+    max-width: calc((100% - 115px) / 5);
+}
+
+@media (max-width: 1024px)
+{
+    .x5 img.thumbnail
+    {
+        max-width: calc((100% - 90px) / 4);
+    }
+
+    .x3 img.thumbnail
+    {
+        max-width: calc((100% - 45px) / 2);
+    }
+}
+
+@media (max-width: 768px)
+{
+    .x5 img.thumbnail, .x4 img.thumnail, .x3 img.thumbnail
+    {
+        max-width: calc((100% - 45px) / 2);
+    }
+}
+
+@media (max-width: 665px)
+{
+    .x5 img.thumbnail, .x4 img.thumbnail, .x3 img.thumbnail, .x2 img.thumnail
+    {
+        max-width: calc(100% / 1);
+    }
+}
