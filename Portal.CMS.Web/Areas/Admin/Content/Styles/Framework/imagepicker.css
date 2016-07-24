@@ -3,7 +3,7 @@
     text-align: left;
 }
 
-.image-selector img.selected
+.image-selector .selected
 {
     border: 2px solid red !important;
 }

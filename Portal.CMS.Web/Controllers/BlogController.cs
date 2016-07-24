@@ -28,20 +28,6 @@ namespace Portal.CMS.Web.Controllers
         #endregion Dependencies
 
         [HttpGet]
-        public ActionResult Index()
-        {
-            var model = new BlogViewModel()
-            {
-                Posts = _postService.Get(null, true)
-            };
-
-            if (!model.Posts.Any())
-                return RedirectToAction("Index", "Home");
-
-            return View(model);
-        }
-
-        [HttpGet]
         public ActionResult Read(int? postId)
         {
             var model = new ReadViewModel();
@@ -68,7 +54,7 @@ namespace Portal.CMS.Web.Controllers
         {
             _postCommentService.Add(UserHelper.UserId, postId, commentBody);
 
-            return RedirectToAction("Read", "Blog", new { postId = postId });
+            return RedirectToAction(nameof(Read), "Blog", new { postId = postId });
         }
 
         public ActionResult Analytic(int postId, string referrer)

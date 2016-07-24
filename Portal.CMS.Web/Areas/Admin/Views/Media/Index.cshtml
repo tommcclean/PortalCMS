@@ -27,7 +27,7 @@
         <div class="row image-container x5">
             @foreach (var image in Model.Images.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon))
             {
-                    <img class="thumbnail" src="@image.ImagePath" />
+                <img class="thumbnail" src="@image.ImagePath" />
             }
         </div>
     </div>
