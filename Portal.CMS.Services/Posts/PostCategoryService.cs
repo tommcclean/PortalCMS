@@ -33,7 +33,7 @@ namespace Portal.CMS.Services.Posts
 
         public PostCategory Get(int postCategoryId)
         {
-            var postCategory = _context.PostCategories.FirstOrDefault(x => x.PostCategoryId == postCategoryId);
+            var postCategory = _context.PostCategories.SingleOrDefault(x => x.PostCategoryId == postCategoryId);
 
             return postCategory;
         }
@@ -61,7 +61,7 @@ namespace Portal.CMS.Services.Posts
 
         public void Edit(int postCategoryId, string postCategoryName)
         {
-            var postCategory = _context.PostCategories.FirstOrDefault(x => x.PostCategoryId == postCategoryId);
+            var postCategory = _context.PostCategories.SingleOrDefault(x => x.PostCategoryId == postCategoryId);
 
             if (postCategory == null)
                 return;
@@ -73,7 +73,7 @@ namespace Portal.CMS.Services.Posts
 
         public void Delete(int postCategoryId)
         {
-            var postCategory = _context.PostCategories.FirstOrDefault(x => x.PostCategoryId == postCategoryId);
+            var postCategory = _context.PostCategories.SingleOrDefault(x => x.PostCategoryId == postCategoryId);
 
             if (postCategory == null)
                 return;

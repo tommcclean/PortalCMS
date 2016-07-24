@@ -28,7 +28,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public void Delete(int pageSectionId, string componentId)
         {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return;
@@ -44,12 +44,12 @@ namespace Portal.CMS.Services.PageBuilder
 
         public void EditImage(int pageSectionId, string elementId, int selectedImageId)
         {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return;
 
-            var image = _context.Images.FirstOrDefault(x => x.ImageId == selectedImageId);
+            var image = _context.Images.SingleOrDefault(x => x.ImageId == selectedImageId);
 
             if (image == null)
                 return;
@@ -65,7 +65,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public void Anchor(int pageSectionId, string elementId, string elementText, string elementTarget, string elementColour)
         {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return;

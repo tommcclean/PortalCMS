@@ -52,7 +52,7 @@ namespace Portal.CMS.Services.Generic
 
         public void Delete(int imageId)
         {
-            var image = _context.Images.FirstOrDefault(x => x.ImageId == imageId);
+            var image = _context.Images.SingleOrDefault(x => x.ImageId == imageId);
 
             if (image == null)
                 return;

@@ -37,14 +37,14 @@ namespace Portal.CMS.Services.PageBuilder
 
         public PageComponentType Get(int pageComponentTypeId)
         {
-            var result = _context.PageComponentTypes.FirstOrDefault(x => x.PageComponentTypeId == pageComponentTypeId);
+            var result = _context.PageComponentTypes.SingleOrDefault(x => x.PageComponentTypeId == pageComponentTypeId);
 
             return result;
         }
 
         public void Add(int pageSectionId, string containerElementId, int componentTypeId)
         {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return;

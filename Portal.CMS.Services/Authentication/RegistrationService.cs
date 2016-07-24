@@ -50,7 +50,7 @@ namespace Portal.CMS.Services.Authentication
 
         public void ChangePassword(int userId, string newPassword)
         {
-            var userAccount = _context.Users.FirstOrDefault(x => x.UserId == userId);
+            var userAccount = _context.Users.SingleOrDefault(x => x.UserId == userId);
 
             if (userAccount == null)
                 return;

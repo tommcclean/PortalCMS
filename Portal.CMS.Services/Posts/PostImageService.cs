@@ -52,7 +52,7 @@ namespace Portal.CMS.Services.Posts
 
         public void Remove(int postImageId)
         {
-            var postImage = _context.PostImages.FirstOrDefault(x => x.PostImageId == postImageId);
+            var postImage = _context.PostImages.SingleOrDefault(x => x.PostImageId == postImageId);
 
             if (postImage == null)
                 return;

@@ -51,7 +51,7 @@ namespace Portal.CMS.Services.Authentication
 
         public Role Fetch(int roleId)
         {
-            var role = _context.Roles.FirstOrDefault(x => x.RoleId == roleId);
+            var role = _context.Roles.SingleOrDefault(x => x.RoleId == roleId);
 
             return role;
         }
@@ -72,7 +72,7 @@ namespace Portal.CMS.Services.Authentication
 
         public void Edit(int roleId, string roleName)
         {
-            var role = _context.Roles.FirstOrDefault(x => x.RoleId == roleId);
+            var role = _context.Roles.SingleOrDefault(x => x.RoleId == roleId);
 
             role.RoleName = roleName;
 
@@ -81,7 +81,7 @@ namespace Portal.CMS.Services.Authentication
 
         public void Delete(int roleId)
         {
-            var role = _context.Roles.FirstOrDefault(x => x.RoleId == roleId);
+            var role = _context.Roles.SingleOrDefault(x => x.RoleId == roleId);
 
             if (role == null)
                 return;
@@ -93,7 +93,7 @@ namespace Portal.CMS.Services.Authentication
 
         public void UpdateUserRoles(int userId, List<string> roleList)
         {
-            var user = _context.Users.FirstOrDefault(x => x.UserId == userId);
+            var user = _context.Users.SingleOrDefault(x => x.UserId == userId);
             if (user == null) return;
 
             var systemRoles = Get();

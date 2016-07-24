@@ -37,7 +37,7 @@ namespace Portal.CMS.Services.Authentication
 
         public User GetUser(int userId)
         {
-            var result = _context.Users.FirstOrDefault(x => x.UserId == userId);
+            var result = _context.Users.SingleOrDefault(x => x.UserId == userId);
 
             return result;
         }
@@ -72,7 +72,7 @@ namespace Portal.CMS.Services.Authentication
 
         public void UpdateDetails(int userId, string emailAddress, string givenName, string familyName)
         {
-            var user = _context.Users.FirstOrDefault(x => x.UserId == userId);
+            var user = _context.Users.SingleOrDefault(x => x.UserId == userId);
 
             user.EmailAddress = emailAddress;
             user.GivenName = givenName;
@@ -83,7 +83,7 @@ namespace Portal.CMS.Services.Authentication
 
         public void UpdateAvatar(int userId, string avatarImagePath)
         {
-            var user = _context.Users.FirstOrDefault(x => x.UserId == userId);
+            var user = _context.Users.SingleOrDefault(x => x.UserId == userId);
 
             user.AvatarImagePath = avatarImagePath;
 
@@ -92,7 +92,7 @@ namespace Portal.CMS.Services.Authentication
 
         public void DeleteUser(int userId)
         {
-            var user = _context.Users.FirstOrDefault(x => x.UserId == userId);
+            var user = _context.Users.SingleOrDefault(x => x.UserId == userId);
 
             _context.Users.Remove(user);
 

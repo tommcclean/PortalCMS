@@ -42,7 +42,7 @@ namespace Portal.CMS.Services.Settings
 
         public Setting Get(int settingId)
         {
-            var setting = _context.Settings.FirstOrDefault(x => x.SettingId == settingId);
+            var setting = _context.Settings.SingleOrDefault(x => x.SettingId == settingId);
 
             return setting;
         }
@@ -71,7 +71,7 @@ namespace Portal.CMS.Services.Settings
 
         public void Edit(int settingId, string settingName, string settingValue)
         {
-            var setting = _context.Settings.FirstOrDefault(x => x.SettingId == settingId);
+            var setting = _context.Settings.SingleOrDefault(x => x.SettingId == settingId);
 
             if (setting == null)
                 return;
@@ -84,7 +84,7 @@ namespace Portal.CMS.Services.Settings
 
         public void Delete(int settingId)
         {
-            var setting = _context.Settings.FirstOrDefault(x => x.SettingId == settingId);
+            var setting = _context.Settings.SingleOrDefault(x => x.SettingId == settingId);
 
             if (setting == null)
                 return;

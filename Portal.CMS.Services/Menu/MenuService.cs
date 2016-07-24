@@ -41,7 +41,7 @@ namespace Portal.CMS.Services.Menu
 
         public Entities.Entities.Menu.Menu Get(int menuId)
         {
-            var menu = _context.Menus.FirstOrDefault(x => x.MenuId == menuId);
+            var menu = _context.Menus.SingleOrDefault(x => x.MenuId == menuId);
 
             return menu;
         }
@@ -69,7 +69,7 @@ namespace Portal.CMS.Services.Menu
 
         public void Edit(int menuId, string menuName)
         {
-            var menu = _context.Menus.FirstOrDefault(x => x.MenuId == menuId);
+            var menu = _context.Menus.SingleOrDefault(x => x.MenuId == menuId);
 
             if (menu == null)
                 return;
@@ -81,7 +81,7 @@ namespace Portal.CMS.Services.Menu
 
         public void Delete(int menuId)
         {
-            var menu = _context.Menus.FirstOrDefault(x => x.MenuId == menuId);
+            var menu = _context.Menus.SingleOrDefault(x => x.MenuId == menuId);
 
             if (menu == null)
                 return;

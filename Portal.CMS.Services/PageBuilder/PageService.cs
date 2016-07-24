@@ -43,7 +43,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public Page Get(int pageId)
         {
-            var page = _context.Pages.FirstOrDefault(x => x.PageId == pageId);
+            var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
 
             return page;
         }
@@ -69,7 +69,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public void Edit(int pageId, string pageName, string area, string controller, string action)
         {
-            var page = _context.Pages.FirstOrDefault(x => x.PageId == pageId);
+            var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
 
             if (page == null)
                 return;
@@ -85,7 +85,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public void Delete(int pageId)
         {
-            var page = _context.Pages.FirstOrDefault(x => x.PageId == pageId);
+            var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
 
             if (page == null)
                 return;
@@ -111,7 +111,7 @@ namespace Portal.CMS.Services.PageBuilder
                 var orderId = properties[0];
                 var sectionId = properties[1];
 
-                var section = page.PageSections.FirstOrDefault(x => x.PageSectionId.ToString() == sectionId.ToString());
+                var section = page.PageSections.SingleOrDefault(x => x.PageSectionId.ToString() == sectionId.ToString());
 
                 if (section == null)
                     continue;

@@ -42,7 +42,7 @@ namespace Portal.CMS.Services.Posts
 
         public Post Get(int postId)
         {
-            var result = _context.Posts.FirstOrDefault(x => x.PostId == postId);
+            var result = _context.Posts.SingleOrDefault(x => x.PostId == postId);
 
             return result;
         }
@@ -83,7 +83,7 @@ namespace Portal.CMS.Services.Posts
 
         public void Edit(int postId, string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody)
         {
-            var post = _context.Posts.FirstOrDefault(x => x.PostId == postId);
+            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
 
             if (post == null)
                 return;
@@ -100,7 +100,7 @@ namespace Portal.CMS.Services.Posts
 
         public void Inline(int postId, string postBody)
         {
-            var post = _context.Posts.FirstOrDefault(x => x.PostId == postId);
+            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
 
             if (post == null)
                 return;
@@ -113,7 +113,7 @@ namespace Portal.CMS.Services.Posts
 
         public void Delete(int postId)
         {
-            var post = _context.Posts.FirstOrDefault(x => x.PostId == postId);
+            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
 
             if (post == null)
                 return;
@@ -125,7 +125,7 @@ namespace Portal.CMS.Services.Posts
 
         public void Publish(int postId)
         {
-            var post = _context.Posts.FirstOrDefault(x => x.PostId == postId);
+            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
 
             if (post == null)
                 return;
@@ -137,7 +137,7 @@ namespace Portal.CMS.Services.Posts
 
         public void Draft(int postId)
         {
-            var post = _context.Posts.FirstOrDefault(x => x.PostId == postId);
+            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
 
             if (post == null)
                 return;

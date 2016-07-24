@@ -93,7 +93,7 @@ namespace Portal.CMS.Services.Shared
             }
             else
             {
-                var existingAttribute = element.Attributes.FirstOrDefault(x => x.Name == attributeName);
+                var existingAttribute = element.Attributes.SingleOrDefault(x => x.Name == attributeName);
                 var existingValue = string.Empty;
 
                 if (existingValue != null)
@@ -111,7 +111,7 @@ namespace Portal.CMS.Services.Shared
 
             var heightClasses = new List<string> { "height-tall", "height-medium", "height-small", "height-tiny", "height-standard" };
 
-            var classAttribute = element.Attributes.FirstOrDefault(x => x.Name == "class");
+            var classAttribute = element.Attributes.SingleOrDefault(x => x.Name == "class");
 
             foreach (var heightClass in heightClasses)
                 classAttribute.Value = classAttribute.Value.Replace(heightClass, selectedHeight);
@@ -125,7 +125,7 @@ namespace Portal.CMS.Services.Shared
 
             var heightClasses = new List<string> { "background-static", "background-parallax" };
 
-            var classAttribute = element.Attributes.FirstOrDefault(x => x.Name == "class");
+            var classAttribute = element.Attributes.SingleOrDefault(x => x.Name == "class");
 
             foreach (var heightClass in heightClasses)
                 classAttribute.Value = classAttribute.Value.Replace(heightClass, selectedHeight);

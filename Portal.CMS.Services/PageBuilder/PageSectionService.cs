@@ -43,16 +43,16 @@ namespace Portal.CMS.Services.PageBuilder
 
         public PageSection Get(int pageSectionId)
         {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             return pageSection;
         }
 
         public int Add(int pageId, int pageSectionTypeId)
         {
-            var page = _context.Pages.FirstOrDefault(x => x.PageId == pageId);
+            var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
 
-            var sectionType = _context.PageSectionTypes.FirstOrDefault(x => x.PageSectionTypeId == pageSectionTypeId);
+            var sectionType = _context.PageSectionTypes.SingleOrDefault(x => x.PageSectionTypeId == pageSectionTypeId);
 
             var sectionPosition = 1;
 
@@ -82,7 +82,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public void Element(int pageSectionId, string elementId, string elementValue, string elementColour)
         {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return;
@@ -101,12 +101,12 @@ namespace Portal.CMS.Services.PageBuilder
 
         public void Background(int pageSectionId, int backgroundImageId)
         {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return;
 
-            var image = _context.Images.FirstOrDefault(x => x.ImageId == backgroundImageId);
+            var image = _context.Images.SingleOrDefault(x => x.ImageId == backgroundImageId);
 
             if (image == null)
                 return;
@@ -127,7 +127,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public void Delete(int pageSectionId)
         {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return;
@@ -139,7 +139,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public void Height(int pageSectionId, PageSectionHeight height)
         {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return;
@@ -155,7 +155,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public void BackgroundType(int pageSectionId, PageSectionBackgroundType backgroundType)
         {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return;
@@ -171,7 +171,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public PageSectionHeight DetermineSectionHeight(int pageSectionId)
         {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return PageSectionHeight.Tall;
@@ -193,7 +193,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public PageSectionBackgroundType DetermineBackgroundType(int pageSectionId)
         {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return PageSectionBackgroundType.Static;
@@ -206,7 +206,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public void Markup(int pageSectionId, string htmlBody)
         {
-            var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return;
