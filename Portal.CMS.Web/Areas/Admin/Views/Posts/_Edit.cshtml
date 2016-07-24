@@ -88,7 +88,7 @@
                 <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
             }
 
-            <div id="banner-selector" class="image-selector single float-container">
+            <div id="banner-selector" class="image-selector x4 single float-container">
                 @foreach (var image in Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.General))
                 {
                     <img class="thumbnail @(Model.BannerImageId == image.ImageId ? "selected" : "")" d data-parent="banner-selector" data-target="BannerImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />

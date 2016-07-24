@@ -88,12 +88,10 @@
             <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
             }
 
-            <div id="banner-selector" class="image-selector single float-container">
+            <div id="banner-selector" class="image-selector x4 single float-container">
                 @foreach (var image in Model.ImageList)
                 {
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <img class="thumbnail @(Model.BannerImageId == image.ImageId ? "selected" : "")" d data-parent="banner-selector" data-target="BannerImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                </div>
                 }
             </div>
         </div>
@@ -103,12 +101,10 @@
             <h2>No Media Uploads</h2>
             <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
             }
-            <div id="gallery-selector" class="image-selector multiple float-container">
+            <div id="gallery-selector" class="image-selector x4 multiple float-container">
                 @foreach (var image in Model.ImageList)
                 {
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <img class="thumbnail " data-parent="gallery-selector" data-target="GalleryImageList" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                </div>
                 }
             </div>
         </div>
