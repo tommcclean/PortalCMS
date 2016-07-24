@@ -3,9 +3,6 @@
     Layout = "";
 }
 
-<link href="~/Areas/Admin/Content/Styles/Framework/bundle.min.css" rel="stylesheet" />
-<link href="~/Areas/Builder/Content/Styles/pagebuilder.css" rel="stylesheet" />
-
 <script type="text/javascript">
     $('.builder-item').on('click', function (e) {
         var componentTypeId = $(this).attr("data-componentypeid");
@@ -54,7 +51,6 @@
                             @Html.Raw(componentType.PageComponentBody)
                         </div>
                         <h1 style="padding-top: 10px;">@componentType.PageComponentTypeName</h1>
-                        <p>@componentType.PageComponentTypeDescription</p>
                     </div>
                 </div>
             }
@@ -65,7 +61,6 @@
                 <div class="col-xs-12 col-md-6">
                     <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId">
                         <h1 style="padding-top: 10px;">@componentType.PageComponentTypeName</h1>
-                        <p>@componentType.PageComponentTypeDescription</p>
                     </div>
                 </div>
             }
@@ -79,7 +74,6 @@
                             @Html.Raw(componentType.PageComponentBody)
                         </div>
                         <h1 style="padding-top: 10px;">@componentType.PageComponentTypeName</h1>
-                        <p>@componentType.PageComponentTypeDescription</p>
                     </div>
                 </div>
             }
