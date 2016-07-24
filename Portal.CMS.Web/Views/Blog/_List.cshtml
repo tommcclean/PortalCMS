@@ -1,6 +1,12 @@
 ﻿@model List<Portal.CMS.Entities.Entities.Posts.Post>
 @using Portal.CMS.Entities.Entities.Posts;
 
+@if (!Model.Any())
+{
+    <h4>No More Posts</h4>
+    <p>There aren't any more Posts to show you yet, but we are writing more so check back soon.</p>
+}
+
 @foreach (var post in Model)
 {
     string bannerImagePath = "";

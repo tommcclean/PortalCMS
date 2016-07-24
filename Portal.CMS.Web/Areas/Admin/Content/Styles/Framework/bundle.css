@@ -548,7 +548,6 @@ table th
 .tab-content .tab-pane
 {
     position: relative;
-    min-height: 500px;
     background-color: white;
     padding: 20px 20px 30px 20px;
 }
