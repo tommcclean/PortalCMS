@@ -289,10 +289,9 @@
     <Compile Include="Areas\Builder\BuilderAreaRegistration.cs" />
     <Compile Include="Areas\Builder\Controllers\BuildController.cs" />
     <Compile Include="Areas\Builder\Controllers\ComponentController.cs" />
-    <Compile Include="Areas\Builder\Controllers\ImageController.cs" />
     <Compile Include="Areas\Builder\Controllers\SectionController.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\AddViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Image\EditViewModel.cs" />
+    <Compile Include="Areas\Builder\ViewModels\Component\ImageViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
@@ -571,7 +570,7 @@
     <Content Include="Areas\Builder\Views\web.config" />
     <Content Include="Areas\Builder\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Builder\Views\Component\_Add.cshtml" />
-    <Content Include="Areas\Builder\Views\Image\_Edit.cshtml" />
+    <Content Include="Areas\Builder\Views\Component\_Image.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Markup.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Add.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Edit.cshtml" />

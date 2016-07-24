@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Portal.CMS.Web.Areas.Builder.ViewModels.Image
+namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
 {
-    public class EditViewModel
+    public class ImageViewModel
     {
         public int PageId { get; set; }
 

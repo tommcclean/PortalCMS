@@ -18,7 +18,7 @@
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
 
-        var href = "/Builder/Image/Edit?pageSectionId=" + sectionId + "&elementId=" + elementId;
+        var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId;
         showModalEditor("Edit Image Properties", href);
     });
 
