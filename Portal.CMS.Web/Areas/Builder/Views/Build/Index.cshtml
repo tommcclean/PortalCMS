@@ -33,8 +33,6 @@
     {
         /* Global Administration Menu */
         <div class="action-container global">
-            <a href="@Url.Action("Upload", "Media", new { area = "Admin" })" class="launch-modal" data-title="Upload Image"><div class="action"><span class="glyphicon glyphicon-picture"></span></div></a>
-            <a href="@Url.Action("Index", "Pages", new { area = "Admin" }) "><div class="action"><span class="glyphicon glyphicon-book"></span></div></a>
             <div onclick="ChangeOrder();" class="action"><span class="glyphicon glyphicon-resize-vertical"></span></div>
             <a href="@Url.Action("Add", "Section", new { area = "Builder", pageId = Model.Page.PageId })" data-title="Add Section" class="launch-modal"><div class="action"><span class="glyphicon glyphicon-plus"></span></div></a>
         </div>
