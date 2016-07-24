@@ -27,6 +27,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View();
         }
 
+        [ChildActionOnly]
         public ActionResult TotalHitsToday(ChartSize chartSize)
         {
             var dataSet = _analyticsService.TotalHitsToday();
@@ -48,6 +49,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
+        [ChildActionOnly]
         public ActionResult TotalHitsWeekly(ChartSize chartSize)
         {
             var dataSet = _analyticsService.TotalHitsThisWeek();
@@ -69,6 +71,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
+        [ChildActionOnly]
         public ActionResult TotalHitsMonthly(ChartSize chartSize)
         {
             var dataSet = _analyticsService.TotalHitsThisMonth();
@@ -90,6 +93,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
+        [ChildActionOnly]
         public ActionResult TopPages(ChartSize chartSize, TimePeriod timePeriod)
         {
             var dataSet = _analyticsService.GetTopPages(DetermineTimePeriod(timePeriod));
@@ -111,6 +115,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
+        [ChildActionOnly]
         public ActionResult TopPosts(ChartSize chartSize, TimePeriod timePeriod)
         {
             var dataSet = _analyticsService.GetTopPosts(DetermineTimePeriod(timePeriod));
@@ -132,6 +137,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
+        [ChildActionOnly]
         public ActionResult TopPostCategories(ChartSize chartSize, TimePeriod timePeriod)
         {
             var dataSet = _analyticsService.GetTopPostCategories(DetermineTimePeriod(timePeriod));
@@ -153,7 +159,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
-        private DateTime? DetermineTimePeriod(TimePeriod timePeriod)
+        static DateTime? DetermineTimePeriod(TimePeriod timePeriod)
         {
             DateTime? earliest;
 
