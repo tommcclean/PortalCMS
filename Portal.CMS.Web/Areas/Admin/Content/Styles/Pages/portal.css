@@ -17,13 +17,13 @@
         text-align: center;
         cursor: pointer;
         border-left: 2px solid transparent;
-        border-bottom: 1px solid #232326;
+        border-bottom: 1px solid #28282B;
         transition: border-left 0.2s ease-in-out;
     }
 
     #sidebar .link.first
     {
-        border-top: 1px solid #292C33;
+        border-top: 1px solid #28282B;
     }
 
         #sidebar .link:hover {
