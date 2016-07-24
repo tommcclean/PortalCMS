@@ -62,9 +62,21 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return this.Content("Refresh");
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Delete(int imageId)
         {
+            var image = _imageService.Get(imageId);
+
+            var fileNamePosition = image.ImagePath.LastIndexOf("/") + 1;
+            var fileName = image.ImagePath.Substring(fileNamePosition, image.ImagePath.Length - fileNamePosition);
+
+            var destinationDirectory = Path.Combine(Server.MapPath(IMAGE_DIRECTORY));
+
+            var imageFilePath = string.Format(@"{0}\{1}", destinationDirectory, fileName);
+
+            if (System.IO.File.Exists(imageFilePath))
+                System.IO.File.Delete(imageFilePath);
+
             _imageService.Delete(imageId);
 
             return RedirectToAction(nameof(Index), "Media");

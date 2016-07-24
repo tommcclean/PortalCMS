@@ -4,9 +4,46 @@
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-media.png";
 }
 
-<a href="@Url.Action("Upload", "Media")" class="action-container launch-modal" data-title="Upload Image">
-    <div class="action"><span class="glyphicon glyphicon-plus"></span></div>
-</a>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#delete-media").click(function (event) {
+            var elementId = $(".thumbnail.selected:first").attr("id");
+            var elementParts = elementId.split('-');
+            var imageId = elementParts[elementParts.length - 1];
+            $('#' + elementId).remove();
+
+            var dataParams = { "imageId": imageId };
+            $.ajax({
+                data: dataParams,
+                type: 'POST',
+                cache: false,
+                url: '/Admin/Media/Delete',
+                success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } },
+            });
+        });
+
+        $(".thumbnail").click(function (event) {
+            var elementId = $(this).attr("id");
+
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+                $('#delete-media').fadeOut(200);
+            }
+            else {
+                $('.thumbnail.selected').removeClass('selected');
+                $('#delete-media').fadeIn(200);
+                $(this).addClass('selected');
+            }
+        }).children().click(function (e) {
+            return false;
+        });;
+    });
+</script>
+
+<div class="action-container">
+    <div id="delete-media" class="action" style="display: none;"><span class="glyphicon glyphicon-trash"></span></div>
+    <a href="@Url.Action("Upload", "Media", new { area = "Admin" })" data-title="Upload Image" class="launch-modal"><div class="action"><span class="glyphicon glyphicon-plus"></span></div></a>
+</div>
 
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span>General</a></li>
@@ -14,36 +51,30 @@
     <li role="presentation" class=""><a href="#tab-screenshot" aria-controls="tab-screenshot" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-camera"></span>Screenshot</a></li>
     <li role="presentation" class=""><a href="#tab-texture" aria-controls="tab-texture" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-leaf"></span>Texture</a></li>
 </ul>
-<div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="tab-general">
-        <div class="row image-container x5">
+<div class="row image-selector single x5">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab-general">
             @foreach (var image in Model.Images.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.General))
             {
-                <img class="thumbnail" src="@image.ImagePath" />
+                <img id="image-@image.ImageId" class="thumbnail" src="@image.ImagePath" />
             }
         </div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="tab-icon">
-        <div class="row image-container x5">
+        <div role="tabpanel" class="tab-pane" id="tab-icon">
             @foreach (var image in Model.Images.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon))
             {
-                <img class="thumbnail" src="@image.ImagePath" />
+                <img id="image-@image.ImageId" class="thumbnail" src="@image.ImagePath" />
             }
         </div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="tab-screenshot">
-        <div class="row image-container x5">
+        <div role="tabpanel" class="tab-pane" id="tab-screenshot">
             @foreach (var image in Model.Images.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Screenshot))
             {
-                <img class="thumbnail" src="@image.ImagePath" />
+                <img id="image-@image.ImageId" class="thumbnail" src="@image.ImagePath" />
             }
         </div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="tab-texture">
-        <div class="row image-container x5">
+        <div role="tabpanel" class="tab-pane" id="tab-texture">
             @foreach (var image in Model.Images.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Texture))
             {
-                <img class="thumbnail" src="@image.ImagePath" />
+                <img id="image-@image.ImageId" class="thumbnail" src="@image.ImagePath" />
             }
         </div>
     </div>

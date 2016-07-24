@@ -8,6 +8,8 @@ namespace Portal.CMS.Services.Generic
 {
     public interface IImageService
     {
+        Image Get(int imageId);
+
         List<Image> Get();
 
         int Create(string imageFilePath, ImageCategory imageCategory);
@@ -27,6 +29,13 @@ namespace Portal.CMS.Services.Generic
         }
 
         #endregion Dependencies
+
+        public Image Get(int imageId)
+        {
+            var results = _context.Images.SingleOrDefault(x => x.ImageId == imageId);
+
+            return results;
+        }
 
         public List<Image> Get()
         {
@@ -56,9 +65,6 @@ namespace Portal.CMS.Services.Generic
 
             if (image == null)
                 return;
-
-            if (File.Exists(image.ImagePath))
-                File.Delete(image.ImagePath);
 
             _context.Images.Remove(image);
 
