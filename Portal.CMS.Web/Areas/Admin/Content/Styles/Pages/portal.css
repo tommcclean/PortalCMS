@@ -8,7 +8,7 @@
     position: fixed;
     width: 70px;
     height: 100vh;
-    background-color: #323234;
+    background-color: #1C1C1E;
     padding-top: 70px;
 }
 
@@ -17,7 +17,7 @@
         text-align: center;
         cursor: pointer;
         border-left: 2px solid transparent;
-        border-bottom: 1px solid #292C33;
+        border-bottom: 1px solid #232326;
         transition: border-left 0.2s ease-in-out;
     }
 
@@ -27,7 +27,7 @@
     }
 
         #sidebar .link:hover {
-            background-color: #3C3C3E;
+            
             border-left: 2px solid #F7F7F7;
         }
 
@@ -44,7 +44,7 @@ header {
     top: 0;
     right: 0;
     height: 70px;
-    background-color: #323234;
+    background-color: #1C1C1E;
     color: white;
     padding: 5px 10px 5px 10px;
 }
