@@ -1,5 +1,4 @@
 ﻿using Portal.CMS.Services.PageBuilder;
-using Portal.CMS.Services.Shared;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Component;
 using System;
@@ -47,69 +46,12 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet]
-        public ActionResult Element(int sectionId, string elementId)
-        {
-            var pageSection = _pageSectionService.Get(sectionId);
-
-            var document = new Document(pageSection.PageSectionBody);
-
-            var model = new ElementViewModel()
-            {
-                PageId = pageSection.PageId,
-                SectionId = sectionId,
-                ElementId = elementId,
-                ElementValue = document.GetContent(elementId),
-                ElementColour = document.GetInlineStyle(elementId, "color")
-            };
-
-            return View("_Element", model);
-        }
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Element(ElementViewModel model)
-        {
-            _pageSectionService.Element(model.SectionId, model.ElementId, model.ElementValue, model.ElementColour);
-
-            return Content("Refresh");
-        }
-
-        [HttpGet]
-        public ActionResult Anchor(int pageSectionId, string elementId)
-        {
-            var pageSection = _pageSectionService.Get(pageSectionId);
-
-            var document = new Document(pageSection.PageSectionBody);
-
-            var model = new AnchorViewModel()
-            {
-                SectionId = pageSectionId,
-                ElementId = elementId,
-                ElementText = document.GetContent(elementId),
-                ElementTarget = document.GetAttribute(elementId, "href"),
-                ElementColour = document.GetInlineStyle(elementId, "color")
-            };
-
-            return View("_Anchor", model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Anchor(AnchorViewModel model)
-        {
-            _pageComponentService.Anchor(model.SectionId, model.ElementId, model.ElementText, model.ElementTarget, model.ElementColour);
-
-            return Content("Refresh");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int pageSectionId, string componentId)
+        public ActionResult Delete(int pageSectionId, string elementId)
         {
             try
             {
-                _pageComponentService.Delete(pageSectionId, componentId);
+                _pageComponentService.Delete(pageSectionId, elementId);
 
                 return Json(new { State = true });
             }
@@ -117,6 +59,24 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             {
                 return Json(new { State = false, Message = ex.InnerException.Message });
             }
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(int pageSectionId, string elementId, string elementHtml)
+        {
+            _pageComponentService.Element(pageSectionId, elementId, elementHtml);
+
+            return Content("Refresh");
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Link(int pageSectionId, string elementId, string elementHtml, string elementHref, string elementTarget)
+        {
+            _pageComponentService.Anchor(pageSectionId, elementId, elementHtml, elementHref, elementTarget);
+
+            return Content("Refresh");
         }
     }
 }

@@ -293,7 +293,6 @@
     <Compile Include="Areas\Builder\Controllers\ImageController.cs" />
     <Compile Include="Areas\Builder\Controllers\SectionController.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\AddViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Component\AnchorViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Container\EditViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Image\EditViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
@@ -315,7 +314,6 @@
     <Compile Include="ViewModels\Blog\ReadViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\AddViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Build\CustomViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Component\ElementViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\EditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -578,7 +576,6 @@
     <Content Include="Areas\Builder\Views\Image\_Edit.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Markup.cshtml" />
     <Content Include="Areas\Builder\Views\Container\_Edit.cshtml" />
-    <Content Include="Areas\Builder\Views\Component\_Anchor.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Add.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Analytics\Index.cshtml" />
@@ -589,7 +586,6 @@
     <Content Include="Areas\Admin\Views\Authentication\_Avatar.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
-    <Content Include="Areas\Builder\Views\Component\_Element.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Edit.cshtml" />
   </ItemGroup>
   <PropertyGroup>

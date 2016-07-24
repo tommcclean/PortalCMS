@@ -10,7 +10,9 @@ namespace Portal.CMS.Services.PageBuilder
 
         void EditImage(int pageSectionId, string elementId, int selectedImageId);
 
-        void Anchor(int pageSectionId, string elementId, string elementText, string elementTarget, string elementColour);
+        void Anchor(int pageSectionId, string elementId, string elementText, string elementHref, string elementTarget);
+
+        void Element(int pageSectionId, string elementId, string elementBody);
     }
 
     public class PageComponentService : IPageComponentService
@@ -25,6 +27,22 @@ namespace Portal.CMS.Services.PageBuilder
         }
 
         #endregion Dependencies
+
+        public void Element(int pageSectionId, string elementId, string elementBody)
+        {
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+
+            if (pageSection == null)
+                return;
+
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.UpdateElementContent(elementId, elementBody);
+
+            pageSection.PageSectionBody = document.OuterHtml;
+
+            _context.SaveChanges();
+        }
 
         public void Delete(int pageSectionId, string componentId)
         {
@@ -63,7 +81,7 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void Anchor(int pageSectionId, string elementId, string elementText, string elementTarget, string elementColour)
+        public void Anchor(int pageSectionId, string elementId, string elementText, string elementHref, string elementTarget)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
@@ -73,10 +91,8 @@ namespace Portal.CMS.Services.PageBuilder
             var document = new Document(pageSection.PageSectionBody);
 
             document.UpdateElementContent(elementId, elementText);
-            document.UpdateElementAttribute(elementId, "href", elementTarget, true);
-
-            if (!string.IsNullOrWhiteSpace(elementColour))
-                document.UpdateElementAttribute(elementId, "style", string.Format("color: {0};", elementColour), true);
+            document.UpdateElementAttribute(elementId, "href", elementHref, true);
+            document.UpdateElementAttribute(elementId, "target", elementTarget ?? "", true);
 
             pageSection.PageSectionBody = document.OuterHtml;
 
