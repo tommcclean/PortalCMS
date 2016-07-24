@@ -37,14 +37,74 @@
 
 <ul class="nav nav-tabs nav-justified">
     <li role="presentation" class="active"><a href="#tab-all" aria-controls="tab-all" role="tab" data-toggle="tab">All</a></li>
+    <li role="presentation" class=""><a href="#tab-headers" aria-controls="tab-headers" role="tab" data-toggle="tab">Headers</a></li>
+    <li role="presentation" class=""><a href="#tab-content" aria-controls="tab-content" role="tab" data-toggle="tab">Content</a></li>
+    <li role="presentation" class=""><a href="#tab-media" aria-controls="tab-media" role="tab" data-toggle="tab">Media</a></li>
+    <li role="presentation" class=""><a href="#tab-design" aria-controls="tab-design" role="tab" data-toggle="tab">Design</a></li>
 </ul>
 
 <div class="row builder-picker">
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active float-container" id="tab-markup">
+        <div role="tabpanel" class="tab-pane active float-container" id="tab-all">
             @foreach (var sectionType in Model.SectionTypeList)
             {
-                <div class="col-xs-12">
+                <div class="col-xs-12 col-md-6">
+                    <div class="builder-item" data-sectiontypeid="@sectionType.PageSectionTypeId">
+                        <div class="section-preview float-container">
+                            @Html.Raw(sectionType.PageSectionTypeBody)
+                        </div>
+
+                        <h4>@sectionType.PageSectionTypeName</h4>
+                    </div>
+                </div>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane float-container" id="tab-headers">
+            @foreach (var sectionType in Model.SectionTypeList.Where(x => x.PageSectionTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageSectionTypeCategory.Header))
+            {
+                <div class="col-xs-12 col-md-6">
+                    <div class="builder-item" data-sectiontypeid="@sectionType.PageSectionTypeId">
+                        <div class="section-preview float-container">
+                            @Html.Raw(sectionType.PageSectionTypeBody)
+                        </div>
+
+                        <h4>@sectionType.PageSectionTypeName</h4>
+                    </div>
+                </div>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane float-container" id="tab-content">
+            @foreach (var sectionType in Model.SectionTypeList.Where(x => x.PageSectionTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageSectionTypeCategory.Content))
+            {
+                <div class="col-xs-12 col-md-6">
+                    <div class="builder-item" data-sectiontypeid="@sectionType.PageSectionTypeId">
+                        <div class="section-preview float-container">
+                            @Html.Raw(sectionType.PageSectionTypeBody)
+                        </div>
+
+                        <h4>@sectionType.PageSectionTypeName</h4>
+                    </div>
+                </div>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane float-container" id="tab-media">
+            @foreach (var sectionType in Model.SectionTypeList.Where(x => x.PageSectionTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageSectionTypeCategory.Media))
+            {
+                <div class="col-xs-12 col-md-6">
+                    <div class="builder-item" data-sectiontypeid="@sectionType.PageSectionTypeId">
+                        <div class="section-preview float-container">
+                            @Html.Raw(sectionType.PageSectionTypeBody)
+                        </div>
+
+                        <h4>@sectionType.PageSectionTypeName</h4>
+                    </div>
+                </div>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane float-container" id="tab-design">
+            @foreach (var sectionType in Model.SectionTypeList.Where(x => x.PageSectionTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageSectionTypeCategory.Misc))
+            {
+                <div class="col-xs-12 col-md-6">
                     <div class="builder-item" data-sectiontypeid="@sectionType.PageSectionTypeId">
                         <div class="section-preview float-container">
                             @Html.Raw(sectionType.PageSectionTypeBody)
