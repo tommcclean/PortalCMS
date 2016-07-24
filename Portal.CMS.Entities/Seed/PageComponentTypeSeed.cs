@@ -44,22 +44,22 @@ namespace Portal.CMS.Entities.Seed
 
             if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "<img> (Circle)"))
             {
-                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "<img> (Circle)", PageComponentTypeCategory = PageComponentTypeCategory.Control, PageComponentTypeDescription = "Small Circular Image", PageComponentBody = "<div id=\"component-<componentStamp>-<sectionId>\" class=\"image image-circle\" />" });
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "<img> (Circle)", PageComponentTypeCategory = PageComponentTypeCategory.Control, PageComponentTypeDescription = "Small Circular Image", PageComponentBody = "<div id=\"component-<componentStamp>-<sectionId>\" class=\"image image-circle\"></div>" });
             }
 
             if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "<img> (Square)"))
             {
-                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "<img> (Square)", PageComponentTypeCategory = PageComponentTypeCategory.Control, PageComponentTypeDescription = "Small Square Image", PageComponentBody = "<div id=\"component-<componentStamp>-<sectionId>\" class=\"image image-square\" />" });
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "<img> (Square)", PageComponentTypeCategory = PageComponentTypeCategory.Control, PageComponentTypeDescription = "Small Square Image", PageComponentBody = "<div id=\"component-<componentStamp>-<sectionId>\" class=\"image image-square\"></div>" });
             }
 
             if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "<img> (Icon)"))
             {
-                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "<img> (Icon)", PageComponentTypeCategory = PageComponentTypeCategory.Control, PageComponentTypeDescription = "Tiny Square Image", PageComponentBody = "<div id=\"component-<componentStamp>-<sectionId>\" class=\"image image-icon\" />" });
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "<img> (Icon)", PageComponentTypeCategory = PageComponentTypeCategory.Control, PageComponentTypeDescription = "Tiny Square Image", PageComponentBody = "<div id=\"component-<componentStamp>-<sectionId>\" class=\"image image-icon\"></div>" });
             }
 
             if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "<img> (Standard)"))
             {
-                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "<img> (Standard)", PageComponentTypeCategory = PageComponentTypeCategory.Control, PageComponentTypeDescription = "Standard Rectangular Image", PageComponentBody = "<div id=\"component-<componentStamp>-<sectionId>\" class=\"image image-standard\" />" });
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "<img> (Standard)", PageComponentTypeCategory = PageComponentTypeCategory.Control, PageComponentTypeDescription = "Standard Rectangular Image", PageComponentBody = "<div id=\"component-<componentStamp>-<sectionId>\" class=\"image image-standard\"></div>" });
             }
 
             if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "Container"))
