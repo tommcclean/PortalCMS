@@ -11,11 +11,11 @@ Portal CMS is a new technology, but already supports all of the things people ex
 
 Some of the features already in Portal CMS include...
 
-> Advanced blogging tools to allow you to reach a wide audience.
-> Photo Galleries to allow you to showcase important graphics, screenshots or artwork.
-> User Administration to allow you to fully control who can use your website.
-> User Comments to allow your users to engage with your content.
-> The Page Builder to build your own pages from any device.
-> Website Analytic Manager in addition to Google Analytics support shows how your users are engaging with your website in real time.
-> Copy Management allowing you to change content on your website in seconds.
-> Media Manager to act as a single place to upload and manage your websites media collection.
+* Advanced blogging tools to allow you to reach a wide audience.
+* Photo Galleries to allow you to showcase important graphics, screenshots or artwork.
+* User Administration to allow you to fully control who can use your website.
+* User Comments to allow your users to engage with your content.
+* The Page Builder to build your own pages from any device.
+* Website Analytic Manager in addition to Google Analytics support shows how your users are engaging with your website in real time.
+* Copy Management allowing you to change content on your website in seconds.
+* Media Manager to act as a single place to upload and manage your websites media collection.
