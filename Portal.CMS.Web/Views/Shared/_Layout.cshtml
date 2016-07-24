@@ -1,11 +1,7 @@
 ﻿@using Portal.CMS.Web.Areas.Admin.Helpers;
-@{
-    var menu = MenuHelper.Get("Main Menu");
-    var controller = @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
-}
 
 <!DOCTYPE html>
-<html>
+<html lang="en-gb">
 <head>
     <title>@SettingHelper.Get("Website Name"): @ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
@@ -16,7 +12,7 @@
     <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.min.css" rel="stylesheet" />
     <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.min.css" rel="stylesheet" />
     <link href="~/Areas/Admin/Content/Styles/Framework/bundle.min.css" rel="stylesheet" />
-    <link href="~/Areas/Builder/Content/Styles/Components/bundle.min.css" rel="stylesheet" />
+    <link href="~/Areas/Builder/Content/Styles/bundle.css" rel="stylesheet" />
     <link href="~/Content/Styles/header.min.css" rel="stylesheet" />
     <link href="~/Content/Styles/Pages/posts.min.css" rel="stylesheet" />
 
@@ -24,98 +20,21 @@
     <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
     <script src="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.js"></script>
     <script src="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.js"></script>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+
+    @if (UserHelper.IsAdmin)
+    {
+        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    }
+    
     <script src="~/Areas/Admin/Content/Scripts/modal.min.js"></script>
     <script src="~/Areas/Admin/Content/Scripts/plugins.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
+    @Html.Partial("_NavBar")
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    @if (menu != null)
-                    {
-                        foreach (var item in menu.MenuItems)
-                        {
-                            <li class="@(controller == item.LinkController ? "active": "")"><a href="@Url.Action(item.LinkAction, item.LinkController, new { area = item.LinkArea })">@Html.Raw(item.LinkText)</a></li>
-                        }
+    <div id="container-fluid">@RenderBody()</div>
 
-                    }
-                </ul>
-
-                @if (UserHelper.IsLoggedIn)
-                {
-                    <ul class="nav navbar-nav navbar-right">
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>@UserHelper.FullName<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="@Url.Action("Account", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Update Account"><span class="glyphicon glyphicon-user"></span>Update Account</a></li>
-                                <li><a href="@Url.Action("Avatar", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Upload Avatar"><span class="glyphicon glyphicon-picture"></span>Upload Avatar</a></li>
-                                <li><a href="@Url.Action("Password", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Change Password"><span class="glyphicon glyphicon-pencil"></span>Change Password</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="@Url.Action("Logout", "Authentication", new { area="Admin"})"><span class="glyphicon glyphicon-lock"></span>Logout</a></li>
-                            </ul>
-                        </li>
-                        @if (UserHelper.IsAdmin)
-                        {
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span>Administration <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="@Url.Action("Index", "Dashboard", new { area="Admin"})"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="@Url.Action("Index", "Pages", new { area="Admin"})"><span class="glyphicon glyphicon-globe"></span>Page Manager</a></li>
-                                    <li><a href="@Url.Action("Index", "Analytics", new { area="Admin"})"><span class="glyphicon glyphicon-stats"></span>Website Analytics</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="@Url.Action("Upload", "Media", new { area="Admin"})" class="launch-modal" data-title="Upload Image"><span class="glyphicon glyphicon-picture"></span>Upload Media</a></li>
-                                    <li><a href="@Url.Action("Create", "Posts", new { area="Admin"})" class="launch-modal" data-title="Create Post"><span class="glyphicon glyphicon-pencil"></span>Create Post</a></li>
-                                </ul>
-                            </li>
-                        }
-                    </ul>
-                }
-                else
-                {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="@Url.Action("Login", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Sign In"><span class="glyphicon glyphicon-lock"></span>Login</a></li>
-                        <li><a href="@Url.Action("Register", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Register Account"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-                    </ul>
-                }
-            </div>
-        </div>
-    </nav>
-
-    <div id="container-fluid">
-        @RenderBody()
-    </div>
-
-    @{
-        var googleTrackingId = SettingHelper.Get("Google Analytics Tracking ID");
-    }
-
-    @if (!string.IsNullOrWhiteSpace(googleTrackingId))
-    {
-        <script>
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-            ga('create', '@googleTrackingId', 'auto');
-            ga('send', 'pageview');
-        </script>
-    }
+    @Html.Partial("_Analytics")
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="~/Areas/Admin/Content/Plugins/Confirmation/bootstrap-confirmation.min.js"></script>

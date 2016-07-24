@@ -1,3 +1,55 @@
+section.contact
+{
+    color: white;
+    text-align: center;
+}
+
+    section.contact .overlay
+    {
+        padding-top: 50px;
+    }
+
+    section.contact input
+    {
+        width: 100%;
+        background-color: transparent;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 1px solid white;
+        font-size: 20px;
+        padding: 10px 10px 10px 10px;
+    }
+
+    section.contact textarea
+    {
+        width: 100%;
+        background-color: transparent;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 1px solid white;
+        font-size: 20px;
+        padding: 10px 10px 10px 10px;
+        height: 230px;
+    }
+
+    section.contact button
+    {
+        width: 100%;
+        background-color: transparent;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 1px solid white;
+        font-size: 16px;
+        padding: 15px 10px 15px 10px;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
+    }
+
+        section.contact button:hover
+        {
+            background-color: white;
+            color: black;
+        }
 section.quote
 {
     position: relative;
@@ -5,7 +57,7 @@ section.quote
     height: 300px;
     background-color: #191919;
     text-align: center;
-    background-image: url('../../Images/Sample/pattern-1.png');
+    background-image: url('../Images/Sample/pattern-1.png');
     background-attachment: fixed;
     background-color: transparent;
     color: #F7F7F7;
@@ -28,7 +80,7 @@ section.quote h2
 section.quote .quote-image-left
 {
     position: absolute;
-    background-image: url('../../Images/Sample/quote-image-left.png');
+    background-image: url('../Images/Sample/quote-image-left.png');
     background-repeat: no-repeat;
     background-position: center center;
     top: 30px;
@@ -41,7 +93,7 @@ section.quote .quote-image-left
 section.quote .quote-image-right
 {
     position: absolute;
-    background-image: url('../../Images/Sample/quote-image-right.png');
+    background-image: url('../Images/Sample/quote-image-right.png');
     background-repeat: no-repeat;
     background-position: center center;
     top: 30px;
@@ -147,7 +199,7 @@ section.block
 .admin .component-container.selected
 {
     border: 1px solid;
-    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
+    background-image: url('../../../Admin/Content/Images/block_black_light.png');
 }
 
 section:after, .row:after
@@ -171,12 +223,12 @@ section .vertical-alignment
 .glass
 {
     position: absolute;
-    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
+    background-image: url('../../../Admin/Content/Images/block_black_light.png');
 }
 
 .glass-dark
 {
-    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
+    background-image: url('../../../Admin/Content/Images/block_black_light.png');
 }
 
 .glass-top
@@ -221,7 +273,7 @@ section .vertical-alignment
     display: inline-block;
     height: 125px;
     width: 125px;
-    background-image: url('../../Images/Sample/Sample-6.jpg');
+    background-image: url('../Images/Sample/Sample-6.jpg');
     background-size: cover;
     background-position: center center;
     margin: 10px;

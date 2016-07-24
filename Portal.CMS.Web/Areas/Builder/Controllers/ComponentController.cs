@@ -30,7 +30,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [HttpGet]
         public ActionResult Add(int pageSectionId, string elementId)
         {
-            var model = new AddViewModel()
+            var model = new AddViewModel
             {
                 PageSectionId = pageSectionId,
                 PageComponentTypeList = _pageComponentTypeService.Get(),

@@ -63,11 +63,11 @@
     ]
   },
   {
-    "outputFileName": "Areas/Builder/Content/Styles/Components/bundle.css",
+    "outputFileName": "Areas/Builder/Content/Styles/bundle.css",
     "inputFiles": [
-      "Areas/Builder/Content/Styles/Components/section.contact.css",
-      "Areas/Builder/Content/Styles/Components/section.quote.css",
-      "Areas/Builder/Content/Styles/Components/section.block.css",
+      "Areas/Builder/Content/Styles/Sections/section.contact.css",
+      "Areas/Builder/Content/Styles/Sections/section.quote.css",
+      "Areas/Builder/Content/Styles/Sections/section.block.css",
       "Areas/Builder/Content/Styles/Components/component.containers.css",
       "Areas/Builder/Content/Styles/Components/component.glass.css",
       "Areas/Builder/Content/Styles/Components/component.image.css"

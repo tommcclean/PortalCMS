@@ -9,8 +9,8 @@
             showModalEditor("Add Component", href);
         }
         else {
-            var href = "/Builder/Component/Add?pageSectionId=" + sectionId + "&elementId=" + targetContainer;
-            showModalEditor("Add Component", href);
+            var globalhref = "/Builder/Component/Add?pageSectionId=" + sectionId + "&elementId=" + targetContainer;
+            showModalEditor("Add Component", globalhref);
         }
     });
 
@@ -45,7 +45,7 @@
             type: 'POST',
             cache: false,
             url: '/Builder/Component/Delete',
-            success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } },
+            success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
         });
     });
 
@@ -65,7 +65,7 @@
         }
     }).children().click(function (e) {
         return false;
-    });;
+    });
 
     // Edit Text Elements
     tinymce.init({
@@ -89,7 +89,7 @@
                         type: 'POST',
                         cache: false,
                         url: '/Builder/Component/Delete',
-                        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } },
+                        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
                     });
                 }
             }),
@@ -104,7 +104,7 @@
                     type: 'POST',
                     cache: false,
                     url: '/Builder/Component/Edit',
-                    success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } },
+                    success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
                 });
             });
         }
@@ -134,7 +134,7 @@
                         type: 'POST',
                         cache: false,
                         url: '/Builder/Component/Delete',
-                        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } },
+                        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
                     });
                 }
             }),
@@ -151,7 +151,7 @@
                     type: 'POST',
                     cache: false,
                     url: '/Builder/Component/Link',
-                    success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } },
+                    success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
                 });
             });
         }

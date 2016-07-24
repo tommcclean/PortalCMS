@@ -407,16 +407,15 @@
     <Content Include="Areas\Builder\Content\Scripts\pagebuilder.min.js">
       <DependentUpon>pagebuilder.js</DependentUpon>
     </Content>
-    <Content Include="Areas\Builder\Content\Styles\Components\bundle.css" />
-    <Content Include="Areas\Builder\Content\Styles\Components\bundle.min.css">
+    <Content Include="Areas\Builder\Content\Styles\bundle.css" />
+    <Content Include="Areas\Builder\Content\Styles\bundle.min.css">
       <DependentUpon>bundle.css</DependentUpon>
     </Content>
     <Content Include="Areas\Builder\Content\Styles\Components\component.containers.css" />
     <Content Include="Areas\Builder\Content\Styles\Components\component.glass.css" />
     <Content Include="Areas\Builder\Content\Styles\Components\component.image.css" />
-    <Content Include="Areas\Builder\Content\Styles\Components\section.block.css" />
-    <Content Include="Areas\Builder\Content\Styles\Components\section.contact.css" />
-    <Content Include="Areas\Builder\Content\Styles\Components\section.quote.css" />
+    <Content Include="Areas\Builder\Content\Styles\Sections\section.block.css" />
+    <Content Include="Areas\Builder\Content\Styles\Sections\section.quote.css" />
     <Content Include="Areas\Builder\Content\Styles\pagebuilder.min.css">
       <DependentUpon>pagebuilder.css</DependentUpon>
     </Content>
@@ -583,6 +582,8 @@
     <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Edit.cshtml" />
+    <Content Include="Views\Shared\_Analytics.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
