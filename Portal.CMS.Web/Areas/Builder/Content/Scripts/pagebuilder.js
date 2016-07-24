@@ -58,8 +58,8 @@
         }
         else {
             $('.component-container').removeClass('selected');
-            $('.component-editor').fadeOut();
-            $('#container-editor-' + sectionId).fadeIn();
+            $('.component-editor').fadeOut(200);
+            $('#container-editor-' + sectionId).fadeIn(200);
             $(this).addClass('selected');
         }
     }).children().click(function (e) {

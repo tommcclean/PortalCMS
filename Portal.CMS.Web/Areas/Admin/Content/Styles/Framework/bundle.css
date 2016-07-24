@@ -346,7 +346,7 @@ input
     {
         background-color: black;
         border: 2px dashed #191919;
-        transition: all 0.2s ease-out;
+        transition: border, background-color 0.2s ease-out;
     }
 
         .action-container.absolute .action:hover
