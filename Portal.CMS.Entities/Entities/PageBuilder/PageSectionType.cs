@@ -12,5 +12,9 @@ namespace Portal.CMS.Entities.Entities.PageBuilder
 
         [Required]
         public string PageSectionTypeBody { get; set; }
+
+        public PageSectionTypeCategory PageSectionTypeCategory { get; set; }
+
+        public int PageSectionTypeOrder { get; set; }
     }
 }

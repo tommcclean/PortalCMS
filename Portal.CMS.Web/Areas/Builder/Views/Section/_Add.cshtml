@@ -3,6 +3,18 @@
     Layout = "";
 }
 
+<link href="~/Areas/Admin/Content/Styles/Framework/bundle.min.css" rel="stylesheet" />
+<link href="~/Areas/Builder/Content/Styles/pagebuilder.css" rel="stylesheet" />
+
+<style>
+    .section-preview section
+    {
+        zoom: 0.35;
+        margin-bottom: 30px;
+        overflow: hidden;
+    }
+</style>
+
 <script type="text/javascript">
     $('.builder-item').on('click', function (e) {
         var sectionTypeId = $(this).attr("data-sectiontypeid");
@@ -32,9 +44,13 @@
         <div role="tabpanel" class="tab-pane active float-container" id="tab-markup">
             @foreach (var sectionType in Model.SectionTypeList)
             {
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12">
                     <div class="builder-item" data-sectiontypeid="@sectionType.PageSectionTypeId">
-                        <h1 style="padding-top: 10px;">@sectionType.PageSectionTypeName</h1>
+                        <div class="section-preview float-container">
+                            @Html.Raw(sectionType.PageSectionTypeBody)
+                        </div>
+
+                        <h4>@sectionType.PageSectionTypeName</h4>
                     </div>
                 </div>
             }
