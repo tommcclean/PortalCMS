@@ -67,7 +67,7 @@
                         </li>
                         @if (UserHelper.IsAdmin)
                         {
-                            <li><a href="@Url.Action("Index", "Dashboard", new { area="Admin"})"><span class="glyphicon glyphicon-cog"></span>Admin</a></li>
+                            <li><a class="btn" href="@Url.Action("Index", "Dashboard", new { area="Admin"})"><span class="glyphicon glyphicon-cog"></span>Admin</a></li>
                         }
                     </ul>
                 }
