@@ -36,7 +36,7 @@ namespace Portal.CMS.Services.Authentication
             return userAccount.UserId;
         }
 
-        static bool CompareSecurePassword(string passwordAttempt, string passwordActual)
+        private static bool CompareSecurePassword(string passwordAttempt, string passwordActual)
         {
             var savedPasswordHash = passwordActual;
             /* Extract the bytes */

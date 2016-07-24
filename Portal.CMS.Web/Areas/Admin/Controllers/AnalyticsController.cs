@@ -159,7 +159,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
-        static DateTime? DetermineTimePeriod(TimePeriod timePeriod)
+        private static DateTime? DetermineTimePeriod(TimePeriod timePeriod)
         {
             DateTime? earliest;
 
