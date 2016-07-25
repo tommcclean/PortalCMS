@@ -30,6 +30,7 @@
     .image.image-auto
     {
         width: auto;
+        max-width: 35vw;
         height: auto;
     }
 
