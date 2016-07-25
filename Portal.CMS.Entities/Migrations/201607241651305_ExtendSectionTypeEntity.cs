@@ -1,8 +1,7 @@
 namespace Portal.CMS.Entities.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class ExtendSectionTypeEntity : DbMigration
     {
         public override void Up()
@@ -10,7 +9,7 @@ namespace Portal.CMS.Entities.Migrations
             AddColumn("dbo.PageSectionTypes", "PageSectionTypeCategory", c => c.Int(nullable: false));
             AddColumn("dbo.PageSectionTypes", "PageSectionTypeOrder", c => c.Int(nullable: false));
         }
-        
+
         public override void Down()
         {
             DropColumn("dbo.PageSectionTypes", "PageSectionTypeOrder");

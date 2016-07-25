@@ -22,9 +22,12 @@
 
     var authorAvatarPath = "/Areas/Admin/Content/Images/profile-image-male.png";
 
-    if (!string.IsNullOrWhiteSpace(Model.Author.AvatarImagePath))
+    if (Model.Author != null)
     {
-        authorAvatarPath = Model.Author.AvatarImagePath;
+        if (!string.IsNullOrWhiteSpace(Model.Author.AvatarImagePath))
+        {
+            authorAvatarPath = Model.Author.AvatarImagePath;
+        }
     }
 }
 
@@ -94,13 +97,16 @@
         <div class="row">
             <div class="col-xs-12 col-md-7">
                 <div class="post-body">
-                    <div class="post-details float-container">
-                        <img class="pull-left author-image" src="@authorAvatarPath" style="border-radius: 50%;" />
-                        <div class="pull-left">
-                            <p><strong>Author: </strong>@Model.Author.GivenName @Model.Author.FamilyName</p>
-                            <p><strong>Updated: </strong>@Model.CurrentPost.DateUpdated.ToString("dd MMM yyyy HH:mm")</p>
+                    @if (Model.Author != null)
+                    {
+                        <div class="post-details float-container">
+                            <img class="pull-left author-image" src="@authorAvatarPath" style="border-radius: 50%;" />
+                            <div class="pull-left">
+                                <p><strong>Author: </strong>@Model.Author.GivenName @Model.Author.FamilyName</p>
+                                <p><strong>Updated: </strong>@Model.CurrentPost.DateUpdated.ToString("dd MMM yyyy HH:mm")</p>
+                            </div>
                         </div>
-                    </div>
+                    }
                     <div class="@(UserHelper.IsAdmin ? "edit-post-body" : "")">
                         @Html.Raw(Model.CurrentPost.PostBody)
                     </div>

@@ -8,7 +8,7 @@ namespace Portal.CMS.Services.PageBuilder
     {
         void Delete(int pageSectionId, string componentId);
 
-        void EditImage(int pageSectionId, string elementId, int selectedImageId);
+        void EditImage(int pageSectionId, string elementType, string elementId, int selectedImageId);
 
         void Anchor(int pageSectionId, string elementId, string elementText, string elementHref, string elementTarget);
 
@@ -60,7 +60,7 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void EditImage(int pageSectionId, string elementId, int selectedImageId)
+        public void EditImage(int pageSectionId, string elementType, string elementId, int selectedImageId)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
@@ -74,7 +74,10 @@ namespace Portal.CMS.Services.PageBuilder
 
             var document = new Document(pageSection.PageSectionBody);
 
-            document.UpdateElementAttribute(elementId, "style", string.Format("background-image: url('{0}');", image.ImagePath), true);
+            if (elementType.Equals("div", System.StringComparison.OrdinalIgnoreCase))
+                document.UpdateElementAttribute(elementId, "style", string.Format("background-image: url('{0}');", image.ImagePath), true);
+            else
+                document.UpdateElementAttribute(elementId, "src", image.ImagePath, true);
 
             pageSection.PageSectionBody = document.OuterHtml;
 

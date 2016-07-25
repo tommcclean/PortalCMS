@@ -1,7 +1,6 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.Generic;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace Portal.CMS.Services.Generic

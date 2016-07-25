@@ -8,6 +8,8 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
 
         public int SectionId { get; set; }
 
+        public string ElementType { get; set; }
+
         public string ElementId { get; set; }
 
         public int SelectedImageId { get; set; }

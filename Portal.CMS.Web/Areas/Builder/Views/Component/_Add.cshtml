@@ -38,6 +38,7 @@
 <ul class="nav nav-tabs nav-justified">
     <li role="presentation" class="active"><a href="#tab-markup" aria-controls="tab-general" role="tab" data-toggle="tab">Markup</a></li>
     <li role="presentation" class=""><a href="#tab-bootstrap" aria-controls="tab-icon" role="tab" data-toggle="tab">Bootstrap</a></li>
+    <li role="presentation" class=""><a href="#tab-table" aria-controls="tab-table" role="tab" data-toggle="tab">Table (BETA)</a></li>
     <li role="presentation" class=""><a href="#tab-control" aria-controls="tab-screenshot" role="tab" data-toggle="tab">Control</a></li>
 </ul>
 <div class="row builder-picker">
@@ -50,6 +51,16 @@
                         <div class="component-preview float-container">
                             @Html.Raw(componentType.PageComponentBody)
                         </div>
+                        <h1 style="padding-top: 10px;">@componentType.PageComponentTypeName</h1>
+                    </div>
+                </div>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane float-container" id="tab-table">
+            @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Table))
+            {
+                <div class="col-xs-12 col-md-6">
+                    <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId">
                         <h1 style="padding-top: 10px;">@componentType.PageComponentTypeName</h1>
                     </div>
                 </div>

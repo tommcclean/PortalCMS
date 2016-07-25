@@ -23,6 +23,7 @@ namespace Portal.CMS.Entities.Migrations
             context.SaveChanges();
 
             PageSeed.Seed(context);
+            PostSeed.Seed(context);
         }
     }
 }

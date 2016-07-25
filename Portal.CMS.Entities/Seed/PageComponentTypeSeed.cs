@@ -62,6 +62,66 @@ namespace Portal.CMS.Entities.Seed
                 context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "<img> (Standard)", PageComponentTypeCategory = PageComponentTypeCategory.Control, PageComponentTypeDescription = "Standard Rectangular Image", PageComponentBody = "<div id=\"component-<componentStamp>-<sectionId>\" class=\"image image-standard\"></div>" });
             }
 
+            if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "<img> (Flex)"))
+            {
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "<img> (Flex)", PageComponentTypeCategory = PageComponentTypeCategory.Control, PageComponentTypeDescription = "Image That Flexes To Native Size", PageComponentBody = "<img id=\"component-<componentStamp>-<sectionId>\" class=\"image image-auto\" src=\"/Areas/Builder/Content/Images/Sample/small-sample-1.jpg\">" });
+            }
+
+            if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "Table"))
+            {
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "Table", PageComponentTypeCategory = PageComponentTypeCategory.Table, PageComponentTypeDescription = "Empty Table Element", PageComponentBody = "<table id=\"component-<componentStamp>-<sectionId>\" class=\"component-container\"></table>" });
+            }
+
+            if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "Row (1 Header)"))
+            {
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "Row (1 Header)", PageComponentTypeCategory = PageComponentTypeCategory.Table, PageComponentTypeDescription = "Table Row with 1 Header Cell", PageComponentBody = "<tr id=\"row-<componentStamp>-<sectionId>\" class=\"component-container\"><th id=\"component-<componentStamp>-<sectionId>\" class=\"component-container\"></th></tr>" });
+            }
+
+            if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "Row (2 Headers)"))
+            {
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "Row (2 Headers)", PageComponentTypeCategory = PageComponentTypeCategory.Table, PageComponentTypeDescription = "Table Row with 2 Header Cells", PageComponentBody = "<tr id=\"row-<componentStamp>-<sectionId>\" class=\"component-container\"><th id=\"column-1-<componentStamp>-<sectionId>\" class=\"component-container\"></th><th id=\"column-2-<componentStamp>-<sectionId>\" class=\"component-container\"></th></tr>" });
+            }
+
+            if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "Row (3 Headers)"))
+            {
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "Row (3 Headers)", PageComponentTypeCategory = PageComponentTypeCategory.Table, PageComponentTypeDescription = "Table Row with 3 Header Cells", PageComponentBody = "<tr id=\"row-<componentStamp>-<sectionId>\" class=\"component-container\"><th id=\"column-1-<componentStamp>-<sectionId>\" class=\"component-container\"></th><th id=\"column-2-<componentStamp>-<sectionId>\" class=\"component-container\"></th><th id=\"column-3-<componentStamp>-<sectionId>\" class=\"component-container\"></th></tr>" });
+            }
+
+            if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "Row (4 Headers)"))
+            {
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "Row (4 Headers)", PageComponentTypeCategory = PageComponentTypeCategory.Table, PageComponentTypeDescription = "Table Row with 4 Header Cells", PageComponentBody = "<tr id=\"row-<componentStamp>-<sectionId>\" class=\"component-container\"><th id=\"column-1-<componentStamp>-<sectionId>\" class=\"component-container\"></th><th id=\"column-2-<componentStamp>-<sectionId>\" class=\"component-container\"></th><th id=\"column-3-<componentStamp>-<sectionId>\" class=\"component-container\"></th><th id=\"column-4-<componentStamp>-<sectionId>\" class=\"component-container\"></th></tr>" });
+            }
+
+            if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "Row (5 Headers)"))
+            {
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "Row (5 Headers)", PageComponentTypeCategory = PageComponentTypeCategory.Table, PageComponentTypeDescription = "Table Row with 5 Header Cells", PageComponentBody = "<tr id=\"row-<componentStamp>-<sectionId>\" class=\"component-container\"><th id=\"column-1-<componentStamp>-<sectionId>\" class=\"component-container\"></th><th id=\"column-2-<componentStamp>-<sectionId>\" class=\"component-container\"></th><th id=\"column-3-<componentStamp>-<sectionId>\" class=\"component-container\"></th><th id=\"column-4-<componentStamp>-<sectionId>\" class=\"component-container\"></th><th id=\"column-5-<componentStamp>-<sectionId>\" class=\"component-container\"></th></tr>" });
+            }
+
+            if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "Row (1 Column)"))
+            {
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "Row (1 Column)", PageComponentTypeCategory = PageComponentTypeCategory.Table, PageComponentTypeDescription = "Table Row with 1 Cell", PageComponentBody = "<tr id=\"row-<componentStamp>-<sectionId>\" class=\"component-container\"><td id=\"component-<componentStamp>-<sectionId>\" class=\"component-container\"></td></tr>" });
+            }
+
+            if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "Row (2 Columns)"))
+            {
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "Row (2 Columns)", PageComponentTypeCategory = PageComponentTypeCategory.Table, PageComponentTypeDescription = "Table Row with 2 Cells", PageComponentBody = "<tr id=\"row-<componentStamp>-<sectionId>\" class=\"component-container\"><td id=\"column-1-<componentStamp>-<sectionId>\" class=\"component-container\"></td><td id=\"column-2-<componentStamp>-<sectionId>\" class=\"component-container\"></td></tr>" });
+            }
+
+            if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "Row (3 Columns)"))
+            {
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "Row (3 Columns)", PageComponentTypeCategory = PageComponentTypeCategory.Table, PageComponentTypeDescription = "Table Row with 3 Cells", PageComponentBody = "<tr id=\"row-<componentStamp>-<sectionId>\" class=\"component-container\"><td id=\"column-1-<componentStamp>-<sectionId>\" class=\"component-container\"></td><td id=\"column-2-<componentStamp>-<sectionId>\" class=\"component-container\"></td><td id=\"column-3-<componentStamp>-<sectionId>\" class=\"component-container\"></td></tr>" });
+            }
+
+            if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "Row (4 Columns)"))
+            {
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "Row (4 Columns)", PageComponentTypeCategory = PageComponentTypeCategory.Table, PageComponentTypeDescription = "Table Row with 4 Cells", PageComponentBody = "<tr id=\"row-<componentStamp>-<sectionId>\" class=\"component-container\"><td id=\"column-1-<componentStamp>-<sectionId>\" class=\"component-container\"></td><td id=\"column-2-<componentStamp>-<sectionId>\" class=\"component-container\"></td><td id=\"column-3-<componentStamp>-<sectionId>\" class=\"component-container\"></td><td id=\"column-4-<componentStamp>-<sectionId>\" class=\"component-container\"></td></tr>" });
+            }
+
+            if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "Row (5 Columns)"))
+            {
+                context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "Row (5 Columns)", PageComponentTypeCategory = PageComponentTypeCategory.Table, PageComponentTypeDescription = "Table Row with 5 Cells", PageComponentBody = "<tr id=\"row-<componentStamp>-<sectionId>\" class=\"component-container\"><td id=\"column-1-<componentStamp>-<sectionId>\" class=\"component-container\"></td><td id=\"column-2-<componentStamp>-<sectionId>\" class=\"component-container\"></td><td id=\"column-3-<componentStamp>-<sectionId>\" class=\"component-container\"></td><td id=\"column-4-<componentStamp>-<sectionId>\" class=\"component-container\"></td><td id=\"column-5-<componentStamp>-<sectionId>\" class=\"component-container\"></td></tr>" });
+            }
+
             if (!context.PageComponentTypes.Any(x => x.PageComponentTypeName == "Container"))
             {
                 context.PageComponentTypes.Add(new PageComponentType { PageComponentTypeName = "Container", PageComponentTypeCategory = PageComponentTypeCategory.Bootstrap, PageComponentTypeDescription = "Empty Bootstrap Container", PageComponentBody = "<div id=\"component-<componentStamp>-<sectionId>\" class=\"container component-container\"></div>" });

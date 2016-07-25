@@ -196,6 +196,38 @@ section.block
     border-color: green;
 }
 
+.admin table.component-container
+{
+    display: block;
+    border-color: red;
+}
+
+.admin tbody
+{
+    display: block;
+}
+
+.admin tr
+{
+    display: table;
+    width: 100%;
+}
+
+.admin th.component-container
+{
+    display: table-cell;
+    min-width: 100px;
+    border: 1px dashed purple;
+}
+
+.admin td.component-container
+{
+    position: relative;
+    display: table-cell;
+    min-width: 100px;
+    border-color: green;
+}
+
 .admin .component-container.selected
 {
     border: 1px solid;
@@ -295,6 +327,12 @@ section .vertical-alignment
     {
         width: 300px;
         height: 225px;
+    }
+
+    .image.image-auto
+    {
+        width: auto;
+        height: auto;
     }
 
     .image.image-fill

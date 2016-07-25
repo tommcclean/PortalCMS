@@ -57,7 +57,7 @@
     section.blank
     {
         background-image: url('../../../Admin/Content/Images/texture.png');
-        padding: 50px 2.5% 50px 2.5%;
+        padding: 30px 2.5% 30px 2.5%;
         text-align: center;
     }
 
@@ -69,6 +69,24 @@
     section p, section a
     {
         margin-bottom: 20px;
+    }
+
+table
+{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+    table tr th
+    {
+        text-align: center;
+    }
+
+    table tr td
+    {
+        padding: 2px;
+        padding-left: 30px;
+        padding-right: 30px;
     }
 
 .builder-item

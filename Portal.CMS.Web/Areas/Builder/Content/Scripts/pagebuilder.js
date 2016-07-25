@@ -14,11 +14,19 @@
         }
     });
 
-    $(".admin section .image").click(function (event) {
+    $(".admin section div.image").click(function (event) {
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
 
-        var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId;
+        var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
+        showModalEditor("Edit Image Properties", href);
+    });
+
+    $(".admin section img.image").click(function (event) {
+        var elementId = event.target.id;
+        var sectionId = ExtractSectionId($(this));
+
+        var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=img";
         showModalEditor("Edit Image Properties", href);
     });
 

@@ -83,7 +83,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         [HttpGet]
-        public ActionResult Image(int pageSectionId, string elementId)
+        public ActionResult Image(int pageSectionId, string elementId, string elementType)
         {
             var pageSection = _pageSectionService.Get(pageSectionId);
 
@@ -91,6 +91,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             {
                 PageId = pageSection.PageId,
                 SectionId = pageSectionId,
+                ElementType = elementType,
                 ElementId = elementId,
                 ImageList = _imageService.Get()
             };
@@ -101,7 +102,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [HttpPost]
         public ActionResult Image(ImageViewModel model)
         {
-            _pageComponentService.EditImage(model.SectionId, model.ElementId, model.SelectedImageId);
+            _pageComponentService.EditImage(model.SectionId, model.ElementType, model.ElementId, model.SelectedImageId);
 
             return Content("Refresh");
         }

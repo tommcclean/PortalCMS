@@ -370,6 +370,7 @@
     </Content>
     <Content Include="Areas\Admin\Content\Scripts\imageselector.js" />
     <Content Include="Areas\Builder\Content\Images\Sample\sample-7.jpg" />
+    <Content Include="Areas\Builder\Content\Images\Sample\small-sample-1.jpg" />
     <Content Include="Areas\Builder\Content\Scripts\pagebuilder.js" />
     <Content Include="Areas\Admin\Content\Scripts\plugins.js" />
     <Content Include="Areas\Admin\Content\Scripts\modal.js" />

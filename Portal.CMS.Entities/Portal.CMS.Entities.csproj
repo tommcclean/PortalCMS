@@ -119,6 +119,7 @@
     <Compile Include="Seed\MenuSeed.cs" />
     <Compile Include="Seed\PageComponentTypeSeed.cs" />
     <Compile Include="Seed\PageSectionTypeSeed.cs" />
+    <Compile Include="Seed\PostSeed.cs" />
     <Compile Include="Seed\PageSeed.cs" />
     <Compile Include="Seed\PostCategorySeed.cs" />
     <Compile Include="Seed\RoleSeed.cs" />

@@ -27,6 +27,12 @@
         height: 225px;
     }
 
+    .image.image-auto
+    {
+        width: auto;
+        height: auto;
+    }
+
     .image.image-fill
     {
         width: 80%;
