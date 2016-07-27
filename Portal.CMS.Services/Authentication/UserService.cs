@@ -11,6 +11,8 @@ namespace Portal.CMS.Services.Authentication
 
         IEnumerable<User> Get();
 
+        User Get(string emailAddress);
+
         IEnumerable<User> GetEditors();
 
         IEnumerable<User> Get(List<string> roleNames);
@@ -40,6 +42,13 @@ namespace Portal.CMS.Services.Authentication
         public User GetUser(int userId)
         {
             var result = _context.Users.SingleOrDefault(x => x.UserId == userId);
+
+            return result;
+        }
+
+        public User Get(string emailAddress)
+        {
+            var result = _context.Users.FirstOrDefault(x => x.EmailAddress.Equals(emailAddress, System.StringComparison.OrdinalIgnoreCase));
 
             return result;
         }

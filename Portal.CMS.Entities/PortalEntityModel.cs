@@ -24,6 +24,8 @@ namespace Portal.CMS.Entities
 
         public virtual DbSet<UserRole> UserRoles { get; set; }
 
+        public virtual DbSet<UserToken> UserTokens { get; set; }
+
         #endregion Authentication Entities
 
         #region Analytic Entities

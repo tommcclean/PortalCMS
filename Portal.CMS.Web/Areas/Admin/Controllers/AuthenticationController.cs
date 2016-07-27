@@ -18,15 +18,17 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         private readonly IRegistrationService _registrationService;
         private readonly IUserService _userService;
         private readonly IRoleService _roleService;
+        private readonly ITokenService _tokenService;
 
         private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/Avatars";
 
-        public AuthenticationController(ILoginService loginService, IRegistrationService registrationService, IUserService userService, IRoleService roleService)
+        public AuthenticationController(ILoginService loginService, IRegistrationService registrationService, IUserService userService, IRoleService roleService, ITokenService tokenService)
         {
             _loginService = loginService;
             _registrationService = registrationService;
             _userService = userService;
             _roleService = roleService;
+            _tokenService = tokenService;
         }
 
         #endregion Dependencies
@@ -200,6 +202,46 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             _registrationService.ChangePassword(UserHelper.UserId, model.NewPassword);
 
             return Content("Refresh");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Forgot(LoginViewModel model)
+        {
+            var token = _tokenService.Add(model.EmailAddress, Entities.Entities.Authentication.UserTokenType.ForgottenPassword);
+
+            return Content("Refresh");
+        }
+
+        [HttpGet]
+        public ActionResult Reset(string id)
+        {
+            return View(new ResetViewModel { Token = id });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Reset(ResetViewModel model)
+        {
+            if (!string.IsNullOrWhiteSpace(model.Password) && !string.IsNullOrWhiteSpace(model.ConfirmPassword))
+            {
+                if (!model.Password.Equals(model.ConfirmPassword, StringComparison.Ordinal))
+                    ModelState.AddModelError("Confirmation", "The passwords you entered do not match.");
+            }
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var result = _tokenService.Redeem(model.Token, model.EmailAddress, model.Password);
+
+            if (!string.IsNullOrWhiteSpace(result))
+            {
+                ModelState.AddModelError("Execution", result);
+
+                return View(model);
+            }     
+
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
 
         private string SaveImage(HttpPostedFileBase imageFile, string actionName)

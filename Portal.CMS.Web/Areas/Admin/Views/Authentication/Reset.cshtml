@@ -1,0 +1,63 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Authentication.ResetViewModel
+@{
+    ViewBag.Title = "Reset Password";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    label
+    {
+        color: black;
+    }
+
+    input
+    {
+        color: black;
+    }
+</style>
+
+<section class="header background-parallax height-tall">
+    <div class="overlay-medium"></div>
+    <div class="vertical-alignment component-container">
+        <h1>Reset Password</h1>
+        <p>Please enter your email address and the password you want below to use.</p>
+        <br/>
+
+        <div class="container dark">
+            @using (Html.BeginForm("Reset", "Authentication", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.HiddenFor(x => x.Token)
+
+                <div class="col-xs-12 col-sm-push-2 col-sm-8">
+                    @Html.ValidationMessage("Confirmation")
+                    @Html.ValidationMessage("Execution")
+
+                    @Html.ValidationMessage("EmailAddress")
+                    <div class="control-group float-container">
+                        @Html.LabelFor(x => x.EmailAddress)
+                        @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
+                    </div>
+
+                    @Html.ValidationMessage("Password")
+                    <div class="control-group float-container">
+                        @Html.LabelFor(x => x.Password)
+                        @Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
+                    </div>
+
+                    @Html.ValidationMessage("ConfirmPassword")
+                    <div class="control-group float-container">
+                        @Html.LabelFor(x => x.ConfirmPassword)
+                        @Html.PasswordFor(x => x.ConfirmPassword, new { placeholder = "Confirm Password" })
+                    </div>
+
+                    <div class="button-group float-container">
+                        <button class="btn primary">Reset Password</button>
+                        <a href="~/" class="btn">Cancel</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

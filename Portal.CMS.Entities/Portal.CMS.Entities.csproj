@@ -60,6 +60,8 @@
     <Compile Include="Entities\Authentication\Role.cs" />
     <Compile Include="Entities\Authentication\User.cs" />
     <Compile Include="Entities\Authentication\UserRole.cs" />
+    <Compile Include="Entities\Authentication\UserToken.cs" />
+    <Compile Include="Entities\Authentication\UserTokenType.cs" />
     <Compile Include="Entities\Copy\Copy.cs" />
     <Compile Include="Entities\Generic\Image.cs" />
     <Compile Include="Entities\Generic\ImageCategory.cs" />
@@ -112,6 +114,14 @@
     <Compile Include="Migrations\201607241651305_ExtendSectionTypeEntity.Designer.cs">
       <DependentUpon>201607241651305_ExtendSectionTypeEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607271844003_AddUserTokenEntity.cs" />
+    <Compile Include="Migrations\201607271844003_AddUserTokenEntity.Designer.cs">
+      <DependentUpon>201607271844003_AddUserTokenEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607271854537_ExtendUserTokenEntity.cs" />
+    <Compile Include="Migrations\201607271854537_ExtendUserTokenEntity.Designer.cs">
+      <DependentUpon>201607271854537_ExtendUserTokenEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -150,6 +160,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607241651305_ExtendSectionTypeEntity.resx">
       <DependentUpon>201607241651305_ExtendSectionTypeEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607271844003_AddUserTokenEntity.resx">
+      <DependentUpon>201607271844003_AddUserTokenEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607271854537_ExtendUserTokenEntity.resx">
+      <DependentUpon>201607271854537_ExtendUserTokenEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
