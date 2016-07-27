@@ -60,6 +60,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 default:
                     if (_userService.GetUserCount() == 1)
                         _roleService.UpdateUserRoles(userId.Value, new List<string> { nameof(Admin) });
+                    else
+                        _roleService.UpdateUserRoles(userId.Value, new List<string> { "Authenticated" });
 
                     if (!UserHelper.IsLoggedIn)
                         Session.Add("UserAccount", _userService.GetUser(userId.Value));
@@ -145,7 +147,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _userService.DeleteUser(userId);
 
-            return Content("Refresh");
+            return RedirectToAction(nameof(Index));
         }
     }
 }
