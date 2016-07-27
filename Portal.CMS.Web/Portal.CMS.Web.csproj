@@ -230,6 +230,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="Areas\Admin\ActionFilters\EditorFilter.cs" />
     <Compile Include="Areas\Admin\ActionFilters\AdminFilter.cs" />
     <Compile Include="Areas\Admin\ActionFilters\LoggedInFilter.cs" />
     <Compile Include="Areas\Admin\Controllers\AnalyticsController.cs" />

@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [LoggedInFilter, AdminFilter]
+    [LoggedInFilter]
     public class PostsController : Controller
     {
         #region Dependencies
@@ -35,7 +35,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         #endregion Dependencies
 
-        [HttpGet]
+        [HttpGet, AdminFilter]
         public ActionResult Index()
         {
             var model = new PostsViewModel()
@@ -47,7 +47,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpGet, EditorFilter]
         public ActionResult Create()
         {
             var postCategories = _postCategoryService.Get();
@@ -57,7 +57,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PostCategoryId = postCategories.First().PostCategoryId,
                 PostAuthorUserId = UserHelper.UserId,
                 PostCategoryList = postCategories,
-                UserList = _userService.Get(new List<string>() { "Admin" }),
+                UserList = _userService.Get(new List<string>() { "Admin", "Editor" }),
                 PublicationState = PublicationState.Published,
                 ImageList = _imageService.Get(),
             };
@@ -65,7 +65,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Create", model);
         }
 
-        [HttpPost]
+        [HttpPost, EditorFilter]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreatePostViewModel model)
@@ -74,7 +74,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 model.ImageList = _imageService.Get();
                 model.PostCategoryList = _postCategoryService.Get();
-                model.UserList = _userService.Get(new List<string>() { "Admin" });
+                model.UserList = _userService.Get(new List<string>() { "Admin", "Editor" });
 
                 return View("_Create", model);
             }
@@ -90,7 +90,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return this.Content("Refresh");
         }
 
-        [HttpGet]
+        [HttpGet, EditorFilter]
         public ActionResult Edit(int postId)
         {
             var post = _postService.Get(postId);
@@ -105,7 +105,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PostAuthorUserId = post.PostAuthorUserId,
                 ExistingGalleryImageList = post.PostImages.Where(x => x.PostImageType == PostImageType.Gallery).Select(x => x.ImageId).ToList(),
                 PostCategoryList = _postCategoryService.Get(),
-                UserList = _userService.Get(new List<string>() { "Admin" }),
+                UserList = _userService.Get(new List<string>() { "Admin", "Editor" }),
                 ImageList = _imageService.Get(),
             };
 
@@ -118,7 +118,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Edit", model);
         }
 
-        [HttpPost]
+        [HttpPost, EditorFilter]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditPostviewModel model)
@@ -127,7 +127,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 model.ImageList = _imageService.Get();
                 model.PostCategoryList = _postCategoryService.Get();
-                model.UserList = _userService.Get(new List<string>() { "Admin" });
+                model.UserList = _userService.Get(new List<string>() { "Admin", "Editor" });
 
                 return View("_Edit", model);
             }
@@ -145,7 +145,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return this.Content("Refresh");
         }
 
-        [HttpGet]
+        [HttpGet, AdminFilter]
         public ActionResult Delete(int postId)
         {
             _postService.Delete(postId);
@@ -153,7 +153,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction("Index", "Posts");
         }
 
-        [HttpGet]
+        [HttpGet, AdminFilter]
         public ActionResult Publish(int postId)
         {
             _postService.Publish(postId);
@@ -161,7 +161,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction("Index", "Posts");
         }
 
-        [HttpGet]
+        [HttpGet, AdminFilter]
         public ActionResult Draft(int postId)
         {
             _postService.Draft(postId);
@@ -169,7 +169,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction("Index", "Posts");
         }
 
-        [HttpPost]
+        [HttpPost, EditorFilter]
         [ValidateInput(false)]
         public ActionResult Inline(int postId, string markup)
         {

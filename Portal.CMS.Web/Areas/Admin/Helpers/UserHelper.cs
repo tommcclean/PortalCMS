@@ -21,7 +21,7 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
         {
             get
             {
-                User userSession = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userSession = (User)System.Web.HttpContext.Current.Session["UserAccount"];
 
                 if (userSession == null)
                     return false;
@@ -32,8 +32,28 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
 
                 if (userAccount.Roles.Any(x => x.Role.RoleName == "Admin"))
                     return true;
-                else
+
+                return false;
+            }
+        }
+
+        public static bool IsEditor
+        {
+            get
+            {
+                var userSession = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+
+                if (userSession == null)
                     return false;
+
+                var userService = new UserService(new Entities.PortalEntityModel());
+
+                var userAccount = userService.GetUser(userSession.UserId);
+
+                if (userAccount.Roles.Any(x => x.Role.RoleName == "Editor") || userAccount.Roles.Any(x => x.Role.RoleName == "Admin"))
+                    return true;
+
+                return false;
             }
         }
 
@@ -41,7 +61,7 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
         {
             get
             {
-                User userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
 
                 return userAccount.UserId;
             }
@@ -51,12 +71,12 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
         {
             get
             {
-                User userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
 
                 if (string.IsNullOrWhiteSpace(userAccount.AvatarImagePath))
                     return "/Areas/Admin/Content/Images/profile-image-male.png";
-                else
-                    return userAccount.AvatarImagePath;
+
+                return userAccount.AvatarImagePath;
             }
         }
 
@@ -64,7 +84,7 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
         {
             get
             {
-                User userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
 
                 return string.Format("{0} {1}", userAccount.GivenName, userAccount.FamilyName);
             }
@@ -74,7 +94,7 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
         {
             get
             {
-                User userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
 
                 return userAccount.GivenName;
             }
@@ -84,7 +104,7 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
         {
             get
             {
-                User userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
 
                 return userAccount.FamilyName;
             }
@@ -94,7 +114,7 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
         {
             get
             {
-                User userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
 
                 return userAccount.EmailAddress;
             }

@@ -31,13 +31,6 @@
     }
 }
 
-@if (UserHelper.IsAdmin)
-{
-    <div class="action-container">
-        <a href="@Url.Action("Create", "Posts", new { area = "Admin" })" class="launch-modal" data-title="Create Post"><div class="action"><span class="glyphicon glyphicon-plus"></span></div></a>
-    </div>
-}
-
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -83,7 +76,7 @@
             <div class="row">
                 <div class="col-xs-12 col-md-7">
                     <div class="category-item">@Model.CurrentPost.PostCategory.PostCategoryName</div>
-                    @if (UserHelper.IsAdmin)
+                    @if (UserHelper.IsEditor)
                     {
                         <a href="@Url.Action("Edit", "Posts", new { area = "Admin", postId = Model.CurrentPost.PostId })" class="category-item launch-modal" data-title="Edit Post"><span class="glyphicon glyphicon-pencil"></span>Edit Post</a>
                     }
@@ -107,7 +100,7 @@
                             </div>
                         </div>
                     }
-                    <div class="@(UserHelper.IsAdmin ? "edit-post-body" : "")">
+                    <div class="@(UserHelper.IsEditor ? "edit-post-body" : "")">
                         @Html.Raw(Model.CurrentPost.PostBody)
                     </div>
                 </div>

@@ -5,7 +5,7 @@
     Layout = "";
 }
 
-@using (Html.BeginForm("Upload", "Media", FormMethod.Post, new { id = "uploadImageForm", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Upload", "Media", FormMethod.Post, new { area = "Admin", id = "uploadImageForm", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

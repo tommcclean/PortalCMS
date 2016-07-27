@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [LoggedInFilter, AdminFilter]
+    [LoggedInFilter]
     public class MediaController : Controller
     {
         #region Dependencies
@@ -29,7 +29,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         #endregion Dependencies
 
-        [HttpGet]
+        [HttpGet, AdminFilter]
         public ActionResult Index()
         {
             var model = new MediaViewModel
@@ -40,7 +40,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpGet, EditorFilter]
         public ActionResult Upload()
         {
             var model = new UploadViewModel();
@@ -48,7 +48,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_Upload", model);
         }
 
-        [HttpPost]
+        [HttpPost, EditorFilter]
         [ValidateAntiForgeryToken]
         public ActionResult Upload(UploadViewModel model)
         {
@@ -62,7 +62,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return this.Content("Refresh");
         }
 
-        [HttpPost]
+        [HttpPost, AdminFilter]
         public ActionResult Delete(int imageId)
         {
             var image = _imageService.Get(imageId);

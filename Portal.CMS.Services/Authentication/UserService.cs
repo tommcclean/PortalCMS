@@ -11,6 +11,8 @@ namespace Portal.CMS.Services.Authentication
 
         IEnumerable<User> Get();
 
+        IEnumerable<User> GetEditors();
+
         IEnumerable<User> Get(List<string> roleNames);
 
         void UpdateDetails(int userId, string emailAddress, string givenName, string familyName);
@@ -47,6 +49,13 @@ namespace Portal.CMS.Services.Authentication
             var userList = _context.Users.OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName).ThenBy(x => x.UserId);
 
             return userList;
+        }
+
+        public IEnumerable<User> GetEditors()
+        {
+            var results = _context.Users.Where(u => u.Roles.Any(r => r.Role.RoleName == "Editor") || u.Roles.Any(r => r.Role.RoleName == "Admin")).ToList();
+
+            return results.OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName);
         }
 
         public IEnumerable<User> Get(List<string> roleNames)
