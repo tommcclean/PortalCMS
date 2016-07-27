@@ -1,5 +1,4 @@
-﻿using Portal.CMS.Entities.Entities.PageBuilder;
-using Portal.CMS.Entities.Entities.Posts;
+﻿using Portal.CMS.Entities.Entities.Posts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

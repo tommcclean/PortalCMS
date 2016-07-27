@@ -239,7 +239,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 ModelState.AddModelError("Execution", result);
 
                 return View(model);
-            }     
+            }
 
             return RedirectToAction("Index", "Home", new { area = "" });
         }

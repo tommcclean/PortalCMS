@@ -1,10 +1,7 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.Authentication;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Authentication
 {
@@ -66,7 +63,6 @@ namespace Portal.CMS.Services.Authentication
 
             if (userToken.DateRedeemed.HasValue)
                 return "Invalid Token. This Token has already been used";
-
 
             _registrationService.ChangePassword(userToken.User.UserId, password);
 

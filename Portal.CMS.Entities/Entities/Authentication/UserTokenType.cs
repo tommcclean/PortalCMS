@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.CMS.Entities.Entities.Authentication
+﻿namespace Portal.CMS.Entities.Entities.Authentication
 {
     public enum UserTokenType
     {
