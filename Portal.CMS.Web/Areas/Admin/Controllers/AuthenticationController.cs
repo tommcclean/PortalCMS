@@ -216,9 +216,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
                 var resetAddress = token;
 
-                var message = string.Format("<p>You submitted a request on {0} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{1}\">Recover Account</a>", websiteName, resetAddress);
+                var messageBody = string.Format("<p>You submitted a request on {0} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{1}\">Recover Account</a>", websiteName, resetAddress);
 
-                EmailHelper.Send(new List<string> { model.EmailAddress }, string.Format("{0}: Password Reset", websiteName), "");
+                EmailHelper.Send(new List<string> { model.EmailAddress }, string.Format("{0}: Password Reset", websiteName), messageBody);
             }
 
             return Content("Refresh");
