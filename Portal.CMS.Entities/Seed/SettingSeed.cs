@@ -1,4 +1,5 @@
 ﻿using Portal.CMS.Entities.Entities.Settings;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Portal.CMS.Entities.Seed
@@ -7,20 +8,21 @@ namespace Portal.CMS.Entities.Seed
     {
         public static void Seed(PortalEntityModel context)
         {
-            if (!context.Settings.Any(x => x.SettingName == "Website Name"))
-            {
-                context.Settings.Add(new Setting { SettingName = "Website Name", SettingValue = "Portal CMS" });
-            }
+            var settingList = context.Settings.ToList();
 
-            if (!context.Settings.Any(x => x.SettingName == "Description Meta Tag"))
-            {
-                context.Settings.Add(new Setting { SettingName = "Description Meta Tag", SettingValue = "Portal CMS is a fully featured content management system with a powerful integrated page builder." });
-            }
+            var newSettings = new List<Setting>();
 
-            if (!context.Settings.Any(x => x.SettingName == "Google Analytics Tracking ID"))
-            {
-                context.Settings.Add(new Setting { SettingName = "Google Analytics Tracking ID", SettingValue = "" });
-            }
+            if (!settingList.Any(x => x.SettingName == "Website Name"))
+                newSettings.Add(new Setting { SettingName = "Website Name", SettingValue = "Portal CMS" });
+
+            if (!settingList.Any(x => x.SettingName == "Description Meta Tag"))
+                newSettings.Add(new Setting { SettingName = "Description Meta Tag", SettingValue = "Portal CMS is a fully featured content management system with a powerful integrated page builder." });
+
+            if (!settingList.Any(x => x.SettingName == "Google Analytics Tracking ID"))
+                newSettings.Add(new Setting { SettingName = "Google Analytics Tracking ID", SettingValue = "" });
+
+            if (newSettings.Any())
+                context.Settings.AddRange(newSettings);
         }
     }
 }

@@ -6,13 +6,9 @@ namespace Portal.CMS.Entities.Seed
     {
         public static void Seed(PortalEntityModel context)
         {
-            if (!context.PostCategories.Any(x => x.PostCategoryName == "General"))
+            if (!context.PostCategories.Any())
             {
                 context.PostCategories.Add(new Entities.Posts.PostCategory { PostCategoryName = "General" });
-            }
-
-            if (!context.PostCategories.Any(x => x.PostCategoryName == "Blog"))
-            {
                 context.PostCategories.Add(new Entities.Posts.PostCategory { PostCategoryName = "Blog" });
             }
         }
