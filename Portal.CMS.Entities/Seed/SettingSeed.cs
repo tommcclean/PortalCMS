@@ -21,6 +21,15 @@ namespace Portal.CMS.Entities.Seed
             if (!settingList.Any(x => x.SettingName == "Google Analytics Tracking ID"))
                 newSettings.Add(new Setting { SettingName = "Google Analytics Tracking ID", SettingValue = "" });
 
+            if (!settingList.Any(x => x.SettingName == "Email From Address"))
+                newSettings.Add(new Setting { SettingName = "Email From Address", SettingValue = "" });
+
+            if (!settingList.Any(x => x.SettingName == "SendGrid UserName"))
+                newSettings.Add(new Setting { SettingName = "SendGrid UserName", SettingValue = "" });
+
+            if (!settingList.Any(x => x.SettingName == "SendGrid Password"))
+                newSettings.Add(new Setting { SettingName = "SendGrid Password", SettingValue = "" });
+
             if (newSettings.Any())
                 context.Settings.AddRange(newSettings);
         }
