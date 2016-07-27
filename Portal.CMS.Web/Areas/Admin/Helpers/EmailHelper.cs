@@ -11,7 +11,12 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
         {
             var myMessage = new SendGridMessage();
 
-            myMessage.From = new MailAddress(SettingHelper.Get("Email From Address"));
+            var fromAddress = (SettingHelper.Get("Email From Address"));
+
+            if (string.IsNullOrEmpty(fromAddress))
+                return;
+
+            myMessage.From = new MailAddress(fromAddress); 
 
             myMessage.AddTo(recipients);
 
@@ -22,6 +27,10 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
 
             var username = SettingHelper.Get("SendGrid UserName");
             var password = SettingHelper.Get("SendGrid Password");
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                return;
+
             var credentials = new NetworkCredential(username, password);
 
             var transportWeb = new SendGrid.Web(credentials);
