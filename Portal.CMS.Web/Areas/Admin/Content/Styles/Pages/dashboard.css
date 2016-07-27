@@ -1,6 +1,7 @@
 ﻿.box
 {
-    min-height: 260px;
+    min-height: 300px;
+    margin-bottom: 30px;
 }
 
     .box img.avatar
@@ -17,7 +18,7 @@
     right: 0;
     top: 0;
     background-color: #EAEAEA;
-    color: gray;
+    color: black;
     padding: 8px 15px 8px 20px;
     border-bottom-left-radius: 5px;
     font-size: 14px;
@@ -39,80 +40,11 @@
     }
 }
 
-.kpi-wrapper
-{
-    text-align: center;
-    width: 100%;
-}
-
-.kpi-circle
-{
-    position: relative;
-    margin-top: 45px;
-    margin-left: 10px;
-    margin-right: 10px;
-    display: inline-block;
-    height: 150px;
-    width: 150px;
-    border-radius: 45%;
-}
-
-.value-positive
-{
-    background-color: #006800;
-    color: #006800;
-}
-
-.value-neutral
-{
-    background-color: #DD8C00;
-    color: #DD8C00;
-}
-
-.value-negative
-{
-    background-color: #D30000;
-    color: #D30000;
-}
-
-.kpi-circle .inner
-{
-    position: absolute;
-    left: 10px;
-    right: 10px;
-    top: 10px;
-    bottom: 10px;
-    border-radius: 45%;
-    background-color: #EDEDED;
-}
-
-    .kpi-circle .inner h4
-    {
-        position: absolute;
-        bottom: 15px;
-        text-align: center;
-        left: 0;
-        right: 0;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    .kpi-circle .inner h5.value
-    {
-        position: absolute;
-        top: 15px;
-        text-align: center;
-        left: 0;
-        right: 0;
-        font-size: 30px;
-        color: black;
-    }
-
 .media-container
 {
     width: 100%;
-    height: 120px;
-    overflow: hidden;
+    height: 220px;
+    overflow-y: auto;;
 }
 
 .media-img
@@ -120,8 +52,9 @@
     float: left;
     margin-left: 5px;
     margin-right: 5px;
-    height: 120px;
-    width: 120px;
+    height: 90px;
+    width: 30%;
+    max-width: 118px;
     margin-bottom: 10px;
 }
 
@@ -138,7 +71,7 @@
 
     .article-item .inner p
     {
-        height: 80px;
+        height: 90px;
         overflow: hidden;
     }
 

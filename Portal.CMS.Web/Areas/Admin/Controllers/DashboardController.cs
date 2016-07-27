@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [LoggedInFilter, AdminFilter]
+    [AdminFilter]
     public class DashboardController : Controller
     {
         #region Dependencies
@@ -27,11 +27,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            var model = new DashboardViewModel()
+            var model = new DashboardViewModel
             {
                 LatestPost = _postService.GetLatest(),
-                Media = _imageService.Get().ToList(),
-                LatestComments = _commentService.Latest().ToList()
+                Media = _imageService.Get().ToList()
             };
 
             return View(model);

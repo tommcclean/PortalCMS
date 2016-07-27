@@ -562,9 +562,6 @@
     <Content Include="Areas\Admin\Views\Dashboard\_MediaManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Dashboard\_LatestComments.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Admin\Views\Dashboard\_LatestPost.cshtml" />
   </ItemGroup>
   <ItemGroup>

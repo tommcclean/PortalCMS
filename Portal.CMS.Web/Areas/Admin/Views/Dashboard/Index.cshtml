@@ -10,12 +10,9 @@
 
 <div class="row">
     @Html.Partial("_Welcome")
-
     @Html.Partial("_MyAccount")
-
     @Html.Partial("_LatestPost", new ViewDataDictionary(Model.LatestPost))
-
-    @Html.Partial("_LatestComments", new ViewDataDictionary(Model.LatestComments))
-
+    @Html.Action("TotalHitsToday", "Analytics", new { chartSize = ChartSize.Third })
+    @Html.Action("TotalHitsWeekly", "Analytics", new { chartSize = ChartSize.Third })
     @Html.Partial("_MediaManager", new ViewDataDictionary(Model.Media))
 </div>

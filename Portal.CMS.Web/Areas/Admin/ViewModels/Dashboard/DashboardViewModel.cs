@@ -9,7 +9,5 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.Dashboard
         public List<Image> Media { get; set; }
 
         public Post LatestPost { get; set; }
-
-        public List<PostComment> LatestComments { get; set; }
     }
 }
