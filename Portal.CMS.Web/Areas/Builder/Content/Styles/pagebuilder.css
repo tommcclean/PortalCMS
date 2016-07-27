@@ -1,10 +1,4 @@
-﻿body
-{
-    background-color: black;
-    background-image: unset;
-}
-
-.section-wrapper, section
+﻿.section-wrapper, section
 {
     position: relative;
 }
