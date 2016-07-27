@@ -14,7 +14,20 @@
             <div class="float-container" style="margin-top: 25px;">
                 @foreach (var setting in Model.SettingList)
                 {
-                    <a href="@Url.Action("Edit", "Settings", new { settingId = @setting.SettingId })" class="tag launch-modal" data-title="Change: @setting.SettingName"><strong><span class="glyphicon glyphicon-cog"></span>@setting.SettingName: </strong> @setting.SettingValue</a>
+                    <a href="@Url.Action("Edit", "Settings", new { settingId = @setting.SettingId })" class="tag launch-modal" data-title="Change: @setting.SettingName">
+                        <strong><span class="glyphicon glyphicon-cog"></span>@setting.SettingName: </strong>
+
+                        @if (setting.SettingName.Contains("Password"))
+                        {
+                            <span style="color: gray;">Hidden</span>
+                        }
+                        else
+                        {
+                            @setting.SettingValue
+                        }
+
+                        
+                    </a>
                 }
             </div>
 
