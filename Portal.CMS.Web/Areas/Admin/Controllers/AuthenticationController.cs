@@ -210,6 +210,17 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var token = _tokenService.Add(model.EmailAddress, Entities.Entities.Authentication.UserTokenType.ForgottenPassword);
 
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                var websiteName = SettingHelper.Get("Website Name");
+
+                var resetAddress = token;
+
+                var message = string.Format("<p>You submitted a request on {0} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{1}\">Recover Account</a>", websiteName, resetAddress);
+
+                EmailHelper.Send(new List<string> { model.EmailAddress }, string.Format("{0}: Password Reset", websiteName), "");
+            }
+
             return Content("Refresh");
         }
 
