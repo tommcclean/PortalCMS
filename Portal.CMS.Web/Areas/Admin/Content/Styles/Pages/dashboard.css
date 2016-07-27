@@ -8,7 +8,8 @@
     {
         height: 150px;
         width: 150px;
-        margin-right: 20px;
+        border-radius: 50%;
+        margin-left: 10px;
     }
 
 .box-title
