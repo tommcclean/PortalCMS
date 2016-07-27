@@ -201,6 +201,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _registrationService.ChangePassword(UserHelper.UserId, model.NewPassword);
 
+            var websiteName = SettingHelper.Get("Website Name");
+            var messageBody = string.Format("<p>Hello {0}</p><p>We just wanted to let you know that your password was changed on {1}. If you didn't change your password, please let us know", UserHelper.FullName, websiteName);
+            EmailHelper.Send(new List<string> { UserHelper.EmailAddress }, string.Format("{0}: Account Notice", websiteName), messageBody);
+
             return Content("Refresh");
         }
 
