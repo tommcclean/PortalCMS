@@ -1,6 +1,10 @@
 ﻿@using Portal.CMS.Web.Areas.Admin.Helpers;
 @{
     var menu = MenuHelper.Get("Main Menu");
+
+    var isLoggedIn = UserHelper.IsLoggedIn;
+    var isAdmin = UserHelper.IsAdmin;
+    var isEditor = UserHelper.IsEditor;
 }
 
 <nav class="navbar navbar-inverse">
@@ -22,7 +26,7 @@
                 }
             </ul>
 
-            @if (UserHelper.IsLoggedIn)
+            @if (isLoggedIn)
             {
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -35,12 +39,12 @@
                             <li><a href="@Url.Action("Logout", "Authentication", new { area="Admin"})"><span class="glyphicon glyphicon-lock"></span>Logout</a></li>
                         </ul>
                     </li>
-                    @if (UserHelper.IsAdmin || UserHelper.IsEditor)
+                    @if (isAdmin || isEditor)
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span>Administration <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                @if (UserHelper.IsAdmin)
+                                @if (isAdmin)
                                 {
                                     <li><a href="@Url.Action("Index", "Dashboard", new { area="Admin"})"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
                                     <li role="separator" class="divider"></li>
@@ -48,7 +52,7 @@
                                     <li><a href="@Url.Action("Index", "Analytics", new { area="Admin"})"><span class="glyphicon glyphicon-stats"></span>Website Analytics</a></li>
                                     <li role="separator" class="divider"></li>
                                 }
-                                @if (UserHelper.IsEditor)
+                                @if (isEditor)
                                 {
                                     <li><a href="@Url.Action("Upload", "Media", new { area="Admin"})" class="launch-modal" data-title="Upload Image"><span class="glyphicon glyphicon-picture"></span>Upload Media</a></li>
                                     <li><a href="@Url.Action("Create", "Posts", new { area="Admin"})" class="launch-modal" data-title="Create Post"><span class="glyphicon glyphicon-pencil"></span>Create Post</a></li>

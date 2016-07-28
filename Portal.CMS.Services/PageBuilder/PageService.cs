@@ -1,4 +1,5 @@
 ﻿using Portal.CMS.Entities;
+using System.Data.Entity;
 using Portal.CMS.Entities.Entities.PageBuilder;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public Page Get(int pageId)
         {
-            var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
+            var page = _context.Pages.Include(x => x.PageSections).SingleOrDefault(x => x.PageId == pageId);
 
             return page;
         }

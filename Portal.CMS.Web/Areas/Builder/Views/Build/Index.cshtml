@@ -2,13 +2,15 @@
 @using Portal.CMS.Web.Areas.Admin.Helpers;
 @{
     ViewBag.Title = Model.Page.PageName;
+
+    var isAdmin = UserHelper.IsAdmin;
 }
 
 @* Page Builder Specific Assets *@
 <script src="~/Areas/Builder/Content/Scripts/pagebuilder.min.js"></script>
 
 @* Drag and Drop Specific Assets *@
-@if (UserHelper.IsAdmin)
+@if (isAdmin)
 {
     <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <script src="~/Areas/Admin/Content/Plugins/JQTouch/jquery.ui.touch-punch.min.js"></script>
@@ -36,7 +38,7 @@
         }
     </style>
 
-    @if (UserHelper.IsAdmin)
+    @if (isAdmin)
     {
         /* Global Administration Menu */
         <div class="action-container global">
@@ -65,7 +67,7 @@
             <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper @(UserHelper.IsAdmin ? "admin sortable" : "")" data-section="@(section.PageSectionId)">
                 @Html.Raw(section.PageSectionBody)
 
-                @if (UserHelper.IsAdmin)
+                @if (isAdmin)
                 {
                     <div class="action-container absolute">
                         <a class="action add-component" data-title="Add Component" data-sectionid="@(section.PageSectionId)"><span class="glyphicon glyphicon-plus"></span></a>

@@ -12,8 +12,8 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
             {
                 if (System.Web.HttpContext.Current.Session["UserAccount"] == null)
                     return false;
-                else
-                    return true;
+
+                return true;
             }
         }
 
@@ -26,11 +26,7 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
                 if (userSession == null)
                     return false;
 
-                var userService = new UserService(new Entities.PortalEntityModel());
-
-                var userAccount = userService.GetUser(userSession.UserId);
-
-                if (userAccount.Roles.Any(x => x.Role.RoleName == "Admin"))
+                if (userSession.Roles.Any(x => x.Role.RoleName.Equals("Admin", System.StringComparison.OrdinalIgnoreCase)))
                     return true;
 
                 return false;
@@ -46,11 +42,7 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
                 if (userSession == null)
                     return false;
 
-                var userService = new UserService(new Entities.PortalEntityModel());
-
-                var userAccount = userService.GetUser(userSession.UserId);
-
-                if (userAccount.Roles.Any(x => x.Role.RoleName == "Editor") || userAccount.Roles.Any(x => x.Role.RoleName == "Admin"))
+                if (userSession.Roles.Any(x => x.Role.RoleName == "Editor") || userSession.Roles.Any(x => x.Role.RoleName == "Admin"))
                     return true;
 
                 return false;
