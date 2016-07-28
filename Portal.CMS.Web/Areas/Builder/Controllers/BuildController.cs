@@ -1,9 +1,12 @@
 ﻿using Portal.CMS.Services.Analytics;
+using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Build;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
@@ -17,14 +20,16 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         private readonly IPageSectionTypeService _pageSectionTypeService;
         private readonly IImageService _imageService;
         private readonly IAnalyticsService _analyticService;
+        private readonly IUserService _userService;
 
-        public BuildController(IPageService pageService, IPageSectionService pageSectionService, IPageSectionTypeService pageSectionTypeService, IImageService imageService, IAnalyticsService analyticService)
+        public BuildController(IPageService pageService, IPageSectionService pageSectionService, IPageSectionTypeService pageSectionTypeService, IImageService imageService, IAnalyticsService analyticService, IUserService userService)
         {
             _pageService = pageService;
             _pageSectionService = pageSectionService;
             _pageSectionTypeService = pageSectionTypeService;
             _imageService = imageService;
             _analyticService = analyticService;
+            _userService = userService;
         }
 
         #endregion Dependencies
@@ -62,9 +67,15 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         [HttpPost]
-        public ActionResult Contact(int pageId, string senderName, string senderEmail, string senderSubject, string senderMessage)
+        public ActionResult Contact(int pageSectionId, string yourName, string yourEmail, string yourSubject, string yourMessage)
         {
-            return RedirectToAction("Index", new { pageId = pageId });
+            var pageSection = _pageSectionService.Get(pageSectionId);
+
+            var websiteName = SettingHelper.Get("Website Name");
+            var messageBody = string.Format("<p>Hello, we thought you might like to know that a visitor to your website has submitted a message, here are the details we recorded.</p><p>Name: {0}</p><p>Email Address: {1}</p><p>Subject: {2}</p><p>Message: {3}</p>", yourName, yourEmail, yourSubject, yourMessage);
+            EmailHelper.Send(_userService.Get(new List<string> { "Admin" }).Select(x => x.EmailAddress).ToList(), string.Format("{0}: Contact Submitted", websiteName), messageBody);
+
+            return RedirectToAction("Index", new { pageId = pageSection.PageId });
         }
     }
 }

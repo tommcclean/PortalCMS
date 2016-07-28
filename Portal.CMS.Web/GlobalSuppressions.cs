@@ -5,3 +5,5 @@
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "CC0048:Use string interpolation instead of String.Format", Justification = "<Pending>", Scope = "member", Target = "~M:Portal.CMS.Web.Areas.Admin.Controllers.MediaController.SaveImage(System.Web.HttpPostedFileBase,System.String)~System.String")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "CC0048:Use string interpolation instead of String.Format", Justification = "<Pending>", Scope = "member", Target = "~M:Portal.CMS.Web.Areas.Admin.Controllers.AuthenticationController.SaveImage(System.Web.HttpPostedFileBase,System.String)~System.String")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "CC0008:Use object initializer", Justification = "<Pending>", Scope = "member", Target = "~M:Portal.CMS.Web.Areas.Admin.Helpers.EmailHelper.Send(System.Collections.Generic.List{System.String},System.String,System.String)")]
+
