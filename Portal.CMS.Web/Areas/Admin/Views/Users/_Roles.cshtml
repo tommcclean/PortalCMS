@@ -16,6 +16,8 @@
 {
     @Html.AntiForgeryToken()
 
+    <span class="field-validation-help">Giving a user additional roles will allow them to see more on Portal CMS.</span>
+
     @Html.HiddenFor(x => x.UserId)
 
     @Html.ListBoxFor(m => m.SelectedRoleList, Model.RoleList.Select(r => new SelectListItem { Text = r.RoleName, Value = r.RoleName.ToString(), Selected = Model.SelectedRoleList != null && Model.SelectedRoleList.Contains(r.RoleName) }))

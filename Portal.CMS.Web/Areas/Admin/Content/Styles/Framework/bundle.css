@@ -299,6 +299,18 @@ input
     font-size: 16px;
 }
 
+.field-validation-help
+{
+    background-color: green;
+    color: white;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
 .action-container
 {
     position: fixed;

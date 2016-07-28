@@ -41,6 +41,8 @@
             {
                 @Html.AntiForgeryToken()
 
+                <span class="field-validation-help">We will send you a link by email that you can use to reset your password.</span>
+
                 @Html.ValidationMessage("EmailAddress")
                 <div class="control-group float-container">
                     @Html.LabelFor(x => x.EmailAddress)
@@ -48,7 +50,7 @@
                 </div>
 
                 <div class="button-group float-container">
-                    <button class="btn primary">Request Access</button>
+                    <button class="btn primary">Send Email</button>
                     <button class="btn" data-dismiss="modal">Cancel</button>
                 </div>
             }
