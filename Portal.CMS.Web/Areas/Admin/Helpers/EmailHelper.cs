@@ -20,7 +20,7 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
 
             myMessage.AddTo(recipients);
 
-            myMessage.Subject = subject;
+            myMessage.Subject = string.Format("{0}: {1}", SettingHelper.Get("Website Name"), subject);
             myMessage.Html = messageBody;
 
             myMessage.EnableClickTracking();

@@ -201,9 +201,12 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _registrationService.ChangePassword(UserHelper.UserId, model.NewPassword);
 
-            var websiteName = SettingHelper.Get("Website Name");
-            var messageBody = string.Format("<p>Hello {0}</p><p>We just wanted to let you know that your password was changed on {1}. If you didn't change your password, please let us know", UserHelper.FullName, websiteName);
-            EmailHelper.Send(new List<string> { UserHelper.EmailAddress }, string.Format("{0}: Account Notice", websiteName), messageBody);
+            var websiteAddress = string.Format(@"http://{0}", System.Web.HttpContext.Current.Request.Url.Authority);
+
+            EmailHelper.Send(
+                new List<string> { UserHelper.EmailAddress }, 
+                "Account Notice",
+                string.Format("<p>Hello {0}</p><p>We just wanted to let you know that your password was changed at {1}. If you didn't change your password, please let us know", UserHelper.FullName, websiteAddress));
 
             return Content("Refresh");
         }
@@ -220,9 +223,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
                 var recoveryLink = string.Format(@"http://{0}{1}", System.Web.HttpContext.Current.Request.Url.Authority, Url.Action("Reset", "Authentication", new { id = token }));
 
-                var messageBody = string.Format("<p>You submitted a request on {0} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{1}\">Recover Account</a>", websiteName, recoveryLink);
-
-                EmailHelper.Send(new List<string> { model.EmailAddress }, string.Format("{0}: Password Reset", websiteName), messageBody);
+                EmailHelper.Send(
+                    new List<string> { model.EmailAddress }, 
+                    "Password Reset",
+                    string.Format("<p>You submitted a request on {0} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{1}\">Recover Account</a>", websiteName, recoveryLink));
             }
 
             return Content("Refresh");
