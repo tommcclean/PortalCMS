@@ -137,10 +137,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 Session.Remove("UserAccount");
                 Session.Remove("UserRoles");
 
-                var userAccount = _userService.GetUser(model.UserId);
-
-                Session.Add("UserAccount", userAccount);
-                Session.Add("UserRoles", userAccount.Roles);
+                Session.Add("UserAccount", _userService.GetUser(model.UserId));
+                Session.Add("UserRoles", _roleService.Get(model.UserId));
             }
 
             return Content("Refresh");

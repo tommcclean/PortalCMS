@@ -61,10 +61,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View("_Login", model);
             }
 
-            var userAccount = _userService.GetUser(userId.Value);
-
-            Session.Add("UserAccount", userAccount);
-            Session.Add("UserRoles", userAccount.Roles);
+            Session.Add("UserAccount", _userService.GetUser(userId.Value));
+            Session.Add("UserRoles", _roleService.Get(userId.Value));
 
             return this.Content("Refresh");
         }
@@ -103,11 +101,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                         _roleService.UpdateUserRoles(userId.Value, new List<string> { nameof(Admin), "Authenticated" });
                     else
                         _roleService.UpdateUserRoles(userId.Value, new List<string> { "Authenticated" });
-
-                    var userAccount = _userService.GetUser(userId.Value);
-
-                    Session.Add("UserAccount", userAccount);
-                    Session.Add("UserRoles", userAccount.Roles);
+                    
+                    Session.Add("UserAccount", _userService.GetUser(userId.Value));
+                    Session.Add("UserRoles", _roleService.Get(userId.Value));
 
                     return this.Content("Refresh");
             }
