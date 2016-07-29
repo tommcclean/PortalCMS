@@ -1,6 +1,7 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.Authentication;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Portal.CMS.Services.Authentication
@@ -37,7 +38,7 @@ namespace Portal.CMS.Services.Authentication
 
         public List<UserRole> Get(int userId)
         {
-            var results = _context.UserRoles.Where(x => x.UserId == userId).ToList();
+            var results = _context.UserRoles.Include(x => x.Role).Where(x => x.UserId == userId).ToList();
 
             return results;
         }
