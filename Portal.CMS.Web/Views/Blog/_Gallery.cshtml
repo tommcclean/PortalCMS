@@ -1,0 +1,17 @@
+﻿@model Portal.CMS.Entities.Entities.Posts.Post
+@using Portal.CMS.Entities.Entities.Posts;
+
+<div class="row image-container x3">
+    @if (!Model.PostImages.Any(x => x.PostImageType == PostImageType.Gallery))
+    {
+        <div class="float-container comment-item">
+            <h4>No Gallery Images Attached</h4>
+            <p>Sometimes we will add a gallery of relevant images to a post, but we haven't attached any to this one yet.</p>
+        </div>
+    }
+
+    @foreach (var image in Model.PostImages.Where(x => x.PostImageType == PostImageType.Gallery))
+    {
+        <a class="fancybox-thumb" rel="fancybox-thumb" href="@image.Image.ImagePath" title="@Model.PostTitle"><img class="thumbnail" src="@image.Image.ImagePath" alt="Gallery Image" /></a>
+    }
+</div>

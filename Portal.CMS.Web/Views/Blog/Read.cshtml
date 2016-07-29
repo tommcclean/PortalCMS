@@ -3,66 +3,37 @@
 @using Portal.CMS.Web.Areas.Admin.Helpers;
 @{
     ViewBag.Title = "Read";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 
     var galleryCount = Model.CurrentPost.PostImages.Where(x => x.PostImageType == PostImageType.Gallery).Count();
     var commentCount = Model.CurrentPost.PostComments.Count();
-    var recentCount = Model.RecentPosts.Count();
-    var similiarCount = Model.SimiliarPosts.Count();
 
-    string bannerImagePath = "";
+    var bannerImagePath = "/Areas/Builder/Content/Images/Sample/Sample-1.jpg";
+
     if (Model.CurrentPost.PostImages.Any(x => x.PostImageType == PostImageType.Banner))
     {
         bannerImagePath = Model.CurrentPost.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
     }
-    else
-    {
-        bannerImagePath = "/Areas/Builder/Content/Images/Sample/Sample-1.jpg";
-    }
 
     var authorAvatarPath = "/Areas/Admin/Content/Images/profile-image-male.png";
 
-    if (Model.Author != null)
+    if (Model.Author != null && !string.IsNullOrWhiteSpace(Model.Author.AvatarImagePath))
     {
-        if (!string.IsNullOrWhiteSpace(Model.Author.AvatarImagePath))
-        {
-            authorAvatarPath = Model.Author.AvatarImagePath;
-        }
+        authorAvatarPath = Model.Author.AvatarImagePath;
     }
 }
 
 <script type="text/javascript">
     $(document).ready(function () {
-
         var dataParams = { "postId": @Model.CurrentPost.PostId, "referrer": "@Request.UrlReferrer", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
-
-        $.ajax({
-            data: dataParams,
-            type: 'POST',
-            cache: false,
-            url: '@Url.Action("Analytic", "Blog")',
-            success: function (data) {
-            },
-        });
+        $.ajax({data: dataParams, type: 'POST', cache: false, url: '@Url.Action("Analytic", "Blog")', success: function (data) { }, });
 
         tinymce.init({
-            selector: '.edit-post-body',
-            inline: true,
-            plugins: [
-              'advlist autolink lists link image charmap anchor',
-              'searchreplace visualblocks code fullscreen',
-              'media table contextmenu paste'
-            ],
+            selector: '.edit-post-body', inline: true, plugins: ['advlist autolink lists link image charmap anchor searchreplace visualblocks code fullscreen media table contextmenu paste'],
             toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
             setup:function(ed) {
                 ed.on('change', function(e) {
                     var dataParams = { "postId": @Model.CurrentPost.PostId, "markup": ed.getContent() };
-                    $.ajax({
-                        data: dataParams,
-                        type: 'POST',
-                        cache: false,
-                        url: '/Admin/Posts/Inline',
-                    });
+                    $.ajax({data: dataParams, type: 'POST', cache: false, url: '/Admin/Posts/Inline'});
                 });
             }
         });
@@ -86,92 +57,39 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 col-md-7">
-                <div class="post-body">
-                    @if (Model.Author != null)
-                    {
-                        <div class="post-details float-container">
-                            <img class="pull-left author-image" src="@authorAvatarPath" style="border-radius: 50%;" />
-                            <div class="pull-left">
-                                <p><strong>Author: </strong>@Model.Author.GivenName @Model.Author.FamilyName</p>
-                                <p><strong>Updated: </strong>@Model.CurrentPost.DateUpdated.ToString("dd MMM yyyy HH:mm")</p>
-                            </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-7">
+            <div class="post-body">
+                @if (Model.Author != null)
+                {
+                    <div class="post-details float-container">
+                        <img class="pull-left author-image" src="@authorAvatarPath" style="border-radius: 50%;" />
+                        <div class="pull-left">
+                            <p><strong>Author: </strong>@Model.Author.GivenName @Model.Author.FamilyName</p>
+                            <p><strong>Updated: </strong>@Model.CurrentPost.DateUpdated.ToString("dd MMM yyyy HH:mm")</p>
                         </div>
-                    }
-                    <div class="@(UserHelper.IsEditor ? "edit-post-body" : "")">
-                        @Html.Raw(Model.CurrentPost.PostBody)
                     </div>
+                }
+
+                <div class="@(UserHelper.IsEditor ? "edit-post-body" : "")">
+                    @Html.Raw(Model.CurrentPost.PostBody)
                 </div>
             </div>
-            <div class="col-xs-12 col-md-5 blog-sidebar">
-                <ul class="nav nav-tabs nav-justified">
-                    <li role="presentation" class="active"><a href="#tab-comments" aria-controls="tab-comments" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-comment"></span>Comments <span class="hidden-md">(@commentCount)</span></a></li>
-                    @if (galleryCount > 0)
-                    {
-                        <li role="presentation" class=""><a href="#tab-viewgallery" aria-controls="tab-viewgallery" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span>Gallery <span class="hidden-md">(@galleryCount)</span></a></li>
-                    }
-                    <li role="presentation" class=""><a href="#tab-recent-posts" aria-controls="tab-recent-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-time"></span>Recent <span class="hidden-md">(@recentCount)</span></a></li>
-                    <li role="presentation" class=""><a href="#tab-similiar-posts" aria-controls="tab-similiar-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span>Similiar <span class="hidden-md">(@similiarCount)</span></a></li>
-                </ul>
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="tab-comments">
-                        <div class="comment-item">
-                            @if (UserHelper.IsLoggedIn)
-                            {
-                                using (Html.BeginForm("Comment", "Blog", FormMethod.Post))
-                                {
-                                    @Html.AntiForgeryToken()
+        </div>
+        <div class="col-xs-12 col-md-5 blog-sidebar">
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation" class="active"><a href="#tab-comments" aria-controls="tab-comments" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-comment"></span>Comments <span class="hidden-md">(@commentCount)</span></a></li>
+                <li role="presentation" class=""><a href="#tab-viewgallery" aria-controls="tab-viewgallery" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span>Gallery <span class="hidden-md">(@galleryCount)</span></a></li>
+                <li role="presentation" class=""><a href="#tab-recent-posts" aria-controls="tab-recent-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-time"></span>Recent <span class="hidden-md">(@Model.RecentPosts.Count())</span></a></li>
+                <li role="presentation" class=""><a href="#tab-similiar-posts" aria-controls="tab-similiar-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span>Similiar <span class="hidden-md">(@Model.SimiliarPosts.Count())</span></a></li>
+            </ul>
 
-                                    @Html.Hidden("postId", Model.CurrentPost.PostId)
-
-                                    <textarea id="commentBody" name="commentBody"></textarea>
-
-                                    <button class="btn btn">Add Comment</button>
-                                }
-                            }
-                            else
-                            {
-                                <p><span class="glyphicon glyphicon-lock"></span>You need to <a href="@Url.Action("Login", "Authentication", new { area = "Admin" })" class="launch-modal" data-title="Sign In">Login</a> or <a href="@Url.Action("Register", "Authentication", new { area = "Admin" })" class="launch-modal" data-title="Register Account">Register</a> to comment.</p>
-                            }
-                        </div>
-
-                        @if (!Model.CurrentPost.PostComments.Any())
-                        {
-                            <div class="float-container comment-item">
-                                <h4>No Comments Left Yet</h4>
-                                <p>Why not add your own comments or thoughts to get the chat started?</p>
-                            </div>
-                        }
-                        else
-                        {
-                            foreach (var comment in Model.CurrentPost.PostComments)
-                            {
-                                <div class="float-container comment-item">
-                                    <h4>@comment.User.GivenName @comment.User.FamilyName <span class="small">at @comment.DateAdded.ToString("dd MMM yyyy HH:mm")</span></h4>
-                                    <p>@comment.CommentBody</p>
-                                </div>
-                            }
-                        }
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="tab-viewgallery">
-                        <div class="row image-container x3">
-                            @foreach (var image in Model.CurrentPost.PostImages.Where(x => x.PostImageType == PostImageType.Gallery))
-                            {
-                                <a class="fancybox-thumb" rel="fancybox-thumb" href="@image.Image.ImagePath" title="@Model.CurrentPost.PostTitle">
-                                    <img class="thumbnail" src="@image.Image.ImagePath" alt="" />
-                                </a>
-                            }
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane float-container" id="tab-recent-posts">
-                        @Html.Partial("_List", Model.RecentPosts)
-                    </div>
-                    <div role="tabpanel" class="tab-pane float-container" id="tab-similiar-posts">
-                        @Html.Partial("_List", Model.SimiliarPosts)
-                    </div>
-                </div>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="tab-comments">@Html.Partial("_Comments", Model.CurrentPost)</div>
+                <div role="tabpanel" class="tab-pane" id="tab-viewgallery">@Html.Partial("_Gallery", Model.CurrentPost)</div>
+                <div role="tabpanel" class="tab-pane float-container" id="tab-recent-posts">@Html.Partial("_List", Model.RecentPosts)</div>
+                <div role="tabpanel" class="tab-pane float-container" id="tab-similiar-posts">@Html.Partial("_List", Model.SimiliarPosts)</div>
             </div>
         </div>
     </div>

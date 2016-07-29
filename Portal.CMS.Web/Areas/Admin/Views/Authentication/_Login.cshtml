@@ -1,28 +1,28 @@
 ﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Authentication.LoginViewModel
 @using Portal.CMS.Web.Areas.Admin.Helpers;
-    @{
-        Layout = "";
+@{
+    Layout = "";
+}
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#tab-login" aria-controls="tab-login" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-lock"></span>Login</a></li>
+    @if (!string.IsNullOrWhiteSpace(SettingHelper.Get("SendGrid UserName")))
+    {
+        <li role="presentation" class=""><a href="#tab-forgot" aria-controls="tab-forgot" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-question-sign"></span>Forgot Password?</a></li>
     }
-    <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#tab-login" aria-controls="tab-login" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-lock"></span>Login</a></li>
-        @if (!string.IsNullOrWhiteSpace(SettingHelper.Get("SendGrid UserName")))
-        {
-            <li role="presentation" class=""><a href="#tab-forgot" aria-controls="tab-forgot" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-question-sign"></span>Forgot Password?</a></li>
-        }
-    </ul>
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="tab-login">
-            @using (Html.BeginForm("Login", "Authentication", FormMethod.Post, new { id = "loginForm" }))
+</ul>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="tab-login">
+        @using (Html.BeginForm("Login", "Authentication", FormMethod.Post, new { id = "loginForm" }))
             {
-                @Html.AntiForgeryToken()
+            @Html.AntiForgeryToken()
 
-                @Html.ValidationMessage("InvalidCredentials")
+            @Html.ValidationMessage("InvalidCredentials")
 
-                @Html.ValidationMessage("EmailAddress")
-                <div class="control-group float-container">
-                    @Html.LabelFor(x => x.EmailAddress)
-                    @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
-                </div>
+            @Html.ValidationMessage("EmailAddress")
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.EmailAddress)
+                @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
+            </div>
 
                 @Html.ValidationMessage("Password")
                 <div class="control-group float-container">
@@ -34,14 +34,14 @@
                     <button class="btn primary">Sign In</button>
                     <button class="btn" data-dismiss="modal">Cancel</button>
                 </div>
-            }
-        </div>
-        <div role="tabpanel" class="tab-pane" id="tab-forgot">
-            @using (Html.BeginForm("Forgot", "Authentication", FormMethod.Post, new { id = "loginForm" }))
+        }
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab-forgot">
+        @using (Html.BeginForm("Forgot", "Authentication", FormMethod.Post, new { id = "loginForm" }))
             {
-                @Html.AntiForgeryToken()
+            @Html.AntiForgeryToken()
 
-                <span class="field-validation-help">We will send you a link by email that you can use to reset your password.</span>
+            <span class="field-validation-help">We will send you a link by email that you can use to reset your password.</span>
 
                 @Html.ValidationMessage("EmailAddress")
                 <div class="control-group float-container">
@@ -53,6 +53,6 @@
                     <button class="btn primary">Send Email</button>
                     <button class="btn" data-dismiss="modal">Cancel</button>
                 </div>
-            }
-        </div>
+        }
     </div>
+</div>

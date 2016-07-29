@@ -9,9 +9,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.reframe').click(function (e) {
-            window.dispatchEvent(new Event('resize'));
-        })
+        $('.reframe').click(function (e) { window.dispatchEvent(new Event('resize')); })
     });
 </script>
 
@@ -21,6 +19,7 @@
     <li role="presentation" class=""><a class="reframe" href="#tab-month" aria-controls="tab-month" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-calendar"></span>This Month</a></li>
     <li role="presentation" class=""><a class="reframe" href="#tab-all" aria-controls="tab-all" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th-large"></span>All Time</a></li>
 </ul>
+
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="tab-day">
         <div class="row">

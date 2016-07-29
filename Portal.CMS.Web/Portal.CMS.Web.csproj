@@ -623,6 +623,8 @@
     <Content Include="Areas\Builder\Views\Section\_Edit.cshtml" />
     <Content Include="Views\Shared\_Analytics.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Blog\_Comments.cshtml" />
+    <Content Include="Views\Blog\_Gallery.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
