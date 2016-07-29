@@ -1,5 +1,6 @@
 ﻿using Portal.CMS.Entities.Entities.Authentication;
 using Portal.CMS.Services.Authentication;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Portal.CMS.Web.Areas.Admin.Helpers
@@ -22,11 +23,12 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
             get
             {
                 var userSession = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userRoles = (List<UserRole>)System.Web.HttpContext.Current.Session["UserRoles"];
 
-                if (userSession == null)
+                if (userSession == null || userRoles == null)
                     return false;
 
-                if (userSession.Roles.Any(x => x.Role.RoleName.Equals("Admin", System.StringComparison.OrdinalIgnoreCase)))
+                if (userRoles.Any(x => x.Role.RoleName.Equals("Admin", System.StringComparison.OrdinalIgnoreCase)))
                     return true;
 
                 return false;
@@ -38,11 +40,12 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
             get
             {
                 var userSession = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userRoles = (List<UserRole>)System.Web.HttpContext.Current.Session["UserRoles"];
 
-                if (userSession == null)
+                if (userSession == null || userRoles == null)
                     return false;
 
-                if (userSession.Roles.Any(x => x.Role.RoleName == "Editor") || userSession.Roles.Any(x => x.Role.RoleName == "Admin"))
+                if (userRoles.Any(x => x.Role.RoleName == "Editor") || userRoles.Any(x => x.Role.RoleName == "Admin"))
                     return true;
 
                 return false;

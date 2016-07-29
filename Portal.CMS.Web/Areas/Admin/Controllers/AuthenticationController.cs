@@ -64,6 +64,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             var userAccount = _userService.GetUser(userId.Value);
 
             Session.Add("UserAccount", userAccount);
+            Session.Add("UserRoles", userAccount.Roles);
 
             return this.Content("Refresh");
         }
@@ -106,6 +107,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     var userAccount = _userService.GetUser(userId.Value);
 
                     Session.Add("UserAccount", userAccount);
+                    Session.Add("UserRoles", userAccount.Roles);
 
                     return this.Content("Refresh");
             }

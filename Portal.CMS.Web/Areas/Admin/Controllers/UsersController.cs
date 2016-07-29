@@ -135,8 +135,12 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (model.UserId == UserHelper.UserId)
             {
                 Session.Remove("UserAccount");
+                Session.Remove("UserRoles");
 
-                Session.Add("UserAccount", _userService.GetUser(model.UserId));
+                var userAccount = _userService.GetUser(model.UserId);
+
+                Session.Add("UserAccount", userAccount);
+                Session.Add("UserRoles", userAccount.Roles);
             }
 
             return Content("Refresh");
