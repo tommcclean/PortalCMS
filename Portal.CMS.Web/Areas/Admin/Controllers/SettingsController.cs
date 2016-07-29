@@ -12,9 +12,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly ISettingService _settingService;
-        private readonly IRoleService _roleService;
-        private readonly IMenuService _menuService;
+        readonly ISettingService _settingService;
+        readonly IRoleService _roleService;
+        readonly IMenuService _menuService;
 
         public SettingsController(ISettingService settingService, IRoleService roleService, IMenuService menuService)
         {
@@ -41,11 +41,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var model = new CreateViewModel()
-            {
-            };
-
-            return View("_Create", model);
+            return View("_Create", new CreateViewModel());
         }
 
         [HttpPost]
@@ -83,6 +79,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View("_Edit", model);
 
             _settingService.Edit(model.SettingId, model.SettingName, model.SettingValue);
+
+            Session.Remove(string.Format("Setting-{0}", model.SettingName));
 
             return this.Content("Refresh");
         }

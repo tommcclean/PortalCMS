@@ -345,9 +345,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Blog\BlogViewModel.cs" />
     <Compile Include="ViewModels\Blog\ReadViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\AddViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Build\CustomViewModel.cs" />
