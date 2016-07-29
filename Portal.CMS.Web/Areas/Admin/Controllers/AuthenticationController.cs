@@ -98,9 +98,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
                 default:
                     if (_userService.GetUserCount() == 1)
-                        _roleService.UpdateUserRoles(userId.Value, new List<string> { nameof(Admin), "Authenticated" });
+                        _roleService.Update(userId.Value, new List<string> { nameof(Admin), "Authenticated" });
                     else
-                        _roleService.UpdateUserRoles(userId.Value, new List<string> { "Authenticated" });
+                        _roleService.Update(userId.Value, new List<string> { "Authenticated" });
                     
                     Session.Add("UserAccount", _userService.GetUser(userId.Value));
                     Session.Add("UserRoles", _roleService.Get(userId.Value));

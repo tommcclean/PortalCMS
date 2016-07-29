@@ -61,25 +61,20 @@ namespace Portal.CMS.Services.Authentication
             _context.SaveChanges();
         }
 
-        private static string GenerateSecurePassword(string password)
+        static string GenerateSecurePassword(string password)
         {
             // http://stackoverflow.com/questions/4181198/how-to-hash-a-password
-
             byte[] salt;
             using (var rNGCryptoServiceProvider = new RNGCryptoServiceProvider())
             {
                 rNGCryptoServiceProvider.GetBytes(salt = new byte[16]);
-
                 using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000))
                 {
                     var hash = pbkdf2.GetBytes(20);
-
                     var hashBytes = new byte[36];
                     Array.Copy(salt, 0, hashBytes, 0, 16);
                     Array.Copy(hash, 0, hashBytes, 16, 20);
-
                     var savedPasswordHash = Convert.ToBase64String(hashBytes);
-
                     return savedPasswordHash;
                 }
             }

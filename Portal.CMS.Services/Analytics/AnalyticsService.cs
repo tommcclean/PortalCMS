@@ -203,7 +203,7 @@ namespace Portal.CMS.Services.Analytics
             return PruneAndOrder(results);
         }
 
-        private static List<KeyValuePair<string, int>> PruneAndOrder(List<KeyValuePair<string, int>> results)
+        static List<KeyValuePair<string, int>> PruneAndOrder(List<KeyValuePair<string, int>> results)
         {
             // REMOVE: Empty Items
             results = results.Where(x => x.Value > 0).ToList();

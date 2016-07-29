@@ -3,6 +3,7 @@ using Portal.CMS.Entities.Entities.Posts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 namespace Portal.CMS.Services.Posts
 {
@@ -42,7 +43,7 @@ namespace Portal.CMS.Services.Posts
 
         public Post Get(int postId)
         {
-            var result = _context.Posts.SingleOrDefault(x => x.PostId == postId);
+            var result = _context.Posts.Include(x => x.PostComments).Include(x => x.PostImages).Include(x => x.PostCategory).SingleOrDefault(x => x.PostId == postId);
 
             return result;
         }
@@ -56,7 +57,7 @@ namespace Portal.CMS.Services.Posts
 
         public Post GetLatest()
         {
-            var result = _context.Posts.Where(x => x.IsPublished).OrderByDescending(x => x.DateUpdated).FirstOrDefault();
+            var result = _context.Posts.Include(x => x.PostComments).Include(x => x.PostImages).Include(x => x.PostCategory).Where(x => x.IsPublished).OrderByDescending(x => x.DateUpdated).FirstOrDefault();
 
             return result;
         }
