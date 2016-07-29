@@ -2,8 +2,8 @@
 using Portal.CMS.Entities.Entities.Posts;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Entity;
+using System.Linq;
 
 namespace Portal.CMS.Services.Posts
 {
@@ -19,7 +19,7 @@ namespace Portal.CMS.Services.Posts
 
         void Edit(int postId, string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody);
 
-        void Inline(int postId, string postBody);
+        void Edit(int postId, string postBody);
 
         void Delete(int postId);
 
@@ -99,7 +99,7 @@ namespace Portal.CMS.Services.Posts
             _context.SaveChanges();
         }
 
-        public void Inline(int postId, string postBody)
+        public void Edit(int postId, string postBody)
         {
             var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
 

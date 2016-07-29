@@ -11,8 +11,6 @@ namespace Portal.CMS.Services.Posts
         void Add(int userId, int postId, string commentBody);
 
         IEnumerable<PostComment> Get();
-
-        IEnumerable<PostComment> Latest();
     }
 
     public class PostCommentService : IPostCommentService
@@ -48,13 +46,6 @@ namespace Portal.CMS.Services.Posts
             var comments = _context.PostComments.OrderBy(x => x.DateAdded);
 
             return comments;
-        }
-
-        public IEnumerable<PostComment> Latest()
-        {
-            var results = _context.PostComments.OrderByDescending(x => x.DateAdded).Take(2);
-
-            return results;
         }
     }
 }

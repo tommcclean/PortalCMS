@@ -61,7 +61,7 @@ namespace Portal.CMS.Services.Authentication
             _context.SaveChanges();
         }
 
-        static string GenerateSecurePassword(string password)
+        private static string GenerateSecurePassword(string password)
         {
             // http://stackoverflow.com/questions/4181198/how-to-hash-a-password
             byte[] salt;

@@ -11,8 +11,6 @@ namespace Portal.CMS.Services.PageBuilder
 
         int Add(int pageId, int pageSectionTypeId);
 
-        void Element(int pageSectionId, string elementId, string elementValue, string elementColour);
-
         void Background(int pageSectionId, int backgroundImageId);
 
         void Delete(int pageSectionId);
@@ -78,25 +76,6 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
 
             return newPageSection.PageSectionId;
-        }
-
-        public void Element(int pageSectionId, string elementId, string elementValue, string elementColour)
-        {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
-
-            if (pageSection == null)
-                return;
-
-            var document = new Document(pageSection.PageSectionBody);
-
-            document.UpdateElementContent(elementId, elementValue);
-
-            if (!string.IsNullOrWhiteSpace(elementColour))
-                document.UpdateElementAttribute(elementId, "style", string.Format("color: {0};", elementColour), true);
-
-            pageSection.PageSectionBody = document.OuterHtml;
-
-            _context.SaveChanges();
         }
 
         public void Background(int pageSectionId, int backgroundImageId)

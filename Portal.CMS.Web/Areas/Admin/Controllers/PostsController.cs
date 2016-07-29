@@ -173,7 +173,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Inline(int postId, string markup)
         {
-            _postService.Inline(postId, markup);
+            _postService.Edit(postId, markup);
 
             return Content("Refresh");
         }
@@ -184,7 +184,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             if (bannerImageId != 0)
             {
-                _postImageService.Wipe(postId, PostImageType.Banner);
+                _postImageService.Remove(postId, PostImageType.Banner);
 
                 _postImageService.Add(postId, bannerImageId, PostImageType.Banner);
             }
@@ -194,7 +194,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             if (!string.IsNullOrWhiteSpace(galleryImageIds))
             {
-                _postImageService.Wipe(postId, PostImageType.Gallery);
+                _postImageService.Remove(postId, PostImageType.Gallery);
 
                 var galleryImageList = galleryImageIds.Split(',');
 
