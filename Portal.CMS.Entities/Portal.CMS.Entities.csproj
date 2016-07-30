@@ -122,6 +122,10 @@
     <Compile Include="Migrations\201607271854537_ExtendUserTokenEntity.Designer.cs">
       <DependentUpon>201607271854537_ExtendUserTokenEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607301215211_AddBioPropertyToUserEntity.cs" />
+    <Compile Include="Migrations\201607301215211_AddBioPropertyToUserEntity.Designer.cs">
+      <DependentUpon>201607301215211_AddBioPropertyToUserEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607271854537_ExtendUserTokenEntity.resx">
       <DependentUpon>201607271854537_ExtendUserTokenEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607301215211_AddBioPropertyToUserEntity.resx">
+      <DependentUpon>201607301215211_AddBioPropertyToUserEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

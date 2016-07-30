@@ -261,6 +261,28 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction("Index", "Home", new { area = "" });
         }
 
+        [HttpGet, LoggedInFilter]
+        public ActionResult Bio()
+        {
+            var userAccount = _userService.GetUser(UserHelper.UserId);
+
+            var model = new BioViewModel
+            {
+                Bio = userAccount.Bio
+            };
+
+            return View("_Bio", model);
+        }
+
+        [HttpPost, LoggedInFilter]
+        [ValidateAntiForgeryToken]
+        public ActionResult Bio(BioViewModel model)
+        {
+            _userService.UpdateBio(UserHelper.UserId, model.Bio);
+
+            return Content("Refresh");
+        }
+
         private string SaveImage(HttpPostedFileBase imageFile, string actionName)
         {
             var extension = Path.GetExtension(imageFile.FileName).ToUpper();

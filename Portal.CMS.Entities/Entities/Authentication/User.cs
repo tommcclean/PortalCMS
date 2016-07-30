@@ -29,6 +29,8 @@ namespace Portal.CMS.Entities.Entities.Authentication
 
         public string AvatarImagePath { get; set; }
 
+        public string Bio { get; set; }
+
         public virtual ICollection<UserRole> Roles { get; set; }
     }
 }

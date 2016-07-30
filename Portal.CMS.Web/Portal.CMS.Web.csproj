@@ -294,6 +294,7 @@
     <Compile Include="Areas\Admin\ViewModels\Analytics\ColumnViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\LoginViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\AccountViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Authentication\BioViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\PasswordViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\RegisterViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\AvatarViewModel.cs" />
@@ -618,6 +619,7 @@
     <Content Include="Areas\Admin\Views\Authentication\_Account.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Avatar.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\Reset.cshtml" />
+    <Content Include="Areas\Admin\Views\Authentication\_Bio.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Edit.cshtml" />

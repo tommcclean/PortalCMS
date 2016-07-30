@@ -21,6 +21,8 @@ namespace Portal.CMS.Services.Authentication
 
         void UpdateAvatar(int userId, string avatarImagePath);
 
+        void UpdateBio(int userId, string bio);
+
         void DeleteUser(int userId);
 
         int GetUserCount();
@@ -104,6 +106,15 @@ namespace Portal.CMS.Services.Authentication
             var user = _context.Users.SingleOrDefault(x => x.UserId == userId);
 
             user.AvatarImagePath = avatarImagePath;
+
+            _context.SaveChanges();
+        }
+
+        public void UpdateBio(int userId, string bio)
+        {
+            var user = _context.Users.SingleOrDefault(x => x.UserId == userId);
+
+            user.Bio = bio;
 
             _context.SaveChanges();
         }
