@@ -21,10 +21,8 @@
 
 @if (!Model.PostComments.Any())
 {
-    <div class="float-container comment-item">
-        <h4>No Comments Left Yet</h4>
-        <p>Why not add your own comments or thoughts to get the chat started?</p>
-    </div>
+    <br />
+    @Html.Action("Get", "Copy", new { area = "Admin", copyName = "No Comments Message" })
 }
 
 @foreach (var comment in Model.PostComments)

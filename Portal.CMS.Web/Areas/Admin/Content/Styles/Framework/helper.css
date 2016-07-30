@@ -306,3 +306,13 @@ a.category-item:hover
 {
     border: 2px solid red !important;
 }
+
+.copy-wrapper
+{
+    position: relative;
+}
+
+.copy-block
+{
+    position: relative;
+}

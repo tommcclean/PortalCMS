@@ -586,6 +586,7 @@
     <Content Include="Areas\Admin\Views\Authentication\_Avatar.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\Reset.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Bio.cshtml" />
+    <Content Include="Areas\Admin\Views\Copy\_Copy.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Edit.cshtml" />

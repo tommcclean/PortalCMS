@@ -11,7 +11,6 @@ namespace Portal.CMS.Entities.Entities.Copy
         [Required]
         public string CopyName { get; set; }
 
-        [Required]
         public string CopyBody { get; set; }
 
         [Required]

@@ -15,7 +15,7 @@ namespace Portal.CMS.Services.Copy
 
         Portal.CMS.Entities.Entities.Copy.Copy Get(int copyId);
 
-        string Get(string copyName);
+        Entities.Entities.Copy.Copy Get(string copyName);
 
         void Delete(int copyId);
     }
@@ -78,11 +78,11 @@ namespace Portal.CMS.Services.Copy
             return copyItem;
         }
 
-        public string Get(string copyName)
+        public Entities.Entities.Copy.Copy Get(string copyName)
         {
             var copyItem = _context.CopySections.FirstOrDefault(x => x.CopyName == copyName);
 
-            return copyItem == null ? string.Empty : copyItem.CopyBody;
+            return copyItem;
         }
 
         public void Delete(int copyId)

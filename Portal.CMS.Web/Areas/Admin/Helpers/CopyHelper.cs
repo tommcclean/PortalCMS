@@ -12,9 +12,9 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
 
             ICopyService copyService = container.GetInstance<CopyService>();
 
-            var copyText = copyService.Get(copyName);
+            var copyItem = copyService.Get(copyName);
 
-            return copyText;
+            return copyItem.CopyBody;
         }
     }
 }

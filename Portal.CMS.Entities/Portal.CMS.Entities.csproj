@@ -126,6 +126,10 @@
     <Compile Include="Migrations\201607301215211_AddBioPropertyToUserEntity.Designer.cs">
       <DependentUpon>201607301215211_AddBioPropertyToUserEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607301802388_ChangeCopyEntityToNotRequireBody.cs" />
+    <Compile Include="Migrations\201607301802388_ChangeCopyEntityToNotRequireBody.Designer.cs">
+      <DependentUpon>201607301802388_ChangeCopyEntityToNotRequireBody.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -133,6 +137,7 @@
     <Compile Include="Seed\MenuSeed.cs" />
     <Compile Include="Seed\PageComponentTypeSeed.cs" />
     <Compile Include="Seed\PageSectionTypeSeed.cs" />
+    <Compile Include="Seed\CopySeed.cs" />
     <Compile Include="Seed\PostSeed.cs" />
     <Compile Include="Seed\PageSeed.cs" />
     <Compile Include="Seed\PostCategorySeed.cs" />
@@ -173,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607301215211_AddBioPropertyToUserEntity.resx">
       <DependentUpon>201607301215211_AddBioPropertyToUserEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607301802388_ChangeCopyEntityToNotRequireBody.resx">
+      <DependentUpon>201607301802388_ChangeCopyEntityToNotRequireBody.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

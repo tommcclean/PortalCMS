@@ -12,20 +12,6 @@
         margin-left: 10px;
     }
 
-.box-title
-{
-    z-index: 10;
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-color: #EAEAEA;
-    color: black;
-    padding: 8px 15px 8px 20px;
-    border-bottom-left-radius: 5px;
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-
 @media (max-width: 1024px)
 {
     .box h3
