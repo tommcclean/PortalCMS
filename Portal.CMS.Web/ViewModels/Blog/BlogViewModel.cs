@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Portal.CMS.Web.ViewModels.Blog
 {
-    public class ReadViewModel
+    public class BlogViewModel
     {
         public Post CurrentPost { get; set; }
 

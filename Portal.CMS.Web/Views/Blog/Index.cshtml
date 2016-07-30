@@ -1,8 +1,8 @@
-﻿@model Portal.CMS.Web.ViewModels.Blog.ReadViewModel
+﻿@model Portal.CMS.Web.ViewModels.Blog.BlogViewModel
 @using Portal.CMS.Entities.Entities.Posts;
 @using Portal.CMS.Web.Areas.Admin.Helpers;
 @{
-    ViewBag.Title = "Read";
+    ViewBag.Title = Model.CurrentPost.PostTitle;
 
     var galleryCount = Model.CurrentPost.PostImages.Where(x => x.PostImageType == PostImageType.Gallery).Count();
     var commentCount = Model.CurrentPost.PostComments.Count();

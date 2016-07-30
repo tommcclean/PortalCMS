@@ -14,7 +14,7 @@
         bannerImagePath = post.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
     }
 
-    <a class="col-xs-12" href="@Url.Action("Read", "Blog", new { area = "", postId = @post.PostId })">
+    <a class="col-xs-12" href="@Url.Action("Index", "Blog", new { area = "", id = @post.PostId })">
         <div class="box article-item float-container" style="@string.Format("background-image: url('{0}'); color: white;", bannerImagePath)">
             <div class="inner">
                 <div class="category-item">@post.PostCategory.PostCategoryName</div>

@@ -28,12 +28,12 @@ namespace Portal.CMS.Web.Controllers
         #endregion Dependencies
 
         [HttpGet]
-        public ActionResult Read(int? postId)
+        public ActionResult Index(int? id)
         {
-            var model = new ReadViewModel();
+            var model = new BlogViewModel();
 
-            if (postId.HasValue)
-                model.CurrentPost = _postService.Get(postId.Value);
+            if (id.HasValue)
+                model.CurrentPost = _postService.Get(id.Value);
             else
                 model.CurrentPost = _postService.GetLatest();
 
@@ -54,7 +54,7 @@ namespace Portal.CMS.Web.Controllers
         {
             _postCommentService.Add(UserHelper.UserId, postId, commentBody);
 
-            return RedirectToAction(nameof(Read), "Blog", new { postId = postId });
+            return RedirectToAction(nameof(Index), "Blog", new { postId = postId });
         }
 
         public ActionResult Analytic(int postId, string referrer)
