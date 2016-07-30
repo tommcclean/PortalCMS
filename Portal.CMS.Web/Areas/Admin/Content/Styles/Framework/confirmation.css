@@ -1,9 +1,4 @@
-﻿.confirmation-popover
-{
-    color: black;
-}
-
-.confirmation-popover .glyphicon
+﻿.confirmation-popover .glyphicon
 {
     margin: 0;
 }
@@ -11,17 +6,13 @@
 .confirmation-popover .btn.btn-danger
 {
     background-color: #d9534f;
-    color: white;
 }
 
 .confirmation-popover .btn
 {
     background-color: black;
     color: white;
-    border-radius: 5px;
-    padding: 5px 10px 5px 10px;
-    margin: 1px;
-    margin-left: 4px;
-    margin-right: 4px;
+    padding: 7px 10px 5px 10px;
+    margin: 1px 4px 1px 4px;
     border-radius: 50%;
 }

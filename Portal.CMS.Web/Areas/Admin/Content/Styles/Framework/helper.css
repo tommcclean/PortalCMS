@@ -237,3 +237,72 @@ a.category-item:hover
 {
     color: white;
 }
+
+.vertical-alignment
+{
+    position: relative;
+    text-align: center;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 20;
+}
+
+.align-left
+{
+    text-align: left;
+}
+
+.align-right
+{
+    text-align: right;
+}
+
+.align-center
+{
+    text-align: center;
+}
+
+.tag
+{
+    display: inline-block;
+    background-color: #E0E0E0;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    color: black;
+}
+
+.tag:hover
+{
+    background-color: #EAEAEA;
+    color: black;
+    text-decoration: none;
+}
+
+.popover
+{
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px #D2D2D8;
+    border: 1px solid #D6D7D8;
+}
+
+.popover-title
+{
+    text-transform: uppercase;
+    color: #333333;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.selected
+{
+    border: 2px solid red !important;
+}

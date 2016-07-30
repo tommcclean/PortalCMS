@@ -16,17 +16,6 @@
     padding: 20px 20px 30px 20px;
 }
 
-    .tab-pane h1 {
-        font-size: 25px;
-        padding: 10px 20px 10px 20px;
-        margin-bottom: 10px;
-        color: black;
-    }
-
-    .tab-pane a:hover {
-        text-decoration: none;
-    }
-
     @media (max-width: 767px)
     {
         .nav-tabs.nav-justified{

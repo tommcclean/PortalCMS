@@ -3,7 +3,7 @@
     text-transform: uppercase;
 }
 
-.modal-body, .modal-footer
+.modal-body
 {
     background-image: url('../../Images/texture.png');
 }

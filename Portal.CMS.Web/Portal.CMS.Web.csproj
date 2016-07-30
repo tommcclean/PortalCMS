@@ -49,8 +49,8 @@
       <HintPath>..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Glimpse.AspNet, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
+    <Reference Include="Glimpse.AspNet, Version=1.9.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.AspNet.1.9.2\lib\net45\Glimpse.AspNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Glimpse.Core, Version=1.8.6.0, Culture=neutral, processorArchitecture=MSIL">
@@ -343,6 +343,7 @@
     <Compile Include="DependencyResolution\StructureMapScopeModule.cs" />
     <Compile Include="DependencyResolution\StructureMapWebApiDependencyResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapWebApiDependencyScope.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -381,6 +382,7 @@
     </Content>
     <Content Include="Areas\Admin\Content\Plugins\JQColorPicker\jqColorPicker.min.js" />
     <Content Include="Areas\Admin\Content\Plugins\JQTouch\jquery.ui.touch-punch.min.js" />
+    <Content Include="Areas\Admin\Content\Plugins\TinyMCE\tinymce.min.js" />
     <Content Include="Areas\Admin\Content\Styles\Framework\confirmation.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\images.css" />
     <Content Include="Areas\Builder\Content\Images\Sample\icon-1.png" />
@@ -428,19 +430,12 @@
       <DependentUpon>bundle.css</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Content\Styles\Framework\fields.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\imagepicker.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\modal.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\popover.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\tabs.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\tags.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\toggle.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\toolbar.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\verticalallignment.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\fonts.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\helper.css" />
     <Content Include="Areas\Admin\Content\Styles\Pages\dashboard.css" />
     <Content Include="Areas\Admin\Content\Styles\Pages\portal.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\table.css" />
     <Content Include="Areas\Admin\Content\Styles\Pages\posts.css" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox-thumbs.js" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox.js" />

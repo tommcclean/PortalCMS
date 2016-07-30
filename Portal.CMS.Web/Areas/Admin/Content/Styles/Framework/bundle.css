@@ -206,7 +206,7 @@ p
 
 input
 {
-    font-size: 20px;
+    
     outline: none;
 }
 
@@ -463,240 +463,7 @@ a.category-item:hover
 {
     color: white;
 }
-.image-selector
-{
-    text-align: left;
-}
 
-.image-selector .selected
-{
-    border: 2px solid red !important;
-}
-
-@media (max-width: 1024px)
-{
-}
-.modal-title
-{
-    text-transform: uppercase;
-}
-
-.modal-body, .modal-footer
-{
-    background-image: url('../../Images/texture.png');
-}
-
-@media (min-width: 768px)
-{
-    .modal-dialog
-    {
-        width: 1000px;
-        max-width: 90%;
-        margin: 30px auto;
-    }
-}
-.popover
-{
-    border-radius: 5px;
-    box-shadow: 1px 1px 10px #D2D2D8;
-    border: 1px solid #D6D7D8;
-}
-
-.popover-title
-{
-    text-transform: uppercase;
-    color: #333333;
-    font-weight: bold;
-
-    letter-spacing: 0.5px;
-}
-table
-{
-    width: 100%;
-    font-size: 16px;
-}
-
-table th
-{
-    font-weight: bold;
-    text-transform: uppercase;
-}
-.nav-tabs > li > a
-{
-    color: black;
-}
-
-.tab-content
-{
-    border: 1px solid #ddd;
-    border-top: 0;
-}
-
-.tab-content .tab-pane
-{
-    position: relative;
-    background-color: white;
-    padding: 20px 20px 30px 20px;
-}
-
-    .tab-pane h1 {
-        font-size: 25px;
-        padding: 10px 20px 10px 20px;
-        margin-bottom: 10px;
-        color: black;
-    }
-
-    .tab-pane a:hover {
-        text-decoration: none;
-    }
-
-    @media (max-width: 767px)
-    {
-        .nav-tabs.nav-justified{
-            margin-bottom: 10px;
-        }
-    }
-.tag
-{
-    display: inline-block;
-    background-color: #E0E0E0;
-    padding: 5px 10px 5px 10px;
-    border-radius: 5px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.25s ease-in-out;
-    color: black;
-}
-
-.tag:hover
-{
-    background-color: #EAEAEA;
-    color: black;
-    text-decoration: none;
-}
-.toggle
-{
-    position: relative;
-    width: 110px;
-    height: 40px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    margin-right: 20px;
-    border-radius: 5px;
-}
-
-    .toggle.on
-    {
-        background-color: #149AFD;
-        border: 1px solid #149AFD;
-    }
-
-        .toggle.on:hover
-        {
-            border: 1px solid #5E5E5E;
-        }
-
-        .toggle.on .value:after
-        {
-            content: "On";
-        }
-
-    .toggle.off
-    {
-        background-color: #5E5E5E;
-        border: 1px solid #5E5E5E;
-    }
-
-        .toggle.off:hover
-        {
-            border: 1px solid #149AFD;
-        }
-
-    .toggle.off .value:after
-    {
-        content: "Off";
-    }
-
-    .toggle .switch
-    {
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 50px;
-        font-size: 1px;
-        border-radius: 5px;
-        background-color: white;
-        transition: all 0.3s ease-in-out;
-    }
-
-    .toggle:hover .switch
-    {
-        width: 108px;
-        line-height: 40px;
-        text-align: center;
-        font-size: 15px;
-        text-transform: uppercase;
-        font-weight: bold;
-    }
-
-    .toggle.on:hover .switch::after
-    {
-        content: "Switch Off";
-        color: #5E5E5E;
-    }
-
-    .toggle.off:hover .switch::after
-    {
-        content: "Switch On";
-        color: #149AFD;
-    }
-
-    .toggle .value
-    {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 60px;
-        line-height: 40px;
-        text-align: center;
-        color: white;
-        text-transform: uppercase;
-        font-weight: bold;
-    }
-#toolbar
-{
-    position: fixed;
-    top: 70px;
-    right: 0;
-    z-index: 50;
-    background-color: black;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
-}
-
-#toolbar ul
-{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-#toolbar ul li
-{
-    display: inline-block;
-    padding: 10px 10px 10px 10px;
-}
-
-#toolbar ul li a
-{
-    color: white;
-}
 .vertical-alignment
 {
     position: relative;
@@ -724,11 +491,90 @@ table th
 {
     text-align: center;
 }
-.confirmation-popover
+
+.tag
+{
+    display: inline-block;
+    background-color: #E0E0E0;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    color: black;
+}
+
+.tag:hover
+{
+    background-color: #EAEAEA;
+    color: black;
+    text-decoration: none;
+}
+
+.popover
+{
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px #D2D2D8;
+    border: 1px solid #D6D7D8;
+}
+
+.popover-title
+{
+    text-transform: uppercase;
+    color: #333333;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.selected
+{
+    border: 2px solid red !important;
+}
+.modal-title
+{
+    text-transform: uppercase;
+}
+
+.modal-body
+{
+    background-image: url('../../Images/texture.png');
+}
+
+@media (min-width: 768px)
+{
+    .modal-dialog
+    {
+        width: 1000px;
+        max-width: 90%;
+        margin: 30px auto;
+    }
+}
+.nav-tabs > li > a
 {
     color: black;
 }
 
+.tab-content
+{
+    border: 1px solid #ddd;
+    border-top: 0;
+}
+
+.tab-content .tab-pane
+{
+    position: relative;
+    background-color: white;
+    padding: 20px 20px 30px 20px;
+}
+
+    @media (max-width: 767px)
+    {
+        .nav-tabs.nav-justified{
+            margin-bottom: 10px;
+        }
+    }
 .confirmation-popover .glyphicon
 {
     margin: 0;
@@ -737,20 +583,17 @@ table th
 .confirmation-popover .btn.btn-danger
 {
     background-color: #d9534f;
-    color: white;
 }
 
 .confirmation-popover .btn
 {
     background-color: black;
     color: white;
-    border-radius: 5px;
-    padding: 5px 10px 5px 10px;
-    margin: 1px;
-    margin-left: 4px;
-    margin-right: 4px;
+    padding: 7px 10px 5px 10px;
+    margin: 1px 4px 1px 4px;
     border-radius: 50%;
 }
+
 .tab-pane img.thumbnail
 {
     border: 2px solid white;
