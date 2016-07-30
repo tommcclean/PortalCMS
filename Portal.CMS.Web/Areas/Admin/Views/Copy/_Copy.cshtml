@@ -23,7 +23,7 @@
 </script>
 
 <div class="copy-wrapper">
-    @if (isAdmin) { <div class="box-title">@Model.CopyName</div> }
+    @if (isAdmin) { <div class="box-title"><span class="glyphicon glyphicon-pencil"></span>@Model.CopyName</div> }
     <div class="@(UserHelper.IsAdmin ? "admin" : "") copy-@Model.CopyId copy-block">
         @Html.Raw(Model.CopyBody)
     </div>

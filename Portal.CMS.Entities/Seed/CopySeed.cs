@@ -22,6 +22,12 @@ namespace Portal.CMS.Entities.Seed
             if (!copyList.Any(x => x.CopyName == "No Gallery Message"))
                 newCopyList.Add(new Copy { CopyName = "No Gallery Message", CopyBody = "<h4>No Gallery Images</h4><p>Sometimes we add relevant images to a photo gallery, but we don't have any for this post.</p>", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
 
+            if (!copyList.Any(x => x.CopyName == "Sign In Message"))
+                newCopyList.Add(new Copy { CopyName = "Sign In Message", CopyBody = "<p>Welcome to Portal CMS, please enter your sign in details below.</p>", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
+
+            if (!copyList.Any(x => x.CopyName == "Update Account Message"))
+                newCopyList.Add(new Copy { CopyName = "Update Account Message", CopyBody = "<p>If you change your email address, please remember to use this when logging in.</p>", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
+
             if (newCopyList.Any())
                 context.CopySections.AddRange(newCopyList);
         }

@@ -18,6 +18,8 @@
 
             @Html.ValidationMessage("InvalidCredentials")
 
+            @Html.Action("Get", "Copy", new { area = "Admin", copyName = "Sign In Message" })
+
             @Html.ValidationMessage("EmailAddress")
             <div class="control-group float-container">
                 @Html.LabelFor(x => x.EmailAddress)

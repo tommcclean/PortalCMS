@@ -315,4 +315,5 @@ a.category-item:hover
 .copy-block
 {
     position: relative;
+    margin-bottom: 20px;
 }

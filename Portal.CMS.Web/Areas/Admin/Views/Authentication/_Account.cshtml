@@ -19,7 +19,7 @@
 {
     @Html.AntiForgeryToken()
 
-    <span class="field-validation-help">If you decide to change your email address, remember to use that to login in future!</span>
+    @Html.Action("Get", "Copy", new { area = "Admin", copyName = "Update Account Message" })
 
     @Html.ValidationMessage("EmailAddress")
     <div class="control-group float-container">
