@@ -20,9 +20,15 @@
         background-color: white;
         border: 1px solid silver;
         padding: 20px;
-        zoom: 0.6;
-        height: 300px;
+        zoom: 0.4;
+        height: 400px;
         overflow: hidden;
+    }
+
+    .component-preview.text
+    {
+        height: 150px;
+        zoom: 0.6;
     }
 
     .builder-item h4
@@ -43,9 +49,9 @@
 }
 
 <ul class="nav nav-tabs nav-justified">
-    <li role="presentation" class="active"><a href="#tab-markup" aria-controls="tab-general" role="tab" data-toggle="tab">Markup</a></li>
+    <li role="presentation" class="active"><a href="#tab-markup" aria-controls="tab-general" role="tab" data-toggle="tab">Basic Markup</a></li>
     <li role="presentation" class=""><a href="#tab-bootstrap" aria-controls="tab-icon" role="tab" data-toggle="tab">Bootstrap</a></li>
-    <li role="presentation" class=""><a href="#tab-table" aria-controls="tab-table" role="tab" data-toggle="tab">Table (BETA)</a></li>
+    <li role="presentation" class=""><a href="#tab-table" aria-controls="tab-table" role="tab" data-toggle="tab">Tables</a></li>
     <li role="presentation" class=""><a href="#tab-control" aria-controls="tab-screenshot" role="tab" data-toggle="tab">Control</a></li>
 </ul>
 <div class="row builder-picker">
@@ -55,7 +61,7 @@
             {
                 <div class="col-xs-12 col-md-6">
                     <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId">
-                        <div class="component-preview float-container">
+                        <div class="component-preview text float-container">
                             @Html.Raw(componentType.PageComponentBody)
                         </div>
                         <h4 style="padding-top: 10px;">@componentType.PageComponentTypeName</h4>

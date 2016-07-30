@@ -64,3 +64,11 @@ input
 {
     color: white;
 }
+
+code
+{
+    display: block;
+    text-align: left;
+    padding: 10px;
+    font-size: 16px;
+}

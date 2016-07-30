@@ -77,7 +77,7 @@
 
     // Edit Text Elements
     tinymce.init({
-        selector: '.admin section p, .admin section h1, .admin section h2, .admin section h3, .admin section h4',
+        selector: '.admin section p, .admin section h1, .admin section h2, .admin section h3, .admin section h4, .admin section code',
         menubar: false,
         inline: true,
         plugins: ['advlist textcolor colorpicker link'],

@@ -104,7 +104,7 @@ table
         box-shadow: 1px 1px 30px #B7B7B7;
     }
 
-    .builder-item:not(section) h4
+    .builder-item h4
     {
         margin-top: 10px;
     }
