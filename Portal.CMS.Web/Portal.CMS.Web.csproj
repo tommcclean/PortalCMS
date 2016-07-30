@@ -257,7 +257,6 @@
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
-    <Compile Include="Areas\Admin\Helpers\CopyHelper.cs" />
     <Compile Include="Areas\Admin\Helpers\EmailHelper.cs" />
     <Compile Include="Areas\Admin\Helpers\MenuHelper.cs" />
     <Compile Include="Areas\Admin\Helpers\SettingHelper.cs" />

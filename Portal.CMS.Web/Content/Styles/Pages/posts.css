@@ -151,10 +151,6 @@
     }
 }
 
-#tab-comments
-{
-}
-
     #tab-comments textarea
     {
         width: 100%;
@@ -166,21 +162,12 @@
     {
         border-bottom: 1px solid #ddd;
         margin-bottom: 10px;
-        padding-top: 5px;
+        padding: 5px;
+        margin: 0 10px 10px 10px;
     }
 
         #tab-comments .comment-item h4
         {
-            padding: 0 10px 10px 10px;
-            margin-bottom: 10px;
-        }
-
-            #tab-comments .comment-item h4 span.small
-            {
-                letter-spacing: 1px;
-            }
-
-        #tab-comments .comment-item p
-        {
-            padding: 0 10px 10px 10px;
+            
+            margin-bottom: 20px;
         }

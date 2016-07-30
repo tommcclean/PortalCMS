@@ -21,6 +21,13 @@
         border: 1px solid silver;
         padding: 20px;
         zoom: 0.6;
+        height: 300px;
+        overflow: hidden;
+    }
+
+    .builder-item h4
+    {
+        text-transform: uppercase;
     }
 </style>
 
@@ -51,7 +58,7 @@
                         <div class="component-preview float-container">
                             @Html.Raw(componentType.PageComponentBody)
                         </div>
-                        <h1 style="padding-top: 10px;">@componentType.PageComponentTypeName</h1>
+                        <h4 style="padding-top: 10px;">@componentType.PageComponentTypeName</h4>
                     </div>
                 </div>
             }
@@ -61,7 +68,7 @@
             {
                 <div class="col-xs-12 col-md-6">
                     <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId">
-                        <h1 style="padding-top: 10px;">@componentType.PageComponentTypeName</h1>
+                        <h4 style="padding-top: 10px;">@componentType.PageComponentTypeName</h4>
                     </div>
                 </div>
             }
@@ -71,7 +78,7 @@
             {
                 <div class="col-xs-12 col-md-6">
                     <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId">
-                        <h1 style="padding-top: 10px;">@componentType.PageComponentTypeName</h1>
+                        <h4 style="padding-top: 10px;">@componentType.PageComponentTypeName</h4>
                     </div>
                 </div>
             }
@@ -84,7 +91,7 @@
                         <div class="component-preview float-container">
                             @Html.Raw(componentType.PageComponentBody)
                         </div>
-                        <h1 style="padding-top: 10px;">@componentType.PageComponentTypeName</h1>
+                        <h4 style="padding-top: 10px;">@componentType.PageComponentTypeName</h4>
                     </div>
                 </div>
             }
