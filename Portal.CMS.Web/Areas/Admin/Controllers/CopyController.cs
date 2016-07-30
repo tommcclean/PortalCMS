@@ -98,7 +98,6 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet]
         [ChildActionOnly]
         public ActionResult Get(string copyName)
         {

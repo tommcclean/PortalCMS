@@ -12,13 +12,13 @@
 </ul>
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="tab-login">
+        @Html.Action("Get", "Copy", new { area = "Admin", copyName = "Sign In Message" })
+
         @using (Html.BeginForm("Login", "Authentication", FormMethod.Post, new { id = "loginForm" }))
             {
             @Html.AntiForgeryToken()
 
             @Html.ValidationMessage("InvalidCredentials")
-
-            @Html.Action("Get", "Copy", new { area = "Admin", copyName = "Sign In Message" })
 
             @Html.ValidationMessage("EmailAddress")
             <div class="control-group float-container">
