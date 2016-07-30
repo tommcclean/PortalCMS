@@ -420,6 +420,7 @@
     <Content Include="Areas\Builder\Content\Styles\Components\component.glass.css" />
     <Content Include="Areas\Builder\Content\Styles\Components\component.image.css" />
     <Content Include="Areas\Builder\Content\Styles\Sections\section.block.css" />
+    <Content Include="Areas\Builder\Content\Styles\Sections\section.gallery.css" />
     <Content Include="Areas\Builder\Content\Styles\Sections\section.quote.css" />
     <Content Include="Areas\Builder\Content\Styles\pagebuilder.min.css">
       <DependentUpon>pagebuilder.css</DependentUpon>

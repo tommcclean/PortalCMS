@@ -63,7 +63,8 @@
       "Areas/Builder/Content/Styles/Sections/section.block.css",
       "Areas/Builder/Content/Styles/Components/component.containers.css",
       "Areas/Builder/Content/Styles/Components/component.glass.css",
-      "Areas/Builder/Content/Styles/Components/component.image.css"
+      "Areas/Builder/Content/Styles/Components/component.image.css",
+      "Areas/Builder/Content/Styles/Sections/section.gallery.css"
     ]
   },
   {
