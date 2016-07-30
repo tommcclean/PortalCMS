@@ -13,13 +13,6 @@
     {
         bannerImagePath = Model.CurrentPost.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
     }
-
-    var authorAvatarPath = "/Areas/Admin/Content/Images/profile-image-male.png";
-
-    if (Model.Author != null && !string.IsNullOrWhiteSpace(Model.Author.AvatarImagePath))
-    {
-        authorAvatarPath = Model.Author.AvatarImagePath;
-    }
 }
 
 <script type="text/javascript">
@@ -64,7 +57,7 @@
                 @if (Model.Author != null)
                 {
                     <div class="post-details float-container">
-                        <img class="pull-left author-image" src="@authorAvatarPath" style="border-radius: 50%;" />
+                        <img class="pull-left author-image" src="@Model.Author.AvatarImagePath" style="border-radius: 50%;" />
                         <div class="pull-left">
                             <p><strong>Author: </strong>@Model.Author.GivenName @Model.Author.FamilyName</p>
                             <p><strong>Updated: </strong>@Model.CurrentPost.DateUpdated.ToString("dd MMM yyyy HH:mm")</p>

@@ -12,19 +12,12 @@
 <div class="row">
     @foreach (var user in Model.Users)
     {
-        var authorAvatarPath = "/Areas/Admin/Content/Images/profile-image-male.png";
-
-        if (!string.IsNullOrWhiteSpace(user.AvatarImagePath))
-        {
-            authorAvatarPath = user.AvatarImagePath;
-        }
-
         <div class="col-xs-12 col-md-6 col-lg-4">
             <div class="box float-container">
 
                 <div class="row" style="height: 120px;">
                     <div class="col-xs-3 vertical-alignment">
-                        <img src="@authorAvatarPath" style="border-radius: 50%;" />
+                        <img src="@user.AvatarImagePath" style="border-radius: 50%;" />
                     </div>
                     <div class="col-xs-9 vertical-alignment" style="text-align: left;">
                         <h3>@user.GivenName @user.FamilyName</h3>

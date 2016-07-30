@@ -37,6 +37,7 @@ namespace Portal.CMS.Services.Authentication
                 Password = GenerateSecurePassword(password),
                 GivenName = givenName,
                 FamilyName = familyName,
+                AvatarImagePath = "/Areas/Admin/Content/Images/profile-image-male.png",
                 DateAdded = DateTime.Now,
                 DateUpdated = DateTime.Now
             };

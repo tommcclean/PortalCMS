@@ -68,9 +68,6 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
             {
                 var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
 
-                if (string.IsNullOrWhiteSpace(userAccount.AvatarImagePath))
-                    return "/Areas/Admin/Content/Images/profile-image-male.png";
-
                 return userAccount.AvatarImagePath;
             }
         }
