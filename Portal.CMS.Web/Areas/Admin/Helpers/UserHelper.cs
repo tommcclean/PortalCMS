@@ -51,12 +51,15 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
             }
         }
 
-        public static int UserId
+        public static int? UserId
         {
             get
             {
                 var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
 
+                if (userAccount == null)
+                    return null;
+                
                 return userAccount.UserId;
             }
         }

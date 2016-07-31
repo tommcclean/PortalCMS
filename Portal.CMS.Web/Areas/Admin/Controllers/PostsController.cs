@@ -57,7 +57,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             var model = new CreatePostViewModel()
             {
                 PostCategoryId = postCategories.First().PostCategoryId,
-                PostAuthorUserId = UserHelper.UserId,
+                PostAuthorUserId = UserHelper.UserId.Value,
                 PostCategoryList = postCategories,
                 UserList = _userService.Get(new List<string>() { "Admin", "Editor" }),
                 PublicationState = PublicationState.Published,

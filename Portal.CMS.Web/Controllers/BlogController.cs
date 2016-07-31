@@ -30,20 +30,25 @@ namespace Portal.CMS.Web.Controllers
         [HttpGet]
         public ActionResult Index(int? id)
         {
-            var model = new BlogViewModel();
+            var model = new BlogViewModel
+            {
+                RecentPosts = _postService.Read(UserHelper.UserId, string.Empty).ToList(),
+            };
 
-            if (id.HasValue)
-                model.CurrentPost = _postService.Get(id.Value);
-            else
-                model.CurrentPost = _postService.GetLatest();
-
-            if (model.CurrentPost == null || model.CurrentPost.IsPublished == false)
+            if (!model.RecentPosts.Any())
                 return RedirectToAction("Index", "Home");
+           
+            if (id.HasValue)
+                model.CurrentPost = _postService.Read(UserHelper.UserId, id.Value);
+            else
+                model.CurrentPost = model.RecentPosts.First();
 
             model.Author = _userService.GetUser(model.CurrentPost.PostAuthorUserId);
 
-            model.RecentPosts = _postService.Get(string.Empty, true).Where(x => x.PostId != model.CurrentPost.PostId).Take(10).ToList();
-            model.SimiliarPosts = _postService.Get(model.CurrentPost.PostCategory.PostCategoryName, true).Where(x => x.PostId != model.CurrentPost.PostId).Take(10).ToList();
+            model.SimiliarPosts = _postService.Read(UserHelper.UserId, model.CurrentPost.PostCategory.PostCategoryName).ToList();
+
+            model.RecentPosts.Remove(model.CurrentPost);
+            model.SimiliarPosts.Remove(model.CurrentPost);
 
             return View(model);
         }
@@ -52,7 +57,7 @@ namespace Portal.CMS.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Comment(int postId, string commentBody)
         {
-            _postCommentService.Add(UserHelper.UserId, postId, commentBody);
+            _postCommentService.Add(UserHelper.UserId.Value, postId, commentBody);
 
             return RedirectToAction(nameof(Index), "Blog", new { postId = postId });
         }

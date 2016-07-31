@@ -1,5 +1,6 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.Posts;
+using Portal.CMS.Services.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,6 +10,10 @@ namespace Portal.CMS.Services.Posts
 {
     public interface IPostService
     {
+        Post Read(int? userId, int postId);
+
+        IEnumerable<Post> Read(int? userId, string postCategoryName);
+
         Post Get(int postId);
 
         List<Post> Get(string postCategoryName, bool published);
@@ -35,13 +40,83 @@ namespace Portal.CMS.Services.Posts
         #region Dependencies
 
         private readonly PortalEntityModel _context;
+        private readonly IUserService _userService;
 
-        public PostService(PortalEntityModel context)
+        public PostService(PortalEntityModel context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
 
         #endregion Dependencies
+
+        public Post Read(int? userId, int postId)
+        {
+            var post = _context.Posts.FirstOrDefault(x => x.PostId == postId);
+
+            var userRoleList = new List<string>();
+
+            if (userId.HasValue)
+            {
+                var user = _userService.GetUser(userId.Value);
+
+                if (user.Roles.Any(x => x.Role.RoleName == "Admin"))
+                    return post;
+
+                userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));
+
+                if (userRoleList.Contains(post.PostRoles.SelectMany(x => x.Role.RoleName)))
+                    return post;
+            }
+
+            return null;
+        }
+
+        public IEnumerable<Post> Read(int? userId, string postCategoryName)
+        {
+            var userRoleList = new List<string>();
+            var isAdministrator = false;
+
+            if (userId.HasValue)
+            {
+                var user = _userService.GetUser(userId.Value);
+
+                if (user.Roles.Any())
+                    userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));
+
+                if (user.Roles.Any(x => x.Role.RoleName == "Admin"))
+                    isAdministrator = true;
+            }
+
+            var postList = _context.Posts.Where(x => postCategoryName == string.Empty || x.PostCategory.PostCategoryName == postCategoryName);
+
+            var returnList = new List<Post>();
+
+            foreach (var post in postList)
+            {
+                if (isAdministrator)
+                {
+                    returnList.Add(post);
+                    continue;
+                }
+
+                if (!post.PostRoles.Any())
+                {
+                    returnList.Add(post);
+
+                    continue;
+                }
+
+                if (userRoleList.Contains(post.PostRoles.SelectMany(x => x.Role.RoleName)))
+                {
+                    returnList.Add(post);
+
+                    continue;
+                }
+            }
+
+            return returnList.Distinct().OrderByDescending(x => x.DateUpdated).ThenByDescending(x => x.DateAdded);
+        }
 
         public Post Get(int postId)
         {
@@ -160,7 +235,7 @@ namespace Portal.CMS.Services.Posts
             var roles = _context.Roles.ToList();
 
             if (post.PostRoles != null)
-                foreach (var role in post.PostRoles)
+                foreach (var role in post.PostRoles.ToList())
                     _context.PostRoles.Remove(role);
 
             foreach (var roleName in roleList)
@@ -172,7 +247,6 @@ namespace Portal.CMS.Services.Posts
 
                 _context.PostRoles.Add(new PostRole { PostId = postId, RoleId = currentRole.RoleId });
             }
-
 
             _context.SaveChanges();
         }

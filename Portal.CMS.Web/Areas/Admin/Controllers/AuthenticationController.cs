@@ -142,13 +142,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View("_Account", model);
             }
 
-            _userService.UpdateDetails(UserHelper.UserId, model.EmailAddress, model.GivenName, model.FamilyName);
+            _userService.UpdateDetails(UserHelper.UserId.Value, model.EmailAddress, model.GivenName, model.FamilyName);
 
             var userId = UserHelper.UserId;
 
             Session.Remove("UserAccount");
 
-            Session.Add("UserAccount", _userService.GetUser(userId));
+            Session.Add("UserAccount", _userService.GetUser(userId.Value));
 
             return Content("Refresh");
         }
@@ -172,13 +172,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             var imageFilePath = SaveImage(model.AttachedImage, nameof(Avatar));
 
-            _userService.UpdateAvatar(UserHelper.UserId, imageFilePath);
+            _userService.UpdateAvatar(UserHelper.UserId.Value, imageFilePath);
 
             var userId = UserHelper.UserId;
 
             Session.Remove("UserAccount");
 
-            Session.Add("UserAccount", _userService.GetUser(userId));
+            Session.Add("UserAccount", _userService.GetUser(userId.Value));
 
             return this.Content("Refresh");
         }
@@ -208,7 +208,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View("_Password", model);
             }
 
-            _registrationService.ChangePassword(UserHelper.UserId, model.NewPassword);
+            _registrationService.ChangePassword(UserHelper.UserId.Value, model.NewPassword);
 
             var websiteAddress = string.Format(@"http://{0}", System.Web.HttpContext.Current.Request.Url.Authority);
 
@@ -275,7 +275,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet, LoggedInFilter]
         public ActionResult Bio()
         {
-            var userAccount = _userService.GetUser(UserHelper.UserId);
+            var userAccount = _userService.GetUser(UserHelper.UserId.Value);
 
             var model = new BioViewModel
             {
@@ -289,7 +289,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Bio(BioViewModel model)
         {
-            _userService.UpdateBio(UserHelper.UserId, model.Bio);
+            _userService.UpdateBio(UserHelper.UserId.Value, model.Bio);
 
             return Content("Refresh");
         }
