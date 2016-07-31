@@ -1,12 +1,12 @@
 ﻿.glass
 {
     position: absolute;
-    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
+    background-image: url('/Areas/Admin/Content/Images/block_black_light.png');
 }
 
 .glass-dark
 {
-    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
+    background-image: url('/Areas/Admin/Content/Images/block_black_light.png');
 }
 
 .glass-top

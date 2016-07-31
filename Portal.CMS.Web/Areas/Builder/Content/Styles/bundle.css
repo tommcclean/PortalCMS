@@ -86,12 +86,12 @@ section .vertical-alignment
 .glass
 {
     position: absolute;
-    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
+    background-image: url('/Areas/Admin/Content/Images/block_black_light.png');
 }
 
 .glass-dark
 {
-    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
+    background-image: url('/Areas/Admin/Content/Images/block_black_light.png');
 }
 
 .glass-top
@@ -136,7 +136,7 @@ section .vertical-alignment
     display: inline-block;
     height: 125px;
     width: 125px;
-    background-image: url('../../Images/Sample/Sample-6.jpg');
+    background-image: url('/Areas/Builder/Content/Images/Sample/icon-6.png');
     background-size: cover;
     background-position: center center;
     margin: 10px;
@@ -381,7 +381,7 @@ section.contact
 {
     color: white;
     text-align: center;
-    background-image: url('../../Images/Sample/sample-7.jpg');
+    background-image: url('/Areas/Builder/Content/Images/Sample/sample-7.jpg');
     min-height: 600px;
 }
 
