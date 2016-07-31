@@ -43,6 +43,9 @@ namespace Portal.CMS.Web.Controllers
             else
                 model.CurrentPost = model.RecentPosts.First();
 
+            if (model.CurrentPost == null)
+                return RedirectToAction("Index", "Home");
+
             model.Author = _userService.GetUser(model.CurrentPost.PostAuthorUserId);
 
             model.SimiliarPosts = _postService.Read(UserHelper.UserId, model.CurrentPost.PostCategory.PostCategoryName).ToList();
