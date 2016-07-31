@@ -12,7 +12,7 @@
 
         $('#@Model.ContainerElementId').append(componentTypeBody);
 
-        SetupAdministration();
+        SetupComponentEvents();
 
         var dataParams = { "pageSectionId": @Model.PageSectionId, "containerElementId": '@Model.ContainerElementId', "elementBody": componentTypeBody };
         $.ajax({

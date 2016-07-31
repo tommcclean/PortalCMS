@@ -1,5 +1,47 @@
 ﻿$(document).ready(function () {
-    SetupAdministration();
+    SetupComponentEvents();
+
+    $(".add-component").click(function (event) {
+        var sectionId = $(this).attr("data-sectionid");
+
+        var targetContainer = $("#section-" + sectionId + " .component-container.selected:first").attr("id");
+
+        if (targetContainer === undefined) {
+            var href = "/Builder/Component/Add?pageSectionId=" + sectionId + "&elementId=section-" + sectionId;
+            showModalEditor("Add Component", href);
+        }
+        else {
+            var globalhref = "/Builder/Component/Add?pageSectionId=" + sectionId + "&elementId=" + targetContainer;
+            showModalEditor("Add Component", globalhref);
+        }
+    });
+
+    $(".admin section").click(function (event) {
+        var elementId = $(this).attr("id");
+        var sectionId = ExtractSectionId($(this));
+        $(this).find('.component-container').removeClass('selected');
+        $('#container-editor-' + sectionId).fadeOut();
+    }).children().click(function (e) {
+        return false;
+    });
+
+    $(".admin .component-editor").click(function (event) {
+        var elementId = $(this).attr("id");
+        var sectionId = ExtractSectionId($(this));
+
+        var targetContainer = $("#section-" + sectionId + " .component-container.selected:first").attr("id");
+
+        $('#' + targetContainer).remove();
+
+        var dataParams = { "pageSectionId": sectionId, "elementId": targetContainer };
+        $.ajax({
+            data: dataParams,
+            type: 'POST',
+            cache: false,
+            url: '/Builder/Component/Delete',
+            success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
+        });
+    });
 });
 
 function ExtractSectionId(element) {
@@ -29,22 +71,10 @@ function SaveOrder() {
     $('#order-submit').click();
 }
 
-function SetupAdministration()
+function SetupComponentEvents()
 {
-    $(".add-component").click(function (event) {
-        var sectionId = $(this).attr("data-sectionid");
-
-        var targetContainer = $("#section-" + sectionId + " .component-container.selected:first").attr("id");
-
-        if (targetContainer === undefined) {
-            var href = "/Builder/Component/Add?pageSectionId=" + sectionId + "&elementId=section-" + sectionId;
-            showModalEditor("Add Component", href);
-        }
-        else {
-            var globalhref = "/Builder/Component/Add?pageSectionId=" + sectionId + "&elementId=" + targetContainer;
-            showModalEditor("Add Component", globalhref);
-        }
-    });
+    // REMOVE: Previously Added Bindings / Events
+    $('.admin .component-container').unbind();
 
     $(".admin section div.image").click(function (event) {
         var elementId = event.target.id;
@@ -60,33 +90,6 @@ function SetupAdministration()
 
         var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=img";
         showModalEditor("Edit Image Properties", href);
-    });
-
-    $(".admin section").click(function (event) {
-        var elementId = $(this).attr("id");
-        var sectionId = ExtractSectionId($(this));
-        $(this).find('.component-container').removeClass('selected');
-        $('#container-editor-' + sectionId).fadeOut();
-    }).children().click(function (e) {
-        return false;
-    });
-
-    $(".admin .component-editor").click(function (event) {
-        var elementId = $(this).attr("id");
-        var sectionId = ExtractSectionId($(this));
-
-        var targetContainer = $("#section-" + sectionId + " .component-container.selected:first").attr("id");
-
-        $('#' + targetContainer).remove();
-
-        var dataParams = { "pageSectionId": sectionId, "elementId": targetContainer };
-        $.ajax({
-            data: dataParams,
-            type: 'POST',
-            cache: false,
-            url: '/Builder/Component/Delete',
-            success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-        });
     });
 
     $(".admin .component-container").click(function (event) {
