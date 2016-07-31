@@ -68,6 +68,10 @@ namespace Portal.CMS.Services.Posts
                 if (userRoleList.Contains(post.PostRoles.SelectMany(x => x.Role.RoleName)))
                     return post;
             }
+            else if (!post.PostRoles.Any())
+            {
+                return post;
+            }
 
             return null;
         }
