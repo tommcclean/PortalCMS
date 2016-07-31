@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+
     // Bootstrap Popover
     $('[data-toggle="popover"]').popover();
 

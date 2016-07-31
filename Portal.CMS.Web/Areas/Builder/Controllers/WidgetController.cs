@@ -1,9 +1,6 @@
 ﻿using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Widget;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers

@@ -37,7 +37,7 @@ namespace Portal.CMS.Web.Controllers
 
             if (!model.RecentPosts.Any())
                 return RedirectToAction("Index", "Home");
-           
+
             if (id.HasValue)
                 model.CurrentPost = _postService.Read(UserHelper.UserId, id.Value);
             else

@@ -59,7 +59,7 @@ namespace Portal.CMS.Web.Areas.Admin.Helpers
 
                 if (userAccount == null)
                     return null;
-                
+
                 return userAccount.UserId;
             }
         }
