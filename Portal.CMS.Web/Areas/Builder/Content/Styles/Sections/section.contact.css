@@ -35,6 +35,7 @@ section.contact .inner
         font-size: 20px;
         padding: 10px 10px 10px 10px;
         height: 230px;
+        min-height: initial;
     }
 
     section.contact button
