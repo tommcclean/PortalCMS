@@ -293,6 +293,7 @@
     <Compile Include="Areas\Admin\ViewModels\Settings\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Settings\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Settings\SetupViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Users\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Users\DeleteViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Users\DetailsViewModel.cs" />
@@ -587,6 +588,7 @@
     <Content Include="Areas\Admin\Views\Authentication\Reset.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Bio.cshtml" />
     <Content Include="Areas\Admin\Views\Copy\_Copy.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\_Setup.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Edit.cshtml" />

@@ -17,6 +17,8 @@ namespace Portal.CMS.Services.Settings
 
         void Edit(int settingId, string settingName, string settingValue);
 
+        void Edit(string settingName, string settingValue);
+
         void Delete(int settingId);
     }
 
@@ -77,6 +79,18 @@ namespace Portal.CMS.Services.Settings
                 return;
 
             setting.SettingName = settingName;
+            setting.SettingValue = settingValue;
+
+            _context.SaveChanges();
+        }
+
+        public void Edit(string settingName, string settingValue)
+        {
+            var setting = _context.Settings.FirstOrDefault(x => x.SettingName == settingName);
+
+            if (setting == null)
+                return;
+
             setting.SettingValue = settingValue;
 
             _context.SaveChanges();

@@ -32,58 +32,58 @@
         });
     });
 </script>
-
-<div class="post">
-    <div class="post-banner" style="@string.Format("background-image: url('{0}'); color: white;", bannerImagePath)">
-        <div class="overlay-medium"></div>
-        <div class="inner vertical-alignment">
+    <div class="post">
+        <div class="post-banner" style="@string.Format("background-image: url('{0}'); color: white;", bannerImagePath)">
+            <div class="overlay-medium"></div>
+            <div class="inner vertical-alignment">
+                <div class="row">
+                    <div class="col-xs-12 col-md-7">
+                        <div class="category-item">@Model.CurrentPost.PostCategory.PostCategoryName</div>
+                        @if (UserHelper.IsEditor)
+                        {
+                            <a href="@Url.Action("Edit", "Posts", new { area = "Admin", postId = Model.CurrentPost.PostId })" class="category-item launch-modal" data-title="Edit Post"><span class="glyphicon glyphicon-pencil"></span>Edit Post</a>
+                        }
+                        <h1 class="post-title">@Model.CurrentPost.PostTitle</h1>
+                        <p class="post-description">@Model.CurrentPost.PostDescription</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12 col-md-7">
-                    <div class="category-item">@Model.CurrentPost.PostCategory.PostCategoryName</div>
-                    @if (UserHelper.IsEditor)
-                    {
-                        <a href="@Url.Action("Edit", "Posts", new { area = "Admin", postId = Model.CurrentPost.PostId })" class="category-item launch-modal" data-title="Edit Post"><span class="glyphicon glyphicon-pencil"></span>Edit Post</a>
-                    }
-                    <h1 class="post-title">@Model.CurrentPost.PostTitle</h1>
-                    <p class="post-description">@Model.CurrentPost.PostDescription</p>
-                </div>
-            </div>
-        </div>
-    </div>
+                    <div class="post-body">
+                        @if (Model.Author != null)
+                        {
+                            <div class="post-details float-container">
+                                <img class="pull-left author-image" src="@Model.Author.AvatarImagePath" style="border-radius: 50%;" />
+                                <div class="pull-left">
+                                    <p><strong>Author: </strong>@Model.Author.GivenName @Model.Author.FamilyName</p>
+                                    <p><strong>Updated: </strong>@Model.CurrentPost.DateUpdated.ToString("dd MMM yyyy HH:mm")</p>
+                                </div>
+                            </div>
+                        }
 
-    <div class="row">
-        <div class="col-xs-12 col-md-7">
-            <div class="post-body">
-                @if (Model.Author != null)
-                {
-                    <div class="post-details float-container">
-                        <img class="pull-left author-image" src="@Model.Author.AvatarImagePath" style="border-radius: 50%;" />
-                        <div class="pull-left">
-                            <p><strong>Author: </strong>@Model.Author.GivenName @Model.Author.FamilyName</p>
-                            <p><strong>Updated: </strong>@Model.CurrentPost.DateUpdated.ToString("dd MMM yyyy HH:mm")</p>
+                        <div class="@(UserHelper.IsEditor ? "edit-post-body" : "")">
+                            @Html.Raw(Model.CurrentPost.PostBody)
                         </div>
                     </div>
-                }
+                </div>
+                <div class="col-xs-12 col-md-5 blog-sidebar">
+                    <ul class="nav nav-tabs nav-justified">
+                        <li role="presentation" class="active"><a href="#tab-comments" aria-controls="tab-comments" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-comment"></span>Comments <span class="hidden-md">(@commentCount)</span></a></li>
+                        <li role="presentation" class=""><a href="#tab-viewgallery" aria-controls="tab-viewgallery" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span>Gallery <span class="hidden-md">(@galleryCount)</span></a></li>
+                        <li role="presentation" class=""><a href="#tab-recent-posts" aria-controls="tab-recent-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-time"></span>Recent <span class="hidden-md">(@Model.RecentPosts.Count())</span></a></li>
+                        <li role="presentation" class=""><a href="#tab-similiar-posts" aria-controls="tab-similiar-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span>Similiar <span class="hidden-md">(@Model.SimiliarPosts.Count())</span></a></li>
+                    </ul>
 
-                <div class="@(UserHelper.IsEditor ? "edit-post-body" : "")">
-                    @Html.Raw(Model.CurrentPost.PostBody)
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tab-comments">@Html.Partial("_Comments", Model.CurrentPost)</div>
+                        <div role="tabpanel" class="tab-pane" id="tab-viewgallery">@Html.Partial("_Gallery", Model.CurrentPost)</div>
+                        <div role="tabpanel" class="tab-pane float-container" id="tab-recent-posts">@Html.Partial("_List", Model.RecentPosts)</div>
+                        <div role="tabpanel" class="tab-pane float-container" id="tab-similiar-posts">@Html.Partial("_List", Model.SimiliarPosts)</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-md-5 blog-sidebar">
-            <ul class="nav nav-tabs nav-justified">
-                <li role="presentation" class="active"><a href="#tab-comments" aria-controls="tab-comments" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-comment"></span>Comments <span class="hidden-md">(@commentCount)</span></a></li>
-                <li role="presentation" class=""><a href="#tab-viewgallery" aria-controls="tab-viewgallery" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span>Gallery <span class="hidden-md">(@galleryCount)</span></a></li>
-                <li role="presentation" class=""><a href="#tab-recent-posts" aria-controls="tab-recent-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-time"></span>Recent <span class="hidden-md">(@Model.RecentPosts.Count())</span></a></li>
-                <li role="presentation" class=""><a href="#tab-similiar-posts" aria-controls="tab-similiar-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span>Similiar <span class="hidden-md">(@Model.SimiliarPosts.Count())</span></a></li>
-            </ul>
-
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="tab-comments">@Html.Partial("_Comments", Model.CurrentPost)</div>
-                <div role="tabpanel" class="tab-pane" id="tab-viewgallery">@Html.Partial("_Gallery", Model.CurrentPost)</div>
-                <div role="tabpanel" class="tab-pane float-container" id="tab-recent-posts">@Html.Partial("_List", Model.RecentPosts)</div>
-                <div role="tabpanel" class="tab-pane float-container" id="tab-similiar-posts">@Html.Partial("_List", Model.SimiliarPosts)</div>
-            </div>
-        </div>
-    </div>
 </div>

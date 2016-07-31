@@ -127,9 +127,12 @@ function bindModalEditor() {
                     setModalEditorContent('<p>Please wait...</p>');
                 },
                 success: function (data) {
-                    if (data == 'Refresh') {
+                    if (data == 'Refresh')
+                    {
                         window.location.reload();
-                    } else {
+                    }
+                    else
+                    {
                         setModalEditorContent(data);
                     }
                 },
@@ -152,7 +155,12 @@ function bindModalEditor() {
                 success: function (data) {
                     if (data == 'Refresh') {
                         window.location.reload();
-                    } else {
+                    }
+                    else if (data == 'Setup')
+                    {
+                        showModalEditor("Setup Portal CMS", "/Admin/Settings/Setup");
+                    }
+                    else {
                         setModalEditorContent(data);
                     }
                 },

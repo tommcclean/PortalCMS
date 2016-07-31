@@ -102,5 +102,11 @@
     "inputFiles": [
       "Areas/Admin/Content/Scripts/plugins.js"
     ]
+  },
+  {
+    "outputFileName": "Areas/Admin/Content/Scripts/modal.min.js",
+    "inputFiles": [
+      "Areas/Admin/Content/Scripts/modal.js"
+    ]
   }
 ]

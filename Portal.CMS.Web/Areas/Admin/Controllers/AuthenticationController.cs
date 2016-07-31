@@ -88,6 +88,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View("_Register", model);
 
+            bool isAdministrator = false;
+
             var userId = _registrationService.Register(model.EmailAddress, model.Password, model.GivenName, model.FamilyName);
 
             switch (userId.Value)
@@ -98,14 +100,23 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
                 default:
                     if (_userService.GetUserCount() == 1)
+                    {
                         _roleService.Update(userId.Value, new List<string> { nameof(Admin), "Authenticated" });
+
+                        isAdministrator = true;
+                    }
                     else
+                    {
                         _roleService.Update(userId.Value, new List<string> { "Authenticated" });
-                    
+                    }
+                        
                     Session.Add("UserAccount", _userService.GetUser(userId.Value));
                     Session.Add("UserRoles", _roleService.Get(userId.Value));
 
-                    return this.Content("Refresh");
+                    if (isAdministrator)
+                        return Content("Setup");
+
+                    return Content("Refresh");
             }
         }
 
@@ -202,7 +213,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             var websiteAddress = string.Format(@"http://{0}", System.Web.HttpContext.Current.Request.Url.Authority);
 
             EmailHelper.Send(
-                new List<string> { UserHelper.EmailAddress }, 
+                new List<string> { UserHelper.EmailAddress },
                 "Account Notice",
                 string.Format("<p>Hello {0}</p><p>We just wanted to let you know that your password was changed at {1}. If you didn't change your password, please let us know", UserHelper.FullName, websiteAddress));
 
@@ -222,7 +233,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 var recoveryLink = string.Format(@"http://{0}{1}", System.Web.HttpContext.Current.Request.Url.Authority, Url.Action("Reset", "Authentication", new { id = token }));
 
                 EmailHelper.Send(
-                    new List<string> { model.EmailAddress }, 
+                    new List<string> { model.EmailAddress },
                     "Password Reset",
                     string.Format("<p>You submitted a request on {0} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{1}\">Recover Account</a>", websiteName, recoveryLink));
             }
