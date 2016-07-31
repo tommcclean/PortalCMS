@@ -1,4 +1,36 @@
 ﻿$(document).ready(function () {
+    SetupAdministration();
+});
+
+function ExtractSectionId(element) {
+    var elementId = $(element).attr("id");
+    var elementParts = elementId.split('-');
+    var sectionId = elementParts[elementParts.length - 1];
+    return sectionId;
+}
+
+function ChangeOrder() {
+    $('#page-wrapper').toggleClass("zoom");
+    $('#page-wrapper').toggleClass("change-order");
+    $('#page-wrapper.change-order').sortable({ placeholder: "ui-state-highlight", helper: 'clone' });
+    $('.action-container.global').fadeOut();
+    $('.action-container.section-order').fadeIn();
+}
+
+function SaveOrder() {
+    var sectionList = [];
+    var orderId = 1;
+    $("#page-wrapper .sortable").each(function (index) {
+        var sectionId = $(this).attr("data-section");
+        sectionList.push(orderId + "-" + sectionId);
+        orderId += 1;
+    });
+    $('#order-list').val(sectionList);
+    $('#order-submit').click();
+}
+
+function SetupAdministration()
+{
     $(".add-component").click(function (event) {
         var sectionId = $(this).attr("data-sectionid");
 
@@ -164,31 +196,4 @@
             });
         }
     });
-});
-
-function ExtractSectionId(element) {
-    var elementId = $(element).attr("id");
-    var elementParts = elementId.split('-');
-    var sectionId = elementParts[elementParts.length - 1];
-    return sectionId;
-}
-
-function ChangeOrder() {
-    $('#page-wrapper').toggleClass("zoom");
-    $('#page-wrapper').toggleClass("change-order");
-    $('#page-wrapper.change-order').sortable({ placeholder: "ui-state-highlight", helper: 'clone' });
-    $('.action-container.global').fadeOut();
-    $('.action-container.section-order').fadeIn();
-}
-
-function SaveOrder() {
-    var sectionList = [];
-    var orderId = 1;
-    $("#page-wrapper .sortable").each(function (index) {
-        var sectionId = $(this).attr("data-section");
-        sectionList.push(orderId + "-" + sectionId);
-        orderId += 1;
-    });
-    $('#order-list').val(sectionList);
-    $('#order-submit').click();
 }

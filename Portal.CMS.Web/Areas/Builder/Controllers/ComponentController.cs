@@ -41,12 +41,12 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Add(AddViewModel model)
+        [ValidateInput(false)]
+        public JsonResult Add(int pageSectionId, string containerElementId, string elementBody)
         {
-            _pageComponentTypeService.Add(model.PageSectionId, model.ContainerElementId, model.PageComponentTypeId);
+            _pageComponentTypeService.Add(pageSectionId, containerElementId, elementBody);
 
-            return Content("Refresh");
+            return Json(new { State = true });
         }
 
         [HttpPost]

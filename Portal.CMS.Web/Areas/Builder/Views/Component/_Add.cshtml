@@ -5,11 +5,25 @@
 
 <script type="text/javascript">
     $('.builder-item').on('click', function (e) {
-        var componentTypeId = $(this).attr("data-componentypeid");
+        var componentTypeBody = $(this).attr("data-componenttypebody");
 
-        $('#PageComponentTypeId').val(componentTypeId);
+        componentTypeBody = componentTypeBody.replace('<sectionId>', '@Model.PageSectionId');
+        componentTypeBody = componentTypeBody.replace('<componentStamp>', '@Model.ComponentStamp');
 
-        $('#submit-button').click();
+        $('#@Model.ContainerElementId').append(componentTypeBody);
+
+        SetupAdministration();
+
+        var dataParams = { "pageSectionId": @Model.PageSectionId, "containerElementId": '@Model.ContainerElementId', "elementBody": componentTypeBody };
+        $.ajax({
+            data: dataParams,
+            type: 'POST',
+            cache: false,
+            url: '/Builder/Component/Add',
+            success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
+        });
+
+        $(".modal .close").click()
     });
 </script>
 
@@ -37,17 +51,6 @@
     }
 </style>
 
-@using (Html.BeginForm("Add", "Component", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-
-    @Html.HiddenFor(x => x.PageSectionId)
-    @Html.HiddenFor(x => x.PageComponentTypeId)
-    @Html.HiddenFor(x => x.ContainerElementId)
-
-    <button id="submit-button" type="submit" style="display: none;"></button>
-}
-
 <ul class="nav nav-tabs nav-justified">
     <li role="presentation" class="active"><a href="#tab-markup" aria-controls="tab-general" role="tab" data-toggle="tab">Basic Markup</a></li>
     <li role="presentation" class=""><a href="#tab-bootstrap" aria-controls="tab-icon" role="tab" data-toggle="tab">Bootstrap</a></li>
@@ -60,7 +63,7 @@
             @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Markup))
             {
                 <div class="col-xs-12 col-md-6">
-                    <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId">
+                    <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId" data-componenttypebody="@componentType.PageComponentBody">
                         <div class="component-preview text float-container">
                             @Html.Raw(componentType.PageComponentBody)
                         </div>
@@ -73,7 +76,7 @@
             @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Table))
             {
                 <div class="col-xs-12 col-md-6">
-                    <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId">
+                    <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId" data-componenttypebody="@componentType.PageComponentBody">
                         <h4 style="padding-top: 10px;">@componentType.PageComponentTypeName</h4>
                     </div>
                 </div>
@@ -83,7 +86,7 @@
             @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Bootstrap))
             {
                 <div class="col-xs-12 col-md-6">
-                    <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId">
+                    <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId" data-componenttypebody="@componentType.PageComponentBody">
                         <h4 style="padding-top: 10px;">@componentType.PageComponentTypeName</h4>
                     </div>
                 </div>
@@ -93,7 +96,7 @@
             @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Control))
             {
                 <div class="col-xs-12 col-md-6">
-                    <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId">
+                    <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId" data-componenttypebody="@componentType.PageComponentBody">
                         <div class="component-preview float-container">
                             @Html.Raw(componentType.PageComponentBody)
                         </div>
