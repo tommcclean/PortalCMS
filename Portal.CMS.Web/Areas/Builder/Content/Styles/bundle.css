@@ -484,7 +484,7 @@ section.quote
     height: 300px;
     background-color: #191919;
     text-align: center;
-    background-image: url('../../Images/Sample/pattern-1.png');
+    background-image: url('/Areas/Builder/Content/Images/Sample/pattern-1.png');
     background-attachment: fixed;
     background-color: transparent;
     color: #F7F7F7;
@@ -507,7 +507,7 @@ section.quote h2
 section.quote .quote-image-left
 {
     position: absolute;
-    background-image: url('../../Images/Sample/quote-image-left.png');
+    background-image: url('/Areas/Builder/Content/Images/Sample/quote-image-left.png');
     background-repeat: no-repeat;
     background-position: center center;
     top: 30px;
@@ -520,7 +520,7 @@ section.quote .quote-image-left
 section.quote .quote-image-right
 {
     position: absolute;
-    background-image: url('../../Images/Sample/quote-image-right.png');
+    background-image: url('/Areas/Builder/Content/Images/Sample/quote-image-left.png');
     background-repeat: no-repeat;
     background-position: center center;
     top: 30px;
