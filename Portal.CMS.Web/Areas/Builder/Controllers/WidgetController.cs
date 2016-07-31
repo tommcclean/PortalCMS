@@ -1,4 +1,5 @@
 ﻿using Portal.CMS.Services.Posts;
+using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Widget;
 using System.Linq;
 using System.Web.Mvc;
@@ -23,7 +24,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             var model = new PostListViewModel
             {
-                PostList = _postService.Get(string.Empty, true).Take(6).ToList()
+                PostList = _postService.Read(UserHelper.UserId, string.Empty).Take(6).ToList()
             };
 
             return View("_RecentPostList", model);
