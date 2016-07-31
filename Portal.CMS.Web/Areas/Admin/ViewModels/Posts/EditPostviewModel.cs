@@ -34,6 +34,9 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.Posts
         [DisplayName("Status")]
         public PublicationState PublicationState { get; set; }
 
+        [DisplayName("Roles")]
+        public List<string> SelectedRoleList { get; set; } = new List<string>();
+
         #region Hidden Fields
 
         public int BannerImageId { get; set; }
@@ -51,6 +54,8 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.Posts
         public IEnumerable<PostCategory> PostCategoryList { get; set; }
 
         public IEnumerable<User> UserList { get; set; }
+
+        public List<Role> RoleList { get; set; }
 
         #endregion Enumerable Properties
     }

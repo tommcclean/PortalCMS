@@ -23,14 +23,16 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         private readonly IImageService _imageService;
         private readonly IPostCategoryService _postCategoryService;
         private readonly IUserService _userService;
+        private readonly IRoleService _roleService;
 
-        public PostsController(IPostService postService, IPostImageService postImageService, IImageService imageService, IPostCategoryService postCategoryService, IUserService userService)
+        public PostsController(IPostService postService, IPostImageService postImageService, IImageService imageService, IPostCategoryService postCategoryService, IUserService userService, IRoleService roleService)
         {
             _postService = postService;
             _postImageService = postImageService;
             _imageService = imageService;
             _postCategoryService = postCategoryService;
             _userService = userService;
+            _roleService = roleService;
         }
 
         #endregion Dependencies
@@ -60,6 +62,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 UserList = _userService.Get(new List<string>() { "Admin", "Editor" }),
                 PublicationState = PublicationState.Published,
                 ImageList = _imageService.Get(),
+                RoleList = _roleService.Get()
             };
 
             return View("_Create", model);
@@ -75,6 +78,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 model.ImageList = _imageService.Get();
                 model.PostCategoryList = _postCategoryService.Get();
                 model.UserList = _userService.Get(new List<string>() { "Admin", "Editor" });
+                model.RoleList = _roleService.Get();
 
                 return View("_Create", model);
             }
@@ -107,6 +111,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PostCategoryList = _postCategoryService.Get(),
                 UserList = _userService.Get(new List<string>() { "Admin", "Editor" }),
                 ImageList = _imageService.Get(),
+                RoleList = _roleService.Get()
             };
 
             if (post.IsPublished)
@@ -128,6 +133,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 model.ImageList = _imageService.Get();
                 model.PostCategoryList = _postCategoryService.Get();
                 model.UserList = _userService.Get(new List<string>() { "Admin", "Editor" });
+                model.RoleList = _roleService.Get();
 
                 return View("_Edit", model);
             }

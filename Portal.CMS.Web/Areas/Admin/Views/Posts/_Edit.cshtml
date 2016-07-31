@@ -78,6 +78,13 @@
                 @Html.LabelFor(x => x.PostAuthorUserId)
                 @Html.DropDownListFor(m => m.PostAuthorUserId, userList)
             </div>
+
+            <br />
+            <span class="field-validation-help">A user must have at least one of the roles selected below to see this Post. To show the Post to all users select no roles.</span>
+            <div class="control-group control-textarea float-container">
+                @Html.LabelFor(x => x.SelectedRoleList)
+                @Html.ListBoxFor(m => m.SelectedRoleList, Model.RoleList.Select(r => new SelectListItem { Text = r.RoleName, Value = r.RoleName.ToString(), Selected = Model.SelectedRoleList != null && Model.SelectedRoleList.Contains(r.RoleName) }))
+            </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-banner">
             @if (!Model.ImageList.Any())
