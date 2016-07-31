@@ -8,10 +8,12 @@
     cursor: pointer;
 }
 
-.admin .component-container.selected, .admin .widget-wrapper.selected
-{
-    border: 1px dotted red !important;
-}
+    .admin .component-container.selected, .admin .widget-wrapper.selected
+    {
+        border: 1px dotted red !important;
+        border: 1px solid;
+        background-image: url('/Areas/Admin/Content/Images/block_black_light.png');
+    }
 
 .admin .row
 {
@@ -53,12 +55,6 @@
     display: table-cell;
     min-width: 100px;
     border-color: green;
-}
-
-.admin .component-container.selected
-{
-    border: 1px solid;
-    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
 }
 
 section:after, .row:after
