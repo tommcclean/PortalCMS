@@ -52,7 +52,7 @@ namespace Portal.CMS.Services.Posts
 
         public Post Read(int? userId, int postId)
         {
-            var post = _context.Posts.FirstOrDefault(x => x.PostId == postId);
+            var post = _context.Posts.FirstOrDefault(x => x.PostId == postId && x.IsPublished);
 
             var userRoleList = new List<string>();
 
@@ -92,7 +92,7 @@ namespace Portal.CMS.Services.Posts
                     isAdministrator = true;
             }
 
-            var postList = _context.Posts.Where(x => postCategoryName == string.Empty || x.PostCategory.PostCategoryName == postCategoryName);
+            var postList = _context.Posts.Where(x => (postCategoryName == string.Empty || x.PostCategory.PostCategoryName == postCategoryName) && x.IsPublished);
 
             var returnList = new List<Post>();
 
