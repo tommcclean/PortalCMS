@@ -1,188 +1,3 @@
-section.contact
-{
-    color: white;
-    text-align: center;
-    background-image: url('../Images/Sample/sample-7.jpg');
-    min-height: 600px;
-}
-
-section.contact .inner
-{
-    position: relative;
-    z-index: 2;
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-
-    section.contact input
-    {
-        width: 100%;
-        background-color: transparent;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        border: 1px solid white;
-        font-size: 20px;
-        padding: 10px 10px 10px 10px;
-    }
-
-    section.contact textarea
-    {
-        width: 100%;
-        background-color: transparent;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        border: 1px solid white;
-        font-size: 20px;
-        padding: 10px 10px 10px 10px;
-        height: 230px;
-        min-height: initial;
-    }
-
-    section.contact button
-    {
-        width: 100%;
-        background-color: transparent;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        border: 1px solid white;
-        color: white;
-        font-size: 16px;
-        padding: 15px 10px 15px 10px;
-        text-transform: uppercase;
-        transition: all 0.3s ease-in-out;
-    }
-
-        section.contact button:hover
-        {
-            background-color: white;
-            color: black;
-        }
-section.quote
-{
-    position: relative;
-    width: 100%;
-    height: 300px;
-    background-color: #191919;
-    text-align: center;
-    background-image: url('../Images/Sample/pattern-1.png');
-    background-attachment: fixed;
-    background-color: transparent;
-    color: #F7F7F7;
-}
-
-section.quote h1
-{
-    font-size: 30px;
-    padding-left: 250px;
-    padding-right: 250px;
-    margin: 0;
-    margin-bottom: 40px;
-}
-
-section.quote h2
-{
-    font-size: 25px;
-}
-
-section.quote .quote-image-left
-{
-    position: absolute;
-    background-image: url('../Images/Sample/quote-image-left.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    top: 30px;
-    background-size: contain;
-    left: 100px;
-    width: 200px;
-    height: 200px;
-}
-
-section.quote .quote-image-right
-{
-    position: absolute;
-    background-image: url('../Images/Sample/quote-image-right.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    top: 30px;
-    background-size: contain;
-    right: 100px;
-    width: 200px;
-    height: 200px;
-}
-
-@media (max-width: 1024px)
-{
-    section.quote h1
-    {
-        padding-left: 125px;
-        padding-right: 125px;
-    }
-
-    section.quote .quote-image-left
-    {
-        width: 100px;
-        height: 100px;
-        top: 75px;
-        left: 50px;
-    }
-
-    section.quote .quote-image-right
-    {
-        width: 100px;
-        height: 100px;
-        top: 75px;
-        right: 50px;
-    }
-}
-
-@media (max-width: 641px)
-{
-    section.quote .quote-image-left, section.quote .quote-image-right
-    {
-        display: none;
-    }
-
-    section.quote h1
-    {
-padding: 0;
-    }
-
-    section.quote
-    {
-        padding-top: 75px;
-        padding-bottom: 75px;
-    }
-
-    section.quote p
-    {
-        display: none;
-    }
-}
-section.block
-{
-    text-align: center;
-    background-color: black;
-    color: white;
-    background-size: cover;
-    background-position: center center;
-}
-
-    section.block h1
-    {
-        display: inline-block;
-        margin: 0;
-        margin-left: 20px;
-        margin-right: 20px;
-        padding-top: 25px;
-        line-height: 50px;
-        font-size: 25px;
-    }
-
-    section.block p
-    {
-        line-height: 100px;
-        margin-bottom: 10px;
-    }
 .admin .component-container
 {
     border: 1px dotted gray;
@@ -243,7 +58,7 @@ section.block
 .admin .component-container.selected
 {
     border: 1px solid;
-    background-image: url('../../../Admin/Content/Images/block_black_light.png');
+    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
 }
 
 section:after, .row:after
@@ -274,12 +89,12 @@ section .vertical-alignment
 .glass
 {
     position: absolute;
-    background-image: url('../../../Admin/Content/Images/block_black_light.png');
+    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
 }
 
 .glass-dark
 {
-    background-image: url('../../../Admin/Content/Images/block_black_light.png');
+    background-image: url('../../../../Admin/Content/Images/block_black_light.png');
 }
 
 .glass-top
@@ -324,7 +139,7 @@ section .vertical-alignment
     display: inline-block;
     height: 125px;
     width: 125px;
-    background-image: url('../Images/Sample/Sample-6.jpg');
+    background-image: url('../../Images/Sample/Sample-6.jpg');
     background-size: cover;
     background-position: center center;
     margin: 10px;
@@ -360,6 +175,270 @@ section .vertical-alignment
         width: 80%;
         min-height: 280px;
     }
+.section-wrapper, section
+{
+    position: relative;
+}
+
+    section.height-tall
+    {
+        min-height: calc(100vh - 50px);
+    }
+
+    section.height-medium
+    {
+        min-height: 600px;
+    }
+
+    section.height-standard
+    {
+        min-height: 375px;
+    }
+
+    section.height-small
+    {
+        min-height: 200px;
+    }
+
+    section.height-tiny
+    {
+        min-height: 100px;
+    }
+
+    section.background-static
+    {
+        background-size: cover;
+        background-position: center center;
+    }
+
+    section.background-parallax
+    {
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    section.header
+    {
+        max-height: calc(100vh - 50px);
+        background-image: url('../Images/Sample/Sample-2.jpg');
+        color: white;
+    }
+
+    section.blank
+    {
+        background-image: url('../../../Admin/Content/Images/texture.png');
+        padding: 30px 2.5% 30px 2.5%;
+        text-align: center;
+    }
+
+    section.highlight
+    {
+        background-image: url('../Images/Sample/Sample-5.jpg');
+    }
+
+    section p, section a
+    {
+        margin-bottom: 20px;
+    }
+
+table
+{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+    table tr th
+    {
+        text-align: center;
+    }
+
+    table tr td
+    {
+        padding: 2px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+.builder-item
+{
+    padding: 25px;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border: 1px solid #C9C9C9;
+    margin-bottom: 25px;
+    text-align: center;
+    box-shadow: 1px 1px 20px #D2D2D8;
+    background-color: #E0E0E0;
+}
+
+    .builder-item:hover
+    {
+        border: 1px solid #B7B7B7;
+        box-shadow: 1px 1px 30px #B7B7B7;
+    }
+
+    .builder-item h4
+    {
+        margin-top: 10px;
+    }
+
+#page-wrapper.zoom
+{
+    width: 30%;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 30px;
+    border: 1px dashed white;
+}
+
+    #page-wrapper.zoom .section-wrapper section
+    {
+        -ms-zoom: 0.3;
+        zoom: 0.3;
+    }
+
+    #page-wrapper.zoom .section-wrapper .action-container
+    {
+        display: none;
+    }
+
+@media (max-width: 1024px)
+{
+    section.background-parallax
+    {
+        background-attachment: scroll;
+    }
+
+    #page-wrapper.zoom .section-wrapper section
+    {
+        -ms-zoom: 0.25;
+        zoom: 0.25;
+    }
+
+    #page-wrapper.zoom
+    {
+        width: 60%;
+    }
+}
+
+@media (max-width: 968px)
+{
+    section.height-tall
+    {
+        min-height: 80vh;
+    }
+
+    section.height-medium
+    {
+        min-height: 80vh;
+    }
+
+    #page-wrapper.zoom
+    {
+        width: 80%;
+    }
+}
+
+@media (max-width: 736px)
+{
+    section.height-tall
+    {
+        min-height: 80vh;
+    }
+
+    section.height-medium
+    {
+        min-height: 80vh;
+    }
+}
+section.block
+{
+    text-align: center;
+    background-color: black;
+    color: white;
+    background-size: cover;
+    background-position: center center;
+}
+
+    section.block h1
+    {
+        display: inline-block;
+        margin: 0;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-top: 25px;
+        line-height: 50px;
+        font-size: 25px;
+    }
+
+    section.block p
+    {
+        line-height: 100px;
+        margin-bottom: 10px;
+    }
+section.contact
+{
+    color: white;
+    text-align: center;
+    background-image: url('../../Images/Sample/sample-7.jpg');
+    min-height: 600px;
+}
+
+section.contact .inner
+{
+    position: relative;
+    z-index: 2;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+    section.contact input
+    {
+        width: 100%;
+        background-color: transparent;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 1px solid white;
+        font-size: 20px;
+        padding: 10px 10px 10px 10px;
+    }
+
+    section.contact textarea
+    {
+        width: 100%;
+        background-color: transparent;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 1px solid white;
+        font-size: 20px;
+        padding: 10px 10px 10px 10px;
+        height: 230px;
+        min-height: initial;
+    }
+
+    section.contact button
+    {
+        width: 100%;
+        background-color: transparent;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 1px solid white;
+        color: white;
+        font-size: 16px;
+        padding: 15px 10px 15px 10px;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
+    }
+
+        section.contact button:hover
+        {
+            background-color: white;
+            color: black;
+        }
 section.gallery
 {
     height: auto;
@@ -399,5 +478,106 @@ section.gallery
     {
         width: 100%;
         height: 300px;
+    }
+}
+section.quote
+{
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-color: #191919;
+    text-align: center;
+    background-image: url('../../Images/Sample/pattern-1.png');
+    background-attachment: fixed;
+    background-color: transparent;
+    color: #F7F7F7;
+}
+
+section.quote h1
+{
+    font-size: 30px;
+    padding-left: 250px;
+    padding-right: 250px;
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+section.quote h2
+{
+    font-size: 25px;
+}
+
+section.quote .quote-image-left
+{
+    position: absolute;
+    background-image: url('../../Images/Sample/quote-image-left.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    top: 30px;
+    background-size: contain;
+    left: 100px;
+    width: 200px;
+    height: 200px;
+}
+
+section.quote .quote-image-right
+{
+    position: absolute;
+    background-image: url('../../Images/Sample/quote-image-right.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    top: 30px;
+    background-size: contain;
+    right: 100px;
+    width: 200px;
+    height: 200px;
+}
+
+@media (max-width: 1024px)
+{
+    section.quote h1
+    {
+        padding-left: 125px;
+        padding-right: 125px;
+    }
+
+    section.quote .quote-image-left
+    {
+        width: 100px;
+        height: 100px;
+        top: 75px;
+        left: 50px;
+    }
+
+    section.quote .quote-image-right
+    {
+        width: 100px;
+        height: 100px;
+        top: 75px;
+        right: 50px;
+    }
+}
+
+@media (max-width: 641px)
+{
+    section.quote .quote-image-left, section.quote .quote-image-right
+    {
+        display: none;
+    }
+
+    section.quote h1
+    {
+padding: 0;
+    }
+
+    section.quote
+    {
+        padding-top: 75px;
+        padding-bottom: 75px;
+    }
+
+    section.quote p
+    {
+        display: none;
     }
 }

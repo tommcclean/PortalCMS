@@ -56,39 +56,9 @@
     ]
   },
   {
-    "outputFileName": "Areas/Builder/Content/Styles/bundle.css",
-    "inputFiles": [
-      "Areas/Builder/Content/Styles/Sections/section.contact.css",
-      "Areas/Builder/Content/Styles/Sections/section.quote.css",
-      "Areas/Builder/Content/Styles/Sections/section.block.css",
-      "Areas/Builder/Content/Styles/Components/component.containers.css",
-      "Areas/Builder/Content/Styles/Components/component.glass.css",
-      "Areas/Builder/Content/Styles/Components/component.image.css",
-      "Areas/Builder/Content/Styles/Sections/section.gallery.css"
-    ]
-  },
-  {
     "outputFileName": "Areas/Builder/Content/Scripts/pagebuilder.min.js",
     "inputFiles": [
       "Areas/Builder/Content/Scripts/pagebuilder.js"
-    ]
-  },
-  {
-    "outputFileName": "Areas/Builder/Content/Styles/pagebuilder.min.css",
-    "inputFiles": [
-      "Areas/Builder/Content/Styles/pagebuilder.css"
-    ]
-  },
-  {
-    "outputFileName": "Content/Styles/header.min.css",
-    "inputFiles": [
-      "Content/Styles/header.css"
-    ]
-  },
-  {
-    "outputFileName": "Content/Styles/Pages/posts.min.css",
-    "inputFiles": [
-      "Content/Styles/Pages/posts.css"
     ]
   },
   {
@@ -107,6 +77,26 @@
     "outputFileName": "Areas/Admin/Content/Scripts/modal.min.js",
     "inputFiles": [
       "Areas/Admin/Content/Scripts/modal.js"
+    ]
+  },
+  {
+    "outputFileName": "Areas/Builder/Content/Styles/bundle.css",
+    "inputFiles": [
+      "Areas/Builder/Content/Styles/component.containers.css",
+      "Areas/Builder/Content/Styles/component.glass.css",
+      "Areas/Builder/Content/Styles/component.image.css",
+      "Areas/Builder/Content/Styles/pagebuilder.css",
+      "Areas/Builder/Content/Styles/section.block.css",
+      "Areas/Builder/Content/Styles/section.contact.css",
+      "Areas/Builder/Content/Styles/section.gallery.css",
+      "Areas/Builder/Content/Styles/section.quote.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/Styles/bundle.css",
+    "inputFiles": [
+      "Content/Styles/header.css",
+      "Content/Styles/posts.css"
     ]
   }
 ]

@@ -1,40 +1,33 @@
 ﻿@using Portal.CMS.Web.Areas.Admin.Helpers;
+    <!DOCTYPE html>
+    <html lang="en-gb">
+    <head>
+        <title>@SettingHelper.Get("Website Name"): @ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+        <meta name="description" content="@SettingHelper.Get("Description Meta Tag")">
 
-<!DOCTYPE html>
-<html lang="en-gb">
-<head>
-    <title>@SettingHelper.Get("Website Name"): @ViewBag.Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta name="description" content="@SettingHelper.Get("Description Meta Tag")">
+        @RenderSection("Styles", false)
 
-    @* Third Party Styles *@
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://code.jquery.com/ui/1.12.0-beta.1/themes/smoothness/jquery-ui.min.css" rel="stylesheet" />
-    <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.min.css" rel="stylesheet" />
-    <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.min.css" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Areas/Admin/Content/Styles/Framework/bundle.min.css" rel="stylesheet" />
+        <link href="~/Areas/Builder/Content/Styles/bundle.min.css" rel="stylesheet" />
+        <link href="~/Content/Styles/bundle.min.css" rel="stylesheet" />
 
-    <link href="~/Areas/Admin/Content/Styles/Framework/bundle.min.css" rel="stylesheet" />
-    <link href="~/Areas/Builder/Content/Styles/bundle.min.css" rel="stylesheet" />
-    <link href="~/Content/Styles/header.min.css" rel="stylesheet" />
-    <link href="~/Content/Styles/Pages/posts.min.css" rel="stylesheet" />
-    <link href="~/Areas/Builder/Content/Styles/pagebuilder.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
+        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
-    @* Third Party Libraries *@
-    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
-    <script src="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.js"></script>
-    <script src="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.js"></script>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+        @RenderSection("HEADScripts", false)
 
-    <script src="~/Areas/Admin/Content/Scripts/modal.min.js"></script>
-    <script src="~/Areas/Admin/Content/Scripts/plugins.min.js"></script>
-</head>
-<body>
-    @Html.Partial("_NavBar")
-    @RenderBody()
-    @Html.Partial("_Analytics")
+        <script src="~/Areas/Admin/Content/Scripts/modal.min.js"></script>
+    </head>
+    <body>
+        @Html.Partial("_NavBar")
+        @RenderBody()
+        @Html.Partial("_Analytics")
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="~/Areas/Admin/Content/Plugins/Confirmation/bootstrap-confirmation.min.js"></script>
-</body>
+        @RenderSection("DOMScripts", false)
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="~/Areas/Admin/Content/Plugins/Confirmation/bootstrap-confirmation.min.js"></script>
+    </body>
 </html>

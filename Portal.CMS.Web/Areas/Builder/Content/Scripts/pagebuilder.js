@@ -33,8 +33,7 @@
 
         var targetContainer = $("#section-" + sectionId + " .component-container.selected:first").attr("id");
 
-        if (targetContainer === undefined)
-        {
+        if (targetContainer === undefined) {
             targetContainer = $("#section-" + sectionId + " .widget-wrapper.selected:first").attr("id");
         }
 
@@ -78,8 +77,7 @@ function SaveOrder() {
     $('#order-submit').click();
 }
 
-function LoadWidgets()
-{
+function LoadWidgets() {
     if ($('.post-list-wrapper').length) {
         $.get("/Builder/Widget/RecentPostList", function (data) {
             $(".post-list-wrapper").html(data);
@@ -87,8 +85,8 @@ function LoadWidgets()
     }
 }
 
-function SetupComponentEvents()
-{
+function SetupComponentEvents() {
+
     // REMOVE: Previously Added Bindings / Events
     $('.admin .component-container').unbind();
     $('.admin .widget-wrapper').unbind();

@@ -350,11 +350,13 @@
     <Content Include="Areas\Admin\Content\Plugins\C3Graphing\c3.min.js" />
     <Content Include="Areas\Admin\Content\Plugins\C3Graphing\d3.min.js" />
     <Content Include="Areas\Admin\Content\Plugins\Confirmation\bootstrap-confirmation.min.js" />
+    <Content Include="Areas\Admin\Content\Plugins\FancyBox\initialise.js" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox-thumbs.min.css">
       <DependentUpon>jquery.fancybox-thumbs.css</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Content\Plugins\JQColorPicker\jqColorPicker.min.js" />
     <Content Include="Areas\Admin\Content\Plugins\JQTouch\jquery.ui.touch-punch.min.js" />
+    <Content Include="Areas\Admin\Content\Plugins\TinyMCE\initialise.js" />
     <Content Include="Areas\Admin\Content\Plugins\TinyMCE\tinymce.min.js" />
     <Content Include="Areas\Admin\Content\Styles\Framework\confirmation.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\images.css" />
@@ -420,22 +422,20 @@
     <Content Include="Areas\Builder\Content\Styles\bundle.min.css">
       <DependentUpon>bundle.css</DependentUpon>
     </Content>
-    <Content Include="Areas\Builder\Content\Styles\Components\component.containers.css" />
-    <Content Include="Areas\Builder\Content\Styles\Components\component.glass.css" />
-    <Content Include="Areas\Builder\Content\Styles\Components\component.image.css" />
-    <Content Include="Areas\Builder\Content\Styles\Sections\section.block.css" />
-    <Content Include="Areas\Builder\Content\Styles\Sections\section.gallery.css" />
-    <Content Include="Areas\Builder\Content\Styles\Sections\section.quote.css" />
-    <Content Include="Areas\Builder\Content\Styles\pagebuilder.min.css">
-      <DependentUpon>pagebuilder.css</DependentUpon>
+    <Content Include="Areas\Builder\Content\Styles\component.containers.css" />
+    <Content Include="Areas\Builder\Content\Styles\component.glass.css" />
+    <Content Include="Areas\Builder\Content\Styles\component.image.css" />
+    <Content Include="Areas\Builder\Content\Styles\section.block.css" />
+    <Content Include="Areas\Builder\Content\Styles\section.gallery.css" />
+    <Content Include="Areas\Builder\Content\Styles\section.quote.css" />
+    <Content Include="Areas\Builder\Content\Styles\section.contact.css" />
+    <Content Include="Content\Styles\bundle.css" />
+    <Content Include="Content\Styles\bundle.min.css">
+      <DependentUpon>bundle.css</DependentUpon>
     </Content>
-    <Content Include="Areas\Builder\Content\Styles\Sections\section.contact.css" />
     <Content Include="Content\Styles\header.css" />
     <Content Include="Areas\Builder\Content\Styles\pagebuilder.css" />
-    <Content Include="Content\Styles\header.min.css">
-      <DependentUpon>header.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Styles\Pages\posts.css" />
+    <Content Include="Content\Styles\posts.css" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\blank.gif" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\fancybox_loading%402x.gif" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\fancybox_loading.gif" />
@@ -444,9 +444,6 @@
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\fancybox_sprite.png" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox-thumbs.css" />
     <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox.css" />
-    <Content Include="Content\Styles\Pages\posts.min.css">
-      <DependentUpon>posts.css</DependentUpon>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
