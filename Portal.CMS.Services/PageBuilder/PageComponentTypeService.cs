@@ -51,7 +51,7 @@ namespace Portal.CMS.Services.PageBuilder
 
             var document = new Document(pageSection.PageSectionBody);
 
-            document.AddElement(pageSection.PageSectionId, containerElementId, elementBody);
+            document.AddElement(containerElementId, elementBody);
 
             pageSection.PageSectionBody = document.OuterHtml;
 

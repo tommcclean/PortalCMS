@@ -25,10 +25,8 @@ namespace Portal.CMS.Services.Shared
             _document.LoadHtml(htmlBody);
         }
 
-        public void AddElement(int pageSectionId, string containerElementId, string componentBody)
+        public void AddElement(string containerElementId, string componentBody)
         {
-            componentBody = ReplaceTokens(componentBody, pageSectionId);
-
             var newNode = HtmlNode.CreateNode(componentBody);
 
             var containerElement = _document.GetElementbyId(containerElementId);
