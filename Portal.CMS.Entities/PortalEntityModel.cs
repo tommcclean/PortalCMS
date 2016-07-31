@@ -46,6 +46,8 @@ namespace Portal.CMS.Entities
 
         public virtual DbSet<PostComment> PostComments { get; set; }
 
+        public virtual DbSet<PostRole> PostRoles { get; set; }
+
         #endregion Post Entities
 
         #region Generic Entities

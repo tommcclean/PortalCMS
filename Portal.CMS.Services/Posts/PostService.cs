@@ -26,6 +26,8 @@ namespace Portal.CMS.Services.Posts
         void Publish(int postId);
 
         void Draft(int postId);
+
+        void Roles(int postId, List<string> roleList);
     }
 
     public class PostService : IPostService
@@ -144,6 +146,33 @@ namespace Portal.CMS.Services.Posts
                 return;
 
             post.IsPublished = false;
+
+            _context.SaveChanges();
+        }
+
+        public void Roles(int postId, List<string> roleList)
+        {
+            var post = Get(postId);
+
+            if (post == null)
+                return;
+
+            var roles = _context.Roles.ToList();
+
+            if (post.PostRoles != null)
+                foreach (var role in post.PostRoles)
+                    _context.PostRoles.Remove(role);
+
+            foreach (var roleName in roleList)
+            {
+                var currentRole = roles.FirstOrDefault(x => x.RoleName == roleName);
+
+                if (currentRole == null)
+                    continue;
+
+                _context.PostRoles.Add(new PostRole { PostId = postId, RoleId = currentRole.RoleId });
+            }
+
 
             _context.SaveChanges();
         }

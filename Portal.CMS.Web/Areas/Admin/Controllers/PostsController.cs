@@ -91,6 +91,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             UpdateBanner(postId, model.BannerImageId);
             UpdateGallery(postId, model.GalleryImageList);
 
+            _postService.Roles(postId, model.SelectedRoleList);
+
             return this.Content("Refresh");
         }
 
@@ -111,7 +113,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PostCategoryList = _postCategoryService.Get(),
                 UserList = _userService.Get(new List<string>() { "Admin", "Editor" }),
                 ImageList = _imageService.Get(),
-                RoleList = _roleService.Get()
+                RoleList = _roleService.Get(),
+                SelectedRoleList = post.PostRoles.Select(x => x.Role.RoleName).ToList()
             };
 
             if (post.IsPublished)
@@ -147,6 +150,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             UpdateBanner(model.PostId, model.BannerImageId);
             UpdateGallery(model.PostId, model.GalleryImageList);
+
+            _postService.Roles(model.PostId, model.SelectedRoleList);
 
             return this.Content("Refresh");
         }

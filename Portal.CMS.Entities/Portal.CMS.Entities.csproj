@@ -81,6 +81,7 @@
     <Compile Include="Entities\Posts\PostComment.cs" />
     <Compile Include="Entities\Posts\PostImage.cs" />
     <Compile Include="Entities\Posts\PostImageType.cs" />
+    <Compile Include="Entities\Posts\PostRole.cs" />
     <Compile Include="Entities\Settings\Setting.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Initialisers\DropAndMigrateDatabaseToLatestVersion.cs" />
@@ -129,6 +130,10 @@
     <Compile Include="Migrations\201607301802388_ChangeCopyEntityToNotRequireBody.cs" />
     <Compile Include="Migrations\201607301802388_ChangeCopyEntityToNotRequireBody.Designer.cs">
       <DependentUpon>201607301802388_ChangeCopyEntityToNotRequireBody.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607311849235_AddPostRolesEntity.cs" />
+    <Compile Include="Migrations\201607311849235_AddPostRolesEntity.Designer.cs">
+      <DependentUpon>201607311849235_AddPostRolesEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
@@ -181,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607301802388_ChangeCopyEntityToNotRequireBody.resx">
       <DependentUpon>201607301802388_ChangeCopyEntityToNotRequireBody.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607311849235_AddPostRolesEntity.resx">
+      <DependentUpon>201607311849235_AddPostRolesEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

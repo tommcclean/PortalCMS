@@ -40,5 +40,7 @@ namespace Portal.CMS.Entities.Entities.Posts
         public virtual ICollection<PostImage> PostImages { get; set; }
 
         public virtual ICollection<PostComment> PostComments { get; set; }
+
+        public virtual ICollection<PostRole> PostRoles { get; set; }
     }
 }
