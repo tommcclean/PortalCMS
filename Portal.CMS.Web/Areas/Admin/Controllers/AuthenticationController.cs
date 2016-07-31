@@ -109,7 +109,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     {
                         _roleService.Update(userId.Value, new List<string> { "Authenticated" });
                     }
-                        
+
                     Session.Add("UserAccount", _userService.GetUser(userId.Value));
                     Session.Add("UserRoles", _roleService.Get(userId.Value));
 

@@ -72,7 +72,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             var pageSection = _pageSectionService.Get(pageSectionId);
 
             EmailHelper.Send(
-                _userService.Get(new List<string> { "Admin" }).Select(x => x.EmailAddress).ToList(), 
+                _userService.Get(new List<string> { "Admin" }).Select(x => x.EmailAddress).ToList(),
                 "Contact Submitted",
                 string.Format("<p>Hello, we thought you might like to know that a visitor to your website has submitted a message, here are the details we recorded.</p><p>Name: {0}</p><p>Email Address: {1}</p><p>Subject: {2}</p><p>Message: {3}</p>", yourName, yourEmail, yourSubject, yourMessage));
 

@@ -4,7 +4,6 @@ using Portal.CMS.Services.Settings;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Settings;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -14,9 +13,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        readonly ISettingService _settingService;
-        readonly IRoleService _roleService;
-        readonly IMenuService _menuService;
+        private readonly ISettingService _settingService;
+        private readonly IRoleService _roleService;
+        private readonly IMenuService _menuService;
 
         public SettingsController(ISettingService settingService, IRoleService roleService, IMenuService menuService)
         {

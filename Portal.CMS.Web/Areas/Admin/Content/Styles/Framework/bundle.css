@@ -116,7 +116,6 @@
         border-bottom-right-radius: 5px;
     }
 
-
 .button-group
 {
     text-align: center;
@@ -171,7 +170,6 @@ textarea
 {
     height: 125px;
 }
-
 @font-face
 {
     font-family: 'Emeric';
@@ -220,7 +218,6 @@ p
 
 input
 {
-    
     outline: none;
 }
 
@@ -565,7 +562,6 @@ a.category-item:hover
     position: relative;
     margin-bottom: 20px;
 }
-
 .modal-title
 {
     text-transform: uppercase;
@@ -627,7 +623,6 @@ a.category-item:hover
     margin: 1px 4px 1px 4px;
     border-radius: 50%;
 }
-
 .tab-pane img.thumbnail
 {
     border: 2px solid white;

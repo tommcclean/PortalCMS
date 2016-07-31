@@ -1,6 +1,5 @@
 ﻿using Portal.CMS.Services.Settings;
 using Portal.CMS.Web.DependencyResolution;
-using StructureMap;
 
 namespace Portal.CMS.Web.Areas.Admin.Helpers
 {
