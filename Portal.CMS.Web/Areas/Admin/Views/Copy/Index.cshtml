@@ -4,6 +4,11 @@
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-copy.png";
 }
 
+@section HEADScripts
+{
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+}
+
 <a href="@Url.Action("Create", "Copy")" class="action-container launch-modal" data-title="Create Copy">
     <div class="action"><span class="glyphicon glyphicon-plus"></span></div>
 </a>

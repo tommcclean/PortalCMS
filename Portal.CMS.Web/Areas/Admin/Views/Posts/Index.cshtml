@@ -4,7 +4,15 @@
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-articles.png";
 }
 
-<link href="~/Areas/Admin/Content/Styles/Pages/posts.css" rel="stylesheet" />
+@section Styles
+{
+    <link href="~/Areas/Admin/Content/Styles/Pages/posts.css" rel="stylesheet" />
+}
+
+@section HEADScripts
+{
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+}
 
 <div class="action-container">
     <a href="@Url.Action("Add", "PostCategories")" class="launch-modal" data-title="Add Post Category"><div class="action"><span class="glyphicon glyphicon-bookmark"></span></div></a>

@@ -5,7 +5,17 @@
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-reports.png";
 }
 
-<link href="~/Areas/Admin/Content/Styles/Pages/dashboard.css" rel="stylesheet" />
+@section Styles
+{
+    <link href="~/Areas/Admin/Content/Plugins/C3Graphing/c3.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/Styles/Pages/dashboard.css" rel="stylesheet" />
+}
+
+@section HEADScripts
+{
+    <script src="~/Areas/Admin/Content/Plugins/C3Graphing/c3.min.js"></script>
+    <script src="~/Areas/Admin/Content/Plugins/C3Graphing/d3.min.js"></script>
+}
 
 <script type="text/javascript">
     $(document).ready(function () {
