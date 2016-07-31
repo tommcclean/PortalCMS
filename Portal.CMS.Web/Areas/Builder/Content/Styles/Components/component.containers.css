@@ -1,11 +1,16 @@
 ﻿.admin .component-container
 {
-    border: 1px dashed gray;
+    border: 1px dotted gray;
     border-radius: 5px;
     padding-bottom: 15px;
     padding-top: 15px;
     transition: all 0.1s ease-in-out;
     cursor: pointer;
+}
+
+.admin .component-container.selected
+{
+    border: 1px dotted red !important;
 }
 
 .admin .row
@@ -39,7 +44,7 @@
 {
     display: table-cell;
     min-width: 100px;
-    border: 1px dashed purple;
+    border: 1px dotted purple;
 }
 
 .admin td.component-container
