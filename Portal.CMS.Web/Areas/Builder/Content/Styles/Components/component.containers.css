@@ -8,7 +8,7 @@
     cursor: pointer;
 }
 
-.admin .component-container.selected
+.admin .component-container.selected, .admin .widget-wrapper.selected
 {
     border: 1px dotted red !important;
 }
@@ -78,4 +78,11 @@ section .vertical-alignment
     left: 0;
     right: 0;
     padding: 0 10% 0 10%;
+}
+
+.admin .widget-wrapper
+{
+    padding: 10px;
+    border: 1px dotted black;
+    cursor: pointer;
 }

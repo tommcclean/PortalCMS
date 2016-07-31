@@ -130,6 +130,9 @@ namespace Portal.CMS.Entities.Seed
             if (!componentList.Any(x => x.PageComponentTypeName == "Glass (Bottom)"))
                 newComponents.Add(new PageComponentType { PageComponentTypeName = "Glass (Bottom)", PageComponentTypeCategory = PageComponentTypeCategory.Control, PageComponentTypeDescription = "Vertically Alligned Container", PageComponentBody = "<div id=\"glass-bottom-<containerId>-<sectionId>\" class=\"glass glass-bottom\"></div>" });
 
+            if (!componentList.Any(x => x.PageComponentTypeName == "Recent Posts"))
+                newComponents.Add(new PageComponentType { PageComponentTypeName = "Recent Posts", PageComponentTypeCategory = PageComponentTypeCategory.Widget, PageComponentTypeDescription = "Vertically Alligned Container", PageComponentBody = "<div id=\"widget-<componentStamp>-<sectionId>\" class=\"widget-wrapper post-list-wrapper\" style=\"text-align: left;\"><div class=\"vertical-alignment\"><div class=\"loading-wrapper\" style=\"text-align: center;\"><div style=\"background-color: black; padding: 10px; display: inline-block;\"><img src=\"/Areas/Builder/Content/Images/Sample/loading-graphic.gif\" /></div></div></div></div>" });
+
             if (newComponents.Any())
                 context.PageComponentTypes.AddRange(newComponents);
         }

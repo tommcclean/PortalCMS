@@ -13,6 +13,7 @@
         $('#@Model.ContainerElementId').append(componentTypeBody);
 
         SetupComponentEvents();
+        LoadWidgets();
 
         var dataParams = { "pageSectionId": @Model.PageSectionId, "containerElementId": '@Model.ContainerElementId', "elementBody": componentTypeBody };
         $.ajax({
@@ -56,6 +57,7 @@
     <li role="presentation" class=""><a href="#tab-bootstrap" aria-controls="tab-icon" role="tab" data-toggle="tab">Bootstrap</a></li>
     <li role="presentation" class=""><a href="#tab-table" aria-controls="tab-table" role="tab" data-toggle="tab">Tables</a></li>
     <li role="presentation" class=""><a href="#tab-control" aria-controls="tab-screenshot" role="tab" data-toggle="tab">Control</a></li>
+    <li role="presentation" class=""><a href="#tab-widget" aria-controls="tab-widget" role="tab" data-toggle="tab">Widget</a></li>
 </ul>
 <div class="row builder-picker">
     <div class="tab-content">
@@ -94,6 +96,20 @@
         </div>
         <div role="tabpanel" class="tab-pane float-container" id="tab-control">
             @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Control))
+            {
+                <div class="col-xs-12 col-md-6">
+                    <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId" data-componenttypebody="@componentType.PageComponentBody">
+                        <div class="component-preview float-container">
+                            @Html.Raw(componentType.PageComponentBody)
+                        </div>
+                        <h4 style="padding-top: 10px;">@componentType.PageComponentTypeName</h4>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div role="tabpanel" class="tab-pane float-container" id="tab-widget">
+            @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Widget))
             {
                 <div class="col-xs-12 col-md-6">
                     <div class="builder-item" data-componentypeid="@componentType.PageComponentTypeId" data-componenttypebody="@componentType.PageComponentBody">

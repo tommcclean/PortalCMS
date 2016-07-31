@@ -5,6 +5,7 @@
         Markup = 0,
         Bootstrap = 1,
         Control = 2,
-        Table = 3
+        Table = 3,
+        Widget = 4
     }
 }

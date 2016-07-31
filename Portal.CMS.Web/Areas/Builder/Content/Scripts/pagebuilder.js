@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     SetupComponentEvents();
+    LoadWidgets();
 
     $(".add-component").click(function (event) {
         var sectionId = $(this).attr("data-sectionid");
@@ -20,6 +21,7 @@
         var elementId = $(this).attr("id");
         var sectionId = ExtractSectionId($(this));
         $(this).find('.component-container').removeClass('selected');
+        $(this).find('.widget-wrapper').removeClass('selected');
         $('#container-editor-' + sectionId).fadeOut();
     }).children().click(function (e) {
         return false;
@@ -30,6 +32,11 @@
         var sectionId = ExtractSectionId($(this));
 
         var targetContainer = $("#section-" + sectionId + " .component-container.selected:first").attr("id");
+
+        if (targetContainer === undefined)
+        {
+            targetContainer = $("#section-" + sectionId + " .widget-wrapper.selected:first").attr("id");
+        }
 
         $('#' + targetContainer).remove();
 
@@ -71,10 +78,20 @@ function SaveOrder() {
     $('#order-submit').click();
 }
 
+function LoadWidgets()
+{
+    if ($('.post-list-wrapper').length) {
+        $.get("/Builder/Widget/RecentPostList", function (data) {
+            $(".post-list-wrapper").html(data);
+        });
+    }
+}
+
 function SetupComponentEvents()
 {
     // REMOVE: Previously Added Bindings / Events
     $('.admin .component-container').unbind();
+    $('.admin .widget-wrapper').unbind();
 
     $(".admin section div.image").click(function (event) {
         var elementId = event.target.id;
@@ -102,6 +119,26 @@ function SetupComponentEvents()
         }
         else {
             $('.component-container').removeClass('selected');
+            $('.widget-wrapper').removeClass('selected');
+            $('.component-editor').fadeOut(200);
+            $('#container-editor-' + sectionId).fadeIn(200);
+            $(this).addClass('selected');
+        }
+    }).children().click(function (e) {
+        return false;
+    });
+
+    $(".admin .widget-wrapper").click(function (event) {
+        var elementId = $(this).attr("id");
+        var sectionId = ExtractSectionId($(this));
+
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+            $('#container-editor-' + sectionId).fadeOut();
+        }
+        else {
+            $('.component-container').removeClass('selected');
+            $('.widget-wrapper').removeClass('selected');
             $('.component-editor').fadeOut(200);
             $('#container-editor-' + sectionId).fadeIn(200);
             $(this).addClass('selected');
