@@ -1,4 +1,6 @@
 ﻿using Portal.CMS.Entities;
+using Portal.CMS.Entities.Entities.Menu;
+using Portal.CMS.Services.Authentication;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,6 +14,8 @@ namespace Portal.CMS.Services.Menu
 
         Entities.Entities.Menu.Menu Get(string menuName);
 
+        List<MenuItem> View(int? userId, string menuName);
+
         int Create(string menuName);
 
         void Edit(int menuId, string menuName);
@@ -24,10 +28,12 @@ namespace Portal.CMS.Services.Menu
         #region Dependencies
 
         private readonly PortalEntityModel _context;
+        private readonly IUserService _userService;
 
-        public MenuService(PortalEntityModel context)
+        public MenuService(PortalEntityModel context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
 
         #endregion Dependencies
@@ -51,6 +57,55 @@ namespace Portal.CMS.Services.Menu
             var menu = _context.Menus.FirstOrDefault(x => x.MenuName == menuName);
 
             return menu;
+        }
+
+        public List<MenuItem> View(int? userId, string menuName)
+        {
+            var menu = _context.Menus.FirstOrDefault(x => x.MenuName == menuName);
+
+            var pageList = _context.Pages.ToList();
+
+            var userRoleList = new List<string>();
+            var menuItemList = new List<MenuItem>();
+
+            if (userId.HasValue)
+            {
+                var user = _userService.GetUser(userId.Value);
+
+                if (user.Roles.Any(x => x.Role.RoleName == "Admin"))
+                    return menu.MenuItems.ToList();
+
+                if (user != null)
+                    userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));
+            }
+
+            foreach (var menuItem in menu.MenuItems)
+            {
+                var matchedPage = pageList.FirstOrDefault(x => x.PageArea == menuItem.LinkArea && x.PageController == menuItem.LinkController && x.PageAction == menuItem.LinkAction);
+
+                if (matchedPage == null)
+                {
+                    menuItemList.Add(menuItem);
+
+                    continue;
+                }
+
+                if (userRoleList.Contains(matchedPage.PageRoles.SelectMany(x => x.Role.RoleName)))
+                {
+                    menuItemList.Add(menuItem);
+
+                    continue;
+                }
+
+                if (!matchedPage.PageRoles.Any())
+                {
+                    menuItemList.Add(menuItem);
+
+                    continue;
+                }
+            }
+
+            return menuItemList;
         }
 
         public int Create(string menuName)

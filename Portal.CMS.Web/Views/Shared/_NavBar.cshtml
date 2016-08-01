@@ -1,6 +1,6 @@
 ﻿@using Portal.CMS.Web.Areas.Admin.Helpers;
 @{
-    var menu = MenuHelper.Get("Main Menu");
+    var menuItems = MenuHelper.Get("Main Menu");
 
     var isLoggedIn = UserHelper.IsLoggedIn;
     var isAdmin = UserHelper.IsAdmin;
@@ -17,12 +17,9 @@
 
         <div class="collapse navbar-collapse" id="main-menu">
             <ul class="nav navbar-nav">
-                @if (menu != null)
+                @foreach (var item in menuItems)
                 {
-                    foreach (var item in menu.MenuItems)
-                    {
-                        <li class=""><a href="@Url.Action(item.LinkAction, item.LinkController, new { area = item.LinkArea })">@Html.Raw(item.LinkText)</a></li>
-                    }
+                    <li class=""><a href="@Url.Action(item.LinkAction, item.LinkController, new { area = item.LinkArea })">@Html.Raw(item.LinkText)</a></li>
                 }
             </ul>
 
