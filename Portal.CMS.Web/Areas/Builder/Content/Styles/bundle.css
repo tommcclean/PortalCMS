@@ -519,7 +519,7 @@ section.quote .quote-image-left
 section.quote .quote-image-right
 {
     position: absolute;
-    background-image: url('/Areas/Builder/Content/Images/Sample/quote-image-left.png');
+    background-image: url('/Areas/Builder/Content/Images/Sample/quote-image-right.png');
     background-repeat: no-repeat;
     background-position: center center;
     top: 30px;
