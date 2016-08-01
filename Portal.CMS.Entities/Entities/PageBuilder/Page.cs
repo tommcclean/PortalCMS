@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Portal.CMS.Entities.Entities.Posts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -27,5 +28,7 @@ namespace Portal.CMS.Entities.Entities.PageBuilder
         public DateTime DateUpdated { get; set; }
 
         public virtual ICollection<PageSection> PageSections { get; set; }
+
+        public virtual ICollection<PageRole> PageRoles { get; set; }
     }
 }

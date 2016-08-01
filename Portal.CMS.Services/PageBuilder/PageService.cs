@@ -1,5 +1,7 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.PageBuilder;
+using Portal.CMS.Entities.Entities.Posts;
+using Portal.CMS.Services.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,6 +13,8 @@ namespace Portal.CMS.Services.PageBuilder
     {
         IEnumerable<Page> Get();
 
+        Page View(int? userId, int pageId);
+
         Page Get(int pageId);
 
         int Add(string pageName, string area, string controller, string action);
@@ -20,6 +24,8 @@ namespace Portal.CMS.Services.PageBuilder
         void Delete(int pageId);
 
         void Order(int pageId, string sectionList);
+
+        void Roles(int pageId, List<string> roleList);
     }
 
     public class PageService : IPageService
@@ -27,10 +33,12 @@ namespace Portal.CMS.Services.PageBuilder
         #region Dependencies
 
         private readonly PortalEntityModel _context;
+        private readonly IUserService _userService;
 
-        public PageService(PortalEntityModel context)
+        public PageService(PortalEntityModel context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
 
         #endregion Dependencies
@@ -40,6 +48,32 @@ namespace Portal.CMS.Services.PageBuilder
             var results = _context.Pages.OrderBy(x => x.PageName);
 
             return results;
+        }
+
+        public Page View(int? userId, int pageId)
+        {
+            var page = _context.Pages.Include(x => x.PageSections).SingleOrDefault(x => x.PageId == pageId);
+
+            var userRoleList = new List<string>();
+
+            if (userId.HasValue)
+            {
+                var user = _userService.GetUser(userId.Value);
+
+                if (user.Roles.Any(x => x.Role.RoleName == "Admin"))
+                    return page;
+
+                userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));
+
+                if (userRoleList.Contains(page.PageRoles.SelectMany(x => x.Role.RoleName)))
+                    return page;
+            }
+            else if (!page.PageRoles.Any())
+            {
+                return page;
+            }
+
+            return null;
         }
 
         public Page Get(int pageId)
@@ -118,6 +152,32 @@ namespace Portal.CMS.Services.PageBuilder
                     continue;
 
                 section.PageSectionOrder = Convert.ToInt32(orderId);
+            }
+
+            _context.SaveChanges();
+        }
+
+        public void Roles(int pageId, List<string> roleList)
+        {
+            var page = Get(pageId);
+
+            if (page == null)
+                return;
+
+            var roles = _context.Roles.ToList();
+
+            if (page.PageRoles != null)
+                foreach (var role in page.PageRoles.ToList())
+                    _context.PageRoles.Remove(role);
+
+            foreach (var roleName in roleList)
+            {
+                var currentRole = roles.FirstOrDefault(x => x.RoleName == roleName);
+
+                if (currentRole == null)
+                    continue;
+
+                _context.PageRoles.Add(new PageRole { PageId = pageId, RoleId = currentRole.RoleId });
             }
 
             _context.SaveChanges();

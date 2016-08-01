@@ -39,8 +39,11 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             var model = new CustomViewModel()
             {
-                Page = _pageService.Get(pageId)
+                Page = _pageService.View(UserHelper.UserId, pageId)
             };
+
+            if (model.Page == null)
+                return RedirectToAction("Index", "Home", new { area = "" });
 
             return View("/Areas/Builder/Views/Build/Index.cshtml", model);
         }

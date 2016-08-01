@@ -82,7 +82,6 @@ section .vertical-alignment
     border: 1px dotted black;
     cursor: pointer;
 }
-
 .glass
 {
     position: absolute;

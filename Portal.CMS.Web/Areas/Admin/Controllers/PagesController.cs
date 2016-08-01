@@ -1,4 +1,5 @@
-﻿using Portal.CMS.Services.PageBuilder;
+﻿using Portal.CMS.Services.Authentication;
+using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Pages;
 using System.Collections.Generic;
@@ -13,10 +14,12 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         #region Dependencies
 
         private readonly IPageService _pageService;
+        private readonly IRoleService _roleService;
 
-        public PagesController(IPageService pageService)
+        public PagesController(IPageService pageService, IRoleService roleService)
         {
             _pageService = pageService;
+            _roleService = roleService;
         }
 
         #endregion Dependencies
@@ -44,8 +47,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var model = new CreateViewModel()
+            var model = new CreateViewModel
             {
+                RoleList = _roleService.Get()
             };
 
             return View("_Create", model);
@@ -57,9 +61,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         public ActionResult Create(CreateViewModel model)
         {
             if (!ModelState.IsValid)
+            {
+                model.RoleList = _roleService.Get();
                 return View("_Create", model);
+            }
 
-            _pageService.Add(model.PageName, model.PageArea, model.PageController, model.PageAction);
+            var pageId = _pageService.Add(model.PageName, model.PageArea, model.PageController, model.PageAction);
+
+            _pageService.Roles(pageId, model.SelectedRoleList);
 
             System.Web.HttpRuntime.UnloadAppDomain();
 
@@ -77,7 +86,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PageName = page.PageName,
                 PageArea = page.PageArea,
                 PageController = page.PageController,
-                PageAction = page.PageAction
+                PageAction = page.PageAction,
+                RoleList = _roleService.Get(),
+                SelectedRoleList = page.PageRoles.Select(x => x.Role.RoleName).ToList()
             };
 
             return View("_Edit", model);
@@ -96,15 +107,20 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 restartRequired = true;
 
             if (!ModelState.IsValid)
-                return View("_Create", model);
+            {
+                model.RoleList = _roleService.Get();
+                return View("_Edit", model);
+            }
 
             _pageService.Edit(model.PageId, model.PageName, model.PageArea, model.PageController, model.PageAction);
+
+            _pageService.Roles(model.PageId, model.SelectedRoleList);
 
             // RESET: Routing by Starting the Website.
             if (restartRequired)
                 System.Web.HttpRuntime.UnloadAppDomain();
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet]

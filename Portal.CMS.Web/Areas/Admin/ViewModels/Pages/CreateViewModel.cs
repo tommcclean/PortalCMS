@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using Portal.CMS.Entities.Entities.Authentication;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Portal.CMS.Web.Areas.Admin.ViewModels.Pages
@@ -19,5 +21,10 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.Pages
         [Required]
         [DisplayName("Action")]
         public string PageAction { get; set; }
+
+        [DisplayName("Roles")]
+        public List<string> SelectedRoleList { get; set; } = new List<string>();
+
+        public List<Role> RoleList { get; set; }
     }
 }

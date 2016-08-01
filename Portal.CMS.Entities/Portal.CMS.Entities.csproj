@@ -76,6 +76,7 @@
     <Compile Include="Entities\PageBuilder\PageSectionBackgroundType.cs" />
     <Compile Include="Entities\PageBuilder\PageSectionHeight.cs" />
     <Compile Include="Entities\PageBuilder\PageSectionType.cs" />
+    <Compile Include="Entities\PageBuilder\PageRole.cs" />
     <Compile Include="Entities\Posts\Post.cs" />
     <Compile Include="Entities\Posts\PostCategory.cs" />
     <Compile Include="Entities\Posts\PostComment.cs" />
@@ -135,6 +136,10 @@
     <Compile Include="Migrations\201607311849235_AddPostRolesEntity.Designer.cs">
       <DependentUpon>201607311849235_AddPostRolesEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608012107556_AddPageRolesEntity.cs" />
+    <Compile Include="Migrations\201608012107556_AddPageRolesEntity.Designer.cs">
+      <DependentUpon>201608012107556_AddPageRolesEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -189,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607311849235_AddPostRolesEntity.resx">
       <DependentUpon>201607311849235_AddPostRolesEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608012107556_AddPageRolesEntity.resx">
+      <DependentUpon>201608012107556_AddPageRolesEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
