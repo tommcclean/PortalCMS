@@ -54,6 +54,9 @@ namespace Portal.CMS.Services.PageBuilder
         {
             var page = _context.Pages.Include(x => x.PageSections).SingleOrDefault(x => x.PageId == pageId);
 
+            if (!page.PageRoles.Any())
+                return page;
+
             var userRoleList = new List<string>();
 
             if (userId.HasValue)
@@ -67,10 +70,6 @@ namespace Portal.CMS.Services.PageBuilder
 
                 if (userRoleList.Contains(page.PageRoles.SelectMany(x => x.Role.RoleName)))
                     return page;
-            }
-            else if (!page.PageRoles.Any())
-            {
-                return page;
             }
 
             return null;
