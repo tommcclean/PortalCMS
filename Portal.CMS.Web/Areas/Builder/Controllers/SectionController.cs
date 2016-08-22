@@ -58,7 +58,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [HttpGet]
         public ActionResult Add(int pageId)
         {
-            var model = new AddViewModel()
+            var model = new AddViewModel
             {
                 PageId = pageId,
                 SectionTypeList = _pageSectionTypeService.Get()
@@ -73,7 +73,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             _pageSectionService.Add(model.PageId, model.PageSectionTypeId);
 
-            return Content("Refresh");
+            return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
         }
 
         [HttpGet]

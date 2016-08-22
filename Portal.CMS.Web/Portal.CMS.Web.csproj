@@ -591,8 +591,8 @@
     <Content Include="Areas\Admin\Views\Copy\_Copy.cshtml" />
     <Content Include="Areas\Admin\Views\Settings\_Setup.cshtml" />
     <Content Include="Areas\Builder\Views\Widget\_RecentPostList.cshtml" />
-    <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
+    <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Edit.cshtml" />
     <Content Include="Views\Shared\_Analytics.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />

@@ -65,6 +65,20 @@ function ChangeOrder() {
     $('.action-container.section-order').fadeIn();
 }
 
+function ToggleSectionPanel()
+{
+    if ($('#section-panel').hasClass('visible'))
+    {
+        $('#section-panel').slideUp(300);
+        $('#section-panel').toggleClass('visible');
+    }
+    else
+    {
+        $('#section-panel').slideDown(300);
+        $('#section-panel').toggleClass('visible');
+    }
+}
+
 function SaveOrder() {
     var sectionList = [];
     var orderId = 1;

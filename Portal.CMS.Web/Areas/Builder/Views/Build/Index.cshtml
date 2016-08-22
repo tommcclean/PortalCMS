@@ -42,8 +42,8 @@
     {
         /* Global Administration Menu */
         <div class="action-container global">
-            <div onclick="ChangeOrder();" class="action"><span class="glyphicon glyphicon-resize-vertical"></span></div>
-            <a href="@Url.Action("Add", "Section", new { area = "Builder", pageId = Model.Page.PageId })" data-title="Add Section" class="launch-modal"><div class="action"><span class="glyphicon glyphicon-plus"></span></div></a>
+            <div class="action" onclick="ChangeOrder();"><span class="glyphicon glyphicon-resize-vertical"></span></div>
+            <div class="action" onclick="ToggleSectionPanel();"><span class="glyphicon glyphicon-plus"></span></div>
         </div>
 
         /* Page Section Order Administration Menu */
@@ -79,3 +79,8 @@
             </div>
         }
     </div>
+
+@if (isAdmin)
+{
+    @Html.Action("Add", "Section", new { @pageId = Model.Page.PageId })
+}

@@ -302,6 +302,83 @@ table
         display: none;
     }
 
+.panel-overlay
+{
+    display: none;
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    width: 350px;
+    z-index: 50;
+    background-color: #FEFDFD;
+    box-shadow: 1px 1px 15px #BDBDBF;
+    border-radius: 5px;
+}
+
+    .panel-overlay .panel-title
+    {
+        border-bottom: 1px solid #E3E6E8;
+    }
+
+        .panel-overlay .panel-title h4
+        {
+            display: inline-block;
+            line-height: 45px;
+            margin: 0;
+            padding-left: 20px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .panel-overlay .panel-title .panel-action
+        {
+            float: left;
+            padding: 12.5px 10px 12.5px 10px;
+            cursor: pointer;
+        }
+
+            .panel-overlay .panel-title .panel-action.right
+            {
+                float: right;
+            }
+
+    .panel-overlay .panel-inner
+    {
+        width: 100%;
+        padding: 10px;
+        min-height: 300px;
+        max-height: 70vh;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+        .panel-overlay .panel-inner .section-preview
+        {
+            -ms-zoom: 0.2;
+            zoom: 0.2;
+            width: 100%;
+            margin-bottom: 50px;
+            border: 1px solid black;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+
+            .panel-overlay .panel-inner .section-preview:hover
+            {
+                border: 1px solid red;
+            }
+
+            .panel-overlay .panel-inner .section-preview section
+            {
+                pointer-events: none;
+            }
+
+            .panel-overlay .panel-inner .section-preview .background-parallax
+            {
+                background-attachment: scroll;
+            }
+
 @media (max-width: 1024px)
 {
     section.background-parallax
@@ -350,7 +427,22 @@ table
     {
         min-height: 80vh;
     }
+
+    .panel-overlay
+    {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        width: auto;
+    }
+
+        .panel-overlay .panel-inner .section-preview
+        {
+            -ms-zoom: 0.5;
+            zoom: 0.5;
+        }
 }
+
 section.block
 {
     text-align: center;
