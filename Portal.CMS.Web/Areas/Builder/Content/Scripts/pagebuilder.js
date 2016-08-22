@@ -63,6 +63,11 @@ function ChangeOrder() {
     $('#page-wrapper.change-order').sortable({ placeholder: "ui-state-highlight", helper: 'clone' });
     $('.action-container.global').fadeOut();
     $('.action-container.section-order').fadeIn();
+
+    if ($('#section-panel').hasClass('visible')) {
+        $('#section-panel').slideUp(300);
+        $('#section-panel').toggleClass('visible');
+    }
 }
 
 function ToggleSectionPanel()
