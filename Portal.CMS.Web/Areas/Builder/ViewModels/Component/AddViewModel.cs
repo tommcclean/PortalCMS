@@ -1,5 +1,4 @@
 ﻿using Portal.CMS.Entities.Entities.PageBuilder;
-using System;
 using System.Collections.Generic;
 
 namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
