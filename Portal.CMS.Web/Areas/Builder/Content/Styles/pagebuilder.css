@@ -212,6 +212,7 @@ table
             border: 1px solid transparent;
             cursor: pointer;
             min-height: 50px;
+            overflow: hidden;
         }
 
             .panel-overlay .panel-inner .component-preview.border
@@ -238,11 +239,22 @@ table
             min-height: 40px;
         }
 
+        .panel-overlay .panel-inner .component-preview .component-container *
+        {
+            max-width: 100%;
+            min-height: 40px;
+        }
+
 .component-container.ui-draggable-dragging
 {
     height: 50px;
     width: 300px;
     background-image: url('../../../Admin/Content/Images/block_black_medium.png');
+}
+
+.ui-draggable-dragging
+{
+    width: 300px;
 }
 
 .panel-overlay .panel-inner .widget-preview .post-list-wrapper a
