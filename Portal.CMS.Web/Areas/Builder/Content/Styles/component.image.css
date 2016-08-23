@@ -3,7 +3,7 @@
     display: inline-block;
     height: 125px;
     width: 125px;
-    background-image: url('/Areas/Builder/Content/Images/Sample/icon-6.png');
+    background-image: url('/Areas/Builder/Content/Images/Sample/Sample-1.jpg');
     background-size: cover;
     background-position: center center;
     margin: 10px;
@@ -12,6 +12,7 @@
 
     .image.image-circle
     {
+        background-image: url('/Areas/Builder/Content/Images/Sample/Sample-4.jpg');
         border-radius: 50%;
     }
 
@@ -19,12 +20,14 @@
     {
         height: 64px;
         width: 64px;
+        background-image: url('/Areas/Builder/Content/Images/Sample/icon-1.png');
     }
 
     .image.image-standard
     {
         width: 300px;
         height: 225px;
+        background-image: url('/Areas/Builder/Content/Images/Sample/Sample-5.jpg');
     }
 
     .image.image-auto

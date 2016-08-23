@@ -2,8 +2,8 @@
 {
     border: 1px dotted gray;
     border-radius: 5px;
-    padding-bottom: 15px;
-    padding-top: 15px;
+    padding-bottom: 30px;
+    padding-top: 30px;
     transition: all 0.1s ease-in-out;
     cursor: pointer;
 }

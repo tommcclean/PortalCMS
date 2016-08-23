@@ -2,8 +2,8 @@
 {
     border: 1px dotted gray;
     border-radius: 5px;
-    padding-bottom: 15px;
-    padding-top: 15px;
+    padding-bottom: 30px;
+    padding-top: 30px;
     transition: all 0.1s ease-in-out;
     cursor: pointer;
 }
@@ -135,7 +135,7 @@ section .vertical-alignment
     display: inline-block;
     height: 125px;
     width: 125px;
-    background-image: url('/Areas/Builder/Content/Images/Sample/icon-6.png');
+    background-image: url('/Areas/Builder/Content/Images/Sample/Sample-1.jpg');
     background-size: cover;
     background-position: center center;
     margin: 10px;
@@ -144,6 +144,7 @@ section .vertical-alignment
 
     .image.image-circle
     {
+        background-image: url('/Areas/Builder/Content/Images/Sample/Sample-4.jpg');
         border-radius: 50%;
     }
 
@@ -151,12 +152,14 @@ section .vertical-alignment
     {
         height: 64px;
         width: 64px;
+        background-image: url('/Areas/Builder/Content/Images/Sample/icon-1.png');
     }
 
     .image.image-standard
     {
         width: 300px;
         height: 225px;
+        background-image: url('/Areas/Builder/Content/Images/Sample/Sample-5.jpg');
     }
 
     .image.image-auto
@@ -378,15 +381,69 @@ table
                 background-attachment: scroll;
             }
 
-            
         .panel-overlay .panel-inner .component-preview
         {
+            position: relative;
             width: 100%;
             border: 1px solid transparent;
+            cursor: pointer;
+            min-height: 50px;
+        }
+
+            .panel-overlay .panel-inner .component-preview.border
+            {
+                border-bottom: 1px dashed silver;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+                margin-top: 20px;
+            }
+
+        .panel-overlay .panel-inner .widget-preview
+        {
+            width: 100%;
             cursor: pointer;
             overflow: hidden;
             min-height: 50px;
         }
+
+        .panel-overlay .panel-inner .component-preview .component-container
+        {
+            background-color: silver;
+            max-width: 100%;
+            min-height: 40px;
+        }
+
+.component-container.ui-draggable-dragging
+{
+    height: 50px;
+    width: 300px;
+    background-image: url('../../../Admin/Content/Images/block_black_medium.png');
+}
+
+.panel-overlay .panel-inner .widget-preview .post-list-wrapper a
+{
+    width: 100%;
+}
+
+.panel-overlay .component-title
+{
+    position: absolute;
+    right: 0px;
+    top: 30px;
+    padding: 5px 10px 5px 10px;
+    background-image: url('../../../Admin/Content/Images/block_black_dark.png');
+    display: inline-block;
+    color: white;
+    border-radius: 5px;
+    text-transform: uppercase;
+    z-index: 50;
+}
+
+.ui-draggable-dragging
+{
+    max-width: 50vw;
+}
 
 @media (max-width: 1024px)
 {

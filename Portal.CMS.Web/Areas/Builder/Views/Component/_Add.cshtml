@@ -13,18 +13,16 @@
     <div class="panel-inner">
         <ul class="nav nav-tabs nav-justified">
             <li role="presentation" class="active"><a href="#tab-text" aria-controls="tab-text" role="tab" data-toggle="tab">Text</a></li>
-            <li role="presentation" class=""><a href="#tab-bootstrap" aria-controls="tab-bootstrap" role="tab" data-toggle="tab">Bootstrap</a></li>
-            <li role="presentation" class=""><a href="#tab-design" aria-controls="tab-design" role="tab" data-toggle="tab">Design</a></li>
-            <li role="presentation" class=""><a href="#tab-widget" aria-controls="tab-widget" role="tab" data-toggle="tab">Widget</a></li>
+            <li role="presentation" class=""><a href="#tab-images" aria-controls="tab-images" role="tab" data-toggle="tab">Images</a></li>
+            <li role="presentation" class=""><a href="#tab-ui" aria-controls="tab-ui" role="tab" data-toggle="tab">UI</a></li>
+            <li role="presentation" class=""><a href="#tab-widget" aria-controls="tab-widget" role="tab" data-toggle="tab">Widgets</a></li>
         </ul>
 
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active float-container" id="tab-text">
-                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Markup))
+                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Text))
                 {
-                    <div class="component-preview float-container">
-                        @Html.Raw(componentType.PageComponentBody)
-                    </div>
+                    <div class="component-preview float-container">@Html.Raw(componentType.PageComponentBody)</div>
                 }
             </div>
             <div role="tabpanel" class="tab-pane float-container" id="tab-bootstrap">
@@ -35,9 +33,31 @@
                     </div>
                 }
             </div>
-            <div role="tabpanel" class="tab-pane float-container" id="tab-design">
+            <div role="tabpanel" class="tab-pane float-container" id="tab-images">
+                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Image))
+                {
+                    <div class="component-preview border float-container">
+                        <div class="component-title">@componentType.PageComponentTypeName</div>
+                        @Html.Raw(componentType.PageComponentBody)
+                    </div>
+                }
+            </div>
+            <div role="tabpanel" class="tab-pane float-container" id="tab-ui">
+                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.UI))
+                {
+                    <div class="component-preview border float-container">
+                        <div class="component-title">@componentType.PageComponentTypeName</div>
+                        @Html.Raw(componentType.PageComponentBody)
+                    </div>
+                }
             </div>
             <div role="tabpanel" class="tab-pane float-container" id="tab-widget">
+                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Widget))
+                {
+                    <div class="widget-preview float-container">
+                        @Html.Raw(componentType.PageComponentBody)
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -45,11 +65,12 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        // Bootstrap Popover
         $('.panel-action').popover();
 
+        SetupAddComponentDrawer();
+
         $(function () {
-            $(".component-preview *").draggable({
+            $("#component-panel .component-preview *").draggable({
                 appendTo: 'body',
                 cursor: 'move',
                 helper: 'clone',
@@ -58,72 +79,14 @@
             });
         });
 
-        $("section").droppable({
-            tolerance: "intersect",
-            activeClass: "ui-state-default",
-            hoverClass: "ui-state-hover",
-            drop: function (event, ui) {
-                var newElement = $(ui.draggable).clone();
-
-                var sectionId = ExtractSectionId($(this));
-                var newElementId = newElement.attr("id");
-
-                newElementId = newElementId.replace('<sectionId>', sectionId);
-                newElementId = newElementId.replace('<componentStamp>', new Date().valueOf());
-                newElement.attr("id", newElementId);
-
-                $(this).append(newElement);
-
-                $('#' + newElementId).removeClass("ui-draggable");
-                $('#' + newElementId).removeClass("ui-draggable-handle");
-                $('#' + newElementId).unbind();
-
-                SetupComponentEvents();
-                LoadWidgets();
-
-                var dataParams = { "pageSectionId": sectionId, "containerElementId": $(this).attr("id"), "elementBody": $('#' + newElementId)[0].outerHTML };
-                $.ajax({
-                    data: dataParams,
-                    type: 'POST',
-                    cache: false,
-                    url: '/Builder/Component/Add',
-                    success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-                });
-            }
-        });
-
-        $(".component-container").droppable({
-            tolerance: "intersect",
-            activeClass: "ui-state-default",
-            hoverClass: "ui-state-hover",
-            greedy: "true",
-            drop: function (event, ui) {
-                var newElement = $(ui.draggable).clone();
-                var sectionId = ExtractSectionId($(this));
-                var newElementId = newElement.attr("id");
-
-                newElementId = newElementId.replace('<sectionId>', sectionId);
-                newElementId = newElementId.replace('<componentStamp>', new Date().valueOf());
-                newElement.attr("id", newElementId);
-
-                $(this).append(newElement);
-
-                $('#' + newElementId).removeClass("ui-draggable");
-                $('#' + newElementId).removeClass("ui-draggable-handle");
-                $('#' + newElementId).unbind();
-
-                SetupComponentEvents();
-                LoadWidgets();
-
-                var dataParams = { "pageSectionId": sectionId, "containerElementId": $(this).attr("id"), "elementBody": $('#' + newElementId)[0].outerHTML };
-                $.ajax({
-                    data: dataParams,
-                    type: 'POST',
-                    cache: false,
-                    url: '/Builder/Component/Add',
-                    success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-                });
-            }
+        $(function () {
+            $("#component-panel .widget-wrapper").draggable({
+                appendTo: 'body',
+                cursor: 'move',
+                helper: 'clone',
+                revert: 'invalid',
+                zIndex: 300
+            });
         });
     });
 </script>

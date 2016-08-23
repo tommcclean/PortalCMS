@@ -75,27 +75,23 @@ function ChangeOrder() {
     }
 }
 
-function ToggleSectionPanel()
-{
+function ToggleSectionPanel() {
     if ($('#component-panel').hasClass('visible')) {
         $('#component-panel').slideUp(300);
         $('#component-panel').toggleClass('visible');
     }
 
-    if ($('#section-panel').hasClass('visible'))
-    {
+    if ($('#section-panel').hasClass('visible')) {
         $('#section-panel').slideUp(300);
         $('#section-panel').toggleClass('visible');
     }
-    else
-    {
+    else {
         $('#section-panel').slideDown(300);
         $('#section-panel').toggleClass('visible');
     }
 }
 
-function ToggleComponentPanel()
-{
+function ToggleComponentPanel() {
     if ($('#section-panel').hasClass('visible')) {
         $('#section-panel').slideUp(300);
         $('#section-panel').toggleClass('visible');
@@ -277,6 +273,124 @@ function SetupComponentEvents() {
                     url: '/Builder/Component/Link',
                     success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
                 });
+            });
+        }
+    });
+}
+
+function SetupAddComponentDrawer() {
+    $("section").droppable({
+        tolerance: "intersect",
+        activeClass: "ui-state-default",
+        hoverClass: "ui-state-hover",
+        drop: function (event, ui) {
+            var newElement = $(ui.draggable).clone();
+
+            var sectionId = ExtractSectionId($(this));
+            var newElementId = newElement.attr("id");
+
+            newElementId = newElementId.replace('<sectionId>', sectionId);
+            newElementId = newElementId.replace('<componentStamp>', new Date().valueOf());
+            newElement.attr("id", newElementId);
+
+            $(this).append(newElement);
+
+            $('#' + newElementId).removeClass("ui-draggable");
+            $('#' + newElementId).removeClass("ui-draggable-handle");
+            $('#' + newElementId).unbind();
+
+            SetupComponentEvents();
+            LoadWidgets();
+
+            if (newElement.hasClass("component-container")) {
+                SetupControlContainer(newElementId);
+            }
+
+            var dataParams = { "pageSectionId": sectionId, "containerElementId": $(this).attr("id"), "elementBody": $('#' + newElementId)[0].outerHTML };
+            $.ajax({
+                data: dataParams,
+                type: 'POST',
+                cache: false,
+                url: '/Builder/Component/Add',
+                success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
+            });
+        }
+    });
+
+    $(".component-container").droppable({
+        tolerance: "intersect",
+        activeClass: "ui-state-default",
+        hoverClass: "ui-state-hover",
+        greedy: "true",
+        drop: function (event, ui) {
+            var newElement = $(ui.draggable).clone();
+            var sectionId = ExtractSectionId($(this));
+            var newElementId = newElement.attr("id");
+
+            newElementId = newElementId.replace('<sectionId>', sectionId);
+            newElementId = newElementId.replace('<componentStamp>', new Date().valueOf());
+            newElement.attr("id", newElementId);
+
+            $(this).append(newElement);
+
+            $('#' + newElementId).removeClass("ui-draggable");
+            $('#' + newElementId).removeClass("ui-draggable-handle");
+            $('#' + newElementId).unbind();
+
+            SetupComponentEvents();
+            LoadWidgets();
+
+            if (newElement.hasClass("component-container")) {
+                SetupControlContainer(newElementId);
+            }
+
+            var dataParams = { "pageSectionId": sectionId, "containerElementId": $(this).attr("id"), "elementBody": $('#' + newElementId)[0].outerHTML };
+            $.ajax({
+                data: dataParams,
+                type: 'POST',
+                cache: false,
+                url: '/Builder/Component/Add',
+                success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
+            });
+        }
+    });
+}
+
+function SetupControlContainer(elementId) {
+    $("#" + elementId).droppable({
+        tolerance: "intersect",
+        activeClass: "ui-state-default",
+        hoverClass: "ui-state-hover",
+        greedy: "true",
+        drop: function (event, ui) {
+            var newElement = $(ui.draggable).clone();
+            var sectionId = ExtractSectionId($(this));
+            var newElementId = newElement.attr("id");
+
+            newElementId = newElementId.replace('<sectionId>', sectionId);
+            newElementId = newElementId.replace('<componentStamp>', new Date().valueOf());
+            newElement.attr("id", newElementId);
+
+            $(this).append(newElement);
+
+            $('#' + newElementId).removeClass("ui-draggable");
+            $('#' + newElementId).removeClass("ui-draggable-handle");
+            $('#' + newElementId).unbind();
+
+            SetupComponentEvents();
+            LoadWidgets();
+
+            if (newElement.hasClass("component-container")) {
+                SetupControlContainer(newElementId);
+            }
+
+            var dataParams = { "pageSectionId": sectionId, "containerElementId": $(this).attr("id"), "elementBody": $('#' + newElementId)[0].outerHTML };
+            $.ajax({
+                data: dataParams,
+                type: 'POST',
+                cache: false,
+                url: '/Builder/Component/Add',
+                success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
             });
         }
     });

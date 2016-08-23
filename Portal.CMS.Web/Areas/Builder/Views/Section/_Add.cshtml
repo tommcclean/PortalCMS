@@ -55,7 +55,7 @@
         // Bootstrap Popover
         $('.panel-action').popover();
 
-        $('.section-preview').on('click', function (e) {
+        $('#section-panel .section-preview').on('click', function (e) {
             var sectionTypeId = $(this).attr("data-sectiontypeid");
             $('#PageSectionTypeId').val(sectionTypeId);
             $('#submit-button').click();

@@ -2,10 +2,11 @@
 {
     public enum PageComponentTypeCategory
     {
-        Markup = 0,
+        Text = 0,
         Bootstrap = 1,
-        Control = 2,
+        Image = 2,
         Table = 3,
-        Widget = 4
+        Widget = 4,
+        UI = 5
     }
 }
