@@ -2,31 +2,6 @@
     SetupComponentEvents();
     LoadWidgets();
 
-    $(".add-component").click(function (event) {
-        var sectionId = $(this).attr("data-sectionid");
-
-        var targetContainer = $("#section-" + sectionId + " .component-container.selected:first").attr("id");
-
-        if (targetContainer === undefined) {
-            var href = "/Builder/Component/Add?pageSectionId=" + sectionId + "&elementId=section-" + sectionId;
-            showModalEditor("Add Component", href);
-        }
-        else {
-            var globalhref = "/Builder/Component/Add?pageSectionId=" + sectionId + "&elementId=" + targetContainer;
-            showModalEditor("Add Component", globalhref);
-        }
-    });
-
-    $(".admin section").click(function (event) {
-        var elementId = $(this).attr("id");
-        var sectionId = ExtractSectionId($(this));
-        $(this).find('.component-container').removeClass('selected');
-        $(this).find('.widget-wrapper').removeClass('selected');
-        $('#container-editor-' + sectionId).fadeOut();
-    }).children().click(function (e) {
-        return false;
-    });
-
     $(".admin .component-editor").click(function (event) {
         var elementId = $(this).attr("id");
         var sectionId = ExtractSectionId($(this));
@@ -38,6 +13,7 @@
         }
 
         $('#' + targetContainer).remove();
+        $('.component-editor').fadeOut(200);
 
         var dataParams = { "pageSectionId": sectionId, "elementId": targetContainer };
         $.ajax({
@@ -74,6 +50,17 @@ function ChangeOrder() {
         $('#component-panel').toggleClass('visible');
     }
 }
+function SaveOrder() {
+    var sectionList = [];
+    var orderId = 1;
+    $("#page-wrapper .sortable").each(function (index) {
+        var sectionId = $(this).attr("data-section");
+        sectionList.push(orderId + "-" + sectionId);
+        orderId += 1;
+    });
+    $('#order-list').val(sectionList);
+    $('#order-submit').click();
+}
 
 function ToggleSectionPanel() {
     if ($('#component-panel').hasClass('visible')) {
@@ -90,7 +77,6 @@ function ToggleSectionPanel() {
         $('#section-panel').toggleClass('visible');
     }
 }
-
 function ToggleComponentPanel() {
     if ($('#section-panel').hasClass('visible')) {
         $('#section-panel').slideUp(300);
@@ -107,18 +93,6 @@ function ToggleComponentPanel() {
     }
 }
 
-function SaveOrder() {
-    var sectionList = [];
-    var orderId = 1;
-    $("#page-wrapper .sortable").each(function (index) {
-        var sectionId = $(this).attr("data-section");
-        sectionList.push(orderId + "-" + sectionId);
-        orderId += 1;
-    });
-    $('#order-list').val(sectionList);
-    $('#order-submit').click();
-}
-
 function LoadWidgets() {
     if ($('.post-list-wrapper').length) {
         $.get("/Builder/Widget/RecentPostList", function (data) {
@@ -127,11 +101,21 @@ function LoadWidgets() {
     }
 }
 
-function SetupComponentEvents() {
-
-    // REMOVE: Previously Added Bindings / Events
+function SetupComponentEvents()
+{
+    $('.admin section').unbind();
     $('.admin .component-container').unbind();
     $('.admin .widget-wrapper').unbind();
+
+        $(".admin section").click(function(event) {
+        var elementId = $(this).attr("id");
+        var sectionId = ExtractSectionId($(this));
+        $(this).find('.component-container').removeClass('selected');
+        $(this).find('.widget-wrapper').removeClass('selected');
+        $('#container-editor-' +sectionId).fadeOut();
+}).children().click(function (e) {
+    return false;
+    });
 
     $(".admin section div.image").click(function (event) {
         var elementId = event.target.id;
@@ -140,7 +124,6 @@ function SetupComponentEvents() {
         var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
         showModalEditor("Edit Image Properties", href);
     });
-
     $(".admin section img.image").click(function (event) {
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
@@ -148,7 +131,6 @@ function SetupComponentEvents() {
         var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=img";
         showModalEditor("Edit Image Properties", href);
     });
-
     $(".admin .component-container").click(function (event) {
         var elementId = $(this).attr("id");
         var sectionId = ExtractSectionId($(this));
@@ -316,7 +298,6 @@ function SetupAddComponentDrawer() {
             });
         }
     });
-
     $(".component-container").droppable({
         tolerance: "intersect",
         activeClass: "ui-state-default",
