@@ -12,30 +12,29 @@ namespace Portal.CMS.Entities.Seed
 
             var newComponents = new List<PageComponentType>();
 
-            if (!componentList.Any(x => x.PageComponentTypeName == "Paragraph"))
-                newComponents.Add(new PageComponentType { PageComponentTypeName = "Paragraph", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Single Paragraph Element.", PageComponentBody = "<p id=\"component-<componentStamp>-<sectionId>\">Lorem ipsum dolor sit amet, eu qui accusam scriptorem. Purto erat facilisis sea id, vulputate deseruisse eos te, errem doctus feugiat te prim.</p>" });
-
-            if (!componentList.Any(x => x.PageComponentTypeName == "Code"))
-                newComponents.Add(new PageComponentType { PageComponentTypeName = "Code", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Single Paragraph Element.", PageComponentBody = "<code id=\"component-<componentStamp>-<sectionId>\">Lorem ipsum dolor sit amet, eu qui accusam scriptorem. Purto erat facilisis sea id, vulputate deseruisse eos te, errem doctus feugiat te prim.</code>" });
-
             if (!componentList.Any(x => x.PageComponentTypeName == "Heading (H1)"))
-                newComponents.Add(new PageComponentType { PageComponentTypeName = "Heading (H1)", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Large Title Text Element.", PageComponentBody = "<h1 id=\"component-<componentStamp>-<sectionId>\">Lorem ipsum dolor sit amet, eu qui accusam scriptorem.</h1>" });
+                newComponents.Add(new PageComponentType { PageComponentTypeName = "Heading (H1)", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Large Title Text Element.", PageComponentBody = "<h1 id=\"component-<componentStamp>-<sectionId>\">Large Title</h1>" });
 
             if (!componentList.Any(x => x.PageComponentTypeName == "Heading (H2)"))
-
-                newComponents.Add(new PageComponentType { PageComponentTypeName = "Heading (H2)", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Large Title Text Element", PageComponentBody = "<h2 id=\"component-<componentStamp>-<sectionId>\">Lorem ipsum dolor sit amet, eu qui accusam scriptorem.</h2>" });
+                newComponents.Add(new PageComponentType { PageComponentTypeName = "Heading (H2)", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Large Title Text Element", PageComponentBody = "<h2 id=\"component-<componentStamp>-<sectionId>\">Medium Title</h2>" });
 
             if (!componentList.Any(x => x.PageComponentTypeName == "Heading (H3)"))
-                newComponents.Add(new PageComponentType { PageComponentTypeName = "Heading (H3)", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Title Text Element", PageComponentBody = "<h3 id=\"component-<componentStamp>-<sectionId>\">Lorem ipsum dolor sit amet, eu qui accusam scriptorem.</h3>" });
+                newComponents.Add(new PageComponentType { PageComponentTypeName = "Heading (H3)", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Title Text Element", PageComponentBody = "<h3 id=\"component-<componentStamp>-<sectionId>\">Small Title</h3>" });
 
             if (!componentList.Any(x => x.PageComponentTypeName == "Heading (H4)"))
-                newComponents.Add(new PageComponentType { PageComponentTypeName = "Heading (H4)", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Title Text Element", PageComponentBody = "<h4 id=\"component-<componentStamp>-<sectionId>\">Lorem ipsum dolor sit amet, eu qui accusam scriptorem.</h4>" });
+                newComponents.Add(new PageComponentType { PageComponentTypeName = "Heading (H4)", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Title Text Element", PageComponentBody = "<h4 id=\"component-<componentStamp>-<sectionId>\">Tiny Title</h4>" });
+
+            if (!componentList.Any(x => x.PageComponentTypeName == "Paragraph"))
+                newComponents.Add(new PageComponentType { PageComponentTypeName = "Paragraph", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Single Paragraph Element.", PageComponentBody = "<p id=\"component-<componentStamp>-<sectionId>\">Standard Paragraph: Lorem ipsum dolor sit amet, eu qui accusam scriptorem. Purto erat facilisis sea id, vulputate deseruisse eos te, errem doctus feugiat te prim.</p>" });
 
             if (!componentList.Any(x => x.PageComponentTypeName == "Link"))
-                newComponents.Add(new PageComponentType { PageComponentTypeName = "Link", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Link to Another Page", PageComponentBody = "<a id=\"component-<componentStamp>-<sectionId>\" href=\"#\">Click me to find out more.</a>" });
+                newComponents.Add(new PageComponentType { PageComponentTypeName = "Link", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Link to Another Page", PageComponentBody = "<a id=\"component-<componentStamp>-<sectionId>\" href=\"#\">Hyperlink: Click me to find out more.</a>" });
 
             if (!componentList.Any(x => x.PageComponentTypeName == "Button"))
-                newComponents.Add(new PageComponentType { PageComponentTypeName = "Button", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Button Link to Another Page", PageComponentBody = "<a id=\"component-<componentStamp>-<sectionId>\" href=\"#\" class=\"btn\">Click me to find out more.</a>" });
+                newComponents.Add(new PageComponentType { PageComponentTypeName = "Button", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Button Link to Another Page", PageComponentBody = "<a id=\"component-<componentStamp>-<sectionId>\" href=\"#\" class=\"btn\">Rounded Button: Click Me</a>" });           
+
+            if (!componentList.Any(x => x.PageComponentTypeName == "Code"))
+                newComponents.Add(new PageComponentType { PageComponentTypeName = "Code", PageComponentTypeCategory = PageComponentTypeCategory.Markup, PageComponentTypeDescription = "Single Paragraph Element.", PageComponentBody = "<code id=\"component-<componentStamp>-<sectionId>\">Code Block: Lorem ipsum dolor sit amet, eu qui accusam scriptorem. Purto erat facilisis sea id, vulputate deseruisse eos te, errem doctus feugiat te prim.</code>" });
 
             if (!componentList.Any(x => x.PageComponentTypeName == "Image (Circle)"))
                 newComponents.Add(new PageComponentType { PageComponentTypeName = "Image (Circle)", PageComponentTypeCategory = PageComponentTypeCategory.Control, PageComponentTypeDescription = "Small Circular Image", PageComponentBody = "<div id=\"component-<componentStamp>-<sectionId>\" class=\"image image-circle\"></div>" });

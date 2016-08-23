@@ -43,6 +43,7 @@
         /* Global Administration Menu */
         <div class="action-container global">
             <div class="action" onclick="ChangeOrder();"><span class="glyphicon glyphicon-resize-vertical"></span></div>
+            <div class="action" onclick="ToggleComponentPanel();"><span class="glyphicon glyphicon-briefcase"></span></div>
             <div class="action" onclick="ToggleSectionPanel();"><span class="glyphicon glyphicon-plus"></span></div>
         </div>
 
@@ -70,7 +71,6 @@
                 @if (isAdmin)
                 {
                     <div class="action-container absolute">
-                        <a class="action add-component" data-title="Add Component" data-sectionid="@(section.PageSectionId)"><span class="glyphicon glyphicon-plus"></span></a>
                         <a class="action launch-modal" data-title="Edit Markup" href="@Url.Action("Markup", "Section", new { area = "Builder", pageSectionId = section.PageSectionId })"><span class="glyphicon glyphicon-console"></span></a>
                         <a class="action launch-modal" data-title="Edit Section" href="@Url.Action("Edit", "Section", new { area = "Builder", sectionId = section.PageSectionId })"><span class="glyphicon glyphicon-cog"></span></a>
                         <a id="container-editor-@(section.PageSectionId)" class="action component-editor" style="display: none;" data-title="Delete Container"><span class="glyphicon glyphicon-trash"></span></a>
@@ -80,7 +80,8 @@
         }
     </div>
 
-@if (isAdmin)
-{
-    @Html.Action("Add", "Section", new { @pageId = Model.Page.PageId })
-}
+    @if (isAdmin)
+    {
+        @Html.Action("Add", "Section", new { @pageId = Model.Page.PageId })
+        @Html.Action("Add", "Component")
+    }

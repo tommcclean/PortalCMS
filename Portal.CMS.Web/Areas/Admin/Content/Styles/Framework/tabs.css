@@ -1,6 +1,7 @@
 ﻿.nav-tabs > li > a
 {
     color: black;
+    font-size: 13px;
 }
 
 .tab-content

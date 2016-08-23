@@ -30,7 +30,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public IEnumerable<PageComponentType> Get()
         {
-            var results = _context.PageComponentTypes.OrderBy(x => x.PageComponentTypeName).ThenBy(x => x.PageComponentTypeId);
+            var results = _context.PageComponentTypes.OrderBy(x => x.PageComponentTypeId);
 
             return results;
         }

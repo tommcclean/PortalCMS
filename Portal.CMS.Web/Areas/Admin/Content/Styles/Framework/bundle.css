@@ -150,6 +150,11 @@
         color: white;
     }
 
+.navbar-nav > li > a
+{
+    font-size: 14px;
+}
+
 .navbar-nav > li > a.btn
 {
     padding: 5px 10px 5px 10px;
@@ -219,7 +224,7 @@ h4
     margin-bottom: 15px;
 }
 
-p
+p, a
 {
     font-size: 20px;
 }
@@ -592,6 +597,7 @@ a.category-item:hover
 .nav-tabs > li > a
 {
     color: black;
+    font-size: 13px;
 }
 
 .tab-content

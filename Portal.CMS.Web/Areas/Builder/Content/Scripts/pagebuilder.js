@@ -68,10 +68,20 @@ function ChangeOrder() {
         $('#section-panel').slideUp(300);
         $('#section-panel').toggleClass('visible');
     }
+
+    if ($('#component-panel').hasClass('visible')) {
+        $('#component-panel').slideUp(300);
+        $('#component-panel').toggleClass('visible');
+    }
 }
 
 function ToggleSectionPanel()
 {
+    if ($('#component-panel').hasClass('visible')) {
+        $('#component-panel').slideUp(300);
+        $('#component-panel').toggleClass('visible');
+    }
+
     if ($('#section-panel').hasClass('visible'))
     {
         $('#section-panel').slideUp(300);
@@ -81,6 +91,23 @@ function ToggleSectionPanel()
     {
         $('#section-panel').slideDown(300);
         $('#section-panel').toggleClass('visible');
+    }
+}
+
+function ToggleComponentPanel()
+{
+    if ($('#section-panel').hasClass('visible')) {
+        $('#section-panel').slideUp(300);
+        $('#section-panel').toggleClass('visible');
+    }
+
+    if ($('#component-panel').hasClass('visible')) {
+        $('#component-panel').slideUp(300);
+        $('#component-panel').toggleClass('visible');
+    }
+    else {
+        $('#component-panel').slideDown(300);
+        $('#component-panel').toggleClass('visible');
     }
 }
 

@@ -363,7 +363,6 @@ table
             overflow: hidden;
         }
 
-
             .panel-overlay .panel-inner .section-preview:hover
             {
                 border: 1px solid red;
@@ -378,6 +377,16 @@ table
             {
                 background-attachment: scroll;
             }
+
+            
+        .panel-overlay .panel-inner .component-preview
+        {
+            width: 100%;
+            border: 1px solid transparent;
+            cursor: pointer;
+            overflow: hidden;
+            min-height: 50px;
+        }
 
 @media (max-width: 1024px)
 {

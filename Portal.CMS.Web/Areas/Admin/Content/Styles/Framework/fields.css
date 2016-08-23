@@ -82,6 +82,11 @@
         color: white;
     }
 
+.navbar-nav > li > a
+{
+    font-size: 14px;
+}
+
 .navbar-nav > li > a.btn
 {
     padding: 5px 10px 5px 10px;

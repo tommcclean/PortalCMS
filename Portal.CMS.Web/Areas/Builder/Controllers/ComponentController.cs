@@ -28,13 +28,11 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         #endregion Dependencies
 
         [HttpGet]
-        public ActionResult Add(int pageSectionId, string elementId)
+        public ActionResult Add()
         {
             var model = new AddViewModel
             {
-                PageSectionId = pageSectionId,
                 PageComponentTypeList = _pageComponentTypeService.Get(),
-                ContainerElementId = elementId
             };
 
             return View("_Add", model);

@@ -575,7 +575,6 @@
     <Content Include="Areas\Admin\Views\Pages\_Edit.cshtml" />
     <Content Include="Areas\Builder\Views\web.config" />
     <Content Include="Areas\Builder\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Builder\Views\Component\_Add.cshtml" />
     <Content Include="Areas\Builder\Views\Component\_Image.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Markup.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Add.cshtml" />
@@ -592,6 +591,7 @@
     <Content Include="Areas\Admin\Views\Settings\_Setup.cshtml" />
     <Content Include="Areas\Builder\Views\Widget\_RecentPostList.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
+    <Content Include="Areas\Builder\Views\Component\_Add.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="Areas\Builder\Views\Section\_Edit.cshtml" />
     <Content Include="Views\Shared\_Analytics.cshtml" />
