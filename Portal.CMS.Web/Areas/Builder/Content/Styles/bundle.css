@@ -599,7 +599,7 @@ padding: 0;
 {
     display: none;
     position: fixed;
-    top: 70px;
+    top: 60px;
     right: 20px;
     width: 350px;
     box-shadow: 1px 1px 15px #BDBDBF;
@@ -629,18 +629,19 @@ padding: 0;
     {
         width: 100%;
         min-height: 300px;
-        max-height: 77vh;
+        max-height: 75vh;
         padding: 5px;
         overflow-y: auto;
     }
 
         .panel-overlay .panel-inner .section-preview
         {
-            -ms-zoom: 0.2;
-            zoom: 0.2;
+            display: block;
+            width: 100%;
             margin-bottom: 50px;
             border: 1px solid black;
             cursor: pointer;
+            zoom: 0.2;
         }
 
             .panel-overlay .panel-inner .section-preview:hover

@@ -40,10 +40,10 @@
     @if (isAdmin)
     {
         /* Global Administration Menu */
-        <div class="action-container global">
-            <div class="action" onclick="ChangeOrder();"><span class="glyphicon glyphicon-resize-vertical"></span></div>
-            <div class="action" onclick="ToggleComponentPanel();"><span class="glyphicon glyphicon-briefcase"></span></div>
-            <div class="action" onclick="ToggleSectionPanel();"><span class="glyphicon glyphicon-plus"></span></div>
+        <div class="action-container wide global">
+            <div class="action" onclick="ChangeOrder();"><span class="glyphicon glyphicon-resize-vertical"></span><span class="hidden-xs">Order</span></div>
+            <div class="action" onclick="ToggleComponentPanel();"><span class="glyphicon glyphicon-briefcase"></span><span class="hidden-xs">Component</span></div>
+            <div class="action" onclick="ToggleSectionPanel();"><span class="glyphicon glyphicon-plus"></span><span class="hidden-xs">Section</span></div>
         </div>
 
         /* Page Section Order Administration Menu */

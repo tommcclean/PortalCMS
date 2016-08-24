@@ -373,6 +373,30 @@ code
         margin: 0;
     }
 
+.action-container.wide
+{
+    bottom: 10px;
+    right: 10px;
+}
+
+    .action-container.wide .action
+    {
+        height: 40px;
+        line-height: 41px;
+        width: auto;
+        border-radius: 15px;
+        text-align: left;
+        margin-bottom: 10px;
+        font-size: 15px;
+        padding-right: 20px;
+    }
+
+        .action-container.wide .action .glyphicon
+        {
+            margin-right: 10px;
+            margin-left: 15px;
+        }
+
 .action-container.absolute
 {
     position: absolute;
@@ -385,6 +409,9 @@ code
     {
         background-color: black;
         border: 2px dashed #191919;
+        -moz-transition: border, background-color 0.2s ease-out;
+        -o-transition: border, background-color 0.2s ease-out;
+        -webkit-transition: border, background-color 0.2s ease-out;
         transition: border, background-color 0.2s ease-out;
     }
 
@@ -467,6 +494,9 @@ code
 .hover
 {
     opacity: 0;
+    -moz-transition: opacity 0.25s ease-in-out;
+    -o-transition: opacity 0.25s ease-in-out;
+    -webkit-transition: opacity 0.25s ease-in-out;
     transition: opacity 0.25s ease-in-out;
 }
 
@@ -534,16 +564,19 @@ a.category-item:hover
     margin-bottom: 10px;
     font-size: 16px;
     cursor: pointer;
+    -moz-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
     color: black;
 }
 
-.tag:hover
-{
-    background-color: #EAEAEA;
-    color: black;
-    text-decoration: none;
-}
+    .tag:hover
+    {
+        background-color: #EAEAEA;
+        color: black;
+        text-decoration: none;
+    }
 
 .popover
 {
@@ -575,6 +608,21 @@ a.category-item:hover
     position: relative;
     margin-bottom: 20px;
 }
+
+@media (max-width: 767px)
+{
+    .action-container.wide .action
+    {
+        text-align: center;
+        padding-right: 5px;
+        border-radius: 50%;
+        font-size: 18px;
+        height: 50px;
+        line-height: 52px;
+        width: 50px;
+    }
+}
+
 .modal-title
 {
     text-transform: uppercase;
