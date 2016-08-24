@@ -6,8 +6,8 @@
 <div id="component-panel" draggable="true" class="panel-overlay">
     <div class="panel-title">
         <h4>Add Component</h4>
-        <div class="panel-action right" onclick="ToggleComponentPanel();"><span class="glyphicon glyphicon-remove"></span></div>
-        <div class="panel-action right" data-toggle="popover" data-trigger="click" data-container="body" data-placement="bottom" data-title="Add Component" data-content="Its easy to add a pre designed section to your page, simply click the one you want to add and it will appear at the bottom of your page."><span class="glyphicon glyphicon-info-sign"></span></div>
+        <div class="panel-action" onclick="ToggleComponentPanel();"><span class="glyphicon glyphicon-remove"></span></div>
+        <div class="panel-action" data-toggle="popover" data-trigger="click" data-container="body" data-placement="bottom" data-title="Add Component" data-content="Simply find a component you want and then drag it onto the section or container you want it to appear in. Changes are saved automatically."><span class="glyphicon glyphicon-info-sign"></span></div>
     </div>
 
     <div class="panel-inner">
@@ -65,6 +65,10 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $(".panel-overlay").mousedown(function (event) {
+            $(this).fadeOut();
+        });
+
         $('.panel-action').popover();
 
         SetupAddComponentDrawer();

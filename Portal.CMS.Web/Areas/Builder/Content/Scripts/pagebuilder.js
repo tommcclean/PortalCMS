@@ -175,7 +175,7 @@ function SetupComponentEvents()
         menubar: false,
         inline: true,
         plugins: ['advlist textcolor colorpicker link'],
-        toolbar: 'undo redo | bold italic underline | link | forecolor backcolor | delete',
+        toolbar: 'bold italic underline | link | forecolor backcolor | delete',
         setup: function (ed) {
             ed.addButton('delete', {
                 text: 'Delete',
@@ -220,7 +220,7 @@ function SetupComponentEvents()
         plugins: [
           'advlist textcolor colorpicker link'
         ],
-        toolbar: 'undo redo | bold italic underline | link | forecolor backcolor | delete',
+        toolbar: 'bold italic underline | link | forecolor backcolor | delete',
         setup: function (ed) {
             ed.addButton('delete', {
                 text: 'Delete',
