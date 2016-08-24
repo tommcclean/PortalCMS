@@ -630,7 +630,7 @@ padding: 0;
         width: 100%;
         min-height: 300px;
         max-height: 75vh;
-        padding: 5px;
+        padding: 15px;
         overflow-y: auto;
     }
 
@@ -662,7 +662,6 @@ padding: 0;
         .panel-overlay .panel-inner .component-preview
         {
             position: relative;
-            min-height: 100px;
             cursor: pointer;
             overflow: hidden;
         }
@@ -671,6 +670,7 @@ padding: 0;
             {
                 padding: 10px 0 10px 0;
                 margin: 20px 0 20px 0;
+                min-height: 100px;
                 border-bottom: 1px dashed silver;
             }
 
@@ -719,6 +719,16 @@ padding: 0;
     color: white;
     background-image: url('../../../Admin/Content/Images/block_black_medium.png');
     text-align: center;
+}
+
+.ui-accordion-content-active
+{
+    height: auto !important;
+}
+
+.ui-accordion .ui-accordion-header
+{
+    margin-bottom: 10px !important;
 }
 
 @media (max-width: 736px)
