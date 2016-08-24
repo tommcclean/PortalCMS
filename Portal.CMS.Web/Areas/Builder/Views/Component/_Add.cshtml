@@ -25,14 +25,6 @@
                     <div class="component-preview float-container">@Html.Raw(componentType.PageComponentBody)</div>
                 }
             </div>
-            <div role="tabpanel" class="tab-pane float-container" id="tab-bootstrap">
-                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Bootstrap))
-                {
-                    <div class="component-preview float-container">
-                        @Html.Raw(componentType.PageComponentTypeName)
-                    </div>
-                }
-            </div>
             <div role="tabpanel" class="tab-pane float-container" id="tab-images">
                 @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Image))
                 {
@@ -43,6 +35,16 @@
                 }
             </div>
             <div role="tabpanel" class="tab-pane float-container" id="tab-ui">
+                <h4>Bootstrap</h4>
+                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Bootstrap))
+                {
+                    <div class="component-preview border float-container">
+                        <div class="component-title">@componentType.PageComponentTypeName</div>
+                        @Html.Raw(componentType.PageComponentBody)
+                    </div>
+                }
+
+                <h4>Helpers</h4>
                 @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.UI))
                 {
                     <div class="component-preview border float-container">
@@ -64,11 +66,9 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function ()
-    {
+    $(document).ready(function () {
         $("#component-panel .component-preview, #component-panel .widget-preview").mousedown(function (event) {
-            if ($(window).width() < 739)
-            {
+            if ($(window).width() < 739) {
                 $('#component-panel').fadeOut();
                 $('#component-panel').removeClass("visible");
             }

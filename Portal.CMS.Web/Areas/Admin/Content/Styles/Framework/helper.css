@@ -261,6 +261,7 @@
     border-radius: 5px;
     text-transform: uppercase;
     margin-right: 10px;
+    font-size: 14px;
 }
 
 a.category-item:hover
