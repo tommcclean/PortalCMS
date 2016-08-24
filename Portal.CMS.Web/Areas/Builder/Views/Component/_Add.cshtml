@@ -64,9 +64,14 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $(".panel-overlay").mousedown(function (event) {
-            $(this).fadeOut();
+    $(document).ready(function ()
+    {
+        $("#component-panel .component-preview, #component-panel .widget-preview").mousedown(function (event) {
+            if ($(window).width() < 739)
+            {
+                $('#component-panel').fadeOut();
+                $('#component-panel').removeClass("visible");
+            }
         });
 
         $('.panel-action').popover();
