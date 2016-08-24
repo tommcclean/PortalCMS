@@ -426,6 +426,7 @@
     <Content Include="Areas\Builder\Content\Styles\component.containers.css" />
     <Content Include="Areas\Builder\Content\Styles\component.glass.css" />
     <Content Include="Areas\Builder\Content\Styles\component.image.css" />
+    <Content Include="Areas\Builder\Content\Styles\component.panel.overlay.css" />
     <Content Include="Areas\Builder\Content\Styles\section.block.css" />
     <Content Include="Areas\Builder\Content\Styles\section.gallery.css" />
     <Content Include="Areas\Builder\Content\Styles\section.quote.css" />

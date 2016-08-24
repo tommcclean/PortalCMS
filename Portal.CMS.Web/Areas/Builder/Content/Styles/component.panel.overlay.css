@@ -1,0 +1,141 @@
+﻿.panel-overlay
+{
+    display: none;
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    width: 350px;
+    box-shadow: 1px 1px 15px #BDBDBF;
+    border-radius: 5px;
+    background-color: #FEFDFD;
+    z-index: 50;
+}
+
+    .panel-overlay .panel-title h4
+    {
+        display: inline-block;
+        padding-left: 20px;
+        margin: 0;
+        line-height: 45px;
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+
+    .panel-overlay .panel-title .panel-action
+    {
+        float: right;
+        padding: 12.5px 10px 12.5px 10px;
+        cursor: pointer;
+    }
+
+    .panel-overlay .panel-inner
+    {
+        width: 100%;
+        min-height: 300px;
+        max-height: 77vh;
+        padding: 5px;
+        overflow-y: auto;
+    }
+
+        .panel-overlay .panel-inner .section-preview
+        {
+            -ms-zoom: 0.2;
+            zoom: 0.2;
+            margin-bottom: 50px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+            .panel-overlay .panel-inner .section-preview:hover
+            {
+                border: 1px solid red;
+            }
+
+            .panel-overlay .panel-inner .section-preview section
+            {
+                pointer-events: none;
+            }
+
+            .panel-overlay .panel-inner .section-preview .background-parallax
+            {
+                background-attachment: scroll;
+            }
+
+        .panel-overlay .panel-inner .component-preview
+        {
+            position: relative;
+            min-height: 100px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+            .panel-overlay .panel-inner .component-preview.border
+            {
+                padding: 10px 0 10px 0;
+                margin: 20px 0 20px 0;
+                border-bottom: 1px dashed silver;
+            }
+
+        .panel-overlay .panel-inner .widget-preview
+        {
+            cursor: pointer;
+        }
+
+        .panel-overlay .panel-inner .component-preview .component-container
+        {
+            background-color: #E0E0E0;
+            min-height: 40px;
+        }
+
+            .panel-overlay .panel-inner .component-preview .component-container.ui-draggable-dragging
+            {
+                height: 50px;
+                width: 300px;
+                background-image: url('../../../Admin/Content/Images/block_black_medium.png');
+            }
+
+        .panel-overlay .panel-inner .widget-preview .post-list-wrapper a
+        {
+            width: 100%;
+        }
+
+    .panel-overlay .component-title
+    {
+        position: absolute;
+        right: 0px;
+        top: 15px;
+        padding: 5px 10px 5px 10px;
+        background-image: url('../../../Admin/Content/Images/block_black_dark.png');
+        display: inline-block;
+        color: white;
+        border-radius: 5px;
+        text-transform: uppercase;
+        z-index: 50;
+    }
+
+.ui-draggable-dragging
+{
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    background-image: url('../../../Admin/Content/Images/block_black_medium.png');
+    text-align: center;
+}
+
+@media (max-width: 736px)
+{
+    .panel-overlay
+    {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        width: auto;
+    }
+
+        .panel-overlay .panel-inner .section-preview
+        {
+            -ms-zoom: 0.5;
+            zoom: 0.5;
+        }
+}

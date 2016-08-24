@@ -89,7 +89,8 @@
       "Areas/Builder/Content/Styles/section.block.css",
       "Areas/Builder/Content/Styles/section.contact.css",
       "Areas/Builder/Content/Styles/section.gallery.css",
-      "Areas/Builder/Content/Styles/section.quote.css"
+      "Areas/Builder/Content/Styles/section.quote.css",
+      "Areas/Builder/Content/Styles/component.panel.overlay.css"
     ]
   },
   {

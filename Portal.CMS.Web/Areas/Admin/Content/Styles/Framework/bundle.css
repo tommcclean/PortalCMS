@@ -66,7 +66,6 @@
     font-size: 14px;
     letter-spacing: 1px;
 }
-
 .control-group
 {
     margin-bottom: 10px;
@@ -118,12 +117,12 @@
         border-bottom-right-radius: 5px;
     }
 
-select[multiple="multiple"]
-{
-    width: 100%;
-    height: 200px;
-    margin-bottom: 20px;
-}
+    select[multiple="multiple"]
+    {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+    }
 
 .button-group
 {
@@ -184,7 +183,6 @@ textarea
 {
     height: 125px;
 }
-
 @font-face
 {
     font-family: 'Emeric';
@@ -258,7 +256,6 @@ code
     padding: 10px;
     font-size: 16px;
 }
-
 .clear
 {
     clear: both;
@@ -541,12 +538,12 @@ a.category-item:hover
     color: black;
 }
 
-    .tag:hover
-    {
-        background-color: #EAEAEA;
-        color: black;
-        text-decoration: none;
-    }
+.tag:hover
+{
+    background-color: #EAEAEA;
+    color: black;
+    text-decoration: none;
+}
 
 .popover
 {
@@ -578,7 +575,6 @@ a.category-item:hover
     position: relative;
     margin-bottom: 20px;
 }
-
 .modal-title
 {
     text-transform: uppercase;
@@ -598,7 +594,6 @@ a.category-item:hover
         margin: 30px auto;
     }
 }
-
 .nav-tabs > li > a
 {
     color: black;
@@ -611,21 +606,19 @@ a.category-item:hover
     border-top: 0;
 }
 
-    .tab-content .tab-pane
-    {
-        position: relative;
-        background-color: white;
-        padding: 20px 20px 30px 20px;
-    }
-
-@media (max-width: 767px)
+.tab-content .tab-pane
 {
-    .nav-tabs.nav-justified
-    {
-        margin-bottom: 10px;
-    }
+    position: relative;
+    background-color: white;
+    padding: 20px 20px 30px 20px;
 }
 
+    @media (max-width: 767px)
+    {
+        .nav-tabs.nav-justified{
+            margin-bottom: 10px;
+        }
+    }
 .confirmation-popover .glyphicon
 {
     margin: 0;
@@ -644,7 +637,6 @@ a.category-item:hover
     margin: 1px 4px 1px 4px;
     border-radius: 50%;
 }
-
 .tab-pane img.thumbnail
 {
     border: 2px solid white;
