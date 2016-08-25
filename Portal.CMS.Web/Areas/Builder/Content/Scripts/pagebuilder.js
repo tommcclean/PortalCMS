@@ -264,8 +264,19 @@ function SetupAddComponentDrawer() {
     $("section").droppable({
         accept: function () {
             var tray = $("#component-panel").offset();
-            var cell = $(this).offset();
-            return (tray.top > (cell.top + $(this).height()));
+            var trayWidth = $("#component-panel").width();
+            var trayHeight = $("#component-panel").height();
+
+            var trayTop = (tray.top - $(document).scrollTop());
+
+            var x = event.clientX;
+            var y = event.clientY;
+
+            if (x >= tray.left && x <= (tray.left + trayWidth) && y >= trayTop && y <= (trayTop + trayHeight)) {
+                return false;
+            }
+
+            return true;
         },
         tolerance: "pointer",
         activeClass: "ui-state-default",
@@ -286,6 +297,8 @@ function SetupAddComponentDrawer() {
             $('#' + newElementId).removeClass("ui-draggable-handle");
             $('#' + newElementId).unbind();
 
+            var newElementContent = $('#' + newElementId)[0].outerHTML;
+
             SetupComponentEvents();
             LoadWidgets();
 
@@ -293,7 +306,7 @@ function SetupAddComponentDrawer() {
                 SetupControlContainer(newElementId);
             }
 
-            var dataParams = { "pageSectionId": sectionId, "containerElementId": $(this).attr("id"), "elementBody": $('#' + newElementId)[0].outerHTML };
+            var dataParams = { "pageSectionId": sectionId, "containerElementId": $(this).attr("id"), "elementBody": newElementContent };
             $.ajax({
                 data: dataParams,
                 type: 'POST',
@@ -306,8 +319,19 @@ function SetupAddComponentDrawer() {
     $(".component-container").droppable({
         accept: function () {
             var tray = $("#component-panel").offset();
-            var cell = $(this).offset();
-            return (tray.top > (cell.top + $(this).height()));
+            var trayWidth = $("#component-panel").width();
+            var trayHeight = $("#component-panel").height();
+
+            var trayTop = (tray.top - $(document).scrollTop());
+
+            var x = event.clientX;
+            var y = event.clientY;
+
+            if (x >= tray.left && x <= (tray.left + trayWidth) && y >= trayTop && y <= (trayTop + trayHeight)) {
+                return false;
+            }
+
+            return true;
         },
         tolerance: "pointer",
         activeClass: "ui-state-default",
@@ -328,6 +352,8 @@ function SetupAddComponentDrawer() {
             $('#' + newElementId).removeClass("ui-draggable-handle");
             $('#' + newElementId).unbind();
 
+            var newElementContent = $('#' + newElementId)[0].outerHTML;
+
             SetupComponentEvents();
             LoadWidgets();
 
@@ -335,7 +361,7 @@ function SetupAddComponentDrawer() {
                 SetupControlContainer(newElementId);
             }
 
-            var dataParams = { "pageSectionId": sectionId, "containerElementId": $(this).attr("id"), "elementBody": $('#' + newElementId)[0].outerHTML };
+            var dataParams = { "pageSectionId": sectionId, "containerElementId": $(this).attr("id"), "elementBody": newElementContent };
             $.ajax({
                 data: dataParams,
                 type: 'POST',
