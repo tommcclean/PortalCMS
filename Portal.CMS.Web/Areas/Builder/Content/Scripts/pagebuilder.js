@@ -262,7 +262,12 @@ function SetupComponentEvents()
 
 function SetupAddComponentDrawer() {
     $("section").droppable({
-        tolerance: "intersect",
+        accept: function () {
+            var tray = $("#component-panel").offset();
+            var cell = $(this).offset();
+            return (tray.top > (cell.top + $(this).height()));
+        },
+        tolerance: "pointer",
         activeClass: "ui-state-default",
         hoverClass: "ui-state-hover",
         drop: function (event, ui) {
@@ -299,7 +304,12 @@ function SetupAddComponentDrawer() {
         }
     });
     $(".component-container").droppable({
-        tolerance: "intersect",
+        accept: function () {
+            var tray = $("#component-panel").offset();
+            var cell = $(this).offset();
+            return (tray.top > (cell.top + $(this).height()));
+        },
+        tolerance: "pointer",
         activeClass: "ui-state-default",
         hoverClass: "ui-state-hover",
         greedy: "true",
