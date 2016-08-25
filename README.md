@@ -2,6 +2,7 @@
 Portal CMS is a fully featured content management system with a powerful integrated page builder.
 
 Find out more about Portal CMS at its dedicated website: http://www.portalcms.online
+Alternatively try out the Online Demo: http://portalcmsdemo.azurewebsites.net
 
 Portal CMS has been designed to require no setup, simply download the source code and run the website, Portal CMS will automatically create the database objects it requires and give you up with a working system.
 
