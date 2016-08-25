@@ -122,6 +122,7 @@ table
     {
         -ms-zoom: 0.3;
         zoom: 0.3;
+        pointer-events: none;
     }
 
     #page-wrapper.zoom .section-wrapper .action-container

@@ -2,8 +2,8 @@
 {
     display: none;
     position: fixed;
-    top: 60px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
     width: 350px;
     box-shadow: 1px 1px 15px #BDBDBF;
     border-radius: 5px;
@@ -37,7 +37,7 @@
         .panel-overlay .panel-inner .tab-content
         {
             min-height: 300px;
-            max-height: 75vh;
+            max-height: 78vh;
             overflow-y: auto;
         }
 
