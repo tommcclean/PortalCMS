@@ -628,11 +628,15 @@ padding: 0;
     .panel-overlay .panel-inner
     {
         width: 100%;
-        min-height: 300px;
-        max-height: 75vh;
         padding: 15px;
-        overflow-y: auto;
     }
+
+        .panel-overlay .panel-inner .tab-content
+        {
+            min-height: 300px;
+            max-height: 75vh;
+            overflow-y: auto;
+        }
 
         .panel-overlay .panel-inner .section-preview
         {
