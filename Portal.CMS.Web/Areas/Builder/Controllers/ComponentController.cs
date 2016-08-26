@@ -104,5 +104,19 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
             return Content("Refresh");
         }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Freestyle(int pageSectionId, string elementId, string elementHtml)
+        {
+            // REPLACE: MCE Tokens
+            elementHtml = elementHtml.Replace("ui-draggable ui-draggable-handle mce-content-body", string.Empty);
+            elementHtml = elementHtml.Replace("contenteditable=\"true\" spellcheck=\"false\"", string.Empty);
+
+            _pageComponentService.Element(pageSectionId, elementId, elementHtml);
+
+            return Content("Refresh");
+        }
+
     }
 }

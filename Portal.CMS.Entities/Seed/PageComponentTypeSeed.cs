@@ -36,6 +36,9 @@ namespace Portal.CMS.Entities.Seed
             if (!componentList.Any(x => x.PageComponentTypeName == "Code"))
                 newComponents.Add(new PageComponentType { PageComponentTypeName = "Code", PageComponentTypeCategory = PageComponentTypeCategory.Text, PageComponentTypeDescription = "Single Paragraph Element.", PageComponentBody = "<code id=\"component-<componentStamp>-<sectionId>\">Code Block: Lorem ipsum dolor sit amet, eu qui accusam scriptorem. Purto erat facilisis sea id, vulputate deseruisse eos te, errem doctus feugiat te prim.</code>" });
 
+            if (!componentList.Any(x => x.PageComponentTypeName == "Freestyle"))
+                newComponents.Add(new PageComponentType { PageComponentTypeName = "Freestyle", PageComponentTypeCategory = PageComponentTypeCategory.Text, PageComponentTypeDescription = "Single Paragraph Element.", PageComponentBody = "<div id=\"freestyle-<componentStamp>-<sectionId>\" class=\"freestyle\"><h1>Freestyle</h1><p>Anything goes in a Freestyle Component, the limits are your imagination.</p></div>" });
+
             if (!componentList.Any(x => x.PageComponentTypeName == "Avatar"))
                 newComponents.Add(new PageComponentType { PageComponentTypeName = "Avatar", PageComponentTypeCategory = PageComponentTypeCategory.Image, PageComponentTypeDescription = "Small Circular Image", PageComponentBody = "<div id=\"component-<componentStamp>-<sectionId>\" class=\"image image-circle\"></div>" });
 

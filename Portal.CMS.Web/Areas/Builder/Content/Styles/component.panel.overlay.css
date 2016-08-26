@@ -66,6 +66,15 @@
                 background-attachment: scroll;
             }
 
+        .panel-overlay .freestyle
+        {
+            border: 1px dashed purple;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
         .panel-overlay .panel-inner .component-preview
         {
             position: relative;
@@ -79,6 +88,11 @@
                 margin: 20px 0 20px 0;
                 min-height: 100px;
                 border-bottom: 1px dashed silver;
+            }
+
+            .panel-overlay .panel-inner .component-preview .freestyle *
+            {
+                pointer-events: none;
             }
 
         .panel-overlay .panel-inner .widget-preview

@@ -1,4 +1,14 @@
-﻿.admin .component-container
+﻿.admin .freestyle
+{
+    border: 1px dotted purple;
+    border-radius: 5px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.admin .component-container
 {
     border: 1px dotted gray;
     border-radius: 5px;

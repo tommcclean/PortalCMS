@@ -101,20 +101,19 @@ function LoadWidgets() {
     }
 }
 
-function SetupComponentEvents()
-{
+function SetupComponentEvents() {
     $('.admin section').unbind();
     $('.admin .component-container').unbind();
     $('.admin .widget-wrapper').unbind();
 
-        $(".admin section").click(function(event) {
+    $(".admin section").click(function (event) {
         var elementId = $(this).attr("id");
         var sectionId = ExtractSectionId($(this));
         $(this).find('.component-container').removeClass('selected');
         $(this).find('.widget-wrapper').removeClass('selected');
-        $('#container-editor-' +sectionId).fadeOut();
-}).children().click(function (e) {
-    return false;
+        $('#container-editor-' + sectionId).fadeOut();
+    }).children().click(function (e) {
+        return false;
     });
 
     $(".admin section div.image").click(function (event) {
@@ -258,6 +257,53 @@ function SetupComponentEvents()
             });
         }
     });
+
+    // Edit Buttons and Links
+    tinymce.init({
+        selector: '.admin section .freestyle',
+        menubar: true,
+        inline: true,
+        plugins: [
+         'advlist autolink lists link image charmap print preview anchor',
+         'searchreplace visualblocks code fullscreen',
+         'insertdatetime media table contextmenu paste'
+        ],
+        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | delete',
+        setup: function (ed) {
+            ed.addButton('delete', {
+                text: 'Delete',
+                icon: false,
+                onclick: function () {
+                    var elementId = tinyMCE.activeEditor.id;
+                    var elementParts = elementId.split('-');
+                    var sectionId = elementParts[elementParts.length - 1];
+                    var dataParams = { "pageSectionId": sectionId, "elementId": elementId };
+                    $('#' + elementId).remove();
+                    $.ajax({
+                        data: dataParams,
+                        type: 'POST',
+                        cache: false,
+                        url: '/Builder/Component/Delete',
+                        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
+                    });
+                }
+            }),
+            ed.on('change', function (e) {
+                var elementId = tinyMCE.activeEditor.id;
+                var elementParts = elementId.split('-');
+                var sectionId = elementParts[elementParts.length - 1];
+
+                var dataParams = { "pageSectionId": sectionId, "elementId": elementId, "elementHtml": ed.getContent() };
+                $.ajax({
+                    data: dataParams,
+                    type: 'POST',
+                    cache: false,
+                    url: '/Builder/Component/Freestyle',
+                    success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
+                });
+            });
+        }
+    });
 }
 
 function SetupAddComponentDrawer() {
@@ -296,6 +342,8 @@ function SetupAddComponentDrawer() {
             $('#' + newElementId).removeClass("ui-draggable");
             $('#' + newElementId).removeClass("ui-draggable-handle");
             $('#' + newElementId).unbind();
+
+            $('#' + newElementId).find('*').removeAttr('class');
 
             var newElementContent = $('#' + newElementId)[0].outerHTML;
 
@@ -351,6 +399,8 @@ function SetupAddComponentDrawer() {
             $('#' + newElementId).removeClass("ui-draggable");
             $('#' + newElementId).removeClass("ui-draggable-handle");
             $('#' + newElementId).unbind();
+
+            $('#' + newElementId).find('*').removeAttr('class');
 
             var newElementContent = $('#' + newElementId)[0].outerHTML;
 

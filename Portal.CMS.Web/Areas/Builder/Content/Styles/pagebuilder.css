@@ -83,32 +83,6 @@ table
         padding-right: 30px;
     }
 
-.builder-item
-{
-    padding: 25px;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    border: 1px solid #C9C9C9;
-    margin-bottom: 25px;
-    text-align: center;
-    box-shadow: 1px 1px 20px #D2D2D8;
-    background-color: #E0E0E0;
-}
-
-    .builder-item:hover
-    {
-        border: 1px solid #B7B7B7;
-        box-shadow: 1px 1px 30px #B7B7B7;
-    }
-
-    .builder-item h4
-    {
-        margin-top: 10px;
-    }
-
 #page-wrapper.zoom
 {
     width: 30%;
