@@ -132,6 +132,13 @@
         z-index: 50;
     }
 
+    .panel-overlay .component-preview .btn.square
+    {
+        color: black;
+        border-color: black;
+        font-size: 16px;
+    }
+
 .ui-draggable-dragging
 {
     width: 300px;

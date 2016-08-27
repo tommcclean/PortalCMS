@@ -30,8 +30,11 @@ namespace Portal.CMS.Entities.Seed
             if (!componentList.Any(x => x.PageComponentTypeName == "Link"))
                 newComponents.Add(new PageComponentType { PageComponentTypeName = "Link", PageComponentTypeCategory = PageComponentTypeCategory.Text, PageComponentTypeDescription = "Link to Another Page", PageComponentBody = "<a id=\"component-<componentStamp>-<sectionId>\" href=\"#\">Hyperlink: Click me to find out more.</a>" });
 
-            if (!componentList.Any(x => x.PageComponentTypeName == "Button"))
-                newComponents.Add(new PageComponentType { PageComponentTypeName = "Button", PageComponentTypeCategory = PageComponentTypeCategory.Text, PageComponentTypeDescription = "Button Link to Another Page", PageComponentBody = "<a id=\"component-<componentStamp>-<sectionId>\" href=\"#\" class=\"btn\">Rounded Button: Click Me</a>" });
+            if (!componentList.Any(x => x.PageComponentTypeName == "Rounded Button"))
+                newComponents.Add(new PageComponentType { PageComponentTypeName = "Rounded Button", PageComponentTypeCategory = PageComponentTypeCategory.Text, PageComponentTypeDescription = "Button Link to Another Page", PageComponentBody = "<a id=\"component-<componentStamp>-<sectionId>\" href=\"#\" class=\"btn\">Rounded Button: Click Me</a>" });
+
+            if (!componentList.Any(x => x.PageComponentTypeName == "Square Button"))
+                newComponents.Add(new PageComponentType { PageComponentTypeName = "Square Button", PageComponentTypeCategory = PageComponentTypeCategory.Text, PageComponentTypeDescription = "Button Link to Another Page", PageComponentBody = "<a id=\"component-<componentStamp>-<sectionId>\" href=\"#\" class=\"btn square\">Square Button: Click Me</a>" });
 
             if (!componentList.Any(x => x.PageComponentTypeName == "Code"))
                 newComponents.Add(new PageComponentType { PageComponentTypeName = "Code", PageComponentTypeCategory = PageComponentTypeCategory.Text, PageComponentTypeDescription = "Single Paragraph Element.", PageComponentBody = "<code id=\"component-<componentStamp>-<sectionId>\">Code Block: Lorem ipsum dolor sit amet, eu qui accusam scriptorem. Purto erat facilisis sea id, vulputate deseruisse eos te, errem doctus feugiat te prim.</code>" });

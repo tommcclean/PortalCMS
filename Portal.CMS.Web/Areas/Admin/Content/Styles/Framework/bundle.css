@@ -150,6 +150,16 @@
         color: white;
     }
 
+    .btn.square
+    {
+        border-radius: 3px;
+        background-color: transparent;
+        border: 1px solid white;
+        color: white;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
 .navbar-nav a
 {
     font-size: 14px;

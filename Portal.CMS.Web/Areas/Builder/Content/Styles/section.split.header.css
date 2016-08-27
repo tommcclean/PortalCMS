@@ -1,0 +1,105 @@
+﻿section.header-split
+{
+    position: relative;
+    background-image: url('../Images/Sample/Sample-8.jpg');
+    overflow: hidden;
+}
+
+    section.header-split .details-wrapper
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 50%;
+        padding-top: 6%;
+        padding-bottom: 3.5%;
+        background-image: url('../../../Admin/Content/Images/block_black_medium.png');
+    }
+
+        section.header-split .details-wrapper .details
+        {
+            float: right;
+            width: 64%;
+            left: auto;
+            padding-right: 30px;
+            padding-left: 30px;
+            padding-bottom: 70px;
+            text-align: right;
+        }
+
+    section.header-split h1
+    {
+        color: white;
+        margin-bottom: 45px;
+    }
+
+    section.header-split p
+    {
+        color: #E5E5E5;
+        margin-bottom: 30px;
+    }
+
+    section.header-split a
+    {
+        color: #E5E5E5;
+        text-decoration: underline;
+    }
+
+    section.header-split input.upload
+    {
+        border: 0;
+    }
+
+    section.header-split input, section.header-split textarea
+    {
+        min-width: 275px;
+        padding: 10px;
+        width: 90%;
+        margin-bottom: 20px;
+        background-image: url('../../../Admin/Content/Images/block_black_medium.png');
+        background-color: transparent;
+        border: 1px solid white;
+        color: white;
+    }
+
+@media (max-width: 1400px)
+{
+    section.header-split .details-wrapper
+    {
+        width: 65%;
+    }
+
+        section.header-split .details-wrapper .details
+        {
+            width: 65%;
+        }
+}
+
+@media (max-width: 800px)
+{
+    section.header-split .details-wrapper
+    {
+        width: 80%;
+    }
+
+        section.header-split .details-wrapper .details
+        {
+            width: 80%;
+            padding-top: 30px;
+        }
+}
+
+@media (max-width: 660px)
+{
+    section.header-split .details-wrapper
+    {
+        width: 100%;
+    }
+
+        section.header-split .details-wrapper .details
+        {
+            width: 100%;
+            text-align: center;
+        }
+}
