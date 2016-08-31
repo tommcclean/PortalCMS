@@ -158,6 +158,13 @@
         color: white;
         text-transform: uppercase;
         text-decoration: none;
+        transition: all 0.2s ease-in;
+    }
+
+    .btn.square:hover
+    {
+        background-color: white;
+        color: black;
     }
 
 .navbar-nav a
