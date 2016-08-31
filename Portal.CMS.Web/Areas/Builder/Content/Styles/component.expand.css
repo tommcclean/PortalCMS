@@ -6,28 +6,34 @@
     cursor: pointer;
 }
 
-.component-expand .component-title
+.component-expand .component-expand-header
 {
+    width: 100%;
     background-color: silver;
     padding-left: 20px;
     padding-right: 20px;
 }
 
-    .component-title h3
+    .component-expand-header h3
     {
         margin: 0;
         padding: 0;
         line-height: 45px;
     }
 
-.component-body
+.component-expand-body
 {
     display: none;
     padding: 20px;
     padding-bottom: 0;
 }
 
-.admin .component-body
+.admin .component-expand-body
+{
+    display: block;
+}
+
+.component-preview .component-expand-body
 {
     display: block;
 }
