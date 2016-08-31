@@ -7,6 +7,7 @@
 
 @* Page Builder Specific Assets *@
 <script src="~/Areas/Builder/Content/Scripts/pagebuilder.min.js"></script>
+<script src="~/Areas/Builder/Content/Scripts/component.expand.js"></script>
 
 @* Drag and Drop Specific Assets *@
 @if (isAdmin)
@@ -61,7 +62,7 @@
         }
     }
 
-    <div id="page-wrapper">
+    <div id="page-wrapper" class="@(isAdmin ? "admin" : "visitor")">
         @foreach (var section in Model.Page.PageSections.OrderBy(x => x.PageSectionOrder).ThenBy(x => x.PageSectionId))
         {
             <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper @(UserHelper.IsAdmin ? "admin sortable" : "")" data-section="@(section.PageSectionId)">
@@ -84,7 +85,3 @@
         @Html.Action("Add", "Section", new { @pageId = Model.Page.PageId })
         @Html.Action("Add", "Component")
     }
-
-@*<section id="section-<sectionId>" class="blank background-parallax height-standard">
-
-</section>*@

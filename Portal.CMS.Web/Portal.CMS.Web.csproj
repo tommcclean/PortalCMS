@@ -390,6 +390,7 @@
     <Content Include="Areas\Builder\Content\Images\Sample\sample-7.jpg" />
     <Content Include="Areas\Builder\Content\Images\Sample\Sample-8.jpg" />
     <Content Include="Areas\Builder\Content\Images\Sample\small-sample-1.jpg" />
+    <Content Include="Areas\Builder\Content\Scripts\component.expand.js" />
     <Content Include="Areas\Builder\Content\Scripts\pagebuilder.js" />
     <Content Include="Areas\Admin\Content\Scripts\plugins.js" />
     <Content Include="Areas\Admin\Content\Scripts\modal.js" />
@@ -425,6 +426,7 @@
       <DependentUpon>bundle.css</DependentUpon>
     </Content>
     <Content Include="Areas\Builder\Content\Styles\component.containers.css" />
+    <Content Include="Areas\Builder\Content\Styles\component.expand.css" />
     <Content Include="Areas\Builder\Content\Styles\component.glass.css" />
     <Content Include="Areas\Builder\Content\Styles\component.image.css" />
     <Content Include="Areas\Builder\Content\Styles\component.panel.overlay.css" />

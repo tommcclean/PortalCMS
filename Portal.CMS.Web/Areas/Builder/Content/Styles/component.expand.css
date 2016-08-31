@@ -1,0 +1,33 @@
+﻿.component-expand
+{
+    border: 1px solid silver;
+    text-align: left;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.component-expand .component-title
+{
+    background-color: silver;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+    .component-title h3
+    {
+        margin: 0;
+        padding: 0;
+        line-height: 45px;
+    }
+
+.component-body
+{
+    display: none;
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+.admin .component-body
+{
+    display: block;
+}

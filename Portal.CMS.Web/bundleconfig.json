@@ -91,7 +91,8 @@
       "Areas/Builder/Content/Styles/section.gallery.css",
       "Areas/Builder/Content/Styles/section.quote.css",
       "Areas/Builder/Content/Styles/component.panel.overlay.css",
-      "Areas/Builder/Content/Styles/section.split.header.css"
+      "Areas/Builder/Content/Styles/section.split.header.css",
+      "Areas/Builder/Content/Styles/component.expand.css"
     ]
   },
   {

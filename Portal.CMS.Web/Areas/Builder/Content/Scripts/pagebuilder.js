@@ -343,7 +343,7 @@ function SetupAddComponentDrawer() {
             $('#' + newElementId).removeClass("ui-draggable-handle");
             $('#' + newElementId).unbind();
 
-            $('#' + newElementId).find('*').removeAttr('class');
+            ReplaceChildTokens(newElementId, sectionId);
 
             var newElementContent = $('#' + newElementId)[0].outerHTML;
 
@@ -400,7 +400,7 @@ function SetupAddComponentDrawer() {
             $('#' + newElementId).removeClass("ui-draggable-handle");
             $('#' + newElementId).unbind();
 
-            $('#' + newElementId).find('*').removeAttr('class');
+            ReplaceChildTokens(newElementId, sectionId);
 
             var newElementContent = $('#' + newElementId)[0].outerHTML;
 
@@ -419,6 +419,22 @@ function SetupAddComponentDrawer() {
                 url: '/Builder/Component/Add',
                 success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
             });
+        }
+    });
+}
+
+function ReplaceChildTokens(parentElementId, sectionId)
+{
+    $('#' + parentElementId).children().each(function () {
+        var childId = $(this).attr("id");
+
+        if (childId != undefined) {
+            childId = childId.replace("<sectionId>", sectionId);
+            childId = childId.replace("<componentStamp>", new Date().valueOf());
+
+            $(this).attr("id", childId);
+
+            ReplaceChildTokens(childId, sectionId);
         }
     });
 }
