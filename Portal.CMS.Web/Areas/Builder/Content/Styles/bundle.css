@@ -292,6 +292,11 @@ table
         display: none;
     }
 
+i.mce-ico.mce-i-trash
+{
+    background-image: url('../Images/Toolbar/mce-trash.png');
+}
+
 @media (max-width: 1024px)
 {
     section.background-parallax

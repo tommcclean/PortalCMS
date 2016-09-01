@@ -177,8 +177,7 @@ function SetupComponentEvents() {
         toolbar: 'bold italic underline | link | forecolor backcolor | delete',
         setup: function (ed) {
             ed.addButton('delete', {
-                text: 'Delete',
-                icon: false,
+                icon: 'trash',
                 onclick: function () {
                     var elementId = tinyMCE.activeEditor.id;
                     var elementParts = elementId.split('-');
@@ -222,8 +221,7 @@ function SetupComponentEvents() {
         toolbar: 'bold italic underline | link | forecolor backcolor | delete',
         setup: function (ed) {
             ed.addButton('delete', {
-                text: 'Delete',
-                icon: false,
+                icon: 'trash',
                 onclick: function () {
                     var elementId = tinyMCE.activeEditor.id;
                     var elementParts = elementId.split('-');
@@ -271,8 +269,7 @@ function SetupComponentEvents() {
         toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | forecolor backcolor | bullist numlist outdent indent | link image | delete',
         setup: function (ed) {
             ed.addButton('delete', {
-                text: 'Delete',
-                icon: false,
+                icon: 'trash',
                 onclick: function () {
                     var elementId = tinyMCE.activeEditor.id;
                     var elementParts = elementId.split('-');

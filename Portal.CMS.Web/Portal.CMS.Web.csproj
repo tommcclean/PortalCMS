@@ -390,6 +390,7 @@
     <Content Include="Areas\Builder\Content\Images\Sample\sample-7.jpg" />
     <Content Include="Areas\Builder\Content\Images\Sample\Sample-8.jpg" />
     <Content Include="Areas\Builder\Content\Images\Sample\small-sample-1.jpg" />
+    <Content Include="Areas\Builder\Content\Images\Toolbar\mce-trash.png" />
     <Content Include="Areas\Builder\Content\Scripts\component.expand.js" />
     <Content Include="Areas\Builder\Content\Scripts\pagebuilder.js" />
     <Content Include="Areas\Admin\Content\Scripts\plugins.js" />
