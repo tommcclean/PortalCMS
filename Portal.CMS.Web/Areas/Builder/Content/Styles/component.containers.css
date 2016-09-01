@@ -33,6 +33,8 @@
 .admin .col-xs-2, .admin .col-xs-3, .admin .col-xs-4, .admin .col-xs-6, .admin .col-xs-12
 {
     border-color: green;
+    min-height: 100px;
+
 }
 
 .admin table.component-container

@@ -432,8 +432,6 @@ function ReplaceChildTokens(parentElementId, sectionId)
             childId = childId.replace("<sectionId>", sectionId);
             childId = childId.replace("<componentStamp>", new Date().valueOf());
 
-            alert(childId);
-
             $(this).attr("id", childId);
 
             ReplaceChildTokens(childId, sectionId);
