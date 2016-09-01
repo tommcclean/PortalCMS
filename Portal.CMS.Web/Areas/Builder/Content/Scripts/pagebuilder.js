@@ -432,6 +432,8 @@ function ReplaceChildTokens(parentElementId, sectionId)
             childId = childId.replace("<sectionId>", sectionId);
             childId = childId.replace("<componentStamp>", new Date().valueOf());
 
+            alert(childId);
+
             $(this).attr("id", childId);
 
             ReplaceChildTokens(childId, sectionId);
@@ -459,6 +461,8 @@ function SetupControlContainer(elementId) {
             $('#' + newElementId).removeClass("ui-draggable");
             $('#' + newElementId).removeClass("ui-draggable-handle");
             $('#' + newElementId).unbind();
+
+            ReplaceChildTokens(newElementId, sectionId);
 
             SetupComponentEvents();
             LoadWidgets();
