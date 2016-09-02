@@ -21,7 +21,20 @@
         line-height: 45px;
     }
 
-.component-body
+    .component-expand-header h3:before
+    {
+     font-family: 'Glyphicons Halflings';  
+     margin-right: 10px; 
+     font-size: 18px;
+        content: "\e114";
+    }
+
+    .component-expand.active .component-expand-header h3:before
+    {
+        content: "\e113";
+    }
+
+.visitor .component-body
 {
     display: none;
     padding: 20px;

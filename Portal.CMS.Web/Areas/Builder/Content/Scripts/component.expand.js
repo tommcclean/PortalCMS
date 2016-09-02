@@ -1,22 +1,21 @@
 ﻿$(document).ready(function () {
-    $(".visitor .component-expand .component-body").first().addClass("active").slideDown();
-
     $(".visitor .component-expand").click(function (event) {
         var componentBody = $(this).find('.component-body');
 
-        if (componentBody.hasClass('active'))
+        if ($(this).hasClass('active'))
         {
             componentBody.slideUp(300);
 
-            componentBody.removeClass("active");
+            $(this).removeClass("active");
         }
         else
         {
-            $('.visitor .component-expand .component-body.active').removeClass("active").slideUp();
+            $('.visitor .component-expand.active .component-body').slideUp();
+            $('.visitor .component-expand').removeClass("active");
 
             componentBody.slideDown(300);
 
-            componentBody.addClass("active");
+            $(this).addClass("active")
         }
 
     });
