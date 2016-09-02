@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    InitialiseWidgets();
+
     if ($('#page-wrapper.admin').length) {
         InitialiseEditor();
         InitialiseWidgets();
