@@ -34,7 +34,6 @@
 {
     border-color: green;
     min-height: 100px;
-
 }
 
 .admin table.component-container
@@ -360,7 +359,6 @@ i.mce-ico.mce-i-trash
             zoom: 0.5;
         }
 }
-
 section.block
 {
     text-align: center;
@@ -764,7 +762,6 @@ padding: 0;
             zoom: 0.5;
         }
 }
-
 section.header-split
 {
     position: relative;
@@ -870,7 +867,6 @@ section.header-split
             text-align: center;
         }
 }
-
 .component-expand
 {
     border: 1px solid silver;
@@ -879,33 +875,33 @@ section.header-split
     cursor: pointer;
 }
 
-.component-expand .component-expand-header
-{
-    width: 100%;
-    background-color: silver;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-    .component-expand-header h3
+    .component-expand .component-expand-header
     {
-        margin: 0;
-        padding: 0;
-        line-height: 45px;
+        width: 100%;
+        background-color: silver;
+        padding-left: 20px;
+        padding-right: 20px;
     }
+
+.component-expand-header h3
+{
+    margin: 0;
+    padding: 0;
+    line-height: 45px;
+}
 
     .component-expand-header h3:before
     {
-     font-family: 'Glyphicons Halflings';  
-     margin-right: 10px; 
-     font-size: 18px;
+        font-family: 'Glyphicons Halflings';
+        margin-right: 10px;
+        font-size: 18px;
         content: "\e114";
     }
 
-    .component-expand.active .component-expand-header h3:before
-    {
-        content: "\e113";
-    }
+.component-expand.active .component-expand-header h3:before
+{
+    content: "\e113";
+}
 
 .visitor .component-body
 {

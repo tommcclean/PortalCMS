@@ -117,6 +117,5 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
             return Content("Refresh");
         }
-
     }
 }
