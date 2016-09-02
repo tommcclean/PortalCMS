@@ -168,260 +168,186 @@ function SetupComponentEvents() {
         return false;
     });
 
-    // Edit Text Elements
     tinymce.init({
         selector: '.admin section p, .admin section h1, .admin section h2, .admin section h3, .admin section h4, .admin section code',
-        menubar: false,
-        inline: true,
+        menubar: false, inline: true,
         plugins: ['advlist textcolor colorpicker link'],
         toolbar: 'bold italic underline | link | forecolor backcolor | delete',
         setup: function (ed) {
-            ed.addButton('delete', {
-                icon: 'trash',
-                onclick: function () {
-                    var elementId = tinyMCE.activeEditor.id;
-                    var elementParts = elementId.split('-');
-                    var sectionId = elementParts[elementParts.length - 1];
-                    var dataParams = { "pageSectionId": sectionId, "elementId": elementId };
-                    $('#' + elementId).remove();
-                    $.ajax({
-                        data: dataParams,
-                        type: 'POST',
-                        cache: false,
-                        url: '/Builder/Component/Delete',
-                        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-                    });
-                }
-            }),
-            ed.on('change', function (e) {
-                var elementId = tinyMCE.activeEditor.id;
-                var elementParts = elementId.split('-');
-                var sectionId = elementParts[elementParts.length - 1];
-
-                var dataParams = { "pageSectionId": sectionId, "elementId": elementId, "elementHtml": ed.getContent() };
-                $.ajax({
-                    data: dataParams,
-                    type: 'POST',
-                    cache: false,
-                    url: '/Builder/Component/Edit',
-                    success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-                });
-            });
+            ed.addButton('delete', { icon: 'trash', onclick: function () { DeleteInlineComponent(tinyMCE.activeEditor.id); } }),
+            ed.on('change', function (e) { EditInlineText(tinyMCE.activeEditor.id, ed.getContent()); });
         }
     });
 
-    // Edit Buttons and Links
     tinymce.init({
         selector: '.admin section a, .admin section .btn',
-        menubar: false,
-        inline: true,
-        plugins: [
-          'advlist textcolor colorpicker link'
-        ],
+        menubar: false, inline: true,
+        plugins: ['advlist textcolor colorpicker link'],
         toolbar: 'bold italic underline | link | forecolor backcolor | delete',
         setup: function (ed) {
-            ed.addButton('delete', {
-                icon: 'trash',
-                onclick: function () {
-                    var elementId = tinyMCE.activeEditor.id;
-                    var elementParts = elementId.split('-');
-                    var sectionId = elementParts[elementParts.length - 1];
-                    var dataParams = { "pageSectionId": sectionId, "elementId": elementId };
-                    $('#' + elementId).remove();
-                    $.ajax({
-                        data: dataParams,
-                        type: 'POST',
-                        cache: false,
-                        url: '/Builder/Component/Delete',
-                        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-                    });
-                }
-            }),
-            ed.on('change', function (e) {
-                var elementId = tinyMCE.activeEditor.id;
-                var elementParts = elementId.split('-');
-                var sectionId = elementParts[elementParts.length - 1];
-                var href = $('#' + elementId).attr("href");
-                var target = $('#' + elementId).attr("target");
-
-                var dataParams = { "pageSectionId": sectionId, "elementId": elementId, "elementHtml": ed.getContent(), "elementHref": href, "elementTarget": target };
-                $.ajax({
-                    data: dataParams,
-                    type: 'POST',
-                    cache: false,
-                    url: '/Builder/Component/Link',
-                    success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-                });
-            });
+            ed.addButton('delete', { icon: 'trash', onclick: function () { DeleteInlineComponent(tinyMCE.activeEditor.id); } }),
+            ed.on('change', function (e) { EditInlineAnchor(tinyMCE.activeEditor.id, ed.getContent()); });
         }
     });
 
-    // Edit Buttons and Links
     tinymce.init({
         selector: '.admin section .freestyle',
-        menubar: true,
-        inline: true,
-        plugins: [
-         'advlist autolink lists link image charmap print preview anchor',
-         'searchreplace visualblocks code fullscreen',
-         'insertdatetime media table contextmenu paste textcolor colorpicker'
-        ],
+        menubar: true, inline: true,
+        plugins: ['advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table contextmenu paste textcolor colorpicker'],
         toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | forecolor backcolor | bullist numlist outdent indent | link image | delete',
         setup: function (ed) {
-            ed.addButton('delete', {
-                icon: 'trash',
-                onclick: function () {
-                    var elementId = tinyMCE.activeEditor.id;
-                    var elementParts = elementId.split('-');
-                    var sectionId = elementParts[elementParts.length - 1];
-                    var dataParams = { "pageSectionId": sectionId, "elementId": elementId };
-                    $('#' + elementId).remove();
-                    $.ajax({
-                        data: dataParams,
-                        type: 'POST',
-                        cache: false,
-                        url: '/Builder/Component/Delete',
-                        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-                    });
-                }
-            }),
-            ed.on('change', function (e) {
-                var elementId = tinyMCE.activeEditor.id;
-                var elementParts = elementId.split('-');
-                var sectionId = elementParts[elementParts.length - 1];
-
-                var dataParams = { "pageSectionId": sectionId, "elementId": elementId, "elementHtml": ed.getContent() };
-                $.ajax({
-                    data: dataParams,
-                    type: 'POST',
-                    cache: false,
-                    url: '/Builder/Component/Freestyle',
-                    success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-                });
-            });
+            ed.addButton('delete', { icon: 'trash', onclick: function () { DeleteInlineComponent(tinyMCE.activeEditor.id); } }),
+            ed.on('change', function (e) { EditInlineFreestyle(tinyMCE.activeEditor.id, ed.getContent()); });
         }
     });
 }
 
-function SetupAddComponentDrawer() {
+function DeleteInlineComponent(editorId)
+{
+    var elementId = editorId;
+    var elementParts = elementId.split('-');
+    var sectionId = elementParts[elementParts.length - 1];
+    var dataParams = { "pageSectionId": sectionId, "elementId": elementId };
+    $('#' + elementId).remove();
+    $.ajax({
+        data: dataParams,
+        type: 'POST',
+        cache: false,
+        url: '/Builder/Component/Delete',
+        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
+    });
+}
+
+function EditInlineText(editorId, editorContent)
+{
+    var elementId = editorId;
+    var elementParts = elementId.split('-');
+    var sectionId = elementParts[elementParts.length - 1];
+
+    var dataParams = { "pageSectionId": sectionId, "elementId": elementId, "elementHtml": editorContent };
+    $.ajax({
+        data: dataParams,
+        type: 'POST',
+        cache: false,
+        url: '/Builder/Component/Edit',
+        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
+    });
+}
+
+function EditInlineFreestyle(editorId, editorContent)
+{
+    var elementId = editorId
+    var elementParts = elementId.split('-');
+    var sectionId = elementParts[elementParts.length - 1];
+
+    var dataParams = { "pageSectionId": sectionId, "elementId": elementId, "elementHtml": editorContent };
+    $.ajax({
+        data: dataParams,
+        type: 'POST',
+        cache: false,
+        url: '/Builder/Component/Freestyle',
+        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
+    });
+}
+
+function EditInlineAnchor(editorId, editorContent) {
+    var elementId = editorId;
+    var elementParts = elementId.split('-');
+    var sectionId = elementParts[elementParts.length - 1];
+    var href = $('#' + elementId).attr("href");
+    var target = $('#' + elementId).attr("target");
+
+    var dataParams = { "pageSectionId": sectionId, "elementId": elementId, "elementHtml": editorContent, "elementHref": href, "elementTarget": target };
+    $.ajax({
+        data: dataParams,
+        type: 'POST',
+        cache: false,
+        url: '/Builder/Component/Link',
+        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
+    });
+}
+
+function InitialiseDroppables() {
     $("section").droppable({
-        accept: function () {
-            var tray = $("#component-panel").offset();
-            var trayWidth = $("#component-panel").width();
-            var trayHeight = $("#component-panel").height();
-
-            var trayTop = (tray.top - $(document).scrollTop());
-
-            var x = event.clientX;
-            var y = event.clientY;
-
-            if (x >= tray.left && x <= (tray.left + trayWidth) && y >= trayTop && y <= (trayTop + trayHeight)) {
-                return false;
-            }
-
-            return true;
-        },
+        accept: function () { return PreventAppDrawerDrop(); },
         tolerance: "pointer",
         activeClass: "ui-state-default",
         hoverClass: "ui-state-hover",
-        drop: function (event, ui) {
-            var newElement = $(ui.draggable).clone();
-
-            var sectionId = ExtractSectionId($(this));
-            var newElementId = newElement.attr("id");
-
-            newElementId = newElementId.replace('<sectionId>', sectionId);
-            newElementId = newElementId.replace('<componentStamp>', new Date().valueOf());
-            newElement.attr("id", newElementId);
-
-            $(this).append(newElement);
-
-            $('#' + newElementId).removeClass("ui-draggable");
-            $('#' + newElementId).removeClass("ui-draggable-handle");
-            $('#' + newElementId).unbind();
-
-            ReplaceChildTokens(newElementId, sectionId);
-
-            var newElementContent = $('#' + newElementId)[0].outerHTML;
-
-            SetupComponentEvents();
-            LoadWidgets();
-
-            if (newElement.hasClass("component-container")) {
-                SetupControlContainer(newElementId);
-            }
-
-            var dataParams = { "pageSectionId": sectionId, "containerElementId": $(this).attr("id"), "elementBody": newElementContent };
-            $.ajax({
-                data: dataParams,
-                type: 'POST',
-                cache: false,
-                url: '/Builder/Component/Add',
-                success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-            });
-        }
+        drop: function (event, ui) { DropComponent(this, event, ui); }
     });
     $(".component-container").droppable({
-        accept: function () {
-            var tray = $("#component-panel").offset();
-            var trayWidth = $("#component-panel").width();
-            var trayHeight = $("#component-panel").height();
-
-            var trayTop = (tray.top - $(document).scrollTop());
-
-            var x = event.clientX;
-            var y = event.clientY;
-
-            if (x >= tray.left && x <= (tray.left + trayWidth) && y >= trayTop && y <= (trayTop + trayHeight)) {
-                return false;
-            }
-
-            return true;
-        },
+        accept: function () { return PreventAppDrawerDrop(); },
         tolerance: "pointer",
         activeClass: "ui-state-default",
         hoverClass: "ui-state-hover",
         greedy: "true",
-        drop: function (event, ui) {
-            var newElement = $(ui.draggable).clone();
-            var sectionId = ExtractSectionId($(this));
-            var newElementId = newElement.attr("id");
-
-            newElementId = newElementId.replace('<sectionId>', sectionId);
-            newElementId = newElementId.replace('<componentStamp>', new Date().valueOf());
-            newElement.attr("id", newElementId);
-
-            $(this).append(newElement);
-
-            $('#' + newElementId).removeClass("ui-draggable");
-            $('#' + newElementId).removeClass("ui-draggable-handle");
-            $('#' + newElementId).unbind();
-
-            ReplaceChildTokens(newElementId, sectionId);
-
-            var newElementContent = $('#' + newElementId)[0].outerHTML;
-
-            SetupComponentEvents();
-            LoadWidgets();
-
-            if (newElement.hasClass("component-container")) {
-                SetupControlContainer(newElementId);
-            }
-
-            var dataParams = { "pageSectionId": sectionId, "containerElementId": $(this).attr("id"), "elementBody": newElementContent };
-            $.ajax({
-                data: dataParams,
-                type: 'POST',
-                cache: false,
-                url: '/Builder/Component/Add',
-                success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-            });
-        }
+        drop: function (event, ui) { DropComponent(this, event, ui); }
     });
 }
 
-function ReplaceChildTokens(parentElementId, sectionId)
+function PreventAppDrawerDrop()
 {
+    var tray = $("#component-panel").offset();
+    var trayWidth = $("#component-panel").width();
+    var trayHeight = $("#component-panel").height();
+
+    var trayTop = (tray.top - $(document).scrollTop());
+
+    var x = event.clientX;
+    var y = event.clientY;
+
+    if (x >= tray.left && x <= (tray.left + trayWidth) && y >= trayTop && y <= (trayTop + trayHeight)) {
+        return false;
+    }
+
+    return true;
+}
+
+function DropComponent(control, event, ui)
+{
+    var newElement = $(ui.draggable).clone();
+
+    var sectionId = ExtractSectionId($(control));
+    var newElementId = newElement.attr("id");
+
+    newElementId = newElementId.replace('<sectionId>', sectionId);
+    newElementId = newElementId.replace('<componentStamp>', new Date().valueOf());
+    newElement.attr("id", newElementId);
+
+    $(control).append(newElement);
+
+    $('#' + newElementId).removeClass("ui-draggable");
+    $('#' + newElementId).removeClass("ui-draggable-handle");
+    $('#' + newElementId).unbind();
+
+    ReplaceChildTokens(newElementId, sectionId);
+
+    var newElementContent = $('#' + newElementId)[0].outerHTML;
+
+    SetupComponentEvents();
+    LoadWidgets();
+
+    if (newElement.hasClass("component-container")) {
+        InitialiseContainer(newElementId);
+    }
+
+    var dataParams = { "pageSectionId": sectionId, "containerElementId": $(control).attr("id"), "elementBody": newElementContent };
+    $.ajax({
+        data: dataParams,
+        type: 'POST',
+        cache: false,
+        url: '/Builder/Component/Add',
+        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
+    });
+}
+
+function InitialiseContainer(elementId) {
+    $("#" + elementId).droppable({
+        tolerance: "intersect", activeClass: "ui-state-default", hoverClass: "ui-state-hover", greedy: "true", drop: function (event, ui) { DropComponent(this, event, ui); }
+    });
+}
+
+function ReplaceChildTokens(parentElementId, sectionId) {
     $('#' + parentElementId).children().each(function () {
         var childId = $(this).attr("id");
 
@@ -432,48 +358,6 @@ function ReplaceChildTokens(parentElementId, sectionId)
             $(this).attr("id", childId);
 
             ReplaceChildTokens(childId, sectionId);
-        }
-    });
-}
-
-function SetupControlContainer(elementId) {
-    $("#" + elementId).droppable({
-        tolerance: "intersect",
-        activeClass: "ui-state-default",
-        hoverClass: "ui-state-hover",
-        greedy: "true",
-        drop: function (event, ui) {
-            var newElement = $(ui.draggable).clone();
-            var sectionId = ExtractSectionId($(this));
-            var newElementId = newElement.attr("id");
-
-            newElementId = newElementId.replace('<sectionId>', sectionId);
-            newElementId = newElementId.replace('<componentStamp>', new Date().valueOf());
-            newElement.attr("id", newElementId);
-
-            $(this).append(newElement);
-
-            $('#' + newElementId).removeClass("ui-draggable");
-            $('#' + newElementId).removeClass("ui-draggable-handle");
-            $('#' + newElementId).unbind();
-
-            ReplaceChildTokens(newElementId, sectionId);
-
-            SetupComponentEvents();
-            LoadWidgets();
-
-            if (newElement.hasClass("component-container")) {
-                SetupControlContainer(newElementId);
-            }
-
-            var dataParams = { "pageSectionId": sectionId, "containerElementId": $(this).attr("id"), "elementBody": $('#' + newElementId)[0].outerHTML };
-            $.ajax({
-                data: dataParams,
-                type: 'POST',
-                cache: false,
-                url: '/Builder/Component/Add',
-                success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-            });
         }
     });
 }
