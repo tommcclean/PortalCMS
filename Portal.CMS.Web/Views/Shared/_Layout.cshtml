@@ -19,7 +19,7 @@
 
         @RenderSection("HEADScripts", false)
 
-        <script src="~/Areas/Admin/Content/Scripts/modal.min.js"></script>
+        @Scripts.Render("~/Resources/JavaScript/Bootstrap/Modal")
     </head>
     <body>
         @Html.Partial("_NavBar")
@@ -27,7 +27,8 @@
         @Html.Partial("_Analytics")
 
         @RenderSection("DOMScripts", false)
+
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="~/Areas/Admin/Content/Plugins/Confirmation/bootstrap-confirmation.min.js"></script>
+        @Scripts.Render("~/Resources/JavaScript/Bootstrap/Confirmation")
     </body>
 </html>
