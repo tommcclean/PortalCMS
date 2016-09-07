@@ -6,8 +6,8 @@
 }
 
 @* Page Builder Specific Assets *@
-<script src="~/Areas/Builder/Content/Scripts/pagebuilder.min.js"></script>
-<script src="~/Areas/Builder/Content/Scripts/component.expand.js"></script>
+@Scripts.Render("~/Resources/JavaScript/PageBuilderAdministration")
+@Scripts.Render("~/Resources/JavaScript/FAQSpoilerEvents")
 
 @* Drag and Drop Specific Assets *@
 @if (isAdmin)

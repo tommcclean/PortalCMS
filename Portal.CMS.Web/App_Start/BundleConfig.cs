@@ -26,6 +26,10 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/ImageSelector").Include("~/Content/Scripts/ImageSelector/*.js"));
 
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilderAdministration").Include("~/Areas/Builder/Content/Scripts/pagebuilder.min.js"));
+
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/FAQSpoilerEvents").Include("~/Areas/Builder/Content/Scripts/component.expand.js"));
+
             #endregion Script Bundles
 
             #region Style Bundles
@@ -41,6 +45,12 @@ namespace Portal.CMS.Web
             bundles.Add(new StyleBundle("~/Resources/CSS/PageBuilder/Framework").Include("~/Areas/Builder/Content/Styles/*.css", new CssRewriteUrlTransform()));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Administration/Framework").Include("~/Areas/Admin/Content/Styles/Framework/*.css", new CssRewriteUrlTransform()));
+
+            bundles.Add(new StyleBundle("~/Resources/CSS/Misc/Dashboard").Include("~/Areas/Admin/Content/Styles/Pages/dashboard.css", new CssRewriteUrlTransform()));
+
+            bundles.Add(new StyleBundle("~/Resources/CSS/Misc/Portal").Include("~/Areas/Admin/Content/Styles/Pages/portal.css", new CssRewriteUrlTransform()));
+
+            bundles.Add(new StyleBundle("~/Resources/CSS/Misc/Posts").Include("~/Areas/Admin/Content/Styles/Pages/posts.css", new CssRewriteUrlTransform()));
 
             #endregion Style Bundles
         }
