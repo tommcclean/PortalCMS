@@ -1,6 +1,8 @@
 # Portal CMS
 
-Portal CMS is a free and open source content management system with a powerful integrated page builder. Built in .NET Portal CMS is a great technology to built a website using out of the box functionality, but you can easily extended it to suit your bespoke needs.
+Portal CMS is a free and open source content management system with a powerful integrated page builder. 
+
+Built in C# .NET MVC (4.X) Portal CMS is a great choice of technology to build a website using just the out of the box functionality, but you can easily extended it to suit your bespoke needs if you want to write some code.
 
 # Learn More
 
