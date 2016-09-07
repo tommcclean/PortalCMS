@@ -344,21 +344,20 @@
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
     <Content Include="Areas\Admin\Content\Images\Pages\Dashboard\image-comments.jpg" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
-    <Content Include="Areas\Admin\Content\Plugins\C3Graphing\c3.css" />
-    <Content Include="Areas\Admin\Content\Plugins\C3Graphing\c3.min.css">
+    <Content Include="Content\Styles\C3Graphing\c3.css" />
+    <Content Include="Content\Styles\C3Graphing\c3.min.css">
       <DependentUpon>c3.css</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Content\Plugins\C3Graphing\c3.min.js" />
-    <Content Include="Areas\Admin\Content\Plugins\C3Graphing\d3.min.js" />
-    <Content Include="Areas\Admin\Content\Plugins\Confirmation\bootstrap-confirmation.min.js" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\initialise.js" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox-thumbs.min.css">
+    <Content Include="Content\Scripts\C3Graphing\c3.min.js" />
+    <Content Include="Content\Scripts\C3Graphing\d3.min.js" />
+    <Content Include="Content\Scripts\BootstrapConfirmation\bootstrap-confirmation.min.js" />
+    <Content Include="Content\Scripts\FancyBox\initialise.js" />
+    <Content Include="Content\Styles\FancyBox\jquery.fancybox-thumbs.min.css">
       <DependentUpon>jquery.fancybox-thumbs.css</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Content\Plugins\JQColorPicker\jqColorPicker.min.js" />
-    <Content Include="Areas\Admin\Content\Plugins\JQTouch\jquery.ui.touch-punch.min.js" />
-    <Content Include="Areas\Admin\Content\Plugins\TinyMCE\initialise.js" />
-    <Content Include="Areas\Admin\Content\Plugins\TinyMCE\tinymce.min.js" />
+    <Content Include="Content\Scripts\JQueryTouch\jquery.ui.touch-punch.min.js" />
+    <Content Include="Content\Scripts\TinyMCE\initialise.js" />
+    <Content Include="Content\Scripts\TinyMCE\tinymce.min.js" />
     <Content Include="Areas\Admin\Content\Styles\Framework\confirmation.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\images.css" />
     <Content Include="Areas\Builder\Content\Images\Sample\icon-1.png" />
@@ -379,14 +378,14 @@
     <Content Include="Areas\Builder\Content\Images\Sample\Sample-6.jpg" />
     <Content Include="Areas\Admin\Content\Images\texture-dark.png" />
     <Content Include="Areas\Admin\Content\Images\texture.png" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\bundle.js" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\bundle.min.js">
+    <Content Include="Content\Styles\FancyBox\bundle.js" />
+    <Content Include="Content\Styles\FancyBox\bundle.min.js">
       <DependentUpon>bundle.js</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox.min.css">
+    <Content Include="Content\Styles\FancyBox\jquery.fancybox.min.css">
       <DependentUpon>jquery.fancybox.css</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Content\Scripts\imageselector.js" />
+    <Content Include="Content\Scripts\ImageSelector\imageselector.js" />
     <Content Include="Areas\Builder\Content\Images\Sample\sample-7.jpg" />
     <Content Include="Areas\Builder\Content\Images\Sample\Sample-8.jpg" />
     <Content Include="Areas\Builder\Content\Images\Sample\small-sample-1.jpg" />
@@ -394,21 +393,14 @@
     <Content Include="Areas\Builder\Content\Scripts\component.expand.js" />
     <Content Include="Areas\Builder\Content\Scripts\pagebuilder.js" />
     <Content Include="Areas\Admin\Content\Scripts\plugins.js" />
-    <Content Include="Areas\Admin\Content\Scripts\modal.js" />
-    <Content Include="Areas\Admin\Content\Scripts\modal.min.js">
+    <Content Include="Content\Scripts\Framework\modal.js" />
+    <Content Include="Content\Scripts\Framework\modal.min.js">
       <DependentUpon>modal.js</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Content\Scripts\plugins.min.js">
       <DependentUpon>plugins.js</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Content\Styles\Framework\boxes.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\boxes.min.css">
-      <DependentUpon>boxes.css</DependentUpon>
-    </Content>
-    <Content Include="Areas\Admin\Content\Styles\Framework\bundle.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\bundle.min.css">
-      <DependentUpon>bundle.css</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Content\Styles\Framework\fields.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\modal.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\tabs.css" />
@@ -417,14 +409,10 @@
     <Content Include="Areas\Admin\Content\Styles\Pages\dashboard.css" />
     <Content Include="Areas\Admin\Content\Styles\Pages\portal.css" />
     <Content Include="Areas\Admin\Content\Styles\Pages\posts.css" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox-thumbs.js" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox.js" />
+    <Content Include="Content\Scripts\FancyBox\jquery.fancybox-thumbs.js" />
+    <Content Include="Content\Scripts\FancyBox\jquery.fancybox.js" />
     <Content Include="Areas\Builder\Content\Scripts\pagebuilder.min.js">
       <DependentUpon>pagebuilder.js</DependentUpon>
-    </Content>
-    <Content Include="Areas\Builder\Content\Styles\bundle.css" />
-    <Content Include="Areas\Builder\Content\Styles\bundle.min.css">
-      <DependentUpon>bundle.css</DependentUpon>
     </Content>
     <Content Include="Areas\Builder\Content\Styles\component.containers.css" />
     <Content Include="Areas\Builder\Content\Styles\component.expand.css" />
@@ -436,21 +424,20 @@
     <Content Include="Areas\Builder\Content\Styles\section.quote.css" />
     <Content Include="Areas\Builder\Content\Styles\section.contact.css" />
     <Content Include="Areas\Builder\Content\Styles\section.split.header.css" />
-    <Content Include="Content\Styles\bundle.css" />
-    <Content Include="Content\Styles\bundle.min.css">
-      <DependentUpon>bundle.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Styles\header.css" />
+    <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Scripts\Bootstrap\bootstrap.min.js" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap.min.css" />
+    <Content Include="Content\Styles\Framework\header.css" />
     <Content Include="Areas\Builder\Content\Styles\pagebuilder.css" />
-    <Content Include="Content\Styles\posts.css" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\blank.gif" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\fancybox_loading%402x.gif" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\fancybox_loading.gif" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\fancybox_overlay.png" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\fancybox_sprite%402x.png" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\fancybox_sprite.png" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox-thumbs.css" />
-    <Content Include="Areas\Admin\Content\Plugins\FancyBox\jquery.fancybox.css" />
+    <Content Include="Content\Styles\Framework\posts.css" />
+    <Content Include="Content\Styles\FancyBox\blank.gif" />
+    <Content Include="Content\Styles\FancyBox\fancybox_loading%402x.gif" />
+    <Content Include="Content\Styles\FancyBox\fancybox_loading.gif" />
+    <Content Include="Content\Styles\FancyBox\fancybox_overlay.png" />
+    <Content Include="Content\Styles\FancyBox\fancybox_sprite%402x.png" />
+    <Content Include="Content\Styles\FancyBox\fancybox_sprite.png" />
+    <Content Include="Content\Styles\FancyBox\jquery.fancybox-thumbs.css" />
+    <Content Include="Content\Styles\FancyBox\jquery.fancybox.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -604,6 +591,10 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Blog\_Comments.cshtml" />
     <Content Include="Views\Blog\_Gallery.cshtml" />
+    <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

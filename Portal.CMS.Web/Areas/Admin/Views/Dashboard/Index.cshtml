@@ -9,19 +9,15 @@
 
 @section Styles
 {
-    <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.min.css" rel="stylesheet" />
-    <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.min.css" rel="stylesheet" />
-    <link href="~/Areas/Admin/Content/Plugins/C3Graphing/c3.min.css" rel="stylesheet" />
+    @Styles.Render("~/Resources/CSS/FancyBox")
+    @Styles.Render("~/Resources/CSS/C3Graphing")
     <link href="~/Areas/Admin/Content/Styles/Pages/dashboard.css" rel="stylesheet" />
 }
 
 @section HEADScripts
 {
-    <script src="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.js"></script>
-    <script src="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.js"></script>
-    <script src="~/Areas/Admin/Content/Plugins/FancyBox/initialise.js"></script>
-    <script src="~/Areas/Admin/Content/Plugins/C3Graphing/c3.min.js"></script>
-    <script src="~/Areas/Admin/Content/Plugins/C3Graphing/d3.min.js"></script>
+    @Scripts.Render("~/Resources/JavaScript/FancyBox")
+    @Scripts.Render("~/Resources/JavaScript/C3Graphing")
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 }
 

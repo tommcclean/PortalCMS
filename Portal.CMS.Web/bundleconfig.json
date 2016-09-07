@@ -12,25 +12,6 @@
     ]
   },
   {
-    "outputFileName": "Areas/Admin/Content/Styles/Framework/boxes.min.css",
-    "inputFiles": [
-      "Areas/Admin/Content/Styles/Framework/boxes.css"
-    ]
-  },
-  {
-    "outputFileName": "Areas/Admin/Content/Styles/Framework/bundle.css",
-    "inputFiles": [
-      "Areas/Admin/Content/Styles/Framework/boxes.css",
-      "Areas/Admin/Content/Styles/Framework/fields.css",
-      "Areas/Admin/Content/Styles/Framework/fonts.css",
-      "Areas/Admin/Content/Styles/Framework/helper.css",
-      "Areas/Admin/Content/Styles/Framework/modal.css",
-      "Areas/Admin/Content/Styles/Framework/tabs.css",
-      "Areas/Admin/Content/Styles/Framework/confirmation.css",
-      "Areas/Admin/Content/Styles/Framework/images.css"
-    ]
-  },
-  {
     "outputFileName": "Areas/Admin/Content/Plugins/FancyBox/bundle.js",
     "inputFiles": [
       "Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.js",
@@ -77,29 +58,6 @@
     "outputFileName": "Areas/Admin/Content/Scripts/modal.min.js",
     "inputFiles": [
       "Areas/Admin/Content/Scripts/modal.js"
-    ]
-  },
-  {
-    "outputFileName": "Areas/Builder/Content/Styles/bundle.css",
-    "inputFiles": [
-      "Areas/Builder/Content/Styles/component.containers.css",
-      "Areas/Builder/Content/Styles/component.glass.css",
-      "Areas/Builder/Content/Styles/component.image.css",
-      "Areas/Builder/Content/Styles/pagebuilder.css",
-      "Areas/Builder/Content/Styles/section.block.css",
-      "Areas/Builder/Content/Styles/section.contact.css",
-      "Areas/Builder/Content/Styles/section.gallery.css",
-      "Areas/Builder/Content/Styles/section.quote.css",
-      "Areas/Builder/Content/Styles/component.panel.overlay.css",
-      "Areas/Builder/Content/Styles/section.split.header.css",
-      "Areas/Builder/Content/Styles/component.expand.css"
-    ]
-  },
-  {
-    "outputFileName": "Content/Styles/bundle.css",
-    "inputFiles": [
-      "Content/Styles/header.css",
-      "Content/Styles/posts.css"
     ]
   }
 ]
