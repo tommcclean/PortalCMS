@@ -1,20 +1,15 @@
 # Portal CMS
-Portal CMS is a free and open source content management system with a powerful integrated page builder.
 
-Find out more at the Portal CMS Promo Website: http://www.portalcms.online
+Portal CMS is a free and open source content management system with a powerful integrated page builder. Built in .NET Portal CMS is a great technology to built a website using out of the box functionality, but you can easily extended it to suit your bespoke needs.
 
-Try out Portal CMS in our Live Demo: http://portalcmsdemo.azurewebsites.net
+# Learn More
 
-Portal CMS has been designed to require no setup, simply download the source code and run the website, Portal CMS will automatically create the SQL database objects it requires and present you with a working system.
+ - Find out more at the Portal CMS Promo Website: http://www.portalcms.online
+ - Try out Portal CMS in our Live Demo: http://portalcmsdemo.azurewebsites.net
+ - Fork this repository to get started today and get a website on-line in under an hour.
 
-You can use Portal CMS as a framework behind the websites you develop to save you from developing the same code every time, just write code for a bespoke C# MVC functionality on top of Portal CMS. Alternatively use the existing tools in Portal CMS to create your entire website; you don't need to write a single line of code because the integrated Page Builder provides office style editing making it really easy to create unlimited web pages from any device.
 
-Some notable features Portal CMS can boast are...
+# Why Choose Portal CMS?
 
-* Advanced Blog Manager helping you to make your Posts attractive and informative.
-* Photo Galleries to help you showcase important media to visitors.
-* Integrated Page Builder to build web pages from any device.
-* Analytics Manager in addition to Google Analytics support shows how your users are engaging with your website in real time.
-* Copy Manager enables all content in Portal CMS to be customisable.
-* Media Manager to act as a single place to upload and manage your websites media collection.
-* Inline Editing Across Portal CMS - No more markup editing with our WYSYWG Tools.
+- You don't need to be techy; use out of the box Portal CMS to create your entire website without writing a single line of code. The integrated Page Builder offers inline editing on all device types so you can build and tweak your website from anywhere with a similiar experience to editing a document.
+- Developers can use Portal CMS as a framework behind the websites they develop giving them really useful features out of the box which can be easily extended. Because Portal CMS is written in C# MVC you can just add Controllers and Views to it like any other website.
