@@ -9,7 +9,7 @@
     var userList = Model.UserList.Select(x => new SelectListItem { Value = x.UserId.ToString(), Text = string.Format("{0} {1}", x.GivenName, x.FamilyName) });
 }
 
-<script src="~/Areas/Admin/Content/Scripts/imageselector.js"></script>
+@Scripts.Render("~/Resources/JavaScript/ImageSelector")
 
 <script type="text/javascript">
     tinymce.init({

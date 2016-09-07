@@ -1,34 +1,33 @@
 ﻿@using Portal.CMS.Web.Areas.Admin.Helpers;
-    <!DOCTYPE html>
-    <html lang="en-gb">
-    <head>
-        <title>@SettingHelper.Get("Website Name"): @ViewBag.Title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-        <meta name="description" content="@SettingHelper.Get("Description Meta Tag")">
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+    <title>@SettingHelper.Get("Website Name"): @ViewBag.Title</title>
 
-        @RenderSection("Styles", false)
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="description" content="@SettingHelper.Get("Description Meta Tag")">
 
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="~/Areas/Admin/Content/Styles/Framework/bundle.min.css" rel="stylesheet" />
-        <link href="~/Areas/Builder/Content/Styles/bundle.min.css" rel="stylesheet" />
-        <link href="~/Content/Styles/bundle.min.css" rel="stylesheet" />
+    @RenderSection("Styles", false)
+    @Styles.Render("~/Resources/CSS/Bootstrap")
+    @Styles.Render("~/Resources/CSS/Administration/Framework")
+    @Styles.Render("~/Resources/CSS/PageBuilder/Framework")
+    @Styles.Render("~/Resources/CSS/Framework")
 
-        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
-        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
-        @RenderSection("HEADScripts", false)
+    @RenderSection("HEADScripts", false)
+</head>
+<body>
+    @Html.Partial("_NavBar")
+    @RenderBody()
 
-        @Scripts.Render("~/Resources/JavaScript/Bootstrap/Modal")
-    </head>
-    <body>
-        @Html.Partial("_NavBar")
-        @RenderBody()
-        @Html.Partial("_Analytics")
+    @Html.Partial("_Analytics")
 
-        @RenderSection("DOMScripts", false)
-
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        @Scripts.Render("~/Resources/JavaScript/Bootstrap/Confirmation")
-    </body>
+    @RenderSection("DOMScripts", false)
+    @Scripts.Render("~/Resources/JavaScript/Bootstrap")
+    @Scripts.Render("~/Resources/JavaScript/Bootstrap/Confirmation")
+    @Scripts.Render("~/Resources/JavaScript/Bootstrap/Modal")
+</body>
 </html>

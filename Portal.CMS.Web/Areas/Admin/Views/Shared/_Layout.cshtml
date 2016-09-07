@@ -1,14 +1,14 @@
 ﻿@using Portal.CMS.Web.Areas.Admin.Helpers;
-
 <!DOCTYPE html>
-<html>
+<html lang="en-gb">
 <head>
     <title>@SettingHelper.Get("Website Name"): @ViewBag.Title</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <meta name="description" content="Portal CMS Administration Panel" />
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Areas/Admin/Content/Styles/Framework/bundle.min.css" rel="stylesheet" />
+    @Styles.Render("~/Resources/CSS/Bootstrap")
+    @Styles.Render("~/Resources/CSS/Administration/Framework")
     <link href="~/Areas/Admin/Content/Styles/Pages/portal.css" rel="stylesheet" />
 
     @RenderSection("Styles", false)
@@ -16,7 +16,6 @@
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
     <script src="~/Areas/Admin/Content/Scripts/plugins.min.js"></script>
-    <script src="~/Areas/Admin/Content/Scripts/modal.min.js"></script>
 
     @RenderSection("HEADScripts", false)
 </head>
@@ -24,12 +23,11 @@
     @Html.Partial("_Header")
     @Html.Partial("_Sidebar")
 
-    <div id="page-container">
-        @RenderBody()
-    </div>
+    <div id="page-container">@RenderBody()</div>
 
     @RenderSection("DOMScripts", false)
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="~/Areas/Admin/Content/Plugins/Confirmation/bootstrap-confirmation.min.js"></script>
+    @Scripts.Render("~/Resources/JavaScript/Bootstrap")
+    @Scripts.Render("~/Resources/JavaScript/Bootstrap/Confirmation")
+    @Scripts.Render("~/Resources/JavaScript/Bootstrap/Modal")
 </body>
 </html>

@@ -17,15 +17,12 @@
 
 @section Styles
 {
-    <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.min.css" rel="stylesheet" />
-    <link href="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.min.css" rel="stylesheet" />
+    @Styles.Render("~/Resources/CSS/FancyBox")
 }
 
 @section HEADScripts
 {
-    <script src="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox.js"></script>
-    <script src="~/Areas/Admin/Content/Plugins/FancyBox/jquery.fancybox-thumbs.js"></script>
-    <script src="~/Areas/Admin/Content/Plugins/FancyBox/initialise.js"></script>
+    @Scripts.Render("~/Resources/JavaScript/FancyBox")
 
     @if (UserHelper.IsAdmin)
     {

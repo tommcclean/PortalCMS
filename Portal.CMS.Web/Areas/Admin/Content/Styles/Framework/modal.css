@@ -5,7 +5,7 @@
 
 .modal-body
 {
-    background-image: url('../../Images/texture.png');
+    background-color: whitesmoke;
 }
 
 @media (min-width: 768px)

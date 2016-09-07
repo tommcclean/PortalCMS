@@ -1,9 +1,11 @@
-﻿html, body {
+﻿html, body
+{
     padding: 0;
     margin: 0;
 }
 
-#sidebar {
+#sidebar
+{
     overflow-y: auto;
     position: fixed;
     width: 70px;
@@ -12,7 +14,8 @@
     padding-top: 70px;
 }
 
-    #sidebar .link {
+    #sidebar .link
+    {
         display: block;
         text-align: center;
         cursor: pointer;
@@ -21,23 +24,26 @@
         transition: border-left 0.2s ease-in-out;
     }
 
-    #sidebar .link.first
-    {
-        border-top: 1px solid #28282B;
-    }
+        #sidebar .link.first
+        {
+            border-top: 1px solid #28282B;
+        }
 
-        #sidebar .link:hover {
+        #sidebar .link:hover
+        {
             border-left: 2px solid #F7F7F7;
         }
 
-        #sidebar .link img {
+        #sidebar .link img
+        {
             width: 30px;
             height: 30px;
             margin-top: 19px;
             margin-bottom: 19px;
         }
 
-header {
+header
+{
     position: fixed;
     left: 70px;
     top: 0;
@@ -48,12 +54,14 @@ header {
     padding: 5px 10px 5px 10px;
 }
 
-    header h3 {
+    header h3
+    {
         margin: 0;
         line-height: 60px;
     }
 
-    header img {
+    header img
+    {
         height: 30px;
         margin-right: 15px;
     }
@@ -68,7 +76,6 @@ header {
     background-color: #EEEEF6;
     padding: 30px;
     overflow-y: auto;
-    background-image: url('../../Images/texture.png');
 }
 
 @media (max-width: 700px)
