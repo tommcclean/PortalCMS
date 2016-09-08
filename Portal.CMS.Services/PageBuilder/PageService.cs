@@ -96,14 +96,24 @@ namespace Portal.CMS.Services.PageBuilder
 
                 if (pageSection.PageSectionRoles.Any())
                 {
+                    var matchedRole = false;
 
+                    foreach(var role in pageSection.PageSectionRoles)
+                    {
+                        if (userRoleList.Contains(role.Role.RoleName))
+                        {
+                            matchedRole = true;
 
-                    if (userRoleList.Contains(pageSection.PageSectionRoles.SelectMany(x => x.Role.RoleName)))
-                        continue;
+                            break;
+                        }
+                    }
 
-                    page.PageSections.Remove(page.PageSections.ToList()[loop]);
+                    if (matchedRole == false)
+                    {
+                        page.PageSections.Remove(page.PageSections.ToList()[loop]);
 
-                    loop = loop - 1;
+                        loop = loop - 1;
+                    }
                 }
             }
 
