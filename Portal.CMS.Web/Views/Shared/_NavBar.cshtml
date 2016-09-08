@@ -18,6 +18,7 @@
 
         <div class="collapse navbar-collapse" id="main-menu">
             <ul class="nav navbar-nav">
+                <li class=""><a href="#)"><i class="fa fa-desktop"></i>Test</a></li>
                 @foreach (var item in menuItems)
                 {
                     <li class=""><a href="@Url.Action(item.LinkAction, item.LinkController, new { area = item.LinkArea })">@Html.Raw(item.LinkText)</a></li>
