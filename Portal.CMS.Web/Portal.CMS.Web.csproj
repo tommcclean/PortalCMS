@@ -425,7 +425,7 @@
     <Content Include="Areas\Builder\Content\Styles\section.contact.css" />
     <Content Include="Areas\Builder\Content\Styles\section.split.header.css" />
     <Content Include="Content\Styles\FontAwesome\font-awesome.min.css" />
-    <Content Include="Content\Styles\FontAwesome\fontawesome-webfont.svg" />
+    <Content Include="Content\Styles\Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap.min.js" />
     <Content Include="Content\Styles\Bootstrap\bootstrap.min.css" />
@@ -463,11 +463,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Styles\FontAwesome\fontawesome-webfont.eot" />
-    <Content Include="Content\Styles\FontAwesome\fontawesome-webfont.ttf" />
-    <Content Include="Content\Styles\FontAwesome\fontawesome-webfont.woff" />
-    <Content Include="Content\Styles\FontAwesome\fontawesome-webfont.woff2" />
-    <Content Include="Content\Styles\FontAwesome\FontAwesome.otf" />
+    <Content Include="Content\Styles\Fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Styles\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Styles\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Styles\Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Styles\Fonts\FontAwesome.otf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />

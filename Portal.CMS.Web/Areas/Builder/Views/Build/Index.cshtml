@@ -42,15 +42,15 @@
     {
         /* Global Administration Menu */
         <div class="action-container wide global">
-            <div class="action" onclick="ChangeOrder();"><span class="glyphicon glyphicon-resize-vertical"></span><span class="hidden-xs">Order</span></div>
-            <div class="action" onclick="ToggleComponentPanel();"><span class="glyphicon glyphicon-briefcase"></span><span class="hidden-xs">Component</span></div>
-            <div class="action" onclick="ToggleSectionPanel();"><span class="glyphicon glyphicon-plus"></span><span class="hidden-xs">Section</span></div>
+            <div class="action" onclick="ChangeOrder();"><span class="fa fa-sort"></span><span class="hidden-xs">Order</span></div>
+            <div class="action" onclick="ToggleComponentPanel();"><span class="fa fa-briefcase"></span><span class="hidden-xs">Component</span></div>
+            <div class="action" onclick="ToggleSectionPanel();"><span class="fa fa-plus"></span><span class="hidden-xs">Section</span></div>
         </div>
 
         /* Page Section Order Administration Menu */
         <div class="action-container section-order" style="display: none;">
-            <div onclick="SaveOrder();" class="action"><span class="glyphicon glyphicon-ok"></span></div>
-            <div onclick="location.reload();" class="action"><span class="glyphicon glyphicon-remove"></span></div>
+            <div onclick="SaveOrder();" class="action"><span class="fa fa-check"></span></div>
+            <div onclick="location.reload();" class="action"><span class="fa fa-remove"></span></div>
         </div>
 
         /* Form to Submit New Page Section Order */
@@ -71,9 +71,9 @@
                 @if (isAdmin)
                 {
                     <div class="action-container absolute">
-                        <a class="action launch-modal" data-title="Edit Markup" href="@Url.Action("Markup", "Section", new { area = "Builder", pageSectionId = section.PageSectionId })"><span class="glyphicon glyphicon-console"></span></a>
-                        <a class="action launch-modal" data-title="Edit Section" href="@Url.Action("Edit", "Section", new { area = "Builder", sectionId = section.PageSectionId })"><span class="glyphicon glyphicon-cog"></span></a>
-                        <a id="container-editor-@(section.PageSectionId)" class="action component-editor" style="display: none;" data-title="Delete Container"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a class="action launch-modal" data-title="Edit Markup" href="@Url.Action("Markup", "Section", new { area = "Builder", pageSectionId = section.PageSectionId })"><span class="fa fa-code"></span></a>
+                        <a class="action launch-modal" data-title="Edit Section" href="@Url.Action("Edit", "Section", new { area = "Builder", sectionId = section.PageSectionId })"><span class="fa fa-cog"></span></a>
+                        <a id="container-editor-@(section.PageSectionId)" class="action component-editor" style="display: none;" data-title="Delete Container"><span class="fa fa-trash"></span></a>
                     </div>
                 }
             </div>

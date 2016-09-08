@@ -51,11 +51,6 @@
     text-transform: uppercase;
 }
 
-.glyphicon
-{
-    margin-right: 10px;
-}
-
 .field-validation-error
 {
     background-color: #B12D2D;
@@ -98,7 +93,7 @@
     background-color: #D32D27;
     font-size: 18px;
     color: white;
-    line-height: 52px;
+    line-height: 48px;
     text-align: center;
     cursor: pointer;
     margin-left: 5px;
@@ -110,7 +105,7 @@
         background-color: #BA2823;
     }
 
-    .action .glyphicon, .admin-item .glyphicon
+    .action .fa, .admin-item .fa, .action .fa
     {
         margin: 0;
     }
@@ -133,7 +128,7 @@
         padding-right: 20px;
     }
 
-        .action-container.wide .action .glyphicon
+        .action-container.wide .action .fa
         {
             margin-right: 10px;
             margin-left: 15px;
@@ -193,7 +188,7 @@
         font-size: 15px;
     }
 
-        .admin-container .admin-item .glyphicon
+        .admin-container .admin-item .fa
         {
             margin-right: 15px;
         }

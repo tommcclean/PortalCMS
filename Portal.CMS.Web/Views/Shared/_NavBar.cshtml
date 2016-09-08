@@ -18,7 +18,6 @@
 
         <div class="collapse navbar-collapse" id="main-menu">
             <ul class="nav navbar-nav">
-                <li class=""><a href="#)"><i class="fa fa-desktop"></i>Test</a></li>
                 @foreach (var item in menuItems)
                 {
                     <li class=""><a href="@Url.Action(item.LinkAction, item.LinkController, new { area = item.LinkArea })">@Html.Raw(item.LinkText)</a></li>
@@ -29,34 +28,34 @@
             {
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>@UserHelper.FullName<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span>@UserHelper.FullName<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Account", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Update Account"><span class="glyphicon glyphicon-user"></span>Update Account</a></li>
-                            <li><a href="@Url.Action("Bio", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Update Bio"><span class="glyphicon glyphicon-book"></span>Update Bio</a></li>
-                            <li><a href="@Url.Action("Avatar", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Upload Avatar"><span class="glyphicon glyphicon-picture"></span>Upload Avatar</a></li>
-                            <li><a href="@Url.Action("Password", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Change Password"><span class="glyphicon glyphicon-pencil"></span>Change Password</a></li>
+                            <li><a href="@Url.Action("Account", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Update Account"><span class="fa fa-user"></span>Update Account</a></li>
+                            <li><a href="@Url.Action("Bio", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Update Bio"><span class="fa fa-book"></span>Update Bio</a></li>
+                            <li><a href="@Url.Action("Avatar", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Upload Avatar"><span class="fa fa-picture-o"></span>Upload Avatar</a></li>
+                            <li><a href="@Url.Action("Password", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Change Password"><span class="fa fa-key"></span>Change Password</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="@Url.Action("Logout", "Authentication", new { area="Admin"})"><span class="glyphicon glyphicon-lock"></span>Logout</a></li>
+                            <li><a href="@Url.Action("Logout", "Authentication", new { area="Admin"})"><span class="fa fa-lock"></span>Logout</a></li>
                         </ul>
                     </li>
                     @if (isAdmin || isEditor)
                     {
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span>Administration <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-cog"></span>Administration <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 @if (isAdmin)
                                 {
-                                    <li><a href="@Url.Action("Index", "Dashboard", new { area="Admin"})"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
+                                    <li><a href="@Url.Action("Index", "Dashboard", new { area="Admin"})"><span class="fa fa-dashboard"></span>Dashboard</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="@Url.Action("Index", "Pages", new { area="Admin"})"><span class="glyphicon glyphicon-globe"></span>Page Manager</a></li>
-                                    <li><a href="@Url.Action("Index", "Analytics", new { area="Admin"})"><span class="glyphicon glyphicon-stats"></span>Website Analytics</a></li>
-                                    <li><a href="@Url.Action("Setup", "Settings", new { area="Admin"})" class="launch-modal" data-title="Website Settings"><span class="glyphicon glyphicon-cog"></span>Website Settings</a></li>
+                                    <li><a href="@Url.Action("Index", "Pages", new { area="Admin"})"><span class="fa fa-globe"></span>Page Manager</a></li>
+                                    <li><a href="@Url.Action("Index", "Analytics", new { area="Admin"})"><span class="fa fa-line-chart"></span>Website Analytics</a></li>
+                                    <li><a href="@Url.Action("Setup", "Settings", new { area="Admin"})" class="launch-modal" data-title="Website Settings"><span class="fa fa-cog"></span>Website Settings</a></li>
                                     <li role="separator" class="divider"></li>
                                 }
                                 @if (isEditor)
                                 {
-                                    <li><a href="@Url.Action("Upload", "Media", new { area="Admin"})" class="launch-modal" data-title="Upload Image"><span class="glyphicon glyphicon-picture"></span>Upload Media</a></li>
-                                    <li><a href="@Url.Action("Create", "Posts", new { area="Admin"})" class="launch-modal" data-title="Create Post"><span class="glyphicon glyphicon-pencil"></span>Create Post</a></li>
+                                    <li><a href="@Url.Action("Upload", "Media", new { area="Admin"})" class="launch-modal" data-title="Upload Image"><span class="fa fa-cloud-upload"></span>Upload Media</a></li>
+                                    <li><a href="@Url.Action("Create", "Posts", new { area="Admin"})" class="launch-modal" data-title="Create Post"><span class="fa fa-pencil"></span>Create Post</a></li>
                                 }
                             </ul>
                         </li>
@@ -66,8 +65,8 @@
             else
             {
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="@Url.Action("Login", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Sign In"><span class="glyphicon glyphicon-lock"></span>Login</a></li>
-                    <li><a href="@Url.Action("Register", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Register Account"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+                    <li><a href="@Url.Action("Login", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Sign In"><span class="fa fa-lock"></span>Login</a></li>
+                    <li><a href="@Url.Action("Register", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Register Account"><span class="fa fa-user"></span>Register</a></li>
                 </ul>
             }
         </div>
