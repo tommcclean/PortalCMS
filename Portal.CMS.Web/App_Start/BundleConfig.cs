@@ -16,6 +16,8 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Modal").Include("~/Content/Scripts/Framework/modal.js"));
 
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework/Global").Include("~/Content/Scripts/Framework/global.js"));
+
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/FancyBox").Include("~/Content/Scripts/FancyBox/*.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/C3Graphing").Include("~/Content/Scripts/C3Graphing/c3.min.js").Include("~/Content/Scripts/C3Graphing/d3.min.js"));
@@ -39,6 +41,8 @@ namespace Portal.CMS.Web
             bundles.Add(new StyleBundle("~/Resources/CSS/FancyBox").Include("~/Content/Styles/FancyBox/*.css", new CssRewriteUrlTransform()));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/C3Graphing").Include("~/Content/Styles/C3Graphing/*.css", new CssRewriteUrlTransform()));
+
+            bundles.Add(new StyleBundle("~/Resources/CSS/FontAwesome").Include("~/Content/Styles/FontAwesome/font-awesome.min.css", new CssRewriteUrlTransform()));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework").Include("~/Content/Styles/Framework/*.css", new CssRewriteUrlTransform()));
 

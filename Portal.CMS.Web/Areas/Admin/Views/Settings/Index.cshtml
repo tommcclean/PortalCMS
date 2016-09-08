@@ -15,7 +15,7 @@
                 @foreach (var setting in Model.SettingList)
                 {
                     <a href="@Url.Action("Edit", "Settings", new { settingId = @setting.SettingId })" class="tag launch-modal" data-title="Change: @setting.SettingName">
-                        <strong><span class="glyphicon glyphicon-cog"></span>@setting.SettingName: </strong>
+                        <strong><span class="fa fa-cog"></span>@setting.SettingName: </strong>
 
                         @if (setting.SettingName.Contains("Password"))
                         {
@@ -30,7 +30,7 @@
             </div>
 
             <div class="admin-container x1">
-                <a href="@Url.Action("Create", "Settings")" class="admin-item launch-modal" data-title="Create Setting"><span class="glyphicon glyphicon-plus"></span>Create Setting</a>
+                <a href="@Url.Action("Create", "Settings")" class="admin-item launch-modal" data-title="Create Setting"><span class="fa fa-plus"></span>Create Setting</a>
             </div>
         </div>
     </div>
@@ -42,12 +42,12 @@
             <div class="float-container" style="margin-top: 25px;">
                 @foreach (var role in Model.RoleList)
                 {
-                    <a href="@Url.Action("Edit", "Roles", new { roleId = @role.RoleId })" cl class="tag launch-modal" data-title="Change: @role.RoleName"><span class="glyphicon glyphicon-tower"></span>@role.RoleName</a>
+                    <a href="@Url.Action("Edit", "Roles", new { roleId = @role.RoleId })" cl class="tag launch-modal" data-title="Change: @role.RoleName"><span class="fa fa-tower"></span>@role.RoleName</a>
                 }
             </div>
 
             <div class="admin-container x1">
-                <a href="@Url.Action("Create", "Roles")" class="admin-item launch-modal" data-title="Create Role"><span class="glyphicon glyphicon-plus"></span>Create Role</a>
+                <a href="@Url.Action("Create", "Roles")" class="admin-item launch-modal" data-title="Create Role"><span class="fa fa-plus"></span>Create Role</a>
             </div>
         </div>
     </div>
@@ -59,13 +59,13 @@
             <div class="float-container" style="margin-top: 25px;">
                 @foreach (var menu in Model.MenuList)
                 {
-                    <a href="@Url.Action("Edit", "Menu", new { menuId = @menu.MenuId})" cl class="tag launch-modal" data-title="Change: @menu.MenuName"><span class="glyphicon glyphicon-th-list"></span>@menu.MenuName (@menu.MenuItems.Count)</a>
+                    <a href="@Url.Action("Edit", "Menu", new { menuId = @menu.MenuId})" cl class="tag launch-modal" data-title="Change: @menu.MenuName"><span class="fa fa-th-list"></span>@menu.MenuName (@menu.MenuItems.Count)</a>
                 }
             </div>
 
             <div class="admin-container x2">
-                <a href="@Url.Action("Create", "Menu")" class="admin-item launch-modal" data-title="Create Menu"><span class="glyphicon glyphicon-plus"></span>Create Menu</a>
-                <a href="@Url.Action("Create", "MenuItem")" class="admin-item launch-modal" data-title="Add Menu Item"><span class="glyphicon glyphicon-plus"></span>Add Item</a>
+                <a href="@Url.Action("Create", "Menu")" class="admin-item launch-modal" data-title="Create Menu"><span class="fa fa-plus"></span>Create Menu</a>
+                <a href="@Url.Action("Create", "MenuItem")" class="admin-item launch-modal" data-title="Add Menu Item"><span class="fa fa-plus"></span>Add Item</a>
             </div>
         </div>
     </div>

@@ -25,6 +25,11 @@
     margin: 0;
 }
 
+.navbar .fa
+{
+    font-size: 18px;
+}
+
 @media (max-width: 768px)
 {
     .navbar .container-fluid

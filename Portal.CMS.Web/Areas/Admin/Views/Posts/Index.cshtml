@@ -15,13 +15,13 @@
 }
 
 <div class="action-container">
-    <a href="@Url.Action("Add", "PostCategories")" class="launch-modal" data-title="Add Post Category"><div class="action"><span class="glyphicon glyphicon-bookmark"></span></div></a>
-    <a href="@Url.Action("Create", "Posts")" class="launch-modal" data-title="Create Post"><div class="action"><span class="glyphicon glyphicon-plus"></span></div></a>
+    <a href="@Url.Action("Add", "PostCategories")" class="launch-modal" data-title="Add Post Category"><div class="action"><span class="fa fa-bookmark"></span></div></a>
+    <a href="@Url.Action("Create", "Posts")" class="launch-modal" data-title="Create Post"><div class="action"><span class="fa fa-plus"></span></div></a>
 </div>
 
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#tab-posts" aria-controls="tab-posts" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span>Posts</a></li>
-    <li role="presentation" class=""><a href="#tab-categories" aria-controls="tab-categories" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-bookmark"></span>Categories</a></li>
+    <li role="presentation" class="active"><a href="#tab-posts" aria-controls="tab-posts" role="tab" data-toggle="tab"><span class="fa fa-pencil"></span>Posts</a></li>
+    <li role="presentation" class=""><a href="#tab-categories" aria-controls="tab-categories" role="tab" data-toggle="tab"><span class="fa fa-bookmark"></span>Categories</a></li>
 </ul>
 
 <div class="tab-content">
@@ -48,15 +48,15 @@
                             <div class="admin-container x3">
                                 @if (post.IsPublished)
                                 {
-                                    <a href="@Url.Action("Draft", "Posts", new { postId = @post.PostId })" class="admin-item" data-title="Set as Draft"><span class="glyphicon glyphicon-eye-close"></span>Draft</a>
+                                    <a href="@Url.Action("Draft", "Posts", new { postId = @post.PostId })" class="admin-item" data-title="Set as Draft"><span class="fa fa-file-text-o"></span>Draft</a>
                                 }
                                 else
                                 {
-                                    <a href="@Url.Action("Publish", "Posts", new { postId = @post.PostId })" class="admin-item" data-title="Publish Post"><span class="glyphicon glyphicon-eye-open"></span>Publish</a>
+                                    <a href="@Url.Action("Publish", "Posts", new { postId = @post.PostId })" class="admin-item" data-title="Publish Post"><span class="fa fa-file-text"></span>Publish</a>
                                 }
 
-                                <a href="@Url.Action("Edit", "Posts", new { postId = @post.PostId })" class="admin-item launch-modal" data-title="Edit Post: @post.PostTitle"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
-                                <a href="@Url.Action("Delete", "Posts", new { postId = @post.PostId })" class="admin-item" data-title="Delete Post" data-container="body" data-toggle="confirmation" data-placement="top"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                                <a href="@Url.Action("Edit", "Posts", new { postId = @post.PostId })" class="admin-item launch-modal" data-title="Edit Post: @post.PostTitle"><span class="fa fa-pencil"></span>Edit</a>
+                                <a href="@Url.Action("Delete", "Posts", new { postId = @post.PostId })" class="admin-item" data-title="Delete Post" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
                             </div>
                         </div>
                         <div class="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? "overlay-medium" : "")"></div>
@@ -75,8 +75,8 @@
                         <p>Total Posts: @postCategory.Posts.Count()</p>
 
                         <div class="admin-container x2">
-                            <a href="@Url.Action("Edit", "PostCategories", new { postCategoryId = postCategory.PostCategoryId })" class="admin-item launch-modal" data-title="Edit Post Category"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
-                            <a href="@Url.Action("Delete", "PostCategories", new { postCategoryId = postCategory.PostCategoryId })" class="admin-item" data-title="Delete Post Category" data-toggle="confirmation" data-placement="top"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                            <a href="@Url.Action("Edit", "PostCategories", new { postCategoryId = postCategory.PostCategoryId })" class="admin-item launch-modal" data-title="Edit Post Category"><span class="fa fa-pencil"></span>Edit</a>
+                            <a href="@Url.Action("Delete", "PostCategories", new { postCategoryId = postCategory.PostCategoryId })" class="admin-item" data-title="Delete Post Category" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
                         </div>
                     </div>
                 </div>

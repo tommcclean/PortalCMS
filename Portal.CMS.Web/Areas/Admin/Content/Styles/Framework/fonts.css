@@ -49,7 +49,7 @@ input
     outline: none;
 }
 
-.glyphicon
+.fa, .glyphicon
 {
     margin-right: 10px;
 }
