@@ -93,11 +93,11 @@
     background-color: #D32D27;
     font-size: 18px;
     color: white;
-    line-height: 48px;
+    line-height: 50px;
     text-align: center;
     cursor: pointer;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
     .action:hover
@@ -108,6 +108,7 @@
     .action .fa, .admin-item .fa, .action .fa
     {
         margin: 0;
+        
     }
 
 .action-container.wide

@@ -344,6 +344,7 @@
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
     <Content Include="Areas\Admin\Content\Images\Pages\Dashboard\image-comments.jpg" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
+    <Content Include="Content\Scripts\Framework\global.js" />
     <Content Include="Content\Styles\C3Graphing\c3.css" />
     <Content Include="Content\Styles\C3Graphing\c3.min.css">
       <DependentUpon>c3.css</DependentUpon>
@@ -396,9 +397,6 @@
     <Content Include="Content\Scripts\Framework\modal.js" />
     <Content Include="Content\Scripts\Framework\modal.min.js">
       <DependentUpon>modal.js</DependentUpon>
-    </Content>
-    <Content Include="Areas\Admin\Content\Scripts\plugins.min.js">
-      <DependentUpon>plugins.js</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Content\Styles\Framework\boxes.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\fields.css" />
