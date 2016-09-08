@@ -1,4 +1,5 @@
 ﻿using Portal.CMS.Entities;
+using Portal.CMS.Entities.Entities.Authentication;
 using Portal.CMS.Entities.Entities.PageBuilder;
 using Portal.CMS.Entities.Entities.Posts;
 using Portal.CMS.Services.Authentication;
@@ -55,7 +56,7 @@ namespace Portal.CMS.Services.PageBuilder
             var page = _context.Pages.Include(x => x.PageSections).SingleOrDefault(x => x.PageId == pageId);
 
             if (!page.PageRoles.Any())
-                return page;
+                return FilterSectionList(page, userId);
 
             var userRoleList = new List<string>();
 
@@ -64,15 +65,49 @@ namespace Portal.CMS.Services.PageBuilder
                 var user = _userService.GetUser(userId.Value);
 
                 if (user.Roles.Any(x => x.Role.RoleName == "Admin"))
-                    return page;
+                    return FilterSectionList(page, userId);
 
                 userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));
 
                 if (userRoleList.Contains(page.PageRoles.SelectMany(x => x.Role.RoleName)))
-                    return page;
+                    return FilterSectionList(page, userId);
             }
 
             return null;
+        }
+
+        private Page FilterSectionList (Page page, int? userId)
+        {
+            User userAccount;
+            var userRoleList = new List<string>();
+
+            if (userId.HasValue)
+            {
+                userAccount = _userService.GetUser(userId.Value);
+                userRoleList.AddRange(userAccount.Roles.Select(x => x.Role.RoleName));
+            }
+
+            if (userRoleList.Any(x => x == "Admin"))
+                return page;
+
+            for (int loop = 0; loop < page.PageSections.Count(); loop += 1)
+            {
+                var pageSection = page.PageSections.ToList()[loop];
+
+                if (pageSection.PageSectionRoles.Any())
+                {
+
+
+                    if (userRoleList.Contains(pageSection.PageSectionRoles.SelectMany(x => x.Role.RoleName)))
+                        continue;
+
+                    page.PageSections.Remove(page.PageSections.ToList()[loop]);
+
+                    loop = loop - 1;
+                }
+            }
+
+            return page;
         }
 
         public Page Get(int pageId)

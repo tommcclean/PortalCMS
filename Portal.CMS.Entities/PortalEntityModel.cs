@@ -88,6 +88,8 @@ namespace Portal.CMS.Entities
 
         public virtual DbSet<PageRole> PageRoles { get; set; }
 
+        public virtual DbSet<PageSectionRole> PageSectionRoles { get; set; }
+
         #endregion Page Builder Entities
     }
 }
