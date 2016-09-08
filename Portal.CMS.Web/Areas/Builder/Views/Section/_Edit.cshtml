@@ -50,6 +50,13 @@
                 @Html.LabelFor(x => x.PageSectionBackgroundType)
                 @Html.EnumDropDownListFor(m => m.PageSectionBackgroundType, new { @class = "form-control" })
             </div>
+
+            <br />
+            <span class="field-validation-help">A user must have at least one of the roles selected below to see this Section. To show the Section to all users select no roles.</span>
+            <div class="control-group control-textarea float-container">
+                @Html.LabelFor(x => x.SelectedRoleList)
+                @Html.ListBoxFor(m => m.SelectedRoleList, Model.RoleList.Select(r => new SelectListItem { Text = r.RoleName, Value = r.RoleName.ToString(), Selected = Model.SelectedRoleList != null && Model.SelectedRoleList.Contains(r.RoleName) }))
+            </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-background">
             <div id="banner-selector" class="image-selector x4 single float-container">

@@ -1,8 +1,10 @@
-﻿using Portal.CMS.Services.Generic;
+﻿using Portal.CMS.Services.Authentication;
+using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Section;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
@@ -15,12 +17,14 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         private readonly IPageSectionService _pageSectionService;
         private readonly IPageSectionTypeService _pageSectionTypeService;
         private readonly IImageService _imageService;
+        private readonly IRoleService _roleService;
 
-        public SectionController(IPageSectionService pageSectionService, IPageSectionTypeService pageSectionTypeService, IImageService imageService)
+        public SectionController(IPageSectionService pageSectionService, IPageSectionTypeService pageSectionTypeService, IImageService imageService, IRoleService roleService)
         {
             _pageSectionService = pageSectionService;
             _pageSectionTypeService = pageSectionTypeService;
             _imageService = imageService;
+            _roleService = roleService;
         }
 
         #endregion Dependencies
@@ -36,7 +40,9 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 SectionId = sectionId,
                 ImageList = _imageService.Get(),
                 PageSectionHeight = _pageSectionService.DetermineSectionHeight(sectionId),
-                PageSectionBackgroundType = _pageSectionService.DetermineBackgroundType(sectionId)
+                PageSectionBackgroundType = _pageSectionService.DetermineBackgroundType(sectionId),
+                RoleList = _roleService.Get(),
+                SelectedRoleList = pageSection.PageSectionRoles.Select(x => x.Role.RoleName).ToList()
             };
 
             return View("_Edit", model);
@@ -51,6 +57,8 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
             _pageSectionService.Height(model.SectionId, model.PageSectionHeight);
             _pageSectionService.BackgroundType(model.SectionId, model.PageSectionBackgroundType);
+
+            _pageSectionService.Roles(model.SectionId, model.SelectedRoleList);
 
             return Content("Refresh");
         }

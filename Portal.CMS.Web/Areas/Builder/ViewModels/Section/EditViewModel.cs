@@ -1,4 +1,5 @@
-﻿using Portal.CMS.Entities.Entities.PageBuilder;
+﻿using Portal.CMS.Entities.Entities.Authentication;
+using Portal.CMS.Entities.Entities.PageBuilder;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -19,5 +20,10 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
         public PageSectionBackgroundType PageSectionBackgroundType { get; set; }
 
         public IEnumerable<Portal.CMS.Entities.Entities.Generic.Image> ImageList { get; set; }
+
+        [DisplayName("Roles")]
+        public List<string> SelectedRoleList { get; set; } = new List<string>();
+
+        public List<Role> RoleList { get; set; }
     }
 }

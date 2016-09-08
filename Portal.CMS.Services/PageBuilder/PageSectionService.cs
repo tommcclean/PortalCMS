@@ -1,6 +1,7 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.PageBuilder;
 using Portal.CMS.Services.Shared;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Portal.CMS.Services.PageBuilder
@@ -24,6 +25,8 @@ namespace Portal.CMS.Services.PageBuilder
         PageSectionBackgroundType DetermineBackgroundType(int pageSectionId);
 
         void Markup(int pageSectionId, string htmlBody);
+
+        void Roles(int pageSectionId, List<string> roleList);
     }
 
     public class PageSectionService : IPageSectionService
@@ -191,6 +194,32 @@ namespace Portal.CMS.Services.PageBuilder
                 return;
 
             pageSection.PageSectionBody = htmlBody;
+
+            _context.SaveChanges();
+        }
+
+        public void Roles(int pageSectionId, List<string> roleList)
+        {
+            var pageSection = Get(pageSectionId);
+
+            if (pageSection == null)
+                return;
+
+            var roles = _context.Roles.ToList();
+
+            if (pageSection != null)
+                foreach (var role in pageSection.PageSectionRoles.ToList())
+                    _context.PageSectionRoles.Remove(role);
+
+            foreach (var roleName in roleList)
+            {
+                var currentRole = roles.FirstOrDefault(x => x.RoleName == roleName);
+
+                if (currentRole == null)
+                    continue;
+
+                _context.PageSectionRoles.Add(new PageSectionRole { PageSectionId = pageSectionId, RoleId = currentRole.RoleId });
+            }
 
             _context.SaveChanges();
         }
