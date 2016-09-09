@@ -81,5 +81,16 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
             return RedirectToAction("Index", new { pageId = pageSection.PageId });
         }
+
+        [HttpGet, AdminFilter]
+        public ActionResult Pages()
+        {
+            var model = new PagesViewModel
+            {
+                PageList = _pageService.Get().ToList()
+            };
+
+            return PartialView("_Pages", model);
+        }
     }
 }

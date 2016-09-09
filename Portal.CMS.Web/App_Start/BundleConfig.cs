@@ -28,7 +28,7 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/ImageSelector").Include("~/Content/Scripts/ImageSelector/*.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilderAdministration").Include("~/Areas/Builder/Content/Scripts/pagebuilder.min.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilderAdministration").Include("~/Areas/Builder/Content/Scripts/pagebuilder.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/FAQSpoilerEvents").Include("~/Areas/Builder/Content/Scripts/component.expand.js"));
 
