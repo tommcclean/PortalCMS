@@ -305,6 +305,7 @@
     <Compile Include="Areas\Builder\Controllers\ComponentController.cs" />
     <Compile Include="Areas\Builder\Controllers\SectionController.cs" />
     <Compile Include="Areas\Builder\Controllers\WidgetController.cs" />
+    <Compile Include="Areas\Builder\ViewModels\Build\PagesViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\AddViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\ImageViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
@@ -409,9 +410,6 @@
     <Content Include="Areas\Admin\Content\Styles\Pages\posts.css" />
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox-thumbs.js" />
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox.js" />
-    <Content Include="Areas\Builder\Content\Scripts\pagebuilder.min.js">
-      <DependentUpon>pagebuilder.js</DependentUpon>
-    </Content>
     <Content Include="Areas\Builder\Content\Styles\component.containers.css" />
     <Content Include="Areas\Builder\Content\Styles\component.expand.css" />
     <Content Include="Areas\Builder\Content\Styles\component.glass.css" />
@@ -600,6 +598,9 @@
     <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Builder\Views\Build\_Pages.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
