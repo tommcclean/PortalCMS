@@ -1,0 +1,41 @@
+﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Build.PagesViewModel
+@{
+    Layout = "";
+}
+
+<div id="pages-panel" class="panel-overlay">
+    <div class="panel-title">
+        <h4>Page Manager</h4>
+        <div class="panel-action right" onclick="TogglePageList();"><span class="fa fa-remove"></span></div>
+        <div class="panel-action right" data-toggle="popover" data-trigger="click" data-container="body" data-placement="bottom" data-title="Page Manager" data-content="The Page Manager shows you all of the custom pages you have created. You can create unlimited pages."><span class="fa fa-info"></span></div>
+    </div>
+
+    <div class="panel-inner">
+        <a href="@Url.Action("Create", "Pages", new { area = "Admin" })" class="btn primary launch-modal" data-title="New Page" style="font-size: 15px;"><span class="fa fa-plus"></span>New Page</a>
+        <a href="@Url.Action("Index", "Pages", new { area = "Admin" })" class="btn" style="font-size: 15px;"><span class="fa fa-th-list"></span>Page Manager</a>
+
+        <div class="tab-content" style="padding-top: 10px; padding-right: 10px; padding-left: 2px; border: 0; max-height: 74vh;">
+            @foreach (var page in Model.PageList)
+            {
+                var url = string.IsNullOrWhiteSpace(page.PageArea) ? string.Format("{0}/{1}", page.PageController, page.PageAction) : string.Format("{0}/{1}/{2}", page.PageArea, page.PageController, page.PageAction);
+
+                <div class="box float-container" style="height: auto; min-height: initial; padding-bottom: 75px;">
+                    <h4>@page.PageName</h4>
+                    <p style="font-size: 16px;"><span class="fa fa-globe"></span>@url.ToLower()</p>
+
+                    <div class="admin-container x2">
+                        <a href="@Url.Action("Edit", "Pages", new { area = "Admin", pageId = @page.PageId })" class="admin-item launch-modal" data-title="Edit Page"><span class="fa fa-pencil"></span>Edit</a>
+                        <a href="@page.PageArea/@page.PageController/@page.PageAction" class="admin-item"><span class="fa fa-briefcase"></span>Build</a>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.panel-action').popover();
+    });
+</script>

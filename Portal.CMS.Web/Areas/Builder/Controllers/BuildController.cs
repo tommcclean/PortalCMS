@@ -90,7 +90,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 PageList = _pageService.Get().ToList()
             };
 
-            return PartialView("_Pages", model);
+            return PartialView("_PageManager", model);
         }
     }
 }
