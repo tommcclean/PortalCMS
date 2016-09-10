@@ -2,6 +2,7 @@
 {
     public enum UserTokenType
     {
-        ForgottenPassword = 1
+        ForgottenPassword = 1,
+        SSO = 2
     }
 }

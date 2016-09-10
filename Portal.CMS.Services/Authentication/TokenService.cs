@@ -9,7 +9,9 @@ namespace Portal.CMS.Services.Authentication
     {
         string Add(string emailAddress, UserTokenType userTokenType);
 
-        string Redeem(string token, string emailAddress, string password);
+        string RedeemPasswordToken(string token, string emailAddress, string password);
+
+        string RedeemSSOToken(int userid, string token);
     }
 
     public class TokenService : ITokenService
@@ -51,7 +53,7 @@ namespace Portal.CMS.Services.Authentication
             return userToken.Token;
         }
 
-        public string Redeem(string token, string emailAddress, string password)
+        public string RedeemPasswordToken(string token, string emailAddress, string password)
         {
             var userToken = _context.UserTokens.FirstOrDefault(x => x.Token.Equals(token, StringComparison.OrdinalIgnoreCase));
 
@@ -65,6 +67,22 @@ namespace Portal.CMS.Services.Authentication
                 return "Invalid Token. This Token has already been used";
 
             _registrationService.ChangePassword(userToken.User.UserId, password);
+
+            userToken.DateRedeemed = DateTime.Now;
+            _context.SaveChanges();
+
+            return string.Empty;
+        }
+
+        public string RedeemSSOToken(int userid, string token)
+        {
+            var userToken = _context.UserTokens.FirstOrDefault(x => x.Token.Equals(token, StringComparison.OrdinalIgnoreCase) && x.UserId == userid);
+
+            if (userToken == null)
+                return "Invalid Token.";
+
+            if (userToken.DateRedeemed.HasValue)
+                return "Invalid Token. This Token has already been used.";
 
             userToken.DateRedeemed = DateTime.Now;
             _context.SaveChanges();

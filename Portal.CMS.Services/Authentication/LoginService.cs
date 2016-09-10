@@ -8,6 +8,8 @@ namespace Portal.CMS.Services.Authentication
     public interface ILoginService
     {
         int? Login(string emailAddress, string password);
+
+        int? SSO(int userId, string token);
     }
 
     public class LoginService : ILoginService
@@ -15,10 +17,12 @@ namespace Portal.CMS.Services.Authentication
         #region Dependencies
 
         private readonly PortalEntityModel _context;
+        private readonly ITokenService _tokenService;
 
-        public LoginService(PortalEntityModel context)
+        public LoginService(PortalEntityModel context, ITokenService tokenService)
         {
             _context = context;
+            _tokenService = tokenService;
         }
 
         #endregion Dependencies
@@ -34,6 +38,18 @@ namespace Portal.CMS.Services.Authentication
                 return null;
 
             return userAccount.UserId;
+        }
+
+        public int? SSO(int userId, string token)
+        {
+            var tokenResult = _tokenService.RedeemSSOToken(userId, token);
+
+            if (string.IsNullOrWhiteSpace(tokenResult))
+            {
+                return userId;
+            }
+
+            return null;
         }
 
         private static bool CompareSecurePassword(string passwordAttempt, string passwordActual)

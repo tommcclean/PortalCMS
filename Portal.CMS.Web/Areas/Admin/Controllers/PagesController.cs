@@ -1,9 +1,12 @@
 ﻿using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
+using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -15,11 +18,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         private readonly IPageService _pageService;
         private readonly IRoleService _roleService;
+        private readonly ITokenService _tokenService;
 
-        public PagesController(IPageService pageService, IRoleService roleService)
+        public PagesController(IPageService pageService, IRoleService roleService, ITokenService tokenService)
         {
             _pageService = pageService;
             _roleService = roleService;
+            _tokenService = tokenService;
         }
 
         #endregion Dependencies
@@ -69,6 +74,15 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             var pageId = _pageService.Add(model.PageName, model.PageArea, model.PageController, model.PageAction);
 
             _pageService.Roles(pageId, model.SelectedRoleList);
+
+            var token = _tokenService.Add(UserHelper.EmailAddress, Entities.Entities.Authentication.UserTokenType.SSO);
+
+            var cookie = new HttpCookie("PortalCMS_SSO", string.Join(",", UserHelper.UserId, HttpContext.Request.Url.AbsoluteUri, token))
+            {
+                Expires = DateTime.Now.AddMinutes(5)
+            };
+
+            ControllerContext.HttpContext.Response.Cookies.Add(cookie);
 
             System.Web.HttpRuntime.UnloadAppDomain();
 
