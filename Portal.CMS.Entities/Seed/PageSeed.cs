@@ -11,7 +11,7 @@ namespace Portal.CMS.Entities.Seed
         {
             if (!context.Pages.Any())
             {
-                var homepage = new Entities.PageBuilder.Page
+                context.Pages.Add(new Entities.PageBuilder.Page
                 {
                     PageName = "Homepage",
                     PageController = "Home",
@@ -25,9 +25,20 @@ namespace Portal.CMS.Entities.Seed
                         new Entities.PageBuilder.PageSection { PageSectionTypeId = context.PageSectionTypes.First(x => x.PageSectionTypeName == "Highlight").PageSectionTypeId, PageSectionBody = "<section id=\"section-3\" class=\"highlight height-standard background-parallax\" style=\"background-image: url('/Areas/Builder/Content/Images/Sample/sample-2.jpg');background-size: cover;\"><div id=\"component-container-250716215403-3\" class=\"vertical-alignment component-container\"><h1 id=\"title-250716215403-3\" style=\"color: rgb(255, 255, 255);\">More Information</h1><p id=\"text-1-250716215403-3\" style=\"color: rgb(255, 255, 255);\">If you want to learn more about Portal CMS, you can take a look at our promotional website.</p><p id=\"text-2-250716215403-3\" style=\"color: rgb(255, 255, 255);\">We have created a series of demonstration videos, so if you want some more tips on how to use the technology, its&nbsp;worth a visit.</p><a id=\"component-250716215457-3\" href=\"http://www.portalcms.online\" class=\"btn\" target=\"_blank\">Learn More</a></div><div id=\"overlay-250716215403-3\" class=\"overlay overlay-medium\"></div></section>" },
                         new Entities.PageBuilder.PageSection { PageSectionTypeId = context.PageSectionTypes.First(x => x.PageSectionTypeName == "Recent Posts").PageSectionTypeId, PageSectionBody = "<section id=\"section-4\" class=\"blank height-small background-static\" style=\"background-size: contain;\"><h1 id=\"title-31072016183145-4\">Recent Posts</h1><p id=\"text-31072016183145-4\">Here are the most recent posts on our blog.</p><div id=\"widget-31072016183145-4\" class=\"widget-wrapper post-list-wrapper\" style=\"text-align: left;\"><div class=\"vertical-alignment\"><div class=\"loading-wrapper\" style=\"text-align: center;\"><div style=\"background-color: black; padding: 10px; display: inline-block;\"><img src=\"/Areas/Builder/Content/Images/Sample/loading-graphic.gif\"></div></div></div></div></section>" }
                     }
-                };
+                });
 
-                context.Pages.Add(homepage);
+                context.Pages.Add(new Entities.PageBuilder.Page
+                {
+                    PageName = "Error",
+                    PageController = "Home",
+                    PageAction = "Error",
+                    DateAdded = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                    PageSections = new List<PageSection>
+                    {
+                        new Entities.PageBuilder.PageSection { PageSectionTypeId = context.PageSectionTypes.First(x => x.PageSectionTypeName == "Introduction").PageSectionTypeId, PageSectionBody = "<section id=\"section-5\" class=\"header background-parallax height-tall\"><div class=\"overlay-medium\"></div><div id=\"component-100916160418-5\" class=\"vertical-alignment component-container\"><h1 id=\"title-5\" data-section=\"1\">Server Error</h1><p id=\"subtitle-5\">Sorry but something went wrong. We have logged the problem and will look into it.</p><a id=\"component-1473519891239-5\" onclick=\"history.go(-1);\"  class=\"btn square\" target=\"\">Back</a></div></section>" },
+                    }
+                });
 
                 context.Pages.Add(new Entities.PageBuilder.Page { PageName = "Contact", PageController = "Contact", PageAction = "Index", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
             }
