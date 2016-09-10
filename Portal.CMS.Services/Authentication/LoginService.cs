@@ -40,6 +40,18 @@ namespace Portal.CMS.Services.Authentication
             return userAccount.UserId;
         }
 
+        public int? SSO(int userId, string token)
+        {
+            var tokenResult = _tokenService.RedeemSSOToken(userId, token);
+
+            if (string.IsNullOrWhiteSpace(tokenResult))
+            {
+                return userId;
+            }
+
+            return null;
+        }
+
         private static bool CompareSecurePassword(string passwordAttempt, string passwordActual)
         {
             var savedPasswordHash = passwordActual;
@@ -54,23 +66,6 @@ namespace Portal.CMS.Services.Authentication
                         return false;
                 return true;
             }
-        }
-
-        public int? SSO(int userId, string token)
-        {
-            var tokenResult = _tokenService.RedeemSSOToken(userId, token);
-
-            if (string.IsNullOrWhiteSpace(tokenResult))
-            {
-                var userAccount = _context.Users.FirstOrDefault(x => x.UserId == userId);
-
-                if (userAccount == null)
-                    return null;
-
-                return userAccount.UserId;
-            }
-
-            return null;
         }
     }
 }

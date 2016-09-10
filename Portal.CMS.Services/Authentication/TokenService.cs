@@ -76,7 +76,7 @@ namespace Portal.CMS.Services.Authentication
 
         public string RedeemSSOToken(int userid, string token)
         {
-            var userToken = _context.UserTokens.FirstOrDefault(x => x.Token.Equals(token, StringComparison.OrdinalIgnoreCase));
+            var userToken = _context.UserTokens.FirstOrDefault(x => x.Token.Equals(token, StringComparison.OrdinalIgnoreCase) && x.UserId == userid);
 
             if (userToken == null)
                 return "Invalid Token.";
@@ -84,8 +84,8 @@ namespace Portal.CMS.Services.Authentication
             if (userToken.DateRedeemed.HasValue)
                 return "Invalid Token. This Token has already been used.";
 
-            //userToken.DateRedeemed = DateTime.Now;
-            //_context.SaveChanges();
+            userToken.DateRedeemed = DateTime.Now;
+            _context.SaveChanges();
 
             return string.Empty;
         }

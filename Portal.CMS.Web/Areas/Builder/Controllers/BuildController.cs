@@ -8,7 +8,6 @@ using Portal.CMS.Web.Areas.Builder.ViewModels.Build;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
@@ -43,22 +42,13 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [HttpGet]
         public ActionResult Index(int pageId)
         {
-            var resetCookie = Request.Cookies["PortalCMS_Reset"];
+            var resetCookie = Request.Cookies["PortalCMS_SSO"];
 
-            if (UserHelper.IsLoggedIn == false && resetCookie != null)
+            if (!UserHelper.IsLoggedIn && resetCookie != null)
             {
-                if (resetCookie == null)
-                {
-
-                }
-
                 var cookieValues = resetCookie.Value.Split(',');
 
-                var userId = cookieValues[0];
-                var address = cookieValues[1];
-                var token = cookieValues[2];
-
-                var result = _loginService.SSO(Convert.ToInt32(userId), token);
+                var result = _loginService.SSO(Convert.ToInt32(cookieValues[0]), cookieValues[2]);
 
                 if (result.HasValue)
                 {

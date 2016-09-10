@@ -77,8 +77,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             var token = _tokenService.Add(UserHelper.EmailAddress, Entities.Entities.Authentication.UserTokenType.SSO);
 
-            var cookie = new HttpCookie("PortalCMS_Reset", string.Join(",", UserHelper.UserId, HttpContext.Request.Url.AbsoluteUri, token));
-            
+            var cookie = new HttpCookie("PortalCMS_SSO", string.Join(",", UserHelper.UserId, HttpContext.Request.Url.AbsoluteUri, token))
+            {
+                Expires = DateTime.Now.AddMinutes(5)
+            };
+
             ControllerContext.HttpContext.Response.Cookies.Add(cookie);
 
             System.Web.HttpRuntime.UnloadAppDomain();
