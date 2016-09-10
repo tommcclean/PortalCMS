@@ -260,7 +260,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var result = _tokenService.Redeem(model.Token, model.EmailAddress, model.Password);
+            var result = _tokenService.RedeemPasswordToken(model.Token, model.EmailAddress, model.Password);
 
             if (!string.IsNullOrWhiteSpace(result))
             {
