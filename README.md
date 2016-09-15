@@ -4,6 +4,8 @@ Portal CMS is a free and open source content management system with a powerful i
 
 Built in C# .NET MVC (4.X) Portal CMS is a great choice of technology to build a website using just the out of the box functionality, but you can easily extended it to suit your bespoke needs if you want to write some code.
 
+The latest release branch of Portal CMS is "stable-1.0". If you wish to use Portal CMS please use this branch, if you wish to contribute please use master.
+
 [Check out how easy it is to get started with Portal CMS](https://github.com/tommcclean/PortalCMS/wiki/3:-How-to-Get-Started)
 
 ## Learn More
