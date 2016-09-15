@@ -108,7 +108,6 @@
     .action .fa, .admin-item .fa, .action .fa
     {
         margin: 0;
-        
     }
 
 .action-container.wide
@@ -256,8 +255,9 @@
     color: white;
     border-radius: 5px;
     text-transform: uppercase;
-    margin-right: 10px;
-    font-size: 14px;
+    margin-right: 8px;
+    font-size: 13px;
+    margin-bottom: 8px;
 }
 
 a.category-item:hover

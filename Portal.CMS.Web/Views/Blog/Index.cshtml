@@ -56,11 +56,14 @@
         <div class="inner vertical-alignment">
             <div class="row">
                 <div class="col-xs-12 col-md-10 col-lg-7">
-                    <div class="category-item">@Model.CurrentPost.PostCategory.PostCategoryName</div>
+                    <div title="Category" class="category-item"><span class="fa fa-tag"></span>@Model.CurrentPost.PostCategory.PostCategoryName</div>
                     @if (UserHelper.IsEditor)
                     {
-                        <a href="@Url.Action("Edit", "Posts", new { area = "Admin", postId = Model.CurrentPost.PostId })" class="category-item launch-modal" data-title="Edit Post"><span class="fa fa-pencil"></span>Edit Post</a>
+                        <a href="@Url.Action("Edit", "Posts", new { area = "Admin", postId = Model.CurrentPost.PostId })" class="category-item launch-modal" data-title="Edit Post"><span class="fa fa-pencil"></span>Edit</a>
                     }
+                    <div title="Views" class="hidden-xs category-item"><span class="fa fa-users"></span>@Model.CurrentPost.PostViews.Count()</div>
+                    <div title="Comments" class="hidden-xs category-item"><span class="fa fa-comment"></span>@Model.CurrentPost.PostComments.Count()</div>
+
                     <h1 class="post-title">@Model.CurrentPost.PostTitle</h1>
                     <p class="post-description">@Model.CurrentPost.PostDescription</p>
                 </div>

@@ -146,6 +146,10 @@
     <Compile Include="Migrations\201609082029575_AddPageSectionRolesEntity.Designer.cs">
       <DependentUpon>201609082029575_AddPageSectionRolesEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609152000410_ExtendPostToIncludeViews.cs" />
+    <Compile Include="Migrations\201609152000410_ExtendPostToIncludeViews.Designer.cs">
+      <DependentUpon>201609152000410_ExtendPostToIncludeViews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -206,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609082029575_AddPageSectionRolesEntity.resx">
       <DependentUpon>201609082029575_AddPageSectionRolesEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609152000410_ExtendPostToIncludeViews.resx">
+      <DependentUpon>201609152000410_ExtendPostToIncludeViews.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
