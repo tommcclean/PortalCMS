@@ -397,9 +397,6 @@
     <Content Include="Areas\Builder\Content\Scripts\pagebuilder.js" />
     <Content Include="Areas\Admin\Content\Scripts\plugins.js" />
     <Content Include="Content\Scripts\Framework\modal.js" />
-    <Content Include="Content\Scripts\Framework\modal.min.js">
-      <DependentUpon>modal.js</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Content\Styles\Framework\boxes.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\fields.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\modal.css" />

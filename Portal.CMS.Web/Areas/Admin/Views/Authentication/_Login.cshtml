@@ -43,7 +43,7 @@
             {
             @Html.AntiForgeryToken()
 
-            <span class="field-validation-help">We will send you a link by email that you can use to reset your password.</span>
+            <div class="alert alert-warning" role="alert">We will send you a link by email that you can use to reset your password.</div>
 
                 @Html.ValidationMessage("EmailAddress")
                 <div class="control-group float-container">
