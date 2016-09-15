@@ -20,7 +20,7 @@ function showModalEditor(title, url) {
     }
 
     $('#ContentEditor .modal-title').text(title);
-    setModalEditorContent('<p>Loading Please wait...</p>');
+    setModalEditorContent('<p>Loading...</p>');
     $('#ContentEditor').modal('show');
 
     $.ajax({
@@ -32,7 +32,7 @@ function showModalEditor(title, url) {
             $('legend').remove();
         },
         error: function () {
-            $('#ContentEditor .modal-body').html('<p>An error occurred. Please try again.</p>');
+            $('#ContentEditor .modal-body').html('<p>Sorry, an error occurred. Please try again.</p>');
         }
     });
 
@@ -137,7 +137,7 @@ function bindModalEditor() {
                     }
                 },
                 error: function () {
-                    $('#ContentEditor .modal-data').html('<p>An error occurred.</p>');
+                    $('#ContentEditor .modal-data').html('<p>Sorry, an error occurred. Please try again.</p>');
                 }
             });
         } else {
@@ -159,6 +159,10 @@ function bindModalEditor() {
                     else if (data == 'Setup')
                     {
                         showModalEditor("Setup Portal CMS", "/Admin/Settings/Setup");
+                    }
+                    else if (data == "Blog")
+                    {
+                        window.location.href = "/Blog";
                     }
                     else {
                         setModalEditorContent(data);

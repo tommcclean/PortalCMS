@@ -93,7 +93,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _postService.Roles(postId, model.SelectedRoleList);
 
-            return this.Content("Refresh");
+            return this.Content("Blog");
         }
 
         [HttpGet, EditorFilter]
