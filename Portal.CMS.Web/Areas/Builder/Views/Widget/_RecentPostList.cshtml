@@ -18,7 +18,9 @@
             <a class="col-xs-12 col-sm-6 col-lg-4" href="@Url.Action("Index", "Blog", new { area = "", id = @post.PostId })">
                 <div class="box article-item float-container" style="@string.Format("background-image: url('{0}'); color: white;", bannerImagePath)">
                     <div class="inner">
-                        <div class="category-item">@post.PostCategory.PostCategoryName</div>
+                        <div title="Category" class="category-item"><span class="fa fa-tag"></span>@post.PostCategory.PostCategoryName</div>
+                        <div title="Views" class="hidden-xs category-item"><span class="fa fa-users"></span>@post.PostViews.Count()</div>
+                        <div title="Comments" class="hidden-xs category-item"><span class="fa fa-comment"></span>@post.PostComments.Count()</div>
                         <h3>@post.PostTitle</h3>
                         <p>@post.PostDescription</p>
                     </div>

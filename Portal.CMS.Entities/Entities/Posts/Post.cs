@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Portal.CMS.Entities.Entities.Analytics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -42,5 +43,7 @@ namespace Portal.CMS.Entities.Entities.Posts
         public virtual ICollection<PostComment> PostComments { get; set; }
 
         public virtual ICollection<PostRole> PostRoles { get; set; }
+
+        public virtual ICollection<AnalyticPostView> PostViews { get; set; }
     }
 }
