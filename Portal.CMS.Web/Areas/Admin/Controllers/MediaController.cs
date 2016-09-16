@@ -14,12 +14,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly IImageService _imageService;
-        private readonly IFontService _fontService;
-        private readonly IPostService _postService;
-        private readonly IPostImageService _postImageService;
+        readonly IImageService _imageService;
+        readonly IFontService _fontService;
+        readonly IPostService _postService;
+        readonly IPostImageService _postImageService;
 
-        private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
+        const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
+        const string FONT_DIRECTORY = "/Areas/Admin/Content/Fonts/Uploads";
 
         public MediaController(IPostService postService, IPostImageService postImageService, IImageService imageService, IFontService fontService)
         {
@@ -48,7 +49,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var model = new UploadImageViewModel();
 
-            return PartialView("_Upload", model);
+            return PartialView("_UploadImage", model);
         }
 
         [HttpPost, EditorFilter]
@@ -56,7 +57,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         public ActionResult UploadImage(UploadImageViewModel model)
         {
             if (!ModelState.IsValid)
-                return View("_Upload", model);
+                return View("_UploadImage", model);
 
             var imageFilePath = SaveImage(model.AttachedImage, nameof(UploadImage));
 
@@ -65,8 +66,30 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return this.Content("Refresh");
         }
 
+        [HttpGet, EditorFilter]
+        public ActionResult UploadFont()
+        {
+            var model = new UploadFontViewModel();
+
+            return PartialView("_UploadFont", model);
+        }
+
+        [HttpPost, EditorFilter]
+        [ValidateAntiForgeryToken]
+        public ActionResult UploadFont(UploadFontViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View("_UploadFont", model);
+
+            var fontFilePath = SaveFont(model.AttachedFont, nameof(UploadFont));
+
+            var fontId = _fontService.Create(model.FontName, model.FontType, fontFilePath);
+
+            return this.Content("Refresh");
+        }
+
         [HttpPost, AdminFilter]
-        public ActionResult Delete(int imageId)
+        public ActionResult DeleteImage(int imageId)
         {
             var image = _imageService.Get(imageId);
 
@@ -85,7 +108,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index), "Media");
         }
 
-        private string SaveImage(HttpPostedFileBase imageFile, string actionName)
+
+        string SaveImage(HttpPostedFileBase imageFile, string actionName)
         {
             var extension = Path.GetExtension(imageFile.FileName).ToUpper();
 
@@ -104,6 +128,29 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace(string.Format("Admin/Media/{0}", actionName), string.Empty);
             var relativeFilePath = string.Format("{0}{1}/{2}", siteURL, IMAGE_DIRECTORY, imageFileName);
+
+            return relativeFilePath;
+        }
+
+        string SaveFont(HttpPostedFileBase fontFile, string actionName)
+        {
+            var extension = Path.GetExtension(fontFile.FileName).ToUpper();
+
+            if (extension != ".OTF" && extension != ".TTF")
+                throw new ArgumentException("Unexpected Font Format Provided");
+
+            var destinationDirectory = Path.Combine(Server.MapPath(FONT_DIRECTORY));
+
+            if (!Directory.Exists(destinationDirectory))
+                Directory.CreateDirectory(destinationDirectory);
+
+            var fontFileName = string.Format("font-{0}-{1}", DateTime.Now.ToString("ddMMyyyyHHmmss"), fontFile.FileName);
+            var path = Path.Combine(Server.MapPath(FONT_DIRECTORY), fontFileName);
+
+            fontFile.SaveAs(path);
+
+            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace(string.Format("Admin/Media/{0}", actionName), string.Empty);
+            var relativeFilePath = string.Format("{0}{1}/{2}", siteURL, FONT_DIRECTORY, fontFileName);
 
             return relativeFilePath;
         }

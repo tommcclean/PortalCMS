@@ -277,6 +277,7 @@
     <Compile Include="Areas\Admin\ViewModels\Copy\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Dashboard\DashboardViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Media\MediaViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Media\UploadFontViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Media\UploadImageViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\MenuItem\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Menu\CreateViewModel.cs" />
@@ -330,7 +331,7 @@
     <Compile Include="Areas\Builder\ViewModels\Section\EditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\Custom\Emeric.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Uploads\Emeric.ttf" />
     <Content Include="Areas\Admin\Content\Images\icon-pages.png" />
     <Content Include="Areas\Admin\Content\Images\icon-copy.png" />
     <Content Include="Areas\Admin\Content\Images\icon-articles.png" />
@@ -523,7 +524,7 @@
     <Content Include="Areas\Admin\Views\Settings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Media\_Upload.cshtml" />
+    <Content Include="Areas\Admin\Views\Media\_UploadImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Blog\Index.cshtml" />
@@ -609,6 +610,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Build\Themes.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Media\_UploadFont.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

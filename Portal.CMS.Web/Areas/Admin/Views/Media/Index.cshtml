@@ -4,6 +4,17 @@
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-media.png";
 }
 
+<style>
+    @foreach(var font in Model.Fonts)
+    {
+        <text>@@font-face { font-family: '@font.FontName'; src: url('@font.FontPath') format('@font.FontType'); }</text>
+
+        <text>div.font-@font.FontName { font-family: '@font.FontName'; }</text>
+    }
+
+    .admin-container { font-family: 'Emeric'; }
+</style>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $("#delete-media").click(function (event) {
@@ -84,14 +95,14 @@
                 @foreach (var font in Model.Fonts)
                 {
                     <div class="col-xs-12 col-md-6 col-lg-4">
-                        <div class="box float-container" style="min-height: 260px; padding-bottom: 60px;">
+                        <div class="box float-container font-@font.FontName" style="min-height: 260px; padding-bottom: 60px;">
 
                             <h3>@font.FontName</h3>
                             <p style="word-wrap: break-word;">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
                             <p style="word-wrap: break-word;">abcdefghijklmnopqrstuvwaxyz</p>
 
                             <div class="admin-container x1">
-                                <a href="@Url.Action("Delete", "Media", new { fontId = @font.FontId})" class="admin-item launch-modal" data-title="Delete Font"><span class="fa fa-trash"></span>Delete</a>
+                                <a href="@Url.Action("DeleteFont", "Media", new { fontId = @font.FontId})" class="admin-item" data-title="Delete Font" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
                             </div>
                         </div>
                     </div>

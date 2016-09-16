@@ -13,6 +13,8 @@ namespace Portal.CMS.Services.Generic
         Font Get(int fontId);
 
         List<Font> Get();
+
+        int Create(string fontName, string fontType, string fontFilePath);
     }
 
     public class FontService : IFontService
@@ -40,6 +42,24 @@ namespace Portal.CMS.Services.Generic
             var results = _context.Fonts.OrderByDescending(x => x.FontId).ToList();
 
             return results;
+        }
+
+        public int Create(string fontName, string fontType, string fontFilePath)
+        {
+            var newFont = new Font
+            {
+                FontName = fontName,
+                FontType = fontType,
+                FontPath = fontFilePath,
+                DateAdded = DateTime.Now,
+                DateUpdated = DateTime.Now
+            };
+
+            _context.Fonts.Add(newFont);
+
+            _context.SaveChanges();
+
+            return newFont.FontId;
         }
     }
 }
