@@ -115,5 +115,11 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
             return PartialView("_PageManager", model);
         }
+
+        [HttpGet, AdminFilter]
+        public ActionResult Themes()
+        {
+            return View();
+        }
     }
 }

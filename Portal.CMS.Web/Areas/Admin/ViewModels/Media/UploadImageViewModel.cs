@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Portal.CMS.Web.Areas.Admin.ViewModels.Media
 {
-    public class UploadViewModel
+    public class UploadImageViewModel
     {
         public int PostId { get; set; }
 

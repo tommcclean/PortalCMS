@@ -277,7 +277,7 @@
     <Compile Include="Areas\Admin\ViewModels\Copy\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Dashboard\DashboardViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Media\MediaViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Media\UploadViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Media\UploadImageViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\MenuItem\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Menu\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Menu\EditViewModel.cs" />
@@ -330,6 +330,7 @@
     <Compile Include="Areas\Builder\ViewModels\Section\EditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\Custom\Emeric.ttf" />
     <Content Include="Areas\Admin\Content\Images\icon-pages.png" />
     <Content Include="Areas\Admin\Content\Images\icon-copy.png" />
     <Content Include="Areas\Admin\Content\Images\icon-articles.png" />
@@ -605,6 +606,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Builder\Views\Build\Themes.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

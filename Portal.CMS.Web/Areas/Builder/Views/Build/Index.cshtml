@@ -43,6 +43,7 @@
         /* Global Administration Menu */
         <div class="action-container wide global">
             <div class="action" onclick="TogglePageList();"><span class="fa fa-th-list"></span><span class="hidden-xs">Pages</span></div>
+            @*<div class="action" onclick="ToggleThemeManager();"><span class="fa fa-paint-brush"></span><span class="hidden-xs">Theme</span></div>*@
             <div class="action" onclick="ChangeOrder();"><span class="fa fa-sort"></span><span class="hidden-xs">Order</span></div>
             <div class="action" onclick="ToggleComponentPanel();"><span class="fa fa-briefcase"></span><span class="hidden-xs">Component</span></div>
             <div class="action" onclick="ToggleSectionPanel();"><span class="fa fa-plus"></span><span class="hidden-xs">Section</span></div>
@@ -86,4 +87,5 @@
         @Html.Action("Add", "Section", new { @pageId = Model.Page.PageId })
         @Html.Action("Add", "Component")
         @Html.Action("Pages", "Build")
+        @Html.Action("Themes", "Build")
     }

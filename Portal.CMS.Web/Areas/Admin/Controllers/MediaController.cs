@@ -15,16 +15,18 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         #region Dependencies
 
         private readonly IImageService _imageService;
+        private readonly IFontService _fontService;
         private readonly IPostService _postService;
         private readonly IPostImageService _postImageService;
 
         private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
 
-        public MediaController(IPostService postService, IPostImageService postImageService, IImageService imageService)
+        public MediaController(IPostService postService, IPostImageService postImageService, IImageService imageService, IFontService fontService)
         {
             _postService = postService;
             _postImageService = postImageService;
             _imageService = imageService;
+            _fontService = fontService;
         }
 
         #endregion Dependencies
@@ -34,28 +36,29 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var model = new MediaViewModel
             {
-                Images = _imageService.Get()
+                Images = _imageService.Get(),
+                Fonts = _fontService.Get()
             };
 
             return View(model);
         }
 
         [HttpGet, EditorFilter]
-        public ActionResult Upload()
+        public ActionResult UploadImage()
         {
-            var model = new UploadViewModel();
+            var model = new UploadImageViewModel();
 
             return PartialView("_Upload", model);
         }
 
         [HttpPost, EditorFilter]
         [ValidateAntiForgeryToken]
-        public ActionResult Upload(UploadViewModel model)
+        public ActionResult UploadImage(UploadImageViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_Upload", model);
 
-            var imageFilePath = SaveImage(model.AttachedImage, nameof(Upload));
+            var imageFilePath = SaveImage(model.AttachedImage, nameof(UploadImage));
 
             var imageId = _imageService.Create(imageFilePath, model.ImageCategory);
 

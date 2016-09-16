@@ -25,6 +25,7 @@ namespace Portal.CMS.Entities.Migrations
 
             PageSeed.Seed(context);
             PostSeed.Seed(context);
+            FontSeed.Seed(context);
         }
     }
 }
