@@ -15,6 +15,8 @@ namespace Portal.CMS.Services.Generic
         List<Font> Get();
 
         int Create(string fontName, string fontType, string fontFilePath);
+
+        void Delete(int fontId);
     }
 
     public class FontService : IFontService
@@ -60,6 +62,18 @@ namespace Portal.CMS.Services.Generic
             _context.SaveChanges();
 
             return newFont.FontId;
+        }
+
+        public void Delete(int fontId)
+        {
+            var font = _context.Fonts.FirstOrDefault(x => x.FontId == fontId);
+
+            if (font == null)
+                return;
+
+            _context.Fonts.Remove(font);
+
+            _context.SaveChanges();
         }
     }
 }

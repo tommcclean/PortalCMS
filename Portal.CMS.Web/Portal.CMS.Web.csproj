@@ -331,7 +331,6 @@
     <Compile Include="Areas\Builder\ViewModels\Section\EditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\Uploads\Emeric.ttf" />
     <Content Include="Areas\Admin\Content\Images\icon-pages.png" />
     <Content Include="Areas\Admin\Content\Images\icon-copy.png" />
     <Content Include="Areas\Admin\Content\Images\icon-articles.png" />

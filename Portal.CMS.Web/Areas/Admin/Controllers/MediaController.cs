@@ -108,6 +108,26 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index), "Media");
         }
 
+        [HttpGet, AdminFilter]
+        public ActionResult DeleteFont(int fontId)
+        {
+            var font = _fontService.Get(fontId);
+
+            var fileNamePosition = font.FontPath.LastIndexOf("/") + 1;
+            var fileName = font.FontPath.Substring(fileNamePosition, font.FontPath.Length - fileNamePosition);
+
+            var destinationDirectory = Path.Combine(Server.MapPath(FONT_DIRECTORY));
+
+            var fontFilePath = string.Format(@"{0}\{1}", destinationDirectory, fileName);
+
+            if (System.IO.File.Exists(fontFilePath))
+                System.IO.File.Delete(fontFilePath);
+
+            _fontService.Delete(fontId);
+
+            return RedirectToAction(nameof(Index), "Media");
+        }
+
 
         string SaveImage(HttpPostedFileBase imageFile, string actionName)
         {
