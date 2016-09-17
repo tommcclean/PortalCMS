@@ -243,7 +243,7 @@
     <Compile Include="Areas\Admin\ActionFilters\EditorFilter.cs" />
     <Compile Include="Areas\Admin\ActionFilters\AdminFilter.cs" />
     <Compile Include="Areas\Admin\ActionFilters\LoggedInFilter.cs" />
-    <Compile Include="Areas\Admin\Controllers\AnalyticsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AnalyticManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthenticationController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CopyController.cs" />
@@ -263,8 +263,8 @@
     <Compile Include="Areas\Admin\Helpers\MenuHelper.cs" />
     <Compile Include="Areas\Admin\Helpers\SettingHelper.cs" />
     <Compile Include="Areas\Admin\Helpers\UserHelper.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Analytics\ChartViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Analytics\ColumnViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\AnalyticManager\ChartViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\AnalyticManager\ColumnViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\LoginViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\AccountViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\BioViewModel.cs" />
@@ -581,8 +581,8 @@
     <Content Include="Areas\Builder\Views\Section\_Markup.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Add.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Analytics\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Analytics\_DisplayChart.cshtml" />
+    <Content Include="Areas\Admin\Views\AnalyticManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AnalyticManager\_DisplayChart.cshtml" />
     <Content Include="Areas\Builder\Views\Build\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Password.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Account.cshtml" />

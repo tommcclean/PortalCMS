@@ -1,7 +1,7 @@
 ﻿using Portal.CMS.Entities.Entities.Analytics;
 using Portal.CMS.Services.Analytics;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
-using Portal.CMS.Web.Areas.Admin.ViewModels.Analytics;
+using Portal.CMS.Web.Areas.Admin.ViewModels.AnalyticManager;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -9,13 +9,13 @@ using System.Web.Mvc;
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
     [LoggedInFilter, AdminFilter]
-    public class AnalyticsController : Controller
+    public class AnalyticManagerController : Controller
     {
         #region Dependencies
 
         private readonly IAnalyticsService _analyticsService;
 
-        public AnalyticsController(IAnalyticsService analyticsService)
+        public AnalyticManagerController(IAnalyticsService analyticsService)
         {
             _analyticsService = analyticsService;
         }

@@ -1,0 +1,64 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.PageManager.PagesViewModel
+@using Portal.CMS.Entities.Entities.Analytics
+@{
+    ViewBag.Title = "Website Analytics";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-reports.png";
+}
+
+@section Styles
+{
+    @Styles.Render("~/Resources/CSS/C3Graphing")
+    @Styles.Render("~/Resources/CSS/Misc/Dashboard")
+}
+
+@section HEADScripts
+{
+    @Scripts.Render("~/Resources/JavaScript/C3Graphing")
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.reframe').click(function (e) { window.dispatchEvent(new Event('resize')); })
+    });
+</script>
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a class="reframe" href="#tab-day" aria-controls="tab-day" role="tab" data-toggle="tab"><span class="fa fa-time"></span>Today</a></li>
+    <li role="presentation" class=""><a class="reframe" href="#tab-week" aria-controls="tab-week" role="tab" data-toggle="tab"><span class="fa fa-road"></span>This Week</a></li>
+    <li role="presentation" class=""><a class="reframe" href="#tab-month" aria-controls="tab-month" role="tab" data-toggle="tab"><span class="fa fa-calendar"></span>This Month</a></li>
+    <li role="presentation" class=""><a class="reframe" href="#tab-all" aria-controls="tab-all" role="tab" data-toggle="tab"><span class="fa fa-th-large"></span>All Time</a></li>
+</ul>
+
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="tab-day">
+        <div class="row">
+            @Html.Action("TotalHitsToday", "AnalyticManager", new { chartSize = ChartSize.Half })
+            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Today })
+            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Today })
+            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Today })
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab-week">
+        <div class="row">
+            @Html.Action("TotalHitsWeekly", "AnalyticManager", new { chartSize = ChartSize.Half })
+            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Week })
+            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Week })
+            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Week })
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab-month">
+        <div class="row">
+            @Html.Action("TotalHitsMonthly", "AnalyticManager", new { chartSize = ChartSize.Half })
+            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Month })
+            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Month })
+            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Month })
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab-all">
+        <div class="row">
+            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.All })
+            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.All })
+            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.All })
+        </div>
+    </div>
+</div>

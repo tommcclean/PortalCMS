@@ -1,7 +1,7 @@
 ﻿using Portal.CMS.Entities.Entities.Analytics;
 using System.Collections.Generic;
 
-namespace Portal.CMS.Web.Areas.Admin.ViewModels.Analytics
+namespace Portal.CMS.Web.Areas.Admin.ViewModels.AnalyticManager
 {
     public class ChartViewModel
     {

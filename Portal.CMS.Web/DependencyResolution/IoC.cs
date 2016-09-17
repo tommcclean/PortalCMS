@@ -28,7 +28,7 @@ namespace Portal.CMS.Web.DependencyResolution
                 c =>
                 {
                     c.AddRegistry<DefaultRegistry>();
-                    c.For<AnalyticsController>().AlwaysUnique();
+                    c.For<AnalyticManagerController>().AlwaysUnique();
                 }
             );
         }
