@@ -29,27 +29,31 @@
             },
         });
     </script>
-
     <style>
         body
         {
             background-color: black;
             background-image: unset;
         }
-
-        @@font-face { font-family: '@Model.Theme.TitleFont.FontName'; src: url('@Model.Theme.TitleFont.FontPath') format('@Model.Theme.TitleFont.FontType'); }
-        @@font-face { font-family: '@Model.Theme.TextFont.FontName'; src: url('@Model.Theme.TextFont.FontPath') format('@Model.Theme.TextFont.FontType'); }
-
-        #page-wrapper h1, #page-wrapper h2, #page-wrapper h3, #page-wrapper h4
-        {
-            font-family: '@Model.Theme.TitleFont.FontName';
-        }
-
-        #page-wrapper p, #page-wrapper a
-        {
-            font-family: '@Model.Theme.TextFont.FontName';
-        }
     </style>
+
+    @if (Model.Theme != null)
+    {
+        <style>
+            @@font-face { font-family: '@Model.Theme.TitleFont.FontName'; src: url('@Model.Theme.TitleFont.FontPath') format('@Model.Theme.TitleFont.FontType'); }
+            @@font-face { font-family: '@Model.Theme.TextFont.FontName'; src: url('@Model.Theme.TextFont.FontPath') format('@Model.Theme.TextFont.FontType'); }
+
+            #page-wrapper h1, #page-wrapper h2, #page-wrapper h3, #page-wrapper h4
+            {
+                font-family: '@Model.Theme.TitleFont.FontName';
+            }
+
+            #page-wrapper p, #page-wrapper a
+            {
+                font-family: '@Model.Theme.TextFont.FontName';
+            }
+        </style>
+    }
 
     @if (isAdmin)
     {

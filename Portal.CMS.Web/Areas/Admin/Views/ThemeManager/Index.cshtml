@@ -25,9 +25,13 @@
     @foreach (var theme in Model.Themes)
     {
         <div class="col-xs-12 col-md-6 col-lg-4">
-            <div class="box float-container" style="min-height: 260px; padding-bottom: 60px;">
+            <div class="box float-container" style="min-height: 275px; padding-bottom: 60px;">
 
-                <h3 style="font-family: '@theme.TitleFont.FontName';">@theme.ThemeName @(theme.IsDefault ? "(Default)" : "")</h3>
+                @if (theme.IsDefault)
+                {
+                    <div class="category-item">Active</div>
+                }
+                <h3 style="font-family: '@theme.TitleFont.FontName';">@theme.ThemeName</h3>
                 <p style="word-wrap: break-word; font-family: '@theme.TextFont.FontName';">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
                 <p style="word-wrap: break-word; font-family: '@theme.TextFont.FontName';">abcdefghijklmnopqrstuvwaxyz</p>
 

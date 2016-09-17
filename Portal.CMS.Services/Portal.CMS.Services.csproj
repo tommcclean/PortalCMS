@@ -61,7 +61,7 @@
     <Compile Include="Authentication\TokenService.cs" />
     <Compile Include="Authentication\UserService.cs" />
     <Compile Include="Copy\CopyService.cs" />
-    <Compile Include="Generic\FontService.cs" />
+    <Compile Include="Themes\FontService.cs" />
     <Compile Include="Generic\ImageService.cs" />
     <Compile Include="Menu\MenuItemService.cs" />
     <Compile Include="Menu\MenuService.cs" />

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Portal.CMS.Services.Generic
+namespace Portal.CMS.Services.Themes
 {
     public interface IFontService
     {

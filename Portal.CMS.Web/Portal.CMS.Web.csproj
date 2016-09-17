@@ -614,7 +614,7 @@
     <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Builder\Views\Build\Themes.cshtml" />
+    <Content Include="Areas\Builder\Views\Shared\_ThemeManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Media\_UploadFont.cshtml" />

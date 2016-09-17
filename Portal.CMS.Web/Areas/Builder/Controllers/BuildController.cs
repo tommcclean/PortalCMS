@@ -135,7 +135,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             model.Fonts.AddRange(model.Themes.Select(x => x.TextFont));
             model.Fonts.AddRange(model.Themes.Select(x => x.TitleFont));
 
-            return View(model);
+            return View("_ThemeManager", model);
         }
     }
 }

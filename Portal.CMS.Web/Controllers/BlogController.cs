@@ -1,6 +1,7 @@
 ﻿using Portal.CMS.Services.Analytics;
 using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Posts;
+using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.ViewModels.Blog;
 using System.Linq;
@@ -16,13 +17,15 @@ namespace Portal.CMS.Web.Controllers
         private readonly IPostCommentService _postCommentService;
         private readonly IAnalyticsService _analyticsService;
         private readonly IUserService _userService;
+        private readonly IThemeService _themeService;
 
-        public BlogController(IPostService postService, IPostCommentService postCommentService, IAnalyticsService analyticsService, IUserService userService)
+        public BlogController(IPostService postService, IPostCommentService postCommentService, IAnalyticsService analyticsService, IUserService userService, IThemeService themeService)
         {
             _postService = postService;
             _postCommentService = postCommentService;
             _analyticsService = analyticsService;
             _userService = userService;
+            _themeService = themeService;
         }
 
         #endregion Dependencies
@@ -33,6 +36,7 @@ namespace Portal.CMS.Web.Controllers
             var model = new BlogViewModel
             {
                 RecentPosts = _postService.Read(UserHelper.UserId, string.Empty).ToList(),
+                Theme = _themeService.GetDefault()
             };
 
             if (!model.RecentPosts.Any())
