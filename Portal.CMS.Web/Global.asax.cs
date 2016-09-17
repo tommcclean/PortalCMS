@@ -15,7 +15,10 @@ namespace Portal.CMS.Web
 
         protected void Application_Error()
         {
-            Response.Redirect("~/Home/Error");
+            if (System.Configuration.ConfigurationManager.AppSettings["CustomErrorPage"] == "true")
+            {
+                Response.Redirect("~/Home/Error");
+            }
         }
     }
 }
