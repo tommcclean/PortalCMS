@@ -39,7 +39,7 @@ namespace Portal.CMS.Services.Generic
 
         public List<Font> Get()
         {
-            var results = _context.Fonts.OrderByDescending(x => x.FontId).ToList();
+            var results = _context.Fonts.OrderBy(x => x.FontName).ToList();
 
             return results;
         }
