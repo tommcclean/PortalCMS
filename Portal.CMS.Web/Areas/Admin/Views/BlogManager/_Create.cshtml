@@ -1,4 +1,4 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Posts.CreatePostViewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager.CreatePostViewModel
 @{
     ViewBag.Title = "Create Post";
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-articles.png";
@@ -31,7 +31,7 @@
     });
 </script>
 
-@using (Html.BeginForm("Create", "Posts", FormMethod.Post, new { id = "createPostForm" }))
+@using (Html.BeginForm("Create", "BlogManager", FormMethod.Post, new { id = "createPostForm" }))
 {
     @Html.AntiForgeryToken()
 

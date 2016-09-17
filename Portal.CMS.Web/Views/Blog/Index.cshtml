@@ -77,7 +77,7 @@
                     <div title="Category" class="category-item"><span class="fa fa-tag"></span>@Model.CurrentPost.PostCategory.PostCategoryName</div>
                     @if (UserHelper.IsEditor)
                     {
-                        <a href="@Url.Action("Edit", "Posts", new { area = "Admin", postId = Model.CurrentPost.PostId })" class="category-item launch-modal" data-title="Edit Post"><span class="fa fa-pencil"></span>Edit</a>
+                        <a href="@Url.Action("Edit", "BlogManager", new { area = "Admin", postId = Model.CurrentPost.PostId })" class="category-item launch-modal" data-title="Edit Post"><span class="fa fa-pencil"></span>Edit</a>
                     }
                     <div title="Views" class="hidden-xs category-item"><span class="fa fa-users"></span>@Model.CurrentPost.PostViews.Count()</div>
                     <div title="Comments" class="hidden-xs category-item"><span class="fa fa-comment"></span>@Model.CurrentPost.PostComments.Count()</div>

@@ -21,9 +21,9 @@
                 <p>@Model.PostDescription</p>
 
                 <div class="admin-container x3">
-                    <a href="@Url.Action("Create", "Posts")" class="admin-item launch-modal" data-title="Create Post"><span class="fa fa-plus"></span>Create</a>
-                    <a href="@Url.Action("Edit", "Posts", new { postId = Model.PostId })" class="admin-item launch-modal" data-title="Edit Post: @Model.PostTitle"><span class="fa fa-pencil"></span>Edit</a>
-                    <a href="@Url.Action("Index", "Posts")" class="admin-item" data-title="Manage Posts"><span class="fa fa-th-list"></span>More</a>
+                    <a href="@Url.Action("Create", "BlogManager")" class="admin-item launch-modal" data-title="Create Post"><span class="fa fa-plus"></span>Create</a>
+                    <a href="@Url.Action("Edit", "BlogManager", new { postId = Model.PostId })" class="admin-item launch-modal" data-title="Edit Post: @Model.PostTitle"><span class="fa fa-pencil"></span>Edit</a>
+                    <a href="@Url.Action("Index", "BlogManager")" class="admin-item" data-title="Manage Posts"><span class="fa fa-th-list"></span>More</a>
                 </div>
             </div>
             <div class="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? "overlay-medium" : "")"></div>
@@ -40,7 +40,7 @@ else
             <p>You haven't created any Posts yet, but don't worry as soon as you do it will show up on your Dashboard.</p>
 
             <div class="admin-container x1">
-                <a href="@Url.Action("Create", "Posts")" class="admin-item launch-modal" data-title="Create Post" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="top" data-content="Create a new Post."><span class="fa fa-plus"></span>Create Post</a>
+                <a href="@Url.Action("Create", "BlogManager")" class="admin-item launch-modal" data-title="Create Post" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="top" data-content="Create a new Post."><span class="fa fa-plus"></span>Create Post</a>
             </div>
         </div>
     </div>

@@ -23,7 +23,7 @@
                 <div class="category-item"><span class="fa fa-tag"></span>@post.PostCategory.PostCategoryName</div>
                 @if (isEditor)
                 {
-                    <div href="@Url.Action("Edit", "Posts", new { area = "Admin", postId = @post.PostId })" class="category-item launch-modal" data-title="Edit Post"><span class="fa fa-pencil"></span>Edit</div>
+                    <div href="@Url.Action("Edit", "BlogManager", new { area = "Admin", postId = @post.PostId })" class="category-item launch-modal" data-title="Edit Post"><span class="fa fa-pencil"></span>Edit</div>
                 }
                 <div title="Views" class="hidden-xs category-item"><span class="fa fa-users"></span>@post.PostViews.Count()</div>
                 <div title="Comments" class="hidden-xs category-item"><span class="fa fa-comment"></span>@post.PostComments.Count()</div>

@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Portal.CMS.Web.Areas.Admin.ViewModels.Posts
+namespace Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager
 {
-    public class CreatePostViewModel
+    public class EditPostviewModel
     {
+        public int PostId { get; set; }
+
         [DisplayName("Headline")]
         [Required]
         public string PostTitle { get; set; }
@@ -40,6 +42,8 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.Posts
         public int BannerImageId { get; set; }
 
         public string GalleryImageList { get; set; }
+
+        public List<int> ExistingGalleryImageList { get; set; }
 
         #endregion Hidden Fields
 

@@ -1,4 +1,4 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Posts.EditPostviewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager.EditPostviewModel
 @{
     Layout = "";
     var textareaSelector = DateTime.Now.ToString("ddMMyyyyHHmmss");
@@ -29,7 +29,7 @@
     });
 </script>
 
-@using (Html.BeginForm("Edit", "Posts", FormMethod.Post))
+@using (Html.BeginForm("Edit", "BlogManager", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

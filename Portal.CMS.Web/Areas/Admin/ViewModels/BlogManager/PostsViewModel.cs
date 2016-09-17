@@ -1,7 +1,7 @@
 ﻿using Portal.CMS.Entities.Entities.Posts;
 using System.Collections.Generic;
 
-namespace Portal.CMS.Web.Areas.Admin.ViewModels.Posts
+namespace Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager
 {
     public class PostsViewModel
     {

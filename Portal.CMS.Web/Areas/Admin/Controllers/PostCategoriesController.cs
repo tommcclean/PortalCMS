@@ -72,7 +72,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _postCategoryService.Delete(postCategoryId);
 
-            return this.RedirectToAction("Index", "Posts");
+            return this.RedirectToAction("Index", "BlogManager");
         }
     }
 }

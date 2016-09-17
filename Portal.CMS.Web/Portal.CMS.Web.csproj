@@ -253,7 +253,7 @@
     <Compile Include="Areas\Admin\Controllers\MenuItemController.cs" />
     <Compile Include="Areas\Admin\Controllers\PagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostCategoriesController.cs" />
-    <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogManagerController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingManagerController.cs" />
@@ -288,9 +288,9 @@
     <Compile Include="Areas\Admin\ViewModels\Pages\PagesViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\PostCategories\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\PostCategories\AddViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Posts\CreatePostViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Posts\EditPostviewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Posts\PostsViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\BlogManager\CreatePostViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\BlogManager\EditPostviewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\BlogManager\PostsViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\RoleManager\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\RoleManager\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\SettingManager\CreateViewModel.cs" />
@@ -483,7 +483,7 @@
     <Content Include="Areas\Admin\Views\Shared\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Portal.CMS.Entities\Portal.CMS.Entities.csproj">
@@ -505,10 +505,10 @@
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Posts\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogManager\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Posts\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogManager\_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\UserManager\Index.cshtml" />

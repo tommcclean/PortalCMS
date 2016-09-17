@@ -5,7 +5,7 @@ using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.Helpers;
-using Portal.CMS.Web.Areas.Admin.ViewModels.Posts;
+using Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Web.Mvc;
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
     [LoggedInFilter]
-    public class PostsController : Controller
+    public class BlogManagerController : Controller
     {
         #region Dependencies
 
@@ -25,7 +25,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         private readonly IUserService _userService;
         private readonly IRoleService _roleService;
 
-        public PostsController(IPostService postService, IPostImageService postImageService, IImageService imageService, IPostCategoryService postCategoryService, IUserService userService, IRoleService roleService)
+        public BlogManagerController(IPostService postService, IPostImageService postImageService, IImageService imageService, IPostCategoryService postCategoryService, IUserService userService, IRoleService roleService)
         {
             _postService = postService;
             _postImageService = postImageService;
@@ -161,7 +161,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _postService.Delete(postId);
 
-            return RedirectToAction("Index", "Posts");
+            return RedirectToAction("Index", "BlogManager");
         }
 
         [HttpGet, AdminFilter]
@@ -169,7 +169,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _postService.Publish(postId);
 
-            return RedirectToAction("Index", "Posts");
+            return RedirectToAction("Index", "BlogManager");
         }
 
         [HttpGet, AdminFilter]
@@ -177,7 +177,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _postService.Draft(postId);
 
-            return RedirectToAction("Index", "Posts");
+            return RedirectToAction("Index", "BlogManager");
         }
 
         [HttpPost, EditorFilter]
