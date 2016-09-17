@@ -158,7 +158,7 @@ function bindModalEditor() {
                     }
                     else if (data == 'Setup')
                     {
-                        showModalEditor("Setup Portal CMS", "/Admin/Settings/Setup");
+                        showModalEditor("Setup Portal CMS", "/Admin/SettingManager/Setup");
                     }
                     else if (data == "Blog")
                     {
