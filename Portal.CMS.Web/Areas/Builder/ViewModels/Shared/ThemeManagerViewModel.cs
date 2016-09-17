@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager
+namespace Portal.CMS.Web.Areas.Builder.ViewModels.Shared
 {
-    public class ThemeViewModel
+    public class ThemeManagerViewModel
     {
+        public int PageId { get; set; }
+
         public IEnumerable<Theme> Themes { get; set; }
-        public IEnumerable<Font> Fonts { get; set; }
+
+        public List<Font> Fonts { get; set; }
     }
 }

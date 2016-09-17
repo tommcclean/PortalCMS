@@ -1,10 +1,13 @@
-﻿using Portal.CMS.Services.Analytics;
+﻿using Portal.CMS.Entities.Entities.Themes;
+using Portal.CMS.Services.Analytics;
 using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
+using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Build;
+using Portal.CMS.Web.Areas.Builder.ViewModels.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,16 +19,17 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
     {
         #region Dependencies
 
-        private readonly IPageService _pageService;
-        private readonly IPageSectionService _pageSectionService;
-        private readonly IPageSectionTypeService _pageSectionTypeService;
-        private readonly IImageService _imageService;
-        private readonly IAnalyticsService _analyticService;
-        private readonly IUserService _userService;
-        private readonly ILoginService _loginService;
-        private readonly IRoleService _roleService;
+        readonly IPageService _pageService;
+        readonly IPageSectionService _pageSectionService;
+        readonly IPageSectionTypeService _pageSectionTypeService;
+        readonly IImageService _imageService;
+        readonly IAnalyticsService _analyticService;
+        readonly IUserService _userService;
+        readonly ILoginService _loginService;
+        readonly IRoleService _roleService;
+        readonly IThemeService _themeService;
 
-        public BuildController(IPageService pageService, IPageSectionService pageSectionService, IPageSectionTypeService pageSectionTypeService, IImageService imageService, IAnalyticsService analyticService, IUserService userService, ILoginService loginService, IRoleService roleService)
+        public BuildController(IPageService pageService, IPageSectionService pageSectionService, IPageSectionTypeService pageSectionTypeService, IImageService imageService, IAnalyticsService analyticService, IUserService userService, ILoginService loginService, IRoleService roleService, IThemeService themeService)
         {
             _pageService = pageService;
             _pageSectionService = pageSectionService;
@@ -35,6 +39,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             _userService = userService;
             _loginService = loginService;
             _roleService = roleService;
+            _themeService = themeService;
         }
 
         #endregion Dependencies
@@ -117,9 +122,19 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         [HttpGet, AdminFilter]
-        public ActionResult Themes()
+        public ActionResult Themes(int pageId)
         {
-            return View();
+            var model = new ThemeManagerViewModel
+            {
+                PageId = pageId,
+                Themes = _themeService.Get(),
+                Fonts = new List<Font>()
+            };
+
+            model.Fonts.AddRange(model.Themes.Select(x => x.TextFont));
+            model.Fonts.AddRange(model.Themes.Select(x => x.TitleFont));
+
+            return View(model);
         }
     }
 }

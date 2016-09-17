@@ -36,6 +36,19 @@
             background-color: black;
             background-image: unset;
         }
+
+        @@font-face { font-family: '@Model.Page.Theme.TitleFont.FontName'; src: url('@Model.Page.Theme.TitleFont.FontPath') format('@Model.Page.Theme.TitleFont.FontType'); }
+        @@font-face { font-family: '@Model.Page.Theme.TextFont.FontName'; src: url('@Model.Page.Theme.TextFont.FontPath') format('@Model.Page.Theme.TextFont.FontType'); }
+
+        #page-wrapper h1, #page-wrapper h2, #page-wrapper h3, #page-wrapper h4
+        {
+            font-family: '@Model.Page.Theme.TitleFont.FontName';
+        }
+
+        #page-wrapper p, #page-wrapper a
+        {
+            font-family: '@Model.Page.Theme.TextFont.FontName';
+        }
     </style>
 
     @if (isAdmin)
@@ -43,7 +56,7 @@
         /* Global Administration Menu */
         <div class="action-container wide global">
             <div class="action" onclick="TogglePageList();"><span class="fa fa-th-list"></span><span class="hidden-xs">Pages</span></div>
-            @*<div class="action" onclick="ToggleThemeManager();"><span class="fa fa-paint-brush"></span><span class="hidden-xs">Theme</span></div>*@
+            <div class="action" onclick="ToggleThemeManager();"><span class="fa fa-paint-brush"></span><span class="hidden-xs">Theme</span></div>
             <div class="action" onclick="ChangeOrder();"><span class="fa fa-sort"></span><span class="hidden-xs">Order</span></div>
             <div class="action" onclick="ToggleComponentPanel();"><span class="fa fa-briefcase"></span><span class="hidden-xs">Component</span></div>
             <div class="action" onclick="ToggleSectionPanel();"><span class="fa fa-plus"></span><span class="hidden-xs">Section</span></div>
@@ -87,5 +100,5 @@
         @Html.Action("Add", "Section", new { @pageId = Model.Page.PageId })
         @Html.Action("Add", "Component")
         @Html.Action("Pages", "Build")
-        @Html.Action("Themes", "Build")
+        @Html.Action("Themes", "Build", new { pageId = Model.Page.PageId })
     }

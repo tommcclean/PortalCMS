@@ -8,19 +8,41 @@
     <div class="action"><span class="fa fa-plus"></span></div>
 </a>
 
+<style>
+    @foreach(var font in Model.Fonts)
+    {
+        <text>@@font-face { font-family: '@font.FontName'; src: url('@font.FontPath') format('@font.FontType'); }</text>
+
+        <text>div.font-@font.FontName { font-family: '@font.FontName'; }</text>
+    }
+
+    .admin-container { font-family: 'Emeric'; }
+</style>
+
 <div class="row">
     @foreach (var theme in Model.Themes)
     {
         <div class="col-xs-12 col-md-6 col-lg-4">
             <div class="box float-container" style="min-height: 260px; padding-bottom: 60px;">
 
-                <h3>@theme.ThemeName</h3>
-                <p style="word-wrap: break-word;">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
-                <p style="word-wrap: break-word;">abcdefghijklmnopqrstuvwaxyz</p>
+                <h3 style="font-family: '@theme.TitleFont.FontName';">@theme.ThemeName @(theme.IsDefault ? "(Default)" : "")</h3>
+                <p style="word-wrap: break-word; font-family: '@theme.TextFont.FontName';">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+                <p style="word-wrap: break-word; font-family: '@theme.TextFont.FontName';">abcdefghijklmnopqrstuvwaxyz</p>
 
-                <div class="admin-container x1">
-                    <a href="@Url.Action("Delete", "ThemeManager", new { themeId = @theme.ThemeId})" class="admin-item" data-title="Delete Theme" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
-                </div>
+                @if (theme.IsDefault)
+                {
+                    <div class="admin-container x1">
+                        <a href="@Url.Action("Delete", "ThemeManager", new { themeId = @theme.ThemeId})" class="admin-item" data-title="Delete Theme" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="admin-container x2">
+                        <a href="@Url.Action("Default", "ThemeManager", new { themeId = @theme.ThemeId})" class="admin-item" data-title="Set Default Theme" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-paint-brush"></span>Set Default</a>
+                        <a href="@Url.Action("Delete", "ThemeManager", new { themeId = @theme.ThemeId})" class="admin-item" data-title="Delete Theme" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
+                    </div>
+                }
+
             </div>
         </div>
     }

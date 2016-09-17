@@ -313,6 +313,7 @@
     <Compile Include="Areas\Builder\ViewModels\Component\AddViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\ImageViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
+    <Compile Include="Areas\Builder\ViewModels\Shared\ThemeManagerViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Widget\PostListViewModel.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

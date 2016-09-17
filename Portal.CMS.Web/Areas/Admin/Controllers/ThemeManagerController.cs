@@ -30,7 +30,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var model = new ThemeViewModel
             {
-                Themes = _themeService.Get()
+                Themes = _themeService.Get(),
+                Fonts = _fontService.Get()
             };
 
             return View(model);
@@ -66,6 +67,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         public ActionResult Delete(int themeId)
         {
             _themeService.Delete(themeId);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public ActionResult Default(int themeId)
+        {
+            _themeService.Default(themeId);
 
             return RedirectToAction(nameof(Index));
         }

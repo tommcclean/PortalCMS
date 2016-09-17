@@ -15,7 +15,7 @@ namespace Portal.CMS.Entities.Seed
             {
                 var fonts = new List<Font>();
 
-                fonts.Add(new Entities.Themes.Font { FontName = "Portal CMS", FontPath = "/Areas/Admin/Content/Fonts/Uploads/Emeric.ttf", FontType = "truetype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
+                fonts.Add(new Entities.Themes.Font { FontName = "Portal", FontPath = "/Areas/Admin/Content/Fonts/Uploads/Emeric.ttf", FontType = "truetype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
 
                 context.Fonts.AddRange(fonts);
             }

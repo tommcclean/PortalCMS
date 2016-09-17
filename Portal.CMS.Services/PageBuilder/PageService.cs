@@ -27,6 +27,8 @@ namespace Portal.CMS.Services.PageBuilder
         void Order(int pageId, string sectionList);
 
         void Roles(int pageId, List<string> roleList);
+
+        void Theme(int pageId, int themeId);
     }
 
     public class PageService : IPageService
@@ -223,6 +225,18 @@ namespace Portal.CMS.Services.PageBuilder
 
                 _context.PageRoles.Add(new PageRole { PageId = pageId, RoleId = currentRole.RoleId });
             }
+
+            _context.SaveChanges();
+        }
+
+        public void Theme(int pageId, int themeId)
+        {
+            var page = _context.Pages.FirstOrDefault(x => x.PageId == pageId);
+
+            if (page == null)
+                return;
+
+            page.ThemeId = themeId;
 
             _context.SaveChanges();
         }

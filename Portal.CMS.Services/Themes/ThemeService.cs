@@ -1,5 +1,6 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.Themes;
+using Portal.CMS.Services.PageBuilder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Portal.CMS.Services.Themes
         int Upsert(int themeId, string themeName, int titleFontId, int textFontId);
 
         void Delete(int themeId);
+
+        void Default(int themeId);
     }
 
     public class ThemeService : IThemeService
@@ -24,10 +27,12 @@ namespace Portal.CMS.Services.Themes
         #region Dependencies
 
         readonly PortalEntityModel _context;
+        readonly IPageService _pageService;
 
-        public ThemeService(PortalEntityModel context)
+        public ThemeService(PortalEntityModel context, IPageService pageService)
         {
             _context = context;
+            _pageService = pageService;
         }
 
         #endregion Dependencies
@@ -89,6 +94,29 @@ namespace Portal.CMS.Services.Themes
                 return;
 
             _context.Themes.Remove(existingTheme);
+
+            _context.SaveChanges();
+        }
+
+        public void Default(int themeId)
+        {
+            var themes = Get();
+
+            foreach(var theme in themes)
+            {
+                if (theme.ThemeId == themeId)
+                    theme.IsDefault = true;
+                else
+                    theme.IsDefault = false;
+            }
+
+            var pages = _pageService.Get();
+
+            foreach(var page in pages)
+            {
+                page.ThemeId = themeId;
+                page.DateUpdated = DateTime.Now;
+            }
 
             _context.SaveChanges();
         }

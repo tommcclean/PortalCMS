@@ -160,6 +160,10 @@
     <Compile Include="Migrations\201609170832180_AddInitialThemeEntity.Designer.cs">
       <DependentUpon>201609170832180_AddInitialThemeEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609170909041_ExtendPagesEntityWithTheme.cs" />
+    <Compile Include="Migrations\201609170909041_ExtendPagesEntityWithTheme.Designer.cs">
+      <DependentUpon>201609170909041_ExtendPagesEntityWithTheme.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -230,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609170832180_AddInitialThemeEntity.resx">
       <DependentUpon>201609170832180_AddInitialThemeEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609170909041_ExtendPagesEntityWithTheme.resx">
+      <DependentUpon>201609170909041_ExtendPagesEntityWithTheme.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,9 @@
 ﻿using Portal.CMS.Entities.Entities.Posts;
+using Portal.CMS.Entities.Entities.Themes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portal.CMS.Entities.Entities.PageBuilder
 {
@@ -20,6 +22,11 @@ namespace Portal.CMS.Entities.Entities.PageBuilder
 
         [Required]
         public string PageAction { get; set; }
+
+        [ForeignKey("Theme")]
+        public int? ThemeId { get; set; }
+
+        public virtual Theme Theme { get; set; }
 
         [Required]
         public DateTime DateAdded { get; set; }
