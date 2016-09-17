@@ -146,7 +146,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             imageFile.SaveAs(path);
 
-            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace(string.Format("Admin/Media/{0}", actionName), string.Empty);
+            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace(string.Format("Admin/MediaManager/{0}", actionName), string.Empty);
             var relativeFilePath = string.Format("{0}{1}/{2}", siteURL, IMAGE_DIRECTORY, imageFileName);
 
             return relativeFilePath;
@@ -169,7 +169,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             fontFile.SaveAs(path);
 
-            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace(string.Format("Admin/Media/{0}", actionName), string.Empty);
+            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace(string.Format("Admin/MediaManager/{0}", actionName), string.Empty);
             var relativeFilePath = string.Format("{0}{1}/{2}", siteURL, FONT_DIRECTORY, fontFileName);
 
             return relativeFilePath;
