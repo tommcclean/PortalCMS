@@ -20,6 +20,9 @@ namespace Portal.CMS.Entities.Seed
                 images.Add(new Image { ImagePath = "/Areas/Builder/Content/Images/Sample/icon-6.png", ImageCategory = ImageCategory.Icon });
 
                 images.Add(new Image { ImagePath = "/Areas/Builder/Content/Images/Sample/pattern-1.png", ImageCategory = ImageCategory.Texture });
+                images.Add(new Image { ImagePath = "/Areas/Builder/Content/Images/Sample/texture-linen.png", ImageCategory = ImageCategory.Texture });
+                images.Add(new Image { ImagePath = "/Areas/Builder/Content/Images/Sample/texture-notebook.png", ImageCategory = ImageCategory.Texture });
+                images.Add(new Image { ImagePath = "/Areas/Builder/Content/Images/Sample/texture-office.png", ImageCategory = ImageCategory.Texture });
 
                 images.Add(new Image { ImagePath = "/Areas/Builder/Content/Images/Sample/sample-1.jpg", ImageCategory = ImageCategory.General });
                 images.Add(new Image { ImagePath = "/Areas/Builder/Content/Images/Sample/sample-2.jpg", ImageCategory = ImageCategory.General });
