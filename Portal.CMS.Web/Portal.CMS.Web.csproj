@@ -257,6 +257,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ThemeManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Helpers\EmailHelper.cs" />
     <Compile Include="Areas\Admin\Helpers\MenuHelper.cs" />
@@ -296,6 +297,8 @@
     <Compile Include="Areas\Admin\ViewModels\Settings\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Settings\SettingsViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Settings\SetupViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ThemeManager\ThemeViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ThemeManager\UpsertViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Users\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Users\DeleteViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Users\DetailsViewModel.cs" />
@@ -344,6 +347,7 @@
     <Content Include="Areas\Admin\Content\Images\icon-logout.png" />
     <Content Include="Areas\Admin\Content\Images\icon-reports.png" />
     <Content Include="Areas\Admin\Content\Images\icon-settings.png" />
+    <Content Include="Areas\Admin\Content\Images\icon-thememanager.png" />
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
     <Content Include="Areas\Admin\Content\Images\Pages\Dashboard\image-comments.jpg" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
@@ -612,6 +616,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Media\_UploadFont.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ThemeManager\_Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ThemeManager\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

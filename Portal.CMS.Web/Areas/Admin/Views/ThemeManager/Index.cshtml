@@ -1,0 +1,27 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager.ThemeViewModel
+@{
+    ViewBag.Title = "Theme Manager";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-thememanager.png";
+}
+
+<a href="@Url.Action("Create", "ThemeManager")" class="action-container launch-modal" data-title="Create Page">
+    <div class="action"><span class="fa fa-plus"></span></div>
+</a>
+
+<div class="row">
+    @foreach (var theme in Model.Themes)
+    {
+        <div class="col-xs-12 col-md-6 col-lg-4">
+            <div class="box float-container" style="min-height: 260px; padding-bottom: 60px;">
+
+                <h3>@theme.ThemeName</h3>
+                <p style="word-wrap: break-word;">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+                <p style="word-wrap: break-word;">abcdefghijklmnopqrstuvwaxyz</p>
+
+                <div class="admin-container x1">
+                    <a href="@Url.Action("Delete", "ThemeManager", new { themeId = @theme.ThemeId})" class="admin-item" data-title="Delete Theme" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

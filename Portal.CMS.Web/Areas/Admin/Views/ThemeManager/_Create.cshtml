@@ -1,0 +1,34 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager.UpsertViewModel
+@{
+    Layout = "";
+}
+
+@using (Html.BeginForm("Create", "ThemeManager", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="alert alert-warning" role="alert">Once you have created this theme you can make it the default theme. This will update all of your existing pages.</div>
+
+    @Html.ValidationMessage("ThemeName")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.ThemeName)
+        @Html.TextBoxFor(x => x.ThemeName)
+    </div>
+
+    @Html.ValidationMessage("TitleFontId")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.TitleFontId)
+        @Html.TextBoxFor(x => x.TitleFontId)
+    </div>
+
+    @Html.ValidationMessage("TextFontId")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.TextFontId)
+        @Html.TextBoxFor(x => x.TextFontId)
+    </div>
+
+    <div class="footer">
+        <button class="btn primary">Create Theme</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

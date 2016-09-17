@@ -1,5 +1,5 @@
 ﻿<div id="sidebar">
-    <a href="@Url.Action("Index", "Dashboard")" class="link first"  data-toggle="popover" data-trigger="hover" data-container="body" data-title="Dashboard" data-content="Review a snapshot of information related to Portal CMS.">
+    <a href="@Url.Action("Index", "Dashboard")" class="link first" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Dashboard" data-content="Review a snapshot of information related to Portal CMS.">
         <img src="~/Areas/Admin/Content/Images/icon-dashboard.png" />
     </a>
     <a href="@Url.Action("Index", "Posts")" class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Post Manager" data-content="Create and Edit Posts to allow your visitors to read custom content.">
@@ -7,6 +7,9 @@
     </a>
     <a href="@Url.Action("Index", "Media")" cl class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Media Manager" data-content="Review and Upload Media for use across Portal CMS.">
         <img src="~/Areas/Admin/Content/Images/icon-media.png" />
+    </a>
+    <a href="@Url.Action("Index", "ThemeManager")" class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Theme Manager" data-content="Create and Edit Basic Themes for your Website">
+        <img src="~/Areas/Admin/Content/Images/icon-thememanager.png" />
     </a>
     <a href="@Url.Action("Index", "Pages")" class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Page Manager" data-content="Create and Edit Pages for your Website.">
         <img src="~/Areas/Admin/Content/Images/icon-pages.png" />
@@ -23,10 +26,7 @@
     <a href="@Url.Action("Index", "Settings")" class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Manage Settings" data-content="Manage Portal CMS and your Websites settings.">
         <img src="~/Areas/Admin/Content/Images/icon-settings.png" />
     </a>
-    <a href="@Url.Action("Index", "Home", new { area = "" })" class="link"  data-toggle="popover" data-trigger="hover" data-container="body" data-title="Exit" data-content="Return to the Website and stay logged in.">
+    <a href="@Url.Action("Index", "Home", new { area = "" })" class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Exit" data-content="Return to the Website and stay logged in.">
         <img src="~/Areas/Admin/Content/Images/icon-exit.png" />
-    </a>
-    <a href="@Url.Action("Logout", "Authentication")" class="link" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Logout" data-content="Logout of your account and return to the Website.">
-        <img src="~/Areas/Admin/Content/Images/icon-logout.png" />
     </a>
 </div>

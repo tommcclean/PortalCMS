@@ -97,6 +97,8 @@ namespace Portal.CMS.Entities
 
         public virtual DbSet<Font> Fonts { get; set; }
 
+        public virtual DbSet<Theme> Themes { get; set; }
+
         #endregion Theme Entities
     }
 }
