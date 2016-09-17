@@ -18,11 +18,11 @@ namespace Portal.CMS.Entities.Seed
                 fonts.Add(new Entities.Themes.Font { FontName = "Anagram", FontPath = "/Areas/Admin/Content/Fonts/Anagram.ttf", FontType = "truetype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
                 fonts.Add(new Entities.Themes.Font { FontName = "Architect", FontPath = "/Areas/Admin/Content/Fonts/ArchitectsDaughter.ttf", FontType = "truetype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
                 fonts.Add(new Entities.Themes.Font { FontName = "Blackout", FontPath = "/Areas/Admin/Content/Fonts/Blackout-2am.ttf", FontType = "truetype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
-                fonts.Add(new Entities.Themes.Font { FontName = "BreeSerif", FontPath = "/Areas/Admin/Content/Fonts/BreeSerif.otf", FontType = "opentype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
+                fonts.Add(new Entities.Themes.Font { FontName = "BreeSerif", FontPath = "/Areas/Admin/Content/Fonts/BreeSerif-regular.otf", FontType = "opentype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
                 fonts.Add(new Entities.Themes.Font { FontName = "Bubblegum", FontPath = "/Areas/Admin/Content/Fonts/BubblegumSans-Regular.otf", FontType = "opentype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
                 fonts.Add(new Entities.Themes.Font { FontName = "CarbonType", FontPath = "/Areas/Admin/Content/Fonts/carbontype.ttf", FontType = "truetype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
                 fonts.Add(new Entities.Themes.Font { FontName = "DancingScript", FontPath = "/Areas/Admin/Content/Fonts/dancingscript-regular.otf", FontType = "opentype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
-                fonts.Add(new Entities.Themes.Font { FontName = "GrandHotel-Regular", FontPath = "/Areas/Admin/Content/Fonts/BreeSerif.otf", FontType = "opentype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
+                fonts.Add(new Entities.Themes.Font { FontName = "GrandHotel-Regular", FontPath = "/Areas/Admin/Content/Fonts/grandhotel-regular.otf", FontType = "opentype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
                 fonts.Add(new Entities.Themes.Font { FontName = "Organo", FontPath = "/Areas/Admin/Content/Fonts/Organo.ttf", FontType = "truetype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
                 fonts.Add(new Entities.Themes.Font { FontName = "Railway", FontPath = "/Areas/Admin/Content/Fonts/Railway.otf", FontType = "opentype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
                 fonts.Add(new Entities.Themes.Font { FontName = "Roboto-Bold", FontPath = "/Areas/Admin/Content/Fonts/roboto-bold.ttf", FontType = "truetype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
@@ -39,9 +39,23 @@ namespace Portal.CMS.Entities.Seed
 
             if (!context.Themes.Any())
             {
-                var defaultfont = context.Fonts.First(x => x.FontName == "Portal");
+                var fontList = context.Fonts.ToList();
 
-                themes.Add(new Entities.Themes.Theme { ThemeName = "Portal", TextFontId = defaultfont.FontId, TitleFontId = defaultfont.FontId, IsDefault = true, DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
+                var defaultFont = fontList.First(x => x.FontName == "Portal");
+                var allerDisplayFont= fontList.First(x => x.FontName == "AllerDisplay");
+                var snigletFont = fontList.First(x => x.FontName == "Sniglet");
+                var thinLineFont = fontList.First(x => x.FontName == "ThinLine");
+                var robotoThinFont = fontList.First(x => x.FontName == "Roboto-Thin");
+                var carbonFont = fontList.First(x => x.FontName == "CarbonType");
+                var bubblegumFont = fontList.First(x => x.FontName == "Bubblegum");
+                var dancingFont = fontList.First(x => x.FontName == "DancingScript");
+                var grandHotelFont = fontList.First(x => x.FontName == "GrandHotel-Regular");
+
+                themes.Add(new Entities.Themes.Theme { ThemeName = "Portal", TitleFontId = defaultFont.FontId, TextFontId = defaultFont.FontId, IsDefault = true, DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
+                themes.Add(new Entities.Themes.Theme { ThemeName = "Impact", TitleFontId = allerDisplayFont.FontId, TextFontId = snigletFont.FontId, IsDefault = false, DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
+                themes.Add(new Entities.Themes.Theme { ThemeName = "Futuristic", TitleFontId = thinLineFont.FontId, TextFontId = robotoThinFont.FontId, IsDefault = false, DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
+                themes.Add(new Entities.Themes.Theme { ThemeName = "Grim", TitleFontId = carbonFont.FontId, TextFontId = bubblegumFont.FontId, IsDefault = false, DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
+                themes.Add(new Entities.Themes.Theme { ThemeName = "Elegant", TitleFontId = dancingFont.FontId, TextFontId = grandHotelFont.FontId, IsDefault = false, DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
 
                 context.Themes.AddRange(themes);
             }
