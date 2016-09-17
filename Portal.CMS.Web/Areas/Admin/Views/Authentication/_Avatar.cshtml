@@ -8,7 +8,6 @@
     @Html.AntiForgeryToken()
 
     @Html.ValidationMessage("AttachedImage")
-
     <div class="control-group float-container">
         @Html.LabelFor(x => x.AttachedImage)
         @Html.TextBoxFor(m => m.AttachedImage, new { @type = "file" })

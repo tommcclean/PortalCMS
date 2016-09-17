@@ -1,8 +1,8 @@
 ﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager.CreatePostViewModel
 @{
     ViewBag.Title = "Create Post";
-    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-articles.png";
     Layout = "";
+
     var textareaSelector = DateTime.Now.ToString("ddMMyyyyHHmmss");
 
     var postCategoryList = Model.PostCategoryList.Select(x => new SelectListItem { Value = x.PostCategoryId.ToString(), Text = x.PostCategoryName });
@@ -31,7 +31,7 @@
     });
 </script>
 
-@using (Html.BeginForm("Create", "BlogManager", FormMethod.Post, new { id = "createPostForm" }))
+@using (Html.BeginForm("Create", "BlogManager", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -47,7 +47,6 @@
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab-post">
             @Html.ValidationMessage("PostTitle")
-
             <div class="control-group float-container">
                 @Html.LabelFor(x => x.PostTitle)
                 @Html.TextBoxFor(x => x.PostTitle, new { placeholder = "Headline" })
@@ -60,7 +59,6 @@
             </div>
 
             @Html.ValidationMessage("PostBody")
-
             @Html.TextAreaFor(x => x.PostBody, new { id = textareaSelector })
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-publication">
@@ -89,10 +87,11 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-banner">
+            <div class="alert alert-warning" role="alert">Upload new images for use in your blog posts using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
             @if (!Model.ImageList.Any())
             {
-            <h2>No Media Uploads</h2>
-            <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
+                <h2>No Media Uploads</h2>
+                <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
             }
 
             <div id="banner-selector" class="image-selector x4 single float-container">
@@ -103,10 +102,11 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-gallery">
+            <div class="alert alert-warning" role="alert">Upload new images for use in your blog posts using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
             @if (!Model.ImageList.Any())
             {
-            <h2>No Media Uploads</h2>
-            <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
+                <h2>No Media Uploads</h2>
+                <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
             }
             <div id="gallery-selector" class="image-selector x4 multiple float-container">
                 @foreach (var image in Model.ImageList)

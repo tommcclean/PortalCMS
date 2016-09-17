@@ -14,8 +14,8 @@
     <div role="tabpanel" class="tab-pane active" id="tab-login">
         @Html.Action("Get", "CopyManager", new { area = "Admin", copyName = "Sign In Message" })
 
-        @using (Html.BeginForm("Login", "Authentication", FormMethod.Post, new { id = "loginForm" }))
-            {
+        @using (Html.BeginForm("Login", "Authentication", FormMethod.Post))
+        {
             @Html.AntiForgeryToken()
 
             @Html.ValidationMessage("InvalidCredentials")
@@ -26,35 +26,35 @@
                 @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
             </div>
 
-                @Html.ValidationMessage("Password")
-                <div class="control-group float-container">
-                    @Html.LabelFor(x => x.Password)
-                    @Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
-                </div>
+            @Html.ValidationMessage("Password")
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.Password)
+                @Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
+            </div>
 
-                <div class="button-group float-container">
-                    <button class="btn primary">Sign In</button>
-                    <button class="btn" data-dismiss="modal">Cancel</button>
-                </div>
+            <div class="button-group float-container">
+                <button class="btn primary">Sign In</button>
+                <button class="btn" data-dismiss="modal">Cancel</button>
+            </div>
         }
     </div>
     <div role="tabpanel" class="tab-pane" id="tab-forgot">
-        @using (Html.BeginForm("Forgot", "Authentication", FormMethod.Post, new { id = "loginForm" }))
-            {
+        @using (Html.BeginForm("Forgot", "Authentication", FormMethod.Post))
+        {
             @Html.AntiForgeryToken()
 
             <div class="alert alert-warning" role="alert">We will send you a link by email that you can use to reset your password.</div>
 
-                @Html.ValidationMessage("EmailAddress")
-                <div class="control-group float-container">
-                    @Html.LabelFor(x => x.EmailAddress)
-                    @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
-                </div>
+            @Html.ValidationMessage("EmailAddress")
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.EmailAddress)
+                @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
+            </div>
 
-                <div class="button-group float-container">
-                    <button class="btn primary">Send Email</button>
-                    <button class="btn" data-dismiss="modal">Cancel</button>
-                </div>
+            <div class="button-group float-container">
+                <button class="btn primary">Send Email</button>
+                <button class="btn" data-dismiss="modal">Cancel</button>
+            </div>
         }
     </div>
 </div>
