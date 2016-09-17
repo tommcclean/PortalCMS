@@ -108,14 +108,6 @@ namespace Portal.CMS.Services.Themes
                     theme.IsDefault = false;
             }
 
-            var pages = _pageService.Get();
-
-            foreach (var page in pages)
-            {
-                page.ThemeId = themeId;
-                page.DateUpdated = DateTime.Now;
-            }
-
             _context.SaveChanges();
         }
     }

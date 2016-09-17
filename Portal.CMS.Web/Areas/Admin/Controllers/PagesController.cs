@@ -144,15 +144,5 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-
-        [HttpGet]
-        public ActionResult Theme(int pageId, int themeId)
-        {
-            _pageService.Theme(pageId, themeId);
-
-            var page = _pageService.Get(pageId);
-
-            return RedirectToAction(page.PageAction, page.PageController, new { area = @page.PageArea });
-        }
     }
 }

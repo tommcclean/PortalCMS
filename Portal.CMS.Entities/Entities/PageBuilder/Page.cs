@@ -23,11 +23,6 @@ namespace Portal.CMS.Entities.Entities.PageBuilder
         [Required]
         public string PageAction { get; set; }
 
-        [ForeignKey("Theme")]
-        public int? ThemeId { get; set; }
-
-        public virtual Theme Theme { get; set; }
-
         [Required]
         public DateTime DateAdded { get; set; }
 
