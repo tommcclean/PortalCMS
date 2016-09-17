@@ -2,7 +2,7 @@
 using Portal.CMS.Services.Posts;
 using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
-using Portal.CMS.Web.Areas.Admin.ViewModels.Media;
+using Portal.CMS.Web.Areas.Admin.ViewModels.MediaManager;
 using System;
 using System.IO;
 using System.Web;
@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
     [LoggedInFilter]
-    public class MediaController : Controller
+    public class MediaManagerController : Controller
     {
         #region Dependencies
 
@@ -23,7 +23,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
         private const string FONT_DIRECTORY = "/Areas/Admin/Content/Fonts/Uploads";
 
-        public MediaController(IPostService postService, IPostImageService postImageService, IImageService imageService, IFontService fontService)
+        public MediaManagerController(IPostService postService, IPostImageService postImageService, IImageService imageService, IFontService fontService)
         {
             _postService = postService;
             _postImageService = postImageService;
@@ -106,7 +106,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _imageService.Delete(imageId);
 
-            return RedirectToAction(nameof(Index), "Media");
+            return RedirectToAction(nameof(Index), "MediaManager");
         }
 
         [HttpGet, AdminFilter]
@@ -126,7 +126,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _fontService.Delete(fontId);
 
-            return RedirectToAction(nameof(Index), "Media");
+            return RedirectToAction(nameof(Index), "MediaManager");
         }
 
         private string SaveImage(HttpPostedFileBase imageFile, string actionName)

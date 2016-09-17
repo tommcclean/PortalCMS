@@ -248,7 +248,7 @@
     <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CopyManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
-    <Compile Include="Areas\Admin\Controllers\MediaController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MediaManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuItemController.cs" />
     <Compile Include="Areas\Admin\Controllers\PageManagerController.cs" />
@@ -277,9 +277,9 @@
     <Compile Include="Areas\Admin\ViewModels\CopyManager\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\CopyManager\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Dashboard\DashboardViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Media\MediaViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Media\UploadFontViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Media\UploadImageViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\MediaManager\MediaViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\MediaManager\UploadFontViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\MediaManager\UploadImageViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\MenuItem\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Menu\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Menu\EditViewModel.cs" />
@@ -517,7 +517,7 @@
     <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Media\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MediaManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\UserManager\_Details.cshtml" />
@@ -529,7 +529,7 @@
     <Content Include="Areas\Admin\Views\SettingManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Media\_UploadImage.cshtml" />
+    <Content Include="Areas\Admin\Views\MediaManager\_UploadImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Blog\Index.cshtml" />
@@ -617,7 +617,7 @@
     <Content Include="Areas\Builder\Views\Shared\_ThemeManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Media\_UploadFont.cshtml" />
+    <Content Include="Areas\Admin\Views\MediaManager\_UploadFont.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\ThemeManager\_Create.cshtml" />

@@ -52,7 +52,7 @@
                     setup:function(ed) {
                         ed.on('change', function(e) {
                             var dataParams = { "postId": @Model.CurrentPost.PostId, "markup": ed.getContent() };
-                            $.ajax({data: dataParams, type: 'POST', cache: false, url: '/Admin/Posts/Inline'});
+                            $.ajax({data: dataParams, type: 'POST', cache: false, url: '/Admin/BlogManager/Inline'});
                         });
                     }
                 });

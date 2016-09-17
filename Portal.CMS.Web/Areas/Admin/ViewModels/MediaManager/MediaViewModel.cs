@@ -2,7 +2,7 @@
 using Portal.CMS.Entities.Entities.Themes;
 using System.Collections.Generic;
 
-namespace Portal.CMS.Web.Areas.Admin.ViewModels.Media
+namespace Portal.CMS.Web.Areas.Admin.ViewModels.MediaManager
 {
     public class MediaViewModel
     {

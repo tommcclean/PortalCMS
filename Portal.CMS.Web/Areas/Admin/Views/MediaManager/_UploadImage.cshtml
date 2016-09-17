@@ -1,11 +1,11 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Media.UploadImageViewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.MediaManager.UploadImageViewModel
 @{
     ViewBag.Title = "Upload Image";
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-media.png";
     Layout = "";
 }
 
-@using (Html.BeginForm("UploadImage", "Media", FormMethod.Post, new { area = "Admin", id = "uploadImageForm", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("UploadImage", "MediaManager", FormMethod.Post, new { area = "Admin", id = "uploadImageForm", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

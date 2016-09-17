@@ -1,4 +1,4 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Media.MediaViewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.MediaManager.MediaViewModel
 @{
     ViewBag.Title = "Media Manager";
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-media.png";
@@ -53,8 +53,8 @@
 
 <div class="action-container">
     <div id="delete-media" class="action" style="display: none;"><span class="fa fa-trash"></span></div>
-    <a href="@Url.Action("UploadFont", "Media", new { area = "Admin" })" data-title="Upload Font" class="launch-modal"><div class="action"><span class="fa fa-font"></span></div></a>
-    <a href="@Url.Action("UploadImage", "Media", new { area = "Admin" })" data-title="Upload Image" class="launch-modal"><div class="action"><span class="fa fa-camera"></span></div></a>
+    <a href="@Url.Action("UploadFont", "MediaManager", new { area = "Admin" })" data-title="Upload Font" class="launch-modal"><div class="action"><span class="fa fa-font"></span></div></a>
+    <a href="@Url.Action("UploadImage", "MediaManager", new { area = "Admin" })" data-title="Upload Image" class="launch-modal"><div class="action"><span class="fa fa-camera"></span></div></a>
 </div>
 
 <ul class="nav nav-tabs">
@@ -102,7 +102,7 @@
                             <p style="word-wrap: break-word;">abcdefghijklmnopqrstuvwaxyz</p>
 
                             <div class="admin-container x1">
-                                <a href="@Url.Action("DeleteFont", "Media", new { fontId = @font.FontId})" class="admin-item" data-title="Delete Font" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
+                                <a href="@Url.Action("DeleteFont", "MediaManager", new { fontId = @font.FontId})" class="admin-item" data-title="Delete Font" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
                             </div>
                         </div>
                     </div>

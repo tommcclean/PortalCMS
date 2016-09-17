@@ -1,4 +1,4 @@
-﻿@model Portal.CMS.Entities.Entities.CopyManager.Copy
+﻿@model Portal.CMS.Entities.Entities.Copy.Copy
 @using Portal.CMS.Web.Areas.Admin.Helpers;
 @{
     Layout = "";
@@ -14,7 +14,7 @@
             setup:function(ed) {
                 ed.on('change', function(e) {
                     var dataParams = { "copyId": @Model.CopyId, "copyName": "@Model.CopyName", "copyBody": ed.getContent() };
-                    $.ajax({data: dataParams, type: 'POST', cache: false, url: '/Admin/Copy/Inline'});
+                    $.ajax({data: dataParams, type: 'POST', cache: false, url: '/Admin/CopyManager/Inline'});
                     $('.copy-@(Model.CopyId)').html(ed.getContent());
                 });
             }
