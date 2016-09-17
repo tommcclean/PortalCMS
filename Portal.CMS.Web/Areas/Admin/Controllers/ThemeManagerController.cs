@@ -2,6 +2,7 @@
 using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager;
+using System;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -60,17 +61,58 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int themeId)
+        public ActionResult Edit(int themeId)
         {
-            _themeService.Delete(themeId);
+            var theme = _themeService.Get(themeId);
 
-            return RedirectToAction(nameof(Index));
+            if (theme == null)
+                throw new ArgumentException(string.Format("Unable to Identify Theme: {0}", themeId));
+
+            var model = new UpsertViewModel
+            {
+                ThemeId = themeId,
+                ThemeName = theme.ThemeName,
+                TextFontId = theme.TextFontId.Value,
+                TitleFontId = theme.TitleFontId.Value,
+                FontList = _fontService.Get()
+            };
+
+            return PartialView("_Edit", model);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Edit(UpsertViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.FontList = _fontService.Get();
+
+                return PartialView("_Edit", model);
+            }
+
+            _themeService.Upsert(model.ThemeId, model.ThemeName, model.TitleFontId, model.TextFontId);
+
+            return Content("Refresh");
         }
 
         [HttpGet]
         public ActionResult Default(int themeId)
         {
-            _themeService.Default(themeId);
+            return View("_Default", new DefaultViewModel { ThemeId = themeId });
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Default(DefaultViewModel model)
+        {
+            _themeService.Default(model.ThemeId);
+
+            return Content("Refresh");
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int themeId)
+        {
+            _themeService.Delete(themeId);
 
             return RedirectToAction(nameof(Index));
         }

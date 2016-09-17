@@ -297,6 +297,7 @@
     <Compile Include="Areas\Admin\ViewModels\Settings\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Settings\SettingsViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Settings\SetupViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ThemeManager\DefaultViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\ThemeViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\UpsertViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Users\CreateViewModel.cs" />
@@ -623,6 +624,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\ThemeManager\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ThemeManager\_Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ThemeManager\_Edit.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -4,6 +4,8 @@
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-thememanager.png";
 }
 
+<div class="alert alert-danger" role="alert">Upload new Fonts for use in your Themes using the <a href="@Url.Action("Index", "Media")" class="alert-link">Media Manager</a>.</div>
+
 <a href="@Url.Action("Create", "ThemeManager")" class="action-container launch-modal" data-title="Create Page">
     <div class="action"><span class="fa fa-plus"></span></div>
 </a>
@@ -31,14 +33,16 @@
 
                 @if (theme.IsDefault)
                 {
-                    <div class="admin-container x1">
+                    <div class="admin-container x2">
+                        <a href="@Url.Action("Edit", "ThemeManager", new { themeId = @theme.ThemeId})" class="admin-item launch-modal" data-title="Edit Theme" data-container="body" data-placement="top"><span class="fa fa-pencil"></span>Edit</a>
                         <a href="@Url.Action("Delete", "ThemeManager", new { themeId = @theme.ThemeId})" class="admin-item" data-title="Delete Theme" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
                     </div>
                 }
                 else
                 {
-                    <div class="admin-container x2">
-                        <a href="@Url.Action("Default", "ThemeManager", new { themeId = @theme.ThemeId})" class="admin-item" data-title="Set Default Theme" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-paint-brush"></span>Set Default</a>
+                    <div class="admin-container x3">
+                        <a href="@Url.Action("Edit", "ThemeManager", new { themeId = @theme.ThemeId})" class="admin-item launch-modal" data-title="Edit Theme" data-container="body" data-placement="top"><span class="fa fa-pencil"></span>Edit</a>
+                        <a href="@Url.Action("Default", "ThemeManager", new { themeId = @theme.ThemeId})" class="admin-item launch-modal" data-title="Set Default Theme" data-container="body" data-placement="top"><span class="fa fa-paint-brush"></span>Set Default</a>
                         <a href="@Url.Action("Delete", "ThemeManager", new { themeId = @theme.ThemeId})" class="admin-item" data-title="Delete Theme" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
                     </div>
                 }

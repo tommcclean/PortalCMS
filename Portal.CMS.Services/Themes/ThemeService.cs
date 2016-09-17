@@ -46,7 +46,7 @@ namespace Portal.CMS.Services.Themes
         {
             var results = _context.Themes.ToList();
 
-            return results;
+            return results.OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.DateUpdated);
         }
 
         public int Upsert(int themeId, string themeName, int titleFontId, int textFontId)

@@ -1,0 +1,18 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager.DefaultViewModel
+@{
+    Layout = "";
+}
+
+@using (Html.BeginForm("Default", "ThemeManager", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.ThemeId)
+
+    <div class="alert alert-danger" role="alert">Changing the default theme will affect all custom pages and blog posts.</div>
+
+    <div class="footer">
+        <button class="btn primary">Apply Theme</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

@@ -63,6 +63,11 @@
     font-size: 16px;
 }
 
+.alert-link
+{
+    font-size: 14px;
+}
+
 .action-container
 {
     position: fixed;
