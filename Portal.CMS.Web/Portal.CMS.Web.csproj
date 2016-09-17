@@ -245,7 +245,6 @@
     <Compile Include="Areas\Admin\ActionFilters\LoggedInFilter.cs" />
     <Compile Include="Areas\Admin\Controllers\AnalyticManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthenticationController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CopyManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\MediaManagerController.cs" />
@@ -272,7 +271,6 @@
     <Compile Include="Areas\Admin\ViewModels\Authentication\RegisterViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\AvatarViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\ResetViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Comments\CommentsViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\CopyManager\CopyViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\CopyManager\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\CopyManager\EditViewModel.cs" />
@@ -351,7 +349,6 @@
     <Content Include="Areas\Admin\Content\Images\icon-settings.png" />
     <Content Include="Areas\Admin\Content\Images\icon-thememanager.png" />
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
-    <Content Include="Areas\Admin\Content\Images\Pages\Dashboard\image-comments.jpg" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
     <Content Include="Content\Scripts\Framework\global.js" />
     <Content Include="Content\Styles\C3Graphing\c3.css" />
@@ -388,10 +385,6 @@
     <Content Include="Areas\Builder\Content\Images\Sample\Sample-6.jpg" />
     <Content Include="Areas\Admin\Content\Images\texture-dark.png" />
     <Content Include="Areas\Admin\Content\Images\texture.png" />
-    <Content Include="Content\Styles\FancyBox\bundle.js" />
-    <Content Include="Content\Styles\FancyBox\bundle.min.js">
-      <DependentUpon>bundle.js</DependentUpon>
-    </Content>
     <Content Include="Content\Styles\FancyBox\jquery.fancybox.min.css">
       <DependentUpon>jquery.fancybox.css</DependentUpon>
     </Content>
@@ -402,7 +395,7 @@
     <Content Include="Areas\Builder\Content\Images\Toolbar\mce-trash.png" />
     <Content Include="Areas\Builder\Content\Scripts\component.expand.js" />
     <Content Include="Areas\Builder\Content\Scripts\pagebuilder.js" />
-    <Content Include="Areas\Admin\Content\Scripts\plugins.js" />
+    <Content Include="Content\Scripts\Bootstrap\initialise.js" />
     <Content Include="Content\Scripts\Framework\modal.js" />
     <Content Include="Areas\Admin\Content\Styles\Framework\boxes.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\fields.css" />
@@ -512,9 +505,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\UserManager\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\MediaManager\Index.cshtml" />
@@ -676,6 +666,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Content\Fonts\AllerDisplay.ttf" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

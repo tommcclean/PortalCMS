@@ -12,6 +12,8 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js").Include("~/Content/Scripts/Bootstrap/bootstrap.min.js"));
 
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Popover").Include("~/Content/Scripts/Bootstrap/initialise.js"));
+
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Confirmation").Include("~/Content/Scripts/BootstrapConfirmation/bootstrap-confirmation.min.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Modal").Include("~/Content/Scripts/Framework/modal.js"));
