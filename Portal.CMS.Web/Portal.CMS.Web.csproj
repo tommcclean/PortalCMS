@@ -255,7 +255,7 @@
     <Compile Include="Areas\Admin\Controllers\PostCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThemeManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserManagerController.cs" />
@@ -291,8 +291,8 @@
     <Compile Include="Areas\Admin\ViewModels\Posts\CreatePostViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Posts\EditPostviewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Posts\PostsViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Roles\CreateViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Roles\EditViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\RoleManager\CreateViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\RoleManager\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Settings\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Settings\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Settings\SettingsViewModel.cs" />
@@ -567,8 +567,8 @@
     <Content Include="Areas\Admin\Views\Copy\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Settings\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Settings\_Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Roles\_Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Roles\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleManager\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleManager\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\Menu\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\Menu\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\MenuItem\_Create.cshtml" />

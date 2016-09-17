@@ -42,12 +42,12 @@
             <div class="float-container" style="margin-top: 25px;">
                 @foreach (var role in Model.RoleList)
                 {
-                    <a href="@Url.Action("Edit", "Roles", new { roleId = @role.RoleId })" cl class="tag launch-modal" data-title="Change: @role.RoleName"><span class="fa fa-tower"></span>@role.RoleName</a>
+                    <a href="@Url.Action("Edit", "RoleManager", new { roleId = @role.RoleId })" cl class="tag launch-modal" data-title="Change: @role.RoleName"><span class="fa fa-building"></span>@role.RoleName</a>
                 }
             </div>
 
             <div class="admin-container x1">
-                <a href="@Url.Action("Create", "Roles")" class="admin-item launch-modal" data-title="Create Role"><span class="fa fa-plus"></span>Create Role</a>
+                <a href="@Url.Action("Create", "RoleManager")" class="admin-item launch-modal" data-title="Create Role"><span class="fa fa-plus"></span>Create Role</a>
             </div>
         </div>
     </div>

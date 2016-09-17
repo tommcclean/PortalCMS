@@ -1,9 +1,9 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Roles.EditViewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.RoleManager.EditViewModel
 @{
     Layout = "";
 }
 
-@using (Html.BeginForm("Edit", "Roles", FormMethod.Post))
+@using (Html.BeginForm("Edit", "RoleManager", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -30,7 +30,7 @@
         <button class="btn primary">Save</button>
         @if (Model.RoleName != "Admin" && Model.RoleName != "Authenticated")
         {
-            <a href="@Url.Action("Delete", "Roles", new { roleId = Model.RoleId })" class="btn delete">Delete</a>
+            <a href="@Url.Action("Delete", "RoleManager", new { roleId = Model.RoleId })" class="btn delete">Delete</a>
         }
         <button class="btn" data-dismiss="modal">Cancel</button>
     </div>

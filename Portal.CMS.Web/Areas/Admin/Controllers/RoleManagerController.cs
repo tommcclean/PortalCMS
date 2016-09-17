@@ -1,18 +1,18 @@
 ﻿using Portal.CMS.Services.Authentication;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
-using Portal.CMS.Web.Areas.Admin.ViewModels.Roles;
+using Portal.CMS.Web.Areas.Admin.ViewModels.RoleManager;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
     [LoggedInFilter, AdminFilter]
-    public class RolesController : Controller
+    public class RoleManagerController : Controller
     {
         #region Dependencies
 
         private readonly IRoleService _roleService;
 
-        public RolesController(IRoleService roleService)
+        public RoleManagerController(IRoleService roleService)
         {
             _roleService = roleService;
         }
@@ -28,9 +28,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var model = new CreateViewModel
-            {
-            };
+            var model = new CreateViewModel();
 
             return View("_Create", model);
         }
