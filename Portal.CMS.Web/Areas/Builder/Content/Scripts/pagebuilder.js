@@ -316,6 +316,16 @@ function ChangeOrder() {
         $('#component-panel').slideUp(300);
         $('#component-panel').toggleClass('visible');
     }
+
+    if ($('#pages-panel').hasClass('visible')) {
+        $('#pages-panel').slideUp(300);
+        $('#pages-panel').toggleClass('visible');
+    }
+
+    if ($('#theme-manager-panel').hasClass('visible')) {
+        $('#theme-manager-panel').slideUp(300);
+        $('#theme-manager-panel').toggleClass('visible');
+    }
 }
 
 function SaveOrder() {
