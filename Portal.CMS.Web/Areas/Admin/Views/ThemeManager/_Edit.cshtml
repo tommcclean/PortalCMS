@@ -11,7 +11,7 @@
 
     @Html.HiddenFor(x => x.ThemeId)
     @Html.HiddenFor(x => x.IsDefault)
-    
+
     if (Model.IsDefault)
     {
         <div class="alert alert-danger" role="alert">Warning: This theme is currently active. Any changes you make will affect your pages.</div>

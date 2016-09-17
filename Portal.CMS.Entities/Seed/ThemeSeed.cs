@@ -42,7 +42,7 @@ namespace Portal.CMS.Entities.Seed
                 var fontList = context.Fonts.ToList();
 
                 var defaultFont = fontList.First(x => x.FontName == "Portal");
-                var allerDisplayFont= fontList.First(x => x.FontName == "AllerDisplay");
+                var allerDisplayFont = fontList.First(x => x.FontName == "AllerDisplay");
                 var snigletFont = fontList.First(x => x.FontName == "Sniglet");
                 var thinLineFont = fontList.First(x => x.FontName == "ThinLine");
                 var robotoThinFont = fontList.First(x => x.FontName == "Roboto-Thin");

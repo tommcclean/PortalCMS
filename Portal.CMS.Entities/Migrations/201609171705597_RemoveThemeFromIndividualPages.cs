@@ -1,8 +1,7 @@
 namespace Portal.CMS.Entities.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class RemoveThemeFromIndividualPages : DbMigration
     {
         public override void Up()
@@ -11,7 +10,7 @@ namespace Portal.CMS.Entities.Migrations
             DropIndex("dbo.Pages", new[] { "ThemeId" });
             DropColumn("dbo.Pages", "ThemeId");
         }
-        
+
         public override void Down()
         {
             AddColumn("dbo.Pages", "ThemeId", c => c.Int());

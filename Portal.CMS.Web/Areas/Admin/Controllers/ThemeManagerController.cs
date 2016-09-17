@@ -1,5 +1,4 @@
-﻿using Portal.CMS.Services.Generic;
-using Portal.CMS.Services.Themes;
+﻿using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager;
 using System;
