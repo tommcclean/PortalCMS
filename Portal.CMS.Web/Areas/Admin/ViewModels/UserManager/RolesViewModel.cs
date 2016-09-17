@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Portal.CMS.Web.Areas.Admin.ViewModels.Users
+namespace Portal.CMS.Web.Areas.Admin.ViewModels.UserManager
 {
     public class RolesViewModel
     {

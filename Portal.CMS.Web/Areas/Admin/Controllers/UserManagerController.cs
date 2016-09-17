@@ -1,14 +1,14 @@
 ﻿using Portal.CMS.Services.Authentication;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.Helpers;
-using Portal.CMS.Web.Areas.Admin.ViewModels.Users;
+using Portal.CMS.Web.Areas.Admin.ViewModels.UserManager;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
     [LoggedInFilter, AdminFilter]
-    public class UsersController : Controller
+    public class UserManagerController : Controller
     {
         #region Dependencies
 
@@ -16,7 +16,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         private readonly IRegistrationService _registrationService;
         private readonly IRoleService _roleService;
 
-        public UsersController(IUserService userService, IRegistrationService registrationService, IRoleService roleService)
+        public UserManagerController(IUserService userService, IRegistrationService registrationService, IRoleService roleService)
         {
             _userService = userService;
             _registrationService = registrationService;

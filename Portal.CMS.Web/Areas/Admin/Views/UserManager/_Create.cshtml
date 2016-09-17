@@ -1,11 +1,11 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Users.CreateViewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.UserManager.CreateViewModel
 @{
     ViewBag.Title = "Create User";
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-users.png";
     Layout = "";
 }
 
-@using (Html.BeginForm("Create", "Users", FormMethod.Post, new { id = "createUserform" }))
+@using (Html.BeginForm("Create", "UserManager", FormMethod.Post, new { id = "createUserform" }))
 {
     @Html.AntiForgeryToken()
 

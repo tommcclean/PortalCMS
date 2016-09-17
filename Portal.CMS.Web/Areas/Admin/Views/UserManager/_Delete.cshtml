@@ -1,9 +1,9 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Users.DeleteViewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.UserManager.DeleteViewModel
 @{
     Layout = "";
 }
 
-@using (Html.BeginForm("Delete", "Users", FormMethod.Post))
+@using (Html.BeginForm("Delete", "UserManager", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

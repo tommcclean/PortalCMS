@@ -1,9 +1,9 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Users.RolesViewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.UserManager.RolesViewModel
 @{
     Layout = "";
 }
 
-@using (Html.BeginForm("Roles", "Users", FormMethod.Post))
+@using (Html.BeginForm("Roles", "UserManager", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

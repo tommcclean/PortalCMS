@@ -258,7 +258,7 @@
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThemeManagerController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Admin\Helpers\EmailHelper.cs" />
     <Compile Include="Areas\Admin\Helpers\MenuHelper.cs" />
     <Compile Include="Areas\Admin\Helpers\SettingHelper.cs" />
@@ -300,11 +300,11 @@
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\DefaultViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\ThemeViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\UpsertViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Users\CreateViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Users\DeleteViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Users\DetailsViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Users\RolesViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Users\UsersViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UserManager\CreateViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UserManager\DeleteViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UserManager\DetailsViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UserManager\RolesViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UserManager\UsersViewModel.cs" />
     <Compile Include="Areas\Builder\BuilderAreaRegistration.cs" />
     <Compile Include="Areas\Builder\Controllers\BuildController.cs" />
     <Compile Include="Areas\Builder\Controllers\ComponentController.cs" />
@@ -511,7 +511,7 @@
     <Content Include="Areas\Admin\Views\Posts\_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
@@ -520,10 +520,10 @@
     <Content Include="Areas\Admin\Views\Media\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Users\_Details.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\_Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Users\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Settings\Index.cshtml" />
@@ -544,10 +544,10 @@
     <Content Include="Views\Blog\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Users\_Roles.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\_Roles.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Users\_Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Dashboard\_MediaManager.cshtml" />

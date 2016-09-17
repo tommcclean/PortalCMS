@@ -1,11 +1,11 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Users.DetailsViewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.UserManager.DetailsViewModel
 @{
     ViewBag.Title = string.Format("Edit User: {0} {1}", Model.GivenName, Model.FamilyName);
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-users.png";
     Layout = "";
 }
 
-@using (Html.BeginForm("Details", "Users", FormMethod.Post))
+@using (Html.BeginForm("Details", "UserManager", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

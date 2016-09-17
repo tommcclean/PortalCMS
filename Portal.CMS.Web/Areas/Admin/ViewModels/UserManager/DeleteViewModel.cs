@@ -1,4 +1,4 @@
-﻿namespace Portal.CMS.Web.Areas.Admin.ViewModels.Users
+﻿namespace Portal.CMS.Web.Areas.Admin.ViewModels.UserManager
 {
     public class DeleteViewModel
     {
