@@ -257,6 +257,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ThemeManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Helpers\EmailHelper.cs" />
     <Compile Include="Areas\Admin\Helpers\MenuHelper.cs" />
@@ -277,7 +278,8 @@
     <Compile Include="Areas\Admin\ViewModels\Copy\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Dashboard\DashboardViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Media\MediaViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Media\UploadViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Media\UploadFontViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Media\UploadImageViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\MenuItem\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Menu\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Menu\EditViewModel.cs" />
@@ -295,6 +297,9 @@
     <Compile Include="Areas\Admin\ViewModels\Settings\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Settings\SettingsViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Settings\SetupViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ThemeManager\DefaultViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ThemeManager\ThemeViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ThemeManager\UpsertViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Users\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Users\DeleteViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Users\DetailsViewModel.cs" />
@@ -309,6 +314,7 @@
     <Compile Include="Areas\Builder\ViewModels\Component\AddViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\ImageViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
+    <Compile Include="Areas\Builder\ViewModels\Shared\ThemeManagerViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Widget\PostListViewModel.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -343,6 +349,7 @@
     <Content Include="Areas\Admin\Content\Images\icon-logout.png" />
     <Content Include="Areas\Admin\Content\Images\icon-reports.png" />
     <Content Include="Areas\Admin\Content\Images\icon-settings.png" />
+    <Content Include="Areas\Admin\Content\Images\icon-thememanager.png" />
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
     <Content Include="Areas\Admin\Content\Images\Pages\Dashboard\image-comments.jpg" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
@@ -522,7 +529,7 @@
     <Content Include="Areas\Admin\Views\Settings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Media\_Upload.cshtml" />
+    <Content Include="Areas\Admin\Views\Media\_UploadImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Blog\Index.cshtml" />
@@ -605,6 +612,69 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Builder\Views\Shared\_ThemeManager.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Media\_UploadFont.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ThemeManager\_Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ThemeManager\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ThemeManager\_Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ThemeManager\_Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\Thin_Line_Font.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\Sniglet-Regular.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\Roboto-Thin.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\Roboto-Bold.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\Railway.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\Organo.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\GrandHotel-Regular.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\DancingScript-Regular.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\carbontype.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\BubblegumSans-Regular.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\BreeSerif-Regular.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\Blackout-2am.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\ArchitectsDaughter.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\Anagram.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Fonts\AllerDisplay.ttf" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

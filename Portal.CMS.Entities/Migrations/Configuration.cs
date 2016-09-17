@@ -12,6 +12,7 @@ namespace Portal.CMS.Entities.Migrations
 
         protected override void Seed(Portal.CMS.Entities.PortalEntityModel context)
         {
+            ThemeSeed.Seed(context);
             RoleSeed.Seed(context);
             SettingSeed.Seed(context);
             MenuSeed.Seed(context);

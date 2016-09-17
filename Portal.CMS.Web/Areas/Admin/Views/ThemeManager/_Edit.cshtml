@@ -1,0 +1,46 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager.UpsertViewModel
+@{
+    Layout = "";
+
+    var fontList = Model.FontList.Select(x => new SelectListItem { Value = x.FontId.ToString(), Text = x.FontName });
+}
+
+@using (Html.BeginForm("Edit", "ThemeManager", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.ThemeId)
+    @Html.HiddenFor(x => x.IsDefault)
+    
+    if (Model.IsDefault)
+    {
+        <div class="alert alert-danger" role="alert">Warning: This theme is currently active. Any changes you make will affect your pages.</div>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">Please note: This theme is not currently active as your default theme.</div>
+    }
+
+    @Html.ValidationMessage("ThemeName")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.ThemeName)
+        @Html.TextBoxFor(x => x.ThemeName)
+    </div>
+
+    @Html.ValidationMessage("TitleFontId")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.TitleFontId)
+        @Html.DropDownListFor(m => m.TitleFontId, fontList)
+    </div>
+
+    @Html.ValidationMessage("TextFontId")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.TextFontId)
+        @Html.DropDownListFor(m => m.TextFontId, fontList)
+    </div>
+
+    <div class="footer">
+        <button class="btn primary">Edit Theme</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

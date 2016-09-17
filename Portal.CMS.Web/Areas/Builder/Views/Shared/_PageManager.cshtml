@@ -11,7 +11,7 @@
     </div>
 
     <div class="panel-inner">
-        <a href="@Url.Action("Create", "Pages", new { area = "Admin" })" class="btn primary launch-modal" data-title="New Page" style="font-size: 15px;"><span class="fa fa-plus"></span>New Page</a>
+        <a href="@Url.Action("Create", "Pages", new { area = "Admin" })" class="btn primary launch-modal" data-title="New Page" style="font-size: 15px;"><span class="fa fa-plus"></span>New</a>
         <a href="@Url.Action("Index", "Pages", new { area = "Admin" })" class="btn" style="font-size: 15px;"><span class="fa fa-th-list"></span>Page Manager</a>
 
         <div class="tab-content" style="padding-top: 10px; padding-right: 10px; padding-left: 2px; border: 0; max-height: 74vh;">
@@ -27,7 +27,6 @@
                         <a href="@Url.Action("Edit", "Pages", new { area = "Admin", pageId = @page.PageId })" class="admin-item launch-modal" data-title="Edit Page"><span class="fa fa-pencil"></span>Edit</a>
                         <a href="@page.PageArea/@page.PageController/@page.PageAction" class="admin-item"><span class="fa fa-briefcase"></span>Build</a>
                     </div>
-
                 </div>
             }
         </div>

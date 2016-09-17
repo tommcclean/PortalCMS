@@ -1,7 +1,9 @@
 ﻿using Portal.CMS.Entities.Entities.Posts;
+using Portal.CMS.Entities.Entities.Themes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portal.CMS.Entities.Entities.PageBuilder
 {

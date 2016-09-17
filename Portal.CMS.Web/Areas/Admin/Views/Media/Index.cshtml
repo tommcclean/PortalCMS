@@ -4,6 +4,17 @@
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-media.png";
 }
 
+<style>
+    @foreach(var font in Model.Fonts)
+    {
+        <text>@@font-face { font-family: '@font.FontName'; src: url('@font.FontPath') format('@font.FontType'); }</text>
+
+        <text>div.font-@font.FontName { font-family: '@font.FontName'; }</text>
+    }
+
+    .admin-container { font-family: 'Emeric'; }
+</style>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $("#delete-media").click(function (event) {
@@ -42,7 +53,8 @@
 
 <div class="action-container">
     <div id="delete-media" class="action" style="display: none;"><span class="fa fa-trash"></span></div>
-    <a href="@Url.Action("Upload", "Media", new { area = "Admin" })" data-title="Upload Image" class="launch-modal"><div class="action"><span class="fa fa-plus"></span></div></a>
+    <a href="@Url.Action("UploadFont", "Media", new { area = "Admin" })" data-title="Upload Font" class="launch-modal"><div class="action"><span class="fa fa-font"></span></div></a>
+    <a href="@Url.Action("UploadImage", "Media", new { area = "Admin" })" data-title="Upload Image" class="launch-modal"><div class="action"><span class="fa fa-camera"></span></div></a>
 </div>
 
 <ul class="nav nav-tabs">
@@ -50,6 +62,7 @@
     <li role="presentation" class=""><a href="#tab-icon" aria-controls="tab-icon" role="tab" data-toggle="tab"><span class="fa fa-circle-o"></span>Icon</a></li>
     <li role="presentation" class=""><a href="#tab-screenshot" aria-controls="tab-screenshot" role="tab" data-toggle="tab"><span class="fa fa-camera"></span>Screenshot</a></li>
     <li role="presentation" class=""><a href="#tab-texture" aria-controls="tab-texture" role="tab" data-toggle="tab"><span class="fa fa-leaf"></span>Texture</a></li>
+    <li role="presentation" class=""><a href="#tab-fonts" aria-controls="tab-texture" role="tab" data-toggle="tab"><span class="fa fa-font"></span>Fonts</a></li>
 </ul>
 <div class="row image-selector single x5">
     <div class="tab-content">
@@ -76,6 +89,25 @@
             {
                 <img id="image-@image.ImageId" class="thumbnail" src="@image.ImagePath" />
             }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-fonts">
+            <div class="row">
+                @foreach (var font in Model.Fonts)
+                {
+                    <div class="col-xs-12 col-md-6 col-lg-4">
+                        <div class="box float-container font-@font.FontName" style="min-height: 260px; padding-bottom: 60px;">
+
+                            <h3>@font.FontName</h3>
+                            <p style="word-wrap: break-word;">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+                            <p style="word-wrap: break-word;">abcdefghijklmnopqrstuvwaxyz</p>
+
+                            <div class="admin-container x1">
+                                <a href="@Url.Action("DeleteFont", "Media", new { fontId = @font.FontId})" class="admin-item" data-title="Delete Font" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </div>

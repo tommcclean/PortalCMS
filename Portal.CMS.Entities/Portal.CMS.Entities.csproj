@@ -86,6 +86,8 @@
     <Compile Include="Entities\Posts\PostImageType.cs" />
     <Compile Include="Entities\Posts\PostRole.cs" />
     <Compile Include="Entities\Settings\Setting.cs" />
+    <Compile Include="Entities\Themes\Font.cs" />
+    <Compile Include="Entities\Themes\Theme.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Initialisers\DropAndMigrateDatabaseToLatestVersion.cs" />
     <Compile Include="Initialisers\Environments\DefaultInitialiser.cs" />
@@ -150,6 +152,22 @@
     <Compile Include="Migrations\201609152000410_ExtendPostToIncludeViews.Designer.cs">
       <DependentUpon>201609152000410_ExtendPostToIncludeViews.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609161855520_AddFontEntityForTheming.cs" />
+    <Compile Include="Migrations\201609161855520_AddFontEntityForTheming.Designer.cs">
+      <DependentUpon>201609161855520_AddFontEntityForTheming.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609170832180_AddInitialThemeEntity.cs" />
+    <Compile Include="Migrations\201609170832180_AddInitialThemeEntity.Designer.cs">
+      <DependentUpon>201609170832180_AddInitialThemeEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609170909041_ExtendPagesEntityWithTheme.cs" />
+    <Compile Include="Migrations\201609170909041_ExtendPagesEntityWithTheme.Designer.cs">
+      <DependentUpon>201609170909041_ExtendPagesEntityWithTheme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609171705597_RemoveThemeFromIndividualPages.cs" />
+    <Compile Include="Migrations\201609171705597_RemoveThemeFromIndividualPages.Designer.cs">
+      <DependentUpon>201609171705597_RemoveThemeFromIndividualPages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,6 +181,7 @@
     <Compile Include="Seed\PostCategorySeed.cs" />
     <Compile Include="Seed\RoleSeed.cs" />
     <Compile Include="Seed\SettingSeed.cs" />
+    <Compile Include="Seed\ThemeSeed.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -213,6 +232,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609152000410_ExtendPostToIncludeViews.resx">
       <DependentUpon>201609152000410_ExtendPostToIncludeViews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609161855520_AddFontEntityForTheming.resx">
+      <DependentUpon>201609161855520_AddFontEntityForTheming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609170832180_AddInitialThemeEntity.resx">
+      <DependentUpon>201609170832180_AddInitialThemeEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609170909041_ExtendPagesEntityWithTheme.resx">
+      <DependentUpon>201609170909041_ExtendPagesEntityWithTheme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609171705597_RemoveThemeFromIndividualPages.resx">
+      <DependentUpon>201609171705597_RemoveThemeFromIndividualPages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

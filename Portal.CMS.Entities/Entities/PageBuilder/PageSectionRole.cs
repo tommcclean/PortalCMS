@@ -1,5 +1,4 @@
 ﻿using Portal.CMS.Entities.Entities.Authentication;
-using Portal.CMS.Entities.Entities.PageBuilder;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

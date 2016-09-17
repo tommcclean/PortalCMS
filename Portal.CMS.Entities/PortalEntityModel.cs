@@ -8,6 +8,7 @@ namespace Portal.CMS.Entities
     using Entities.PageBuilder;
     using Entities.Posts;
     using Entities.Settings;
+    using Entities.Themes;
     using System.Data.Entity;
 
     public class PortalEntityModel : DbContext
@@ -91,5 +92,13 @@ namespace Portal.CMS.Entities
         public virtual DbSet<PageSectionRole> PageSectionRoles { get; set; }
 
         #endregion Page Builder Entities
+
+        #region Theme Entities
+
+        public virtual DbSet<Font> Fonts { get; set; }
+
+        public virtual DbSet<Theme> Themes { get; set; }
+
+        #endregion Theme Entities
     }
 }
