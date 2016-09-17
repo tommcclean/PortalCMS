@@ -15,7 +15,7 @@ namespace Portal.CMS.Web
 
         protected void Application_Error()
         {
-            //Response.Redirect("~/Home/Error");
+            Response.Redirect("~/Home/Error");
         }
     }
 }
