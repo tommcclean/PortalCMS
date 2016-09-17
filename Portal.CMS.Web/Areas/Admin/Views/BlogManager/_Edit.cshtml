@@ -88,6 +88,7 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-banner">
+            <div class="alert alert-warning" role="alert">Upload new images for use in your blog posts using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
             @if (!Model.ImageList.Any())
             {
                 <h2>No Media Uploads</h2>
@@ -102,6 +103,7 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-gallery">
+            <div class="alert alert-warning" role="alert">Upload new images for use in your blog posts using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
             @if (!Model.ImageList.Any())
             {
                 <h2>No Media Uploads</h2>

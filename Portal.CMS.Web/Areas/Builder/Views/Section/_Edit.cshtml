@@ -60,6 +60,8 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-background">
             <div id="banner-selector" class="image-selector x4 single float-container">
+                <div class="alert alert-warning" role="alert">Upload new images for use in your pages using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
+
                 @foreach (var image in Model.ImageList.Where(x => x.ImageCategory != Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon))
                 {
                     <img class="thumbnail" data-parent="banner-selector" data-target="BackgroundImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
