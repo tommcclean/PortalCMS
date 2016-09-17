@@ -2,7 +2,7 @@
 using Portal.CMS.Entities.Entities.Settings;
 using System.Collections.Generic;
 
-namespace Portal.CMS.Web.Areas.Admin.ViewModels.Settings
+namespace Portal.CMS.Web.Areas.Admin.ViewModels.SettingManager
 {
     public class SettingsViewModel
     {

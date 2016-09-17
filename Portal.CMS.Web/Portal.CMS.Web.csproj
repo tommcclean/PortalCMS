@@ -256,7 +256,7 @@
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleManagerController.cs" />
-    <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThemeManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Admin\Helpers\EmailHelper.cs" />
@@ -293,10 +293,10 @@
     <Compile Include="Areas\Admin\ViewModels\Posts\PostsViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\RoleManager\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\RoleManager\EditViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Settings\CreateViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Settings\EditViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Settings\SettingsViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Settings\SetupViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\SettingManager\CreateViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\SettingManager\EditViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\SettingManager\SettingsViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\SettingManager\SetupViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\DefaultViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\ThemeViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\UpsertViewModel.cs" />
@@ -526,7 +526,7 @@
     <Content Include="Areas\Admin\Views\UserManager\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Settings\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SettingManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Media\_UploadImage.cshtml" />
@@ -565,8 +565,8 @@
     <Content Include="Areas\Admin\Views\Copy\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Copy\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\Copy\_Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Settings\_Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Settings\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SettingManager\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SettingManager\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\RoleManager\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\RoleManager\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\Menu\_Create.cshtml" />
@@ -590,7 +590,7 @@
     <Content Include="Areas\Admin\Views\Authentication\Reset.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Bio.cshtml" />
     <Content Include="Areas\Admin\Views\Copy\_Copy.cshtml" />
-    <Content Include="Areas\Admin\Views\Settings\_Setup.cshtml" />
+    <Content Include="Areas\Admin\Views\SettingManager\_Setup.cshtml" />
     <Content Include="Areas\Builder\Views\Widget\_RecentPostList.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
     <Content Include="Areas\Builder\Views\Component\_Add.cshtml" />

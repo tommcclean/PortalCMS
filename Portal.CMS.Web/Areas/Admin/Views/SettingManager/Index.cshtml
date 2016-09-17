@@ -1,6 +1,6 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Settings.SettingsViewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.SettingManager.SettingsViewModel
 @{
-    ViewBag.Title = "Manage Settings";
+    ViewBag.Title = "Setting Manager";
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-settings.png";
 }
 
@@ -14,7 +14,7 @@
             <div class="float-container" style="margin-top: 25px;">
                 @foreach (var setting in Model.SettingList)
                 {
-                    <a href="@Url.Action("Edit", "Settings", new { settingId = @setting.SettingId })" class="tag launch-modal" data-title="Change: @setting.SettingName">
+                    <a href="@Url.Action("Edit", "SettingManager", new { settingId = @setting.SettingId })" class="tag launch-modal" data-title="Change: @setting.SettingName">
                         <strong><span class="fa fa-cog"></span>@setting.SettingName: </strong>
 
                         @if (setting.SettingName.Contains("Password"))
@@ -30,7 +30,7 @@
             </div>
 
             <div class="admin-container x1">
-                <a href="@Url.Action("Create", "Settings")" class="admin-item launch-modal" data-title="Create Setting"><span class="fa fa-plus"></span>Create Setting</a>
+                <a href="@Url.Action("Create", "SettingManager")" class="admin-item launch-modal" data-title="Create Setting"><span class="fa fa-plus"></span>Create Setting</a>
             </div>
         </div>
     </div>

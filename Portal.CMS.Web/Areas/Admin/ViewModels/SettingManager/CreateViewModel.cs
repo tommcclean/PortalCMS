@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Portal.CMS.Web.Areas.Admin.ViewModels.Settings
+namespace Portal.CMS.Web.Areas.Admin.ViewModels.SettingManager
 {
-    public class EditViewModel
+    public class CreateViewModel
     {
-        public int SettingId { get; set; }
-
         [Required]
         [DisplayName("Name")]
         public string SettingName { get; set; }

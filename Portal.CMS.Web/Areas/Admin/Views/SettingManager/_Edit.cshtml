@@ -1,11 +1,13 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Settings.CreateViewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.SettingManager.EditViewModel
 @{
     Layout = "";
 }
 
-@using (Html.BeginForm("Create", "Settings", FormMethod.Post))
+@using (Html.BeginForm("Edit", "SettingManager", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.SettingId)
 
     @Html.ValidationMessage("SettingName")
 
@@ -23,6 +25,7 @@
 
     <div class="footer">
         <button class="btn primary">Save</button>
+        <a href="@Url.Action("Delete", "SettingManager", new { settingId = Model.SettingId })" class="btn delete">Delete</a>
         <button class="btn" data-dismiss="modal">Cancel</button>
     </div>
 }

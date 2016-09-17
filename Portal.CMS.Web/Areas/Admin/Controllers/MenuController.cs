@@ -23,7 +23,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "Settings");
+            return RedirectToAction("Index", "SettingManager");
         }
 
         [HttpGet]
@@ -80,7 +80,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _menuService.Delete(menuId);
 
-            return RedirectToAction("Index", "Settings");
+            return RedirectToAction("Index", "SettingManager");
         }
     }
 }

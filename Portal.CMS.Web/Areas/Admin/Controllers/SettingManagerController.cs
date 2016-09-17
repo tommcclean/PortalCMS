@@ -3,13 +3,13 @@ using Portal.CMS.Services.Menu;
 using Portal.CMS.Services.Settings;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.Helpers;
-using Portal.CMS.Web.Areas.Admin.ViewModels.Settings;
+using Portal.CMS.Web.Areas.Admin.ViewModels.SettingManager;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
     [LoggedInFilter, AdminFilter]
-    public class SettingsController : Controller
+    public class SettingManagerController : Controller
     {
         #region Dependencies
 
@@ -17,7 +17,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         private readonly IRoleService _roleService;
         private readonly IMenuService _menuService;
 
-        public SettingsController(ISettingService settingService, IRoleService roleService, IMenuService menuService)
+        public SettingManagerController(ISettingService settingService, IRoleService roleService, IMenuService menuService)
         {
             _settingService = settingService;
             _roleService = roleService;
