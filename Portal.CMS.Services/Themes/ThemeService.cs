@@ -18,6 +18,8 @@ namespace Portal.CMS.Services.Themes
         void Delete(int themeId);
 
         void Default(int themeId);
+
+        Theme GetDefault();
     }
 
     public class ThemeService : IThemeService
@@ -34,6 +36,13 @@ namespace Portal.CMS.Services.Themes
         }
 
         #endregion Dependencies
+
+        public Theme GetDefault()
+        {
+            var defaultTheme = _context.Themes.FirstOrDefault(x => x.IsDefault == true);
+
+            return defaultTheme;
+        }
 
         public Theme Get(int themeId)
         {

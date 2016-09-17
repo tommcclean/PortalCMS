@@ -21,6 +21,8 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager
         [DisplayName("Text Font")]
         public int TextFontId { get; set; }
 
+        public bool IsDefault { get; set; }
+
         public IEnumerable<Font> FontList { get; set; }
     }
 }

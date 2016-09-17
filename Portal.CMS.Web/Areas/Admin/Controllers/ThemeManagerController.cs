@@ -74,7 +74,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 ThemeName = theme.ThemeName,
                 TextFontId = theme.TextFontId.Value,
                 TitleFontId = theme.TitleFontId.Value,
-                FontList = _fontService.Get()
+                FontList = _fontService.Get(),
+                IsDefault = theme.IsDefault
             };
 
             return PartialView("_Edit", model);

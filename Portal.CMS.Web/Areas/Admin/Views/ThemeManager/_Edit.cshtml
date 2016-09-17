@@ -10,8 +10,16 @@
     @Html.AntiForgeryToken()
 
     @Html.HiddenFor(x => x.ThemeId)
-
-    <div class="alert alert-warning" role="alert">Once you have created this theme you can make it the default theme. This will update all of your existing pages.</div>
+    @Html.HiddenFor(x => x.IsDefault)
+    
+    if (Model.IsDefault)
+    {
+        <div class="alert alert-danger" role="alert">Warning: This theme is currently active. Any changes you make will affect your pages.</div>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">Please note: This theme is not currently active as your default theme.</div>
+    }
 
     @Html.ValidationMessage("ThemeName")
     <div class="control-group float-container">
