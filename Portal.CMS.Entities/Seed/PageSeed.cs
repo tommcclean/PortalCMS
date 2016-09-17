@@ -11,6 +11,8 @@ namespace Portal.CMS.Entities.Seed
         {
             if (!context.Pages.Any())
             {
+                var ThemeId = context.Themes.First().ThemeId;
+
                 context.Pages.Add(new Entities.PageBuilder.Page
                 {
                     PageName = "Homepage",
@@ -18,6 +20,7 @@ namespace Portal.CMS.Entities.Seed
                     PageAction = "Index",
                     DateAdded = DateTime.Now,
                     DateUpdated = DateTime.Now,
+                    ThemeId = ThemeId,
                     PageSections = new List<PageSection>
                     {
                         new Entities.PageBuilder.PageSection { PageSectionTypeId = context.PageSectionTypes.First(x => x.PageSectionTypeName == "Introduction").PageSectionTypeId, PageSectionBody = "<section id=\"section-1\" class=\"header background-parallax height-tall\"><div class=\"overlay-medium\"></div><div id=\"component-250716214738-1\" class=\"vertical-alignment component-container\"><h1 id=\"component-250716214837-1\">Welcome to Portal CMS</h1><p id=\"component-250716214849-1\"><span style=\"line-height: 28.5714px;\">Incase you didn't already know, Portal CMS is a fully featured content management system with a powerful integrated Page Builder.</span></p><p id=\"component-250716214853-1\">Your new website is going to be great! But you need to do one thing before you start making your masterpiece.</p><a id=\"component-250716214932-1\" href=\"Admin/Authentication/Register\" class=\"btn launch-modal\" data-title=\"Register Admin Account\">Register Admin Account.</a></div></section>" },
@@ -34,13 +37,14 @@ namespace Portal.CMS.Entities.Seed
                     PageAction = "Error",
                     DateAdded = DateTime.Now,
                     DateUpdated = DateTime.Now,
+                    ThemeId = ThemeId,
                     PageSections = new List<PageSection>
                     {
                         new Entities.PageBuilder.PageSection { PageSectionTypeId = context.PageSectionTypes.First(x => x.PageSectionTypeName == "Introduction").PageSectionTypeId, PageSectionBody = "<section id=\"section-5\" class=\"header background-parallax height-tall\"><div class=\"overlay-medium\"></div><div id=\"component-100916160418-5\" class=\"vertical-alignment component-container\"><h1 id=\"title-5\" data-section=\"1\">Server Error</h1><p id=\"subtitle-5\">Sorry but something went wrong. We have logged the problem and will look into it.</p><a id=\"component-1473519891239-5\" onclick=\"history.go(-1);\"  class=\"btn square\" target=\"\">Back</a></div></section>" },
                     }
                 });
 
-                context.Pages.Add(new Entities.PageBuilder.Page { PageName = "Contact", PageController = "Contact", PageAction = "Index", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
+                context.Pages.Add(new Entities.PageBuilder.Page { PageName = "Contact", PageController = "Contact", PageAction = "Index", DateAdded = DateTime.Now, DateUpdated = DateTime.Now, ThemeId = ThemeId });
             }
         }
     }

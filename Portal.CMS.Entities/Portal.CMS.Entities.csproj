@@ -167,7 +167,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Seed\FontSeed.cs" />
     <Compile Include="Seed\MediaSeed.cs" />
     <Compile Include="Seed\MenuSeed.cs" />
     <Compile Include="Seed\PageComponentTypeSeed.cs" />
@@ -178,6 +177,7 @@
     <Compile Include="Seed\PostCategorySeed.cs" />
     <Compile Include="Seed\RoleSeed.cs" />
     <Compile Include="Seed\SettingSeed.cs" />
+    <Compile Include="Seed\ThemeSeed.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
