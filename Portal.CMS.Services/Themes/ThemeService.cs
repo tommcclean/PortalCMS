@@ -4,8 +4,6 @@ using Portal.CMS.Services.PageBuilder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Themes
 {
@@ -26,8 +24,8 @@ namespace Portal.CMS.Services.Themes
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
-        readonly IPageService _pageService;
+        private readonly PortalEntityModel _context;
+        private readonly IPageService _pageService;
 
         public ThemeService(PortalEntityModel context, IPageService pageService)
         {
@@ -83,7 +81,7 @@ namespace Portal.CMS.Services.Themes
                 _context.SaveChanges();
 
                 return existingTheme.ThemeId;
-            }            
+            }
         }
 
         public void Delete(int themeId)
@@ -102,7 +100,7 @@ namespace Portal.CMS.Services.Themes
         {
             var themes = Get();
 
-            foreach(var theme in themes)
+            foreach (var theme in themes)
             {
                 if (theme.ThemeId == themeId)
                     theme.IsDefault = true;
@@ -112,7 +110,7 @@ namespace Portal.CMS.Services.Themes
 
             var pages = _pageService.Get();
 
-            foreach(var page in pages)
+            foreach (var page in pages)
             {
                 page.ThemeId = themeId;
                 page.DateUpdated = DateTime.Now;

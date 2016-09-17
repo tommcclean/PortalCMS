@@ -78,7 +78,7 @@ namespace Portal.CMS.Services.PageBuilder
             return null;
         }
 
-        private Page FilterSectionList (Page page, int? userId)
+        private Page FilterSectionList(Page page, int? userId)
         {
             User userAccount;
             var userRoleList = new List<string>();
@@ -100,7 +100,7 @@ namespace Portal.CMS.Services.PageBuilder
                 {
                     var matchedRole = false;
 
-                    foreach(var role in pageSection.PageSectionRoles)
+                    foreach (var role in pageSection.PageSectionRoles)
                     {
                         if (userRoleList.Contains(role.Role.RoleName))
                         {

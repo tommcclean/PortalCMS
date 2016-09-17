@@ -1,8 +1,7 @@
 namespace Portal.CMS.Entities.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class ExtendPagesEntityWithTheme : DbMigration
     {
         public override void Up()
@@ -11,7 +10,7 @@ namespace Portal.CMS.Entities.Migrations
             CreateIndex("dbo.Pages", "ThemeId");
             AddForeignKey("dbo.Pages", "ThemeId", "dbo.Themes", "ThemeId");
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.Pages", "ThemeId", "dbo.Themes");

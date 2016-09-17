@@ -14,13 +14,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        readonly IImageService _imageService;
-        readonly IFontService _fontService;
-        readonly IPostService _postService;
-        readonly IPostImageService _postImageService;
+        private readonly IImageService _imageService;
+        private readonly IFontService _fontService;
+        private readonly IPostService _postService;
+        private readonly IPostImageService _postImageService;
 
-        const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
-        const string FONT_DIRECTORY = "/Areas/Admin/Content/Fonts/Uploads";
+        private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
+        private const string FONT_DIRECTORY = "/Areas/Admin/Content/Fonts/Uploads";
 
         public MediaController(IPostService postService, IPostImageService postImageService, IImageService imageService, IFontService fontService)
         {
@@ -128,8 +128,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index), "Media");
         }
 
-
-        string SaveImage(HttpPostedFileBase imageFile, string actionName)
+        private string SaveImage(HttpPostedFileBase imageFile, string actionName)
         {
             var extension = Path.GetExtension(imageFile.FileName).ToUpper();
 
@@ -152,7 +151,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return relativeFilePath;
         }
 
-        string SaveFont(HttpPostedFileBase fontFile, string actionName)
+        private string SaveFont(HttpPostedFileBase fontFile, string actionName)
         {
             var extension = Path.GetExtension(fontFile.FileName).ToUpper();
 

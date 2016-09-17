@@ -1,8 +1,7 @@
 namespace Portal.CMS.Entities.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class AddInitialThemeEntity : DbMigration
     {
         public override void Up()
@@ -10,23 +9,22 @@ namespace Portal.CMS.Entities.Migrations
             CreateTable(
                 "dbo.Themes",
                 c => new
-                    {
-                        ThemeId = c.Int(nullable: false, identity: true),
-                        ThemeName = c.String(nullable: false),
-                        IsDefault = c.Boolean(nullable: false),
-                        TitleFontId = c.Int(),
-                        TextFontId = c.Int(),
-                        DateAdded = c.DateTime(nullable: false),
-                        DateUpdated = c.DateTime(nullable: false),
-                    })
+                {
+                    ThemeId = c.Int(nullable: false, identity: true),
+                    ThemeName = c.String(nullable: false),
+                    IsDefault = c.Boolean(nullable: false),
+                    TitleFontId = c.Int(),
+                    TextFontId = c.Int(),
+                    DateAdded = c.DateTime(nullable: false),
+                    DateUpdated = c.DateTime(nullable: false),
+                })
                 .PrimaryKey(t => t.ThemeId)
                 .ForeignKey("dbo.Fonts", t => t.TextFontId)
                 .ForeignKey("dbo.Fonts", t => t.TitleFontId)
                 .Index(t => t.TitleFontId)
                 .Index(t => t.TextFontId);
-            
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.Themes", "TitleFontId", "dbo.Fonts");

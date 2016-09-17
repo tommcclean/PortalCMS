@@ -2,10 +2,6 @@
 using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -15,8 +11,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        readonly IThemeService _themeService;
-        readonly IFontService _fontService;
+        private readonly IThemeService _themeService;
+        private readonly IFontService _fontService;
 
         public ThemeManagerController(IThemeService themeService, IFontService fontService)
         {
