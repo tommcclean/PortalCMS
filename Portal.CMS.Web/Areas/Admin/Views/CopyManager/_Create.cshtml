@@ -1,4 +1,4 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Copy.CreateViewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.CopyManager.CreateViewModel
 @{
     Layout = "";
     var textareaSelector = DateTime.Now.ToString("ddMMyyyyHHmmss");
@@ -24,7 +24,7 @@
     });
 </script>
 
-@using (Html.BeginForm("Create", "Copy", FormMethod.Post))
+@using (Html.BeginForm("Create", "CopyManager", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

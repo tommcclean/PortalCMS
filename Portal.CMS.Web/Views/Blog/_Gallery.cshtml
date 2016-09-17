@@ -4,7 +4,7 @@
 <div class="row image-container x3">
     @if (!Model.PostImages.Any(x => x.PostImageType == PostImageType.Gallery))
     {
-        @Html.Action("Get", "Copy", new { area = "Admin", copyName = "No Gallery Message" })
+        @Html.Action("Get", "CopyManager", new { area = "Admin", copyName = "No Gallery Message" })
     }
 
     @foreach (var image in Model.PostImages.Where(x => x.PostImageType == PostImageType.Gallery))

@@ -1,18 +1,18 @@
 ﻿using Portal.CMS.Services.Copy;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
-using Portal.CMS.Web.Areas.Admin.ViewModels.Copy;
+using Portal.CMS.Web.Areas.Admin.ViewModels.CopyManager;
 using System;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    public class CopyController : Controller
+    public class CopyManagerController : Controller
     {
         #region Dependencies
 
         private readonly ICopyService _copyService;
 
-        public CopyController(ICopyService copyService)
+        public CopyManagerController(ICopyService copyService)
         {
             _copyService = copyService;
         }

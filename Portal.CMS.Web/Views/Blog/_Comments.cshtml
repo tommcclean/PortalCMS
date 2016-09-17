@@ -22,7 +22,7 @@
 @if (!Model.PostComments.Any())
 {
     <br />
-    @Html.Action("Get", "Copy", new { area = "Admin", copyName = "No Comments Message" })
+    @Html.Action("Get", "CopyManager", new { area = "Admin", copyName = "No Comments Message" })
 }
 
 @foreach (var comment in Model.PostComments)

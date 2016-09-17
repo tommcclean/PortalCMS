@@ -6,7 +6,7 @@
 }
 @if (!Model.Any())
 {
-    @Html.Action("Get", "Copy", new { area = "Admin", copyName = "No Posts Message" })
+    @Html.Action("Get", "CopyManager", new { area = "Admin", copyName = "No Posts Message" })
 }
 
 @foreach (var post in Model)

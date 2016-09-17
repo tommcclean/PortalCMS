@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Portal.CMS.Web.Areas.Admin.ViewModels.Copy
+namespace Portal.CMS.Web.Areas.Admin.ViewModels.CopyManager
 {
-    public class CreateViewModel
+    public class EditViewModel
     {
+        public int CopyId { get; set; }
+
         [Required]
         [DisplayName("Copy Name")]
         public string CopyName { get; set; }

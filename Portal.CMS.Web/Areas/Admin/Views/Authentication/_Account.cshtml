@@ -19,7 +19,7 @@
 {
     @Html.AntiForgeryToken()
 
-    @Html.Action("Get", "Copy", new { area = "Admin", copyName = "Update Account Message" })
+    @Html.Action("Get", "CopyManager", new { area = "Admin", copyName = "Update Account Message" })
 
     @Html.ValidationMessage("EmailAddress")
     <div class="control-group float-container">

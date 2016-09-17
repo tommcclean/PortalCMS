@@ -12,7 +12,7 @@
 </ul>
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="tab-login">
-        @Html.Action("Get", "Copy", new { area = "Admin", copyName = "Sign In Message" })
+        @Html.Action("Get", "CopyManager", new { area = "Admin", copyName = "Sign In Message" })
 
         @using (Html.BeginForm("Login", "Authentication", FormMethod.Post, new { id = "loginForm" }))
             {

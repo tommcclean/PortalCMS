@@ -246,7 +246,7 @@
     <Compile Include="Areas\Admin\Controllers\AnalyticManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthenticationController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CopyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CopyManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\MediaController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
@@ -273,9 +273,9 @@
     <Compile Include="Areas\Admin\ViewModels\Authentication\AvatarViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\ResetViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Comments\CommentsViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Copy\CopyViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Copy\CreateViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Copy\EditViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\CopyManager\CopyViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\CopyManager\CreateViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\CopyManager\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Dashboard\DashboardViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Media\MediaViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Media\UploadFontViewModel.cs" />
@@ -562,9 +562,9 @@
     <Content Include="Areas\Admin\Views\Dashboard\_Welcome.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Copy\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Copy\_Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Copy\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CopyManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CopyManager\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CopyManager\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SettingManager\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SettingManager\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\RoleManager\_Edit.cshtml" />
@@ -589,7 +589,7 @@
     <Content Include="Areas\Admin\Views\Authentication\_Avatar.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\Reset.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Bio.cshtml" />
-    <Content Include="Areas\Admin\Views\Copy\_Copy.cshtml" />
+    <Content Include="Areas\Admin\Views\CopyManager\_Copy.cshtml" />
     <Content Include="Areas\Admin\Views\SettingManager\_Setup.cshtml" />
     <Content Include="Areas\Builder\Views\Widget\_RecentPostList.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />

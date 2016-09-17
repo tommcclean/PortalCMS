@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Portal.CMS.Web.Areas.Admin.ViewModels.Copy
+namespace Portal.CMS.Web.Areas.Admin.ViewModels.CopyManager
 {
     public class CopyViewModel
     {
