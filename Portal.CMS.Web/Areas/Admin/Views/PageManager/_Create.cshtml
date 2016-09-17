@@ -1,13 +1,11 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Pages.EditViewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.PageManager.CreateViewModel
 @{
     Layout = "";
 }
 
-@using (Html.BeginForm("Edit", "Pages", FormMethod.Post))
+@using (Html.BeginForm("Create", "PageManager", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-
-    @Html.HiddenFor(x => x.PageId)
 
     @Html.ValidationMessage("PageName")
     <div class="control-group float-container">
@@ -43,7 +41,7 @@
     <br />
 
     <div class="footer">
-        <button class="btn primary">Save</button>
+        <button class="btn primary">Create Page</button>
         <button class="btn" data-dismiss="modal">Cancel</button>
     </div>
 }

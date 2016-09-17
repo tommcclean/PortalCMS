@@ -251,7 +251,7 @@
     <Compile Include="Areas\Admin\Controllers\MediaController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuItemController.cs" />
-    <Compile Include="Areas\Admin\Controllers\PagesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PageManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogManagerController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
@@ -283,9 +283,9 @@
     <Compile Include="Areas\Admin\ViewModels\MenuItem\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Menu\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Menu\EditViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Pages\CreateViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Pages\EditViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Pages\PagesViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\PageManager\CreateViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\PageManager\EditViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\PageManager\PagesViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\PostCategories\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\PostCategories\AddViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\BlogManager\CreatePostViewModel.cs" />
@@ -572,9 +572,9 @@
     <Content Include="Areas\Admin\Views\Menu\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\Menu\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\MenuItem\_Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Pages\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Pages\_Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Pages\_Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PageManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PageManager\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PageManager\_Edit.cshtml" />
     <Content Include="Areas\Builder\Views\web.config" />
     <Content Include="Areas\Builder\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Builder\Views\Component\_Image.cshtml" />

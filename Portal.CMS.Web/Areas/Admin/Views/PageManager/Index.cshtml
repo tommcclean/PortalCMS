@@ -1,10 +1,10 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Pages.PagesViewModel
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.PageManager.PagesViewModel
 @{
     ViewBag.Title = "Page Manager";
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-pages.png";
 }
 
-<a href="@Url.Action("Create", "Pages")" class="action-container launch-modal" data-title="Create Page">
+<a href="@Url.Action("Create", "PageManager")" class="action-container launch-modal" data-title="Create Page">
     <div class="action"><span class="fa fa-plus"></span></div>
 </a>
 
@@ -28,7 +28,7 @@
                             <p>Last Updated: @pageItem.DateUpdated.ToString("dd/MM/yyyy HH:mm")</p>
 
                             <div class="admin-container x3">
-                                <a href="@Url.Action("Edit", "Pages", new { pageId = @pageItem.PageId })" class="admin-item launch-modal" data-title="Edit Page: @pageItem.PageName"><span class="fa fa-pencil"></span>Edit</a>
+                                <a href="@Url.Action("Edit", "PageManager", new { pageId = @pageItem.PageId })" class="admin-item launch-modal" data-title="Edit Page: @pageItem.PageName"><span class="fa fa-pencil"></span>Edit</a>
                                 @if (string.IsNullOrWhiteSpace(pageItem.PageArea))
                                 {
                                     <a href="@Url.Action(pageItem.PageAction, pageItem.PageController, new { Area = "" })" class="admin-item" data-title="Build Page"><span class="fa fa-briefcase"></span>Build</a>
@@ -37,7 +37,7 @@
                                 {
                                     <a href="/@pageItem.PageArea/@pageItem.PageController/@pageItem.PageAction" class="admin-item" data-title="Build Page"><span class="fa fa-briefcase"></span>Build</a>
                                 }
-                                <a href="@Url.Action("Delete", "Pages", new { pageId = @pageItem.PageId })" class="admin-item" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
+                                <a href="@Url.Action("Delete", "PageManager", new { pageId = @pageItem.PageId })" class="admin-item" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                                 <p>Last Updated: @pageItem.DateUpdated.ToString("dd/MM/yyyy HH:mm")</p>
 
                                 <div class="admin-container x3">
-                                    <a href="@Url.Action("Edit", "Pages", new { pageId = @pageItem.PageId })" class="admin-item launch-modal" data-title="Edit Copy: @pageItem.PageName"><span class="fa fa-pencil"></span>Edit</a>
+                                    <a href="@Url.Action("Edit", "PageManager", new { pageId = @pageItem.PageId })" class="admin-item launch-modal" data-title="Edit Copy: @pageItem.PageName"><span class="fa fa-pencil"></span>Edit</a>
                                     @if (string.IsNullOrWhiteSpace(pageItem.PageArea))
                                     {
                                         <a href="@Url.Action(pageItem.PageAction, pageItem.PageController, new { Area = "" })" class="admin-item" data-title="Build Page"><span class="fa fa-briefcase"></span>Build</a>
@@ -67,7 +67,7 @@
                                     {
                                         <a href="/@pageItem.PageArea/@pageItem.PageController/@pageItem.PageAction" class="admin-item" data-title="Build Page"><span class="fa fa-briefcase"></span>Build</a>
                                     }
-                                    <a href="@Url.Action("Delete", "Pages", new { pageId = @pageItem.PageId })" class="admin-item" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
+                                    <a href="@Url.Action("Delete", "PageManager", new { pageId = @pageItem.PageId })" class="admin-item" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
                                 </div>
                             </div>
                         </div>

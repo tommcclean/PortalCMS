@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Portal.CMS.Web.Areas.Admin.ViewModels.Pages
+namespace Portal.CMS.Web.Areas.Admin.ViewModels.PageManager
 {
     public class EditViewModel
     {

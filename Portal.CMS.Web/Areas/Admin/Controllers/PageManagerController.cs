@@ -2,7 +2,7 @@
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Areas.Admin.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.Helpers;
-using Portal.CMS.Web.Areas.Admin.ViewModels.Pages;
+using Portal.CMS.Web.Areas.Admin.ViewModels.PageManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
     [LoggedInFilter, AdminFilter]
-    public class PagesController : Controller
+    public class PageManagerController : Controller
     {
         #region Dependencies
 
@@ -20,7 +20,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         private readonly IRoleService _roleService;
         private readonly ITokenService _tokenService;
 
-        public PagesController(IPageService pageService, IRoleService roleService, ITokenService tokenService)
+        public PageManagerController(IPageService pageService, IRoleService roleService, ITokenService tokenService)
         {
             _pageService = pageService;
             _roleService = roleService;
