@@ -11,45 +11,45 @@
     color: #F7F7F7;
 }
 
-section.quote h1
-{
-    font-size: 30px;
-    padding-left: 250px;
-    padding-right: 250px;
-    margin: 0;
-    margin-bottom: 40px;
-}
+    section.quote h1
+    {
+        font-size: 30px;
+        padding-left: 250px;
+        padding-right: 250px;
+        margin: 0;
+        margin-bottom: 40px;
+    }
 
-section.quote h2
-{
-    font-size: 25px;
-}
+    section.quote h2
+    {
+        font-size: 25px;
+    }
 
-section.quote .quote-image-left
-{
-    position: absolute;
-    background-image: url('/Areas/Builder/Content/Images/Sample/quote-image-left.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    top: 30px;
-    background-size: contain;
-    left: 100px;
-    width: 200px;
-    height: 200px;
-}
+    section.quote .quote-image-left
+    {
+        position: absolute;
+        background-image: url('/Areas/Builder/Content/Images/Sample/quote-image-left.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        top: 30px;
+        background-size: contain;
+        left: 100px;
+        width: 200px;
+        height: 200px;
+    }
 
-section.quote .quote-image-right
-{
-    position: absolute;
-    background-image: url('/Areas/Builder/Content/Images/Sample/quote-image-right.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    top: 30px;
-    background-size: contain;
-    right: 100px;
-    width: 200px;
-    height: 200px;
-}
+    section.quote .quote-image-right
+    {
+        position: absolute;
+        background-image: url('/Areas/Builder/Content/Images/Sample/quote-image-right.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        top: 30px;
+        background-size: contain;
+        right: 100px;
+        width: 200px;
+        height: 200px;
+    }
 
 @media (max-width: 1024px)
 {
@@ -76,7 +76,7 @@ section.quote .quote-image-right
     }
 }
 
-@media (max-width: 641px)
+@media (max-width: 767px)
 {
     section.quote .quote-image-left, section.quote .quote-image-right
     {
@@ -85,17 +85,18 @@ section.quote .quote-image-right
 
     section.quote h1
     {
-padding: 0;
+        padding: 0;
     }
 
     section.quote
     {
-        padding-top: 75px;
-        padding-bottom: 75px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
-    section.quote p
+    section.quote .vertical-alignment
     {
-        display: none;
+        top: 0;
+        height: auto;
     }
 }
