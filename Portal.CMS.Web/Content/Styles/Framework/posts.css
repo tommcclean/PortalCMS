@@ -134,14 +134,16 @@
 
 @media (max-width: 736px)
 {
+    .post .post-banner
+    {
+        height: auto;
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+    }
+
     .post-details img.author-image
     {
         display: none;
-    }
-
-    .post .post-banner
-    {
-        height: 600px;
     }
 
     .post-details

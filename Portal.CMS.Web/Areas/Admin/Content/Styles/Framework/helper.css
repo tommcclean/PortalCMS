@@ -270,6 +270,7 @@ a.category-item:hover
         -o-transform: translateY(0%);
         -webkit-transform: translateY(0%);
         transform: translateY(0%);
+        top: 0;
     }
 
     .action-container.wide .action
