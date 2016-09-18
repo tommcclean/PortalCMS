@@ -90,11 +90,23 @@
         }
 }
 
-@media (max-width: 660px)
+@media (max-width: 767px)
 {
+    section.header
+    {
+        max-height: initial;
+    }
+
+    section iframe
+    {
+        max-width: 100%;
+        zoom: 0.6;
+    }
+
     section.header-split .details-wrapper
     {
         width: 100%;
+        position: relative;
     }
 
         section.header-split .details-wrapper .details

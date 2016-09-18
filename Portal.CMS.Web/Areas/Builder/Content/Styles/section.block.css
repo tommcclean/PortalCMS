@@ -5,6 +5,8 @@
     color: white;
     background-size: cover;
     background-position: center center;
+    padding: 20px;
+    padding-bottom: 25px;
 }
 
     section.block h1
@@ -13,8 +15,7 @@
         margin: 0;
         margin-left: 20px;
         margin-right: 20px;
-        padding-top: 25px;
-        line-height: 50px;
+        padding: 20px;
         font-size: 25px;
     }
 

@@ -104,6 +104,8 @@ section .vertical-alignment
         -o-transform: translateY(0%);
         -webkit-transform: translateY(0%);
         transform: translateY(0%);
+        padding-top: 5vh;
+        padding-bottom: 5vh;
     }
 
     .action-container.wide .action
