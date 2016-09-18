@@ -1,16 +1,10 @@
-﻿.clear
-{
-    clear: both;
-}
-
-.float-container:after
+﻿.float-container:after
 {
     visibility: hidden;
     display: block;
     font-size: 0;
     content: " ";
     clear: both;
-    height: 0;
 }
 
 .overlay-dark
@@ -46,33 +40,21 @@
     background-image: url('../../Images/block_black_medium.png');
 }
 
-.upper
-{
-    text-transform: uppercase;
-}
-
 .field-validation-error
 {
     background-color: #B12D2D;
     color: white;
     display: block;
-    width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
-    font-size: 16px;
-}
-
-.alert-link
-{
-    font-size: 14px;
 }
 
 .action-container
 {
     position: fixed;
     right: 20px;
-    bottom: 20px;
+    bottom: 10px;
     height: 60px;
     z-index: 50;
 }
@@ -80,17 +62,16 @@
 .action
 {
     display: inline-block;
-    height: 50px;
-    width: 50px;
+    height: 45px;
+    width: 45px;
+    margin: 2px;
     border-radius: 50%;
     background-color: #D32D27;
-    font-size: 18px;
     color: white;
-    line-height: 50px;
+    font-size: 16px;
+    line-height: 45px;
     text-align: center;
     cursor: pointer;
-    margin-left: 2px;
-    margin-right: 2px;
 }
 
     .action:hover
@@ -98,27 +79,27 @@
         background-color: #BA2823;
     }
 
-    .action .fa, .admin-item .fa, .action .fa
-    {
-        margin: 0;
-    }
+.action-container.absolute
+{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
 
 .action-container.wide
 {
-    bottom: 10px;
+    bottom: 5px;
     right: 10px;
 }
 
     .action-container.wide .action
     {
         height: 40px;
-        line-height: 41px;
         width: auto;
-        border-radius: 15px;
-        text-align: left;
-        margin-bottom: 10px;
-        font-size: 15px;
         padding-right: 20px;
+        line-height: 40px;
+        border-radius: 15px;
+        font-size: 15px;
     }
 
         .action-container.wide .action .fa
@@ -127,58 +108,41 @@
             margin-left: 15px;
         }
 
-.action-container.absolute
+.action-container.absolute .action
 {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    right: auto;
+    background-color: black;
+    border: 2px dashed #191919;
+    -moz-transition: border, background-color 0.2s ease-out;
+    -o-transition: border, background-color 0.2s ease-out;
+    -webkit-transition: border, background-color 0.2s ease-out;
+    transition: border, background-color 0.2s ease-out;
 }
 
-    .action-container.absolute .action
+    .action-container.absolute .action:hover
     {
-        background-color: black;
-        border: 2px dashed #191919;
-        -moz-transition: border, background-color 0.2s ease-out;
-        -o-transition: border, background-color 0.2s ease-out;
-        -webkit-transition: border, background-color 0.2s ease-out;
-        transition: border, background-color 0.2s ease-out;
+        color: white;
+        background-color: #191919;
+        border: 2px dashed #424242;
     }
-
-        .action-container.absolute .action:hover
-        {
-            color: white;
-            background-color: #191919;
-            border: 2px dashed #424242;
-        }
-
-#popup-container
-{
-    display: none;
-}
 
 .admin-container
 {
     position: absolute;
+    width: 90%;
     bottom: 7px;
-    width: 93%;
-    margin-bottom: 10px;
     border-top: 1px solid #E6E6ED;
     padding-top: 5px;
-    margin: 0 auto;
-    z-index: 10;
 }
 
     .admin-container .admin-item
     {
         display: inline-block;
-        width: 24%;
-        text-align: center;
         padding: 10px;
-        color: #9D9FAB;
+        color: #9395A0;
         text-transform: uppercase;
         font-weight: bold;
-        font-size: 15px;
+        font-size: 14px;
+        text-align: center;
     }
 
         .admin-container .admin-item .fa
@@ -216,47 +180,23 @@
     width: 100%;
 }
 
-.no-border
-{
-    border: 0;
-}
-
-.hover
-{
-    opacity: 0;
-    -moz-transition: opacity 0.25s ease-in-out;
-    -o-transition: opacity 0.25s ease-in-out;
-    -webkit-transition: opacity 0.25s ease-in-out;
-    transition: opacity 0.25s ease-in-out;
-}
-
-.image:hover .hover
-{
-    opacity: 1;
-}
-
-.footer
-{
-    text-align: right;
-}
-
 .category-item
 {
-    padding: 7px 10px 7px 10px;
-    background-image: url('../../Images/block_black_dark.png');
     display: inline-block;
-    color: white;
+    padding: 7px 10px 7px 10px;
+    margin: 2px;
+    background-image: url('../../Images/block_black_dark.png');
     border-radius: 5px;
     text-transform: uppercase;
-    margin-right: 8px;
-    font-size: 13px;
-    margin-bottom: 8px;
+    font-size: 12px;
+    color: white;
 }
 
 a.category-item:hover
 {
     color: white;
 }
+
 
 .vertical-alignment
 {
@@ -271,35 +211,19 @@ a.category-item:hover
     z-index: 20;
 }
 
-.align-left
-{
-    text-align: left;
-}
-
-.align-right
-{
-    text-align: right;
-}
-
-.align-center
-{
-    text-align: center;
-}
-
 .tag
 {
     display: inline-block;
-    background-color: #E0E0E0;
     padding: 5px 10px 5px 10px;
+    margin: 5px;
+    background-color: #E0E0E0;
     border-radius: 5px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
-    -moz-transition: all 0.25s ease-in-out;
-    -o-transition: all 0.25s ease-in-out;
-    -webkit-transition: all 0.25s ease-in-out;
-    transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     color: black;
 }
 
@@ -312,17 +236,12 @@ a.category-item:hover
 
 .popover
 {
-    border-radius: 5px;
-    box-shadow: 1px 1px 10px #D2D2D8;
     border: 1px solid #D6D7D8;
 }
 
 .popover-title
 {
     text-transform: uppercase;
-    color: #333333;
-    font-weight: bold;
-    letter-spacing: 0.5px;
 }
 
 .selected
@@ -343,6 +262,16 @@ a.category-item:hover
 
 @media (max-width: 767px)
 {
+    .vertical-alignment, section .vertical-alignment
+    {
+        position: relative;
+        -moz-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+        -o-transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+    }
+
     .action-container.wide .action
     {
         text-align: center;

@@ -93,3 +93,27 @@ section .vertical-alignment
     border: 1px dotted black;
     cursor: pointer;
 }
+
+@media (max-width: 767px)
+{
+    section .vertical-alignment
+    {
+        position: relative;
+        -moz-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+        -o-transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+    }
+
+    .action-container.wide .action
+    {
+        text-align: center;
+        padding-right: 5px;
+        border-radius: 50%;
+        font-size: 18px;
+        height: 50px;
+        line-height: 52px;
+        width: 50px;
+    }
+}

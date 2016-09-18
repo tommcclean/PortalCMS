@@ -71,3 +71,13 @@ code
     padding: 10px;
     font-size: 16px;
 }
+
+.alert-link
+{
+    font-size: 14px;
+}
+
+.action .fa, .admin-item .fa, .action .fa
+{
+    margin: 0;
+}

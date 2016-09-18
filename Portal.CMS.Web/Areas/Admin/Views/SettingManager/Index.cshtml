@@ -60,7 +60,7 @@
             <div class="float-container" style="margin-top: 25px;">
                 @foreach (var menu in Model.MenuList)
                 {
-                    <a href="@Url.Action("Edit", "Menu", new { menuId = @menu.MenuId})" cl class="tag launch-modal" data-title="Change: @menu.MenuName"><span class="fa fa-th-list"></span>@menu.MenuName (@menu.MenuItems.Count)</a>
+                    <a href="@Url.Action("Edit", "Menu", new { menuId = @menu.MenuId})" class="tag launch-modal" data-title="Change: @menu.MenuName"><span class="fa fa-th-list"></span>@menu.MenuName (@menu.MenuItems.Count)</a>
                 }
             </div>
 
