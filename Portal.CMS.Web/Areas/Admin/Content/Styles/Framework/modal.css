@@ -8,6 +8,11 @@
     background-color: whitesmoke;
 }
 
+.modal .footer
+{
+    text-align: right;
+}
+
 @media (min-width: 768px)
 {
     .modal-dialog

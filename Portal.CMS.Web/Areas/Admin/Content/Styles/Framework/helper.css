@@ -125,61 +125,6 @@
         border: 2px dashed #424242;
     }
 
-.admin-container
-{
-    position: absolute;
-    width: 90%;
-    bottom: 7px;
-    border-top: 1px solid #E6E6ED;
-    padding-top: 5px;
-}
-
-    .admin-container .admin-item
-    {
-        display: inline-block;
-        padding: 10px;
-        color: #9395A0;
-        text-transform: uppercase;
-        font-weight: bold;
-        font-size: 14px;
-        text-align: center;
-    }
-
-        .admin-container .admin-item .fa
-        {
-            margin-right: 15px;
-        }
-
-.dark .admin-container .admin-item
-{
-    color: white;
-}
-
-.admin-container .admin-item:hover
-{
-    color: black;
-}
-
-.dark .admin-container .admin-item:hover
-{
-    color: white;
-}
-
-.admin-container.x3 .admin-item
-{
-    width: 32.5%;
-}
-
-.admin-container.x2 .admin-item
-{
-    width: 49%;
-}
-
-.admin-container.x1 .admin-item
-{
-    width: 100%;
-}
-
 .category-item
 {
     display: inline-block;
@@ -196,7 +141,6 @@ a.category-item:hover
 {
     color: white;
 }
-
 
 .vertical-alignment
 {
