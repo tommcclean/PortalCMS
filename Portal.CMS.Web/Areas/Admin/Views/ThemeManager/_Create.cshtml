@@ -9,24 +9,41 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="alert alert-warning" role="alert">Once you have created this theme you can make it the default theme. This will update all of your existing pages.</div>
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation" class="active"><a href="#tab-post" aria-controls="tab-post" role="tab" data-toggle="tab">Details</a></li>
+        <li role="presentation" class=""><a href="#tab-publication" aria-controls="tab-publication" role="tab" data-toggle="tab">Menu</a></li>
+        <li role="presentation" class=""><a href="#tab-banner" aria-controls="tab-banner" role="tab" data-toggle="tab">Colour</a></li>
+        <li role="presentation" class=""><a href="#tab-gallery" aria-controls="tab-gallery" role="tab" data-toggle="tab">Text</a></li>
+    </ul>
 
-    @Html.ValidationMessage("ThemeName")
-    <div class="control-group float-container">
-        @Html.LabelFor(x => x.ThemeName)
-        @Html.TextBoxFor(x => x.ThemeName)
-    </div>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab-theme-details">
+            <div class="alert alert-warning" role="alert">Once you have created this theme you can make it the default theme. This will update all of your existing pages.</div>
 
-    @Html.ValidationMessage("TitleFontId")
-    <div class="control-group float-container">
-        @Html.LabelFor(x => x.TitleFontId)
-        @Html.DropDownListFor(m => m.TitleFontId, fontList)
-    </div>
+            @Html.ValidationMessage("ThemeName")
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.ThemeName)
+                @Html.TextBoxFor(x => x.ThemeName)
+            </div>
 
-    @Html.ValidationMessage("TextFontId")
-    <div class="control-group float-container">
-        @Html.LabelFor(x => x.TextFontId)
-        @Html.DropDownListFor(m => m.TextFontId, fontList)
+            @Html.ValidationMessage("TitleFontId")
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.TitleFontId)
+                @Html.DropDownListFor(m => m.TitleFontId, fontList)
+            </div>
+
+            @Html.ValidationMessage("TextFontId")
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.TextFontId)
+                @Html.DropDownListFor(m => m.TextFontId, fontList)
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-theme-menu">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-theme-colour">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-theme-text">
+        </div>
     </div>
 
     <div class="footer">

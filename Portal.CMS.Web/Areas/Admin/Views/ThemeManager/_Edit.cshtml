@@ -12,31 +12,47 @@
     @Html.HiddenFor(x => x.ThemeId)
     @Html.HiddenFor(x => x.IsDefault)
 
-    if (Model.IsDefault)
-    {
-        <div class="alert alert-danger" role="alert">Warning: This theme is currently active. Any changes you make will affect your pages.</div>
-    }
-    else
-    {
-        <div class="alert alert-warning" role="alert">Please note: This theme is not currently active as your default theme.</div>
-    }
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation" class="active"><a href="#tab-theme-details" aria-controls="tab-theme-details" role="tab" data-toggle="tab">Details</a></li>
+        <li role="presentation" class=""><a href="#tab-theme-menu" aria-controls="tab-theme-menu" role="tab" data-toggle="tab">Menu</a></li>
+        <li role="presentation" class=""><a href="#tab-theme-colour" aria-controls="tab-theme-colour" role="tab" data-toggle="tab">Colour</a></li>
+        <li role="presentation" class=""><a href="#tab-theme-text" aria-controls="tab-theme-text" role="tab" data-toggle="tab">Text</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab-theme-details">
+            @if (Model.IsDefault)
+            {
+            <div class="alert alert-danger" role="alert">Warning: This theme is currently active. Any changes you make will affect your pages.</div>
+            }
+            else
+            {
+            <div class="alert alert-warning" role="alert">Please note: This theme is not currently active as your default theme.</div>
+            }
 
-    @Html.ValidationMessage("ThemeName")
-    <div class="control-group float-container">
-        @Html.LabelFor(x => x.ThemeName)
-        @Html.TextBoxFor(x => x.ThemeName)
-    </div>
+            @Html.ValidationMessage("ThemeName")
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.ThemeName)
+                @Html.TextBoxFor(x => x.ThemeName)
+            </div>
 
-    @Html.ValidationMessage("TitleFontId")
-    <div class="control-group float-container">
-        @Html.LabelFor(x => x.TitleFontId)
-        @Html.DropDownListFor(m => m.TitleFontId, fontList)
-    </div>
+            @Html.ValidationMessage("TitleFontId")
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.TitleFontId)
+                @Html.DropDownListFor(m => m.TitleFontId, fontList)
+            </div>
 
-    @Html.ValidationMessage("TextFontId")
-    <div class="control-group float-container">
-        @Html.LabelFor(x => x.TextFontId)
-        @Html.DropDownListFor(m => m.TextFontId, fontList)
+            @Html.ValidationMessage("TextFontId")
+            <div class="control-group float-container">
+                @Html.LabelFor(x => x.TextFontId)
+                @Html.DropDownListFor(m => m.TextFontId, fontList)
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-theme-menu">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-theme-colour">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-theme-text">
+        </div>
     </div>
 
     <div class="footer">
