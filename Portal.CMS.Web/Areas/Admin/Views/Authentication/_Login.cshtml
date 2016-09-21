@@ -3,6 +3,7 @@
 @{
     Layout = "";
 }
+
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#tab-login" aria-controls="tab-login" role="tab" data-toggle="tab"><span class="fa fa-lock"></span>Login</a></li>
     @if (!string.IsNullOrWhiteSpace(SettingHelper.Get("SendGrid UserName")))
