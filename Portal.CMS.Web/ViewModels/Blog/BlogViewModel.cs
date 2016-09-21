@@ -1,6 +1,5 @@
 ﻿using Portal.CMS.Entities.Entities.Authentication;
 using Portal.CMS.Entities.Entities.Posts;
-using Portal.CMS.Entities.Entities.Themes;
 using System.Collections.Generic;
 
 namespace Portal.CMS.Web.ViewModels.Blog

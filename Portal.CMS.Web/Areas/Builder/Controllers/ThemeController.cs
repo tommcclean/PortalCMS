@@ -1,9 +1,5 @@
 ﻿using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Theme;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
