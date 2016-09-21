@@ -673,7 +673,6 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Content\Fonts\AllerDisplay.ttf" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Theme\Render.cscss" />
   </ItemGroup>

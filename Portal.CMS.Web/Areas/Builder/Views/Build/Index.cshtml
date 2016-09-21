@@ -5,9 +5,13 @@
     var isAdmin = UserHelper.IsAdmin;
 }
 
-@* Page Builder Specific Assets *@
-@Scripts.Render("~/Resources/JavaScript/PageBuilderAdministration")
-@Scripts.Render("~/Resources/JavaScript/FAQSpoilerEvents")
+@section HEADScripts
+{
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    @Scripts.Render("~/Resources/JavaScript/PageBuilderAdministration")
+    @Scripts.Render("~/Resources/JavaScript/FAQSpoilerEvents")
+}
+
 
 @* Drag and Drop Specific Assets *@
 @if (isAdmin)

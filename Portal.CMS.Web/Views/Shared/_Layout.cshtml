@@ -12,12 +12,10 @@
     @Styles.Render("~/Resources/CSS/Administration/Framework")
     @Styles.Render("~/Resources/CSS/PageBuilder/Framework")
     @Styles.Render("~/Resources/CSS/Framework")
-
-    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <link href="@Url.Action("Render", "Theme", new { area = "Builder" })" rel="stylesheet" type="text/css" />
 
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>  
     @RenderSection("HEADScripts", false)
 </head>
 <body>
