@@ -11,16 +11,15 @@
     @Styles.Render("~/Resources/CSS/FontAwesome")
     @Styles.Render("~/Resources/CSS/Administration/Framework")
     @Styles.Render("~/Resources/CSS/Misc/Portal")
-
     @RenderSection("Styles", false)
 
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
-
     @RenderSection("HEADScripts", false)
 </head>
 <body>
-    @Html.Partial("_Header")
+    <header><h3><img src="@ViewBag.Icon" />@ViewBag.Title</h3></header>
+
     @Html.Partial("_Sidebar")
 
     <div id="page-container">@RenderBody()</div>

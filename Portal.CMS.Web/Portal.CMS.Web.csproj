@@ -319,14 +319,14 @@
     <Compile Include="Areas\Builder\ViewModels\Widget\PostListViewModel.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DependencyResolution\ControllerConvention.cs" />
-    <Compile Include="DependencyResolution\DefaultRegistry.cs" />
-    <Compile Include="DependencyResolution\IoC.cs" />
-    <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
-    <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
-    <Compile Include="DependencyResolution\StructureMapScopeModule.cs" />
-    <Compile Include="DependencyResolution\StructureMapWebApiDependencyResolver.cs" />
-    <Compile Include="DependencyResolution\StructureMapWebApiDependencyScope.cs" />
+    <Compile Include="Architecture\DependencyResolution\ControllerConvention.cs" />
+    <Compile Include="Architecture\DependencyResolution\DefaultRegistry.cs" />
+    <Compile Include="Architecture\DependencyResolution\IoC.cs" />
+    <Compile Include="Architecture\DependencyResolution\StructureMapDependencyResolver.cs" />
+    <Compile Include="Architecture\DependencyResolution\StructureMapDependencyScope.cs" />
+    <Compile Include="Architecture\DependencyResolution\StructureMapScopeModule.cs" />
+    <Compile Include="Architecture\DependencyResolution\StructureMapWebApiDependencyResolver.cs" />
+    <Compile Include="Architecture\DependencyResolution\StructureMapWebApiDependencyScope.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -478,9 +478,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\_Sidebar.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Admin\Views\Shared\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\BlogManager\Index.cshtml" />
