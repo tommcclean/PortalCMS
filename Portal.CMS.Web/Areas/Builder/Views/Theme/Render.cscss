@@ -1,0 +1,29 @@
+﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Theme.ThemeViewModel
+
+@@font-face { font-family: '@Model.Theme.TitleFont.FontName'; src: url('@Model.Theme.TitleFont.FontPath') format('@Model.Theme.TitleFont.FontType'); }
+
+@if (Model.Theme.TitleFont.FontId != Model.Theme.TextFont.FontId)
+{
+	<text>@@font-face { font-family: '@Model.Theme.TextFont.FontName'; src: url('@Model.Theme.TextFont.FontPath') format('@Model.Theme.TextFont.FontType'); }</text>
+}
+
+
+#page-wrapper h1, #page-wrapper h2, #page-wrapper h3, #page-wrapper h4
+{
+    font-family: '@Model.Theme.TitleFont.FontName';
+}
+
+.post h1, .post h2, .post h3, .post h4
+{
+    font-family: '@Model.Theme.TitleFont.FontName';
+}
+
+#page-wrapper p, #page-wrapper a
+{
+    font-family: '@Model.Theme.TextFont.FontName';
+}
+
+.post p, .post a
+{
+    font-family: '@Model.Theme.TextFont.FontName';
+}

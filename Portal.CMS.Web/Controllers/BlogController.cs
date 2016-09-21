@@ -35,8 +35,7 @@ namespace Portal.CMS.Web.Controllers
         {
             var model = new BlogViewModel
             {
-                RecentPosts = _postService.Read(UserHelper.UserId, string.Empty).ToList(),
-                Theme = _themeService.GetDefault()
+                RecentPosts = _postService.Read(UserHelper.UserId, string.Empty).ToList()
             };
 
             if (!model.RecentPosts.Any())

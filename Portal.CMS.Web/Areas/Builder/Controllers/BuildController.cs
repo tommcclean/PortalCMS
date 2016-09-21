@@ -67,8 +67,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
             var model = new CustomViewModel()
             {
-                Page = _pageService.View(UserHelper.UserId, pageId),
-                Theme = _themeService.GetDefault()
+                Page = _pageService.View(UserHelper.UserId, pageId)
             };
 
             if (model.Page == null)

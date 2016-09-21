@@ -7,7 +7,7 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Shared
     {
         public int PageId { get; set; }
 
-        public IEnumerable<Theme> Themes { get; set; }
+        public IEnumerable<Portal.CMS.Entities.Entities.Themes.Theme> Themes { get; set; }
 
         public List<Font> Fonts { get; set; }
     }

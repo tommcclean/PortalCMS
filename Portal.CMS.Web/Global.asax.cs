@@ -1,6 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using Portal.CMS.Web.Architecture.ViewEngines;
+using System.Web.Mvc;
 using System.Web.Optimization;
+using System.Web.Razor;
 using System.Web.Routing;
+using System.Web.WebPages;
 
 namespace Portal.CMS.Web
 {
@@ -11,6 +14,11 @@ namespace Portal.CMS.Web
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            // Ability to Create Server Side Stylesheets
+            ViewEngines.Engines.Add(new CSSViewEngine());
+            RazorCodeLanguage.Languages.Add("cscss", new CSharpRazorCodeLanguage());
+            WebPageHttpHandler.RegisterExtension("cscss");
         }
 
         protected void Application_Error()

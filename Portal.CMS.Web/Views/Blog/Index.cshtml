@@ -17,24 +17,6 @@
 @section Styles
 {
     @Styles.Render("~/Resources/CSS/FancyBox")
-
-    @if (Model.Theme != null)
-    {
-        <style>
-        @@font-face { font-family: '@Model.Theme.TitleFont.FontName'; src: url('@Model.Theme.TitleFont.FontPath') format('@Model.Theme.TitleFont.FontType'); }
-        @@font-face { font-family: '@Model.Theme.TextFont.FontName'; src: url('@Model.Theme.TextFont.FontPath') format('@Model.Theme.TextFont.FontType'); }
-
-        .post h1, .post h2, .post h3, .post h4
-        {
-            font-family: '@Model.Theme.TitleFont.FontName';
-        }
-
-        .post p, .post a
-        {
-            font-family: '@Model.Theme.TextFont.FontName';
-        }
-        </style>
-    }
 }
 
 @section HEADScripts
