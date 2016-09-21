@@ -1,14 +1,45 @@
 ﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Build.CustomViewModel
 @{
     ViewBag.Title = "Error";
+    Layout = "";
 }
 
-<div id="page-wrapper">
-    <section class="header background-parallax height-tall">
-        <div class="overlay-medium"></div><div class="vertical-alignment component-container">
-            <h1>Server Error</h1>
-            <p>Sorry but something went wrong. We have logged the problem and will look into it.</p>
-            <a onclick="history.go(-1);" class="btn square">Back</a>
-        </div>
-    </section>
-</div>
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+    <title>Portal CMS: @ViewBag.Title</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
+    @RenderSection("Styles", false)
+    @Styles.Render("~/Resources/CSS/Bootstrap")
+    @Styles.Render("~/Resources/CSS/FontAwesome")
+    @Styles.Render("~/Resources/CSS/Administration/Framework")
+    @Styles.Render("~/Resources/CSS/PageBuilder/Framework")
+    @Styles.Render("~/Resources/CSS/Framework")
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
+
+    @RenderSection("HEADScripts", false)
+</head>
+<body>
+    <nav class="navbar navbar-inverse"><div class="container-fluid"><div class="navbar-header"><a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "" })">Portal CMS</a></div></div></nav>
+
+    <div id="page-wrapper">
+        <section class="header background-parallax height-tall">
+            <div class="overlay-medium"></div><div class="vertical-alignment component-container">
+                <h1>Server Error</h1>
+                <p>Sorry but something went wrong. We have logged the problem and will look into it.</p>
+                <a onclick="history.go(-1);" class="btn square">Back</a>
+            </div>
+        </section>
+    </div>
+
+    @RenderSection("DOMScripts", false)
+    @Scripts.Render("~/Resources/JavaScript/Bootstrap")
+    @Scripts.Render("~/Resources/JavaScript/Bootstrap/Confirmation")
+    @Scripts.Render("~/Resources/JavaScript/Bootstrap/Modal")
+    @Scripts.Render("~/Resources/JavaScript/Framework/Global")
+</body>
+</html>

@@ -602,9 +602,6 @@
     <Content Include="Areas\Builder\Views\Shared\_PageManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_ErrorLayout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
