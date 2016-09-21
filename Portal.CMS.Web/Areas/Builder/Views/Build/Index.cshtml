@@ -13,9 +13,9 @@
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
         @Scripts.Render("~/Resources/JavaScript/JQueryTouch")
-        @Scripts.Render("~/Resources/JavaScript/PageBuilderAdministration")
     }
 
+    @Scripts.Render("~/Resources/JavaScript/PageBuilderAdministration")
     @Scripts.Render("~/Resources/JavaScript/FAQSpoilerEvents")
 
     @* AJAX Page Tracking *@
@@ -63,7 +63,7 @@
 <div id="page-wrapper" class="@(isAdmin ? "admin" : "visitor")">
     @foreach (var section in Model.Page.PageSections.OrderBy(x => x.PageSectionOrder).ThenBy(x => x.PageSectionId))
     {
-        <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper @(UserHelper.IsAdmin ? "admin sortable" : "")" data-section="@(section.PageSectionId)">
+        <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper@(UserHelper.IsAdmin ? " admin sortable" : "")" data-section="@(section.PageSectionId)">
             @Html.Raw(section.PageSectionBody)
 
             @if (isAdmin)
