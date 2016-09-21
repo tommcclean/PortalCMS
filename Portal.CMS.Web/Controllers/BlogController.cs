@@ -59,8 +59,7 @@ namespace Portal.CMS.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Comment(int postId, string commentBody)
         {
             _postCommentService.Add(UserHelper.UserId.Value, postId, commentBody);
@@ -68,6 +67,7 @@ namespace Portal.CMS.Web.Controllers
             return RedirectToAction(nameof(Index), "Blog", new { postId = postId });
         }
 
+        [HttpGet]
         public ActionResult Analytic(int postId, string referrer)
         {
             if (UserHelper.IsLoggedIn)
