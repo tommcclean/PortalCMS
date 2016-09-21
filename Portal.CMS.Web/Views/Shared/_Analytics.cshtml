@@ -1,6 +1,6 @@
-﻿@using Portal.CMS.Web.Areas.Admin.Helpers;
-
-@{ var googleTrackingId = SettingHelper.Get("Google Analytics Tracking ID"); }
+﻿@{
+    var googleTrackingId = SettingHelper.Get("Google Analytics Tracking ID");
+}
 
 @if (!string.IsNullOrWhiteSpace(googleTrackingId))
 {

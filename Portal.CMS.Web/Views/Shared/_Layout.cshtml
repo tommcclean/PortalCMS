@@ -1,5 +1,4 @@
-﻿@using Portal.CMS.Web.Areas.Admin.Helpers;
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-gb">
 <head>
     <title>@SettingHelper.Get("Website Name"): @ViewBag.Title</title>
@@ -22,6 +21,7 @@
 </head>
 <body>
     @Html.Partial("_NavBar")
+
     @RenderBody()
 
     @Html.Partial("_Analytics")
