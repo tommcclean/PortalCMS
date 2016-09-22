@@ -13,7 +13,7 @@ namespace Portal.CMS.Services.Themes
 
         IEnumerable<Theme> Get();
 
-        int Upsert(int themeId, string themeName, int titleFontId, int textFontId);
+        int Upsert(int themeId, string themeName, int titleFontId, int textFontId, int largeTitleFontSize, int mediumTitleFontSize, int smallTitleFontSize, int tinyTitleFontSize, int textStandardFontSize);
 
         void Delete(int themeId);
 
@@ -58,7 +58,7 @@ namespace Portal.CMS.Services.Themes
             return results.OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.DateUpdated);
         }
 
-        public int Upsert(int themeId, string themeName, int titleFontId, int textFontId)
+        public int Upsert(int themeId, string themeName, int titleFontId, int textFontId, int largeTitleFontSize, int mediumTitleFontSize, int smallTitleFontSize, int tinyTitleFontSize, int textStandardFontSize)
         {
             var existingTheme = Get(themeId);
 
@@ -71,6 +71,11 @@ namespace Portal.CMS.Services.Themes
                     TextFontId = textFontId,
                     DateAdded = DateTime.Now,
                     DateUpdated = DateTime.Now,
+                    TitleLargeFontSize = largeTitleFontSize,
+                    TitleMediumFontSize = mediumTitleFontSize,
+                    TitleSmallFontSize = smallTitleFontSize,
+                    TitleTinyFontSize = tinyTitleFontSize,
+                    TextStandardFontSize = textStandardFontSize,
                     IsDefault = false,
                 };
 
@@ -86,6 +91,11 @@ namespace Portal.CMS.Services.Themes
                 existingTheme.TitleFontId = titleFontId;
                 existingTheme.TextFontId = textFontId;
                 existingTheme.DateUpdated = DateTime.Now;
+                existingTheme.TitleLargeFontSize = largeTitleFontSize;
+                existingTheme.TitleMediumFontSize = mediumTitleFontSize;
+                existingTheme.TitleSmallFontSize = smallTitleFontSize;
+                existingTheme.TitleTinyFontSize = tinyTitleFontSize;
+                existingTheme.TextStandardFontSize = textStandardFontSize;
 
                 _context.SaveChanges();
 

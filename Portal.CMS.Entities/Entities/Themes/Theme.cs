@@ -25,6 +25,21 @@ namespace Portal.CMS.Entities.Entities.Themes
         [ForeignKey(nameof(TextFontId))]
         public virtual Font TextFont { get; set; }
 
+        [Required, Range(10, 60)]
+        public int TitleLargeFontSize { get; set; }
+
+        [Required, Range(10, 60)]
+        public int TitleMediumFontSize { get; set; }
+
+        [Required, Range(10, 60)]
+        public int TitleSmallFontSize { get; set; }
+
+        [Required, Range(10, 60)]
+        public int TitleTinyFontSize { get; set; }
+
+        [Required, Range(10, 60)]
+        public int TextStandardFontSize { get; set; }
+
         [Required]
         public DateTime DateAdded { get; set; }
 

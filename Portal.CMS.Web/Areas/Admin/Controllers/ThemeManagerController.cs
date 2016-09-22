@@ -54,7 +54,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return PartialView("_Create", model);
             }
 
-            _themeService.Upsert(0, model.ThemeName, model.TitleFontId, model.TextFontId);
+            _themeService.Upsert(0, model.ThemeName, model.TitleFontId, model.TextFontId, model.LargeTitleFontSize, model.MediumTitleFontSize, model.SmallTitleFontSize, model.TinyTitleFontSize, model.TextStandardFontSize);
 
             return Content("Refresh");
         }
@@ -74,6 +74,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 TextFontId = theme.TextFontId.Value,
                 TitleFontId = theme.TitleFontId.Value,
                 FontList = _fontService.Get(),
+                LargeTitleFontSize = theme.TitleLargeFontSize,
+                MediumTitleFontSize = theme.TitleMediumFontSize,
+                SmallTitleFontSize = theme.TitleSmallFontSize,
+                TinyTitleFontSize = theme.TitleTinyFontSize,
+                TextStandardFontSize = theme.TextStandardFontSize,
                 IsDefault = theme.IsDefault
             };
 
@@ -90,7 +95,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return PartialView("_Edit", model);
             }
 
-            _themeService.Upsert(model.ThemeId, model.ThemeName, model.TitleFontId, model.TextFontId);
+            _themeService.Upsert(model.ThemeId, model.ThemeName, model.TitleFontId, model.TextFontId, model.LargeTitleFontSize, model.MediumTitleFontSize, model.SmallTitleFontSize, model.TinyTitleFontSize, model.TextStandardFontSize);
 
             return Content("Refresh");
         }

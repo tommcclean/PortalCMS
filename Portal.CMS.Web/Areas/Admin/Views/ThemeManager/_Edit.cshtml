@@ -5,6 +5,12 @@
     var fontList = Model.FontList.Select(x => new SelectListItem { Value = x.FontId.ToString(), Text = x.FontName });
 }
 
+@Styles.Render("~/Resources/CSS/JQuery/JQueryUI")
+
+<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
+<script src="~/Areas/Admin/Content/Scripts/ThemeManager/jquery-sliders.js"></script>
+
 @using (Html.BeginForm("Edit", "ThemeManager", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -22,11 +28,11 @@
         <div role="tabpanel" class="tab-pane active" id="tab-theme-details">
             @if (Model.IsDefault)
             {
-            <div class="alert alert-danger" role="alert">Warning: This theme is currently active. Any changes you make will affect your pages.</div>
+                <div class="alert alert-danger" role="alert">Warning: This theme is currently active. Any changes you make will affect your pages.</div>
             }
             else
             {
-            <div class="alert alert-warning" role="alert">Please note: This theme is not currently active as your default theme.</div>
+                <div class="alert alert-warning" role="alert">Please note: This theme is not currently active as your default theme.</div>
             }
 
             @Html.ValidationMessage("ThemeName")
@@ -34,6 +40,15 @@
                 @Html.LabelFor(x => x.ThemeName)
                 @Html.TextBoxFor(x => x.ThemeName)
             </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-theme-menu">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-theme-colour">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-theme-text">
+            <h3>Font Selection</h3>
+            <p>Select the fonts you want to use below. Upload custom fonts in the Media Manager.</p>
+            <br />
 
             @Html.ValidationMessage("TitleFontId")
             <div class="control-group float-container">
@@ -46,12 +61,45 @@
                 @Html.LabelFor(x => x.TextFontId)
                 @Html.DropDownListFor(m => m.TextFontId, fontList)
             </div>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="tab-theme-menu">
-        </div>
-        <div role="tabpanel" class="tab-pane" id="tab-theme-colour">
-        </div>
-        <div role="tabpanel" class="tab-pane" id="tab-theme-text">
+
+            <h3>Change Font Size</h3>
+            <p>Use the sliders below to change the size of the fonts in the Page Builder and your Blog Posts.</p>
+            <br />
+
+            @Html.ValidationMessage("LargeTitleFontSize")
+            <div class="control-group wide-label float-container">
+                @Html.LabelFor(x => x.LargeTitleFontSize)
+                @Html.TextBoxFor(x => x.LargeTitleFontSize, new { @class = "jquery-slider-value", @data_slider = "largeTitleSlider" })
+                <div id="largeTitleSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="LargeTitleFontSize"></div></div>
+            </div>
+
+            @Html.ValidationMessage("MediumTitleFontSize")
+            <div class="control-group wide-label float-container">
+                @Html.LabelFor(x => x.MediumTitleFontSize)
+                @Html.TextBoxFor(x => x.MediumTitleFontSize, new { @class = "jquery-slider-value", @data_slider = "mediumTitleSlider" })
+                <div id="mediumTitleSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="MediumTitleFontSize"></div></div>
+            </div>
+
+            @Html.ValidationMessage("SmallTitleFontSize")
+            <div class="control-group wide-label float-container">
+                @Html.LabelFor(x => x.SmallTitleFontSize)
+                @Html.TextBoxFor(x => x.SmallTitleFontSize, new { @class = "jquery-slider-value", @data_slider = "smallTitleSlider" })
+                <div id="smallTitleSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="SmallTitleFontSize"></div></div>
+            </div>
+
+            @Html.ValidationMessage("TinyTitleFontSize")
+            <div class="control-group wide-label float-container">
+                @Html.LabelFor(x => x.TinyTitleFontSize)
+                @Html.TextBoxFor(x => x.TinyTitleFontSize, new { @class = "jquery-slider-value", @data_slider = "tinyTitleSlider" })
+                <div id="tinyTitleSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="TinyTitleFontSize"></div></div>
+            </div>
+
+            @Html.ValidationMessage("TextStandardFontSize")
+            <div class="control-group wide-label float-container">
+                @Html.LabelFor(x => x.TextStandardFontSize)
+                @Html.TextBoxFor(x => x.TextStandardFontSize, new { @class = "jquery-slider-value", @data_slider = "textStandardSlider" })
+                <div id="textStandardSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="TextStandardFontSize"></div></div>
+            </div>
         </div>
     </div>
 

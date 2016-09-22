@@ -353,6 +353,7 @@
     <Content Include="Areas\Admin\Content\Images\icon-thememanager.png" />
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
+    <Content Include="Areas\Admin\Content\Scripts\ThemeManager\jquery-sliders.js" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-lightgray.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-linen.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-notebook.png" />
@@ -441,6 +442,7 @@
     <Content Include="Content\Styles\FancyBox\fancybox_sprite.png" />
     <Content Include="Content\Styles\FancyBox\jquery.fancybox-thumbs.css" />
     <Content Include="Content\Styles\FancyBox\jquery.fancybox.css" />
+    <Content Include="Content\Styles\JQueryUI\jquery-ui.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
