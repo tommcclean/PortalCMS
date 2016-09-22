@@ -56,7 +56,7 @@
     right: 20px;
     bottom: 10px;
     height: 60px;
-    z-index: 50;
+    z-index: 60;
 }
 
 .action
@@ -84,6 +84,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
+    right: auto;
 }
 
 .action-container.wide
