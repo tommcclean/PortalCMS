@@ -673,6 +673,9 @@
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Theme\Render.cscss" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Views\MenuManager\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

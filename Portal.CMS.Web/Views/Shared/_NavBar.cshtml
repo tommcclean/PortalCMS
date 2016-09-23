@@ -19,6 +19,11 @@
                 {
                     <li class=""><a href="@Url.Action(item.LinkAction, item.LinkController, new { area = item.LinkArea })">@Html.Raw(item.LinkText)</a></li>
                 }
+
+                @*@if (isAdmin)
+                {
+                    <li class=""><a href="@Url.Action("Add", "MenuManager", new { area = "Admin" })" class="btn add launch-modal"><span class="fa fa-plus"></span></a></li>
+                }*@
             </ul>
 
             @if (isLoggedIn)

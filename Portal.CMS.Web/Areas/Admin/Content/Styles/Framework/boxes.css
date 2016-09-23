@@ -2,12 +2,12 @@
 {
     position: relative;
     background-color: white;
-    border: 1px solid #F7F8FA;
+    border: 1px solid #E2E2E2;
     margin-bottom: 20px;
     border-radius: 5px;
     min-height: 220px;
     padding: 20px;
-    box-shadow: 1px 1px 10px #D2D2D8;
+    box-shadow: 1px 1px 10px #BDBDC1;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -19,7 +19,7 @@
 
     .box:hover
     {
-        box-shadow: 1px 1px 20px #CACACE;
+        box-shadow: 1px 1px 20px #ACACAF;
     }
 
 .tab-pane .box

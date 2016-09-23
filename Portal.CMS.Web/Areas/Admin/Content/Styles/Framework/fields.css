@@ -152,6 +152,20 @@ select[multiple="multiple"]
         background-color: #2B2B2B;
     }
 
+    .navbar-nav > li > a.btn.add
+    {
+        padding: 7px 0px 5px 10px;
+        background-color: black;
+        border: 1px dashed #2B2B2B;
+        transition: all 0.1s ease-in;
+    }
+
+        .navbar-nav > li > a.btn.add:hover
+        {
+            background-color: #191919;
+            background-image: none;
+        }
+
 input[readonly]
 {
     cursor: not-allowed;

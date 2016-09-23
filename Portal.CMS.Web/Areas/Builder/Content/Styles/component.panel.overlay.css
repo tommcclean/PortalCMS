@@ -130,6 +130,7 @@
         border-radius: 5px;
         text-transform: uppercase;
         z-index: 50;
+        pointer-events: none;
     }
 
     .panel-overlay .component-preview .btn.square
