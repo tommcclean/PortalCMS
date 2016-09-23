@@ -13,7 +13,9 @@
     $(".jquery-slider-value").on('input', function () {
         var sliderControl = $(this).attr("data-slider");
         $("#" + sliderControl).slider({
-            value: $(this).val()
+            value: $(this).val(),
+            min: 10,
+            max: 60,
         });
     });
 
@@ -21,7 +23,9 @@
         var parentControl = $(this).attr("data-parent");
 
         $(this).slider({
-            value: $("#" + parentControl).val()
+            value: $("#" + parentControl).val(),
+            min: 10,
+            max: 60,
         });
     });
 });
