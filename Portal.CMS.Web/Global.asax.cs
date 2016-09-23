@@ -19,6 +19,8 @@ namespace Portal.CMS.Web
             ViewEngines.Engines.Add(new CSSViewEngine());
             RazorCodeLanguage.Languages.Add("cscss", new CSharpRazorCodeLanguage());
             WebPageHttpHandler.RegisterExtension("cscss");
+
+            MvcHandler.DisableMvcResponseHeader = true;
         }
 
         protected void Application_Error()
