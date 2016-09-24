@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 
 namespace Portal.CMS.Web.Architecture.Modules
 {
@@ -12,6 +9,8 @@ namespace Portal.CMS.Web.Architecture.Modules
             application.PreSendRequestHeaders += (sender, args) => HttpContext.Current.Response.Headers.Remove("Server");
         }
 
-        public void Dispose() { }
+        public void Dispose()
+        {
+        }
     }
 }

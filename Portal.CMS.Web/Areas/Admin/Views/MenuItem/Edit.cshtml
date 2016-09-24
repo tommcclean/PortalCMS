@@ -1,0 +1,53 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.MenuItem.EditViewModel
+@{
+    Layout = "";
+}
+@Styles.Render("~/Resources/CSS/FontAwesome/Picker")
+@Scripts.Render("~/Resources/JavaScript/FontAwesome/Picker")
+
+<script type="text/javascript">
+    $('.icp-auto').iconpicker();
+</script>
+
+@using (Html.BeginForm("Edit", "MenuItem", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.MenuItemId)
+
+    @Html.ValidationMessage("LinkText")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.LinkText)
+        @Html.TextBoxFor(x => x.LinkText, new { placeholder = "Link Text" })
+    </div>
+
+        @Html.ValidationMessage("LinkIcon")
+        <div class="control-group float-container">
+            @Html.LabelFor(x => x.LinkIcon)
+            <div class="input-group">
+                <input id="LinkIcon" name="LinkIcon" data-placement="bottomRight" class="form-control icp icp-auto" value="@Model.LinkIcon" type="text" />
+                <span class="input-group-addon"></span>
+            </div>
+        </div>
+
+        @Html.ValidationMessage("LinkURL")
+        <div class="control-group float-container">
+            @Html.LabelFor(x => x.LinkURL)
+            @Html.TextBoxFor(x => x.LinkURL, new { placeholder = "Link Address (URL)" })
+        </div>
+
+        <br />
+
+        <div class="alert alert-warning" role="alert">A user must have at least one selected role to see this link. Show to all by choosing no roles.</div>
+        <div class="control-group control-textarea float-container">
+            @Html.LabelFor(x => x.SelectedRoleList)
+            @Html.ListBoxFor(m => m.SelectedRoleList, Model.RoleList.Select(r => new SelectListItem { Text = r.RoleName, Value = r.RoleName.ToString(), Selected = Model.SelectedRoleList != null && Model.SelectedRoleList.Contains(r.RoleName) }))
+        </div>
+
+        <div class="footer">
+            <a href="@Model.LinkURL" class="btn" style="margin-right: 20px;"><span class="fa fa-globe"></span>Visit Link</a>
+            <button class="btn primary">Save</button>
+            <a href="@Url.Action("Delete", "MenuItem", new { menuItemId = Model.MenuItemId })" class="btn delete">Delete</a>
+            <button class="btn" data-dismiss="modal">Cancel</button>
+        </div>
+}

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portal.CMS.Entities.Entities.Menu
@@ -16,12 +17,11 @@ namespace Portal.CMS.Entities.Entities.Menu
         [Required]
         public string LinkText { get; set; }
 
-        [Required]
-        public string LinkAction { get; set; }
+        public string LinkIcon { get; set; }
 
         [Required]
-        public string LinkController { get; set; }
+        public string LinkURL { get; set; }
 
-        public string LinkArea { get; set; }
+        public virtual ICollection<MenuItemRole> MenuItemRoles { get; set; }
     }
 }

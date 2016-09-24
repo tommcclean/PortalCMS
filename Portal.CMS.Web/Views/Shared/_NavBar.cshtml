@@ -6,6 +6,11 @@
     var isEditor = UserHelper.IsEditor;
 }
 
+@if (UserHelper.IsAdmin)
+{
+    <script src="~/Areas/Builder/Content/Scripts/menubuilder.js"></script>
+}
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -17,20 +22,28 @@
             <ul class="nav navbar-nav">
                 @foreach (var item in menuItems)
                 {
-                    <li class=""><a href="@Url.Action(item.LinkAction, item.LinkController, new { area = item.LinkArea })">@Html.Raw(item.LinkText)</a></li>
+                    if (string.IsNullOrWhiteSpace(item.LinkIcon))
+                    {
+                        <li class=""><a href="@item.LinkURL" data-item="@item.MenuItemId" class="custom">@item.LinkText</a></li>
+                    }
+                    else
+                    {
+                        <li class=""><a href="@item.LinkURL" data-item="@item.MenuItemId" class="custom"><span class="fa @item.LinkIcon"></span>@item.LinkText</a></li>
+                    }
+
                 }
 
-                @*@if (isAdmin)
+                @if (isAdmin)
                 {
-                    <li class=""><a href="@Url.Action("Add", "MenuManager", new { area = "Admin" })" class="btn add launch-modal"><span class="fa fa-plus"></span></a></li>
-                }*@
+                    <li class=""><a href="@Url.Action("Create", "MenuItem", new { area = "Admin" })" class="btn add launch-modal" data-title="Add Menu Item"><span class="fa fa-plus"></span></a></li>
+                }
             </ul>
 
             @if (isLoggedIn)
             {
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span>@UserHelper.FullName<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span>@UserHelper.FullName <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="@Url.Action("Account", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Update Account"><span class="fa fa-user"></span>Update Account</a></li>
                             <li><a href="@Url.Action("Bio", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Update Bio"><span class="fa fa-book"></span>Update Bio</a></li>

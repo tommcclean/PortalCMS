@@ -79,31 +79,33 @@ namespace Portal.CMS.Services.Menu
                     userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));
             }
 
-            foreach (var menuItem in menu.MenuItems)
-            {
-                var matchedPage = pageList.FirstOrDefault(x => x.PageArea == menuItem.LinkArea && x.PageController == menuItem.LinkController && x.PageAction == menuItem.LinkAction);
+            return menu.MenuItems.ToList();
 
-                if (matchedPage == null)
-                {
-                    menuItemList.Add(menuItem);
+            //foreach (var menuItem in menu.MenuItems)
+            //{
+            //    var matchedPage = pageList.FirstOrDefault(x => x.PageArea == menuItem.LinkArea && x.PageController == menuItem.LinkController && x.PageAction == menuItem.LinkAction);
 
-                    continue;
-                }
+            //    if (matchedPage == null)
+            //    {
+            //        menuItemList.Add(menuItem);
 
-                if (userRoleList.Contains(matchedPage.PageRoles.SelectMany(x => x.Role.RoleName)))
-                {
-                    menuItemList.Add(menuItem);
+            //        continue;
+            //    }
 
-                    continue;
-                }
+            //    if (userRoleList.Contains(matchedPage.PageRoles.SelectMany(x => x.Role.RoleName)))
+            //    {
+            //        menuItemList.Add(menuItem);
 
-                if (!matchedPage.PageRoles.Any())
-                {
-                    menuItemList.Add(menuItem);
+            //        continue;
+            //    }
 
-                    continue;
-                }
-            }
+            //    if (!matchedPage.PageRoles.Any())
+            //    {
+            //        menuItemList.Add(menuItem);
+
+            //        continue;
+            //    }
+            //}
 
             return menuItemList;
         }

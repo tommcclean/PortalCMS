@@ -16,6 +16,8 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Confirmation").Include("~/Content/Scripts/BootstrapConfirmation/bootstrap-confirmation.min.js"));
 
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/FontAwesome/Picker").Include("~/Content/Scripts/FontAwesomePicker/fontawesome-iconpicker.min.js"));
+
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Modal").Include("~/Content/Scripts/Framework/modal.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework/Global").Include("~/Content/Scripts/Framework/global.js"));
@@ -39,6 +41,8 @@ namespace Portal.CMS.Web
             #region Style Bundles
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Bootstrap", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css").Include("~/Content/Styles/Bootstrap/bootstrap.min.css", new CssRewriteUrlTransform()));
+
+            bundles.Add(new StyleBundle("~/Resources/CSS/FontAwesome/Picker").Include("~/Content/Styles/FontAwesomePicker/fontawesome-iconpicker.min.css"));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/FancyBox").Include("~/Content/Styles/FancyBox/*.css", new CssRewriteUrlTransform()));
 

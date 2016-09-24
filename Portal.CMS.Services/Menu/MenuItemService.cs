@@ -1,13 +1,16 @@
 ﻿using Portal.CMS.Entities;
+using Portal.CMS.Entities.Entities.Menu;
 using System.Linq;
 
 namespace Portal.CMS.Services.Menu
 {
     public interface IMenuItemService
     {
-        int Create(int menuId, string linkText, string linkAction, string linkController, string linkArea);
+        MenuItem Get(int menuItemId);
 
-        void Edit(int menuItemId, string linkText, string linkAction, string linkController, string linkArea);
+        int Create(int menuId, string linkText, string linkURL, string linkIcon);
+
+        void Edit(int menuItemId, string linkText, string linkURL, string linkIcon);
 
         void Delete(int menuItemId);
     }
@@ -25,15 +28,21 @@ namespace Portal.CMS.Services.Menu
 
         #endregion Dependencies
 
-        public int Create(int menuId, string linkText, string linkAction, string linkController, string linkArea)
+        public MenuItem Get(int menuItemId)
+        {
+            var menuItem = _context.MenuItems.FirstOrDefault(x => x.MenuItemId == menuItemId);
+
+            return menuItem;
+        }
+
+        public int Create(int menuId, string linkText, string linkURL, string linkIcon)
         {
             var newMenuItem = new Entities.Entities.Menu.MenuItem
             {
                 MenuId = menuId,
                 LinkText = linkText,
-                LinkAction = linkAction,
-                LinkController = linkController,
-                LinkArea = linkArea
+                LinkURL = linkURL,
+                LinkIcon = linkIcon
             };
 
             _context.MenuItems.Add(newMenuItem);
@@ -43,7 +52,7 @@ namespace Portal.CMS.Services.Menu
             return newMenuItem.MenuItemId;
         }
 
-        public void Edit(int menuItemId, string linkText, string linkAction, string linkController, string linkArea)
+        public void Edit(int menuItemId, string linkText, string linkURL, string linkIcon)
         {
             var menuItem = _context.MenuItems.SingleOrDefault(x => x.MenuItemId == menuItemId);
 
@@ -51,9 +60,8 @@ namespace Portal.CMS.Services.Menu
                 return;
 
             menuItem.LinkText = linkText;
-            menuItem.LinkAction = linkAction;
-            menuItem.LinkController = linkController;
-            menuItem.LinkArea = linkArea;
+            menuItem.LinkURL = linkURL;
+            menuItem.LinkIcon = linkIcon;
 
             _context.SaveChanges();
         }

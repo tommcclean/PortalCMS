@@ -280,6 +280,7 @@
     <Compile Include="Areas\Admin\ViewModels\MediaManager\MediaViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\MediaManager\UploadFontViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\MediaManager\UploadImageViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\MenuItem\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\MenuItem\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Menu\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Menu\EditViewModel.cs" />
@@ -359,6 +360,8 @@
     <Content Include="Areas\Builder\Content\Images\Sample\texture-linen.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-notebook.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-office.png" />
+    <Content Include="Areas\Builder\Content\Scripts\menubuilder.js" />
+    <Content Include="Content\Scripts\FontAwesomePicker\fontawesome-iconpicker.min.js" />
     <Content Include="Content\Scripts\Framework\global.js" />
     <Content Include="Content\Styles\C3Graphing\c3.css" />
     <Content Include="Content\Styles\C3Graphing\c3.min.css">
@@ -427,6 +430,7 @@
     <Content Include="Areas\Builder\Content\Styles\section.quote.css" />
     <Content Include="Areas\Builder\Content\Styles\section.contact.css" />
     <Content Include="Areas\Builder\Content\Styles\section.split.header.css" />
+    <Content Include="Content\Styles\FontAwesomePicker\fontawesome-iconpicker.min.css" />
     <Content Include="Content\Styles\FontAwesome\font-awesome.min.css" />
     <Content Include="Content\Styles\Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.svg" />
@@ -675,6 +679,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\MenuManager\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\MenuItem\Edit.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

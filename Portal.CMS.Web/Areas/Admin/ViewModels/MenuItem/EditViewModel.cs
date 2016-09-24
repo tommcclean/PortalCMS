@@ -1,18 +1,12 @@
 ﻿using Portal.CMS.Entities.Entities.Authentication;
-using Portal.CMS.Entities.Entities.PageBuilder;
-using Portal.CMS.Entities.Entities.Posts;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Portal.CMS.Web.Areas.Admin.ViewModels.MenuItem
 {
-    public class CreateViewModel
+    public class EditViewModel
     {
-        [Required]
-        [DisplayName("Menu")]
-        public int MenuId { get; set; }
-
         [Required]
         [DisplayName("Text")]
         public string LinkText { get; set; }
@@ -27,12 +21,8 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.MenuItem
         [DisplayName("Roles")]
         public List<string> SelectedRoleList { get; set; } = new List<string>();
 
+        public int MenuItemId { get; set; }
+
         public List<Role> RoleList { get; set; }
-
-        public IEnumerable<Entities.Entities.Menu.Menu> MenuList { get; set; }
-
-        public IEnumerable<Page> PageList { get; set; }
-
-        public IEnumerable<Post> PostList { get; set; }
     }
 }

@@ -69,6 +69,7 @@
     <Compile Include="Entities\Generic\PublicationState.cs" />
     <Compile Include="Entities\Menu\Menu.cs" />
     <Compile Include="Entities\Menu\MenuItem.cs" />
+    <Compile Include="Entities\Menu\MenuItemRole.cs" />
     <Compile Include="Entities\PageBuilder\Page.cs" />
     <Compile Include="Entities\PageBuilder\PageComponentType.cs" />
     <Compile Include="Entities\PageBuilder\PageSectionTypeCategory.cs" />
@@ -172,6 +173,14 @@
     <Compile Include="Migrations\201609221930047_ExtendThemePropertiesWithFontSizes.Designer.cs">
       <DependentUpon>201609221930047_ExtendThemePropertiesWithFontSizes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609241552502_UpdateMenuItemEntityWithLinkURLAndRoles.cs" />
+    <Compile Include="Migrations\201609241552502_UpdateMenuItemEntityWithLinkURLAndRoles.Designer.cs">
+      <DependentUpon>201609241552502_UpdateMenuItemEntityWithLinkURLAndRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609241939510_ExtendMenuItemWithLinkIcon.cs" />
+    <Compile Include="Migrations\201609241939510_ExtendMenuItemWithLinkIcon.Designer.cs">
+      <DependentUpon>201609241939510_ExtendMenuItemWithLinkIcon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -251,6 +260,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609221930047_ExtendThemePropertiesWithFontSizes.resx">
       <DependentUpon>201609221930047_ExtendThemePropertiesWithFontSizes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609241552502_UpdateMenuItemEntityWithLinkURLAndRoles.resx">
+      <DependentUpon>201609241552502_UpdateMenuItemEntityWithLinkURLAndRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609241939510_ExtendMenuItemWithLinkIcon.resx">
+      <DependentUpon>201609241939510_ExtendMenuItemWithLinkIcon.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

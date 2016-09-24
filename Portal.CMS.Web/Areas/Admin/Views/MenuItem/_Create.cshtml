@@ -1,48 +1,197 @@
 ﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.MenuItem.CreateViewModel
 @{
     Layout = "";
-
-    var menuList = Model.MenuList.Select(x => new SelectListItem { Value = x.MenuId.ToString(), Text = x.MenuName});
+    var menuList = Model.MenuList.Select(x => new SelectListItem { Value = x.MenuId.ToString(), Text = x.MenuName });
 }
 
-@using (Html.BeginForm("Create", "MenuItem", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+<style>
+    .tab-content .tab-pane
+    {
+        height: 476px;
+    }
 
-    @Html.ValidationMessage("MenuId")
-    <div class="control-group float-container">
-        @Html.LabelFor(x => x.MenuId)
-        @Html.DropDownListFor(m => m.MenuId, menuList)
-    </div>
+    select option[selected]
+    {
+        background-color: #C8C8C8;
+    }
 
-    @Html.ValidationMessage("LinkText")
-    <div class="control-group float-container">
-        @Html.LabelFor(x => x.LinkText)
-        @Html.TextBoxFor(x => x.LinkText, new { placeholder = "Link Text" })
-    </div>
+    .list.list-simple
+    {
+        border-bottom: 1px solid #E2E2E2;
+        padding: 10px 10px 5px 10px;
+        transition: all 0.2s ease-in-out;
+        background-color: white;
+        position: relative;
+        cursor: pointer;
+    }
 
-    @Html.ValidationMessage("LinkAction")
-    <div class="control-group float-container">
-        @Html.LabelFor(x => x.LinkAction)
-        @Html.TextBoxFor(x => x.LinkAction, new { placeholder = "Link Action" })
-    </div>
+        .list.list-simple:hover
+        {
+            background-color: #EFEFEF;
+        }
 
-    @Html.ValidationMessage("LinkController")
-    <div class="control-group float-container">
-        @Html.LabelFor(x => x.LinkController)
-        @Html.TextBoxFor(x => x.LinkController, new { placeholder = "Link Controller" })
-    </div>
+        .list.list-simple h4
+        {
+            margin: 0;
+            padding: 0;
+            margin-bottom: 5px;
+            font-size: 20px;
+            font-weight: normal;
+        }
 
-    @Html.ValidationMessage("LinkArea")
-    <div class="control-group float-container">
-        @Html.LabelFor(x => x.LinkArea)
-        @Html.TextBoxFor(x => x.LinkArea, new { placeholder = "Link Area" })
-    </div>
+        .list.list-simple p
+        {
+            font-size: 14px;
+        }
 
-    <br />
+        .list.list-simple .list-action
+        {
+            position: absolute;
+            right: 10px;
+            height: 100%;
+            top: 0;
+            padding-top: 25px;
+        }
 
-    <div class="footer">
-        <button class="btn primary">Save</button>
-        <button class="btn" data-dismiss="modal">Cancel</button>
-    </div>
-}
+            .list.list-simple .list-action span.fa
+            {
+                font-size: 16px;
+            }
+</style>
+<script type="text/javascript">
+    $(".list.list-simple").click(function (event) {
+        var target = $(this).attr("data-link-target");
+        $('#LinkURL').val(target);
+
+        var title = $(this).attr("data-link-title");
+        $('#LinkText').val(title);
+
+        var roles = $(this).attr("data-link-roles");
+        $("#SelectedRoleList > option").attr("selected", false);
+
+        if (roles.length > 0) {
+            var roleNames = roles.split(',');
+
+            var i;
+            for (i = 0; i < roleNames.length; ++i) {
+                $('#SelectedRoleList option[value=' + roleNames[i] + ']').attr('selected', true);
+            }
+        }
+    });
+</script>
+
+@Styles.Render("~/Resources/CSS/FontAwesome/Picker")
+@Scripts.Render("~/Resources/JavaScript/FontAwesome/Picker")
+
+<script type="text/javascript">
+    $('.icp-auto').iconpicker();
+</script>
+
+<div class="container-fluid">
+    @using (Html.BeginForm("Create", "MenuItem", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                @Html.ValidationMessage("MenuId")
+                <div class="control-group float-container">
+                    @Html.LabelFor(x => x.MenuId)
+                    @Html.DropDownListFor(m => m.MenuId, menuList)
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        @Html.ValidationMessage("LinkText")
+                        <div class="control-group float-container">
+                            @Html.LabelFor(x => x.LinkText)
+                            @Html.TextBoxFor(x => x.LinkText, new { placeholder = "Link Text" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        @Html.ValidationMessage("LinkIcon")
+                        <div class="control-group float-container">
+                            @Html.LabelFor(x => x.LinkIcon)
+                            <div class="input-group">
+                                <input id="LinkIcon" name="LinkIcon" data-placement="bottomRight" class="form-control icp icp-auto" value="@Model.LinkIcon" type="text" />
+                                <span class="input-group-addon"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @Html.ValidationMessage("LinkURL")
+                <div class="control-group float-container">
+                    @Html.LabelFor(x => x.LinkURL)
+                    @Html.TextBoxFor(x => x.LinkURL, new { placeholder = "Link Address (URL)" })
+                </div>
+
+                <br />
+                <div class="alert alert-warning" role="alert">A user must have at least one selected role to see this link. Show to all by choosing no roles.</div>
+                <div class="control-group control-textarea float-container">
+                    @Html.LabelFor(x => x.SelectedRoleList)
+                    @Html.ListBoxFor(m => m.SelectedRoleList, Model.RoleList.Select(r => new SelectListItem { Text = r.RoleName, Value = r.RoleName.ToString(), Selected = Model.SelectedRoleList != null && Model.SelectedRoleList.Contains(r.RoleName) }))
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4 sidebar">
+                <ul class="nav nav-tabs nav-justified">
+                    <li role="presentation" class="active"><a href="#tab-menu-pages" aria-controls="tab-menu-pages" role="tab" data-toggle="tab">Pages</a></li>
+                    <li role="presentation" class=""><a href="#tab-menu-posts" aria-controls="tab-menu-posts" role="tab" data-toggle="tab">Posts</a></li>
+                    <li role="presentation" class=""><a href="#tab-menu-actions" aria-controls="tab-menu-actions" role="tab" data-toggle="tab">Actions</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="tab-menu-pages">
+                        @foreach (var page in Model.PageList)
+                        {
+                            var target = string.Format("{0}/{1}/{2}", page.PageArea, page.PageController, page.PageAction);
+                            <div class="list list-simple" data-link-target="@target" data-link-title="@page.PageName" data-link-roles="@string.Join(",", page.PageRoles.Select(x => x.Role.RoleName))">
+                                <h4>@page.PageName</h4>
+                                <p>@target</p>
+                                <div class="list-action"><span class="fa fa-globe"></span></div>
+                            </div>
+                        }
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab-menu-posts">
+                        <div class="list list-simple" data-link-target="/Blog" data-link-title="Blog" data-link-roles="">
+                            <h4>Blog</h4>
+                            <p>/Blog</p>
+                            <div class="list-action"><span class="fa fa-book"></span></div>
+                        </div>
+
+                        @foreach (var post in Model.PostList)
+                        {
+                            var target = string.Format("/Blog/Index/postId={0}", post.PostId);
+                            <div class="list list-simple" data-link-target="@target" data-link-title="@post.PostTitle" data-link-roles="@string.Join(",", post.PostRoles.Select(x => x.Role.RoleName))">
+                                <h4>@post.PostTitle</h4>
+                                <p>@target</p>
+                                <div class="list-action"><span class="fa fa-book"></span></div>
+                            </div>
+                        }
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab-menu-actions">
+                        <div class="list list-simple" data-link-target="/Admin/Authentication/Register" data-link-title="Register">
+                            <h4>Register</h4>
+                            <p>/Admin/Authentication/Register</p>
+                            <div class="list-action"><span class="fa fa-bolt"></span></div>
+                        </div>
+                        <div class="list list-simple" data-link-target="/Admin/Authentication/Login" data-link-title="Login">
+                            <h4>Login</h4>
+                            <p>/Admin/Authentication/Login</p>
+                            <div class="list-action"><span class="fa fa-bolt"></span></div>
+                        </div>
+                        <div class="list list-simple" data-link-target="/Admin/Authentication/Logout" data-link-title="Logout" data-link-roles="Authenticated">
+                            <h4>Logout</h4>
+                            <p>/Admin/Authentication/Logout</p>
+                            <div class="list-action"><span class="fa fa-bolt"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="btn primary">Create Menu Item</button>
+            <button class="btn" data-dismiss="modal">Cancel</button>
+        </div>
+    }
+</div>

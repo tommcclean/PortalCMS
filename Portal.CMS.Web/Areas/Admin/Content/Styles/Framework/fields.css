@@ -83,6 +83,13 @@
     line-height: 45px;
 }
 
+div.iconpicker-popover input
+{
+    float: none;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
 select[multiple="multiple"]
 {
     width: 100%;
