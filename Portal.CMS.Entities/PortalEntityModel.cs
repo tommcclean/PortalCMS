@@ -69,6 +69,8 @@ namespace Portal.CMS.Entities
 
         public virtual DbSet<MenuItem> MenuItems { get; set; }
 
+        public virtual DbSet<MenuItemRole> MenuItemRoles { get; set; }
+
         #endregion Menu Entities
 
         #region Setting Entities

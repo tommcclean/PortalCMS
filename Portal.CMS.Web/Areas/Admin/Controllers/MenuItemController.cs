@@ -66,7 +66,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View("_Create", model);
             }
 
-            _menuItemService.Create(model.MenuId, model.LinkText, model.LinkURL, model.LinkIcon);
+            var menuItemId = _menuItemService.Create(model.MenuId, model.LinkText, model.LinkURL, model.LinkIcon);
+
+            _menuItemService.Roles(menuItemId, model.SelectedRoleList);
 
             return this.Content("Refresh");
         }
@@ -100,6 +102,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             }
 
             _menuItemService.Edit(model.MenuItemId, model.LinkText, model.LinkURL, model.LinkIcon);
+
+            _menuItemService.Roles(model.MenuItemId, model.SelectedRoleList);
 
             return Content("Refresh");
         }

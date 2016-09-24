@@ -63,8 +63,6 @@ namespace Portal.CMS.Services.Menu
         {
             var menu = _context.Menus.FirstOrDefault(x => x.MenuName == menuName);
 
-            var pageList = _context.Pages.ToList();
-
             var userRoleList = new List<string>();
             var menuItemList = new List<MenuItem>();
 
@@ -79,33 +77,25 @@ namespace Portal.CMS.Services.Menu
                     userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));
             }
 
-            return menu.MenuItems.ToList();
+            foreach (var menuItem in menu.MenuItems)
+            {
+                if (!menuItem.MenuItemRoles.Any())
+                {
+                    menuItemList.Add(menuItem);
 
-            //foreach (var menuItem in menu.MenuItems)
-            //{
-            //    var matchedPage = pageList.FirstOrDefault(x => x.PageArea == menuItem.LinkArea && x.PageController == menuItem.LinkController && x.PageAction == menuItem.LinkAction);
+                    continue;
+                }
 
-            //    if (matchedPage == null)
-            //    {
-            //        menuItemList.Add(menuItem);
+                foreach (var role in userRoleList)
+                {
+                    if (menuItem.MenuItemRoles.Select(x => x.Role.RoleName).Contains(role))
+                    {
+                        menuItemList.Add(menuItem);
 
-            //        continue;
-            //    }
-
-            //    if (userRoleList.Contains(matchedPage.PageRoles.SelectMany(x => x.Role.RoleName)))
-            //    {
-            //        menuItemList.Add(menuItem);
-
-            //        continue;
-            //    }
-
-            //    if (!matchedPage.PageRoles.Any())
-            //    {
-            //        menuItemList.Add(menuItem);
-
-            //        continue;
-            //    }
-            //}
+                        continue;
+                    }
+                }
+            }
 
             return menuItemList;
         }

@@ -68,9 +68,17 @@ namespace Portal.CMS.Services.PageBuilder
                     return FilterSectionList(page, userId);
 
                 userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));
+            }
 
-                if (userRoleList.Contains(page.PageRoles.SelectMany(x => x.Role.RoleName)))
+            if (!page.PageRoles.Any())
+                return FilterSectionList(page, userId);
+
+            foreach (var role in userRoleList)
+            {
+                if (page.PageRoles.Select(x => x.Role.RoleName).Contains(role))
+                {
                     return FilterSectionList(page, userId);
+                }
             }
 
             return null;

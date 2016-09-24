@@ -1,5 +1,6 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.Menu;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Portal.CMS.Services.Menu
@@ -13,6 +14,8 @@ namespace Portal.CMS.Services.Menu
         void Edit(int menuItemId, string linkText, string linkURL, string linkIcon);
 
         void Delete(int menuItemId);
+
+        void Roles(int menuItemId, List<string> roleList);
     }
 
     public class MenuItemService : IMenuItemService
@@ -74,6 +77,32 @@ namespace Portal.CMS.Services.Menu
                 return;
 
             _context.MenuItems.Remove(menuItem);
+
+            _context.SaveChanges();
+        }
+
+        public void Roles(int menuItemId, List<string> roleList)
+        {
+            var menuItem = Get(menuItemId);
+
+            if (menuItem == null)
+                return;
+
+            var roles = _context.Roles.ToList();
+
+            if (menuItem.MenuItemRoles != null)
+                foreach (var role in menuItem.MenuItemRoles.ToList())
+                    _context.MenuItemRoles.Remove(role);
+
+            foreach (var roleName in roleList)
+            {
+                var currentRole = roles.FirstOrDefault(x => x.RoleName == roleName);
+
+                if (currentRole == null)
+                    continue;
+
+                _context.MenuItemRoles.Add(new MenuItemRole { MenuItemId = menuItemId, RoleId = currentRole.RoleId });
+            }
 
             _context.SaveChanges();
         }
