@@ -67,7 +67,6 @@ namespace Portal.CMS.Web.Controllers
             return RedirectToAction(nameof(Index), "Blog", new { postId = postId });
         }
 
-        [HttpGet]
         public ActionResult Analytic(int postId, string referrer)
         {
             if (UserHelper.IsLoggedIn)
