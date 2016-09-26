@@ -13,6 +13,24 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager
         [DisplayName("Theme Name")]
         public string ThemeName { get; set; }
 
+        #region Colour Settings
+
+        [Required]
+        [DisplayName("Page Background Colour")]
+        public string PageBackgroundColour { get; set; }
+
+        [Required]
+        [DisplayName("Menu Background Colour")]
+        public string MenuBackgroundColour { get; set; }
+
+        [Required]
+        [DisplayName("Menu Text Colour")]
+        public string MenuTextColour { get; set; }
+
+        #endregion Colour Settings
+
+        #region Text Settings
+
         [Required]
         [DisplayName("Title Font")]
         public int TitleFontId { get; set; }
@@ -20,8 +38,6 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager
         [Required]
         [DisplayName("Text Font")]
         public int TextFontId { get; set; }
-
-        #region Text
 
         [Required]
         [DisplayName("Large Title Font Size")]
@@ -43,7 +59,7 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager
         [DisplayName("Standard Text Font Size")]
         public int TextStandardFontSize { get; set; } = 20;
 
-        #endregion Text
+        #endregion Text Settings
 
         public bool IsDefault { get; set; }
 

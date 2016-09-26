@@ -67,6 +67,7 @@ namespace Portal.CMS.Web.Controllers
             return RedirectToAction(nameof(Index), "Blog", new { postId = postId });
         }
 
+        // TODO: AntiForgerise to prevent external sites plugging in referrer.
         public ActionResult Analytic(int postId, string referrer)
         {
             if (UserHelper.IsLoggedIn)

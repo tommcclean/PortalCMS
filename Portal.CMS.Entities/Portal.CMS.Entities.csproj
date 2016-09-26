@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201609241939510_ExtendMenuItemWithLinkIcon.Designer.cs">
       <DependentUpon>201609241939510_ExtendMenuItemWithLinkIcon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609262043195_ExtendThemeEntityWithColourOptions.cs" />
+    <Compile Include="Migrations\201609262043195_ExtendThemeEntityWithColourOptions.Designer.cs">
+      <DependentUpon>201609262043195_ExtendThemeEntityWithColourOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -266,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609241939510_ExtendMenuItemWithLinkIcon.resx">
       <DependentUpon>201609241939510_ExtendMenuItemWithLinkIcon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609262043195_ExtendThemeEntityWithColourOptions.resx">
+      <DependentUpon>201609262043195_ExtendThemeEntityWithColourOptions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

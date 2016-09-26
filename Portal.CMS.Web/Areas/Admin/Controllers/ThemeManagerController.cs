@@ -38,7 +38,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var model = new UpsertViewModel
             {
-                FontList = _fontService.Get()
+                FontList = _fontService.Get(),
+                PageBackgroundColour = "#000000",
+                MenuBackgroundColour = "#000000",
+                MenuTextColour = "#FFFFFF"
             };
 
             return PartialView("_Create", model);
@@ -54,7 +57,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return PartialView("_Create", model);
             }
 
-            _themeService.Upsert(0, model.ThemeName, model.TitleFontId, model.TextFontId, model.LargeTitleFontSize, model.MediumTitleFontSize, model.SmallTitleFontSize, model.TinyTitleFontSize, model.TextStandardFontSize);
+            _themeService.Upsert(0, model.ThemeName, model.TitleFontId, model.TextFontId, model.LargeTitleFontSize, model.MediumTitleFontSize, model.SmallTitleFontSize, model.TinyTitleFontSize, model.TextStandardFontSize, model.PageBackgroundColour, model.MenuBackgroundColour, model.MenuTextColour);
 
             return Content("Refresh");
         }
@@ -79,6 +82,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 SmallTitleFontSize = theme.TitleSmallFontSize,
                 TinyTitleFontSize = theme.TitleTinyFontSize,
                 TextStandardFontSize = theme.TextStandardFontSize,
+                PageBackgroundColour = theme.PageBackgroundColour,
+                MenuBackgroundColour = theme.MenuBackgroundColour,
+                MenuTextColour = theme.MenuTextColour,
                 IsDefault = theme.IsDefault
             };
 
@@ -95,7 +101,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return PartialView("_Edit", model);
             }
 
-            _themeService.Upsert(model.ThemeId, model.ThemeName, model.TitleFontId, model.TextFontId, model.LargeTitleFontSize, model.MediumTitleFontSize, model.SmallTitleFontSize, model.TinyTitleFontSize, model.TextStandardFontSize);
+            _themeService.Upsert(model.ThemeId, model.ThemeName, model.TitleFontId, model.TextFontId, model.LargeTitleFontSize, model.MediumTitleFontSize, model.SmallTitleFontSize, model.TinyTitleFontSize, model.TextStandardFontSize, model.PageBackgroundColour, model.MenuBackgroundColour, model.MenuTextColour);
 
             return Content("Refresh");
         }

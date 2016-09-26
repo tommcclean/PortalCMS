@@ -15,6 +15,8 @@ namespace Portal.CMS.Entities.Entities.Themes
         [Required]
         public bool IsDefault { get; set; }
 
+        #region Text Settings
+
         public int? TitleFontId { get; set; }
 
         [ForeignKey(nameof(TitleFontId))]
@@ -39,6 +41,21 @@ namespace Portal.CMS.Entities.Entities.Themes
 
         [Required, Range(10, 60)]
         public int TextStandardFontSize { get; set; }
+
+        #endregion Text Settings
+
+        #region Colour Settings
+
+        [Required]
+        public string PageBackgroundColour { get; set; }
+
+        [Required]
+        public string MenuBackgroundColour { get; set; }
+
+        [Required]
+        public string MenuTextColour { get; set; }
+
+        #endregion Colour Settings
 
         [Required]
         public DateTime DateAdded { get; set; }

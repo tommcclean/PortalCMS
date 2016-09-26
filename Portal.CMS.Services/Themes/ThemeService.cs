@@ -13,7 +13,7 @@ namespace Portal.CMS.Services.Themes
 
         IEnumerable<Theme> Get();
 
-        int Upsert(int themeId, string themeName, int titleFontId, int textFontId, int largeTitleFontSize, int mediumTitleFontSize, int smallTitleFontSize, int tinyTitleFontSize, int textStandardFontSize);
+        int Upsert(int themeId, string themeName, int titleFontId, int textFontId, int largeTitleFontSize, int mediumTitleFontSize, int smallTitleFontSize, int tinyTitleFontSize, int textStandardFontSize, string pageBackgroundColour, string menuBackgroundColour, string menuTextColour);
 
         void Delete(int themeId);
 
@@ -58,7 +58,7 @@ namespace Portal.CMS.Services.Themes
             return results.OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.DateUpdated);
         }
 
-        public int Upsert(int themeId, string themeName, int titleFontId, int textFontId, int largeTitleFontSize, int mediumTitleFontSize, int smallTitleFontSize, int tinyTitleFontSize, int textStandardFontSize)
+        public int Upsert(int themeId, string themeName, int titleFontId, int textFontId, int largeTitleFontSize, int mediumTitleFontSize, int smallTitleFontSize, int tinyTitleFontSize, int textStandardFontSize, string pageBackgroundColour, string menuBackgroundColour, string menuTextColour)
         {
             var existingTheme = Get(themeId);
 
@@ -76,6 +76,9 @@ namespace Portal.CMS.Services.Themes
                     TitleSmallFontSize = smallTitleFontSize,
                     TitleTinyFontSize = tinyTitleFontSize,
                     TextStandardFontSize = textStandardFontSize,
+                    PageBackgroundColour = pageBackgroundColour,
+                    MenuBackgroundColour = menuBackgroundColour,
+                    MenuTextColour = menuTextColour,
                     IsDefault = false,
                 };
 
@@ -96,6 +99,9 @@ namespace Portal.CMS.Services.Themes
                 existingTheme.TitleSmallFontSize = smallTitleFontSize;
                 existingTheme.TitleTinyFontSize = tinyTitleFontSize;
                 existingTheme.TextStandardFontSize = textStandardFontSize;
+                existingTheme.PageBackgroundColour = pageBackgroundColour;
+                existingTheme.MenuBackgroundColour = menuBackgroundColour;
+                existingTheme.MenuTextColour = menuTextColour;
 
                 _context.SaveChanges();
 

@@ -205,6 +205,12 @@ a.category-item:hover
     margin-bottom: 20px;
 }
 
+.preview .preview-large
+{
+    zoom: 0.8;
+    pointer-events: none;
+}
+
 @media (max-width: 767px)
 {
     .vertical-alignment, section .vertical-alignment

@@ -6,9 +6,18 @@
 }
 
 @Styles.Render("~/Resources/CSS/JQuery/JQueryUI")
+@Styles.Render("~/Resources/CSS/Spectrum")
+@Scripts.Render("~/Resources/JavaScript/Spectrum")
 
 <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
 <script src="~/Areas/Admin/Content/Scripts/ThemeManager/jquery-sliders.js"></script>
+<script type="text/javascript">
+    $(".spectrum").spectrum({
+        flat: false,
+        showInput: true,
+        preferredFormat: "hex",
+    });
+</script>
 
 @using (Html.BeginForm("Edit", "ThemeManager", FormMethod.Post))
 {
@@ -19,7 +28,6 @@
 
     <ul class="nav nav-tabs nav-justified">
         <li role="presentation" class="active"><a href="#tab-theme-details" aria-controls="tab-theme-details" role="tab" data-toggle="tab">Details</a></li>
-        <li role="presentation" class=""><a href="#tab-theme-menu" aria-controls="tab-theme-menu" role="tab" data-toggle="tab">Menu</a></li>
         <li role="presentation" class=""><a href="#tab-theme-colour" aria-controls="tab-theme-colour" role="tab" data-toggle="tab">Colour</a></li>
         <li role="presentation" class=""><a href="#tab-theme-text" aria-controls="tab-theme-text" role="tab" data-toggle="tab">Text</a></li>
     </ul>
@@ -40,9 +48,25 @@
                 @Html.TextBoxFor(x => x.ThemeName)
             </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="tab-theme-menu">
-        </div>
         <div role="tabpanel" class="tab-pane" id="tab-theme-colour">
+
+            @Html.ValidationMessage("PageBackgroundColour")
+            <div class="control-group wide-label float-container">
+                @Html.LabelFor(x => x.PageBackgroundColour)
+                @Html.TextBoxFor(x => x.PageBackgroundColour, new { @class = "spectrum" })
+            </div>
+
+            @Html.ValidationMessage("MenuBackgroundColour")
+            <div class="control-group wide-label float-container">
+                @Html.LabelFor(x => x.MenuBackgroundColour)
+                @Html.TextBoxFor(x => x.MenuBackgroundColour, new { @class = "spectrum" })
+            </div>
+
+            @Html.ValidationMessage("MenuTextColour")
+            <div class="control-group wide-label float-container">
+                @Html.LabelFor(x => x.MenuTextColour)
+                @Html.TextBoxFor(x => x.MenuTextColour, new { @class = "spectrum" })
+            </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-theme-text">
             <h3>Font Selection</h3>

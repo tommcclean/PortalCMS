@@ -363,6 +363,7 @@
     <Content Include="Areas\Builder\Content\Scripts\menubuilder.js" />
     <Content Include="Content\Scripts\FontAwesomePicker\fontawesome-iconpicker.min.js" />
     <Content Include="Content\Scripts\Framework\global.js" />
+    <Content Include="Content\Scripts\Spectrum\spectrum.js" />
     <Content Include="Content\Styles\C3Graphing\c3.css" />
     <Content Include="Content\Styles\C3Graphing\c3.min.css">
       <DependentUpon>c3.css</DependentUpon>
@@ -448,6 +449,7 @@
     <Content Include="Content\Styles\FancyBox\jquery.fancybox-thumbs.css" />
     <Content Include="Content\Styles\FancyBox\jquery.fancybox.css" />
     <Content Include="Content\Styles\JQueryUI\jquery-ui.min.css" />
+    <Content Include="Content\Styles\Spectrum\spectrum.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -682,6 +684,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\MenuItem\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Scripts\Spectrum\spectrum.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

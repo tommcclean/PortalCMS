@@ -36,6 +36,8 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/FAQSpoilerEvents").Include("~/Areas/Builder/Content/Scripts/component.expand.js"));
 
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Spectrum").Include("~/Content/Scripts/Spectrum/spectrum.js"));
+
             #endregion Script Bundles
 
             #region Style Bundles
@@ -63,6 +65,8 @@ namespace Portal.CMS.Web
             bundles.Add(new StyleBundle("~/Resources/CSS/Misc/Portal").Include("~/Areas/Admin/Content/Styles/Pages/portal.css", new CssRewriteUrlTransform()));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Misc/Posts").Include("~/Areas/Admin/Content/Styles/Pages/posts.css", new CssRewriteUrlTransform()));
+
+            bundles.Add(new StyleBundle("~/Resources/CSS/Spectrum").Include("~/Content/Styles/Spectrum/spectrum.css"));
 
             #endregion Style Bundles
         }
