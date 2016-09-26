@@ -143,6 +143,8 @@ select[multiple="multiple"]
 .navbar-nav a
 {
     font-size: 14px;
+    transition: all 0.1s ease-in;
+    cursor: pointer;
 }
 
 .navbar-nav > li > a.btn
@@ -151,7 +153,6 @@ select[multiple="multiple"]
     margin: 8px 8px 8px 0px;
     background-color: #191919;
     border: 1px solid #2B2B2B;
-    font-size: 14px;
 }
 
     .navbar-nav > li > a.btn:hover
@@ -161,21 +162,13 @@ select[multiple="multiple"]
 
     .navbar-nav > li > a.btn.add
     {
-        
-        background-color: transparent;
-        border: 0;
         padding: 0;
         margin: 0;
-        transition: all 0.1s ease-in;
-        margin-left: 20px;
+        margin-left: 20px;        
+        background-color: transparent;
+        border: 0;
         line-height: 51px;
     }
-
-        .navbar-nav > li > a.btn.add:hover
-        {
-            background-color: transparent;
-            background-image: none;
-        }
 
 input[readonly]
 {
