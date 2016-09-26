@@ -51,11 +51,11 @@ namespace Portal.CMS.Entities.Seed
                 var dancingFont = fontList.First(x => x.FontName == "DancingScript");
                 var grandHotelFont = fontList.First(x => x.FontName == "GrandHotel-Regular");
 
-                themes.Add(new Entities.Themes.Theme { ThemeName = "Portal", TitleFontId = defaultFont.FontId, TextFontId = defaultFont.FontId, IsDefault = true, DateAdded = DateTime.Now, DateUpdated = DateTime.Now, TitleLargeFontSize = 35, TitleMediumFontSize = 35, TitleSmallFontSize = 24, TitleTinyFontSize = 22, TextStandardFontSize = 20, PageBackgroundColour = "#000000", MenuBackgroundColour = "#000000", MenuTextColour = "#FFFFFF" });
-                themes.Add(new Entities.Themes.Theme { ThemeName = "Impact", TitleFontId = allerDisplayFont.FontId, TextFontId = snigletFont.FontId, IsDefault = false, DateAdded = DateTime.Now, DateUpdated = DateTime.Now, TitleLargeFontSize = 35, TitleMediumFontSize = 35, TitleSmallFontSize = 24, TitleTinyFontSize = 22, TextStandardFontSize = 20, PageBackgroundColour = "#000000", MenuBackgroundColour = "#000000", MenuTextColour = "#FFFFFF" });
-                themes.Add(new Entities.Themes.Theme { ThemeName = "Futuristic", TitleFontId = thinLineFont.FontId, TextFontId = robotoThinFont.FontId, IsDefault = false, DateAdded = DateTime.Now, DateUpdated = DateTime.Now, TitleLargeFontSize = 35, TitleMediumFontSize = 35, TitleSmallFontSize = 24, TitleTinyFontSize = 22, TextStandardFontSize = 20, PageBackgroundColour = "#000000", MenuBackgroundColour = "#000000", MenuTextColour = "#FFFFFF" });
-                themes.Add(new Entities.Themes.Theme { ThemeName = "Grim", TitleFontId = carbonFont.FontId, TextFontId = bubblegumFont.FontId, IsDefault = false, DateAdded = DateTime.Now, DateUpdated = DateTime.Now, TitleLargeFontSize = 35, TitleMediumFontSize = 35, TitleSmallFontSize = 24, TitleTinyFontSize = 22, TextStandardFontSize = 20, PageBackgroundColour = "#000000", MenuBackgroundColour = "#000000", MenuTextColour = "#FFFFFF" });
-                themes.Add(new Entities.Themes.Theme { ThemeName = "Elegant", TitleFontId = dancingFont.FontId, TextFontId = grandHotelFont.FontId, IsDefault = false, DateAdded = DateTime.Now, DateUpdated = DateTime.Now, TitleLargeFontSize = 35, TitleMediumFontSize = 35, TitleSmallFontSize = 24, TitleTinyFontSize = 22, TextStandardFontSize = 20, PageBackgroundColour = "#000000", MenuBackgroundColour = "#000000", MenuTextColour = "#FFFFFF" });
+                themes.Add(new Entities.Themes.Theme { ThemeName = "Portal", TitleFontId = defaultFont.FontId, TextFontId = defaultFont.FontId, IsDefault = true, DateAdded = DateTime.Now, DateUpdated = DateTime.Now, TitleLargeFontSize = 35, TitleMediumFontSize = 35, TitleSmallFontSize = 24, TitleTinyFontSize = 22, TextStandardFontSize = 20, PageBackgroundColour = "#000000", MenuBackgroundColour = "#000000", MenuTextColour = "#9d9d9d" });
+                themes.Add(new Entities.Themes.Theme { ThemeName = "Impact", TitleFontId = allerDisplayFont.FontId, TextFontId = snigletFont.FontId, IsDefault = false, DateAdded = DateTime.Now, DateUpdated = DateTime.Now, TitleLargeFontSize = 35, TitleMediumFontSize = 35, TitleSmallFontSize = 24, TitleTinyFontSize = 22, TextStandardFontSize = 20, PageBackgroundColour = "#000000", MenuBackgroundColour = "#000000", MenuTextColour = "#9d9d9d" });
+                themes.Add(new Entities.Themes.Theme { ThemeName = "Futuristic", TitleFontId = thinLineFont.FontId, TextFontId = robotoThinFont.FontId, IsDefault = false, DateAdded = DateTime.Now, DateUpdated = DateTime.Now, TitleLargeFontSize = 35, TitleMediumFontSize = 35, TitleSmallFontSize = 24, TitleTinyFontSize = 22, TextStandardFontSize = 20, PageBackgroundColour = "#000000", MenuBackgroundColour = "#000000", MenuTextColour = "#9d9d9d" });
+                themes.Add(new Entities.Themes.Theme { ThemeName = "Grim", TitleFontId = carbonFont.FontId, TextFontId = bubblegumFont.FontId, IsDefault = false, DateAdded = DateTime.Now, DateUpdated = DateTime.Now, TitleLargeFontSize = 35, TitleMediumFontSize = 35, TitleSmallFontSize = 24, TitleTinyFontSize = 22, TextStandardFontSize = 20, PageBackgroundColour = "#000000", MenuBackgroundColour = "#000000", MenuTextColour = "#9d9d9d" });
+                themes.Add(new Entities.Themes.Theme { ThemeName = "Elegant", TitleFontId = dancingFont.FontId, TextFontId = grandHotelFont.FontId, IsDefault = false, DateAdded = DateTime.Now, DateUpdated = DateTime.Now, TitleLargeFontSize = 35, TitleMediumFontSize = 35, TitleSmallFontSize = 24, TitleTinyFontSize = 22, TextStandardFontSize = 20, PageBackgroundColour = "#000000", MenuBackgroundColour = "#000000", MenuTextColour = "#9d9d9d" });
 
                 context.Themes.AddRange(themes);
             }
@@ -68,7 +68,7 @@ namespace Portal.CMS.Entities.Seed
             {
                 theme.PageBackgroundColour = "#000000";
                 theme.MenuBackgroundColour = "#000000";
-                theme.MenuTextColour = "#FFFFFF";
+                theme.MenuTextColour = "#9d9d9d";
             }
 
             context.SaveChanges();
