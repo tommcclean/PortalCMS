@@ -671,9 +671,7 @@
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Theme\Render.cscss" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Views\MenuManager\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Areas\Admin\Views\MenuItem\Edit.cshtml" />
   </ItemGroup>

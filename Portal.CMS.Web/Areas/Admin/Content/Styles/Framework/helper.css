@@ -205,10 +205,142 @@ a.category-item:hover
     margin-bottom: 20px;
 }
 
-.preview .preview-large
+.spinner
 {
-    zoom: 0.8;
-    pointer-events: none;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    box-shadow: 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223);
+    -o-box-shadow: 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223);
+    -ms-box-shadow: 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223);
+    -webkit-box-shadow: 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223);
+    -moz-box-shadow: 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223);
+    animation: cssload-spin ease infinite 3.2s;
+    -o-animation: cssload-spin ease infinite 3.2s;
+    -ms-animation: cssload-spin ease infinite 3.2s;
+    -webkit-animation: cssload-spin ease infinite 3.2s;
+    -moz-animation: cssload-spin ease infinite 3.2s;
+}
+
+@keyframes cssload-spin
+{
+    0%, 100%
+    {
+        box-shadow: 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223);
+    }
+
+    25%
+    {
+        box-shadow: -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223), 32px 32px rgb(79,77,73);
+    }
+
+    50%
+    {
+        box-shadow: -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223), 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223);
+    }
+
+    75%
+    {
+        box-shadow: 32px -32px #dfdfdf, 32px 32px #4f4d49, -32px 32px #dfdfdf, -32px -32px #4f4d49;
+    }
+}
+
+@-o-keyframes cssload-spin
+{
+    0%, 100%
+    {
+        box-shadow: 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223);
+    }
+
+    25%
+    {
+        box-shadow: -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223), 32px 32px rgb(79,77,73);
+    }
+
+    50%
+    {
+        box-shadow: -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223), 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223);
+    }
+
+    75%
+    {
+        box-shadow: 32px -32px #dfdfdf, 32px 32px #4f4d49, -32px 32px #dfdfdf, -32px -32px #4f4d49;
+    }
+}
+
+@-ms-keyframes cssload-spin
+{
+    0%, 100%
+    {
+        box-shadow: 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223);
+    }
+
+    25%
+    {
+        box-shadow: -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223), 32px 32px rgb(79,77,73);
+    }
+
+    50%
+    {
+        box-shadow: -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223), 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223);
+    }
+
+    75%
+    {
+        box-shadow: 32px -32px #dfdfdf, 32px 32px #4f4d49, -32px 32px #dfdfdf, -32px -32px #4f4d49;
+    }
+}
+
+@-webkit-keyframes cssload-spin
+{
+    0%, 100%
+    {
+        box-shadow: 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223);
+    }
+
+    25%
+    {
+        box-shadow: -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223), 32px 32px rgb(79,77,73);
+    }
+
+    50%
+    {
+        box-shadow: -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223), 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223);
+    }
+
+    75%
+    {
+        box-shadow: 32px -32px #dfdfdf, 32px 32px #4f4d49, -32px 32px #dfdfdf, -32px -32px #4f4d49;
+    }
+}
+
+@-moz-keyframes cssload-spin
+{
+    0%, 100%
+    {
+        box-shadow: 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223);
+    }
+
+    25%
+    {
+        box-shadow: -32px 32px rgb(223,223,223), -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223), 32px 32px rgb(79,77,73);
+    }
+
+    50%
+    {
+        box-shadow: -32px -32px rgb(79,77,73), 32px -32px rgb(223,223,223), 32px 32px rgb(79,77,73), -32px 32px rgb(223,223,223);
+    }
+
+    75%
+    {
+        box-shadow: 32px -32px #dfdfdf, 32px 32px #4f4d49, -32px 32px #dfdfdf, -32px -32px #4f4d49;
+    }
 }
 
 @media (max-width: 767px)

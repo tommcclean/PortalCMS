@@ -20,7 +20,7 @@ function showModalEditor(title, url) {
     }
 
     $('#ContentEditor .modal-title').text(title);
-    setModalEditorContent('<p>Loading...</p>');
+    setModalEditorContent('<div class="spinner"></div>');
     $('#ContentEditor').modal('show');
 
     $.ajax({
@@ -77,7 +77,7 @@ function bindModalEditor() {
     if ($('#ContentEditor a.switch-modal').length > 0) {
         $('#ContentEditor a.switch-modal').on('click', function (e) {
             e.preventDefault();
-            setModalEditorContent('<p>Please wait...</p>');
+            setModalEditorContent('<div class="spinner"></div>');
             $.ajax({
                 type: 'GET',
                 url: $(this).attr('href'),
@@ -124,7 +124,7 @@ function bindModalEditor() {
                 processData: false,
                 data: formData,
                 beforeSend: function () {
-                    setModalEditorContent('<p>Please wait...</p>');
+                    setModalEditorContent('<div class="spinner"></div>');
                 },
                 success: function (data) {
                     if (data == 'Refresh') {
@@ -148,7 +148,7 @@ function bindModalEditor() {
                 cache: false,
                 data: formData,
                 beforeSend: function () {
-                    setModalEditorContent('<p>Please wait...</p>');
+                    setModalEditorContent('<div class="spinner"></div>');
                 },
                 success: function (data) {
                     if (data == 'Refresh') {

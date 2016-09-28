@@ -86,6 +86,11 @@ body
     text-align: right;
 }
 
+.modal-body
+{
+    min-height: 250px;
+}
+
 .nav-tabs > li > a
 {
     color: black;
