@@ -89,7 +89,7 @@
 
 .action-container.wide
 {
-    bottom: 5px;
+    bottom: 0px;
     right: 10px;
 }
 
@@ -99,7 +99,7 @@
         width: auto;
         padding-right: 20px;
         line-height: 40px;
-        border-radius: 15px;
+        border-radius: 10px;
         font-size: 15px;
     }
 
