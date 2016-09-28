@@ -378,7 +378,6 @@
     <Content Include="Content\Scripts\JQueryTouch\jquery.ui.touch-punch.min.js" />
     <Content Include="Content\Scripts\TinyMCE\initialise.js" />
     <Content Include="Content\Scripts\TinyMCE\tinymce.min.js" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\confirmation.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\images.css" />
     <Content Include="Areas\Builder\Content\Images\Sample\icon-1.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\icon-2.png" />
@@ -412,13 +411,9 @@
     <Content Include="Content\Scripts\Framework\modal.js" />
     <Content Include="Areas\Admin\Content\Styles\Framework\boxes.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\fields.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\modal.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\tabs.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\fonts.css" />
+    <Content Include="Areas\Admin\Content\Styles\Framework\override.css" />
     <Content Include="Areas\Admin\Content\Styles\Framework\helper.css" />
-    <Content Include="Areas\Admin\Content\Styles\Pages\dashboard.css" />
-    <Content Include="Areas\Admin\Content\Styles\Pages\portal.css" />
-    <Content Include="Areas\Admin\Content\Styles\Pages\posts.css" />
+    <Content Include="Areas\Admin\Content\Styles\administration.css" />
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox-thumbs.js" />
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox.js" />
     <Content Include="Areas\Builder\Content\Styles\component.containers.css" />

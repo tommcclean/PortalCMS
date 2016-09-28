@@ -10,7 +10,6 @@
     box-shadow: 1px 1px 10px #BDBDC1;
     background-size: cover;
     background-position: center center;
-    background-repeat: no-repeat;
     -moz-transition: box-shadow 0.2s ease-in-out;
     -o-transition: box-shadow 0.2s ease-in-out;
     -webkit-transition: box-shadow 0.2s ease-in-out;
@@ -20,6 +19,11 @@
     .box:hover
     {
         box-shadow: 1px 1px 20px #ACACAF;
+    }
+
+    .box.box-tall
+    {
+        min-height: 300px;
     }
 
 .tab-pane .box
@@ -51,6 +55,14 @@
 .box .row img
 {
     width: 100%;
+}
+
+.box img.avatar
+{
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    margin-left: 10px;
 }
 
 .box-title

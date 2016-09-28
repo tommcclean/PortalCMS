@@ -4,11 +4,6 @@
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-articles.png";
 }
 
-@section Styles
-{
-    @Styles.Render("~/Resources/CSS/Misc/Posts")
-}
-
 @section HEADScripts
 {
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
@@ -41,7 +36,7 @@
                 }
 
                 <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="box article-item float-container @(hasBannerImage ? "dark" : "light")" style="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? string.Format("background-image: url('{0}'); color: white;", bannerImagePath) : "")">
+                    <div class="box box-tall article-item float-container @(hasBannerImage ? "dark" : "light")" style="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? string.Format("background-image: url('{0}'); color: white;", bannerImagePath) : "")">
                         <div class="inner">
                             <div class="category-item">@post.PostCategory.PostCategoryName</div>
                             <h3>@(post.IsPublished ? "" : "Draft: ") @post.PostTitle</h3>

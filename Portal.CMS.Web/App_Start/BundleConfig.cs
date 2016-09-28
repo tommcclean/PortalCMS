@@ -60,11 +60,7 @@ namespace Portal.CMS.Web
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Administration/Framework").Include("~/Areas/Admin/Content/Styles/Framework/*.css", new CssRewriteUrlTransform()));
 
-            bundles.Add(new StyleBundle("~/Resources/CSS/Misc/Dashboard").Include("~/Areas/Admin/Content/Styles/Pages/dashboard.css", new CssRewriteUrlTransform()));
-
-            bundles.Add(new StyleBundle("~/Resources/CSS/Misc/Portal").Include("~/Areas/Admin/Content/Styles/Pages/portal.css", new CssRewriteUrlTransform()));
-
-            bundles.Add(new StyleBundle("~/Resources/CSS/Misc/Posts").Include("~/Areas/Admin/Content/Styles/Pages/posts.css", new CssRewriteUrlTransform()));
+            bundles.Add(new StyleBundle("~/Resources/CSS/Misc/Administration").Include("~/Areas/Admin/Content/Styles/administration.css", new CssRewriteUrlTransform()));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Spectrum").Include("~/Content/Styles/Spectrum/spectrum.css"));
 

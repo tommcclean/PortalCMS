@@ -1,0 +1,142 @@
+﻿@font-face
+{
+    font-family: 'Emeric';
+    src: url('../../Fonts/Emeric.ttf') format('truetype');
+}
+
+h1
+{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 35px;
+    letter-spacing: 2.5px;
+    margin-bottom: 30px;
+}
+
+h2
+{
+    font-size: 35px;
+    margin-bottom: 30px;
+}
+
+h3
+{
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 1.2px;
+    margin-bottom: 30px;
+}
+
+h4
+{
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+p, a, code
+{
+    font-size: 18px;
+}
+
+input
+{
+    outline: none;
+}
+
+.fa, .glyphicon
+{
+    margin-right: 10px;
+}
+
+.action .fa, .admin-item .fa, .action .fa, .confirmation-popover .fa
+{
+    margin: 0;
+}
+
+.btn
+{
+    font-size: 18px;
+}
+
+.dark h1, .dark h2, .dark h3, .dark h4, .dark p
+{
+    color: white;
+}
+
+code
+{
+    display: block;
+    text-align: left;
+    padding: 10px;
+}
+
+.alert-link
+{
+    font-size: 14px;
+}
+
+body
+{
+    font-family: 'Emeric';
+}
+
+.modal .footer
+{
+    text-align: right;
+}
+
+.nav-tabs > li > a
+{
+    color: black;
+    font-size: 13px;
+}
+
+.tab-content
+{
+    border: 1px solid #ddd;
+    border-top: 0;
+}
+
+    .tab-content .tab-pane
+    {
+        background-color: white;
+        padding: 20px 20px 30px 20px;
+    }
+
+.confirmation-popover .btn.btn-danger
+{
+    background-color: #d9534f;
+}
+
+.confirmation-popover .btn
+{
+    width: 40px;
+    background-color: black;
+    color: white;
+    padding: 7px 10px 5px 10px;
+    margin: 1px 4px 1px 4px;
+    border-radius: 50%;
+}
+
+@media (min-width: 768px)
+{
+    .modal-dialog
+    {
+        width: 1000px;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 767px)
+{
+    .tab-content
+    {
+        border-top: 1px solid #ddd;
+    }
+
+    .nav-tabs.nav-justified
+    {
+        margin-bottom: 10px;
+    }
+}

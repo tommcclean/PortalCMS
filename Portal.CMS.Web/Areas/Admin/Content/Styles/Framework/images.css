@@ -1,8 +1,6 @@
 ﻿.tab-pane img.thumbnail
 {
-    border: 2px solid white;
     display: inline-block;
-    max-width: calc((100% - 90px) / 4);
     margin-right: 20px;
     transition: all 0.2s ease-in-out;
 }
@@ -23,7 +21,7 @@
     max-width: calc((100% - 70px) / 3);
 }
 
-.x4 img.thumbail
+.x4 img.thumbnail
 {
     max-width: calc((100% - 90px) / 4);
 }

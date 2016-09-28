@@ -131,6 +131,9 @@ select[multiple="multiple"]
         color: white;
         text-transform: uppercase;
         text-decoration: none;
+        -moz-transition: color, background-color 0.2s ease-in;
+        -o-transition: color, background-color 0.2s ease-in;
+        -webkit-transition: color, background-color 0.2s ease-in;
         transition: color, background-color 0.2s ease-in;
     }
 
@@ -143,7 +146,10 @@ select[multiple="multiple"]
 .navbar-nav a
 {
     font-size: 14px;
-    transition: all 0.1s ease-in;
+    -moz-transition: all 0.15s ease-in;
+    -o-transition: all 0.15s ease-in;
+    -webkit-transition: all 0.15s ease-in;
+    transition: all 0.15s ease-in;
     cursor: pointer;
 }
 
@@ -160,17 +166,7 @@ select[multiple="multiple"]
         background-color: #2B2B2B;
     }
 
-    .navbar-nav > li > a.btn.add
-    {
-        padding: 0;
-        margin: 0;
-        margin-left: 20px;        
-        background-color: transparent;
-        border: 0;
-        line-height: 51px;
-    }
-
-input[readonly]
+[readonly]
 {
     cursor: not-allowed;
 }
