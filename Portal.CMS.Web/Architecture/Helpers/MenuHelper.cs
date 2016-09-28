@@ -4,7 +4,7 @@ using Portal.CMS.Web.DependencyResolution;
 using StructureMap;
 using System.Collections.Generic;
 
-namespace Portal.CMS.Web.Areas.Admin.Helpers
+namespace Portal.CMS.Web.Architecture.Helpers
 {
     public static class MenuHelper
     {

@@ -2,7 +2,7 @@
 using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Posts;
 using Portal.CMS.Services.Themes;
-using Portal.CMS.Web.Areas.Admin.Helpers;
+using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.ViewModels.Blog;
 using System.Linq;
 using System.Web.Mvc;

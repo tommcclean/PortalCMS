@@ -1,4 +1,4 @@
-﻿using Portal.CMS.Web.Areas.Admin.Helpers;
+﻿using Portal.CMS.Web.Architecture.Helpers;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;

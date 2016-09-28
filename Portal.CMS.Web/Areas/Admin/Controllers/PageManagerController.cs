@@ -1,7 +1,7 @@
 ﻿using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
-using Portal.CMS.Web.Areas.Admin.Helpers;
+using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.PageManager;
 using System;
 using System.Collections.Generic;

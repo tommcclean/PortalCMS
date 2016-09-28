@@ -260,10 +260,10 @@
     <Compile Include="Areas\Admin\Controllers\SettingManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThemeManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserManagerController.cs" />
-    <Compile Include="Areas\Admin\Helpers\EmailHelper.cs" />
-    <Compile Include="Areas\Admin\Helpers\MenuHelper.cs" />
-    <Compile Include="Areas\Admin\Helpers\SettingHelper.cs" />
-    <Compile Include="Areas\Admin\Helpers\UserHelper.cs" />
+    <Compile Include="Architecture\Helpers\EmailHelper.cs" />
+    <Compile Include="Architecture\Helpers\MenuHelper.cs" />
+    <Compile Include="Architecture\Helpers\SettingHelper.cs" />
+    <Compile Include="Architecture\Helpers\UserHelper.cs" />
     <Compile Include="Areas\Admin\ViewModels\AnalyticManager\ChartViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\AnalyticManager\ColumnViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\LoginViewModel.cs" />

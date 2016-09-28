@@ -1,7 +1,7 @@
 ﻿using Portal.CMS.Services.Settings;
 using Portal.CMS.Web.DependencyResolution;
 
-namespace Portal.CMS.Web.Areas.Admin.Helpers
+namespace Portal.CMS.Web.Architecture.Helpers
 {
     public static class SettingHelper
     {
