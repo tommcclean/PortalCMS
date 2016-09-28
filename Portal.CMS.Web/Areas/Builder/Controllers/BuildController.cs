@@ -4,7 +4,7 @@ using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Services.Themes;
-using Portal.CMS.Web.Areas.Admin.ActionFilters;
+using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Build;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Shared;

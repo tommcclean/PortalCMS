@@ -1,6 +1,6 @@
 ﻿using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.Posts;
-using Portal.CMS.Web.Areas.Admin.ActionFilters;
+using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Dashboard;
 using System.Linq;
 using System.Web.Mvc;

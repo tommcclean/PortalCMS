@@ -3,7 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Portal.CMS.Web.Areas.Admin.ActionFilters
+namespace Portal.CMS.Web.Architecture.ActionFilters
 {
     public class LoggedInFilter : ActionFilterAttribute
     {

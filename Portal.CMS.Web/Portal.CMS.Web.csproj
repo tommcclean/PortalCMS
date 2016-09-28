@@ -242,9 +242,9 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Architecture\Modules\RemoveResponseHeadersModule.cs" />
     <Compile Include="Architecture\ViewEngines\CSSViewEngine.cs" />
-    <Compile Include="Areas\Admin\ActionFilters\EditorFilter.cs" />
-    <Compile Include="Areas\Admin\ActionFilters\AdminFilter.cs" />
-    <Compile Include="Areas\Admin\ActionFilters\LoggedInFilter.cs" />
+    <Compile Include="Architecture\ActionFilters\EditorFilter.cs" />
+    <Compile Include="Architecture\ActionFilters\AdminFilter.cs" />
+    <Compile Include="Architecture\ActionFilters\LoggedInFilter.cs" />
     <Compile Include="Areas\Admin\Controllers\AnalyticManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthenticationController.cs" />
     <Compile Include="Areas\Admin\Controllers\CopyManagerController.cs" />
@@ -345,11 +345,9 @@
     <Content Include="Areas\Admin\Content\Images\block_black_dark.png" />
     <Content Include="Areas\Admin\Content\Images\block_black_light.png" />
     <Content Include="Areas\Admin\Content\Images\block_black_medium.png" />
-    <Content Include="Areas\Admin\Content\Images\icon-comments.png" />
     <Content Include="Areas\Admin\Content\Images\icon-exit.png" />
     <Content Include="Areas\Admin\Content\Images\icon-media.png" />
     <Content Include="Areas\Admin\Content\Images\icon-dashboard.png" />
-    <Content Include="Areas\Admin\Content\Images\icon-logout.png" />
     <Content Include="Areas\Admin\Content\Images\icon-reports.png" />
     <Content Include="Areas\Admin\Content\Images\icon-settings.png" />
     <Content Include="Areas\Admin\Content\Images\icon-thememanager.png" />
@@ -395,7 +393,6 @@
     <Content Include="Areas\Builder\Content\Images\Sample\Sample-4.jpg" />
     <Content Include="Areas\Builder\Content\Images\Sample\Sample-5.jpg" />
     <Content Include="Areas\Builder\Content\Images\Sample\Sample-6.jpg" />
-    <Content Include="Areas\Admin\Content\Images\texture-dark.png" />
     <Content Include="Areas\Admin\Content\Images\texture.png" />
     <Content Include="Content\Styles\FancyBox\jquery.fancybox.min.css">
       <DependentUpon>jquery.fancybox.css</DependentUpon>

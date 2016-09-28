@@ -1,5 +1,5 @@
 ﻿using Portal.CMS.Services.Menu;
-using Portal.CMS.Web.Areas.Admin.ActionFilters;
+using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Menu;
 using System.Linq;
 using System.Web.Mvc;

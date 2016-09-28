@@ -1,5 +1,5 @@
 ﻿using Portal.CMS.Services.Authentication;
-using Portal.CMS.Web.Areas.Admin.ActionFilters;
+using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.RoleManager;
 using System.Web.Mvc;
 

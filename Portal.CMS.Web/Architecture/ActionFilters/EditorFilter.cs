@@ -2,13 +2,13 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Portal.CMS.Web.Areas.Admin.ActionFilters
+namespace Portal.CMS.Web.Architecture.ActionFilters
 {
-    public class AdminFilter : ActionFilterAttribute
+    public class EditorFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (UserHelper.IsAdmin == false)
+            if (UserHelper.IsEditor == false)
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary
                 {

@@ -1,5 +1,5 @@
 ﻿using Portal.CMS.Services.Themes;
-using Portal.CMS.Web.Areas.Admin.ActionFilters;
+using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager;
 using System;
 using System.Web.Mvc;

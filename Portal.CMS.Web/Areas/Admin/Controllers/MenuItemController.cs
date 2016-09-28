@@ -2,7 +2,7 @@
 using Portal.CMS.Services.Menu;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Services.Posts;
-using Portal.CMS.Web.Areas.Admin.ActionFilters;
+using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.MenuItem;
 using System.Linq;
 using System.Web.Mvc;

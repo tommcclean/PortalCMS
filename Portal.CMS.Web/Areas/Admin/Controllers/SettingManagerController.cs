@@ -1,7 +1,7 @@
 ﻿using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Menu;
 using Portal.CMS.Services.Settings;
-using Portal.CMS.Web.Areas.Admin.ActionFilters;
+using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.SettingManager;
 using System.Web.Mvc;
