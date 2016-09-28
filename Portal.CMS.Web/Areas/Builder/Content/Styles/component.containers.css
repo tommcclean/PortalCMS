@@ -1,6 +1,6 @@
 ﻿.admin .freestyle
 {
-    border: 1px dashed purple;
+    border: 1px dotted purple;
     border-radius: 5px;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -10,7 +10,7 @@
 
 .admin .component-container
 {
-    border: 1px dashed gray;
+    border: 1px dotted gray;
     border-radius: 5px;
     padding-bottom: 30px;
     padding-top: 30px;
@@ -20,7 +20,7 @@
 
     .admin .component-container.selected, .admin .widget-wrapper.selected
     {
-        border: 1px dashed red !important;
+        border: 1px dotted red !important;
         border: 1px solid;
         background-image: url('/Areas/Admin/Content/Images/block_black_light.png');
     }
@@ -57,7 +57,7 @@
 {
     display: table-cell;
     min-width: 100px;
-    border: 1px dashed purple;
+    border: 1px dotted purple;
 }
 
 .admin td.component-container
@@ -90,7 +90,7 @@ section .vertical-alignment
 .admin .widget-wrapper
 {
     padding: 10px;
-    border: 1px dashed black;
+    border: 1px dotted black;
     cursor: pointer;
 }
 
