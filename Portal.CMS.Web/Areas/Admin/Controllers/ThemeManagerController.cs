@@ -41,7 +41,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 FontList = _fontService.Get(),
                 PageBackgroundColour = "#000000",
                 MenuBackgroundColour = "#000000",
-                MenuTextColour = "#FFFFFF"
+                MenuTextColour = "#9d9d9d"
             };
 
             return PartialView("_Create", model);

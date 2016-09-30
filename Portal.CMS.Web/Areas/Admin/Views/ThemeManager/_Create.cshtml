@@ -6,24 +6,41 @@
 }
 
 @Styles.Render("~/Resources/CSS/JQuery/JQueryUI")
+@Styles.Render("~/Resources/CSS/Spectrum")
+@Scripts.Render("~/Resources/JavaScript/Spectrum")
 
 <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
 <script src="~/Areas/Admin/Content/Scripts/ThemeManager/jquery-sliders.js"></script>
+<script type="text/javascript">
+    $(".spectrum").spectrum({
+        flat: false,
+        showInput: true,
+        preferredFormat: "hex",
+    });
+</script>
 
 @using (Html.BeginForm("Create", "ThemeManager", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
+    @Html.HiddenFor(x => x.ThemeId)
+    @Html.HiddenFor(x => x.IsDefault)
+
     <ul class="nav nav-tabs nav-justified">
         <li role="presentation" class="active"><a href="#tab-theme-details" aria-controls="tab-theme-details" role="tab" data-toggle="tab">Details</a></li>
-        <li role="presentation" class=""><a href="#tab-theme-menu" aria-controls="tab-theme-menu" role="tab" data-toggle="tab">Menu</a></li>
         <li role="presentation" class=""><a href="#tab-theme-colour" aria-controls="tab-theme-colour" role="tab" data-toggle="tab">Colour</a></li>
         <li role="presentation" class=""><a href="#tab-theme-text" aria-controls="tab-theme-text" role="tab" data-toggle="tab">Text</a></li>
     </ul>
-
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab-theme-details">
-            <div class="alert alert-warning" role="alert">Once you have created this theme you can make it the default theme. This will update all of your existing pages.</div>
+            @if (Model.IsDefault)
+            {
+                <div class="alert alert-danger" role="alert">Warning: This theme is currently active. Any changes you make will affect your pages.</div>
+            }
+            else
+            {
+                <div class="alert alert-warning" role="alert">Please note: This theme is not currently active as your default theme.</div>
+            }
 
             @Html.ValidationMessage("ThemeName")
             <div class="control-group float-container">
@@ -31,11 +48,30 @@
                 @Html.TextBoxFor(x => x.ThemeName)
             </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="tab-theme-menu">
-        </div>
         <div role="tabpanel" class="tab-pane" id="tab-theme-colour">
+            @Html.ValidationMessage("PageBackgroundColour")
+            <div class="control-group wide-label float-container">
+                @Html.LabelFor(x => x.PageBackgroundColour)
+                @Html.TextBoxFor(x => x.PageBackgroundColour, new { @class = "spectrum" })
+            </div>
+
+            @Html.ValidationMessage("MenuBackgroundColour")
+            <div class="control-group wide-label float-container">
+                @Html.LabelFor(x => x.MenuBackgroundColour)
+                @Html.TextBoxFor(x => x.MenuBackgroundColour, new { @class = "spectrum" })
+            </div>
+
+            @Html.ValidationMessage("MenuTextColour")
+            <div class="control-group wide-label float-container">
+                @Html.LabelFor(x => x.MenuTextColour)
+                @Html.TextBoxFor(x => x.MenuTextColour, new { @class = "spectrum" })
+            </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-theme-text">
+            <h3>Font Selection</h3>
+            <p>Select the fonts you want to use below. Upload custom fonts in the Media Manager.</p>
+            <br />
+
             @Html.ValidationMessage("TitleFontId")
             <div class="control-group float-container">
                 @Html.LabelFor(x => x.TitleFontId)
@@ -48,6 +84,8 @@
                 @Html.DropDownListFor(m => m.TextFontId, fontList)
             </div>
 
+            <h3>Change Font Size</h3>
+            <p>Use the sliders below to change the size of the fonts in the Page Builder and your Blog Posts.</p>
             <br />
 
             @Html.ValidationMessage("LargeTitleFontSize")
@@ -88,7 +126,7 @@
     </div>
 
     <div class="footer">
-        <button class="btn primary">Create Theme</button>
+        <button class="btn primary">Edit Theme</button>
         <button class="btn" data-dismiss="modal">Cancel</button>
     </div>
 }
