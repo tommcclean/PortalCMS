@@ -3,13 +3,30 @@ This file contains high level information about which features make it into a re
 
 
 ## Current Release: Stable 1.0
-All Initial Features - We are working to list them out.
+This is the first stable release for Portal CMS.
+
+1. Ability to use the Administration Panel with the following features...
+  1. Dashboard
+  2. Media Manager (Upload Images)
+  3. Post Manager (Create and Edit Blog Posts
+  4. Page Manager (Manage your Custom Pages)
+  5. Copy Manager (Ability to use and edit custom Copy)
+  6. Analytics Manager (Internal Analytics Engine with Reporting)
+  7. User Manager (Ability to review, edit and create users)
+  8. Settings Manager (Ability to edit basic settings, roles and menu's
 
 ## Next Release: 1.1
 We expect to include the following features in the next release of Portal CMS at this time, this list is subject to change.
 
-1. Ability to use custom font's
-2. Ability to apply solid colour backgrounds to sections
-3. Ability to Embed a Map and Video into Page Builder Pages.
-4. Improved Menu Management Tools
-5. Add New Administration Page for Managing Post Comments. New Settings to allow moderation and anonymous posting.
+1. Continued Improvements to reliability and architectural Components.
+2. Improved performance following Performance testing recommendations.
+3. Ability to upload your own Font's and use them in custom Themes.
+4. Ability to create custom themes including fonts, text sizes and colour schemes to change your website's appearance.
+5. Ability to apply solid colour backgrounds to Sections
+6. Much improved Menu Management tools
+7. Additional App Drawers to safe time administering your website (Page Manager Drawer and Theme Manager Drawer)
+8. User Interface / Experience improvements following user testing
+9. A new FAQ / Spoiler style component.
+
+
+
