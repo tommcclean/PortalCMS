@@ -14,6 +14,16 @@ This is the first stable release for Portal CMS.
   6. Analytics Manager (Internal Analytics Engine with Reporting)
   7. User Manager (Ability to review, edit and create users)
   8. Settings Manager (Ability to edit basic settings, roles and menu's
+2. Ability to use the Page Builder
+  1. Ability to add Template Sections
+  2. Ability to add Components
+  3. Ability to edit components with inline editing tools
+  4. Ability to change order of sections within your page
+3. Ability to register and sign in
+  1. Including the ability to manage your profile such as Avatar, Bio, Details and Password.
+4. Abilities to manage and view blog posts
+  1. Including Inline editing for changing your posts quickly
+  2. Including Comments, Photo Galleries and Tie ins to other posts
 
 ## Next Release: 1.1
 We expect to include the following features in the next release of Portal CMS at this time, this list is subject to change.
