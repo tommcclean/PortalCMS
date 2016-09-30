@@ -58,7 +58,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 if (result.HasValue)
                 {
                     Session.Add("UserAccount", _userService.GetUser(result.Value));
-                    Session.Add("UserRoles", _roleService.Get(result.Value));
+                    Session.Add("UserRoles", _roleService.Get(result));
                 }
 
                 resetCookie.Expires = DateTime.Now.AddDays(-1);

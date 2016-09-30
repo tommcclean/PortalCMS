@@ -48,7 +48,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int roleId)
         {
-            var role = _roleService.Fetch(roleId);
+            var role = _roleService.Get(roleId);
 
             var model = new EditViewModel
             {

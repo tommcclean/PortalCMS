@@ -11,7 +11,7 @@ namespace Portal.CMS.Services.Authentication
 
         List<Role> Get();
 
-        Role Fetch(int roleId);
+        Role Get(int roleId);
 
         int Add(string roleName);
 
@@ -58,7 +58,7 @@ namespace Portal.CMS.Services.Authentication
             return results;
         }
 
-        public Role Fetch(int roleId)
+        public Role Get(int roleId)
         {
             var role = _context.Roles.SingleOrDefault(x => x.RoleId == roleId);
 
@@ -109,8 +109,12 @@ namespace Portal.CMS.Services.Authentication
 
             if (user.Roles != null)
             {
-                foreach (var role in user.Roles)
+                while(user.Roles.Any())
+                {
+                    var role = user.Roles.First();
+
                     _context.UserRoles.Remove(role);
+                }
             }
 
             foreach (var role in roleList)

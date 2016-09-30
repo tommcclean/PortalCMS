@@ -107,11 +107,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Roles(int userId)
+        public ActionResult Roles(int? userId)
         {
             var model = new RolesViewModel
             {
-                UserId = userId,
+                UserId = userId.Value,
                 RoleList = _roleService.Get()
             };
 
@@ -130,14 +130,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View("_Roles", model);
 
-            _roleService.Update(model.UserId, model.SelectedRoleList);
+            _roleService.Update(model.UserId.Value, model.SelectedRoleList);
 
             if (model.UserId == UserHelper.UserId)
             {
                 Session.Remove("UserAccount");
                 Session.Remove("UserRoles");
 
-                Session.Add("UserAccount", _userService.GetUser(model.UserId));
+                Session.Add("UserAccount", _userService.GetUser(model.UserId.Value));
                 Session.Add("UserRoles", _roleService.Get(model.UserId));
             }
 
