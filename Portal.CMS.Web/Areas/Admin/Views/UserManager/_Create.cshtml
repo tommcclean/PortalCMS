@@ -9,32 +9,28 @@
 {
     @Html.AntiForgeryToken()
 
-    @Html.ValidationMessage("EmailAddress")
-
-    <div class="control-group float-container">
-        @Html.LabelFor(x => x.EmailAddress)
-        @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email" })
-    </div>
-
-    @Html.ValidationMessage("Password")
-
-    <div class="control-group float-container">
-        @Html.LabelFor(x => x.Password)
-        @Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
-    </div>
-
     @Html.ValidationMessage("GivenName")
-
     <div class="control-group float-container">
         @Html.LabelFor(x => x.GivenName)
         @Html.TextBoxFor(x => x.GivenName, new { placeholder = "Given Name" })
     </div>
 
     @Html.ValidationMessage("FamilyName")
-
     <div class="control-group float-container">
         @Html.LabelFor(x => x.FamilyName)
         @Html.TextBoxFor(x => x.FamilyName, new { placeholder = "Last Name" })
+    </div>
+
+    @Html.ValidationMessage("EmailAddress")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.EmailAddress)
+        @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email" })
+    </div>
+
+    @Html.ValidationMessage("Password")
+    <div class="control-group float-container">
+        @Html.LabelFor(x => x.Password)
+        @Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
     </div>
 
     <div class="footer">
