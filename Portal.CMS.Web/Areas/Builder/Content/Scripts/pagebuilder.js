@@ -232,9 +232,6 @@ function DeleteInlineComponent(editorId) {
 }
 
 function PreventAppDrawerDrop() {
-    alert(window.innerHeight);
-    alert(window.innerWidth);
-
     if (window.innerHeight < 701 && window.innerWidth < 601) {
         return true;
     }
