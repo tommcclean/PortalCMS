@@ -24,11 +24,11 @@
                 {
                     if (string.IsNullOrWhiteSpace(item.LinkIcon))
                     {
-                        <li class=""><a href="@item.LinkURL" data-item="@item.MenuItemId" class="custom">@item.LinkText</a></li>
+                        <li class=""><a href="@item.LinkURL" data-item="@item.MenuItemId" data-itemname="@item.LinkText" class="custom">@item.LinkText</a></li>
                     }
                     else
                     {
-                        <li class=""><a href="@item.LinkURL" data-item="@item.MenuItemId" class="custom"><span class="fa @item.LinkIcon"></span>@item.LinkText</a></li>
+                        <li class=""><a href="@item.LinkURL" data-item="@item.MenuItemId" data-itemname="@item.LinkText" class="custom"><span class="fa @item.LinkIcon"></span>@item.LinkText</a></li>
                     }
 
                 }

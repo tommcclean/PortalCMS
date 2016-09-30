@@ -4,6 +4,6 @@
 
         var menuItemId = $(this).attr("data-item");
 
-        showModalEditor("Edit Menu Item", "/Admin/MenuItem/Edit?menuItemId=" + menuItemId);
+        showModalEditor("Edit Menu Item: " + $(this).attr("data-itemname"), "/Admin/MenuItem/Edit?menuItemId=" + menuItemId);
     });
 });
