@@ -1,5 +1,4 @@
 ﻿using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities.Authentication;
 using Portal.CMS.Entities.Entities.PageBuilder;
 using Portal.CMS.Entities.Entities.Posts;
 using Portal.CMS.Services.Authentication;
@@ -35,11 +34,13 @@ namespace Portal.CMS.Services.PageBuilder
 
         private readonly PortalEntityModel _context;
         private readonly IUserService _userService;
+        private readonly IRoleService _roleService;
 
-        public PageService(PortalEntityModel context, IUserService userService)
+        public PageService(PortalEntityModel context, IUserService userService, IRoleService roleService)
         {
             _context = context;
             _userService = userService;
+            _roleService = roleService;
         }
 
         #endregion Dependencies
@@ -58,70 +59,31 @@ namespace Portal.CMS.Services.PageBuilder
             if (!page.PageRoles.Any())
                 return FilterSectionList(page, userId);
 
-            var userRoleList = new List<string>();
+            var userRoles = _roleService.Get(userId);
 
-            if (userId.HasValue)
-            {
-                var user = _userService.GetUser(userId.Value);
+            var hasAccess = _roleService.Validate(page.PageRoles.Select(x => x.Role), userRoles);
 
-                if (user.Roles.Any(x => x.Role.RoleName == "Admin"))
-                    return FilterSectionList(page, userId);
-
-                userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));
-            }
-
-            if (!page.PageRoles.Any())
+            if (hasAccess)
                 return FilterSectionList(page, userId);
-
-            foreach (var role in userRoleList)
-            {
-                if (page.PageRoles.Select(x => x.Role.RoleName).Contains(role))
-                {
-                    return FilterSectionList(page, userId);
-                }
-            }
 
             return null;
         }
 
         private Page FilterSectionList(Page page, int? userId)
         {
-            User userAccount;
-            var userRoleList = new List<string>();
-
-            if (userId.HasValue)
-            {
-                userAccount = _userService.GetUser(userId.Value);
-                userRoleList.AddRange(userAccount.Roles.Select(x => x.Role.RoleName));
-            }
-
-            if (userRoleList.Any(x => x == "Admin"))
-                return page;
-
             for (int loop = 0; loop < page.PageSections.Count(); loop += 1)
             {
                 var pageSection = page.PageSections.ToList()[loop];
 
-                if (pageSection.PageSectionRoles.Any())
+                var userRoles = _roleService.Get(userId);
+
+                var hasAccess = _roleService.Validate(pageSection.PageSectionRoles.Select(x => x.Role), userRoles);
+
+                if (!hasAccess)
                 {
-                    var matchedRole = false;
+                    page.PageSections.Remove(page.PageSections.ToList()[loop]);
 
-                    foreach (var role in pageSection.PageSectionRoles)
-                    {
-                        if (userRoleList.Contains(role.Role.RoleName))
-                        {
-                            matchedRole = true;
-
-                            break;
-                        }
-                    }
-
-                    if (matchedRole == false)
-                    {
-                        page.PageSections.Remove(page.PageSections.ToList()[loop]);
-
-                        loop = loop - 1;
-                    }
+                    loop = loop - 1;
                 }
             }
 

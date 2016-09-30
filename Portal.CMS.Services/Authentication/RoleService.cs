@@ -1,14 +1,13 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.Authentication;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace Portal.CMS.Services.Authentication
 {
     public interface IRoleService
     {
-        List<UserRole> Get(int userId);
+        IEnumerable<Role> Get(int? userId);
 
         List<Role> Get();
 
@@ -21,6 +20,8 @@ namespace Portal.CMS.Services.Authentication
         void Update(int userId, List<string> roleList);
 
         void Delete(int roleId);
+
+        bool Validate(IEnumerable<Role> entityRoles, IEnumerable<Role> userRoles);
     }
 
     public class RoleService : IRoleService
@@ -28,19 +29,26 @@ namespace Portal.CMS.Services.Authentication
         #region Dependencies
 
         private readonly PortalEntityModel _context;
+        private readonly IUserService _userService;
 
-        public RoleService(PortalEntityModel context)
+        public RoleService(PortalEntityModel context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
 
         #endregion Dependencies
 
-        public List<UserRole> Get(int userId)
+        public IEnumerable<Role> Get(int? userId)
         {
-            var results = _context.UserRoles.Include(x => x.Role).Where(x => x.UserId == userId).ToList();
+            if (userId.HasValue)
+            {
+                var userRoles = _context.UserRoles.Where(x => x.UserId == userId.Value).Select(x => x.Role).ToList();
 
-            return results;
+                return userRoles;
+            }
+
+            return new List<Role> { new Role { RoleName = "Anonymous" } };
         }
 
         public List<Role> Get()
@@ -98,10 +106,12 @@ namespace Portal.CMS.Services.Authentication
             if (user == null) return;
 
             var systemRoles = Get();
-            var userRoles = Get(userId);
 
-            foreach (var role in userRoles)
-                _context.UserRoles.Remove(role);
+            if (user.Roles != null)
+            {
+                foreach (var role in user.Roles)
+                    _context.UserRoles.Remove(role);
+            }
 
             foreach (var role in roleList)
             {
@@ -120,6 +130,24 @@ namespace Portal.CMS.Services.Authentication
             }
 
             _context.SaveChanges();
+        }
+
+        public bool Validate(IEnumerable<Role> entityRoles, IEnumerable<Role> userRoles)
+        {
+            // PASS: Where no roles are specified on the entity, access is granted to all users.
+            if (!entityRoles.Any())
+                return true;
+
+            // PASS: Administrators can access any content.
+            if (userRoles.Any(x => x.RoleName.Equals("Admin", System.StringComparison.OrdinalIgnoreCase)))
+                return true;
+
+            // EVALUATE: Every Role on the Entity. One match grants access.
+            foreach (var role in entityRoles)
+                if (userRoles.Select(x => x.RoleName).Contains(role.RoleName))
+                    return true;
+
+            return false;
         }
     }
 }

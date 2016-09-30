@@ -118,7 +118,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             var userRoles = _roleService.Get(userId);
 
             foreach (var role in userRoles)
-                model.SelectedRoleList.Add(role.Role.RoleName);
+                model.SelectedRoleList.Add(role.RoleName);
 
             return PartialView("_Roles", model);
         }

@@ -22,12 +22,12 @@ namespace Portal.CMS.Web.Architecture.Helpers
             get
             {
                 var userSession = (User)System.Web.HttpContext.Current.Session["UserAccount"];
-                var userRoles = (List<UserRole>)System.Web.HttpContext.Current.Session["UserRoles"];
+                var userRoles = (IEnumerable<Role>)System.Web.HttpContext.Current.Session["UserRoles"];
 
                 if (userSession == null || userRoles == null)
                     return false;
 
-                if (userRoles.Any(x => x.Role.RoleName.Equals("Admin", System.StringComparison.OrdinalIgnoreCase)))
+                if (userRoles.Any(x => x.RoleName.Equals("Admin", System.StringComparison.OrdinalIgnoreCase)))
                     return true;
 
                 return false;
@@ -39,12 +39,12 @@ namespace Portal.CMS.Web.Architecture.Helpers
             get
             {
                 var userSession = (User)System.Web.HttpContext.Current.Session["UserAccount"];
-                var userRoles = (List<UserRole>)System.Web.HttpContext.Current.Session["UserRoles"];
+                var userRoles = (IEnumerable<Role>)System.Web.HttpContext.Current.Session["UserRoles"];
 
                 if (userSession == null || userRoles == null)
                     return false;
 
-                if (userRoles.Any(x => x.Role.RoleName == "Editor") || userRoles.Any(x => x.Role.RoleName == "Admin"))
+                if (userRoles.Any(x => x.RoleName == "Editor") || userRoles.Any(x => x.RoleName == "Admin"))
                     return true;
 
                 return false;

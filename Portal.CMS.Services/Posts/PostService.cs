@@ -41,11 +41,13 @@ namespace Portal.CMS.Services.Posts
 
         private readonly PortalEntityModel _context;
         private readonly IUserService _userService;
+        private readonly IRoleService _roleService;
 
-        public PostService(PortalEntityModel context, IUserService userService)
+        public PostService(PortalEntityModel context, IUserService userService, IRoleService roleService)
         {
             _context = context;
             _userService = userService;
+            _roleService = roleService;
         }
 
         #endregion Dependencies
@@ -54,24 +56,10 @@ namespace Portal.CMS.Services.Posts
         {
             var post = _context.Posts.FirstOrDefault(x => x.PostId == postId && x.IsPublished);
 
-            var userRoleList = new List<string>();
+            var userRoles = _roleService.Get(userId);
 
-            if (userId.HasValue)
-            {
-                var user = _userService.GetUser(userId.Value);
-
-                if (user.Roles.Any(x => x.Role.RoleName == "Admin"))
-                    return post;
-
-                userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));
-
-                if (userRoleList.Contains(post.PostRoles.SelectMany(x => x.Role.RoleName)))
-                    return post;
-            }
-            else if (!post.PostRoles.Any())
-            {
+            if (_roleService.Validate(post.PostRoles.Select(x => x.Role), userRoles))
                 return post;
-            }
 
             return null;
         }
