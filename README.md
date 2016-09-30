@@ -1,24 +1,27 @@
 # Portal CMS
-
 - Portal CMS is a free and open source content management system with a powerful integrated page builder. 
 
-- Portal CMS is built in C# MVC using the .NET Stack which makes it a great choice for a modern and extensible website.
+- It is built in C# MVC using the .NET stack which makes it a great choice for a modern and extensible website.
 
-- You might choose to use the out of the box features to build a fully functional website, or you might want to extend Portal CMS to add your own bespoke functionality.
-
-
-### Get Started
-
-- Check out how easily you can get started with Portal CMS: [Getting Started Guide](https://github.com/tommcclean/PortalCMS/wiki/3:-How-to-Get-Started)
-
+- You can choose to use out of the box features to build a fully functional website, or you can extend Portal CMS to add your own bespoke functionality.
 
 ### Learn More
 
- - Promotional Website: [Learn More About Portal CMS](http://www.portalcms.online)
- - Online Demo: [Test Drive Portal CMS](http://portalcmsdemo.azurewebsites.net)
+ - Learn more about Portal CMS on our promotional website: [Learn More About Portal CMS](http://www.portalcms.online)
+
+ - Try out Portal CMS using our Online Demo Website: [Test Drive Portal CMS](http://portalcmsdemo.azurewebsites.net)
+
+### Get Started
+
+- You can get a website online in under an hour, our getting started guide tells you how: [Getting Started Guide](https://github.com/tommcclean/PortalCMS/wiki/3:-How-to-Get-Started)
+
+- Want to contribute to Portal CMS? Learn how to contribute to our repository: [Contributing to Portal CMS](https://github.com/tommcclean/PortalCMS/wiki/2:-How-to-Contribute)
+
+
+
+### Why Choose Portal CMS?
+
+- To allow you to build a modern website that is good looking, standards compliant and easy to use with minimal effort.
+- To give yourself the ability to update your website from any device and any location.
+- To give you a framework to build a complicated website on solid architecture and reliable technology.
  
-
-## Why Choose Portal CMS?
-
-- You don't need to be techy; use out of the box Portal CMS to create your entire website without writing a single line of code. The integrated Page Builder offers inline editing on all device types so you can build and tweak your website from anywhere with a similiar experience to editing a document.
-- Developers can use Portal CMS as a framework behind the websites they develop giving them really useful features out of the box which can be easily extended. Because Portal CMS is written in C# MVC you can just add Controllers and Views to it like any other website.
