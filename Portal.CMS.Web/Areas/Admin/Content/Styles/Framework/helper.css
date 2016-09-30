@@ -97,7 +97,7 @@
     {
         height: 40px;
         width: auto;
-        padding-right: 20px;
+        padding-right: 12px;
         line-height: 40px;
         border-radius: 10px;
         font-size: 15px;
@@ -105,8 +105,8 @@
 
         .action-container.wide .action .fa
         {
-            margin-right: 10px;
-            margin-left: 15px;
+            margin-right: 9px;
+            margin-left: 12px;
         }
 
 .action-container.absolute .action

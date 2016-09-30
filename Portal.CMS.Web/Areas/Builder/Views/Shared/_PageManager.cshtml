@@ -24,7 +24,7 @@
                     <p style="font-size: 16px;"><span class="fa fa-globe"></span>@url.ToLower()</p>
 
                     <div class="admin-container x2">
-                        <a href="@Url.Action("Edit", "PageManager", new { area = "Admin", pageId = @page.PageId })" class="admin-item launch-modal" data-title="Edit Page"><span class="fa fa-pencil"></span>Edit</a>
+                        <a href="@Url.Action("Edit", "PageManager", new { area = "Admin", pageId = @page.PageId })" class="admin-item launch-modal" data-title="Edit Page Details: @page.PageName"><span class="fa fa-pencil"></span>Edit</a>
                         <a href="@page.PageArea/@page.PageController/@page.PageAction" class="admin-item"><span class="fa fa-briefcase"></span>Build</a>
                     </div>
                 </div>

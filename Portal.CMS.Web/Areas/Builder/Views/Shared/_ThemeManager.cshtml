@@ -91,14 +91,14 @@
                     @if (!theme.IsDefault)
                     {
                         <div class="admin-container x2">
-                            <a href="@Url.Action("Default", "ThemeManager", new { area = "Admin", themeId = @theme.ThemeId })" class="admin-item launch-modal" data-title="Set Default Theme"><span class="fa fa-check"></span>Apply</a>
-                            <a href="@Url.Action("Edit", "ThemeManager", new { area = "Admin", themeId = @theme.ThemeId})" class="admin-item launch-modal" data-title="Edit Theme" data-container="body" data-placement="top"><span class="fa fa-pencil"></span>Edit</a>
+                            <a href="@Url.Action("Default", "ThemeManager", new { area = "Admin", themeId = @theme.ThemeId })" class="admin-item launch-modal" data-title="Set Default Theme: @theme.ThemeName"><span class="fa fa-check"></span>Apply</a>
+                            <a href="@Url.Action("Edit", "ThemeManager", new { area = "Admin", themeId = @theme.ThemeId})" class="admin-item launch-modal" data-title="Edit Theme: @theme.ThemeName" data-container="body" data-placement="top"><span class="fa fa-pencil"></span>Edit</a>
                         </div>
                     }
                     else
                     {
                         <div class="admin-container x1">
-                            <a href="@Url.Action("Edit", "ThemeManager", new { area = "Admin", themeId = @theme.ThemeId})" class="admin-item launch-modal" data-title="Edit Theme" data-container="body" data-placement="top"><span class="fa fa-pencil"></span>Edit</a>
+                            <a href="@Url.Action("Edit", "ThemeManager", new { area = "Admin", themeId = @theme.ThemeId})" class="admin-item launch-modal" data-title="Edit Theme: @theme.ThemeName" data-container="body" data-placement="top"><span class="fa fa-pencil"></span>Edit</a>
                         </div>
                     }
                 </div>
