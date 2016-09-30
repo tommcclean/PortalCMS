@@ -1,4 +1,5 @@
 ﻿using Portal.CMS.Entities;
+using Portal.CMS.Entities.Entities.Authentication;
 using Portal.CMS.Entities.Entities.Menu;
 using Portal.CMS.Services.Authentication;
 using System.Collections.Generic;
@@ -29,11 +30,13 @@ namespace Portal.CMS.Services.Menu
 
         private readonly PortalEntityModel _context;
         private readonly IUserService _userService;
+        private readonly IRoleService _roleService;
 
-        public MenuService(PortalEntityModel context, IUserService userService)
+        public MenuService(PortalEntityModel context, IUserService userService, IRoleService roleService)
         {
             _context = context;
             _userService = userService;
+            _roleService = roleService;
         }
 
         #endregion Dependencies
@@ -63,37 +66,19 @@ namespace Portal.CMS.Services.Menu
         {
             var menu = _context.Menus.FirstOrDefault(x => x.MenuName == menuName);
 
-            var userRoleList = new List<string>();
             var menuItemList = new List<MenuItem>();
 
-            if (userId.HasValue)
-            {
-                var user = _userService.GetUser(userId.Value);
-
-                if (user.Roles.Any(x => x.Role.RoleName == "Admin"))
-                    return menu.MenuItems.ToList();
-
-                if (user != null)
-                    userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));
-            }
+            var userRoleList = _roleService.Get(userId);
 
             foreach (var menuItem in menu.MenuItems)
             {
-                if (!menuItem.MenuItemRoles.Any())
+                var hasAccess = _roleService.Validate(menuItem.MenuItemRoles.Select(x => x.Role), userRoleList);
+
+                if (hasAccess)
                 {
                     menuItemList.Add(menuItem);
 
                     continue;
-                }
-
-                foreach (var role in userRoleList)
-                {
-                    if (menuItem.MenuItemRoles.Select(x => x.Role.RoleName).Contains(role))
-                    {
-                        menuItemList.Add(menuItem);
-
-                        continue;
-                    }
                 }
             }
 
