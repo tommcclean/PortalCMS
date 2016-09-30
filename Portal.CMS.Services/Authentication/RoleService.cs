@@ -109,7 +109,7 @@ namespace Portal.CMS.Services.Authentication
 
             if (user.Roles != null)
             {
-                while(user.Roles.Any())
+                while (user.Roles.Any())
                 {
                     var role = user.Roles.First();
 

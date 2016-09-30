@@ -1,19 +1,22 @@
 # Portal CMS
 
-Portal CMS is a free and open source content management system with a powerful integrated page builder. 
+- Portal CMS is a free and open source content management system with a powerful integrated page builder. 
 
-Built in C# .NET MVC (4.X) Portal CMS is a great choice of technology to build a website using just the out of the box functionality, but you can easily extended it to suit your bespoke needs if you want to write some code.
+- Portal CMS is built in C# MVC using the .NET Stack which makes it a great choice for a modern and extensible website.
 
-The latest release branch of Portal CMS is "stable-1.0". If you wish to use Portal CMS please use this branch, if you wish to contribute please use master.
+- You might choose to use the out of the box features to build a fully functional website, or you might want to extend Portal CMS to add your own bespoke functionality.
 
-[Check out how easy it is to get started with Portal CMS](https://github.com/tommcclean/PortalCMS/wiki/3:-How-to-Get-Started)
 
-## Learn More
+### Get Started
 
- - Find out more at the Portal CMS Promo Website: http://www.portalcms.online
- - Try out Portal CMS in our Live Demo: http://portalcmsdemo.azurewebsites.net
- - Fork this repository to get started today and get a website on-line in under an hour.
+- Check out how easily you can get started with Portal CMS: [Getting Started Guide](https://github.com/tommcclean/PortalCMS/wiki/3:-How-to-Get-Started)
 
+
+### Learn More
+
+ - Promotional Website: [Learn More About Portal CMS](http://www.portalcms.online)
+ - Online Demo: [Test Drive Portal CMS](http://portalcmsdemo.azurewebsites.net)
+ 
 
 ## Why Choose Portal CMS?
 
