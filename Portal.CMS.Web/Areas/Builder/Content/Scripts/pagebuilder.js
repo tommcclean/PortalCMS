@@ -232,6 +232,13 @@ function DeleteInlineComponent(editorId) {
 }
 
 function PreventAppDrawerDrop() {
+    alert(window.innerHeight);
+    alert(window.innerWidth);
+
+    if (window.innerHeight < 701 && window.innerWidth < 601) {
+        return true;
+    }
+
     var tray = $("#component-panel").offset();
     var trayWidth = $("#component-panel").width();
     var trayHeight = $("#component-panel").height();
