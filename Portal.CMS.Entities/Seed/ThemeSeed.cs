@@ -61,17 +61,6 @@ namespace Portal.CMS.Entities.Seed
             }
 
             context.SaveChanges();
-
-            var colourUpgradeList = context.Themes.Where(x => x.PageBackgroundColour == "").ToList();
-
-            foreach (var theme in colourUpgradeList)
-            {
-                theme.PageBackgroundColour = "#000000";
-                theme.MenuBackgroundColour = "#000000";
-                theme.MenuTextColour = "#9d9d9d";
-            }
-
-            context.SaveChanges();
         }
     }
 }
