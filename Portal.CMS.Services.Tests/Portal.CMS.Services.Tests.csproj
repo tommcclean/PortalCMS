@@ -71,6 +71,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Authenticated\RoleServiceTests.cs" />
+    <Compile Include="Authenticated\TokenServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
