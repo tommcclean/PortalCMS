@@ -126,6 +126,99 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
         #endregion RoleService.Get
 
+        #region RoleService.Update
+
+        [TestMethod]
+        public void Update_RemovesAllRoles()
+        {
+            int? userId = 1;
+
+            #region Setup Mock
+
+            _mockContext.Users.AddRange(new List<User>
+            {
+                new User { UserId = userId.Value, GivenName = "Test", FamilyName = "User", EmailAddress = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
+            });
+
+            _mockContext.SaveChanges();
+
+            _mockContext.Roles.AddRange(new List<Role>
+            {
+                new Role { RoleId = 1, RoleName = "Role 1" },
+                new Role { RoleId = 2, RoleName = "Role 2" }
+            });
+
+            _mockContext.SaveChanges();
+
+            _mockContext.UserRoles.AddRange(new List<UserRole>
+            {
+                new UserRole { UserRoleId = 1 , UserId = userId.Value, RoleId = 1 },
+                new UserRole { UserRoleId = 1 , UserId = userId.Value, RoleId = 2 },
+            });
+
+            _mockContext.SaveChanges();
+
+            #endregion Setup Mock
+
+            var result = _roleService.Get(userId);
+
+            if (!result.Any())
+                throw new ArgumentException("Mock Invalid, Expected Mock User to have 2 User Roles");
+
+            _roleService.Update(userId.Value, new List<string>());
+
+            result = _roleService.Get(userId);
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Count() == 0);
+        }
+
+        [TestMethod]
+        public void Update_AddsAdditionalRole()
+        {
+            int? userId = 1;
+
+            #region Setup Mock
+
+            _mockContext.Users.AddRange(new List<User>
+            {
+                new User { UserId = userId.Value, GivenName = "Test", FamilyName = "User", EmailAddress = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
+            });
+
+            _mockContext.SaveChanges();
+
+            _mockContext.Roles.AddRange(new List<Role>
+            {
+                new Role { RoleId = 1, RoleName = "Role 1" },
+                new Role { RoleId = 2, RoleName = "Role 2" }
+            });
+
+            _mockContext.SaveChanges();
+
+            _mockContext.UserRoles.AddRange(new List<UserRole>
+            {
+                new UserRole { UserRoleId = 1 , UserId = userId.Value, RoleId = 1 },
+            });
+
+            _mockContext.SaveChanges();
+
+            #endregion Setup Mock
+
+            var result = _roleService.Get(userId);
+
+            if (!result.Any())
+                throw new ArgumentException("Mock Invalid, Expected Mock User to have 2 User Roles");
+
+            _roleService.Update(userId.Value, new List<string> { "Role 1", "Role 2" });
+
+            result = _roleService.Get(userId);
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Count() == 2);
+        }
+
+        #endregion RoleService.Update
+
         #region RoleService.Validate
 
         [TestMethod]
