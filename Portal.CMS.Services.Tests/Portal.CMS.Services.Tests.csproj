@@ -70,7 +70,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="RoleServiceTests.cs" />
+    <Compile Include="Authenticated\RoleServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
