@@ -4,9 +4,6 @@ using Portal.CMS.Entities.Entities.Authentication;
 using Portal.CMS.Services.Authentication;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Tests.Authenticated
 {
@@ -116,9 +113,9 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.AreEqual(result, string.Empty);
         }
 
-        #endregion
+        #endregion TokenService.RedeemPasswordToken
 
-        #region TokenService.RedeemPasswordToken
+        #region TokenService.RedeemSSOToken
 
         [TestMethod]
         public void RedeemSSOToken_InvalidTokenReturnsValidation()
@@ -175,6 +172,6 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.AreEqual(result, string.Empty);
         }
 
-        #endregion
+        #endregion TokenService.RedeemSSOToken
     }
 }
