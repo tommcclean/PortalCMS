@@ -9,11 +9,12 @@ namespace Portal.CMS.Entities
     using Entities.Posts;
     using Entities.Settings;
     using Entities.Themes;
+    using System.Data.Common;
     using System.Data.Entity;
 
     public class PortalEntityModel : DbContext
     {
-        public PortalEntityModel() : base("name=PortalEntityModel")
+        public PortalEntityModel(DbConnection connection) : base(connection, true)
         {
         }
 
