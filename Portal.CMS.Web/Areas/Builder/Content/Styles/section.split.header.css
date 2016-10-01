@@ -67,12 +67,12 @@
 {
     section.header-split .details-wrapper
     {
-        width: 65%;
+        width: 75%;
     }
 
         section.header-split .details-wrapper .details
         {
-            width: 65%;
+            width: 75%;
         }
 }
 
@@ -107,6 +107,13 @@
     {
         width: 100%;
         position: relative;
+        background-image: none;
+        padding: 0;
+    }
+
+    section.header-split .details
+    {
+        background-image: url('../../../Admin/Content/Images/block_black_medium.png');
     }
 
         section.header-split .details-wrapper .details

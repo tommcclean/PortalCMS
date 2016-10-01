@@ -25,22 +25,11 @@
     </script>
 }
 
-@section Styles
-{
-    <style>
-        body
-        {
-            background-color: black;
-            background-image: unset;
-        }
-    </style>
-}
-
 @if (isAdmin)
 {
     <div class="action-container wide global">
-        <div class="action" onclick="TogglePageList();"><span class="fa fa-th-list"></span><span class="hidden-xs">Page Manager</span></div>
-        <div class="action" onclick="ToggleThemeManager();"><span class="fa fa-paint-brush"></span><span class="hidden-xs">Theme Manager</span></div>
+        <div class="action hidden-xs" onclick="TogglePageList();"><span class="fa fa-th-list"></span><span class="hidden-xs">Page Manager</span></div>
+        <div class="action hidden-xs" onclick="ToggleThemeManager();"><span class="fa fa-paint-brush"></span><span class="hidden-xs">Theme Manager</span></div>
 
         <div class="action" onclick="ToggleComponentPanel();"><span class="fa fa-briefcase"></span><span class="hidden-xs">Add Component</span></div>
         <div class="action" onclick="ToggleSectionPanel();"><span class="fa fa-plus"></span><span class="hidden-xs">Add Section</span></div>
@@ -69,7 +58,7 @@
             @if (isAdmin)
                 {
                 <div class="action-container absolute">
-                    <a class="action launch-modal" data-title="Edit Markup" href="@Url.Action("Markup", "Section", new { area = "Builder", pageSectionId = section.PageSectionId })"><span class="fa fa-code"></span></a>
+                    <a class="action launch-modal hidden-xs" data-title="Edit Markup" href="@Url.Action("Markup", "Section", new { area = "Builder", pageSectionId = section.PageSectionId })"><span class="fa fa-code"></span></a>
                     <a class="action launch-modal" data-title="Edit Section" href="@Url.Action("Edit", "Section", new { area = "Builder", sectionId = section.PageSectionId })"><span class="fa fa-cog"></span></a>
                     <a id="container-editor-@(section.PageSectionId)" class="action component-editor" style="display: none;" data-title="Delete Container"><span class="fa fa-trash"></span></a>
                 </div>
