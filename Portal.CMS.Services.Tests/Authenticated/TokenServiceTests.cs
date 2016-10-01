@@ -117,5 +117,64 @@ namespace Portal.CMS.Services.Tests.Authenticated
         }
 
         #endregion
+
+        #region TokenService.RedeemPasswordToken
+
+        [TestMethod]
+        public void RedeemSSOToken_InvalidTokenReturnsValidation()
+        {
+            var result = _tokenService.RedeemSSOToken(0, "12345");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result, "Invalid Token.");
+        }
+
+        [TestMethod]
+        public void RedeemSSOToken_TokenAlreadyUsedReturnsValidation()
+        {
+            var userId = 1;
+
+            _mockContext.Users.AddRange(new List<User>
+            {
+                new User { UserId = userId, GivenName = "Test", FamilyName = "User", EmailAddress = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
+            });
+
+            _mockContext.UserTokens.AddRange(new List<UserToken>
+            {
+                new UserToken { UserTokenId = 1, Token = "12345", DateAdded = DateTime.Now, DateRedeemed = DateTime.Now, UserTokenType = UserTokenType.SSO, UserId = userId }
+            });
+
+            _mockContext.SaveChanges();
+
+            var result = _tokenService.RedeemSSOToken(userId, "12345");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result, "Invalid Token. This Token has already been used.");
+        }
+
+        [TestMethod]
+        public void RedeemSSOToken_ExecutesWithoutException()
+        {
+            var userId = 1;
+
+            _mockContext.Users.AddRange(new List<User>
+            {
+                new User { UserId = userId, GivenName = "Test", FamilyName = "User", EmailAddress = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
+            });
+
+            _mockContext.UserTokens.AddRange(new List<UserToken>
+            {
+                new UserToken { UserTokenId = 1, Token = "12345", DateAdded = DateTime.Now, UserTokenType = UserTokenType.ForgottenPassword, UserId = userId }
+            });
+
+            _mockContext.SaveChanges();
+
+            var result = _tokenService.RedeemSSOToken(userId, "12345");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result, string.Empty);
+        }
+
+        #endregion
     }
 }
