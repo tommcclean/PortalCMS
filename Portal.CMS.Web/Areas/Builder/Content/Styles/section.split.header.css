@@ -116,9 +116,9 @@
         background-image: url('../../../Admin/Content/Images/block_black_medium.png');
     }
 
-        section.header-split .details-wrapper .details
-        {
-            width: 100%;
-            text-align: center;
-        }
+    section.header-split .details-wrapper .details
+    {
+        width: 100%;
+        text-align: center;
+    }
 }

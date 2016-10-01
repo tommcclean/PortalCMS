@@ -345,6 +345,11 @@ a.category-item:hover
 
 @media (max-width: 767px)
 {
+    .modal-body .btn .fa
+    {
+        margin-right: 0;
+    }
+
     .vertical-alignment, section .vertical-alignment
     {
         position: relative;

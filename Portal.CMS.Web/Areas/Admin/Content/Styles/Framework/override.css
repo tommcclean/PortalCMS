@@ -91,6 +91,12 @@ body
     min-height: 250px;
 }
 
+.modal-header button.close span
+{
+    font-size: 30px;
+    padding: 5px;
+}
+
 .nav-tabs > li > a
 {
     color: black;
