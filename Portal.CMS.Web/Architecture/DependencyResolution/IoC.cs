@@ -18,6 +18,7 @@
 namespace Portal.CMS.Web.DependencyResolution
 {
     using Areas.Admin.Controllers;
+    using Entities;
     using StructureMap;
 
     public static class IoC
@@ -29,6 +30,7 @@ namespace Portal.CMS.Web.DependencyResolution
                 {
                     c.AddRegistry<DefaultRegistry>();
                     c.For<AnalyticManagerController>().AlwaysUnique();
+                    c.For<PortalEntityModel>().Use<PortalEntityModel>().SelectConstructor(() => new PortalEntityModel());
                 }
             );
         }

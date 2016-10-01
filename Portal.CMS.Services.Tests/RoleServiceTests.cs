@@ -34,7 +34,7 @@ namespace Portal.CMS.Services.Tests
             var entityRoles = new List<Role> { new Role { RoleId = 2, RoleName = "Other Role" } };
 
             var userRoles = new List<Role> { new Role { RoleId = 1, RoleName = "Admin" } };
-
+            
             var result = _roleService.Validate(entityRoles, userRoles);
 
             Assert.IsTrue(result);

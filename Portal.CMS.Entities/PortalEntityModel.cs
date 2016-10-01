@@ -18,6 +18,10 @@ namespace Portal.CMS.Entities
         {
         }
 
+        public PortalEntityModel() : base("name=PortalEntityModel")
+        {
+        }
+
         #region Authentication Entities
 
         public virtual DbSet<User> Users { get; set; }
