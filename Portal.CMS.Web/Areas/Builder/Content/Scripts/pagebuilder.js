@@ -175,6 +175,8 @@ function EditInlineText(editorId, editorContent) {
     var elementId = editorId;
     var sectionId = ExtractSectionId($('#' + editorId));
 
+    editorContent = RemoveTinyMCEAttributes(editorContent);
+
     var dataParams = { "pageSectionId": sectionId, "elementId": elementId, "elementHtml": editorContent };
     $.ajax({
         data: dataParams,
@@ -183,6 +185,15 @@ function EditInlineText(editorId, editorContent) {
         url: '/Builder/Component/Edit',
         success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
+}
+
+function RemoveTinyMCEAttributes(htmlContent)
+{
+    htmlContent = htmlContent.replace('mce-content-body', '');
+    htmlContent = htmlContent.replace('position: relative;', '');
+    htmlContent = htmlContent.replace('contenteditable="true" ', '');
+
+    return htmlContent;
 }
 
 function EditInlineFreestyle(editorId, editorContent) {
