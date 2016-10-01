@@ -169,10 +169,4 @@
         right: 15px;
         width: auto;
     }
-
-        .panel-overlay .panel-inner .section-preview
-        {
-            -ms-zoom: 0.5;
-            zoom: 0.5;
-        }
 }

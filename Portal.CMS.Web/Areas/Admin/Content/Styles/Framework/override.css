@@ -141,11 +141,6 @@ body
 
 @media (max-width: 767px)
 {
-    .tab-content
-    {
-        border-top: 1px solid #ddd;
-    }
-
     .nav-tabs.nav-justified
     {
         margin-bottom: 10px;
