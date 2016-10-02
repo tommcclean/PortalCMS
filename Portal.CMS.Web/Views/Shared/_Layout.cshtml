@@ -26,6 +26,18 @@
 
     @Html.Partial("_Analytics")
 
+    @if (UserHelper.IsAdmin)
+    {
+        <div class="action-container wide global">
+            <div id="tour-page-manager" class="action" onclick="TogglePageList();"><span class="fa fa-th-list"></span><span class="hidden-xs">Page Manager</span></div>
+            <div id="tour-theme-manager" class="action" onclick="ToggleThemeManager();"><span class="fa fa-paint-brush"></span><span class="hidden-xs">Theme Manager</span></div>
+        </div>
+
+        @Html.Action("AppDrawer", "PageManager", new { area = "Admin" })
+        @Html.Action("AppDrawer", "ThemeManager", new { area = "Admin" })
+    }
+
+
     @RenderSection("DOMScripts", false)
     @Scripts.Render("~/Resources/JavaScript/Bootstrap")
     @Scripts.Render("~/Resources/JavaScript/Bootstrap/Tour")

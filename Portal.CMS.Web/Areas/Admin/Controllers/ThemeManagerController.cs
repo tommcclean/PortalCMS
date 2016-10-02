@@ -132,11 +132,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet, AdminFilter]
-        public ActionResult AppDrawer(int pageId)
+        public ActionResult AppDrawer()
         {
             var model = new AppDrawerViewModel
             {
-                PageId = pageId,
                 Themes = _themeService.Get(),
                 Fonts = new List<Font>()
             };
