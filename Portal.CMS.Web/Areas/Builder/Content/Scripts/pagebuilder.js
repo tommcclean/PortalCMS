@@ -24,61 +24,61 @@
                 success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
             });
         });
+
+        var tour = new Tour({
+            container: 'body',
+            backdrop: true,
+            template: "<div class='popover tour'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div><div class='popover-navigation'><button class='btn btn-default' data-role='prev'>«</button><button class='btn btn-default' data-role='next'>»</button><button class='btn btn-default' data-role='end'>Exit</button></div></div>",
+            steps:
+            [
+                {
+                    element: "#tour-add-section",
+                    placement: "top",
+                    title: "Add a Section",
+                    content: "<p>Pages are made up of Sections.</p><p>Add a Section to add new content to your page.</p><p>You can choose a templated Section, or a blank one if you want to add your own components.</p>"
+                },
+                {
+                    element: "#tour-add-component",
+                    placement: "top",
+                    title: "Add a Component",
+                    content: "<p>Components are elements you can add to a Section; like text, buttons and images.</p><p>Drag and drop your selected components to where you want them, then click or tap it to change it right away.</p>"
+                },
+                {
+                    element: "#tour-page-manager",
+                    placement: "top",
+                    title: "Page Manager",
+                    content: "<p>Open the Page Manager to create a new Page</p><p>You can also use this to quickly navigate to your other Pages</p>"
+                },
+                {
+                    element: "#tour-theme-manager",
+                    placement: "top",
+                    title: "Theme Manager",
+                    content: "<p>The Theme Manager allows you to make changes to the look and feel of your website</p><p>Edit your theme to change things like fonts, colours and text sizes</p>"
+                },
+                {
+                    element: "#tour-edit-section",
+                    placement: "bottom",
+                    title: "Edit Section",
+                    content: "<p>Every Section has a button allowing you to modify it.</p><p>You can change things like the background image or the size of a section or you can delete a section entirely.</p>"
+                },
+                {
+                    element: "#tour-edit-element",
+                    placement: "top",
+                    title: "Edit Components",
+                    content: "<p>Simply click or tap on any component in order to change it. You can change all components.</p>"
+                },
+            ]
+        });
+
+        // Initialize the tour
+        tour.init();
+
+        // Start the tour
+        tour.start();
     }
 
     $('.edit-section').first().attr('id', 'tour-edit-section');
     $('#page-wrapper h1').first().attr('id', 'tour-edit-element');
-
-    var tour = new Tour({
-        container: 'body',
-        backdrop: true,
-        template: "<div class='popover tour'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div><div class='popover-navigation'><button class='btn btn-default' data-role='prev'>«</button><button class='btn btn-default' data-role='next'>»</button><button class='btn btn-default' data-role='end'>Exit</button></div></div>",
-        steps:
-        [
-            {
-                element: "#tour-add-section",
-                placement: "top",
-                title: "Add a Section",
-                content: "<p>Pages are made up of Sections.</p><p>Add a Section to add new content to your page.</p><p>You can choose a templated Section, or a blank one if you want to add your own components.</p>"
-            },
-            {
-                element: "#tour-add-component",
-                placement: "top",
-                title: "Add a Component",
-                content: "<p>Components are elements you can add to a Section; like text, buttons and images.</p><p>Drag and drop your selected components to where you want them, then click or tap it to change it right away.</p>"
-            },
-            {
-                element: "#tour-page-manager",
-                placement: "top",
-                title: "Page Manager",
-                content: "<p>Open the Page Manager to create a new Page</p><p>You can also use this to quickly navigate to your other Pages</p>"
-            },
-            {
-                element: "#tour-theme-manager",
-                placement: "top",
-                title: "Theme Manager",
-                content: "<p>The Theme Manager allows you to make changes to the look and feel of your website</p><p>Edit your theme to change things like fonts, colours and text sizes</p>"
-            },
-            {
-                element: "#tour-edit-section",
-                placement: "bottom",
-                title: "Edit Section",
-                content: "<p>Every Section has a button allowing you to modify it.</p><p>You can change things like the background image or the size of a section or you can delete a section entirely.</p>"
-            },
-            {
-                element: "#tour-edit-element",
-                placement: "top",
-                title: "Edit Components",
-                content: "<p>Simply click or tap on any component in order to change it. You can change all components.</p>"
-            },
-        ]
-    });
-
-    // Initialize the tour
-    tour.init();
-
-    // Start the tour
-    tour.start();
 });
 
 function InitialiseWidgets() {
