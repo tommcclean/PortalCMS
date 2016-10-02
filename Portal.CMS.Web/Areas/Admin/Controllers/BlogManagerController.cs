@@ -40,7 +40,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet, AdminFilter]
         public ActionResult Index()
         {
-            var model = new PostsViewModel()
+            var model = new PostsViewModel
             {
                 Posts = _postService.Get(string.Empty, false),
                 PostCategories = _postCategoryService.Get()
@@ -54,12 +54,12 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var postCategories = _postCategoryService.Get();
 
-            var model = new CreatePostViewModel()
+            var model = new CreatePostViewModel
             {
                 PostCategoryId = postCategories.First().PostCategoryId,
                 PostAuthorUserId = UserHelper.UserId.Value,
                 PostCategoryList = postCategories,
-                UserList = _userService.Get(new List<string>() { "Admin", "Editor" }),
+                UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" }),
                 PublicationState = PublicationState.Published,
                 ImageList = _imageService.Get(),
                 RoleList = _roleService.Get()
@@ -77,7 +77,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 model.ImageList = _imageService.Get();
                 model.PostCategoryList = _postCategoryService.Get();
-                model.UserList = _userService.Get(new List<string>() { "Admin", "Editor" });
+                model.UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" });
                 model.RoleList = _roleService.Get();
 
                 return View("_Create", model);
@@ -101,7 +101,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var post = _postService.Get(postId);
 
-            var model = new EditPostviewModel()
+            var model = new EditPostviewModel
             {
                 PostId = post.PostId,
                 PostTitle = post.PostTitle,
@@ -111,7 +111,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PostAuthorUserId = post.PostAuthorUserId,
                 ExistingGalleryImageList = post.PostImages.Where(x => x.PostImageType == PostImageType.Gallery).Select(x => x.ImageId).ToList(),
                 PostCategoryList = _postCategoryService.Get(),
-                UserList = _userService.Get(new List<string>() { "Admin", "Editor" }),
+                UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" }),
                 ImageList = _imageService.Get(),
                 RoleList = _roleService.Get(),
                 SelectedRoleList = post.PostRoles.Select(x => x.Role.RoleName).ToList()
@@ -135,7 +135,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 model.ImageList = _imageService.Get();
                 model.PostCategoryList = _postCategoryService.Get();
-                model.UserList = _userService.Get(new List<string>() { "Admin", "Editor" });
+                model.UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" });
                 model.RoleList = _roleService.Get();
 
                 return View("_Edit", model);
@@ -161,7 +161,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _postService.Delete(postId);
 
-            return RedirectToAction("Index", "BlogManager");
+            return RedirectToAction(nameof(Index), "BlogManager");
         }
 
         [HttpGet, AdminFilter]
@@ -169,7 +169,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _postService.Publish(postId);
 
-            return RedirectToAction("Index", "BlogManager");
+            return RedirectToAction(nameof(Index), "BlogManager");
         }
 
         [HttpGet, AdminFilter]
@@ -177,7 +177,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _postService.Draft(postId);
 
-            return RedirectToAction("Index", "BlogManager");
+            return RedirectToAction(nameof(Index), "BlogManager");
         }
 
         [HttpPost, EditorFilter]

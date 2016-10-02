@@ -1,7 +1,7 @@
 ﻿section.gallery
 {
     height: auto;
-    min-height: 300px !important;
+    min-height: 300px;
 }
     section.gallery .image
     {
