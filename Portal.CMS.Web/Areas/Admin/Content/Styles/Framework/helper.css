@@ -184,11 +184,6 @@ a.category-item:hover
     border: 1px solid #D6D7D8;
 }
 
-.popover-title
-{
-    text-transform: uppercase;
-}
-
 .selected
 {
     border: 1px solid red !important;

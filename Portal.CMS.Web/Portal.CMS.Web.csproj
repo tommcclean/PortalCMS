@@ -359,9 +359,11 @@
     <Content Include="Areas\Builder\Content\Images\Sample\texture-notebook.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-office.png" />
     <Content Include="Areas\Builder\Content\Scripts\menubuilder.js" />
+    <Content Include="Content\Scripts\BootstrapTour\bootstrap-tour.min.js" />
     <Content Include="Content\Scripts\FontAwesomePicker\fontawesome-iconpicker.min.js" />
     <Content Include="Content\Scripts\Framework\global.js" />
     <Content Include="Content\Scripts\Spectrum\spectrum.js" />
+    <Content Include="Content\Styles\BootstrapTour\bootstrap-tour.min.css" />
     <Content Include="Content\Styles\C3Graphing\c3.css" />
     <Content Include="Content\Styles\C3Graphing\c3.min.css">
       <DependentUpon>c3.css</DependentUpon>
