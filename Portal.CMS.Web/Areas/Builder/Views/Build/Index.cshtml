@@ -69,5 +69,5 @@
     @Html.Action("Add", "Section", new { @pageId = Model.Page.PageId })
     @Html.Action("Add", "Component")
     @Html.Action("Pages", "Build")
-    @Html.Action("Themes", "Build", new { pageId = Model.Page.PageId })
+    @Html.Action("AppDrawer", "ThemeManager", new { area = "Admin", pageId = Model.Page.PageId })
 }

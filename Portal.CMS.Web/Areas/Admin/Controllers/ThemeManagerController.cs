@@ -1,7 +1,10 @@
-﻿using Portal.CMS.Services.Themes;
+﻿using Portal.CMS.Entities.Entities.Themes;
+using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -126,6 +129,22 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             _themeService.Delete(themeId);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet, AdminFilter]
+        public ActionResult AppDrawer(int pageId)
+        {
+            var model = new AppDrawerViewModel
+            {
+                PageId = pageId,
+                Themes = _themeService.Get(),
+                Fonts = new List<Font>()
+            };
+
+            model.Fonts.AddRange(model.Themes.Select(x => x.TextFont));
+            model.Fonts.AddRange(model.Themes.Select(x => x.TitleFont));
+
+            return View("_AppDrawer", model);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Portal.CMS.Entities.Entities.Themes;
-using Portal.CMS.Services.Analytics;
+﻿using Portal.CMS.Services.Analytics;
 using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
@@ -7,7 +6,6 @@ using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Build;
-using Portal.CMS.Web.Areas.Builder.ViewModels.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -119,22 +117,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             };
 
             return PartialView("_PageManager", model);
-        }
-
-        [HttpGet, AdminFilter]
-        public ActionResult Themes(int pageId)
-        {
-            var model = new ThemeManagerViewModel
-            {
-                PageId = pageId,
-                Themes = _themeService.Get(),
-                Fonts = new List<Font>()
-            };
-
-            model.Fonts.AddRange(model.Themes.Select(x => x.TextFont));
-            model.Fonts.AddRange(model.Themes.Select(x => x.TitleFont));
-
-            return View("_ThemeManager", model);
         }
     }
 }

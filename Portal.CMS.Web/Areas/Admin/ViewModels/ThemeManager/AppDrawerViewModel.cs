@@ -1,9 +1,9 @@
 ﻿using Portal.CMS.Entities.Entities.Themes;
 using System.Collections.Generic;
 
-namespace Portal.CMS.Web.Areas.Builder.ViewModels.Shared
+namespace Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager
 {
-    public class ThemeManagerViewModel
+    public class AppDrawerViewModel
     {
         public int PageId { get; set; }
 
