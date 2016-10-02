@@ -10,27 +10,29 @@
 {
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                tinymce.init({
-                    selector: '.copy-@(Model.CopyId).admin', inline: true, plugins: ['advlist autolink lists link image charmap anchor searchreplace visualblocks code fullscreen media table contextmenu paste'],
-                    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                    setup:function(ed) {
-                        ed.on('change', function(e) {
-                            var dataParams = { "copyId": @Model.CopyId, "copyName": "@Model.CopyName", "copyBody": ed.getContent() };
-                            $.ajax({data: dataParams, type: 'POST', cache: false, url: '/Admin/CopyManager/Inline'});
-                            $('.copy-@(Model.CopyId)').html(ed.getContent());
-                        });
-                    }
-                });
+    <script type="text/javascript">
+        $(document).ready(function () {
+            tinymce.init({
+                selector: '.copy-@(Model.CopyId).admin', inline: true, plugins: ['advlist autolink lists link image charmap anchor searchreplace visualblocks code fullscreen media table contextmenu paste'],
+                toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                setup:function(ed) {
+                    ed.on('change', function(e) {
+                        var dataParams = { "copyId": @Model.CopyId, "copyName": "@Model.CopyName", "copyBody": ed.getContent() };
+                        $.ajax({data: dataParams, type: 'POST', cache: false, url: '/Admin/CopyManager/Inline'});
+                        $('.copy-@(Model.CopyId)').html(ed.getContent());
+                    });
+                }
             });
-        </script>
+        });
+    </script>
 }
 
 <div class="copy-wrapper">
     @if (isAdmin)
-    { <div class="box-title"><span class="fa fa-pencil"></span>@Model.CopyName</div> }
-    <div class="@(UserHelper.IsAdmin ? "admin" : "") copy-@Model.CopyId copy-block">
+    {
+        <div class="box-title"><span class="fa fa-pencil"></span>@Model.CopyName</div>
+    }
+    <div class="@(isAdmin ? "admin" : "") copy-@Model.CopyId copy-block">
         @Html.Raw(Model.CopyBody)
     </div>
 </div>
