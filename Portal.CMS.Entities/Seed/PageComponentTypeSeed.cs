@@ -108,6 +108,9 @@ namespace Portal.CMS.Entities.Seed
             if (!componentList.Any(x => x.PageComponentTypeName == "Recent Posts"))
                 newComponents.Add(new PageComponentType { PageComponentTypeName = "Recent Posts", PageComponentTypeCategory = PageComponentTypeCategory.Widget, PageComponentTypeDescription = "Vertically Alligned Container", PageComponentBody = "<div id=\"widget-<componentStamp>-<sectionId>\" class=\"widget-wrapper post-list-wrapper\" style=\"text-align: left;\"><div class=\"vertical-alignment\"><div class=\"loading-wrapper\" style=\"text-align: center;\"><div style=\"background-color: black; padding: 10px; display: inline-block;\"><img src=\"/Areas/Builder/Content/Images/Sample/loading-graphic.gif\" /></div></div></div></div>" });
 
+            if (!componentList.Any(x => x.PageComponentTypeName == "Icon and Text"))
+                newComponents.Add(new PageComponentType { PageComponentTypeName = "Icon and Text", PageComponentTypeCategory = PageComponentTypeCategory.Text, PageComponentTypeDescription = "Vertically Alligned Container", PageComponentBody = "<table id=\"imagetext-component-<componentStamp>-<sectionId>\" class=\"icon-text component-container\"><tbody id=\"body-<componentStamp>-<sectionId>\"><tr id=\"column-1-<componentStamp>-<sectionId>\"><td id=\"row-<componentStamp>-<sectionId>\" style=\"width: 75px;\"><div id=\"image-<componentStamp>-<sectionId>\"class=\"image image-icon\" style=\"background-image: url('Areas/Builder/Content/Images/Sample/icon-1.png');'\" /></td><td id=\"column-2-<componentStamp>-<sectionId>\" style=\"text-align: left;\"><h3 id=\"title-<componentStamp>-<sectionId>\"style=\"margin-bottom: 10px;\">Small Title</h3><p id=\"text-<componentStamp>-<sectionId>\">Lorem ipsum dolor sit amet, eu qui.</p></td></tr></tbody></table>" });
+
             if (newComponents.Any())
                 context.PageComponentTypes.AddRange(newComponents);
         }

@@ -91,7 +91,7 @@
             border-bottom: 1px dashed silver;
         }
 
-        .panel-overlay .panel-inner .component-preview .freestyle *, .panel-overlay .panel-inner .component-preview .component-expand *
+        .panel-overlay .panel-inner .component-preview .freestyle *, .panel-overlay .panel-inner .component-preview .component-expand *, .component-preview .icon-text *
         {
             pointer-events: none;
         }
