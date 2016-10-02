@@ -1,6 +1,10 @@
 ﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Component.ImageViewModel
 @{
     Layout = "";
+    var generalImages = Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.General);
+    var iconImages = Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon);
+    var screenshotImages = Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Screenshot);
+    var textureImages = Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Texture);
 }
 
 @Scripts.Render("~/Resources/JavaScript/ImageSelector")
@@ -39,37 +43,37 @@
     @Html.HiddenFor(x => x.ElementType)
 
     <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab">General</a></li>
-        <li role="presentation" class=""><a href="#tab-icon" aria-controls="tab-icon" role="tab" data-toggle="tab">Icon</a></li>
-        <li role="presentation" class=""><a href="#tab-screenshot" aria-controls="tab-screenshot" role="tab" data-toggle="tab">Screenshot</a></li>
-        <li role="presentation" class=""><a href="#tab-texture" aria-controls="tab-texture" role="tab" data-toggle="tab">Texture</a></li>
+        <li role="presentation" class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab">General<span class="badge">@generalImages.Count()</span></a></li>
+        <li role="presentation" class=""><a href="#tab-icon" aria-controls="tab-icon" role="tab" data-toggle="tab">Icon<span class="badge">@iconImages.Count()</span></a></li>
+        <li role="presentation" class=""><a href="#tab-screenshot" aria-controls="tab-screenshot" role="tab" data-toggle="tab">Screenshot<span class="badge">@screenshotImages.Count()</span></a></li>
+        <li role="presentation" class=""><a href="#tab-texture" aria-controls="tab-texture" role="tab" data-toggle="tab">Texture<span class="badge">@textureImages.Count()</span></a></li>
     </ul>
     <div id="banner-selector" class="image-selector x4 single float-container">
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="tab-general">
                 <br />
-                @foreach (var image in Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.General))
+                @foreach (var image in generalImages)
                 {
                     <img class="thumbnail" data-parent="banner-selector" data-target="SelectedImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
                 }
             </div>
             <div role="tabpanel" class="tab-pane" id="tab-icon">
                 <br />
-                @foreach (var image in Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon))
+                @foreach (var image in iconImages)
                 {
                     <img class="thumbnail" data-parent="banner-selector" data-target="SelectedImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
                 }
             </div>
             <div role="tabpanel" class="tab-pane" id="tab-screenshot">
                 <br />
-                @foreach (var image in Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Screenshot))
+                @foreach (var image in screenshotImages)
                 {
                     <img class="thumbnail" data-parent="banner-selector" data-target="SelectedImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
                 }
             </div>
             <div role="tabpanel" class="tab-pane" id="tab-texture">
                 <br />
-                @foreach (var image in Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Texture))
+                @foreach (var image in textureImages)
                 {
                     <img class="thumbnail" data-parent="banner-selector" data-target="SelectedImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
                 }

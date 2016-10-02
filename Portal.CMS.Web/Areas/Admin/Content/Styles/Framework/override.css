@@ -130,6 +130,11 @@ body
     border-radius: 50%;
 }
 
+.badge
+{
+    margin-left: 7px;
+}
+
 @media (min-width: 768px)
 {
     .modal-dialog

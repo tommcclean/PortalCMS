@@ -1,6 +1,7 @@
 ﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Section.EditViewModel
 @{
     Layout = "";
+    var imageCount = Model.ImageList.Where(x => x.ImageCategory != Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon).Count();
 }
 
 @Scripts.Render("~/Resources/JavaScript/ImageSelector")
@@ -37,7 +38,7 @@
 
     <ul class="nav nav-tabs">
         <li role="presentation" class="active"><a href="#tab-edit" aria-controls="tab-edit" role="tab" data-toggle="tab">Edit Section</a></li>
-        <li role="presentation" class=""><a href="#tab-background" aria-controls="tab-background" role="tab" data-toggle="tab">Background Image</a></li>
+        <li role="presentation" class=""><a href="#tab-background" aria-controls="tab-background" role="tab" data-toggle="tab">Background Image<span class="badge">@imageCount</span></a></li>
     </ul>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab-edit">
