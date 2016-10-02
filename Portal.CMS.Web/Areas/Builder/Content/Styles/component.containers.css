@@ -1,9 +1,9 @@
-﻿..admin .component-container
+﻿.admin .component-container
 {
     border: 1px dashed gray;
     border-radius: 5px;
-    padding-bottom: 30px;
-    padding-top: 30px;
+    padding-bottom: 20px;
+    padding-top: 20px;
     transition: all 0.1s ease-in-out;
     cursor: pointer;
 }
@@ -11,6 +11,8 @@
 .admin .row
 {
     border-color: brown;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .admin .mce-content-body:not(.btn)
@@ -35,7 +37,7 @@
 .admin table.component-container
 {
     display: block;
-    border-color: red;
+    border-color: brown;
 }
 
 .admin tbody

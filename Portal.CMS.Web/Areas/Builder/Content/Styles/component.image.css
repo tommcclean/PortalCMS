@@ -42,3 +42,14 @@
         width: 80%;
         min-height: 280px;
     }
+
+.admin .image
+{
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+}
+
+    .admin .image:hover
+    {
+        opacity: 0.8;
+    }
