@@ -312,7 +312,7 @@
     <Compile Include="Areas\Builder\Controllers\SectionController.cs" />
     <Compile Include="Areas\Builder\Controllers\ThemeController.cs" />
     <Compile Include="Areas\Builder\Controllers\WidgetController.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Shared\PagesViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\PageManager\AppDrawerViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\AddViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\ImageViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
@@ -602,7 +602,7 @@
     <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Builder\Views\Shared\_PageManager.cshtml" />
+    <Content Include="Areas\Admin\Views\PageManager\_AppDrawer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Error.cshtml" />
@@ -673,7 +673,10 @@
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Theme\Render.cscss" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Builder\ViewModels\Shared\" />
+    <Folder Include="Areas\Builder\Views\Shared\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\MenuItem\Edit.cshtml" />
   </ItemGroup>

@@ -1,9 +1,9 @@
 ﻿using Portal.CMS.Entities.Entities.PageBuilder;
 using System.Collections.Generic;
 
-namespace Portal.CMS.Web.Areas.Builder.ViewModels.Build
+namespace Portal.CMS.Web.Areas.Admin.ViewModels.PageManager
 {
-    public class PagesViewModel
+    public class AppDrawerViewModel
     {
         public List<Page> PageList { get; set; }
     }

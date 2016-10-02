@@ -144,5 +144,16 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult AppDrawer()
+        {
+            var model = new AppDrawerViewModel
+            {
+                PageList = _pageService.Get().ToList()
+            };
+
+            return PartialView("_AppDrawer", model);
+        }
     }
 }
