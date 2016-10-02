@@ -63,17 +63,15 @@
                 },
                 {
                     element: "#tour-edit-element",
-                    placement: "top",
+                    placement: "bottom",
                     title: "Edit Components",
                     content: "<p>Simply click or tap on any component in order to change it. You can change all components.</p>"
                 },
             ]
         });
 
-        // Initialize the tour
         tour.init();
 
-        // Start the tour
         tour.start();
     }
 
