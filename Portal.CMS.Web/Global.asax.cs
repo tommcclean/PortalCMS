@@ -15,8 +15,10 @@ namespace Portal.CMS.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            // Ability to Create Server Side Stylesheets
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
             ViewEngines.Engines.Add(new CSSViewEngine());
+
             RazorCodeLanguage.Languages.Add("cscss", new CSharpRazorCodeLanguage());
             WebPageHttpHandler.RegisterExtension("cscss");
 
