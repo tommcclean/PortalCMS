@@ -95,7 +95,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-8">
                 @Html.ValidationMessage("MenuId")
-                <div class="control-group float-container">
+                <div class="control-group">
                     @Html.LabelFor(x => x.MenuId)
                     @Html.DropDownListFor(m => m.MenuId, menuList)
                 </div>
@@ -103,14 +103,14 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
                         @Html.ValidationMessage("LinkText")
-                        <div class="control-group float-container">
+                        <div class="control-group">
                             @Html.LabelFor(x => x.LinkText)
                             @Html.TextBoxFor(x => x.LinkText, new { placeholder = "Link Text" })
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6">
                         @Html.ValidationMessage("LinkIcon")
-                        <div class="control-group float-container">
+                        <div class="control-group">
                             @Html.LabelFor(x => x.LinkIcon)
                             <div class="input-group">
                                 <input id="LinkIcon" name="LinkIcon" data-placement="bottomRight" class="form-control icp icp-auto" value="@Model.LinkIcon" type="text" />
@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 @Html.ValidationMessage("LinkURL")
-                <div class="control-group float-container">
+                <div class="control-group">
                     @Html.LabelFor(x => x.LinkURL)
                     @Html.TextBoxFor(x => x.LinkURL, new { placeholder = "Link Address (URL)" })
                 </div>

@@ -35,19 +35,19 @@
                     @Html.ValidationMessage("Execution")
 
                     @Html.ValidationMessage("EmailAddress")
-                    <div class="control-group float-container">
+                    <div class="control-group">
                         @Html.LabelFor(x => x.EmailAddress)
                         @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
                     </div>
 
                     @Html.ValidationMessage("Password")
-                    <div class="control-group float-container">
+                    <div class="control-group">
                         @Html.LabelFor(x => x.Password)
                         @Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
                     </div>
 
                     @Html.ValidationMessage("ConfirmPassword")
-                    <div class="control-group float-container">
+                    <div class="control-group">
                         @Html.LabelFor(x => x.ConfirmPassword)
                         @Html.PasswordFor(x => x.ConfirmPassword, new { placeholder = "Confirm Password" })
                     </div>

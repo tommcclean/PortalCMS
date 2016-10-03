@@ -22,13 +22,13 @@
             @Html.ValidationMessage("InvalidCredentials")
 
             @Html.ValidationMessage("EmailAddress")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.EmailAddress)
                 @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
             </div>
 
             @Html.ValidationMessage("Password")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.Password)
                 @Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
             </div>
@@ -47,7 +47,7 @@
             <div class="alert alert-warning" role="alert">We will send you a link by email that you can use to reset your password.</div>
 
             @Html.ValidationMessage("EmailAddress")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.EmailAddress)
                 @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
             </div>

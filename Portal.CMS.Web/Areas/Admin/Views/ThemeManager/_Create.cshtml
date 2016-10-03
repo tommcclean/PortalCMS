@@ -8,16 +8,8 @@
 @Styles.Render("~/Resources/CSS/JQuery/JQueryUI")
 @Styles.Render("~/Resources/CSS/Spectrum")
 @Scripts.Render("~/Resources/JavaScript/Spectrum")
-
-<script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
-<script src="~/Areas/Admin/Content/Scripts/ThemeManager/jquery-sliders.js"></script>
-<script type="text/javascript">
-    $(".spectrum").spectrum({
-        flat: false,
-        showInput: true,
-        preferredFormat: "hex",
-    });
-</script>
+@Scripts.Render("~/Resources/JavaScript/JQueryUI")
+@Scripts.Render("~/Resources/JavaScript/ThemeManager/Sliders")
 
 @using (Html.BeginForm("Create", "ThemeManager", FormMethod.Post))
 {
@@ -43,9 +35,9 @@
             }
 
             @Html.ValidationMessage("ThemeName")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.ThemeName)
-                @Html.TextBoxFor(x => x.ThemeName)
+                @Html.TextBoxFor(x => x.ThemeName, new { placeholder = "Theme Name" })
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-theme-colour">
@@ -73,13 +65,13 @@
             <br />
 
             @Html.ValidationMessage("TitleFontId")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.TitleFontId)
                 @Html.DropDownListFor(m => m.TitleFontId, fontList)
             </div>
 
             @Html.ValidationMessage("TextFontId")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.TextFontId)
                 @Html.DropDownListFor(m => m.TextFontId, fontList)
             </div>

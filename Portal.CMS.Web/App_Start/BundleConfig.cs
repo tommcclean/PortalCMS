@@ -12,6 +12,8 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js").Include("~/Content/Scripts/Bootstrap/bootstrap.min.js"));
 
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/JQueryUI", "https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js").Include("~/Content/Scripts/JQueryUI/jquery.ui.min.js"));
+
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Popover").Include("~/Content/Scripts/Bootstrap/initialise.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Tour").Include("~/Content/Scripts/BootstrapTour/bootstrap-tour.min.js"));
@@ -39,6 +41,10 @@ namespace Portal.CMS.Web
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/FAQSpoilerEvents").Include("~/Areas/Builder/Content/Scripts/component.expand.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Spectrum").Include("~/Content/Scripts/Spectrum/spectrum.js"));
+
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Spectrum").Include("~/Content/Scripts/Spectrum/spectrum.js"));
+
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/ThemeManager/Sliders").Include("~/Areas/Admin/Content/Scripts/ThemeManager/initialise.js"));
 
             #endregion Script Bundles
 

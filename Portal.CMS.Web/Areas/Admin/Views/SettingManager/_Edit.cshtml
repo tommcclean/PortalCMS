@@ -11,12 +11,12 @@
 
     @Html.ValidationMessage("SettingName")
 
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.SettingName)
         @Html.TextBoxFor(x => x.SettingName, new { placeholder = "Setting Name" })
     </div>
 
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.SettingValue)
         @Html.TextBoxFor(x => x.SettingValue, new { placeholder = "Setting Value" })
     </div>

@@ -8,16 +8,8 @@
 @Styles.Render("~/Resources/CSS/JQuery/JQueryUI")
 @Styles.Render("~/Resources/CSS/Spectrum")
 @Scripts.Render("~/Resources/JavaScript/Spectrum")
-
-<script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
-<script src="~/Areas/Admin/Content/Scripts/ThemeManager/jquery-sliders.js"></script>
-<script type="text/javascript">
-    $(".spectrum").spectrum({
-        flat: false,
-        showInput: true,
-        preferredFormat: "hex",
-    });
-</script>
+@Scripts.Render("~/Resources/JavaScript/JQueryUI")
+@Scripts.Render("~/Resources/JavaScript/ThemeManager/Sliders")
 
 @using (Html.BeginForm("Edit", "ThemeManager", FormMethod.Post))
 {
@@ -43,27 +35,27 @@
             }
 
             @Html.ValidationMessage("ThemeName")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.ThemeName)
-                @Html.TextBoxFor(x => x.ThemeName)
+                @Html.TextBoxFor(x => x.ThemeName, new { placeholder = "Theme Name" })
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-theme-colour">
 
             @Html.ValidationMessage("PageBackgroundColour")
-            <div class="control-group wide-label float-container">
+            <div class="control-group wide-label">
                 @Html.LabelFor(x => x.PageBackgroundColour)
                 @Html.TextBoxFor(x => x.PageBackgroundColour, new { @class = "spectrum" })
             </div>
 
             @Html.ValidationMessage("MenuBackgroundColour")
-            <div class="control-group wide-label float-container">
+            <div class="control-group wide-label">
                 @Html.LabelFor(x => x.MenuBackgroundColour)
                 @Html.TextBoxFor(x => x.MenuBackgroundColour, new { @class = "spectrum" })
             </div>
 
             @Html.ValidationMessage("MenuTextColour")
-            <div class="control-group wide-label float-container">
+            <div class="control-group wide-label">
                 @Html.LabelFor(x => x.MenuTextColour)
                 @Html.TextBoxFor(x => x.MenuTextColour, new { @class = "spectrum" })
             </div>
@@ -74,13 +66,13 @@
             <br />
 
             @Html.ValidationMessage("TitleFontId")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.TitleFontId)
                 @Html.DropDownListFor(m => m.TitleFontId, fontList)
             </div>
 
             @Html.ValidationMessage("TextFontId")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.TextFontId)
                 @Html.DropDownListFor(m => m.TextFontId, fontList)
             </div>
@@ -90,35 +82,35 @@
             <br />
 
             @Html.ValidationMessage("LargeTitleFontSize")
-            <div class="control-group wide-label float-container">
+            <div class="control-group wide-label">
                 @Html.LabelFor(x => x.LargeTitleFontSize)
                 @Html.TextBoxFor(x => x.LargeTitleFontSize, new { @class = "jquery-slider-value", @data_slider = "largeTitleSlider" })
                 <div id="largeTitleSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="LargeTitleFontSize"></div></div>
             </div>
 
             @Html.ValidationMessage("MediumTitleFontSize")
-            <div class="control-group wide-label float-container">
+            <div class="control-group wide-label">
                 @Html.LabelFor(x => x.MediumTitleFontSize)
                 @Html.TextBoxFor(x => x.MediumTitleFontSize, new { @class = "jquery-slider-value", @data_slider = "mediumTitleSlider" })
                 <div id="mediumTitleSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="MediumTitleFontSize"></div></div>
             </div>
 
             @Html.ValidationMessage("SmallTitleFontSize")
-            <div class="control-group wide-label float-container">
+            <div class="control-group wide-label">
                 @Html.LabelFor(x => x.SmallTitleFontSize)
                 @Html.TextBoxFor(x => x.SmallTitleFontSize, new { @class = "jquery-slider-value", @data_slider = "smallTitleSlider" })
                 <div id="smallTitleSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="SmallTitleFontSize"></div></div>
             </div>
 
             @Html.ValidationMessage("TinyTitleFontSize")
-            <div class="control-group wide-label float-container">
+            <div class="control-group wide-label">
                 @Html.LabelFor(x => x.TinyTitleFontSize)
                 @Html.TextBoxFor(x => x.TinyTitleFontSize, new { @class = "jquery-slider-value", @data_slider = "tinyTitleSlider" })
                 <div id="tinyTitleSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="TinyTitleFontSize"></div></div>
             </div>
 
             @Html.ValidationMessage("TextStandardFontSize")
-            <div class="control-group wide-label float-container">
+            <div class="control-group wide-label">
                 @Html.LabelFor(x => x.TextStandardFontSize)
                 @Html.TextBoxFor(x => x.TextStandardFontSize, new { @class = "jquery-slider-value", @data_slider = "textStandardSlider" })
                 <div id="textStandardSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="TextStandardFontSize"></div></div>
@@ -127,7 +119,7 @@
     </div>
 
     <div class="footer">
-        <button class="btn primary">Edit Theme</button>
-        <button class="btn" data-dismiss="modal">Cancel</button>
+        <button class="btn primary"><span class="fa fa-check"></span><span class="hidden-xs">Edit Theme</span></button>
+        <button class="btn" data-dismiss="modal"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></button>
     </div>
 }

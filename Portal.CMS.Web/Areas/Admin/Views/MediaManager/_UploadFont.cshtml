@@ -11,17 +11,17 @@
     <div class="alert alert-warning" role="alert">You can use fonts in your website Themes, visit the Theme Manager to use your fonts.</div>
 
     @Html.ValidationMessage("AttachedFont")
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.AttachedFont)
         @Html.TextBoxFor(m => m.AttachedFont, new { @type = "file" })
     </div>
 
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.FontName)
         @Html.TextBoxFor(m => m.FontName)
     </div>
 
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.FontType)
         @Html.TextBoxFor(m => m.FontType)
     </div>

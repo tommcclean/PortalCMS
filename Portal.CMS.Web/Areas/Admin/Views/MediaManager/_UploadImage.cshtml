@@ -13,12 +13,12 @@
 
     @Html.ValidationMessage("AttachedImage")
 
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.AttachedImage)
         @Html.TextBoxFor(m => m.AttachedImage, new { @type = "file" })
     </div>
 
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.ImageCategory)
         @Html.EnumDropDownListFor(m => m.ImageCategory, new { @class = "form-control" })
     </div>

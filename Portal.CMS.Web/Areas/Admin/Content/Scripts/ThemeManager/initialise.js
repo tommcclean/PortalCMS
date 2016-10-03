@@ -29,3 +29,9 @@
         });
     });
 });
+
+$(".spectrum").spectrum({
+    flat: false,
+    showInput: true,
+    preferredFormat: "hex",
+});

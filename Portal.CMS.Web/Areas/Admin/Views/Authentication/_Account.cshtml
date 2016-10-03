@@ -10,19 +10,19 @@
     @Html.Action("Get", "CopyManager", new { area = "Admin", copyName = "Update Account Message" })
 
     @Html.ValidationMessage("EmailAddress")
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.EmailAddress)
         @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
     </div>
 
     @Html.ValidationMessage("GivenName")
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.GivenName)
         @Html.TextBoxFor(x => x.GivenName, new { placeholder = "First Name" })
     </div>
 
     @Html.ValidationMessage("FamilyName")
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.FamilyName)
         @Html.TextBoxFor(x => x.FamilyName, new { placeholder = "Last Name" })
     </div>

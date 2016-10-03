@@ -353,7 +353,7 @@
     <Content Include="Areas\Admin\Content\Images\icon-thememanager.png" />
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
-    <Content Include="Areas\Admin\Content\Scripts\ThemeManager\jquery-sliders.js" />
+    <Content Include="Areas\Admin\Content\Scripts\ThemeManager\initialise.js" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-lightgray.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-linen.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-notebook.png" />
@@ -362,6 +362,7 @@
     <Content Include="Content\Scripts\BootstrapTour\bootstrap-tour.min.js" />
     <Content Include="Content\Scripts\FontAwesomePicker\fontawesome-iconpicker.min.js" />
     <Content Include="Content\Scripts\Framework\global.js" />
+    <Content Include="Content\Scripts\JQueryUI\jquery-ui.min.js" />
     <Content Include="Content\Scripts\Spectrum\spectrum.js" />
     <Content Include="Content\Styles\BootstrapTour\bootstrap-tour.min.css" />
     <Content Include="Content\Styles\C3Graphing\c3.css" />

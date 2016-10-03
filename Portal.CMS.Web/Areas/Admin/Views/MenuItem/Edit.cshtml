@@ -16,13 +16,13 @@
     @Html.HiddenFor(x => x.MenuItemId)
 
     @Html.ValidationMessage("LinkText")
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.LinkText)
         @Html.TextBoxFor(x => x.LinkText, new { placeholder = "Link Text" })
     </div>
 
     @Html.ValidationMessage("LinkIcon")
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.LinkIcon)
         <div class="input-group">
             <input id="LinkIcon" name="LinkIcon" data-placement="bottomRight" class="form-control icp icp-auto" value="@Model.LinkIcon" type="text" />
@@ -31,7 +31,7 @@
     </div>
 
         @Html.ValidationMessage("LinkURL")
-        <div class="control-group float-container">
+        <div class="control-group">
             @Html.LabelFor(x => x.LinkURL)
             @Html.TextBoxFor(x => x.LinkURL, new { placeholder = "Link Address (URL)" })
         </div>

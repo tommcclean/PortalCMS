@@ -47,13 +47,13 @@
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab-post">
             @Html.ValidationMessage("PostTitle")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.PostTitle)
                 @Html.TextBoxFor(x => x.PostTitle, new { placeholder = "Headline" })
             </div>
 
             @Html.ValidationMessage("PostDescription")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.PostDescription)
                 @Html.TextBoxFor(x => x.PostDescription, new { placeholder = "Description" })
             </div>
@@ -62,19 +62,19 @@
             @Html.TextAreaFor(x => x.PostBody, new { id = textareaSelector })
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-publication">
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.PublicationState)
                 @Html.EnumDropDownListFor(m => m.PublicationState, new { @class = "form-control" })
             </div>
 
             @Html.ValidationMessage("PostCategoryId")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.PostCategoryId)
                 @Html.DropDownListFor(m => m.PostCategoryId, postCategoryList)
             </div>
 
             @Html.ValidationMessage("PostAuthorUserId")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.PostAuthorUserId)
                 @Html.DropDownListFor(m => m.PostAuthorUserId, userList)
             </div>

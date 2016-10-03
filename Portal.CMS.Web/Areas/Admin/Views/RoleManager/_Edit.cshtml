@@ -11,7 +11,7 @@
 
     @Html.ValidationMessage("RoleName")
 
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.RoleName)
 
         @if (Model.RoleName != "Admin" && Model.RoleName != "Authenticated")

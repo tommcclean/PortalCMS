@@ -8,25 +8,25 @@
     @Html.AntiForgeryToken()
 
     @Html.ValidationMessage("PageName")
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.PageName)
         @Html.TextBoxFor(x => x.PageName, new { placeholder = "Page Name" })
     </div>
 
     @Html.ValidationMessage("PageArea")
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.PageArea)
         @Html.TextBoxFor(x => x.PageArea, new { placeholder = "Page Area" })
     </div>
 
     @Html.ValidationMessage("PageController")
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.PageController)
         @Html.TextBoxFor(x => x.PageController, new { placeholder = "Page Controller" })
     </div>
 
     @Html.ValidationMessage("PageAction")
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.PageAction)
         @Html.TextBoxFor(x => x.PageAction, new { placeholder = "Page Action" })
     </div>

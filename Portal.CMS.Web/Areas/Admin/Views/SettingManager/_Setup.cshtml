@@ -34,7 +34,7 @@
             <div class="alert alert-warning" role="alert">The information on this tab is displayed in search results.</div>
 
             @Html.ValidationMessage("WebsiteName")
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.WebsiteName)
                 @Html.TextBoxFor(x => x.WebsiteName)
             </div>
@@ -49,15 +49,15 @@
             <p>SendGrid is a reliable and easy to use method of email delivery, You can send 12,000 emails for free every month. <a href="https://sendgrid.com/" target="_blank">Learn More about SendGrid.</a></p>
             <br />
             <div class="alert alert-warning" role="alert">When you configure email settings, users can request a forgotten password email token.</div>
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.EmailFromAddress)
                 @Html.TextBoxFor(x => x.EmailFromAddress)
             </div>
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.SendGridUserName)
                 @Html.TextBoxFor(x => x.SendGridUserName)
             </div>
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.SendGridPassword)
                 @Html.PasswordFor(x => x.SendGridPassword)
             </div>
@@ -67,7 +67,7 @@
             <p>Portal CMS collects its own Analytics to give you real time and useful information about how your website is being used. You can also configure Portal CMS to use Google Analytics.</p>
             <br />
             <div class="alert alert-warning" role="alert">When you submit your Google Analytics Tracking Code, we will start pushing data to your Analytics account.</div>
-            <div class="control-group float-container">
+            <div class="control-group">
                 @Html.LabelFor(x => x.GoogleAnalyticsId)
                 @Html.TextBoxFor(x => x.GoogleAnalyticsId)
             </div>

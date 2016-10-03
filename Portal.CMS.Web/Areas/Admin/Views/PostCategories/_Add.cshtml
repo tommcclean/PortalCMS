@@ -8,7 +8,7 @@
     @Html.AntiForgeryToken()
 
     @Html.ValidationMessage("PostCategoryName")
-    <div class="control-group float-container">
+    <div class="control-group">
         @Html.LabelFor(x => x.PostCategoryName)
         @Html.TextBoxFor(x => x.PostCategoryName, new { placeholder = "Post Category Name" })
     </div>
