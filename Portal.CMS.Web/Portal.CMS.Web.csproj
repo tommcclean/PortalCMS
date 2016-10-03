@@ -544,9 +544,6 @@
     <Content Include="Areas\Admin\Views\UserManager\_Roles.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\UserManager\_Delete.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Admin\Views\Dashboard\_MediaManager.cshtml" />
   </ItemGroup>
   <ItemGroup>

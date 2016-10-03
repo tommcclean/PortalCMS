@@ -3,6 +3,15 @@
     margin-bottom: 10px;
 }
 
+    .control-group:after
+    {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+    }
+
     .control-group label, .control-group input, .control-group select
     {
         float: left;

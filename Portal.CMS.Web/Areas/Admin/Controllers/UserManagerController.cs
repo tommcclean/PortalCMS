@@ -66,7 +66,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     if (!UserHelper.IsLoggedIn)
                         Session.Add("UserAccount", _userService.GetUser(userId.Value));
 
-                    return this.Content("Refresh");
+                    return Content("Refresh");
             }
         }
 
