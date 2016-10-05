@@ -40,6 +40,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [OutputCache(Duration = 86400)]
         public ActionResult Login()
         {
             return View("_Login", new LoginViewModel());
@@ -76,6 +77,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [OutputCache(Duration = 86400)]
         public ActionResult Register()
         {
             return View("_Register", new RegisterViewModel());

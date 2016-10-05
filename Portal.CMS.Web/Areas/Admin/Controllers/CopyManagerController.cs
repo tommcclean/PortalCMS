@@ -31,11 +31,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet, AdminFilter]
+        [OutputCache(Duration = 86400)]
         public ActionResult Create()
         {
-            var model = new CreateViewModel()
-            {
-            };
+            var model = new CreateViewModel();
 
             return View("_Create", model);
         }
