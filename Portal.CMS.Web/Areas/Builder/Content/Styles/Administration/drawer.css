@@ -48,6 +48,7 @@
             margin-bottom: 50px;
             border: 1px solid black;
             cursor: pointer;
+            -ms-zoom: 0.2;
             zoom: 0.2;
         }
 
@@ -111,7 +112,7 @@
         {
             height: 50px;
             width: 300px;
-            background-image: url('../../../Admin/Content/Images/block_black_medium.png');
+            background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
         }
 
     .panel-overlay .panel-inner .widget-preview .post-list-wrapper a
@@ -125,7 +126,7 @@
         right: 0px;
         top: 15px;
         padding: 5px 10px 5px 10px;
-        background-image: url('../../../Admin/Content/Images/block_black_dark.png');
+        background-image: url('/Areas/Admin/Content/Images/block_black_dark.png');
         display: inline-block;
         color: white;
         border-radius: 5px;
@@ -147,7 +148,7 @@
     padding: 10px;
     border-radius: 5px;
     color: white;
-    background-image: url('../../../Admin/Content/Images/block_black_medium.png');
+    background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
     text-align: center;
 }
 

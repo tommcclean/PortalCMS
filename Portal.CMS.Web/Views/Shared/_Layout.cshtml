@@ -1,19 +1,26 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var isLoggedIn = UserHelper.IsLoggedIn;
+}
+
+<!DOCTYPE html>
 <html lang="en-gb">
 <head>
     <title>@SettingHelper.Get("Website Name"): @ViewBag.Title</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <meta name="description" content="@SettingHelper.Get("Description Meta Tag")">
 
     @RenderSection("Styles", false)
     @Styles.Render("~/Resources/CSS/Bootstrap")
-    @Styles.Render("~/Resources/CSS/Bootstrap/Tour")
     @Styles.Render("~/Resources/CSS/FontAwesome")
     @Styles.Render("~/Resources/CSS/Administration/Framework")
     @Styles.Render("~/Resources/CSS/PageBuilder/Framework")
     @Styles.Render("~/Resources/CSS/Framework")
     <link href="@Url.Action("Render", "Theme", new { area = "Builder" })" rel="stylesheet" type="text/css" />
+    @if (isLoggedIn)
+    {
+        @Styles.Render("~/Resources/CSS/Bootstrap/Tour")
+        @Styles.Render("~/Resources/CSS/PageBuilder/Framework/Administration")
+    }
 
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
@@ -37,12 +44,13 @@
         @Html.Action("AppDrawer", "ThemeManager", new { area = "Admin" })
     }
 
-
     @RenderSection("DOMScripts", false)
     @Scripts.Render("~/Resources/JavaScript/Bootstrap")
-    @Scripts.Render("~/Resources/JavaScript/Bootstrap/Tour")
-    @Scripts.Render("~/Resources/JavaScript/Bootstrap/Confirmation")
-    @Scripts.Render("~/Resources/JavaScript/Bootstrap/Modal")
-    @Scripts.Render("~/Resources/JavaScript/Framework/Global")
+    @Scripts.Render("~/Resources/JavaScript/Framework")
+    @if (isLoggedIn)
+    {
+        @Scripts.Render("~/Resources/JavaScript/Bootstrap/Tour")
+        @Scripts.Render("~/Resources/JavaScript/Bootstrap/Confirmation")
+    }
 </body>
 </html>

@@ -28,6 +28,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         #endregion Dependencies
 
         [HttpGet]
+        [OutputCache(Duration = 86400)]
         public ActionResult Add()
         {
             var model = new AddViewModel

@@ -1,0 +1,237 @@
+﻿.admin .component-container
+{
+    border: 1px dashed gray;
+    border-radius: 5px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.admin .row
+{
+    border-color: brown;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.admin .mce-content-body:not(.btn)
+{
+    border: 1px solid transparent;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    border-radius: 5px;
+}
+
+.admin .mce-content-body:hover
+{
+    cursor: text;
+    border: 1px dashed gray;
+}
+
+.admin .col-xs-2, .admin .col-xs-3, .admin .col-xs-4, .admin .col-xs-6, .admin .col-xs-12
+{
+    border-color: green;
+    min-height: 100px;
+}
+
+.admin table.component-container
+{
+    display: block;
+    border-color: brown;
+}
+
+.admin tbody
+{
+    display: block;
+}
+
+.admin tr
+{
+    display: table;
+    width: 100%;
+}
+
+.admin th.component-container
+{
+    display: table-cell;
+    min-width: 100px;
+    border: 1px dashed purple;
+}
+
+.admin td.component-container
+{
+    position: relative;
+    display: table-cell;
+    min-width: 100px;
+    border-color: green;
+}
+
+section:after, .row:after
+{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+section .vertical-alignment
+{
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    padding: 0 10% 0 10%;
+}
+
+.admin .widget-wrapper
+{
+    padding: 10px;
+    border: 1px dashed black;
+    cursor: pointer;
+}
+
+@media (max-width: 767px)
+{
+    section .vertical-alignment
+    {
+        position: relative;
+        -moz-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+        -o-transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+    }
+
+    .action-container.wide .action
+    {
+        text-align: center;
+        padding-right: 5px;
+        border-radius: 50%;
+        font-size: 18px;
+        height: 50px;
+        line-height: 52px;
+        width: 50px;
+    }
+}
+
+.component-expand
+{
+    border: 1px solid silver;
+    text-align: left;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+    .component-expand .component-expand-header
+    {
+        width: 100%;
+        background-color: silver;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+.component-expand-header h3
+{
+    margin: 0;
+    padding: 0;
+    line-height: 45px;
+}
+
+    .component-expand-header h3:before
+    {
+        font-family: 'Glyphicons Halflings';
+        margin-right: 10px;
+        font-size: 18px;
+        content: "\e114";
+    }
+
+.component-expand.active .component-expand-header h3:before
+{
+    content: "\e113";
+}
+
+.visitor .component-body
+{
+    display: none;
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+.admin .component-expand-body
+{
+    display: block;
+}
+
+.component-preview .component-expand-body
+{
+    display: block;
+}
+
+.image
+{
+    display: inline-block;
+    height: 125px;
+    width: 125px;
+    background-image: url('/Areas/Builder/Content/Images/Sample/Sample-1.jpg');
+    background-size: cover;
+    background-position: center center;
+    margin: 10px;
+    margin-top: 20px;
+}
+
+    .image.image-circle
+    {
+        background-image: url('/Areas/Builder/Content/Images/Sample/Sample-4.jpg');
+        border-radius: 50%;
+    }
+
+    .image.image-icon
+    {
+        height: 64px;
+        width: 64px;
+        background-image: url('/Areas/Builder/Content/Images/Sample/icon-1.png');
+    }
+
+    .image.image-standard
+    {
+        width: 300px;
+        height: 225px;
+        background-image: url('/Areas/Builder/Content/Images/Sample/Sample-5.jpg');
+    }
+
+    .image.image-auto
+    {
+        width: auto;
+        max-width: 35vw;
+        height: auto;
+    }
+
+    .image.image-fill
+    {
+        width: 80%;
+        min-height: 280px;
+    }
+
+.admin .image
+{
+    cursor: pointer;
+    -moz-transition: opacity 0.2s ease-in-out;
+    -o-transition: opacity 0.2s ease-in-out;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+    .admin .image:hover
+    {
+        opacity: 0.8;
+    }

@@ -7,6 +7,7 @@ namespace Portal.CMS.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.UseCdn = true;
+            BundleTable.EnableOptimizations = true;
 
             #region Script Bundles
 
@@ -22,9 +23,7 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/FontAwesome/Picker").Include("~/Content/Scripts/FontAwesomePicker/fontawesome-iconpicker.min.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Modal").Include("~/Content/Scripts/Framework/modal.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework/Global").Include("~/Content/Scripts/Framework/global.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework").Include("~/Content/Scripts/Framework/*.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/FancyBox").Include("~/Content/Scripts/FancyBox/jquery.fancybox.js").Include("~/Content/Scripts/FancyBox/jquery.fancybox-thumbs.js").Include("~/Content/Scripts/FancyBox/initialise.js"));
 
@@ -67,6 +66,8 @@ namespace Portal.CMS.Web
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework").Include("~/Content/Styles/Framework/*.css", new CssRewriteUrlTransform()));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/PageBuilder/Framework").Include("~/Areas/Builder/Content/Styles/*.css", new CssRewriteUrlTransform()));
+
+            bundles.Add(new StyleBundle("~/Resources/CSS/PageBuilder/Framework/Administration").Include("~/Areas/Builder/Content/Styles/Administration/*.css", new CssRewriteUrlTransform()));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Administration/Framework").Include("~/Areas/Admin/Content/Styles/Framework/*.css", new CssRewriteUrlTransform()));
 

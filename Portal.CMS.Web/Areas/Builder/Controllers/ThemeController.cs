@@ -17,7 +17,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
         #endregion Dependencies
 
-        // GET: Builder/Styles
         public ActionResult Render()
         {
             var model = new ThemeViewModel

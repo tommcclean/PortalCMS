@@ -107,7 +107,5 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
             return RedirectToAction("Index", new { pageId = pageSection.PageId });
         }
-
-
     }
 }

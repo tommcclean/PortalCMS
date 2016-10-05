@@ -3,67 +3,67 @@
     position: relative;
 }
 
-    .height-tall
-    {
-        min-height: calc(100vh - 50px);
-    }
+.height-tall
+{
+    min-height: calc(100vh - 50px);
+}
 
-    .height-medium
-    {
-        min-height: 700px;
-    }
+.height-medium
+{
+    min-height: 700px;
+}
 
-    .height-standard
-    {
-        min-height: 375px;
-    }
+.height-standard
+{
+    min-height: 375px;
+}
 
-    .height-small
-    {
-        min-height: 200px;
-    }
+.height-small
+{
+    min-height: 200px;
+}
 
-    .height-tiny
-    {
-        min-height: 100px;
-    }
+.height-tiny
+{
+    min-height: 100px;
+}
 
-    background-static
-    {
-        background-size: cover;
-        background-position: center center;
-    }
+background-static
+{
+    background-size: cover;
+    background-position: center center;
+}
 
-    section.background-parallax
-    {
-        background-attachment: fixed;
-        background-size: cover;
-        background-position: center center;
-    }
+section.background-parallax
+{
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+}
 
-    .header
-    {
-        max-height: calc(100vh - 50px);
-        background-image: url('../Images/Sample/Sample-2.jpg');
-        color: white;
-    }
+.header
+{
+    max-height: calc(100vh - 50px);
+    background-image: url('../Images/Sample/Sample-2.jpg');
+    color: white;
+}
 
-    .blank
-    {
-        background-image: url('../../../Admin/Content/Images/texture.png');
-        padding: 30px 2.5% 30px 2.5%;
-        text-align: center;
-    }
+.blank
+{
+    background-image: url('../../../Admin/Content/Images/texture.png');
+    padding: 30px 2.5% 30px 2.5%;
+    text-align: center;
+}
 
-    .highlight
-    {
-        background-image: url('../Images/Sample/Sample-5.jpg');
-    }
+.highlight
+{
+    background-image: url('../Images/Sample/Sample-5.jpg');
+}
 
-    section p, section a
-    {
-        margin-bottom: 20px;
-    }
+section p, section a
+{
+    margin-bottom: 20px;
+}
 
 table
 {
