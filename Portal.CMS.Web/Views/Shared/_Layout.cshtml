@@ -1,5 +1,5 @@
 ﻿@{
-    var isLoggedIn = UserHelper.IsLoggedIn;
+    var isAdmin = UserHelper.IsAdmin;
 }
 
 <!DOCTYPE html>
@@ -15,8 +15,10 @@
     @Styles.Render("~/Resources/CSS/Administration/Framework")
     @Styles.Render("~/Resources/CSS/PageBuilder/Framework")
     @Styles.Render("~/Resources/CSS/Framework")
+
     <link href="@Url.Action("Render", "Theme", new { area = "Builder" })" rel="stylesheet" type="text/css" />
-    @if (isLoggedIn)
+
+    @if (isAdmin)
     {
         @Styles.Render("~/Resources/CSS/Bootstrap/Tour")
         @Styles.Render("~/Resources/CSS/PageBuilder/Framework/Administration")
@@ -24,33 +26,23 @@
 
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
-    @RenderSection("HEADScripts", false)
-</head>
-<body>
-    @Html.Partial("_NavBar")
 
-    @RenderBody()
-
-    @Html.Partial("_Analytics")
-
-    @if (UserHelper.IsAdmin)
-    {
-        <div class="action-container wide global">
-            <div id="tour-page-manager" class="action" onclick="TogglePageList();"><span class="fa fa-th-list"></span><span class="hidden-xs">Page Manager</span></div>
-            <div id="tour-theme-manager" class="action" onclick="ToggleThemeManager();"><span class="fa fa-paint-brush"></span><span class="hidden-xs">Theme Manager</span></div>
-        </div>
-
-        @Html.Action("AppDrawer", "PageManager", new { area = "Admin" })
-        @Html.Action("AppDrawer", "ThemeManager", new { area = "Admin" })
-    }
-
-    @RenderSection("DOMScripts", false)
-    @Scripts.Render("~/Resources/JavaScript/Bootstrap")
-    @Scripts.Render("~/Resources/JavaScript/Framework")
-    @if (isLoggedIn)
+    @if (isAdmin)
     {
         @Scripts.Render("~/Resources/JavaScript/Bootstrap/Tour")
         @Scripts.Render("~/Resources/JavaScript/Bootstrap/Confirmation")
     }
+    @RenderSection("HEADScripts", false)
+
+    @Html.Partial("_Analytics")
+</head>
+<body>
+    @Html.Partial("_NavBar")
+    @RenderBody()
+    @Html.Partial("_Administration")
+
+    @RenderSection("DOMScripts", false)
+    @Scripts.Render("~/Resources/JavaScript/Bootstrap")
+    @Scripts.Render("~/Resources/JavaScript/Framework")
 </body>
 </html>
