@@ -15,6 +15,8 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/JQueryUI", "https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js").Include("~/Content/Scripts/JQueryUI/jquery.ui.min.js"));
 
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/JQuery", "https://code.jquery.com/jquery-2.2.1.min.js").Include("~/Content/Scripts/JQuery/jquery-2.2.1.min.js"));
+
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Popover").Include("~/Content/Scripts/Bootstrap/initialise.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Tour").Include("~/Content/Scripts/BootstrapTour/bootstrap-tour.min.js"));
