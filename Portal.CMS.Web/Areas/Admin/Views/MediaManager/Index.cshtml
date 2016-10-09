@@ -69,25 +69,25 @@
         <div role="tabpanel" class="tab-pane active" id="tab-general">
             @foreach (var image in Model.Images.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.General))
             {
-                <img id="image-@image.ImageId" class="thumbnail" src="@image.ImagePath" />
+                <img id="image-@image.ImageId" class="thumbnail" alt="Image Thumbnail" src="@image.ImagePath" />
             }
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-icon">
             @foreach (var image in Model.Images.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon))
             {
-                <img id="image-@image.ImageId" class="thumbnail" src="@image.ImagePath" />
+                <img id="image-@image.ImageId" class="thumbnail" alt="Image Thumbnail" src="@image.ImagePath" />
             }
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-screenshot">
             @foreach (var image in Model.Images.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Screenshot))
             {
-                <img id="image-@image.ImageId" class="thumbnail" src="@image.ImagePath" />
+                <img id="image-@image.ImageId" class="thumbnail" alt="Image Thumbnail" src="@image.ImagePath" />
             }
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-texture">
             @foreach (var image in Model.Images.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Texture))
             {
-                <img id="image-@image.ImageId" class="thumbnail" src="@image.ImagePath" />
+                <img id="image-@image.ImageId" class="thumbnail" alt="Image Thumbnail" src="@image.ImagePath" />
             }
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-fonts">

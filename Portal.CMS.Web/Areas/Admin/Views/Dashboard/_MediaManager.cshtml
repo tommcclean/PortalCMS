@@ -25,7 +25,7 @@ else
                 @foreach (var image in Model.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.General))
                 {
                     <a class="fancybox-thumb" rel="fancybox-thumb" href="@image.ImagePath" title="Media Manager">
-                        <img class="thumbnail media-img" src="@image.ImagePath" alt="" />
+                        <img class="thumbnail media-img" alt="Image Thumbnail" src="@image.ImagePath" />
                     </a>
                 }
             </div>

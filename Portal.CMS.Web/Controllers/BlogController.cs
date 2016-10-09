@@ -39,7 +39,7 @@ namespace Portal.CMS.Web.Controllers
             };
 
             if (!model.RecentPosts.Any())
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(Index), "Home");
 
             if (id.HasValue)
                 model.CurrentPost = _postService.Read(UserHelper.UserId, id.Value);
@@ -47,7 +47,7 @@ namespace Portal.CMS.Web.Controllers
                 model.CurrentPost = model.RecentPosts.First();
 
             if (model.CurrentPost == null)
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(Index), "Home");
 
             model.Author = _userService.GetUser(model.CurrentPost.PostAuthorUserId);
 
@@ -67,7 +67,6 @@ namespace Portal.CMS.Web.Controllers
             return RedirectToAction(nameof(Index), "Blog", new { postId = postId });
         }
 
-        // TODO: AntiForgerise to prevent external sites plugging in referrer.
         public ActionResult Analytic(int postId, string referrer)
         {
             if (UserHelper.IsLoggedIn)

@@ -97,7 +97,7 @@
             <div id="banner-selector" class="image-selector x4 single float-container">
                 @foreach (var image in Model.ImageList)
                 {
-                    <img class="thumbnail @(Model.BannerImageId == image.ImageId ? "selected" : "")" d data-parent="banner-selector" data-target="BannerImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
+                    <img class="thumbnail @(Model.BannerImageId == image.ImageId ? "selected" : "")" alt="Image Thumbnail" data-parent="banner-selector" data-target="BannerImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
                 }
             </div>
         </div>
@@ -111,7 +111,7 @@
             <div id="gallery-selector" class="image-selector x4 multiple float-container">
                 @foreach (var image in Model.ImageList)
                 {
-                    <img class="thumbnail " data-parent="gallery-selector" data-target="GalleryImageList" data-identifier="@image.ImageId" src="@image.ImagePath" />
+                    <img class="thumbnail" alt="Image Thumbnail" data-parent="gallery-selector" data-target="GalleryImageList" data-identifier="@image.ImageId" src="@image.ImagePath" />
                 }
             </div>
         </div>
