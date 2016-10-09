@@ -1,8 +1,4 @@
-﻿@{
-    var isAdmin = UserHelper.IsAdmin;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-gb">
 <head>
     <title>@SettingHelper.Get("Website Name"): @ViewBag.Title</title>
@@ -16,33 +12,27 @@
     @Styles.Render("~/Resources/CSS/PageBuilder/Framework")
     @Styles.Render("~/Resources/CSS/Framework")
 
-    <link href="@Url.Action("Render", "Theme", new { area = "Builder" })" rel="stylesheet" type="text/css" />
-
-    @if (isAdmin)
-    {
-        @Styles.Render("~/Resources/CSS/Bootstrap/Tour")
-        @Styles.Render("~/Resources/CSS/PageBuilder/Framework/Administration")
-    }
-
     @Scripts.Render("~/Resources/JavaScript/JQuery")
     @Scripts.Render("~/Resources/JavaScript/JQueryUI")
 
-    @if (isAdmin)
-    {
-        @Scripts.Render("~/Resources/JavaScript/Bootstrap/Tour")
-        @Scripts.Render("~/Resources/JavaScript/Bootstrap/Confirmation")
-    }
     @RenderSection("HEADScripts", false)
 
     @Html.Partial("_Analytics")
 </head>
 <body>
     @Html.Partial("_NavBar")
-    @RenderBody()
     @Html.Partial("_Administration")
+    @RenderBody()
 
+    @if (UserHelper.IsAdmin)
+    {
+        @Styles.Render("~/Resources/CSS/Bootstrap/Tour")
+        @Styles.Render("~/Resources/CSS/PageBuilder/Framework/Administration")
+    }
+
+    <link href="@Url.Action("Render", "Theme", new { area = "Builder" })" rel="stylesheet" type="text/css" />
+
+    @Html.Partial("_DOMScripts")
     @RenderSection("DOMScripts", false)
-    @Scripts.Render("~/Resources/JavaScript/Bootstrap")
-    @Scripts.Render("~/Resources/JavaScript/Framework")
 </body>
 </html>
