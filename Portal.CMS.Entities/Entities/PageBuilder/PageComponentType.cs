@@ -14,9 +14,6 @@ namespace Portal.CMS.Entities.Entities.PageBuilder
         public PageComponentTypeCategory PageComponentTypeCategory { get; set; }
 
         [Required]
-        public string PageComponentTypeDescription { get; set; }
-
-        [Required]
         public string PageComponentBody { get; set; }
     }
 }

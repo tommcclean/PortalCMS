@@ -63,7 +63,6 @@ namespace Portal.CMS.Services.PageBuilder
             var newPageSection = new PageSection
             {
                 PageId = pageId,
-                PageSectionTypeId = pageSectionTypeId,
                 PageSectionBody = sectionType.PageSectionTypeBody,
                 PageSectionOrder = sectionPosition
             };

@@ -15,12 +15,6 @@ namespace Portal.CMS.Entities.Entities.PageBuilder
 
         public virtual Page Page { get; set; }
 
-        [Required]
-        [ForeignKey("PageSectionType")]
-        public int PageSectionTypeId { get; set; }
-
-        public virtual PageSectionType PageSectionType { get; set; }
-
         public string PageSectionBody { get; set; }
 
         public int PageSectionOrder { get; set; }

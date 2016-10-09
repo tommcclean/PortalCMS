@@ -185,6 +185,10 @@
     <Compile Include="Migrations\201609262043195_ExtendThemeEntityWithColourOptions.Designer.cs">
       <DependentUpon>201609262043195_ExtendThemeEntityWithColourOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610091045086_CleanupPageBuilderEntities.cs" />
+    <Compile Include="Migrations\201610091045086_CleanupPageBuilderEntities.Designer.cs">
+      <DependentUpon>201610091045086_CleanupPageBuilderEntities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -273,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609262043195_ExtendThemeEntityWithColourOptions.resx">
       <DependentUpon>201609262043195_ExtendThemeEntityWithColourOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610091045086_CleanupPageBuilderEntities.resx">
+      <DependentUpon>201610091045086_CleanupPageBuilderEntities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
