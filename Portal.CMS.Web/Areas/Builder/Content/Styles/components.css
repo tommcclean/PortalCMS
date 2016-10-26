@@ -235,3 +235,58 @@ section .vertical-alignment
     {
         opacity: 0.8;
     }
+
+.checkbox-group
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed silver;
+    margin-bottom: 30px;
+    padding-left: 50px;
+}
+
+.checkbox-option
+{
+    float: left;
+    margin-bottom: 10px;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+    .checkbox-option.selected
+    {
+        border: 0 !important;
+    }
+
+    .checkbox-option p
+    {
+        float: left;
+        padding-top: 3px;
+    }
+
+.check
+{
+    float: left;
+    margin-right: 15px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid silver;
+    text-align: center;
+}
+
+    .check span
+    {
+        display: none;
+    }
+
+.checkbox-option.selected .check span
+{
+    font-size: 14px;
+    padding-top: 5px;
+    padding-left: 6px;
+    display: block;
+}
