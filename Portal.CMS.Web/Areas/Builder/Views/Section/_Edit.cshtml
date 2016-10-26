@@ -5,8 +5,17 @@
 }
 
 @Scripts.Render("~/Resources/JavaScript/ImageSelector")
+@Styles.Render("~/Resources/CSS/Spectrum")
+@Scripts.Render("~/Resources/JavaScript/Spectrum")
 
 <script type="text/javascript">
+    $(".spectrum").spectrum({
+        flat: false,
+        showInput: true,
+        preferredFormat: "hex",
+        showButtons: false,
+    });
+
     function Delete()
     {
         $('#section-wrapper-@Model.SectionId').remove();
@@ -27,7 +36,91 @@
             },
         });
     }
+
+    $(".checkbox-option").click(function (event) {
+        $(".checkbox-option").removeClass("selected");
+        $(this).addClass("selected");
+
+        var backgroundType = $(this).attr("data-backgroundtype");
+        $('#BackgroundType').val(backgroundType);
+
+        if (backgroundType === "picture")
+        {
+            $('.panel-colour').slideUp(300);
+            $('.panel-picture').slideDown(300);
+        }
+        else
+        {
+            $('.panel-picture').slideUp(300);
+            $('.panel-colour').slideDown(300);
+        }
+    });
+
+    var backgroundType = '@Model.BackgroundType';
+
+    if (backgroundType === "background-picture")
+    {
+        $('.checkbox-option.picture').click();
+    }
+    else
+    {
+        $('.checkbox-option.colour').click();
+    }
 </script>
+<style>
+    .checkbox-group
+    {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px dashed silver;
+        margin-bottom: 30px;
+        padding-left: 50px;
+    }
+
+    .checkbox-option
+    {
+        float: left;
+        width: 30%;
+        margin-bottom: 10px;
+        transition: all 0.2s ease-in-out;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+
+        .checkbox-option.selected
+        {
+            border: 0 !important;
+        }
+
+        .checkbox-option p
+        {
+            float: left;
+            padding-top: 3px;
+        }
+
+    .check
+    {
+        float: left;
+        margin-right: 15px;
+        width: 30px;
+        height: 30px;
+        border: 1px solid silver;
+        text-align: center;
+    }
+
+        .check span
+        {
+            display: none;
+        }
+
+    .checkbox-option.selected .check span
+    {
+        font-size: 14px;
+        padding-top: 5px;
+        padding-left: 6px;
+        display: block;
+    }
+</style>
 
 @using (Html.BeginForm("Edit", "Section", FormMethod.Post))
 {
@@ -35,21 +128,17 @@
 
     @Html.HiddenFor(x => x.SectionId)
     @Html.HiddenFor(x => x.BackgroundImageId)
+    @Html.HiddenFor(x => x.BackgroundType)
 
     <ul class="nav nav-tabs">
         <li role="presentation" class="active"><a href="#tab-edit" aria-controls="tab-edit" role="tab" data-toggle="tab">Edit Section</a></li>
-        <li role="presentation" class=""><a href="#tab-background" aria-controls="tab-background" role="tab" data-toggle="tab">Background Image<span class="badge">@imageCount</span></a></li>
+        <li role="presentation" class=""><a href="#tab-background" aria-controls="tab-background" role="tab" data-toggle="tab">Background<span class="badge">@imageCount</span></a></li>
     </ul>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab-edit">
             <div class="control-group">
                 @Html.LabelFor(x => x.PageSectionHeight)
                 @Html.EnumDropDownListFor(m => m.PageSectionHeight, new { @class = "form-control" })
-            </div>
-
-            <div class="control-group">
-                @Html.LabelFor(x => x.PageSectionBackgroundType)
-                @Html.EnumDropDownListFor(m => m.PageSectionBackgroundType, new { @class = "form-control" })
             </div>
 
             <br />
@@ -61,18 +150,41 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-background">
             <div id="banner-selector" class="image-selector x4 single float-container">
-                <div class="alert alert-warning" role="alert">Upload new images for use in your pages using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
+                <h4>What type of background do you want?</h4>
+                <p>Choose whether to use a picture background or a solid colour background for your Section.</p>
 
-                @foreach (var image in Model.ImageList.Where(x => x.ImageCategory != Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon))
-                {
-                    <img class="thumbnail" data-parent="banner-selector" data-target="BackgroundImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                }
+                <div class="checkbox-group float-container">
+                    <div class="checkbox-option picture" data-backgroundtype="picture"><div class="check"><span class="fa fa-check"></span></div><p>Picture Background</p></div>
+                    <div class="checkbox-option colour" data-backgroundtype="colour"><div class="check"><span class="fa fa-check"></span></div><p>Solid Colour</p></div>
+                </div>
+
+                <div class="panel panel-picture" style="display: none;">
+                    <div class="control-group wide-label">
+                        @Html.LabelFor(x => x.PageSectionBackgroundStyle)
+                        @Html.EnumDropDownListFor(m => m.PageSectionBackgroundStyle, new { @class = "form-control" })
+                    </div>
+
+                    <div class="alert alert-warning" role="alert">Upload new images for use in your pages using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
+                    @foreach (var image in Model.ImageList.Where(x => x.ImageCategory != Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon))
+                    {
+                        <img class="thumbnail" data-parent="banner-selector" data-target="BackgroundImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
+                    }
+                </div>
+
+                <div class="panel panel-colour" style="display: none;">
+                    <div class="alert alert-warning" role="alert">Pick the colour you want in the background of your selection using the picker below.</div>
+
+                    @Html.ValidationMessage("BackgroundColour")
+                    <div class="control-group wide-label">
+                        @Html.LabelFor(x => x.BackgroundColour)
+                        @Html.TextBoxFor(x => x.BackgroundColour, new { @class = "spectrum" })
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <br />
-
     <div class="footer">
         <button class="btn primary">Save</button>
         <a onclick="Delete();" data-dismiss="modal" class="btn delete">Delete</a>

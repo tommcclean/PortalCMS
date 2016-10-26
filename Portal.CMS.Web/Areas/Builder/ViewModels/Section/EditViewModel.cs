@@ -11,13 +11,18 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
 
         public int SectionId { get; set; }
 
+        public string BackgroundType { get; set; }
+
         public int BackgroundImageId { get; set; }
+
+        [DisplayName("Background Colour")]
+        public string BackgroundColour { get; set; }
 
         [DisplayName("Height")]
         public PageSectionHeight PageSectionHeight { get; set; }
 
-        [DisplayName("Background")]
-        public PageSectionBackgroundType PageSectionBackgroundType { get; set; }
+        [DisplayName("Background Style")]
+        public PageSectionBackgroundStyle PageSectionBackgroundStyle { get; set; }
 
         public IEnumerable<Portal.CMS.Entities.Entities.Generic.Image> ImageList { get; set; }
 

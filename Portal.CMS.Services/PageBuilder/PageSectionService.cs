@@ -14,15 +14,21 @@ namespace Portal.CMS.Services.PageBuilder
 
         void Background(int pageSectionId, int backgroundImageId);
 
+        void Background(int pageSectionId, string backgroundColour);
+
         void Delete(int pageSectionId);
 
         void Height(int pageSectionId, PageSectionHeight height);
 
-        void BackgroundType(int pageSectionId, PageSectionBackgroundType backgroundType);
+        void SetBackgroundStyle(int pageSectionId, PageSectionBackgroundStyle backgroundType);
+
+        void SetBackgroundType(int pageSectionId, bool isPicture);
 
         PageSectionHeight DetermineSectionHeight(int pageSectionId);
 
-        PageSectionBackgroundType DetermineBackgroundType(int pageSectionId);
+        PageSectionBackgroundStyle DetermineBackgroundStyle(int pageSectionId);
+
+        string DetermineBackgroundType(int pageSectionId);
 
         void Markup(int pageSectionId, string htmlBody);
 
@@ -106,6 +112,22 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
+        public void Background(int pageSectionId, string backgroundColour)
+        {
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+
+            if (pageSection == null)
+                return;
+
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.UpdateElementAttribute(string.Format("section-{0}", pageSectionId), "style", string.Format("background-color: {0};", backgroundColour), true);
+
+            pageSection.PageSectionBody = document.OuterHtml;
+
+            _context.SaveChanges();
+        }
+
         public void Delete(int pageSectionId)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
@@ -134,7 +156,7 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void BackgroundType(int pageSectionId, PageSectionBackgroundType backgroundType)
+        public void SetBackgroundStyle(int pageSectionId, PageSectionBackgroundStyle backgroundType)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
@@ -143,7 +165,23 @@ namespace Portal.CMS.Services.PageBuilder
 
             var document = new Document(pageSection.PageSectionBody);
 
-            document.UpdateBackgroundType(string.Format("section-{0}", pageSectionId), backgroundType);
+            document.UpdateBackgroundStyle(string.Format("section-{0}", pageSectionId), backgroundType);
+
+            pageSection.PageSectionBody = document.OuterHtml;
+
+            _context.SaveChanges();
+        }
+
+        public void SetBackgroundType(int pageSectionId, bool isPicture)
+        {
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+
+            if (pageSection == null)
+                return;
+
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.UpdateBackgroundType(string.Format("section-{0}", pageSectionId), isPicture);
 
             pageSection.PageSectionBody = document.OuterHtml;
 
@@ -172,17 +210,30 @@ namespace Portal.CMS.Services.PageBuilder
             return pageSection.PageSectionBody.Contains("height-tiny") ? PageSectionHeight.Tiny : PageSectionHeight.Tall;
         }
 
-        public PageSectionBackgroundType DetermineBackgroundType(int pageSectionId)
+        public PageSectionBackgroundStyle DetermineBackgroundStyle(int pageSectionId)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
-                return PageSectionBackgroundType.Static;
+                return PageSectionBackgroundStyle.Static;
 
             if (pageSection.PageSectionBody.Contains("background-static"))
-                return PageSectionBackgroundType.Static;
+                return PageSectionBackgroundStyle.Static;
 
-            return pageSection.PageSectionBody.Contains("background-parallax") ? PageSectionBackgroundType.Parallax : PageSectionBackgroundType.Static;
+            return pageSection.PageSectionBody.Contains("background-parallax") ? PageSectionBackgroundStyle.Parallax : PageSectionBackgroundStyle.Static;
+        }
+
+        public string DetermineBackgroundType(int pageSectionId)
+        {
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+
+            if (pageSection == null)
+                return "background-picture";
+
+            if (pageSection.PageSectionBody.Contains("background-colour"))
+                return "background-colour";
+            else
+                return "background-picture";            
         }
 
         public void Markup(int pageSectionId, string htmlBody)

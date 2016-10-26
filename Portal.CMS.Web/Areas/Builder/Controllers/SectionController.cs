@@ -40,7 +40,9 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 SectionId = sectionId,
                 ImageList = _imageService.Get(),
                 PageSectionHeight = _pageSectionService.DetermineSectionHeight(sectionId),
-                PageSectionBackgroundType = _pageSectionService.DetermineBackgroundType(sectionId),
+                PageSectionBackgroundStyle = _pageSectionService.DetermineBackgroundStyle(sectionId),
+                BackgroundType = _pageSectionService.DetermineBackgroundType(sectionId),
+                BackgroundColour = "#ffffff",
                 RoleList = _roleService.Get(),
                 SelectedRoleList = pageSection.PageSectionRoles.Select(x => x.Role.RoleName).ToList()
             };
@@ -52,12 +54,24 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditViewModel model)
         {
-            if (model.BackgroundImageId > 0)
-                _pageSectionService.Background(model.SectionId, model.BackgroundImageId);
+            if ("colour".Equals(model.BackgroundType, StringComparison.OrdinalIgnoreCase))
+            {
+                _pageSectionService.SetBackgroundType(model.SectionId, false);
+
+                if (!string.IsNullOrWhiteSpace(model.BackgroundColour))
+                    _pageSectionService.Background(model.SectionId, model.BackgroundColour);
+            }
+            else
+            {
+                _pageSectionService.SetBackgroundType(model.SectionId, true);
+
+                if (model.BackgroundImageId > 0)
+                    _pageSectionService.Background(model.SectionId, model.BackgroundImageId);
+
+                _pageSectionService.SetBackgroundStyle(model.SectionId, model.PageSectionBackgroundStyle);
+            }
 
             _pageSectionService.Height(model.SectionId, model.PageSectionHeight);
-            _pageSectionService.BackgroundType(model.SectionId, model.PageSectionBackgroundType);
-
             _pageSectionService.Roles(model.SectionId, model.SelectedRoleList);
 
             return Content("Refresh");

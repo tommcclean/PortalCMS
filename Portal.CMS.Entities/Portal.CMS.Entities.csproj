@@ -75,7 +75,7 @@
     <Compile Include="Entities\PageBuilder\PageSectionTypeCategory.cs" />
     <Compile Include="Entities\PageBuilder\PageComponentTypeCategory.cs" />
     <Compile Include="Entities\PageBuilder\PageSection.cs" />
-    <Compile Include="Entities\PageBuilder\PageSectionBackgroundType.cs" />
+    <Compile Include="Entities\PageBuilder\PageSectionBackgroundStyle.cs" />
     <Compile Include="Entities\PageBuilder\PageSectionHeight.cs" />
     <Compile Include="Entities\PageBuilder\PageSectionType.cs" />
     <Compile Include="Entities\PageBuilder\PageRole.cs" />

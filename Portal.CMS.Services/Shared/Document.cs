@@ -75,11 +75,11 @@ namespace Portal.CMS.Services.Shared
                 classAttribute.Value = classAttribute.Value.Replace(heightClass, selectedHeight);
         }
 
-        public void UpdateBackgroundType(string elementId, PageSectionBackgroundType backgroundType)
+        public void UpdateBackgroundStyle(string elementId, PageSectionBackgroundStyle backgroundStyle)
         {
             var element = _document.GetElementbyId(elementId);
 
-            var selectedHeight = string.Format("background-{0}", backgroundType).ToLower();
+            var selectedHeight = string.Format("background-{0}", backgroundStyle).ToLower();
 
             var heightClasses = new List<string> { "background-static", "background-parallax" };
 
@@ -87,6 +87,23 @@ namespace Portal.CMS.Services.Shared
 
             foreach (var heightClass in heightClasses)
                 classAttribute.Value = classAttribute.Value.Replace(heightClass, selectedHeight);
+        }
+
+        public void UpdateBackgroundType(string elementId, bool isPicture)
+        {
+            var element = _document.GetElementbyId(elementId);
+
+            var selectedBackgroundType = (isPicture ? "background-picture" : "background-colour");
+
+            var classList = new List<string> { "background-picture", "background-colour" };
+
+            var classAttribute = element.Attributes.SingleOrDefault(x => x.Name == "class");
+
+            if (!classAttribute.Value.Contains("background-picture") && !classAttribute.Value.Contains("background-colour"))
+                classAttribute.Value = $"{classAttribute.Value} {selectedBackgroundType}";
+
+            foreach (var elementClass in classList)
+                classAttribute.Value = classAttribute.Value.Replace(elementClass, selectedBackgroundType);
         }
 
         public void DeleteElement(string elementId)
