@@ -354,6 +354,8 @@
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
     <Content Include="Areas\Admin\Content\Scripts\ThemeManager\initialise.js" />
+    <Content Include="Areas\Builder\Content\Images\Sample\sample-help.png" />
+    <Content Include="Areas\Builder\Content\Images\Sample\sample-rocket.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-lightgray.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-linen.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-notebook.png" />
