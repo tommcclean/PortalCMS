@@ -11,10 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.CMS.Services", "Port
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CDDB34D9-DF99-4052-9C28-E260C1CF0C9B}"
 	ProjectSection(SolutionItems) = preProject
-		CHANGELOG.md = CHANGELOG.md
+		CHANGELOG-ROADMAP.md = CHANGELOG-ROADMAP.md
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
-		ROADMAP.md = ROADMAP.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.CMS.Services.Tests", "Portal.CMS.Services.Tests\Portal.CMS.Services.Tests.csproj", "{C087F6DF-B459-4DDD-A509-C57E4CDF2BF1}"

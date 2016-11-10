@@ -35,37 +35,31 @@
                     element: "#tour-add-section",
                     placement: "top",
                     title: "Add a Section",
-                    content: "<p>Pages are made up of Sections.</p><p>Add a Section to add new content to your page.</p><p>You can choose a templated Section, or a blank one if you want to add your own components.</p>"
+                    content: "<p>A page is made up of one or more sections.</p><p>click 'Add Section' to add new content to your page.</p>"
                 },
                 {
                     element: "#tour-add-component",
                     placement: "top",
-                    title: "Add a Component",
-                    content: "<p>Components are elements you can add to a Section; like text, buttons and images.</p><p>Drag and drop your selected components to where you want them, then click or tap it to change it right away.</p>"
+                    title: "Add Components",
+                    content: "<p>Components are types of content you can add to a section, like text, buttons, images and more.</p><p>Drag and drop a component onto your page and then click it to change it.</p>"
                 },
                 {
                     element: "#tour-page-manager",
                     placement: "top",
                     title: "Page Manager",
-                    content: "<p>Open the Page Manager to create a new Page</p><p>You can also use this to quickly navigate to your other Pages</p>"
-                },
-                {
-                    element: "#tour-theme-manager",
-                    placement: "top",
-                    title: "Theme Manager",
-                    content: "<p>The Theme Manager allows you to make changes to the look and feel of your website</p><p>Edit your theme to change things like fonts, colours and text sizes</p>"
+                    content: "<p>Open the Page Manager to create a new Page</p><p>You can also use the Page Manager to navigate to your other pages</p>"
                 },
                 {
                     element: "#tour-edit-section",
                     placement: "bottom",
                     title: "Edit Section",
-                    content: "<p>Every Section has a button allowing you to modify it.</p><p>You can change things like the background image or the size of a section or you can delete a section entirely.</p>"
+                    content: "<p>Every section has a settings button allowing you to change it.</p><p>Change the background, the size or even who can view a section.</p>"
                 },
                 {
                     element: "#tour-edit-element",
                     placement: "bottom",
                     title: "Edit Components",
-                    content: "<p>Simply click or tap on any component in order to change it. You can change all components.</p>"
+                    content: "<p>Simply click or tap on any component in order to change it..</p>"
                 },
             ]
         });

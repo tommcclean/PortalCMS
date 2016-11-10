@@ -1,14 +1,14 @@
-# Portal CMS
+# Portal CMS (1.1)
 - Portal CMS is a free and open source content management system with a powerful integrated page builder using inline editing tools and drag and drop. 
 - Portal CMS can be used to create a fully featured website out of the box by anybody regardless of technical skills, but we aim it at .NET Developers who are looking for a modern framework to build content managed websites quickly.
-- Using Portal CMS you can work in a lean way by only writing code for the features you need, when you need them.
+- Using Portal CMS you can work in a lean way by only writing code for the features you need when you need them.
 
 ### Learn More
-- Learn more about Portal CMS on its dedicated website: [Learn More About Portal CMS](http://www.portalcms.online)
-- Try out Portal CMS using our Online Demo Website (No Information Required): [Test Drive Portal CMS](http://portalcmsdemo.azurewebsites.net)
+- Learn more about Portal CMS on its promotional website: [Learn More About Portal CMS](http://www.portalcms.online)
+- Test Drive Portal CMS using our Online Demo Website: [Test Drive Portal CMS](http://portalcmsdemo.azurewebsites.net)
 
 ### Get Started
-- You can get a website online in under an hour. Our getting started guide tells you how: [Getting Started Guide](https://github.com/tommcclean/PortalCMS/wiki/3:-How-to-Get-Started)
+- You will be surprised how quickly you can get started. The "Getting Started" guide tells you how: [Getting Started Guide](https://github.com/tommcclean/PortalCMS/wiki/3:-How-to-Get-Started)
 - Want to contribute to Portal CMS? Learn how to contribute to our repository: [Contributing to Portal CMS](https://github.com/tommcclean/PortalCMS/wiki/2:-How-to-Contribute)
 
 

@@ -1,8 +1,7 @@
 namespace Portal.CMS.Entities.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class CleanupPageBuilderEntities : DbMigration
     {
         public override void Up()
@@ -12,7 +11,7 @@ namespace Portal.CMS.Entities.Migrations
             DropColumn("dbo.PageComponentTypes", "PageComponentTypeDescription");
             DropColumn("dbo.PageSections", "PageSectionTypeId");
         }
-        
+
         public override void Down()
         {
             AddColumn("dbo.PageSections", "PageSectionTypeId", c => c.Int(nullable: false));

@@ -233,7 +233,7 @@ namespace Portal.CMS.Services.PageBuilder
             if (pageSection.PageSectionBody.Contains("background-colour"))
                 return "background-colour";
             else
-                return "background-picture";            
+                return "background-picture";
         }
 
         public void Markup(int pageSectionId, string htmlBody)

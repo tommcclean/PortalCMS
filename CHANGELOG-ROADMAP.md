@@ -1,7 +1,7 @@
 #Portal CMS Roadmap / Changelog
 This file contains a list of changes between versions of Portal CMS and a roadmap that provides a brief outline of the features we intend to include in Portal CMS.
 
-The current version of Portal CMS is: 1.0
+**Portal CMS Latest Stable Release: 1.1**
 
 ##1.0 - Initial Release
 1. Ability to use the Administration Panel with the following features...
@@ -24,7 +24,7 @@ The current version of Portal CMS is: 1.0
   1. Including Inline editing for changing your posts quickly
   2. Including Comments, Photo Galleries and Tie ins to other posts
 
-##1.1 - Focus: Increasing Feature Set with oft expected features.
+##1.1 - Focus: Increasing Feature Set with oft expected features. **(STABLE RELEASE)**
 1. Improvements to website reliability and architecture.
 2. Improved performance following Performance testing.
 3. Ability to upload your own Font's and use them in custom Themes.
