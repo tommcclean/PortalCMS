@@ -3,7 +3,7 @@ This file contains a list of changes between versions of Portal CMS and a roadma
 
 The current version of Portal CMS is: 1.0
 
-##1.0
+##1.0 - Initial Release
 1. Ability to use the Administration Panel with the following features...
   1. Dashboard
   2. Media Manager (Upload Images)
@@ -24,7 +24,7 @@ The current version of Portal CMS is: 1.0
   1. Including Inline editing for changing your posts quickly
   2. Including Comments, Photo Galleries and Tie ins to other posts
 
-##1.1: Focus: Increasing Feature Set with oft expected features.
+##1.1 - Focus: Increasing Feature Set with oft expected features.
 1. Improvements to website reliability and architecture.
 2. Improved performance following Performance testing.
 3. Ability to upload your own Font's and use them in custom Themes.
@@ -39,7 +39,7 @@ The current version of Portal CMS is: 1.0
 11. Incorporation of a Unit Testing Technology.
 12. Change website from use of Glyphicons to Font Awesome.
 
-##1.2: Focus: Making it easier for developers to develop alongside / inside Portal CMS.
+##1.2 - Focus: Developers Update (Making it easier for developers to develop alongside / inside Portal CMS.)
 1. New Developer Administration Page
   1. Ability for new Component Types and Section Types to be added to the Library by providing markup.
   2. Ability to add new Custom Widgets easily to allow Developers to render their own partials onto pages in the Page Builder.
@@ -48,7 +48,7 @@ The current version of Portal CMS is: 1.0
 3. Ability to deploy the same section on multiple pages (IE Supporting: Consistent Header / Footer site wide)
 4. Ability to view and administer Post Comments
 
-##1.3
+##1.3 - Engagement Update (Making it easier to secure and analyse continued engagement with visitors)
 1. New Mailing List Sign Up Widget
 2. Ability to Distribute Custom Mailings
 
