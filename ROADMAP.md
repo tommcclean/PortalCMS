@@ -1,21 +1,51 @@
 #Portal CMS Roadmap
-This roadmap provides a very brief outline to what milestones are currently aiming to meet.
+This roadmap provides a brief outline of the features we intend to include in Portal CMS.
 
-##Release 1.0 (Current)
-1. Initial version of Portal CMS with Administration Panel, Page Builder and Blog Manager.
+##Release 1.0
+1. Ability to use the Administration Panel with the following features...
+  1. Dashboard
+  2. Media Manager (Upload Images)
+  3. Post Manager (Create and Edit Blog Posts
+  4. Page Manager (Manage your Custom Pages)
+  5. Copy Manager (Ability to use and edit custom Copy)
+  6. Analytics Manager (Internal Analytics Engine with Reporting)
+  7. User Manager (Ability to review, edit and create users)
+  8. Settings Manager (Ability to edit basic settings, roles and menu's
+2. Ability to use the Page Builder
+  1. Ability to add Template Sections
+  2. Ability to add Components
+  3. Ability to edit components with inline editing tools
+  4. Ability to change order of sections within your page
+3. Ability to register and sign in
+  1. Including the ability to manage your profile such as Avatar, Bio, Details and Password.
+4. Abilities to manage and view blog posts
+  1. Including Inline editing for changing your posts quickly
+  2. Including Comments, Photo Galleries and Tie ins to other posts
 
-##Release 1.1 (Next)
-1. See the changelog for confirmed features.
+##Release 1.1 (Next): Focus: Increasing Feature Set with commonly expected features.
+1. Improvements to website reliability and architecture.
+2. Improved performance following Performance testing.
+3. Ability to upload your own Font's and use them in custom Themes.
+4. Ability to create custom themes including fonts, text sizes and colour schemes to change your website's appearance.
+5. Ability to apply solid colour backgrounds to Sections in addition to picture backgrounds.
+6. Improved Menu Management Tools
+7. Additional App Drawers exposed on the Page Builder: Page Manager and Theme Manager drawers.
+8. User Interface improvements following user testing.
+9. A variety of new component and section types.
+10. Create a contact form Widget.
+11. A tour shown to new administrators to help understand the functions of the Page Builder.
+11. Incorporation of a Unit Testing Technology.
+12. Change website from use of Glyphicons to Font Awesome.
 
-##Release 1.2
-1. Improvements to the integrations between OOTB Functionality and bespoke developments.
-2. Ability to create custom Widgets easily to add dynamic content onto pages in the Page Builder.
-3. Ability to Embed Map and Videos into Page Builder Pages.
-4. Add New Administration Page for Managing Post Comments. New Settings to allow moderation and anonymous posting.
+##Release 1.2: Focus: Making it easier for developers to develop alongside / inside Portal CMS.
+1. Ability to create custom Widgets easily to add dynamic content onto pages in the Page Builder.
+2. Ability to Embed Maps and Videos into Page Builder Pages.
+3. Ability to deploy the same section on multiple pages (IE Supporting: Consistent Header / Footer site wide)
+4. Ability to view and administer Post Comments
 
 ##Release 1.3
-1. The ability to add a "Mailing List" widget to any page
-2. The ability to send custom Mailings to those on the Mailing list.
+1. New Mailing List Sign Up Widget
+2. Ability to Distribute Custom Mailings
 
 ##Future Unplanned Intentions
 1. Upgrade from .NET 4.6.1 to .NET Core
