@@ -28,15 +28,18 @@ This is the first stable release for Portal CMS.
 ## Next Release: 1.1
 We expect to include the following features in the next release of Portal CMS at this time, this list is subject to change.
 
-1. Continued Improvements to reliability and architectural Components.
-2. Improved performance following Performance testing recommendations.
+1. Improvements to website reliability and architecture.
+2. Improved performance following Performance testing.
 3. Ability to upload your own Font's and use them in custom Themes.
 4. Ability to create custom themes including fonts, text sizes and colour schemes to change your website's appearance.
-5. Ability to apply solid colour backgrounds to Sections
-6. Much improved Menu Management tools
-7. Additional App Drawers to safe time administering your website (Page Manager Drawer and Theme Manager Drawer)
-8. User Interface / Experience improvements following user testing
-9. A new FAQ / Spoiler style component.
-
+5. Ability to apply solid colour backgrounds to Sections in addition to picture backgrounds.
+6. Improved Menu Management Tools
+7. Additional App Drawers exposed on the Page Builder: Page Manager and Theme Manager drawers.
+8. User Interface improvements following user testing.
+9. A variety of new component and section types.
+10. Create a contact form Widget.
+11. A tour shown to new administrators to help understand the functions of the Page Builder.
+11. Incorporation of a Unit Testing Technology.
+12. Change website from use of Glyphicons to Font Awesome.
 
 
