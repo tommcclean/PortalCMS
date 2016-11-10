@@ -1,5 +1,5 @@
-#Portal CMS Roadmap
-This roadmap provides a brief outline of the features we intend to include in Portal CMS.
+#Portal CMS Roadmap / Changelog
+This file contains a list of changes between versions of Portal CMS and a roadmap that provides a brief outline of the features we intend to include in Portal CMS.
 
 ##Release 1.0
 1. Ability to use the Administration Panel with the following features...
