@@ -12,7 +12,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         PageComponentType Get(int pageComponentTypeId);
 
-        void Add(int pageSectionId, string containerElementId, string elementBody);
+        int Add(string componentTypeName, PageComponentTypeCategory componentTypeCategory, string componentTypeBody);
     }
 
     public class PageComponentTypeService : IPageComponentTypeService
@@ -42,20 +42,20 @@ namespace Portal.CMS.Services.PageBuilder
             return result;
         }
 
-        public void Add(int pageSectionId, string containerElementId, string elementBody)
+        public int Add(string componentTypeName, PageComponentTypeCategory componentTypeCategory, string componentTypeBody)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var componentType = new PageComponentType
+            {
+                PageComponentTypeName = componentTypeName,
+                PageComponentTypeCategory = componentTypeCategory,
+                PageComponentBody = componentTypeBody
+            };
 
-            if (pageSection == null)
-                return;
-
-            var document = new Document(pageSection.PageSectionBody);
-
-            document.AddElement(containerElementId, elementBody);
-
-            pageSection.PageSectionBody = document.OuterHtml;
+            _context.PageComponentTypes.Add(componentType);
 
             _context.SaveChanges();
+
+            return componentType.PageComponentTypeId;
         }
     }
 }

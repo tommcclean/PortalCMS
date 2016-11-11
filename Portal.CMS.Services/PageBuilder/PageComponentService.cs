@@ -6,6 +6,8 @@ namespace Portal.CMS.Services.PageBuilder
 {
     public interface IPageComponentService
     {
+        void Add(int pageSectionId, string containerElementId, string elementBody);
+
         void Delete(int pageSectionId, string componentId);
 
         void EditImage(int pageSectionId, string elementType, string elementId, int selectedImageId);
@@ -27,6 +29,22 @@ namespace Portal.CMS.Services.PageBuilder
         }
 
         #endregion Dependencies
+
+        public void Add(int pageSectionId, string containerElementId, string elementBody)
+        {
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+
+            if (pageSection == null)
+                return;
+
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.AddElement(containerElementId, elementBody);
+
+            pageSection.PageSectionBody = document.OuterHtml;
+
+            _context.SaveChanges();
+        }
 
         public void Element(int pageSectionId, string elementId, string elementBody)
         {

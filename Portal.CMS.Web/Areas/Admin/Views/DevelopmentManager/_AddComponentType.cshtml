@@ -1,0 +1,35 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.DevelopmentManager.UpsertComponentTypeViewModel
+@{
+    Layout = "";
+}
+
+@using (Html.BeginForm("AddComponentType", "DevelopmentManager", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationMessage("ComponentTypeName")
+    <div class="control-group wide-label">
+        @Html.LabelFor(x => x.ComponentTypeName)
+        @Html.TextBoxFor(x => x.ComponentTypeName, new { placeholder = "Component Name" })
+    </div>
+
+
+    @Html.ValidationMessage("ComponentTypeCategory")
+    <div class="control-group wide-label">
+        @Html.LabelFor(x => x.ComponentTypeCategory)
+        @Html.EnumDropDownListFor(m => m.ComponentTypeCategory, new { @class = "Component Category" })
+    </div>
+
+    @Html.ValidationMessage("ComponentTypeBody")
+    <div class="control-group control-textarea float-container">
+        @Html.LabelFor(x => x.ComponentTypeBody)
+        @Html.TextAreaFor(x => x.ComponentTypeBody, new { placeholder = "<p>Enter your component type markup here</p>" })
+    </div>
+
+    <br />
+
+    <div class="footer">
+        <button class="btn primary">Save</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

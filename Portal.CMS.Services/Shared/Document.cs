@@ -120,5 +120,32 @@ namespace Portal.CMS.Services.Shared
 
             return htmlBody;
         }
+
+        public void LabelElements()
+        {
+            var loopPosition = 0;
+
+            foreach(var element in _document.DocumentNode.ChildNodes.Where(x => x.NodeType == HtmlNodeType.Element))
+            {
+                loopPosition = loopPosition += 1;
+                element.SetAttributeValue("id", $"{loopPosition}-<sectionId>-<componentStamp>");
+
+                if (element.ChildNodes.Any())
+                    CyclicalLabelling(element, loopPosition);
+            }
+        }
+
+        private void CyclicalLabelling(HtmlNode parentElement, int loopPosition)
+        {
+            foreach (var element in parentElement.ChildNodes.Where(x => x.NodeType == HtmlNodeType.Element))
+            {
+                loopPosition = loopPosition += 1;
+
+                element.SetAttributeValue("id", $"{loopPosition}-<sectionId>-<componentStamp>");
+
+                if (element.ChildNodes.Any())
+                    CyclicalLabelling(element, loopPosition);
+            }
+        }
     }
 }

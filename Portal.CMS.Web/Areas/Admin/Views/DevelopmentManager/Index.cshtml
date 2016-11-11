@@ -1,0 +1,13 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.MediaManager.MediaViewModel
+@{
+    ViewBag.Title = "Development Manager";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-development.png";
+}
+
+<div class="row">
+    @Html.Action("CustomWidgets")
+
+    @Html.Action("SectionTypeLibrary")
+
+    @Html.Action("ComponentTypeLibrary")
+</div>

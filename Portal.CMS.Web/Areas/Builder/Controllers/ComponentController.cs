@@ -43,7 +43,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateInput(false)]
         public JsonResult Add(int pageSectionId, string containerElementId, string elementBody)
         {
-            _pageComponentTypeService.Add(pageSectionId, containerElementId, elementBody);
+            _pageComponentService.Add(pageSectionId, containerElementId, elementBody);
 
             return Json(new { State = true });
         }

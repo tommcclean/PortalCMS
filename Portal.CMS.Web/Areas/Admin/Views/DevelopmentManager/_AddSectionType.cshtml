@@ -1,0 +1,16 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.DevelopmentManager.UpsertSectionTypeViewModel
+@{
+    Layout = "";
+}
+
+@using (Html.BeginForm("AddSectionType", "DevelopmentManager", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <br />
+
+    <div class="footer">
+        <button class="btn primary">Save</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}
