@@ -3,6 +3,7 @@ using Portal.CMS.Entities.Entities.PageBuilder;
 using Portal.CMS.Services.Shared;
 using System.Collections.Generic;
 using System.Linq;
+using Portal.CMS.Entities.Seed;
 
 namespace Portal.CMS.Services.PageBuilder
 {
@@ -13,6 +14,8 @@ namespace Portal.CMS.Services.PageBuilder
         PageComponentType Get(int pageComponentTypeId);
 
         int Add(string componentTypeName, PageComponentTypeCategory componentTypeCategory, string componentTypeBody);
+
+        void Reset();
     }
 
     public class PageComponentTypeService : IPageComponentTypeService
@@ -56,6 +59,20 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
 
             return componentType.PageComponentTypeId;
+        }
+
+        public void Reset()
+        {
+            var componentTypeList = _context.PageComponentTypes;
+
+            foreach (var componentType in componentTypeList)
+                _context.PageComponentTypes.Remove(componentType);
+
+            _context.SaveChanges();
+
+            PageComponentTypeSeed.Seed(_context);
+
+            _context.SaveChanges();
         }
     }
 }

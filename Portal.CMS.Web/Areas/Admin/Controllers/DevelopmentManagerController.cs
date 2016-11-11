@@ -9,12 +9,18 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     [LoggedInFilter, AdminFilter]
     public class DevelopmentManagerController : Controller
     {
-        private readonly IPageComponentTypeService _pageComponentTypeService; 
+        #region Dependencies
 
-        public DevelopmentManagerController(IPageComponentTypeService pageComponentTypeService)
+        private readonly IPageSectionTypeService _pageSectionTypeService;
+        private readonly IPageComponentTypeService _pageComponentTypeService;
+
+        public DevelopmentManagerController(IPageComponentTypeService pageComponentTypeService, IPageSectionTypeService pageSectionTypeService)
         {
             _pageComponentTypeService = pageComponentTypeService;
+            _pageSectionTypeService = pageSectionTypeService;
         }
+
+        #endregion Dependencies
 
         [HttpGet]
         public ActionResult Index()
@@ -46,7 +52,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet, ChildActionOnly]
         public ActionResult SectionTypeLibrary()
         {
-            var model = new SectionTypeLibraryViewModel();
+            var model = new SectionTypeLibraryViewModel
+            {
+                PageSectionTypes = _pageSectionTypeService.Get()
+            };
 
             return PartialView("_SectionTypeLibrary", model);
         }
@@ -58,6 +67,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_AddSectionType", model);
         }
 
+        [HttpGet]
+        public ActionResult ResetSectionLibrary()
+        {
+            _pageSectionTypeService.Reset();
+
+            return RedirectToAction(nameof(Index));
+        }
+
         #endregion Section Type Management
 
         #region Component Type Management
@@ -65,7 +82,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet, ChildActionOnly]
         public ActionResult ComponentTypeLibrary()
         {
-            var model = new ComponentTypeLibraryViewModel();
+            var model = new ComponentTypeLibraryViewModel
+            {
+                PageComponentTypes = _pageComponentTypeService.Get()
+            };
 
             return PartialView("_ComponentTypeLibrary", model);
         }
@@ -93,6 +113,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             _pageComponentTypeService.Add(model.ComponentTypeName, model.ComponentTypeCategory, outputMarkup);
 
             return Content("Refresh");
+        }
+
+        [HttpGet]
+        public ActionResult ResetComponentLibrary()
+        {
+            _pageComponentTypeService.Reset();
+
+            return RedirectToAction(nameof(Index));
         }
 
         #endregion Component Type Management
