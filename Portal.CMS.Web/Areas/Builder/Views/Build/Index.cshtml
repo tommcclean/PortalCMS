@@ -47,10 +47,10 @@
     }
 }
 
-<div id="page-wrapper" class="@(isAdmin ? " admin" : "visitor" )">
+<div id="page-wrapper" class="@(isAdmin ? "admin" : "visitor" )">
     @foreach (var section in Model.Page.PageSections.OrderBy(x => x.PageSectionOrder).ThenBy(x => x.PageSectionId))
     {
-        <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper@(isAdmin ? " admin sortable" : "" )" data-secti data-section="@(section.PageSectionId)">
+        <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper@(isAdmin ? " admin sortable" : "" )" data-section="@(section.PageSectionId)">
             @Html.Raw(section.PageSectionBody)
 
             @if (isAdmin)
