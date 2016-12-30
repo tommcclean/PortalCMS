@@ -1,17 +1,24 @@
 ﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.DevelopmentManager.ComponentTypeLibraryViewModel
 
-<div class="col-xs-12 col-md-4">
-    <div class="box">
-        <div class="box-title">Component Type Library</div>
+<div class="action-container">
+    <a href="@Url.Action("ResetComponentLibrary", "DevelopmentManager")" data-toggle="confirmation" data-placement="top" data-title="Reset Component Library"><div class="action"><span class="fa fa-trash"></span></div></a>
+    <a href="@Url.Action("AddComponentType", "DevelopmentManager")" class="launch-modal" data-title="Add Component Type"><div class="action"><span class="fa fa-plus"></span></div></a>
+</div>
 
-        @foreach(var componentType in Model.PageComponentTypes)
-        {
-            <h1>@componentType.PageComponentTypeName</h1>
-        }
+<div class="row">
+    @foreach (var componentType in Model.PageComponentTypes)
+    {
+        <div class="col-xs-12 col-md-4">
+            <div class="box components">
+                <div class="box-title"><strong>@componentType.PageComponentTypeCategory</strong>: @componentType.PageComponentTypeName</div>
 
-        <div class="admin-container x2">
-            <a href="@Url.Action("AddComponentType", "DevelopmentManager")" class="admin-item launch-modal" data-title="Add Component"><span class="fa fa-plus"></span>Add Component</a>
-            <a href="@Url.Action("ResetComponentLibrary", "DevelopmentManager")" class="admin-item " data-container="body" data-toggle="confirmation" data-placement="top" data-title="Reset Component Library"><span class="fa fa-trash"></span>Reset Library</a>
+                <div class="component-preview float-container">@Html.Raw(componentType.PageComponentBody)</div>
+
+                <div class="admin-container x2">
+                    <a href="@Url.Action("AddComponentType", "DevelopmentManager")" class="admin-item launch-modal" data-title="Add Component"><span class="fa fa-plus"></span>Add Component</a>
+                    <a href="@Url.Action("ResetComponentLibrary", "DevelopmentManager")" class="admin-item " data-container="body" data-toggle="confirmation" data-placement="top" data-title="Reset Component Library"><span class="fa fa-trash"></span>Reset Library</a>
+                </div>
+            </div>
         </div>
-    </div>
+    }
 </div>

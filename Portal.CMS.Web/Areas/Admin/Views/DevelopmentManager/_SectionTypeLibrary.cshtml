@@ -1,17 +1,25 @@
 ﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.DevelopmentManager.SectionTypeLibraryViewModel
 
-<div class="col-xs-12 col-md-4">
-    <div class="box">
-        <div class="box-title">Section Type Library</div>
+<div class="action-container">
+    <a href="@Url.Action("ResetComponentLibrary", "DevelopmentManager")" data-toggle="confirmation" data-placement="top" data-title="Reset Component Library"><div class="action"><span class="fa fa-trash"></span></div></a>
+    <a href="@Url.Action("AddComponentType", "DevelopmentManager")" class="launch-modal" data-title="Add Component Type"><div class="action"><span class="fa fa-plus"></span></div></a>
+</div>
 
-        @foreach (var sectionType in Model.PageSectionTypes)
-        {
-            <h1>@sectionType.PageSectionTypeName</h1>
-        }
+<div class="row">
+    @foreach (var sectionType in Model.PageSectionTypes)
+    {
+        <div class="col-xs-12 col-md-4">
+            <div class="box sections">
+                <div class="box-title"><strong>@sectionType.PageSectionTypeCategory</strong>: @sectionType.PageSectionTypeName</div>
 
-        <div class="admin-container x2">
-            <a href="@Url.Action("AddSectionType", "DevelopmentManager")" class="admin-item launch-modal" data-title="Add Section Type"><span class="fa fa-plus"></span>Add Section</a>
-            <a href="@Url.Action("ResetSectionLibrary", "DevelopmentManager")" class="admin-item " data-container="body" data-toggle="confirmation" data-placement="top" data-title="Reset Section Library"><span class="fa fa-trash"></span>Reset Library</a>
+                <div class="vertical-alignment">
+                    <div class="section-preview float-container" data-sectiontypeid="@sectionType.PageSectionTypeId">@Html.Raw(sectionType.PageSectionTypeBody)</div>
+                </div>
+                <div class="admin-container x2">
+                    <a href="@Url.Action("AddComponentType", "DevelopmentManager")" class="admin-item launch-modal" data-title="Edit Component"><span class="fa fa-pencil"></span>Edit</a>
+                    <a href="@Url.Action("ResetComponentLibrary", "DevelopmentManager")" class="admin-item " data-container="body" data-toggle="confirmation" data-placement="top" data-title="Reset Component Library"><span class="fa fa-trash"></span>Delete</a>
+                </div>
+            </div>
         </div>
-    </div>
+    }
 </div>

@@ -4,10 +4,48 @@
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-development.png";
 }
 
-<div class="row">
-    @Html.Action("CustomWidgets")
+@section Styles
+{
+    @Styles.Render("~/Resources/CSS/PageBuilder/Framework")
+    @Styles.Render("~/Resources/CSS/Administration/Framework")
+    @Styles.Render("~/Resources/CSS/PageBuilder/Framework/Administration")
 
-    @Html.Action("ComponentTypeLibrary")
+    <style>
+        .box.sections
+        {
+            min-height: 320px;
+            max-height: 320px;
+            height: 320px;
+        }
+        .box.components
+        {
+            min-height: 120px;
+            max-height: 120px;
+            height: 120px;
+        }
+    </style>
+}
 
-    @Html.Action("SectionTypeLibrary")    
+@section HEADScripts
+{
+    @Scripts.Render("~/Resources/JavaScript/PageBuilderAdministration")
+}
+
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#tab-widgets" aria-controls="tab-widgets" role="tab" data-toggle="tab"><span class="fa fa-pencil"></span>Custom Widgets</a></li>
+    <li role="presentation" class=""><a href="#tab-components" aria-controls="tab-components" role="tab" data-toggle="tab"><span class="fa fa-briefcase"></span>Component Types</a></li>
+    <li role="presentation" class=""><a href="#tab-sections" aria-controls="tab-sections" role="tab" data-toggle="tab"><span class="fa fa-bookmark"></span>Section Types</a></li>
+</ul>
+
+<div class="tab-content development-manager">
+    <div role="tabpanel" class="tab-pane active" id="tab-widgets">
+        @Html.Action("CustomWidgets")
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab-components">
+        @Html.Action("ComponentTypeLibrary")
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab-sections">
+        @Html.Action("SectionTypeLibrary")
+    </div>
 </div>

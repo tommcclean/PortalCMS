@@ -162,6 +162,21 @@
     margin-bottom: 10px !important;
 }
 
+.development-manager .section-preview
+{
+    border: 1px solid silver;
+    -ms-zoom: 0.3;
+    zoom: 0.3;
+}
+
+.development-manager .component-preview
+{
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
 @media (max-width: 736px)
 {
     .panel-overlay
