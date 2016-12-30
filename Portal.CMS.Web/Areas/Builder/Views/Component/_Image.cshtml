@@ -43,14 +43,26 @@
     @Html.HiddenFor(x => x.ElementType)
 
     <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab">General<span class="badge">@generalImages.Count()</span></a></li>
+        <li role="presentation" class="active"><a href="#tab-upload" aria-controls="tab-upload" role="tab" data-toggle="tab"><span class="fa fa-upload"></span>Upload Image</a></li>
+        <li role="presentation" class=""><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab">General<span class="badge">@generalImages.Count()</span></a></li>
         <li role="presentation" class=""><a href="#tab-icon" aria-controls="tab-icon" role="tab" data-toggle="tab">Icon<span class="badge">@iconImages.Count()</span></a></li>
         <li role="presentation" class=""><a href="#tab-screenshot" aria-controls="tab-screenshot" role="tab" data-toggle="tab">Screenshot<span class="badge">@screenshotImages.Count()</span></a></li>
         <li role="presentation" class=""><a href="#tab-texture" aria-controls="tab-texture" role="tab" data-toggle="tab">Texture<span class="badge">@textureImages.Count()</span></a></li>
     </ul>
     <div id="banner-selector" class="image-selector x4 single float-container">
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="tab-general">
+            <div role="tabpanel" class="tab-pane active" id="tab-upload">
+                <div class="control-group">
+                    @Html.LabelFor(x => x.AttachedImage)
+                    @Html.TextBoxFor(m => m.AttachedImage, new { @type = "file" })
+                </div>
+
+                <div class="control-group">
+                    @Html.LabelFor(x => x.ImageCategory)
+                    @Html.EnumDropDownListFor(m => m.ImageCategory, new { @class = "form-control" })
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-general">
                 <br />
                 @foreach (var image in generalImages)
                 {

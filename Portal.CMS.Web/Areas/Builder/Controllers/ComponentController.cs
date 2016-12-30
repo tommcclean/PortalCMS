@@ -3,6 +3,8 @@ using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Component;
 using System;
+using System.IO;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
@@ -16,6 +18,8 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         private readonly IPageComponentTypeService _pageComponentTypeService;
         private readonly IPageComponentService _pageComponentService;
         private readonly IImageService _imageService;
+
+        private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
 
         public ComponentController(IPageSectionService pageSectionService, IPageComponentTypeService pageComponentTypeService, IPageComponentService pageComponentService, IImageService imageService)
         {
@@ -101,7 +105,16 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [HttpPost]
         public ActionResult Image(ImageViewModel model)
         {
-            _pageComponentService.EditImage(model.SectionId, model.ElementType, model.ElementId, model.SelectedImageId);
+            var selectedImageId = model.SelectedImageId;
+
+            if (model.AttachedImage != null)
+            {
+                var imageFilePath = SaveImage(model.AttachedImage);
+
+                selectedImageId = _imageService.Create(imageFilePath, model.ImageCategory);
+            }
+
+            _pageComponentService.EditImage(model.SectionId, model.ElementType, model.ElementId, selectedImageId);
 
             return Content("Refresh");
         }
@@ -117,6 +130,29 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             _pageComponentService.Element(pageSectionId, elementId, elementHtml);
 
             return Content("Refresh");
+        }
+
+        private string SaveImage(HttpPostedFileBase imageFile)
+        {
+            var extension = Path.GetExtension(imageFile.FileName).ToUpper();
+
+            if (extension != ".PNG" && extension != ".JPG" && extension != ".GIF")
+                throw new ArgumentException("Unexpected Image Format Provided");
+
+            var destinationDirectory = Path.Combine(Server.MapPath(IMAGE_DIRECTORY));
+
+            if (!Directory.Exists(destinationDirectory))
+                Directory.CreateDirectory(destinationDirectory);
+
+            var imageFileName = string.Format("media-{0}-{1}", DateTime.Now.ToString("ddMMyyyyHHmmss"), imageFile.FileName);
+            var path = Path.Combine(Server.MapPath(IMAGE_DIRECTORY), imageFileName);
+
+            imageFile.SaveAs(path);
+
+            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace("Builder/Component/Image", string.Empty);
+            var relativeFilePath = string.Format("{0}{1}/{2}", siteURL, IMAGE_DIRECTORY, imageFileName);
+
+            return relativeFilePath;
         }
     }
 }
