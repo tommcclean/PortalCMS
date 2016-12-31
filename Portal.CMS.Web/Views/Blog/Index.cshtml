@@ -42,6 +42,28 @@
                         });
                     }
                 });
+
+                tinymce.init({
+                    selector: '.post-description', inline: true, menubar: false,
+                    toolbar: 'undo redo',
+                    setup:function(ed) {
+                        ed.on('change', function(e) {
+                            var dataParams = { "postId": @Model.CurrentPost.PostId, "markup": ed.getContent() };
+                            $.ajax({data: dataParams, type: 'POST', cache: false, url: '/Admin/BlogManager/Description'});
+                        });
+                    }
+                });
+
+                tinymce.init({
+                    selector: '.post-title', inline: true, menubar: false,
+                    toolbar: 'undo redo',
+                    setup:function(ed) {
+                        ed.on('change', function(e) {
+                            var dataParams = { "postId": @Model.CurrentPost.PostId, "markup": ed.getContent() };
+                            $.ajax({data: dataParams, type: 'POST', cache: false, url: '/Admin/BlogManager/Headline'});
+                        });
+                    }
+                });
             });
         </script>
     }

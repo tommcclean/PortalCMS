@@ -189,6 +189,24 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
+        [HttpPost, EditorFilter]
+        [ValidateInput(false)]
+        public ActionResult Description(int postId, string markup)
+        {
+            _postService.Description(postId, markup);
+
+            return Content("Refresh");
+        }
+
+        [HttpPost, EditorFilter]
+        [ValidateInput(false)]
+        public ActionResult Headline(int postId, string markup)
+        {
+            _postService.Headline(postId, markup);
+
+            return Content("Refresh");
+        }
+
         #region Private Methods
 
         private void UpdateBanner(int postId, int bannerImageId)

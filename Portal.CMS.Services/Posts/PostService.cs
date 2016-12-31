@@ -26,6 +26,10 @@ namespace Portal.CMS.Services.Posts
 
         void Edit(int postId, string postBody);
 
+        void Description(int postId, string description);
+
+        void Headline(int postId, string headline);
+
         void Delete(int postId);
 
         void Publish(int postId);
@@ -176,6 +180,32 @@ namespace Portal.CMS.Services.Posts
                 return;
 
             post.PostBody = postBody;
+            post.DateUpdated = DateTime.Now;
+
+            _context.SaveChanges();
+        }
+
+        public void Description(int postId, string description)
+        {
+            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
+
+            if (post == null)
+                return;
+
+            post.PostDescription = description;
+            post.DateUpdated = DateTime.Now;
+
+            _context.SaveChanges();
+        }
+
+        public void Headline(int postId, string headline)
+        {
+            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
+
+            if (post == null)
+                return;
+
+            post.PostTitle = headline;
             post.DateUpdated = DateTime.Now;
 
             _context.SaveChanges();
