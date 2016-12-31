@@ -140,20 +140,20 @@ body
     min-width: 276px;
 }
 
-.popover.tour .popover-title
-{
-    font-size: 16px;
-}
+    .popover.tour .popover-title
+    {
+        font-size: 16px;
+    }
 
-.popover.tour p
-{
-    font-size: 16px;
-}
+    .popover.tour p
+    {
+        font-size: 16px;
+    }
 
-.popover.tour .btn
-{
-    font-size: 16px;
-}
+    .popover.tour .btn
+    {
+        font-size: 16px;
+    }
 
 @media (min-width: 768px)
 {
@@ -171,3 +171,13 @@ body
         margin-bottom: 10px;
     }
 }
+
+ul.pagination
+{
+    margin: 0;
+}
+
+    ul.pagination .pagination-button.active
+    {
+        text-decoration: underline;
+    }

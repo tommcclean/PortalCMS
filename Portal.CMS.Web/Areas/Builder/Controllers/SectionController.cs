@@ -51,6 +51,10 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 SelectedRoleList = pageSection.PageSectionRoles.Select(x => x.Role.RoleName).ToList()
             };
 
+            model.ImageList = model.ImageList.Where(x => x.ImageCategory != Entities.Entities.Generic.ImageCategory.Icon);
+
+            model.ImagePageCount = Math.Ceiling(Convert.ToDouble(model.ImageList.Count()) / 8);
+
             return View("_Edit", model);
         }
 

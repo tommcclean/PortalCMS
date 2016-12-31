@@ -25,7 +25,7 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/FontAwesome/Picker").Include("~/Content/Scripts/FontAwesomePicker/fontawesome-iconpicker.min.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework").Include("~/Content/Scripts/Framework/*.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework").Include("~/Content/Scripts/Framework/framework.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/FancyBox").Include("~/Content/Scripts/FancyBox/jquery.fancybox.js").Include("~/Content/Scripts/FancyBox/jquery.fancybox-thumbs.js").Include("~/Content/Scripts/FancyBox/initialise.js"));
 
@@ -44,6 +44,8 @@ namespace Portal.CMS.Web
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Spectrum").Include("~/Content/Scripts/Spectrum/spectrum.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Spectrum").Include("~/Content/Scripts/Spectrum/spectrum.js"));
+
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Pagination").Include("~/Content/Scripts/Framework/pagination.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/ThemeManager/Sliders").Include("~/Areas/Admin/Content/Scripts/ThemeManager/initialise.js"));
 

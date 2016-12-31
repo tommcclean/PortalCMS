@@ -1,12 +1,12 @@
 ﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Section.EditViewModel
 @{
     Layout = "";
-    var imageCount = Model.ImageList.Where(x => x.ImageCategory != Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon).Count();
 }
 
 @Scripts.Render("~/Resources/JavaScript/ImageSelector")
 @Styles.Render("~/Resources/CSS/Spectrum")
 @Scripts.Render("~/Resources/JavaScript/Spectrum")
+@Scripts.Render("~/Resources/JavaScript/Pagination")
 
 <script type="text/javascript">
     $(".spectrum").spectrum({
@@ -86,9 +86,10 @@
 
     <ul class="nav nav-tabs">
         <li role="presentation" class="active"><a href="#tab-edit" aria-controls="tab-edit" role="tab" data-toggle="tab">Edit Section</a></li>
-        <li role="presentation" class=""><a href="#tab-background" aria-controls="tab-background" role="tab" data-toggle="tab">Background<span class="badge">@imageCount</span></a></li>
+        <li role="presentation" class=""><a href="#tab-background" aria-controls="tab-background" role="tab" data-toggle="tab">Background<span class="badge">@Model.ImageList.Count()</span></a></li>
     </ul>
     <div class="tab-content">
+
         <div role="tabpanel" class="tab-pane active" id="tab-edit">
             <div class="control-group">
                 @Html.LabelFor(x => x.PageSectionHeight)
@@ -102,6 +103,7 @@
                 @Html.ListBoxFor(m => m.SelectedRoleList, Model.RoleList.Select(r => new SelectListItem { Text = r.RoleName, Value = r.RoleName.ToString(), Selected = Model.SelectedRoleList != null && Model.SelectedRoleList.Contains(r.RoleName) }))
             </div>
         </div>
+
         <div role="tabpanel" class="tab-pane" id="tab-background">
             <div id="banner-selector" class="image-selector x4 single float-container">
                 <h4>Background Type</h4>
@@ -128,13 +130,29 @@
                 <div class="panel panel-picture" style="display: none;">
                     <div class="control-group wide-label">
                         @Html.LabelFor(x => x.PageSectionBackgroundStyle)
-                        @Html.EnumDropDownListFor(m => m.PageSectionBackgroundStyle, new { @class = "form-control" })
+                        @Html.EnumDropDownListFor(m => m.PageSectionBackgroundStyle)
                     </div>
 
-                    @foreach (var image in Model.ImageList.Where(x => x.ImageCategory != Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon))
-                    {
-                        <img class="thumbnail" data-parent="banner-selector" data-target="BackgroundImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                    }
+                    <div class="pagination-wrapper" data-type="images">
+                        @for (var page = 1; page <= Model.ImagePageCount; page += 1)
+                        {
+                            <div id="page-@page" class="pagination-page" data-page="@page" style="@(page == 1 ? "" : "display: none;")">
+                                @foreach (var image in Model.ImageList.Skip((page - 1) * 8).Take(8))
+                                {
+                                    <img class="thumbnail" data-parent="banner-selector" data-target="BackgroundImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <nav aria-label="Image Page List">
+                        <ul class="pagination">
+                            @for (var page = 1; page <= Model.ImagePageCount; page += 1)
+                            {
+                                <li><a class="pagination-button @(page == 1 ? "active" : "")" data-page="@page" data-type="images" href="#page-@page">@page</a></li>
+                            }
+                        </ul>
+                    </nav>
                 </div>
 
                 <div class="panel panel-colour" style="display: none;">
@@ -151,9 +169,10 @@
     </div>
 
     <br />
+
     <div class="footer">
-        <button class="btn primary">Save</button>
-        <a onclick="Delete();" data-dismiss="modal" class="btn delete">Delete</a>
-        <button class="btn" data-dismiss="modal">Cancel</button>
+        <button class="btn primary"><span class="fa fa-check"></span><span class="hidden-xs">Save</span></button>
+        <button class="btn delete" onclick="Delete()" data-dismiss="modal"><span class="fa fa-trash"></span><span class="hidden-xs">Delete</span></button>
+        <button class="btn" data-dismiss="modal"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></button>
     </div>
 }

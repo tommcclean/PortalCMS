@@ -17,6 +17,8 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
 
         public int BackgroundImageId { get; set; }
 
+        public double ImagePageCount { get; set; }
+
         [DisplayName("Background Colour")]
         public string BackgroundColour { get; set; }
 

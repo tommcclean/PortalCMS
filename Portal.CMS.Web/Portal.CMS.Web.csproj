@@ -366,6 +366,7 @@
     <Content Include="Content\Scripts\BootstrapTour\bootstrap-tour.min.js" />
     <Content Include="Content\Scripts\FontAwesomePicker\fontawesome-iconpicker.min.js" />
     <Content Include="Content\Scripts\Framework\framework.js" />
+    <Content Include="Content\Scripts\Framework\pagination.js" />
     <Content Include="Content\Scripts\JQueryUI\jquery-ui.min.js" />
     <Content Include="Content\Scripts\JQuery\jquery-2.2.1.min.js" />
     <Content Include="Content\Scripts\Spectrum\spectrum.js" />
@@ -667,7 +668,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Builder\ViewModels\Shared\" />
-    <Folder Include="Areas\Builder\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\MenuItem\Edit.cshtml" />
