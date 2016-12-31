@@ -4,7 +4,9 @@ using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Section;
 using System;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
@@ -18,6 +20,8 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         private readonly IPageSectionTypeService _pageSectionTypeService;
         private readonly IImageService _imageService;
         private readonly IRoleService _roleService;
+
+        private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
 
         public SectionController(IPageSectionService pageSectionService, IPageSectionTypeService pageSectionTypeService, IImageService imageService, IRoleService roleService)
         {
@@ -54,7 +58,19 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditViewModel model)
         {
-            if ("colour".Equals(model.BackgroundType, StringComparison.OrdinalIgnoreCase))
+            if ("upload".Equals(model.BackgroundType, StringComparison.OrdinalIgnoreCase) && model.AttachedImage != null)
+            {
+                var imageFilePath = SaveImage(model.AttachedImage);
+
+                var uploadedImageId = _imageService.Create(imageFilePath, model.ImageCategory);
+
+                _pageSectionService.SetBackgroundType(model.SectionId, true);
+
+                _pageSectionService.Background(model.SectionId, uploadedImageId);
+
+                _pageSectionService.SetBackgroundStyle(model.SectionId, model.PageSectionBackgroundStyle);
+            }
+            else if ("colour".Equals(model.BackgroundType, StringComparison.OrdinalIgnoreCase))
             {
                 _pageSectionService.SetBackgroundType(model.SectionId, false);
 
@@ -137,6 +153,29 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             {
                 return Json(new { State = false, Message = ex.InnerException.Message });
             }
+        }
+
+        private string SaveImage(HttpPostedFileBase imageFile)
+        {
+            var extension = Path.GetExtension(imageFile.FileName).ToUpper();
+
+            if (extension != ".PNG" && extension != ".JPG" && extension != ".GIF")
+                throw new ArgumentException("Unexpected Image Format Provided");
+
+            var destinationDirectory = Path.Combine(Server.MapPath(IMAGE_DIRECTORY));
+
+            if (!Directory.Exists(destinationDirectory))
+                Directory.CreateDirectory(destinationDirectory);
+
+            var imageFileName = string.Format("media-{0}-{1}", DateTime.Now.ToString("ddMMyyyyHHmmss"), imageFile.FileName);
+            var path = Path.Combine(Server.MapPath(IMAGE_DIRECTORY), imageFileName);
+
+            imageFile.SaveAs(path);
+
+            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace("Builder/Section/Edit", string.Empty);
+            var relativeFilePath = string.Format("{0}{1}/{2}", siteURL, IMAGE_DIRECTORY, imageFileName);
+
+            return relativeFilePath;
         }
     }
 }

@@ -47,11 +47,19 @@
         if (backgroundType === "picture")
         {
             $('.panel-colour').slideUp(300);
+            $('.panel-upload').slideUp(300);
             $('.panel-picture').slideDown(300);
+        }
+        else if (backgroundType === "upload")
+        {
+            $('.panel-picture').slideUp(300);
+            $('.panel-upload').slideDown(300);
+            $('.panel-colour').slideUp(300);
         }
         else
         {
             $('.panel-picture').slideUp(300);
+            $('.panel-upload').slideUp(300);
             $('.panel-colour').slideDown(300);
         }
     });
@@ -96,12 +104,25 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-background">
             <div id="banner-selector" class="image-selector x4 single float-container">
-                <h4>What type of background do you want?</h4>
+                <h4>Background Type</h4>
                 <p>Choose whether to use a picture background or a solid colour background for your Section.</p>
 
                 <div class="checkbox-group float-container">
+                    <div class="checkbox-option picture" data-backgroundtype="upload"><div class="check"><span class="fa fa-check"></span></div><p>Upload a Photo</p></div>
                     <div class="checkbox-option picture" data-backgroundtype="picture"><div class="check"><span class="fa fa-check"></span></div><p>Picture Background</p></div>
                     <div class="checkbox-option colour" data-backgroundtype="colour"><div class="check"><span class="fa fa-check"></span></div><p>Solid Colour</p></div>
+                </div>
+
+                <div class="panel panel-upload" style="display: none;">
+                    <div class="control-group">
+                        @Html.LabelFor(x => x.AttachedImage)
+                        @Html.TextBoxFor(m => m.AttachedImage, new { @type = "file" })
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(x => x.ImageCategory)
+                        @Html.EnumDropDownListFor(m => m.ImageCategory, new { @class = "form-control" })
+                    </div>
                 </div>
 
                 <div class="panel panel-picture" style="display: none;">
@@ -110,7 +131,6 @@
                         @Html.EnumDropDownListFor(m => m.PageSectionBackgroundStyle, new { @class = "form-control" })
                     </div>
 
-                    <div class="alert alert-warning" role="alert">Upload new images for use in your pages using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
                     @foreach (var image in Model.ImageList.Where(x => x.ImageCategory != Portal.CMS.Entities.Entities.Generic.ImageCategory.Icon))
                     {
                         <img class="thumbnail" data-parent="banner-selector" data-target="BackgroundImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />

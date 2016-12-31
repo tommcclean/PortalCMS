@@ -1,7 +1,9 @@
 ﻿using Portal.CMS.Entities.Entities.Authentication;
+using Portal.CMS.Entities.Entities.Generic;
 using Portal.CMS.Entities.Entities.PageBuilder;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Web;
 
 namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
 {
@@ -28,6 +30,12 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
 
         [DisplayName("Roles")]
         public List<string> SelectedRoleList { get; set; } = new List<string>();
+
+        [DisplayName("Attach Image")]
+        public HttpPostedFileBase AttachedImage { get; set; }
+
+        [DisplayName("Category")]
+        public ImageCategory ImageCategory { get; set; }
 
         public List<Role> RoleList { get; set; }
     }
