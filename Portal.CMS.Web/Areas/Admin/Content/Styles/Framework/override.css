@@ -181,3 +181,8 @@ ul.pagination
     {
         text-decoration: underline;
     }
+
+.sp-container .sp-palette-disabled.sp-initial-disabled
+{
+    display: none;
+}

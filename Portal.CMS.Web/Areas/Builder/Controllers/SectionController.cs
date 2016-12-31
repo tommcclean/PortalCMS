@@ -38,7 +38,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             var pageSection = _pageSectionService.Get(sectionId);
 
-            var model = new EditViewModel()
+            var model = new EditViewModel
             {
                 PageId = pageSection.PageId,
                 SectionId = sectionId,
@@ -124,7 +124,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             var pageSection = _pageSectionService.Get(pageSectionId);
 
-            var model = new MarkupViewModel()
+            var model = new MarkupViewModel
             {
                 PageSectionId = pageSectionId,
                 PageSectionBody = pageSection.PageSectionBody
