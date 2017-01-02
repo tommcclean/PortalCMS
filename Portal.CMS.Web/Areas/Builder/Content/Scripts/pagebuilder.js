@@ -56,7 +56,7 @@
                     content: "<p>Every section has a settings button allowing you to change it.</p><p>Change the background, the size or even who can view a section.</p>"
                 },
                 {
-                    element: "#tour-edit-element",
+                    element: ".tour-edit-element",
                     placement: "bottom",
                     title: "Edit Components",
                     content: "<p>Simply click or tap on any component in order to change it..</p>"
@@ -70,7 +70,7 @@
     }
 
     $('.edit-section').first().attr('id', 'tour-edit-section');
-    $('#page-wrapper h1').first().attr('id', 'tour-edit-element');
+    $('#page-wrapper h1').first().attr('class', 'tour-edit-element');
 });
 
 function InitialiseWidgets() {
