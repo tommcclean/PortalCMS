@@ -1,5 +1,5 @@
 ﻿using Portal.CMS.Entities.Entities.Generic;
-using System.Collections.Generic;
+using Portal.CMS.Web.Areas.Builder.ViewModels.Shared;
 using System.ComponentModel;
 using System.Web;
 
@@ -23,6 +23,12 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
         [DisplayName("Category")]
         public ImageCategory ImageCategory { get; set; }
 
-        public IEnumerable<Portal.CMS.Entities.Entities.Generic.Image> ImageList { get; set; }
+        public PaginationViewModel GeneralImages { get; set; } = new PaginationViewModel();
+
+        public PaginationViewModel IconImages { get; set; } = new PaginationViewModel();
+
+        public PaginationViewModel ScreenshotImages { get; set; } = new PaginationViewModel();
+
+        public PaginationViewModel TextureImages { get; set; } = new PaginationViewModel();
     }
 }

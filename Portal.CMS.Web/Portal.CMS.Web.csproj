@@ -317,6 +317,7 @@
     <Compile Include="Areas\Builder\ViewModels\Component\ImageViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\AppDrawerViewModel.cs" />
+    <Compile Include="Areas\Builder\ViewModels\Shared\PaginationViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Theme\ThemeViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Widget\PostListViewModel.cs" />
     <Compile Include="Controllers\BlogController.cs" />
@@ -666,9 +667,7 @@
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Theme\Render.cscss" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Builder\ViewModels\Shared\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Areas\Admin\Views\MenuItem\Edit.cshtml" />
   </ItemGroup>
@@ -680,6 +679,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_DOMScripts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Builder\Views\Shared\_Render.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

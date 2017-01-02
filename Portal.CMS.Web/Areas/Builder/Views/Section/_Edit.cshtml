@@ -136,7 +136,7 @@
                     <div class="pagination-wrapper" data-type="images">
                         @for (var page = 1; page <= Model.ImagePageCount; page += 1)
                         {
-                            <div id="page-@page" class="pagination-page" data-page="@page" style="@(page == 1 ? "" : "display: none;")">
+                            <div class="page-@page pagination-page" data-page="@page" style="@(page == 1 ? "" : "display: none;")">
                                 @foreach (var image in Model.ImageList.Skip((page - 1) * 8).Take(8))
                                 {
                                     <img class="thumbnail" data-parent="banner-selector" data-target="BackgroundImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />

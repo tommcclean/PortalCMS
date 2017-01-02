@@ -2,8 +2,10 @@
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Component;
+using Portal.CMS.Web.Areas.Builder.ViewModels.Shared;
 using System;
 using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -90,14 +92,40 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             var pageSection = _pageSectionService.Get(pageSectionId);
 
+            var imageList = _imageService.Get();
+
             var model = new ImageViewModel
             {
                 PageId = pageSection.PageId,
                 SectionId = pageSectionId,
                 ElementType = elementType,
                 ElementId = elementId,
-                ImageList = _imageService.Get()
+                GeneralImages = new PaginationViewModel
+                {
+                    PaginationType = "general",
+                    ImageList = imageList.Where(x => x.ImageCategory == Entities.Entities.Generic.ImageCategory.General),
+                },
+                IconImages = new PaginationViewModel
+                {
+                    PaginationType = "icon",
+                    ImageList = imageList.Where(x => x.ImageCategory == Entities.Entities.Generic.ImageCategory.Icon),
+                },
+                ScreenshotImages = new PaginationViewModel
+                {
+                    PaginationType = "screenshot",
+                    ImageList = imageList.Where(x => x.ImageCategory == Entities.Entities.Generic.ImageCategory.Screenshot),
+                },
+                TextureImages = new PaginationViewModel
+                {
+                    PaginationType = "texture",
+                    ImageList = imageList.Where(x => x.ImageCategory == Entities.Entities.Generic.ImageCategory.Texture),
+                }
             };
+
+            model.GeneralImages.PageCount = Math.Ceiling(Convert.ToDouble(model.GeneralImages.ImageList.Count()) / 8);
+            model.IconImages.PageCount = Math.Ceiling(Convert.ToDouble(model.IconImages.ImageList.Count()) / 8);
+            model.ScreenshotImages.PageCount = Math.Ceiling(Convert.ToDouble(model.ScreenshotImages.ImageList.Count()) / 8);
+            model.TextureImages.PageCount = Math.Ceiling(Convert.ToDouble(model.TextureImages.ImageList.Count()) / 8);
 
             return View("_Image", model);
         }
