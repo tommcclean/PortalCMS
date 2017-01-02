@@ -3,6 +3,7 @@ using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Section;
+using Portal.CMS.Web.Areas.Builder.ViewModels.Shared;
 using System;
 using System.IO;
 using System.Linq;
@@ -42,7 +43,11 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             {
                 PageId = pageSection.PageId,
                 SectionId = sectionId,
-                ImageList = _imageService.Get(),
+                MediaLibrary = new PaginationViewModel
+                {
+                    ImageList = _imageService.Get(),
+                    PaginationType = "section"
+                },
                 PageSectionHeight = _pageSectionService.DetermineSectionHeight(sectionId),
                 PageSectionBackgroundStyle = _pageSectionService.DetermineBackgroundStyle(sectionId),
                 BackgroundType = _pageSectionService.DetermineBackgroundType(sectionId),
@@ -51,9 +56,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 SelectedRoleList = pageSection.PageSectionRoles.Select(x => x.Role.RoleName).ToList()
             };
 
-            model.ImageList = model.ImageList.Where(x => x.ImageCategory != Entities.Entities.Generic.ImageCategory.Icon);
-
-            model.ImagePageCount = Math.Ceiling(Convert.ToDouble(model.ImageList.Count()) / 8);
+            model.MediaLibrary.PageCount = Math.Ceiling(Convert.ToDouble(model.MediaLibrary.ImageList.Count()) / 8);
 
             return View("_Edit", model);
         }

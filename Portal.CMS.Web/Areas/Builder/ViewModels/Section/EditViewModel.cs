@@ -1,6 +1,7 @@
 ﻿using Portal.CMS.Entities.Entities.Authentication;
 using Portal.CMS.Entities.Entities.Generic;
 using Portal.CMS.Entities.Entities.PageBuilder;
+using Portal.CMS.Web.Areas.Builder.ViewModels.Shared;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web;
@@ -17,7 +18,7 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
 
         public int BackgroundImageId { get; set; }
 
-        public double ImagePageCount { get; set; }
+        public PaginationViewModel MediaLibrary { get; set; }
 
         [DisplayName("Background Colour")]
         public string BackgroundColour { get; set; }
@@ -27,8 +28,6 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
 
         [DisplayName("Background Style")]
         public PageSectionBackgroundStyle PageSectionBackgroundStyle { get; set; }
-
-        public IEnumerable<Portal.CMS.Entities.Entities.Generic.Image> ImageList { get; set; }
 
         [DisplayName("Roles")]
         public List<string> SelectedRoleList { get; set; } = new List<string>();

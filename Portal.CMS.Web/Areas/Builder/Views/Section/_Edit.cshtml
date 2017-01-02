@@ -86,7 +86,7 @@
 
     <ul class="nav nav-tabs">
         <li role="presentation" class="active"><a href="#tab-edit" aria-controls="tab-edit" role="tab" data-toggle="tab">Edit Section</a></li>
-        <li role="presentation" class=""><a href="#tab-background" aria-controls="tab-background" role="tab" data-toggle="tab">Background<span class="badge">@Model.ImageList.Count()</span></a></li>
+        <li role="presentation" class=""><a href="#tab-background" aria-controls="tab-background" role="tab" data-toggle="tab">Background<span class="badge">@Model.MediaLibrary.ImageList.Count()</span></a></li>
     </ul>
     <div class="tab-content">
 
@@ -133,26 +133,7 @@
                         @Html.EnumDropDownListFor(m => m.PageSectionBackgroundStyle)
                     </div>
 
-                    <div class="pagination-wrapper" data-type="images">
-                        @for (var page = 1; page <= Model.ImagePageCount; page += 1)
-                        {
-                            <div class="page-@page pagination-page" data-page="@page" style="@(page == 1 ? "" : "display: none;")">
-                                @foreach (var image in Model.ImageList.Skip((page - 1) * 8).Take(8))
-                                {
-                                    <img class="thumbnail" data-parent="banner-selector" data-target="BackgroundImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                                }
-                            </div>
-                        }
-                    </div>
-
-                    <nav aria-label="Image Page List">
-                        <ul class="pagination">
-                            @for (var page = 1; page <= Model.ImagePageCount; page += 1)
-                            {
-                                <li><a class="pagination-button @(page == 1 ? "active" : "")" data-page="@page" data-type="images" href="#page-@page">@page</a></li>
-                            }
-                        </ul>
-                    </nav>
+                    @Html.Partial("_Render", Model.MediaLibrary)
                 </div>
 
                 <div class="panel panel-colour" style="display: none;">
