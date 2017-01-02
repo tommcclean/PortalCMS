@@ -212,7 +212,7 @@ section .vertical-alignment
     .image.image-auto
     {
         width: auto;
-        max-width: 35vw;
+        max-width: 90%;
         height: auto;
     }
 
