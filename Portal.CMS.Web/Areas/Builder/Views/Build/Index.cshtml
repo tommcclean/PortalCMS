@@ -52,15 +52,6 @@
     {
         <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper@(isAdmin ? " admin sortable" : "" )" data-section="@(section.PageSectionId)">
             @Html.Raw(section.PageSectionBody)
-
-            @if (isAdmin)
-            {
-                <div class="action-container absolute">
-                    <a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="@Url.Action("Markup", "Section", new { area="Builder", pageSectionId = section.PageSectionId })"><span class="fa fa-code"></span></a>
-                    <a class="action edit-section launch-modal" data-title="Edit Section" href="@Url.Action("Edit", "Section", new { area="Builder", sectionId = section.PageSectionId })"><span class="fa fa-cog"></span></a>
-                    <a id="container-editor-@(section.PageSectionId)" class="action component-editor" style="display: none;" data-title="Delete Container"><span class="fa fa-trash"></span></a>
-                </div>
-            }
         </div>
     }
 </div>

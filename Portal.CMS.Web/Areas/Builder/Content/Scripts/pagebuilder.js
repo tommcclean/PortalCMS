@@ -4,6 +4,7 @@
     if ($('#page-wrapper.admin').length) {
         InitialiseEditor();
         InitialiseWidgets();
+        ApplySectionControls();
 
         $(".admin .component-editor").click(function (event) {
             var elementId = $(this).attr("id");
@@ -502,4 +503,18 @@ function ToggleComponentPanel() {
         $('#component-panel').slideDown(300);
         $('#component-panel').toggleClass('visible');
     }
+}
+
+function ApplySectionControls() {
+    $('.section-wrapper .action-container').remove();
+
+    var sectionButtonsTemplate = '<div class="action-container absolute"><a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/Builder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a><a class="action edit-section launch-modal" data-title="Edit Section" href="/Builder/Section/Edit?sectionId=<sectionId>"><span class="fa fa-cog"></span></a><a id="container-editor-<sectionId>" class="action component-editor" style="display: none;" data-title="Delete Container"><span class="fa fa-trash"></span></a></div>';
+
+    $(".section-wrapper").each(function (index) {
+        var sectionId = $(this).attr("data-section");
+
+        var sectionButtonsMarkup = sectionButtonsTemplate.replace(/<sectionId>/g, sectionId)
+
+        $(this).append(sectionButtonsMarkup);
+    });
 }

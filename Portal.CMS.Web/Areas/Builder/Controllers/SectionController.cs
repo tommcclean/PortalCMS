@@ -139,11 +139,11 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Markup(MarkupViewModel model)
+        public JsonResult Markup(MarkupViewModel model)
         {
             _pageSectionService.Markup(model.PageSectionId, model.PageSectionBody);
 
-            return Content("Refresh");
+            return Json(new { State = true, Markup = model.PageSectionBody });
         }
 
         [HttpPost]
