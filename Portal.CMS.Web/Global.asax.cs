@@ -1,4 +1,6 @@
-﻿using Portal.CMS.Web.Architecture.ViewEngines;
+﻿using LogBook.Services;
+using LogBook.Services.Models;
+using Portal.CMS.Web.Architecture.ViewEngines;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Razor;
@@ -27,6 +29,13 @@ namespace Portal.CMS.Web
 
         protected void Application_Error()
         {
+            var logHandler = new LogHandler();
+
+            var exception = Server.GetLastError();
+
+            if (exception != null)
+                logHandler.WriteLog(LogType.Information, "PortalCMS", exception, exception.Message, string.Empty);
+
             if (System.Configuration.ConfigurationManager.AppSettings["CustomErrorPage"] == "true")
             {
                 Response.Redirect("~/Home/Error");
