@@ -13,7 +13,7 @@
 @section HEADScripts
 {
     @Scripts.Render("~/Resources/JavaScript/C3Graphing")
-    <script type="text/javascript">$(document).ready(function () {$('.reframe').click(function (e) { window.dispatchEvent(new Event('resize')); })});</script>
+    <script type="text/javascript">$(document).ready(function () { $('.reframe').click(function (e) { window.dispatchEvent(new Event('resize')); }) });</script>
 }
 
 <ul class="nav nav-tabs">
@@ -26,26 +26,36 @@
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="tab-day">
         <div class="row">
-            @Html.Action("TotalHitsToday", "AnalyticManager", new { chartSize = ChartSize.Half })
-            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Today })
-            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Today })
-            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Today })
+            @Html.Action("TotalHitsToday", "AnalyticManager", new { chartSize = ChartSize.Third })
+            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Today })
+            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Today })
+            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Today })
+            @Html.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (Today)", chartSize = ChartSize.Third, sinceDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day) })
         </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="tab-week">
+        @{
+            DateTime firstDayOfweek = DateTime.Now;
+            while (firstDayOfweek.DayOfWeek != DayOfWeek.Monday)
+            {
+                firstDayOfweek = firstDayOfweek.AddDays(-1);
+            }
+        }
         <div class="row">
-            @Html.Action("TotalHitsWeekly", "AnalyticManager", new { chartSize = ChartSize.Half })
-            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Week })
-            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Week })
-            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Week })
+            @Html.Action("TotalHitsWeekly", "AnalyticManager", new { chartSize = ChartSize.Third })
+            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Week })
+            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Week })
+            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Week })
+            @Html.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (This Week)", chartSize = ChartSize.Third, sinceDate = new DateTime(firstDayOfweek.Year, firstDayOfweek.Month, firstDayOfweek.Day) })
         </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="tab-month">
         <div class="row">
-            @Html.Action("TotalHitsMonthly", "AnalyticManager", new { chartSize = ChartSize.Half })
-            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Month })
-            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Month })
-            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.Month })
+            @Html.Action("TotalHitsMonthly", "AnalyticManager", new { chartSize = ChartSize.Third })
+            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Month })
+            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Month })
+            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Month })
+            @Html.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (This Month)", chartSize = ChartSize.Third, sinceDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1) })
         </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="tab-all">
@@ -53,6 +63,7 @@
             @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.All })
             @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.All })
             @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.All })
+            @Html.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (All Time)", chartSize = ChartSize.Half, sinceDate = DateTime.MinValue })
         </div>
     </div>
 </div>

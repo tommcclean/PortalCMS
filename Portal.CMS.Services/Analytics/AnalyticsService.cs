@@ -15,7 +15,7 @@ namespace Portal.CMS.Services.Analytics
 
         List<KeyValuePair<string, int>> TotalHitsToday();
 
-        List<KeyValuePair<string, int>> TotalErrorsToday();
+        List<KeyValuePair<string, int>> ErrorPercentage(DateTime sinceDate);
 
         List<KeyValuePair<string, int>> TotalHitsThisWeek();
 
@@ -97,18 +97,18 @@ namespace Portal.CMS.Services.Analytics
             return results;
         }
 
-        public List<KeyValuePair<string, int>> TotalErrorsToday()
+        public List<KeyValuePair<string, int>> ErrorPercentage(DateTime sinceDate)
         {
             var results = new List<KeyValuePair<string, int>>();
 
+            var pageViews = _context.AnalyticPageViews.Count(x => x.DateAdded >= sinceDate);
+            var postViews = _context.AnalyticPostViews.Count(x => x.DateAdded >= sinceDate);
+            results.Add(new KeyValuePair<string, int>("Total Hits", (pageViews + postViews)));
+
             var logHandler = new LogHandler();
-
-            var today = DateTime.Now;
-            var errorCountToday = logHandler.ErrorsSinceTime(new DateTime(today.Year, today.Month, today.Day, 0, 0, 0));
-            results.Add(new KeyValuePair<string, int>("Today", errorCountToday));
-
-            var errorCountThisMonth = logHandler.ErrorsSinceTime(new DateTime(today.Year, today.Month, 1, 0, 0, 0));
-            results.Add(new KeyValuePair<string, int>("This Month", errorCountThisMonth));
+            var errorCount = logHandler.ErrorsSinceTime(sinceDate);
+            var errorPercentage = Math.Round((Convert.ToDouble(errorCount) / (Convert.ToDouble(postViews) + Convert.ToDouble(pageViews))) * 100, 2);
+            results.Add(new KeyValuePair<string, int>($"Error Count ({errorPercentage}%)", errorCount));
 
             return results;
         }
@@ -144,7 +144,7 @@ namespace Portal.CMS.Services.Analytics
 
             var daysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
 
-            for (int loop = 1; loop < 31; loop += 7)
+            for (int loop = 1; loop < daysInMonth; loop += 7)
             {
                 var weekEarliest = new DateTime(DateTime.Now.Year, DateTime.Now.Month, loop);
 

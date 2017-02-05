@@ -24,7 +24,7 @@
     @Html.Partial("_Welcome")
     @Html.Partial("_MyAccount")
     @Html.Partial("_LatestPost", new ViewDataDictionary(Model.LatestPost))
-    @Html.Action("TotalErrorsToday", "AnalyticManager", new { chartSize = ChartSize.Third })
+    @Html.Action("ErrorPercentage", "AnalyticManager", new { chartSize = ChartSize.Third, sinceDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day) })
     @Html.Action("TotalHitsWeekly", "AnalyticManager", new { chartSize = ChartSize.Third })
     @Html.Partial("_MediaManager", new ViewDataDictionary(Model.Media))
 </div>

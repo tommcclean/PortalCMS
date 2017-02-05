@@ -50,14 +50,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult TotalErrorsToday(ChartSize chartSize)
+        public ActionResult ErrorPercentage(string chartName, ChartSize chartSize, DateTime sinceDate)
         {
-            var dataSet = _analyticsService.TotalErrorsToday();
+            var dataSet = _analyticsService.ErrorPercentage(sinceDate);
 
             var model = new ChartViewModel()
             {
-                ChartId = "chart-total-errors-today",
-                ChartName = "Total Errors Today",
+                ChartId = $"chart-error-percentage-{sinceDate.ToString("yyyyMMhhhddmm")}",
+                ChartName = chartName,
                 ChartSize = chartSize,
                 ChartType = ChartType.Pie,
                 ChartColumns = new List<ColumnViewModel>()
