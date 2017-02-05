@@ -33,7 +33,7 @@ namespace Portal.CMS.Web
 
             var exception = Server.GetLastError();
 
-            logHandler.WriteLog(LogType.Information, "PortalCMS", exception, "An Exception has occured while Running PortalCMS", string.Empty);
+            logHandler.WriteLog(LogType.Error, "PortalCMS", exception, "An Exception has occured while Running PortalCMS", string.Empty);
 
             if (System.Configuration.ConfigurationManager.AppSettings["CustomErrorPage"] == "true")
             {
