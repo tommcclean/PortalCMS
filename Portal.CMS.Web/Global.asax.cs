@@ -1,5 +1,6 @@
 ﻿using LogBook.Services;
 using LogBook.Services.Models;
+using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Architecture.ViewEngines;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -33,7 +34,9 @@ namespace Portal.CMS.Web
 
             var exception = Server.GetLastError();
 
-            logHandler.WriteLog(LogType.Error, "PortalCMS", exception, "An Exception has occured while Running PortalCMS", string.Empty);
+            var userAccount = UserHelper.UserId;
+
+            logHandler.WriteLog(LogType.Error, "PortalCMS", exception, "An Exception has occured while Running PortalCMS", userAccount.ToString());
 
             if (System.Configuration.ConfigurationManager.AppSettings["CustomErrorPage"] == "true")
             {
