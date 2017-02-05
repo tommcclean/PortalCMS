@@ -1,4 +1,5 @@
-﻿using Portal.CMS.Entities;
+﻿using LogBook.Services;
+using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.Analytics;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace Portal.CMS.Services.Analytics
         void LogPostView(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId);
 
         List<KeyValuePair<string, int>> TotalHitsToday();
+
+        List<KeyValuePair<string, int>> TotalErrorsToday();
 
         List<KeyValuePair<string, int>> TotalHitsThisWeek();
 
@@ -90,6 +93,22 @@ namespace Portal.CMS.Services.Analytics
             var postViewsMonth = analyticPostViews.Count(x => x.DateAdded.Year == DateTime.Now.Year && x.DateAdded.Month == DateTime.Now.Month);
 
             results.Add(new KeyValuePair<string, int>("This Month", (pageViewsMonth + postViewsMonth)));
+
+            return results;
+        }
+
+        public List<KeyValuePair<string, int>> TotalErrorsToday()
+        {
+            var results = new List<KeyValuePair<string, int>>();
+
+            var logHandler = new LogHandler();
+
+            var today = DateTime.Now;
+            var errorCountToday = logHandler.ErrorsSinceTime(new DateTime(today.Year, today.Month, today.Day, 0, 0, 0));
+            results.Add(new KeyValuePair<string, int>("Today", errorCountToday));
+
+            var errorCountThisMonth = logHandler.ErrorsSinceTime(new DateTime(today.Year, today.Month, 1, 0, 0, 0));
+            results.Add(new KeyValuePair<string, int>("This Month", errorCountThisMonth));
 
             return results;
         }

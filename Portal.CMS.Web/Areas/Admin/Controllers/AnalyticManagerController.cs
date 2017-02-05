@@ -50,6 +50,28 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [ChildActionOnly]
+        public ActionResult TotalErrorsToday(ChartSize chartSize)
+        {
+            var dataSet = _analyticsService.TotalErrorsToday();
+
+            var model = new ChartViewModel()
+            {
+                ChartId = "chart-total-errors-today",
+                ChartName = "Total Errors Today",
+                ChartSize = chartSize,
+                ChartType = ChartType.Pie,
+                ChartColumns = new List<ColumnViewModel>()
+            };
+
+            foreach (var item in dataSet)
+            {
+                model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0} ({1})", item.Key, item.Value), ColumnValues = new List<int>() { item.Value } });
+            }
+
+            return PartialView("_DisplayChart", model);
+        }
+
+        [ChildActionOnly]
         public ActionResult TotalHitsWeekly(ChartSize chartSize)
         {
             var dataSet = _analyticsService.TotalHitsThisWeek();
