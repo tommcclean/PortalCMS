@@ -84,7 +84,7 @@
       <HintPath>Bin\LogBook.Entities.dll</HintPath>
     </Reference>
     <Reference Include="LogBook.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\tommcclean.LogBook.1.0.0\lib\net452\LogBook.Services.dll</HintPath>
+      <HintPath>..\packages\tommcclean.LogBook.1.0.3\lib\net452\LogBook.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

@@ -47,12 +47,12 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var logHandler = new LogHandler();
 
-            var logEntries = logHandler.ReadLatestLogEntries(100).ToList();
+            var logEntry = logHandler.GetLogEntry(logEntryId);
 
             var model = new ReviewExceptionViewModel
             {
                 LogEntryId = logEntryId,
-                LogException = logEntries.First(le => le.LogEntryId == logEntryId).LogExceptions.First().ExceptionDetail
+                LogException = logEntry.LogExceptions.First().ExceptionDetail
             };
 
             return View(model);
