@@ -34,9 +34,9 @@ namespace Portal.CMS.Web
 
             var exception = Server.GetLastError();
 
-            var userAccount = UserHelper.UserId;
+            var user = (UserHelper.IsLoggedIn ? $"{UserHelper.GivenName} {UserHelper.FamilyName} {UserHelper.UserId}" : string.Empty);
 
-            logHandler.WriteLog(LogType.Error, "PortalCMS", exception, "An Exception has occured while Running PortalCMS", userAccount.ToString());
+            logHandler.WriteLog(LogType.Error, "Portal CMS", exception, exception.Message, user);
 
             if (System.Configuration.ConfigurationManager.AppSettings["CustomErrorPage"] == "true")
             {
