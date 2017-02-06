@@ -32,5 +32,12 @@
     <div class="box box-tall">
         <div class="box-title">@Model.ChartName</div>
         <div id="@Model.ChartId"></div>
+
+        @if (Model.ChartLink != null)
+        {
+            <div class="box-more">
+                <a href="@Model.ChartLink.LinkRoute" class="admin-item" data-title="@Model.ChartLink.LinkText">@Model.ChartLink.LinkText</a>
+            </div>
+        }
     </div>
 </div>

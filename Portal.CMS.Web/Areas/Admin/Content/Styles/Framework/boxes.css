@@ -79,6 +79,25 @@
     letter-spacing: 1px;
 }
 
+.box-more
+{
+    z-index: 10;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: #EAEAEA;
+    color: black;
+    padding: 8px 15px 8px 20px;
+    border-bottom-left-radius: 5px;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+    .box-more a
+    {
+        font-size: 14px;
+    }
+
 .admin-container
 {
     position: absolute;

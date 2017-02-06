@@ -1,0 +1,84 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.AnalyticManager.LogEntriesViewModel
+@using Portal.CMS.Entities.Entities.Analytics
+@{
+    ViewBag.Title = "Latest Log Entries";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-reports.png";
+}
+
+<style>
+    #awards-header
+    {
+        text-align: center;
+    }
+
+    .table-data span.value
+    {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 40px;
+        color: white;
+    }
+
+    .table-data
+    {
+        margin: 0px;
+        margin-top: 5px;
+    }
+
+        .table-data a
+        {
+            font-size: 13px;
+        }
+
+        .table-data .header div
+        {
+            padding: 8px 10px 7px 10px;
+            background-color: #1C1C1E;
+            border-left: 1px solid white;
+            color: white;
+        }
+
+        .table-data .record div
+        {
+            padding: 8px 10px 7px 10px;
+            background-color: #F2F2F2;
+            border-left: 1px solid white;
+        }
+
+        .table-data .record:nth-child(2n+1) div
+        {
+            background-color: #EAEAEA;
+        }
+</style>
+
+<div class="table-data">
+    <div class="row header">
+        <div class="col-xs-2">Time Logged</div>
+        <div class="col-xs-2">Host Name</div>
+        <div class="col-xs-2">Source</div>
+        <div class="col-xs-4">Message</div>
+        <div class="col-xs-1">User Name</div>
+        <div class="col-xs-1">Actions</div>
+    </div>
+    @foreach (var logEntry in Model.LogEntries)
+    {
+        <div class="row record">
+            <div class="col-xs-2">@logEntry.LogTime</div>
+            <div class="col-xs-2">@logEntry.HostName</div>
+            <div class="col-xs-2">@(string.IsNullOrWhiteSpace(logEntry.Source) ? "Unspecified" : logEntry.Source)</div>
+            <div class="col-xs-4">@logEntry.Message</div>
+            <div class="col-xs-1">@(string.IsNullOrWhiteSpace(logEntry.UserName) ? "Unspecified" : logEntry.UserName)</div>
+            <div class="col-xs-1">
+                @if (logEntry.LogExceptions.Any())
+                {
+                    <a href="@Url.Action("ReviewException", "AnalyticManager", new { logEntryId = @logEntry.LogEntryId })" class="launch-modal" data-title="Review Exception">Review Exception</a>
+                }
+                else
+                {
+                    <span>None</span>
+                }
+            </div>
+        </div>
+    }
+</div>

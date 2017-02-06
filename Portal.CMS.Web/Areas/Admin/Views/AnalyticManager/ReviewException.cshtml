@@ -1,0 +1,37 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.AnalyticManager.ReviewExceptionViewModel
+@{
+    ViewBag.Title = "Review Exception";
+    Layout = "";
+}
+<style>
+    .console-title
+    {
+        background-color: #5D5A58;
+        color: white;
+        font-weight: bold;
+        padding: 10px;
+        letter-spacing: 1px;
+    }
+
+    .console
+    {
+        min-height: 400px;
+        max-height: 500px;
+        background-color: black;
+        color: white;
+        padding: 10px;
+        overflow-y: scroll;
+        letter-spacing: 1px;
+    }
+</style>
+
+<div class="console-title">
+    Exception Details
+</div>
+<div class="console">
+    @Model.LogException
+</div>
+
+<div class="footer">
+    <button class="btn" data-dismiss="modal">Close</button>
+</div>

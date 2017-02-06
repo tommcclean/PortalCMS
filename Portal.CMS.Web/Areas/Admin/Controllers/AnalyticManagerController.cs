@@ -1,9 +1,11 @@
-﻿using Portal.CMS.Entities.Entities.Analytics;
+﻿using LogBook.Services;
+using Portal.CMS.Entities.Entities.Analytics;
 using Portal.CMS.Services.Analytics;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.AnalyticManager;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -25,6 +27,35 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult LogEntries()
+        {
+            var logHandler = new LogHandler();
+
+            var model = new LogEntriesViewModel
+            {
+                LogEntries = logHandler.ReadLatestLogEntries(100)
+            };
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult ReviewException(int logEntryId)
+        {
+            var logHandler = new LogHandler();
+
+            var logEntries = logHandler.ReadLatestLogEntries(100).ToList();
+
+            var model = new ReviewExceptionViewModel
+            {
+                LogEntryId = logEntryId,
+                LogException = logEntries.First(le => le.LogEntryId == logEntryId).LogExceptions.First().ExceptionDetail
+            };
+
+            return View(model);
         }
 
         [ChildActionOnly]
@@ -60,7 +91,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 ChartName = chartName,
                 ChartSize = chartSize,
                 ChartType = ChartType.Pie,
-                ChartColumns = new List<ColumnViewModel>()
+                ChartColumns = new List<ColumnViewModel>(),
+                ChartLink = new ChartLinkViewModel { LinkText = "More Details", LinkRoute = Url.Action(nameof(LogEntries), "AnalyticManager") }
             };
 
             foreach (var item in dataSet)

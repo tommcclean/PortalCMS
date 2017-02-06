@@ -79,6 +79,10 @@
       <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LogBook.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\LogBook.Entities.dll</HintPath>
+    </Reference>
     <Reference Include="LogBook.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\tommcclean.LogBook.1.0.0\lib\net452\LogBook.Services.dll</HintPath>
       <Private>True</Private>
@@ -279,6 +283,8 @@
     <Compile Include="Architecture\Helpers\UserHelper.cs" />
     <Compile Include="Areas\Admin\ViewModels\AnalyticManager\ChartViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\AnalyticManager\ColumnViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\AnalyticManager\LogEntriesViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\AnalyticManager\ReviewExceptionViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\LoginViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\AccountViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\BioViewModel.cs" />
@@ -682,7 +688,9 @@
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Theme\Render.cscss" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\AnalyticManager\LogEntries.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\MenuItem\Edit.cshtml" />
   </ItemGroup>
@@ -697,6 +705,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Shared\_Render.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\AnalyticManager\ReviewException.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
