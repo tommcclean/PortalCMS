@@ -26,7 +26,7 @@ namespace Portal.CMS.Services.Settings
     {
         #region Dependencies
 
-        private readonly PortalEntityModel _context;
+        readonly PortalEntityModel _context;
 
         public SettingService(PortalEntityModel context)
         {

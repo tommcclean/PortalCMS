@@ -15,10 +15,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly IImageService _imageService;
-        private readonly IFontService _fontService;
-        private readonly IPostService _postService;
-        private readonly IPostImageService _postImageService;
+        readonly IImageService _imageService;
+        readonly IFontService _fontService;
+        readonly IPostService _postService;
+        readonly IPostImageService _postImageService;
 
         private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
         private const string FONT_DIRECTORY = "/Areas/Admin/Content/Fonts/Uploads";

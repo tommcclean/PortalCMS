@@ -9,7 +9,7 @@ namespace Portal.CMS.Entities.Migrations
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
     public sealed partial class ExtendPagesEntityWithTheme : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ExtendPagesEntityWithTheme));
+        readonly ResourceManager Resources = new ResourceManager(typeof(ExtendPagesEntityWithTheme));
         
         string IMigrationMetadata.Id
         {

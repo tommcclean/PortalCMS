@@ -28,8 +28,8 @@ namespace Portal.CMS.Services.Authentication
     {
         #region Dependencies
 
-        private readonly PortalEntityModel _context;
-        private readonly IUserService _userService;
+        readonly PortalEntityModel _context;
+        readonly IUserService _userService;
 
         public RoleService(PortalEntityModel context, IUserService userService)
         {

@@ -27,9 +27,9 @@ namespace Portal.CMS.Services.Menu
     {
         #region Dependencies
 
-        private readonly PortalEntityModel _context;
-        private readonly IUserService _userService;
-        private readonly IRoleService _roleService;
+        readonly PortalEntityModel _context;
+        readonly IUserService _userService;
+        readonly IRoleService _roleService;
 
         public MenuService(PortalEntityModel context, IUserService userService, IRoleService roleService)
         {

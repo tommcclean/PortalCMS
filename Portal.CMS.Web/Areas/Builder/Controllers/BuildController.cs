@@ -17,15 +17,15 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
     {
         #region Dependencies
 
-        private readonly IPageService _pageService;
-        private readonly IPageSectionService _pageSectionService;
-        private readonly IPageSectionTypeService _pageSectionTypeService;
-        private readonly IImageService _imageService;
-        private readonly IAnalyticsService _analyticService;
-        private readonly IUserService _userService;
-        private readonly ILoginService _loginService;
-        private readonly IRoleService _roleService;
-        private readonly IThemeService _themeService;
+        readonly IPageService _pageService;
+        readonly IPageSectionService _pageSectionService;
+        readonly IPageSectionTypeService _pageSectionTypeService;
+        readonly IImageService _imageService;
+        readonly IAnalyticsService _analyticService;
+        readonly IUserService _userService;
+        readonly ILoginService _loginService;
+        readonly IRoleService _roleService;
+        readonly IThemeService _themeService;
 
         public BuildController(IPageService pageService, IPageSectionService pageSectionService, IPageSectionTypeService pageSectionTypeService, IImageService imageService, IAnalyticsService analyticService, IUserService userService, ILoginService loginService, IRoleService roleService, IThemeService themeService)
         {
@@ -41,12 +41,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         #endregion Dependencies
-
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return RedirectToAction(nameof(Index), "Home", new { area = "" });
-        }
 
         [HttpGet]
         public ActionResult Index(int pageId)

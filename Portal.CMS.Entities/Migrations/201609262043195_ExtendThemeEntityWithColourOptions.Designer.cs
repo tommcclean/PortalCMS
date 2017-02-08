@@ -9,7 +9,7 @@ namespace Portal.CMS.Entities.Migrations
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
     public sealed partial class ExtendThemeEntityWithColourOptions : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ExtendThemeEntityWithColourOptions));
+        readonly ResourceManager Resources = new ResourceManager(typeof(ExtendThemeEntityWithColourOptions));
         
         string IMigrationMetadata.Id
         {

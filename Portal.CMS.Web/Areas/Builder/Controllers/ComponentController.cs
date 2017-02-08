@@ -16,10 +16,10 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
     {
         #region Dependencies
 
-        private readonly IPageSectionService _pageSectionService;
-        private readonly IPageComponentTypeService _pageComponentTypeService;
-        private readonly IPageComponentService _pageComponentService;
-        private readonly IImageService _imageService;
+        readonly IPageSectionService _pageSectionService;
+        readonly IPageComponentTypeService _pageComponentTypeService;
+        readonly IPageComponentService _pageComponentService;
+        readonly IImageService _imageService;
 
         private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
 

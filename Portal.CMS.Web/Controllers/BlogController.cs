@@ -13,11 +13,11 @@ namespace Portal.CMS.Web.Controllers
     {
         #region Dependencies
 
-        private readonly IPostService _postService;
-        private readonly IPostCommentService _postCommentService;
-        private readonly IAnalyticsService _analyticsService;
-        private readonly IUserService _userService;
-        private readonly IThemeService _themeService;
+        readonly IPostService _postService;
+        readonly IPostCommentService _postCommentService;
+        readonly IAnalyticsService _analyticsService;
+        readonly IUserService _userService;
+        readonly IThemeService _themeService;
 
         public BlogController(IPostService postService, IPostCommentService postCommentService, IAnalyticsService analyticsService, IUserService userService, IThemeService themeService)
         {

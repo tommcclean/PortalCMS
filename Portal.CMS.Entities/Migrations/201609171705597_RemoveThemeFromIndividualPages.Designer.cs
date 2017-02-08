@@ -9,7 +9,7 @@ namespace Portal.CMS.Entities.Migrations
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
     public sealed partial class RemoveThemeFromIndividualPages : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveThemeFromIndividualPages));
+        readonly ResourceManager Resources = new ResourceManager(typeof(RemoveThemeFromIndividualPages));
         
         string IMigrationMetadata.Id
         {

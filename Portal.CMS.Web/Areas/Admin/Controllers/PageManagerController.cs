@@ -16,9 +16,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly IPageService _pageService;
-        private readonly IRoleService _roleService;
-        private readonly ITokenService _tokenService;
+        readonly IPageService _pageService;
+        readonly IRoleService _roleService;
+        readonly ITokenService _tokenService;
 
         public PageManagerController(IPageService pageService, IRoleService roleService, ITokenService tokenService)
         {

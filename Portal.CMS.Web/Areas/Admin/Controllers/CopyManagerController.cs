@@ -10,7 +10,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly ICopyService _copyService;
+        readonly ICopyService _copyService;
 
         public CopyManagerController(ICopyService copyService)
         {

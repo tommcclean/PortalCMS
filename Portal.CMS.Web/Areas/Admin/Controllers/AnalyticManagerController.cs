@@ -15,7 +15,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly IAnalyticsService _analyticsService;
+        readonly IAnalyticsService _analyticsService;
 
         public AnalyticManagerController(IAnalyticsService analyticsService)
         {

@@ -8,7 +8,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly IPostCategoryService _postCategoryService;
+        readonly IPostCategoryService _postCategoryService;
 
         public PostCategoriesController(IPostCategoryService postCategoryService)
         {

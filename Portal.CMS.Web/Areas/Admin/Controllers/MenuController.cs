@@ -11,7 +11,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly IMenuService _menuService;
+        readonly IMenuService _menuService;
 
         public MenuController(IMenuService menuService)
         {

@@ -9,7 +9,7 @@ namespace Portal.CMS.Entities.Migrations
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
     public sealed partial class AddAnalyticsEntities : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddAnalyticsEntities));
+        readonly ResourceManager Resources = new ResourceManager(typeof(AddAnalyticsEntities));
         
         string IMigrationMetadata.Id
         {

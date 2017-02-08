@@ -13,9 +13,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly ISettingService _settingService;
-        private readonly IRoleService _roleService;
-        private readonly IMenuService _menuService;
+        readonly ISettingService _settingService;
+        readonly IRoleService _roleService;
+        readonly IMenuService _menuService;
 
         public SettingManagerController(ISettingService settingService, IRoleService roleService, IMenuService menuService)
         {

@@ -14,11 +14,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly ILoginService _loginService;
-        private readonly IRegistrationService _registrationService;
-        private readonly IUserService _userService;
-        private readonly IRoleService _roleService;
-        private readonly ITokenService _tokenService;
+        readonly ILoginService _loginService;
+        readonly IRegistrationService _registrationService;
+        readonly IUserService _userService;
+        readonly IRoleService _roleService;
+        readonly ITokenService _tokenService;
 
         private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/Avatars";
 

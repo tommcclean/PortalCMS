@@ -14,11 +14,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly IMenuService _menuService;
-        private readonly IMenuItemService _menuItemService;
-        private readonly IPageService _pageService;
-        private readonly IPostService _postService;
-        private readonly IRoleService _roleService;
+        readonly IMenuService _menuService;
+        readonly IMenuItemService _menuItemService;
+        readonly IPageService _pageService;
+        readonly IPostService _postService;
+        readonly IRoleService _roleService;
 
         public MenuItemController(IMenuService menuService, IMenuItemService menuItemService, IPageService pageService, IPostService postService, IRoleService roleService)
         {

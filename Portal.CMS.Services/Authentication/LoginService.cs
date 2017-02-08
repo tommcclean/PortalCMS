@@ -16,8 +16,8 @@ namespace Portal.CMS.Services.Authentication
     {
         #region Dependencies
 
-        private readonly PortalEntityModel _context;
-        private readonly ITokenService _tokenService;
+        readonly PortalEntityModel _context;
+        readonly ITokenService _tokenService;
 
         public LoginService(PortalEntityModel context, ITokenService tokenService)
         {

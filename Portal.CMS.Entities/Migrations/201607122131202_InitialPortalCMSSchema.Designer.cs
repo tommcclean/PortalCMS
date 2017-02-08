@@ -9,7 +9,7 @@ namespace Portal.CMS.Entities.Migrations
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
     public sealed partial class InitialPortalCMSSchema : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialPortalCMSSchema));
+        readonly ResourceManager Resources = new ResourceManager(typeof(InitialPortalCMSSchema));
         
         string IMigrationMetadata.Id
         {

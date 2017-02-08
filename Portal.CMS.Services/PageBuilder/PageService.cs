@@ -32,9 +32,9 @@ namespace Portal.CMS.Services.PageBuilder
     {
         #region Dependencies
 
-        private readonly PortalEntityModel _context;
-        private readonly IUserService _userService;
-        private readonly IRoleService _roleService;
+        readonly PortalEntityModel _context;
+        readonly IUserService _userService;
+        readonly IRoleService _roleService;
 
         public PageService(PortalEntityModel context, IUserService userService, IRoleService roleService)
         {

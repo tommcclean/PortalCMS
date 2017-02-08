@@ -12,9 +12,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly IUserService _userService;
-        private readonly IRegistrationService _registrationService;
-        private readonly IRoleService _roleService;
+        readonly IUserService _userService;
+        readonly IRegistrationService _registrationService;
+        readonly IRoleService _roleService;
 
         public UserManagerController(IUserService userService, IRegistrationService registrationService, IRoleService roleService)
         {

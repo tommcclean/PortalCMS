@@ -14,8 +14,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly IThemeService _themeService;
-        private readonly IFontService _fontService;
+        readonly IThemeService _themeService;
+        readonly IFontService _fontService;
 
         public ThemeManagerController(IThemeService themeService, IFontService fontService)
         {

@@ -9,7 +9,7 @@ namespace Portal.CMS.Entities.Migrations
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
     public sealed partial class ExtendMenuItemWithLinkIcon : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ExtendMenuItemWithLinkIcon));
+        readonly ResourceManager Resources = new ResourceManager(typeof(ExtendMenuItemWithLinkIcon));
         
         string IMigrationMetadata.Id
         {

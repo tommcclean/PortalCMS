@@ -12,9 +12,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly IPostService _postService;
-        private readonly IPostCommentService _commentService;
-        private readonly IImageService _imageService;
+        readonly IPostService _postService;
+        readonly IPostCommentService _commentService;
+        readonly IImageService _imageService;
 
         public DashboardController(IPostService postService, IPostCommentService commentService, IImageService imageService)
         {

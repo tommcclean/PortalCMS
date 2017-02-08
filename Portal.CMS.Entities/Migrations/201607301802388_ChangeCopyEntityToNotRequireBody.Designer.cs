@@ -9,7 +9,7 @@ namespace Portal.CMS.Entities.Migrations
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
     public sealed partial class ChangeCopyEntityToNotRequireBody : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeCopyEntityToNotRequireBody));
+        readonly ResourceManager Resources = new ResourceManager(typeof(ChangeCopyEntityToNotRequireBody));
         
         string IMigrationMetadata.Id
         {

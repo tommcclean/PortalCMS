@@ -20,7 +20,7 @@ namespace Portal.CMS.Services.Generic
     {
         #region Dependencies
 
-        private readonly PortalEntityModel _context;
+        readonly PortalEntityModel _context;
 
         public ImageService(PortalEntityModel context)
         {

@@ -10,7 +10,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        private readonly IRoleService _roleService;
+        readonly IRoleService _roleService;
 
         public RoleManagerController(IRoleService roleService)
         {

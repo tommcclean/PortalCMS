@@ -10,7 +10,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
     {
         #region Dependencies
 
-        private readonly IPostService _postService;
+        readonly IPostService _postService;
 
         public WidgetController(IPostService postService)
         {

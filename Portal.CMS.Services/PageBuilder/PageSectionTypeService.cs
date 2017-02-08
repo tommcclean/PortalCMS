@@ -14,7 +14,7 @@ namespace Portal.CMS.Services.PageBuilder
     {
         #region Dependencies
 
-        private readonly PortalEntityModel _context;
+        readonly PortalEntityModel _context;
 
         public PageSectionTypeService(PortalEntityModel context)
         {

@@ -22,7 +22,7 @@ namespace Portal.CMS.Services.Menu
     {
         #region Dependencies
 
-        private readonly PortalEntityModel _context;
+        readonly PortalEntityModel _context;
 
         public MenuItemService(PortalEntityModel context)
         {

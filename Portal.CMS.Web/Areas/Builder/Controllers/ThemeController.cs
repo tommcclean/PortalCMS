@@ -8,7 +8,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
     {
         #region Dependencies
 
-        private readonly IThemeService _themeService;
+        readonly IThemeService _themeService;
 
         public ThemeController(IThemeService themeService)
         {
