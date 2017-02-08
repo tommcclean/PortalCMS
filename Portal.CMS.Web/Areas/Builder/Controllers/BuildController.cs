@@ -43,6 +43,12 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         #endregion Dependencies
 
         [HttpGet]
+        public ActionResult Index()
+        {
+            return RedirectToAction(nameof(Index), "Home", new { area = "" });
+        }
+
+        [HttpGet]
         public ActionResult Index(int pageId)
         {
             var resetCookie = Request.Cookies["PortalCMS_SSO"];
