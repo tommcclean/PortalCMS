@@ -48,11 +48,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="LogBook.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\tommcclean.LogBook.1.0.0\lib\net452\LogBook.Services.dll</HintPath>
+      <HintPath>..\packages\tommcclean.LogBook.1.0.3\lib\net452\LogBook.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NMemory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6a46696d54971e6d, processorArchitecture=MSIL">
-      <HintPath>..\packages\NMemory.1.1.0\lib\net45\NMemory.dll</HintPath>
+      <HintPath>..\packages\NMemory.1.1.2\lib\net45\NMemory.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
