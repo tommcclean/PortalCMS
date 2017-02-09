@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.Authentication;
 using Portal.CMS.Services.Authentication;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Portal.CMS.Services.Tests.Authenticated
 {
-    [TestClass]
+    [TestFixture]
     public class TokenServiceTests
     {
         #region Dependencies
@@ -18,7 +18,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
         private RegistrationService _registrationService;
         private TokenService _tokenService;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialise()
         {
             var connection = Effort.DbConnectionFactory.CreateTransient();
@@ -35,7 +35,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
         #region TokenService.RedeemPasswordToken
 
-        [TestMethod]
+        [Test]
         public void RedeemPasswordToken_InvalidTokenReturnsValidation()
         {
             var result = _tokenService.RedeemPasswordToken(string.Empty, "test@test.com", "test");
@@ -44,7 +44,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.AreEqual(result, "Invalid Token. Please Request Reset Password Token Again...");
         }
 
-        [TestMethod]
+        [Test]
         public void RedeemPasswordToken_TokenDoesntMatchEmailAddressReturnsValidation()
         {
             var userId = 1;
@@ -67,7 +67,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.AreEqual(result, "Invalid Token. This Token does not match the Email Address you entered...");
         }
 
-        [TestMethod]
+        [Test]
         public void RedeemPasswordToken_TokenAlreadyUsedReturnsValidation()
         {
             var userId = 1;
@@ -90,7 +90,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.AreEqual(result, "Invalid Token. This Token has already been used");
         }
 
-        [TestMethod]
+        [Test]
         public void RedeemPasswordToken_ExecutesWithoutException()
         {
             var userId = 1;
@@ -117,7 +117,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
         #region TokenService.RedeemSSOToken
 
-        [TestMethod]
+        [Test]
         public void RedeemSSOToken_InvalidTokenReturnsValidation()
         {
             var result = _tokenService.RedeemSSOToken(0, "12345");
@@ -126,7 +126,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.AreEqual(result, "Invalid Token.");
         }
 
-        [TestMethod]
+        [Test]
         public void RedeemSSOToken_TokenAlreadyUsedReturnsValidation()
         {
             var userId = 1;
@@ -149,7 +149,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.AreEqual(result, "Invalid Token. This Token has already been used.");
         }
 
-        [TestMethod]
+        [Test]
         public void RedeemSSOToken_ExecutesWithoutException()
         {
             var userId = 1;

@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.Authentication;
 using Portal.CMS.Services.Authentication;
@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Portal.CMS.Services.Tests.Authenticated
 {
-    [TestClass]
+    [TestFixture]
     public class RoleServiceTests
     {
         #region Dependencies
@@ -18,7 +18,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
         private UserService _userService;
         private RoleService _roleService;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialise()
         {
             var connection = Effort.DbConnectionFactory.CreateTransient();
@@ -34,7 +34,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
         #region RoleService.Get
 
-        [TestMethod]
+        [Test]
         public void GetUserRoles_ReturnsRoles()
         {
             int? userId = 1;
@@ -68,7 +68,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.IsTrue(result.Count() > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void GetUserRoles_ReturnsCorrectRole()
         {
             int? userId = 1;
@@ -104,7 +104,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.IsTrue(result.First().RoleName == "Role 1");
         }
 
-        [TestMethod]
+        [Test]
         public void GetUserRoles_NullUserReturnsAnonymous()
         {
             var result = _roleService.Get(null);
@@ -113,7 +113,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.IsTrue(result.Count() == 1);
         }
 
-        [TestMethod]
+        [Test]
         public void GetUserRoles_InvalidUserReturnsNoRoles()
         {
             int? userId = 100;
@@ -128,7 +128,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
         #region RoleService.Update
 
-        [TestMethod]
+        [Test]
         public void Update_RemovesAllRoles()
         {
             int? userId = 1;
@@ -173,7 +173,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.IsTrue(result.Count() == 0);
         }
 
-        [TestMethod]
+        [Test]
         public void Update_AddsAdditionalRole()
         {
             int? userId = 1;
@@ -221,7 +221,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
         #region RoleService.Validate
 
-        [TestMethod]
+        [Test]
         public void Validate_Admin_CanAccessEverything()
         {
             var entityRoles = new List<Role> { new Role { RoleId = 2, RoleName = "Other Role" } };
@@ -232,7 +232,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
+        [Test]
         public void Validate_Authenticated_CanAccessEmptyRoleSets()
         {
             var entityRoles = new List<Role>();
@@ -243,7 +243,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
+        [Test]
         public void Validate_Anonymous_NoAccessToLockedEntity()
         {
             var entityRoles = new List<Role> { new Role { RoleId = 1, RoleName = "Any Role" } };
@@ -254,7 +254,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
+        [Test]
         public void Validate_Authenticated_CanAccessEntityWithSameRole()
         {
             var entityRoles = new List<Role> { new Role { RoleId = 1, RoleName = "Role 1" }, new Role { RoleId = 2, RoleName = "Role 2" } };
