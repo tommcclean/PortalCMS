@@ -156,7 +156,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new { State = false, Message = ex.InnerException.Message });
+                return Json(new { State = false, ex.InnerException.Message });
             }
         }
 
@@ -172,13 +172,13 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             if (!Directory.Exists(destinationDirectory))
                 Directory.CreateDirectory(destinationDirectory);
 
-            var imageFileName = string.Format("media-{0}-{1}", DateTime.Now.ToString("ddMMyyyyHHmmss"), imageFile.FileName);
+            var imageFileName = $"media-{DateTime.Now.ToString("ddMMyyyyHHmmss")}-{imageFile.FileName}";
             var path = Path.Combine(Server.MapPath(IMAGE_DIRECTORY), imageFileName);
 
             imageFile.SaveAs(path);
 
             var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace("Builder/Section/Edit", string.Empty);
-            var relativeFilePath = string.Format("{0}{1}/{2}", siteURL, IMAGE_DIRECTORY, imageFileName);
+            var relativeFilePath = $"{siteURL}{IMAGE_DIRECTORY}/{imageFileName}";
 
             return relativeFilePath;
         }
