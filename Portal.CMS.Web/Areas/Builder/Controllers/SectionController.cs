@@ -3,7 +3,7 @@ using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Section;
-using Portal.CMS.Web.Areas.Builder.ViewModels.Shared;
+using Portal.CMS.Web.ViewModels.Shared;
 using System;
 using System.IO;
 using System.Linq;
@@ -17,10 +17,10 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
     {
         #region Dependencies
 
-        readonly IPageSectionService _pageSectionService;
-        readonly IPageSectionTypeService _pageSectionTypeService;
-        readonly IImageService _imageService;
-        readonly IRoleService _roleService;
+        private readonly IPageSectionService _pageSectionService;
+        private readonly IPageSectionTypeService _pageSectionTypeService;
+        private readonly IImageService _imageService;
+        private readonly IRoleService _roleService;
 
         private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
 
@@ -55,8 +55,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 RoleList = _roleService.Get(),
                 SelectedRoleList = pageSection.PageSectionRoles.Select(x => x.Role.RoleName).ToList()
             };
-
-            model.MediaLibrary.PageCount = Math.Ceiling(Convert.ToDouble(model.MediaLibrary.ImageList.Count()) / 8);
 
             return View("_Edit", model);
         }

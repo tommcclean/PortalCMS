@@ -2,7 +2,7 @@
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Component;
-using Portal.CMS.Web.Areas.Builder.ViewModels.Shared;
+using Portal.CMS.Web.ViewModels.Shared;
 using System;
 using System.IO;
 using System.Linq;
@@ -16,10 +16,10 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
     {
         #region Dependencies
 
-        readonly IPageSectionService _pageSectionService;
-        readonly IPageComponentTypeService _pageComponentTypeService;
-        readonly IPageComponentService _pageComponentService;
-        readonly IImageService _imageService;
+        private readonly IPageSectionService _pageSectionService;
+        private readonly IPageComponentTypeService _pageComponentTypeService;
+        private readonly IPageComponentService _pageComponentService;
+        private readonly IImageService _imageService;
 
         private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
 
@@ -121,11 +121,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                     ImageList = imageList.Where(x => x.ImageCategory == Entities.Entities.Generic.ImageCategory.Texture),
                 }
             };
-
-            model.GeneralImages.PageCount = Math.Ceiling(Convert.ToDouble(model.GeneralImages.ImageList.Count()) / 8);
-            model.IconImages.PageCount = Math.Ceiling(Convert.ToDouble(model.IconImages.ImageList.Count()) / 8);
-            model.ScreenshotImages.PageCount = Math.Ceiling(Convert.ToDouble(model.ScreenshotImages.ImageList.Count()) / 8);
-            model.TextureImages.PageCount = Math.Ceiling(Convert.ToDouble(model.TextureImages.ImageList.Count()) / 8);
 
             return View("_Image", model);
         }

@@ -8,6 +8,7 @@
 }
 
 @Scripts.Render("~/Resources/JavaScript/ImageSelector")
+@Scripts.Render("~/Resources/JavaScript/Pagination")
 
 <script type="text/javascript">
     tinymce.init({
@@ -88,32 +89,15 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-banner">
-            <div class="alert alert-warning" role="alert">Upload new images for use in your blog posts using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
-            @if (!Model.ImageList.Any())
-            {
-                <h2>No Media Uploads</h2>
-                <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
-            }
-
             <div id="banner-selector" class="image-selector x4 single float-container">
-                @foreach (var image in Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.General))
-                {
-                    <img class="thumbnail @(Model.BannerImageId == image.ImageId ? "selected" : "")" alt="Image Thumbnail" data-parent="banner-selector" data-target="BannerImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                }
+                <div class="alert alert-warning" role="alert">Upload new images for use in your blog posts using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
+                @Html.Partial("_RenderPage", Model.BannerImages)
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-gallery">
-            <div class="alert alert-warning" role="alert">Upload new images for use in your blog posts using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
-            @if (!Model.ImageList.Any())
-            {
-                <h2>No Media Uploads</h2>
-                <p>You haven't uploaded any Media to Portal CMS yet, when you do you will be able to select it here...</p>
-            }
-            <div id="gallery-selector" class="image-selector x4 multiple float-container">
-                @foreach (var image in Model.ImageList.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.General || x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.Screenshot))
-                {
-                    <img class="thumbnail @(Model.ExistingGalleryImageList.Contains(image.ImageId) ? "selected" : "")" alt="Image Thumbnail" data-parent="gallery-selector" data-target="GalleryImageList" data-identifier="@image.ImageId" src="@image.ImagePath" />
-                }
+            <div id="gallery-selector" class="image-selector x4 single float-container">
+                <div class="alert alert-warning" role="alert">Upload new images for use in your blog posts using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
+                @Html.Partial("_RenderPage", Model.GalleryImages)
             </div>
         </div>
     </div>

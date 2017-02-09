@@ -1,6 +1,7 @@
 ﻿using Portal.CMS.Entities.Entities.Authentication;
 using Portal.CMS.Entities.Entities.Generic;
 using Portal.CMS.Entities.Entities.Posts;
+using Portal.CMS.Web.ViewModels.Shared;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -37,6 +38,10 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager
         [DisplayName("Roles")]
         public List<string> SelectedRoleList { get; set; } = new List<string>();
 
+        public PaginationViewModel BannerImages { get; set; }
+
+        public PaginationViewModel GalleryImages { get; set; }
+
         #region Hidden Fields
 
         public int BannerImageId { get; set; }
@@ -48,8 +53,6 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager
         #endregion Hidden Fields
 
         #region Enumerable Properties
-
-        public List<Image> ImageList { get; set; }
 
         public IEnumerable<PostCategory> PostCategoryList { get; set; }
 

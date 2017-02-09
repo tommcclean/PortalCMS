@@ -6,6 +6,7 @@ using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager;
+using Portal.CMS.Web.ViewModels.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,12 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        readonly IPostService _postService;
-        readonly IPostImageService _postImageService;
-        readonly IImageService _imageService;
-        readonly IPostCategoryService _postCategoryService;
-        readonly IUserService _userService;
-        readonly IRoleService _roleService;
+        private readonly IPostService _postService;
+        private readonly IPostImageService _postImageService;
+        private readonly IImageService _imageService;
+        private readonly IPostCategoryService _postCategoryService;
+        private readonly IUserService _userService;
+        private readonly IRoleService _roleService;
 
         public BlogManagerController(IPostService postService, IPostImageService postImageService, IImageService imageService, IPostCategoryService postCategoryService, IUserService userService, IRoleService roleService)
         {
@@ -61,7 +62,16 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PostCategoryList = postCategories,
                 UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" }),
                 PublicationState = PublicationState.Published,
-                ImageList = _imageService.Get(),
+                BannerImages = new PaginationViewModel
+                {
+                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    PaginationType = "Banner"
+                },
+                GalleryImages = new PaginationViewModel
+                {
+                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    PaginationType = "Gallery"
+                },
                 RoleList = _roleService.Get()
             };
 
@@ -75,7 +85,16 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.ImageList = _imageService.Get();
+                model.BannerImages = new PaginationViewModel
+                {
+                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    PaginationType = "Banner"
+                };
+                model.GalleryImages = new PaginationViewModel
+                {
+                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    PaginationType = "Gallery"
+                };
                 model.PostCategoryList = _postCategoryService.Get();
                 model.UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" });
                 model.RoleList = _roleService.Get();
@@ -112,7 +131,16 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 ExistingGalleryImageList = post.PostImages.Where(x => x.PostImageType == PostImageType.Gallery).Select(x => x.ImageId).ToList(),
                 PostCategoryList = _postCategoryService.Get(),
                 UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" }),
-                ImageList = _imageService.Get(),
+                BannerImages = new PaginationViewModel
+                {
+                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    PaginationType = "Banner"
+                },
+                GalleryImages = new PaginationViewModel
+                {
+                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    PaginationType = "Gallery"
+                },
                 RoleList = _roleService.Get(),
                 SelectedRoleList = post.PostRoles.Select(x => x.Role.RoleName).ToList()
             };
@@ -133,7 +161,16 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.ImageList = _imageService.Get();
+                model.BannerImages = new PaginationViewModel
+                {
+                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    PaginationType = "Banner"
+                };
+                model.GalleryImages = new PaginationViewModel
+                {
+                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    PaginationType = "Gallery"
+                };
                 model.PostCategoryList = _postCategoryService.Get();
                 model.UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" });
                 model.RoleList = _roleService.Get();

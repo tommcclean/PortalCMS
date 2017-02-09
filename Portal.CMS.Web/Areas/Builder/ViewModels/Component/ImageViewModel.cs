@@ -1,5 +1,5 @@
 ﻿using Portal.CMS.Entities.Entities.Generic;
-using Portal.CMS.Web.Areas.Builder.ViewModels.Shared;
+using Portal.CMS.Web.ViewModels.Shared;
 using System.ComponentModel;
 using System.Web;
 
