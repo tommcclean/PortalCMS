@@ -17,15 +17,15 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
     {
         #region Dependencies
 
-        readonly IPageService _pageService;
-        readonly IPageSectionService _pageSectionService;
-        readonly IPageSectionTypeService _pageSectionTypeService;
-        readonly IImageService _imageService;
-        readonly IAnalyticsService _analyticService;
-        readonly IUserService _userService;
-        readonly ILoginService _loginService;
-        readonly IRoleService _roleService;
-        readonly IThemeService _themeService;
+        private readonly IPageService _pageService;
+        private readonly IPageSectionService _pageSectionService;
+        private readonly IPageSectionTypeService _pageSectionTypeService;
+        private readonly IImageService _imageService;
+        private readonly IAnalyticsService _analyticService;
+        private readonly IUserService _userService;
+        private readonly ILoginService _loginService;
+        private readonly IRoleService _roleService;
+        private readonly IThemeService _themeService;
 
         public BuildController(IPageService pageService, IPageSectionService pageSectionService, IPageSectionTypeService pageSectionTypeService, IImageService imageService, IAnalyticsService analyticService, IUserService userService, ILoginService loginService, IRoleService roleService, IThemeService themeService)
         {
@@ -42,34 +42,20 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
         #endregion Dependencies
 
-        [HttpGet]
-        public ActionResult Index(int pageId)
+        public ActionResult Index(int pageId = 0)
         {
-            var resetCookie = Request.Cookies["PortalCMS_SSO"];
+            if (pageId == 0)
+                return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
-            if (!UserHelper.IsLoggedIn && resetCookie != null)
-            {
-                var cookieValues = resetCookie.Value.Split(',');
+            EvaluateSingleSignOn();
 
-                var result = _loginService.SSO(Convert.ToInt32(cookieValues[0]), cookieValues[2]);
-
-                if (result.HasValue)
-                {
-                    Session.Add("UserAccount", _userService.GetUser(result.Value));
-                    Session.Add("UserRoles", _roleService.Get(result));
-                }
-
-                resetCookie.Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies.Add(resetCookie);
-            }
-
-            var model = new CustomViewModel()
+            var model = new CustomViewModel
             {
                 Page = _pageService.View(UserHelper.UserId, pageId)
             };
 
             if (model.Page == null)
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
             return View("/Areas/Builder/Views/Build/Index.cshtml", model);
         }
@@ -92,7 +78,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             if (sectionList != null && sectionList.Length > 2)
                 _pageService.Order(pageId, sectionList);
 
-            return RedirectToAction("Index", "Build", new { pageId = pageId });
+            return RedirectToAction(nameof(Index), "Build", new { pageId });
         }
 
         [HttpPost]
@@ -101,11 +87,39 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             var pageSection = _pageSectionService.Get(pageSectionId);
 
             EmailHelper.Send(
-                _userService.Get(new List<string> { "Admin" }).Select(x => x.EmailAddress).ToList(),
+                _userService.Get(new List<string> { nameof(Admin) }).Select(x => x.EmailAddress).ToList(),
                 "Contact Submitted",
-                string.Format("<p>Hello, we thought you might like to know that a visitor to your website has submitted a message, here are the details we recorded.</p><p>Name: {0}</p><p>Email Address: {1}</p><p>Subject: {2}</p><p>Message: {3}</p>", yourName, yourEmail, yourSubject, yourMessage));
+                $@"<p>Hello, we thought you might like to know that a visitor to your website has submitted a message, here are the details we recorded.</p>
+                <p>Name: {yourName}</p>
+                <p>Email Address: {yourEmail}</p>
+                <p>Subject: {yourSubject}</p>
+                <p>Message: {yourMessage}</p>");
 
-            return RedirectToAction("Index", new { pageId = pageSection.PageId });
+            return RedirectToAction(nameof(Index), new { pageId = pageSection.PageId });
+        }
+
+        /// <summary>
+        /// Automatically Log a User In When a Page Builder Page Requires a Website Reset
+        /// </summary>
+        private void EvaluateSingleSignOn()
+        {
+            var resetCookie = Request.Cookies["PortalCMS_SSO"];
+
+            if (!UserHelper.IsLoggedIn && resetCookie != null)
+            {
+                var cookieValues = resetCookie.Value.Split(',');
+
+                var result = _loginService.SSO(Convert.ToInt32(cookieValues[0]), cookieValues[2]);
+
+                if (result.HasValue)
+                {
+                    Session.Add("UserAccount", _userService.GetUser(result.Value));
+                    Session.Add("UserRoles", _roleService.Get(result));
+                }
+
+                resetCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(resetCookie);
+            }
         }
     }
 }
