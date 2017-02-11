@@ -1,0 +1,8 @@
+language: csharp
+solution: "Portal.CMS.Solution.sln"
+script:
+  - xbuild /p:Configuration=Debug Portal.CMS.Solution.sln
+before_install:
+  - sudo apt-get install nunit-console
+after_script:
+  - nunit-console Portal.CMS.Services.Tests/bin/Release/Portal.CMS.Services.Tests.dll
