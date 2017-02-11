@@ -22,7 +22,7 @@
 function OutputImageSelections(imageSelector, outputTextbox) {
     var selectedItemList = [];
 
-    $('#' + imageSelector + ' img.thumbnail.selected').each(function (i, obj) {
+    $('.' + imageSelector + ' img.thumbnail.selected').each(function (i, obj) {
         var identifier = $(this).attr("data-identifier");
 
         selectedItemList.push(identifier);

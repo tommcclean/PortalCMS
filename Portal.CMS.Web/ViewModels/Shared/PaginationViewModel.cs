@@ -9,6 +9,8 @@ namespace Portal.CMS.Web.ViewModels.Shared
     {
         public string PaginationType { get; set; }
 
+        public string TargetInputField { get; set; }
+
         public IEnumerable<Image> ImageList { get; set; }
 
         public double PageCount

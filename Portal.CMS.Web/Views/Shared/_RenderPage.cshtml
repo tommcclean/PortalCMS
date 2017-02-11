@@ -1,12 +1,12 @@
 ﻿@model Portal.CMS.Web.ViewModels.Shared.PaginationViewModel
 
-<div class="pagination-wrapper" data-type="@Model.PaginationType">
+<div class="pagination-wrapper @Model.PaginationType" data-type="@Model.PaginationType">
     @for (var page = 1; page <= Model.PageCount; page += 1)
     {
         <div class="page-@page pagination-page" data-page="@page" style="@(page == 1 ? "" : "display: none;")">
             @foreach (var image in Model.ImageList.Skip((page - 1) * 8).Take(8))
             {
-                <img class="thumbnail" data-parent="banner-selector" data-target="BackgroundImageId" data-identifier="@image.ImageId" src="@image.ImagePath" />
+                <img class="thumbnail" data-parent="@Model.PaginationType" data-target="@Model.TargetInputField" data-identifier="@image.ImageId" src="@image.ImagePath" />
             }
         </div>
     }

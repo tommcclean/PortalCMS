@@ -46,6 +46,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 MediaLibrary = new PaginationViewModel
                 {
                     ImageList = _imageService.Get(),
+                    TargetInputField = "BackgroundImageId",
                     PaginationType = "section"
                 },
                 PageSectionHeight = _pageSectionService.DetermineSectionHeight(sectionId),

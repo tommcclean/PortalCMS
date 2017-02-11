@@ -65,11 +65,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 BannerImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    TargetInputField = "BannerImageId",
                     PaginationType = "Banner"
                 },
                 GalleryImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    TargetInputField = "GalleryImageList",
                     PaginationType = "Gallery"
                 },
                 RoleList = _roleService.Get()
@@ -88,11 +90,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 model.BannerImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    TargetInputField = "BannerImageId",
                     PaginationType = "Banner"
                 };
                 model.GalleryImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    TargetInputField = "GalleryImageList",
                     PaginationType = "Gallery"
                 };
                 model.PostCategoryList = _postCategoryService.Get();
@@ -134,11 +138,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 BannerImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    TargetInputField = "BannerImageId",
                     PaginationType = "Banner"
                 },
                 GalleryImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    TargetInputField = "GalleryImageList",
                     PaginationType = "Gallery"
                 },
                 RoleList = _roleService.Get(),
@@ -164,11 +170,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 model.BannerImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    TargetInputField = "BannerImageId",
                     PaginationType = "Banner"
                 };
                 model.GalleryImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    TargetInputField = "GalleryImageList",
                     PaginationType = "Gallery"
                 };
                 model.PostCategoryList = _postCategoryService.Get();

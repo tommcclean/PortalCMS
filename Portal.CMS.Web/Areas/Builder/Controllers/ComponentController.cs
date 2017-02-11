@@ -103,21 +103,25 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 GeneralImages = new PaginationViewModel
                 {
                     PaginationType = "general",
+                    TargetInputField = "SelectedImageId",
                     ImageList = imageList.Where(x => x.ImageCategory == Entities.Entities.Generic.ImageCategory.General)
                 },
                 IconImages = new PaginationViewModel
                 {
                     PaginationType = "icon",
+                    TargetInputField = "SelectedImageId",
                     ImageList = imageList.Where(x => x.ImageCategory == Entities.Entities.Generic.ImageCategory.Icon)
                 },
                 ScreenshotImages = new PaginationViewModel
                 {
                     PaginationType = "screenshot",
+                    TargetInputField = "SelectedImageId",
                     ImageList = imageList.Where(x => x.ImageCategory == Entities.Entities.Generic.ImageCategory.Screenshot)
                 },
                 TextureImages = new PaginationViewModel
                 {
                     PaginationType = "texture",
+                    TargetInputField = "SelectedImageId",
                     ImageList = imageList.Where(x => x.ImageCategory == Entities.Entities.Generic.ImageCategory.Texture)
                 }
             };
