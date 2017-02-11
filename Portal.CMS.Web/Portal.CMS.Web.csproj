@@ -80,11 +80,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="LogBook.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Bin\LogBook.Entities.dll</HintPath>
+      <HintPath>..\packages\tommcclean.LogBook.1.0.4\lib\net452\LogBook.Entities.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="LogBook.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\tommcclean.LogBook.1.0.3\lib\net452\LogBook.Services.dll</HintPath>
+      <HintPath>..\packages\tommcclean.LogBook.1.0.4\lib\net452\LogBook.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
