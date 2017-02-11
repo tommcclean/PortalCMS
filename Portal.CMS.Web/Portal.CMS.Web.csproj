@@ -336,6 +336,7 @@
     <Compile Include="Areas\Builder\ViewModels\Component\ImageViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\AppDrawerViewModel.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="ViewModels\Shared\PaginationViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Theme\ThemeViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Widget\PostListViewModel.cs" />
@@ -712,6 +713,15 @@
   <ItemGroup>
     <Folder Include="Areas\Builder\ViewModels\Shared\" />
     <Folder Include="Areas\Builder\Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Error\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Error\NotFound.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Error\_Layout.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

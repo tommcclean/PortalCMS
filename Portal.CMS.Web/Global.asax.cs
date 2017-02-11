@@ -26,6 +26,13 @@ namespace Portal.CMS.Web
             WebPageHttpHandler.RegisterExtension("cscss");
 
             MvcHandler.DisableMvcResponseHeader = true;
+
+            new LogHandler().WriteLog(LogType.Information, "Website Started Up", string.Empty);
+        }
+
+        protected void Application_End()
+        {
+            new LogHandler().WriteLog(LogType.Information, "Website Shutting Down", string.Empty);
         }
 
         protected void Application_Error()
@@ -37,11 +44,6 @@ namespace Portal.CMS.Web
             var user = (UserHelper.IsLoggedIn ? $"{UserHelper.GivenName} {UserHelper.FamilyName} {UserHelper.UserId}" : string.Empty);
 
             logHandler.WriteLog(LogType.Error, "Portal CMS", exception, exception.Message, user);
-
-            if (System.Configuration.ConfigurationManager.AppSettings["CustomErrorPage"] == "true")
-            {
-                Response.Redirect("~/Home/Error");
-            }
         }
     }
 }
