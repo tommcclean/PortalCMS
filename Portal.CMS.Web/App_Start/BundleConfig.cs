@@ -43,8 +43,6 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Spectrum").Include("~/Content/Scripts/Spectrum/spectrum.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Spectrum").Include("~/Content/Scripts/Spectrum/spectrum.js"));
-
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Pagination").Include("~/Content/Scripts/Framework/pagination.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/ThemeManager/Sliders").Include("~/Areas/Admin/Content/Scripts/ThemeManager/initialise.js"));

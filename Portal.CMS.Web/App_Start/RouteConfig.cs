@@ -10,9 +10,9 @@ namespace Portal.CMS.Web
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            IContainer container = IoC.Initialize();
+            var container = IoC.Initialize();
 
-            PageService pageService = container.GetInstance<PageService>();
+            var pageService = container.GetInstance<PageService>();
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
@@ -20,12 +20,12 @@ namespace Portal.CMS.Web
 
             foreach (var page in pageList)
             {
-                string targetRoute = string.Empty;
+                var targetRoute = string.Empty;
 
                 if (string.IsNullOrWhiteSpace(page.PageArea) && page.PageController.Equals("Home", System.StringComparison.OrdinalIgnoreCase) && page.PageAction.Equals("Index", System.StringComparison.OrdinalIgnoreCase))
                 {
                     routes.MapRoute(
-                        string.Format("PageBuilder_{0}_Base", page.PageId),
+                        $"PageBuilder_{page.PageId}_Base",
                         "",
                         new { area = "Builder", controller = "Build", action = "Index", pageId = page.PageId }
                     );
@@ -33,25 +33,25 @@ namespace Portal.CMS.Web
 
                 if (page.PageAction.Equals("Index", System.StringComparison.OrdinalIgnoreCase))
                 {
-                    targetRoute = string.Format("{0}", page.PageController);
+                    targetRoute = page.PageController;
 
                     if (!string.IsNullOrWhiteSpace(page.PageArea))
-                        targetRoute = string.Format("{0}/{1}", page.PageArea, page.PageController);
+                        targetRoute = $"{page.PageArea}/{page.PageController}";
 
                     routes.MapRoute(
-                        string.Format("PageBuilder_{0}_Index", page.PageId),
+                        $"PageBuilder_{page.PageId}_Index",
                         targetRoute,
                         new { area = "Builder", controller = "Build", action = "Index", pageId = page.PageId }
                     );
                 }
 
-                targetRoute = string.Format("{0}/{1}", page.PageController, page.PageAction);
+                targetRoute = $"{page.PageController}/{page.PageAction}";
 
                 if (!string.IsNullOrWhiteSpace(page.PageArea))
-                    targetRoute = string.Format("{0}/{1}/{2}", page.PageArea, page.PageController, page.PageAction);
+                    targetRoute = $"{page.PageArea}/{page.PageController}/{page.PageAction}";
 
                 routes.MapRoute(
-                    string.Format("PageBuilder_{0}", page.PageId),
+                    $"PageBuilder_{page.PageId}",
                     targetRoute,
                     new { area = "Builder", controller = "Build", action = "Index", pageId = page.PageId }
                 );
