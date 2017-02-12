@@ -27,7 +27,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
             get
             {
                 var userSession = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
-                var userRoles = (IEnumerable<Role>)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+                var userRoles = (IEnumerable<Role>)System.Web.HttpContext.Current.Session[USER_ROLES];
 
                 if (userSession == null || userRoles == null)
                     return false;
