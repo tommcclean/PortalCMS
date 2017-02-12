@@ -144,8 +144,13 @@
 
 .ui-draggable-dragging
 {
-    width: 300px;
-    padding: 10px;
+    display: block;
+    min-width: 100px;
+    min-height: 50px;
+    max-width: 400px;
+    max-height: 250px;
+    padding: 5px;
+    transform: scale(0.5);
     border-radius: 5px;
     color: white;
     background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
