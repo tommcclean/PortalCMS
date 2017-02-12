@@ -10,9 +10,15 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [LoggedInFilter, AdminFilter]
+    [AdminFilter]
     public class AnalyticManagerController : Controller
     {
+        #region Manifest Constants
+
+        const string DISPLAY_CHART_VIEW = "_DisplayChart";
+
+        #endregion Manifest Constants
+
         #region Dependencies
 
         readonly IAnalyticsService _analyticsService;
@@ -24,6 +30,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         #endregion Dependencies
 
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
@@ -63,7 +70,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var dataSet = _analyticsService.TotalHitsToday();
 
-            var model = new ChartViewModel()
+            var model = new ChartViewModel
             {
                 ChartId = "chart-total-hits-today",
                 ChartName = "Total Hits Today",
@@ -74,10 +81,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             foreach (var item in dataSet)
             {
-                model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0} ({1})", item.Key, item.Value), ColumnValues = new List<int>() { item.Value } });
+                model.ChartColumns.Add(new ColumnViewModel { ColumnName = $"{item.Key} ({item.Value})", ColumnValues = new List<int> { item.Value } });
             }
 
-            return PartialView("_DisplayChart", model);
+            return PartialView(DISPLAY_CHART_VIEW, model);
         }
 
         [ChildActionOnly]
@@ -85,7 +92,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var dataSet = _analyticsService.ErrorPercentage(sinceDate);
 
-            var model = new ChartViewModel()
+            var model = new ChartViewModel
             {
                 ChartId = $"chart-error-percentage-{sinceDate.ToString("yyyyMMhhhddmm")}",
                 ChartName = chartName,
@@ -97,10 +104,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             foreach (var item in dataSet)
             {
-                model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0} ({1})", item.Key, item.Value), ColumnValues = new List<int>() { item.Value } });
+                model.ChartColumns.Add(new ColumnViewModel { ColumnName = $"{item.Key} ({item.Value})", ColumnValues = new List<int> { item.Value } });
             }
 
-            return PartialView("_DisplayChart", model);
+            return PartialView(DISPLAY_CHART_VIEW, model);
         }
 
         [ChildActionOnly]
@@ -108,7 +115,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var dataSet = _analyticsService.TotalHitsThisWeek();
 
-            var model = new ChartViewModel()
+            var model = new ChartViewModel
             {
                 ChartId = "chart-total-hits-weekly",
                 ChartName = "Total Hits This Week",
@@ -119,10 +126,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             foreach (var item in dataSet)
             {
-                model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0})", item.Key), ColumnValues = new List<int>() { item.Value } });
+                model.ChartColumns.Add(new ColumnViewModel { ColumnName = $"{item.Key})", ColumnValues = new List<int> { item.Value } });
             }
 
-            return PartialView("_DisplayChart", model);
+            return PartialView(DISPLAY_CHART_VIEW, model);
         }
 
         [ChildActionOnly]
@@ -130,7 +137,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var dataSet = _analyticsService.TotalHitsThisMonth();
 
-            var model = new ChartViewModel()
+            var model = new ChartViewModel
             {
                 ChartId = "chart-total-hits-monthly",
                 ChartName = "Total Hits Per Week This Month",
@@ -141,7 +148,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             foreach (var item in dataSet)
             {
-                model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0}", item.Key), ColumnValues = new List<int>() { item.Value } });
+                model.ChartColumns.Add(new ColumnViewModel { ColumnName = $"{item.Key}", ColumnValues = new List<int> { item.Value } });
             }
 
             return PartialView("_DisplayChart", model);
@@ -152,10 +159,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var dataSet = _analyticsService.GetTopPages(DetermineTimePeriod(timePeriod));
 
-            var model = new ChartViewModel()
+            var model = new ChartViewModel
             {
-                ChartId = string.Format("chart-top-pages-{0}", timePeriod.ToString().ToLower()),
-                ChartName = string.Format("Top Pages ({0})", timePeriod.ToString()),
+                ChartId = $"chart-top-pages-{timePeriod.ToString().ToLower()}",
+                ChartName = $"Top Pages ({timePeriod.ToString()})",
                 ChartSize = chartSize,
                 ChartType = ChartType.Pie,
                 ChartColumns = new List<ColumnViewModel>()
@@ -163,10 +170,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             foreach (var item in dataSet)
             {
-                model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0} ({1})", item.Key, item.Value), ColumnValues = new List<int>() { item.Value } });
+                model.ChartColumns.Add(new ColumnViewModel { ColumnName = $"{item.Key} ({item.Value})", ColumnValues = new List<int> { item.Value } });
             }
 
-            return PartialView("_DisplayChart", model);
+            return PartialView(DISPLAY_CHART_VIEW, model);
         }
 
         [ChildActionOnly]
@@ -174,10 +181,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var dataSet = _analyticsService.GetTopPosts(DetermineTimePeriod(timePeriod));
 
-            var model = new ChartViewModel()
+            var model = new ChartViewModel
             {
-                ChartId = string.Format("chart-top-posts-{0}", timePeriod.ToString().ToLower()),
-                ChartName = string.Format("Top Posts ({0})", timePeriod.ToString()),
+                ChartId = $"chart-top-posts-{timePeriod.ToString().ToLower()}",
+                ChartName = $"Top Posts ({timePeriod.ToString()})",
                 ChartSize = chartSize,
                 ChartType = ChartType.Pie,
                 ChartColumns = new List<ColumnViewModel>()
@@ -185,10 +192,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             foreach (var item in dataSet)
             {
-                model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0} ({1})", item.Key, item.Value), ColumnValues = new List<int>() { item.Value } });
+                model.ChartColumns.Add(new ColumnViewModel { ColumnName = $"{item.Key} ({item.Value})", ColumnValues = new List<int> { item.Value } });
             }
 
-            return PartialView("_DisplayChart", model);
+            return PartialView(DISPLAY_CHART_VIEW, model);
         }
 
         [ChildActionOnly]
@@ -196,10 +203,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var dataSet = _analyticsService.GetTopPostCategories(DetermineTimePeriod(timePeriod));
 
-            var model = new ChartViewModel()
+            var model = new ChartViewModel
             {
-                ChartId = string.Format("chart-top-post-categories-{0}", timePeriod.ToString().ToLower()),
-                ChartName = string.Format("Top Post Categories ({0})", timePeriod.ToString()),
+                ChartId = $"chart-top-post-categories-{timePeriod.ToString().ToLower()}",
+                ChartName = $"Top Post Categories ({timePeriod.ToString()})",
                 ChartSize = chartSize,
                 ChartType = ChartType.Pie,
                 ChartColumns = new List<ColumnViewModel>()
@@ -207,13 +214,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             foreach (var item in dataSet)
             {
-                model.ChartColumns.Add(new ColumnViewModel() { ColumnName = string.Format("{0} ({1})", item.Key, item.Value), ColumnValues = new List<int>() { item.Value } });
+                model.ChartColumns.Add(new ColumnViewModel { ColumnName = $"{item.Key} ({item.Value})", ColumnValues = new List<int> { item.Value } });
             }
 
             return PartialView("_DisplayChart", model);
         }
 
-        private static DateTime? DetermineTimePeriod(TimePeriod timePeriod)
+        static DateTime? DetermineTimePeriod(TimePeriod timePeriod)
         {
             DateTime? earliest;
 

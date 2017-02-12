@@ -12,6 +12,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
     public class AuthenticationController : Controller
     {
+        #region Manifest Constants
+
+        const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/Avatars";
+        const string USER_ACCOUNT = "UserAccount";
+        const string USER_ROLES = "UserRoles";
+
+        #endregion Manifest Constants
+
         #region Dependencies
 
         readonly ILoginService _loginService;
@@ -19,8 +27,6 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         readonly IUserService _userService;
         readonly IRoleService _roleService;
         readonly ITokenService _tokenService;
-
-        private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/Avatars";
 
         public AuthenticationController(ILoginService loginService, IRegistrationService registrationService, IUserService userService, IRoleService roleService, ITokenService tokenService)
         {
@@ -62,8 +68,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View("_Login", model);
             }
 
-            Session.Add("UserAccount", _userService.GetUser(userId.Value));
-            Session.Add("UserRoles", _roleService.Get(userId));
+            Session.Add(USER_ACCOUNT, _userService.GetUser(userId.Value));
+            Session.Add(USER_ROLES, _roleService.Get(userId));
 
             return this.Content("Refresh");
         }
@@ -90,7 +96,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View("_Register", model);
 
-            bool isAdministrator = false;
+            var isAdministrator = false;
 
             var userId = _registrationService.Register(model.EmailAddress, model.Password, model.GivenName, model.FamilyName);
 
@@ -112,8 +118,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                         _roleService.Update(userId.Value, new List<string> { "Authenticated" });
                     }
 
-                    Session.Add("UserAccount", _userService.GetUser(userId.Value));
-                    Session.Add("UserRoles", _roleService.Get(userId));
+                    Session.Add(USER_ACCOUNT, _userService.GetUser(userId.Value));
+                    Session.Add(USER_ROLES, _roleService.Get(userId));
 
                     if (isAdministrator)
                         return Content("Setup");
@@ -148,9 +154,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             var userId = UserHelper.UserId;
 
-            Session.Remove("UserAccount");
+            Session.Remove(USER_ACCOUNT);
 
-            Session.Add("UserAccount", _userService.GetUser(userId.Value));
+            Session.Add(USER_ACCOUNT, _userService.GetUser(userId.Value));
 
             return Content("Refresh");
         }
@@ -178,9 +184,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             var userId = UserHelper.UserId;
 
-            Session.Remove("UserAccount");
+            Session.Remove(USER_ACCOUNT);
 
-            Session.Add("UserAccount", _userService.GetUser(userId.Value));
+            Session.Add(USER_ACCOUNT, _userService.GetUser(userId.Value));
 
             return this.Content("Refresh");
         }
@@ -212,12 +218,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _registrationService.ChangePassword(UserHelper.UserId.Value, model.NewPassword);
 
-            var websiteAddress = string.Format(@"http://{0}", System.Web.HttpContext.Current.Request.Url.Authority);
+            var websiteAddress = $@"http://{System.Web.HttpContext.Current.Request.Url.Authority}";
 
-            EmailHelper.Send(
-                new List<string> { UserHelper.EmailAddress },
-                "Account Notice",
-                string.Format("<p>Hello {0}</p><p>We just wanted to let you know that your password was changed at {1}. If you didn't change your password, please let us know", UserHelper.FullName, websiteAddress));
+            EmailHelper.Send(new List<string> { UserHelper.EmailAddress }, "Account Notice", $"<p>Hello {UserHelper.FullName}</p><p>We just wanted to let you know that your password was changed at {websiteAddress}. If you didn't change your password, please let us know");
 
             return Content("Refresh");
         }
@@ -232,12 +235,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 var websiteName = SettingHelper.Get("Website Name");
 
-                var recoveryLink = string.Format(@"http://{0}{1}", System.Web.HttpContext.Current.Request.Url.Authority, Url.Action("Reset", "Authentication", new { id = token }));
+                var recoveryLink = $@"http://{System.Web.HttpContext.Current.Request.Url.Authority}{Url.Action(nameof(Reset), "Authentication", new { id = token })}";
 
-                EmailHelper.Send(
-                    new List<string> { model.EmailAddress },
-                    "Password Reset",
-                    string.Format("<p>You submitted a request on {0} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{1}\">Recover Account</a>", websiteName, recoveryLink));
+                EmailHelper.Send(new List<string> { model.EmailAddress }, "Password Reset", $"<p>You submitted a request on {websiteName} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{recoveryLink}\">Recover Account</a>");
             }
 
             return Content("Refresh");
@@ -271,7 +271,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View(model);
             }
 
-            return RedirectToAction("Index", "Home", new { area = "" });
+            return RedirectToAction(nameof(Index), "Home", new { area = "" });
         }
 
         [HttpGet, LoggedInFilter]
@@ -308,13 +308,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!Directory.Exists(destinationDirectory))
                 Directory.CreateDirectory(destinationDirectory);
 
-            var imageFileName = string.Format("media-{0}-{1}-{2}", DateTime.Now.ToString("ddMMyyyyHHmmss"), UserHelper.UserId, imageFile.FileName);
+            var imageFileName = $"media-{DateTime.Now.ToString("ddMMyyyyHHmmss")}-{UserHelper.UserId}-{imageFile.FileName}";
             var path = Path.Combine(Server.MapPath(IMAGE_DIRECTORY), imageFileName);
 
             imageFile.SaveAs(path);
 
-            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace(string.Format("Admin/Authentication/{0}", actionName), string.Empty);
-            var relativeFilePath = string.Format("{0}{1}/{2}", siteURL, IMAGE_DIRECTORY, imageFileName);
+            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace($"Admin/Authentication/{actionName}", string.Empty);
+            var relativeFilePath = $"{siteURL}{IMAGE_DIRECTORY}/{imageFileName}";
 
             return relativeFilePath;
         }
