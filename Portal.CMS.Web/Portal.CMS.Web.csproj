@@ -341,7 +341,6 @@
     <Compile Include="Areas\Builder\ViewModels\Theme\ThemeViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Widget\PostListViewModel.cs" />
     <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Architecture\DependencyResolution\ControllerConvention.cs" />
     <Compile Include="Architecture\DependencyResolution\DefaultRegistry.cs" />
     <Compile Include="Architecture\DependencyResolution\IoC.cs" />
@@ -619,9 +618,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\PageManager\_AppDrawer.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\ThemeManager\_AppDrawer.cshtml" />
