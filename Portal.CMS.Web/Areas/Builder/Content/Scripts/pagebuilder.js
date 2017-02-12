@@ -61,7 +61,7 @@
                     placement: "bottom",
                     title: "Edit Components",
                     content: "<p>Simply click or tap on any component in order to change it..</p>"
-                },
+                }
             ]
         });
 
@@ -350,7 +350,7 @@ function ReplaceChildTokens(parentElementId, sectionId) {
     $('#' + parentElementId).children().each(function () {
         var childId = $(this).attr("id");
 
-        if (childId != undefined) {
+        if (childId !== undefined) {
             childId = childId.replace("<sectionId>", sectionId);
             childId = childId.replace("<componentStamp>", new Date().valueOf());
 
@@ -513,7 +513,7 @@ function ApplySectionControls() {
     $(".section-wrapper").each(function (index) {
         var sectionId = $(this).attr("data-section");
 
-        var sectionButtonsMarkup = sectionButtonsTemplate.replace(/<sectionId>/g, sectionId)
+        var sectionButtonsMarkup = sectionButtonsTemplate.replace(/<sectionId>/g, sectionId);
 
         $(this).append(sectionButtonsMarkup);
     });
