@@ -34,13 +34,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "SettingManager");
+            return RedirectToAction(nameof(Index), "SettingManager");
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            var model = new CreateViewModel()
+            var model = new CreateViewModel
             {
                 MenuList = _menuService.Get(),
                 PageList = _pageService.Get(),

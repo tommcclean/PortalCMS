@@ -17,6 +17,15 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     [LoggedInFilter]
     public class BlogManagerController : Controller
     {
+        #region Manifest Constants
+
+        const string BANNER_IMAGE_ID = "BannerImageId;";
+        const string BANNER = "Banner";
+        const string GALLERY_IMAGE_LIST = "GalleryImageList";
+        const string GALLERY = "Gallery";
+
+        #endregion Manifest Constants
+
         #region Dependencies
 
         private readonly IPostService _postService;
@@ -65,14 +74,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 BannerImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
-                    TargetInputField = "BannerImageId",
-                    PaginationType = "Banner"
+                    TargetInputField = BANNER_IMAGE_ID,
+                    PaginationType = BANNER
                 },
                 GalleryImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
-                    TargetInputField = "GalleryImageList",
-                    PaginationType = "Gallery"
+                    TargetInputField = GALLERY_IMAGE_LIST,
+                    PaginationType = GALLERY
                 },
                 RoleList = _roleService.Get()
             };
@@ -90,14 +99,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 model.BannerImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
-                    TargetInputField = "BannerImageId",
-                    PaginationType = "Banner"
+                    TargetInputField = BANNER_IMAGE_ID,
+                    PaginationType = BANNER
                 };
                 model.GalleryImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
-                    TargetInputField = "GalleryImageList",
-                    PaginationType = "Gallery"
+                    TargetInputField = GALLERY_IMAGE_LIST,
+                    PaginationType = GALLERY
                 };
                 model.PostCategoryList = _postCategoryService.Get();
                 model.UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" });
@@ -138,21 +147,21 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 BannerImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
-                    TargetInputField = "BannerImageId",
-                    PaginationType = "Banner"
+                    TargetInputField = BANNER_IMAGE_ID,
+                    PaginationType = BANNER
                 },
                 GalleryImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
-                    TargetInputField = "GalleryImageList",
-                    PaginationType = "Gallery"
+                    TargetInputField = GALLERY_IMAGE_LIST,
+                    PaginationType = GALLERY
                 },
                 RoleList = _roleService.Get(),
                 SelectedRoleList = post.PostRoles.Select(x => x.Role.RoleName).ToList()
             };
 
             if (post.IsPublished)
-                model.PublicationState = Entities.Entities.Generic.PublicationState.Published;
+                model.PublicationState = PublicationState.Published;
 
             if (post.PostImages.Any(x => x.PostImageType == PostImageType.Banner))
                 model.BannerImageId = post.PostImages.First(x => x.PostImageType == PostImageType.Banner).ImageId;
@@ -170,14 +179,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 model.BannerImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
-                    TargetInputField = "BannerImageId",
-                    PaginationType = "Banner"
+                    TargetInputField = BANNER_IMAGE_ID,
+                    PaginationType = BANNER
                 };
                 model.GalleryImages = new PaginationViewModel
                 {
                     ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
-                    TargetInputField = "GalleryImageList",
-                    PaginationType = "Gallery"
+                    TargetInputField = GALLERY_IMAGE_LIST,
+                    PaginationType = GALLERY
                 };
                 model.PostCategoryList = _postCategoryService.Get();
                 model.UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" });
@@ -188,7 +197,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _postService.Edit(model.PostId, model.PostTitle, model.PostCategoryId, model.PostAuthorUserId, model.PostDescription, model.PostBody);
 
-            if (model.PublicationState == Entities.Entities.Generic.PublicationState.Published)
+            if (model.PublicationState == PublicationState.Published)
                 _postService.Publish(model.PostId);
             else
                 _postService.Draft(model.PostId);
@@ -254,7 +263,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         #region Private Methods
 
-        private void UpdateBanner(int postId, int bannerImageId)
+        void UpdateBanner(int postId, int bannerImageId)
         {
             if (bannerImageId != 0)
             {
@@ -264,7 +273,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             }
         }
 
-        private void UpdateGallery(int postId, string galleryImageIds)
+        void UpdateGallery(int postId, string galleryImageIds)
         {
             if (!string.IsNullOrWhiteSpace(galleryImageIds))
             {

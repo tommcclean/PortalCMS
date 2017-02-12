@@ -13,13 +13,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         #region Dependencies
 
         readonly IPostService _postService;
-        readonly IPostCommentService _commentService;
         readonly IImageService _imageService;
 
-        public DashboardController(IPostService postService, IPostCommentService commentService, IImageService imageService)
+        public DashboardController(IPostService postService, IImageService imageService)
         {
             _postService = postService;
-            _commentService = commentService;
             _imageService = imageService;
         }
 

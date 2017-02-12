@@ -23,17 +23,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "SettingManager");
+            return RedirectToAction(nameof(Index), "SettingManager");
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            var model = new CreateViewModel()
-            {
-            };
-
-            return View("_Create", model);
+            return View("_Create", new CreateViewModel());
         }
 
         [HttpPost]
@@ -45,7 +41,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _menuService.Create(model.MenuName);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet]
@@ -53,7 +49,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var menu = _menuService.Get(menuId);
 
-            var model = new EditViewModel()
+            var model = new EditViewModel
             {
                 MenuId = menu.MenuId,
                 MenuName = menu.MenuName,
@@ -80,7 +76,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _menuService.Delete(menuId);
 
-            return RedirectToAction("Index", "SettingManager");
+            return RedirectToAction(nameof(Index), "SettingManager");
         }
     }
 }

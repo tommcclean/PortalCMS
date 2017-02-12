@@ -22,7 +22,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet, AdminFilter]
         public ActionResult Index()
         {
-            var model = new CopyViewModel()
+            var model = new CopyViewModel
             {
                 CopyList = _copyService.Get()
             };
@@ -56,7 +56,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var copy = _copyService.Get(copyId);
 
-            var model = new EditViewModel()
+            var model = new EditViewModel
             {
                 CopyId = copy.CopyId,
                 CopyName = copy.CopyName,
@@ -84,7 +84,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _copyService.Delete(copyId);
 
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost, AdminFilter]

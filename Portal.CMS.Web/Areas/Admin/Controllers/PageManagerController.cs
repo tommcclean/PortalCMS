@@ -32,7 +32,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var model = new PagesViewModel()
+            var model = new PagesViewModel
             {
                 PageList = _pageService.Get(),
                 PageAreas = new List<string>()
@@ -94,7 +94,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var page = _pageService.Get(pageId);
 
-            var model = new EditViewModel()
+            var model = new EditViewModel
             {
                 PageId = page.PageId,
                 PageName = page.PageName,
@@ -115,10 +115,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var page = _pageService.Get(model.PageId);
 
-            var restartRequired = false;
-
-            if (!string.IsNullOrWhiteSpace(page.PageArea).Equals(string.IsNullOrWhiteSpace(model.PageArea)) || !page.PageController.Equals(model.PageController) || !page.PageAction.Equals(model.PageAction))
-                restartRequired = true;
+            var restartRequired = false || (!string.IsNullOrWhiteSpace(page.PageArea).Equals(string.IsNullOrWhiteSpace(model.PageArea)) || !page.PageController.Equals(model.PageController) || !page.PageAction.Equals(model.PageAction));
 
             if (!ModelState.IsValid)
             {
@@ -132,7 +129,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             // RESET: Routing by Starting the Website.
             if (restartRequired)
-                System.Web.HttpRuntime.UnloadAppDomain();
+                HttpRuntime.UnloadAppDomain();
 
             return Content("Refresh");
         }
@@ -142,7 +139,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _pageService.Delete(pageId);
 
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]

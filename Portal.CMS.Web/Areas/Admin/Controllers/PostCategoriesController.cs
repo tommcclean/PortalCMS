@@ -44,7 +44,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var postCategory = _postCategoryService.Get(postCategoryId);
 
-            var model = new EditViewModel()
+            var model = new EditViewModel
             {
                 PostCategoryId = postCategoryId,
                 PostCategoryName = postCategory.PostCategoryName

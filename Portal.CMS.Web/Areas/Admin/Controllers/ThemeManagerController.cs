@@ -71,7 +71,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             var theme = _themeService.Get(themeId);
 
             if (theme == null)
-                throw new ArgumentException(string.Format("Unable to Identify Theme: {0}", themeId));
+                throw new ArgumentException($"Unable to Identify Theme: {themeId}");
 
             var model = new UpsertViewModel
             {

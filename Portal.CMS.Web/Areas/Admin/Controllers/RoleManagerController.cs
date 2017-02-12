@@ -22,7 +22,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "SettingManager");
+            return RedirectToAction(nameof(Index), "SettingManager");
         }
 
         [HttpGet]
@@ -76,7 +76,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _roleService.Delete(roleId);
 
-            return RedirectToAction("Index", "SettingManager");
+            return RedirectToAction(nameof(Index), "SettingManager");
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var model = new SettingsViewModel()
+            var model = new SettingsViewModel
             {
                 SettingList = _settingService.Get(),
                 RoleList = _roleService.Get(),
@@ -62,7 +62,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var setting = _settingService.Get(settingId);
 
-            var model = new EditViewModel()
+            var model = new EditViewModel
             {
                 SettingId = settingId,
                 SettingName = setting.SettingName,
@@ -81,7 +81,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _settingService.Edit(model.SettingId, model.SettingName, model.SettingValue);
 
-            Session.Remove(string.Format("Setting-{0}", model.SettingName));
+            Session.Remove($"Setting-{model.SettingName}");
 
             return this.Content("Refresh");
         }
@@ -91,7 +91,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             _settingService.Delete(settingId);
 
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
@@ -120,22 +120,22 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View("_Setup", model);
 
             _settingService.Edit("Website Name", model.WebsiteName);
-            Session.Remove(string.Format("Setting-{0}", "Website Name"));
+            Session.Remove("Setting-Website Name");
 
             _settingService.Edit("Description Meta Tag", model.WebsiteDescription);
-            Session.Remove(string.Format("Setting-{0}", "Description Meta Tag"));
+            Session.Remove("Setting-Description Meta Tag");
 
             _settingService.Edit("Google Analytics Tracking ID", model.GoogleAnalyticsId);
-            Session.Remove(string.Format("Setting-{0}", "Google Analytics Tracking ID"));
+            Session.Remove("Setting-Google Analytics Tracking ID");
 
             _settingService.Edit("Email From Address", model.EmailFromAddress);
-            Session.Remove(string.Format("Setting-{0}", "Email From Address"));
+            Session.Remove("Setting-Email From Address");
 
             _settingService.Edit("SendGrid UserName", model.SendGridUserName);
-            Session.Remove(string.Format("Setting-{0}", "SendGrid UserName"));
+            Session.Remove("Setting-SendGrid UserName");
 
             _settingService.Edit("SendGrid Password", model.SendGridPassword);
-            Session.Remove(string.Format("Setting-{0}", "SendGrid Password"));
+            Session.Remove("Setting-SendGrid Password");
 
             return Content("Refresh");
         }
