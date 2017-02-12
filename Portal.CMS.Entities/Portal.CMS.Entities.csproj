@@ -89,7 +89,6 @@
     <Compile Include="Entities\Settings\Setting.cs" />
     <Compile Include="Entities\Themes\Font.cs" />
     <Compile Include="Entities\Themes\Theme.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Initialisers\DropAndMigrateDatabaseToLatestVersion.cs" />
     <Compile Include="Initialisers\Environments\DefaultInitialiser.cs" />
     <Compile Include="Initialisers\MigrateDatabaseToLatestVersion.cs" />
