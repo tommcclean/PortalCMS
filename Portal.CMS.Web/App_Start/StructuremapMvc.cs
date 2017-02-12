@@ -46,7 +46,7 @@ namespace Portal.CMS.Web.App_Start
 
         public static void Start()
         {
-            IContainer container = IoC.Initialize();
+            var container = IoC.Initialize();
             StructureMapDependencyScope = new StructureMapDependencyScope(container);
             DependencyResolver.SetResolver(StructureMapDependencyScope);
             DynamicModuleUtility.RegisterModule(typeof(StructureMapScopeModule));

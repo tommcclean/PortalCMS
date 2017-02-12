@@ -5,11 +5,11 @@ using System.Web.Routing;
 
 namespace Portal.CMS.Web.Architecture.ActionFilters
 {
-    public class LoggedInFilter : ActionFilterAttribute
+    public sealed class LoggedInFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (UserHelper.IsLoggedIn == false)
+            if (!UserHelper.IsLoggedIn)
             {
                 var resetCookie = new HttpCookie("resetCookie");
 
@@ -21,10 +21,7 @@ namespace Portal.CMS.Web.Architecture.ActionFilters
                     var address = cookieValues[1];
                 }
 
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary
-                {
-                    { "action", "Index" }, { "controller", "Home" }, { "area", "" }
-                });
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "action", "Index" }, { "controller", "Home" }, { "area", "" } });
             }
         }
     }

@@ -22,8 +22,6 @@ namespace Portal.CMS.Web.DependencyResolution
 
     public class DefaultRegistry : Registry
     {
-        #region Constructors and Destructors
-
         public DefaultRegistry()
         {
             Scan(
@@ -35,7 +33,5 @@ namespace Portal.CMS.Web.DependencyResolution
                     scan.Assembly("Portal.CMS.Services");
                 });
         }
-
-        #endregion Constructors and Destructors
     }
 }

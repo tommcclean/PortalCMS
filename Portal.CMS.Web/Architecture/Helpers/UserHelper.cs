@@ -6,11 +6,16 @@ namespace Portal.CMS.Web.Architecture.Helpers
 {
     public static class UserHelper
     {
+        const string USER_ACCOUNT = "UserAccount";
+        const string USER_ROLES = "UserRoles";
+        const string ADMIN_ROLE = "Admin";
+        const string EDITOR_ROLE = "Editor";
+
         public static bool IsLoggedIn
         {
             get
             {
-                if (System.Web.HttpContext.Current.Session["UserAccount"] == null)
+                if (System.Web.HttpContext.Current.Session[USER_ACCOUNT] == null)
                     return false;
 
                 return true;
@@ -21,13 +26,13 @@ namespace Portal.CMS.Web.Architecture.Helpers
         {
             get
             {
-                var userSession = (User)System.Web.HttpContext.Current.Session["UserAccount"];
-                var userRoles = (IEnumerable<Role>)System.Web.HttpContext.Current.Session["UserRoles"];
+                var userSession = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+                var userRoles = (IEnumerable<Role>)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
                 if (userSession == null || userRoles == null)
                     return false;
 
-                if (userRoles.Any(x => x.RoleName.Equals("Admin", System.StringComparison.OrdinalIgnoreCase)))
+                if (userRoles.Any(x => x.RoleName.Equals(ADMIN_ROLE, System.StringComparison.OrdinalIgnoreCase)))
                     return true;
 
                 return false;
@@ -38,13 +43,13 @@ namespace Portal.CMS.Web.Architecture.Helpers
         {
             get
             {
-                var userSession = (User)System.Web.HttpContext.Current.Session["UserAccount"];
-                var userRoles = (IEnumerable<Role>)System.Web.HttpContext.Current.Session["UserRoles"];
+                var userSession = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+                var userRoles = (IEnumerable<Role>)System.Web.HttpContext.Current.Session[USER_ROLES];
 
                 if (userSession == null || userRoles == null)
                     return false;
 
-                if (userRoles.Any(x => x.RoleName == "Editor") || userRoles.Any(x => x.RoleName == "Admin"))
+                if (userRoles.Any(x => x.RoleName == EDITOR_ROLE) || userRoles.Any(x => x.RoleName == ADMIN_ROLE))
                     return true;
 
                 return false;
@@ -55,7 +60,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
         {
             get
             {
-                var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
                 if (userAccount == null)
                     return null;
@@ -68,7 +73,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
         {
             get
             {
-                var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
                 return userAccount.AvatarImagePath;
             }
@@ -78,9 +83,9 @@ namespace Portal.CMS.Web.Architecture.Helpers
         {
             get
             {
-                var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
-                return string.Format("{0} {1}", userAccount.GivenName, userAccount.FamilyName);
+                return $"{userAccount.GivenName} {userAccount.FamilyName}";
             }
         }
 
@@ -88,7 +93,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
         {
             get
             {
-                var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
                 return userAccount.GivenName;
             }
@@ -98,7 +103,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
         {
             get
             {
-                var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
                 return userAccount.FamilyName;
             }
@@ -108,7 +113,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
         {
             get
             {
-                var userAccount = (User)System.Web.HttpContext.Current.Session["UserAccount"];
+                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
                 return userAccount.EmailAddress;
             }

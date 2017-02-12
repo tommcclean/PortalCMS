@@ -4,17 +4,12 @@ using System.Web.Routing;
 
 namespace Portal.CMS.Web.Architecture.ActionFilters
 {
-    public class AdminFilter : ActionFilterAttribute
+    public sealed class AdminFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (UserHelper.IsAdmin == false)
-            {
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary
-                {
-                    { "action", "Index" }, { "controller", "Home" }, { "area", "" }
-                });
-            }
+            if (!UserHelper.IsAdmin)
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "action", "Index" }, { "controller", "Home" }, { "area", "" } });
         }
     }
 }

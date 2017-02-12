@@ -10,7 +10,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
     {
         public static List<MenuItem> Get(string menuName)
         {
-            IContainer container = IoC.Initialize();
+            var container = IoC.Initialize();
 
             IMenuService menuService = container.GetInstance<MenuService>();
 

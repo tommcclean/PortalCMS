@@ -7,7 +7,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
     {
         public static string Get(string settingName)
         {
-            var sessionSetting = System.Web.HttpContext.Current.Session[string.Format("Setting-{0}", settingName)];
+            var sessionSetting = System.Web.HttpContext.Current.Session[$"Setting-{settingName}"];
 
             if (sessionSetting != null)
             {
@@ -24,7 +24,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
                 if (setting == null)
                     return string.Empty;
 
-                System.Web.HttpContext.Current.Session.Add(string.Format("Setting-{0}", settingName), setting.SettingValue);
+                System.Web.HttpContext.Current.Session.Add($"Setting-{settingName}", setting.SettingValue);
 
                 return setting.SettingValue;
             }
