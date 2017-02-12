@@ -46,7 +46,6 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet, EditorFilter]
-        [OutputCache(Duration = 86400)]
         public ActionResult UploadImage()
         {
             var model = new UploadImageViewModel();
@@ -69,7 +68,6 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet, EditorFilter]
-        [OutputCache(Duration = 86400)]
         public ActionResult UploadFont()
         {
             var model = new UploadFontViewModel();

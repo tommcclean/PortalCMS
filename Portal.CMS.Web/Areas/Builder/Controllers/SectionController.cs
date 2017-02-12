@@ -100,7 +100,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         [HttpGet]
-        [OutputCache(Duration = 86400)]
         public ActionResult Add(int pageId)
         {
             var model = new AddViewModel

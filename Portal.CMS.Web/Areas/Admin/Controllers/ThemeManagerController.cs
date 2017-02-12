@@ -37,7 +37,6 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [OutputCache(Duration = 86400)]
         public ActionResult Create()
         {
             var model = new UpsertViewModel
