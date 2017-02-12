@@ -28,7 +28,7 @@
                 data: dataParams,
                 type: 'POST',
                 cache: false,
-                url: '/Admin/MediaManager/Delete',
+                url: '/Admin/MediaManager/DeleteImage',
                 success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } },
             });
         });

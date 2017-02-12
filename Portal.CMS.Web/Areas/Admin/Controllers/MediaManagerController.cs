@@ -20,8 +20,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         readonly IPostService _postService;
         readonly IPostImageService _postImageService;
 
-        private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
-        private const string FONT_DIRECTORY = "/Areas/Admin/Content/Fonts/Uploads";
+        const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
+        const string FONT_DIRECTORY = "/Areas/Admin/Content/Fonts/Uploads";
 
         public MediaManagerController(IPostService postService, IPostImageService postImageService, IImageService imageService, IFontService fontService)
         {
@@ -65,7 +65,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             var imageId = _imageService.Create(imageFilePath, model.ImageCategory);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet, EditorFilter]
@@ -88,7 +88,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             var fontId = _fontService.Create(model.FontName, model.FontType, fontFilePath);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpPost, AdminFilter]
@@ -96,12 +96,12 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var image = _imageService.Get(imageId);
 
-            var fileNamePosition = image.ImagePath.LastIndexOf("/") + 1;
+            var fileNamePosition = image.ImagePath.LastIndexOf("/", StringComparison.OrdinalIgnoreCase) + 1;
             var fileName = image.ImagePath.Substring(fileNamePosition, image.ImagePath.Length - fileNamePosition);
 
             var destinationDirectory = Path.Combine(Server.MapPath(IMAGE_DIRECTORY));
 
-            var imageFilePath = string.Format(@"{0}\{1}", destinationDirectory, fileName);
+            var imageFilePath = $@"{destinationDirectory}\{fileName}";
 
             if (System.IO.File.Exists(imageFilePath))
                 System.IO.File.Delete(imageFilePath);
@@ -116,12 +116,12 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var font = _fontService.Get(fontId);
 
-            var fileNamePosition = font.FontPath.LastIndexOf("/") + 1;
+            var fileNamePosition = font.FontPath.LastIndexOf("/", StringComparison.OrdinalIgnoreCase) + 1;
             var fileName = font.FontPath.Substring(fileNamePosition, font.FontPath.Length - fileNamePosition);
 
             var destinationDirectory = Path.Combine(Server.MapPath(FONT_DIRECTORY));
 
-            var fontFilePath = string.Format(@"{0}\{1}", destinationDirectory, fileName);
+            var fontFilePath = $@"{destinationDirectory}\{fileName}";
 
             if (System.IO.File.Exists(fontFilePath))
                 System.IO.File.Delete(fontFilePath);
@@ -131,7 +131,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index), "MediaManager");
         }
 
-        private string SaveImage(HttpPostedFileBase imageFile, string actionName)
+        string SaveImage(HttpPostedFileBase imageFile, string actionName)
         {
             var extension = Path.GetExtension(imageFile.FileName).ToUpper();
 
@@ -143,18 +143,18 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!Directory.Exists(destinationDirectory))
                 Directory.CreateDirectory(destinationDirectory);
 
-            var imageFileName = string.Format("media-{0}-{1}", DateTime.Now.ToString("ddMMyyyyHHmmss"), imageFile.FileName);
+            var imageFileName = $"media-{DateTime.Now.ToString("ddMMyyyyHHmmss")}-{imageFile.FileName}";
             var path = Path.Combine(Server.MapPath(IMAGE_DIRECTORY), imageFileName);
 
             imageFile.SaveAs(path);
 
-            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace(string.Format("Admin/MediaManager/{0}", actionName), string.Empty);
-            var relativeFilePath = string.Format("{0}{1}/{2}", siteURL, IMAGE_DIRECTORY, imageFileName);
+            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace($"Admin/MediaManager/{actionName}", string.Empty);
+            var relativeFilePath = $"{siteURL}{IMAGE_DIRECTORY}/{imageFileName}";
 
             return relativeFilePath;
         }
 
-        private string SaveFont(HttpPostedFileBase fontFile, string actionName)
+        string SaveFont(HttpPostedFileBase fontFile, string actionName)
         {
             var extension = Path.GetExtension(fontFile.FileName).ToUpper();
 
@@ -166,13 +166,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!Directory.Exists(destinationDirectory))
                 Directory.CreateDirectory(destinationDirectory);
 
-            var fontFileName = string.Format("font-{0}-{1}", DateTime.Now.ToString("ddMMyyyyHHmmss"), fontFile.FileName);
+            var fontFileName = $"font-{DateTime.Now.ToString("ddMMyyyyHHmmss")}-{fontFile.FileName}";
             var path = Path.Combine(Server.MapPath(FONT_DIRECTORY), fontFileName);
 
             fontFile.SaveAs(path);
 
-            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace(string.Format("Admin/MediaManager/{0}", actionName), string.Empty);
-            var relativeFilePath = string.Format("{0}{1}/{2}", siteURL, FONT_DIRECTORY, fontFileName);
+            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace($"Admin/MediaManager/{actionName}", string.Empty);
+            var relativeFilePath = $"{siteURL}{FONT_DIRECTORY}/{fontFileName}";
 
             return relativeFilePath;
         }
