@@ -25,6 +25,7 @@
 @section HEADScripts
 {
     @Scripts.Render("~/Resources/JavaScript/FancyBox")
+    @Scripts.Render("~/Resources/JavaScript/PageBuilderAdministration")
 
     @if (isAdmin)
     {
@@ -32,6 +33,10 @@
 
         <script type="text/javascript">
             $(document).ready(function () {
+                $(".admin-wrapper .button").click(function (event) {
+                    $('.admin-wrapper .button').popover('hide');
+                });
+
                 tinymce.init({
                     selector: '.edit-post-body', inline: true, plugins: ['advlist autolink lists link image charmap anchor searchreplace visualblocks code fullscreen media table contextmenu paste'],
                     toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
@@ -76,6 +81,38 @@
     </script>
 }
 
+@if (isAdmin)
+{
+    @Html.Action("AppDrawer", "PageManager", new { area = "Admin" })
+    @Html.Action("AppDrawer", "ThemeManager", new { area = "Admin" })
+    @Html.Action("AppDrawer", "BlogManager", new { area = "Admin" })
+
+    <div class="page-admin-wrapper admin-wrapper">
+        <div class="button add" data-toggle="popover" data-placement="top" data-trigger="click" data-container="body"><span class="fa fa-plus-circle"></span>Add</div>
+        <div class="button options" data-toggle="popover" data-placement="top" data-trigger="click" data-container="body"><span class="fa fa-cog"></span><span class="hidden-xs">Post </span>Options</div>
+        <div class="button more" data-toggle="popover" data-placement="top" data-trigger="click" data-container="body"><span class="fa fa-suitcase"></span>More<span class="hidden-xs"> Content</span></div>
+
+        <div id="popover-add" class="list-group" style="display: none;">
+            <div class="popover-menu">
+                <a class="list-group-item launch-modal" href="@Url.Action("Create", "BlogManager", new { area = "Admin" })" data-title="Write Blog Post"><span class="fa fa-rss"></span>Write Blog Post</a>
+                <a class="list-group-item launch-modal" href="@Url.Action("UploadImage", "MediaManager", new { area = "Admin" })" data-title="Upload Image"><span class="fa fa-image"></span>Upload Image</a>
+            </div>
+        </div>
+        <div id="popover-options" class="list-group" style="display: none;">
+            <div class="popover-menu">
+                <a class="list-group-item launch-modal" href="@Url.Action("Edit", "BlogManager", new { postId = @Model.CurrentPost.PostId, area = "Admin" })"><span class="fa fa-pencil"></span>Edit Blog Post</a>
+            </div>
+        </div>
+        <div id="popover-more" class="list-group" style="display: none;">
+            <div class="popover-menu">
+                <a class="list-group-item" onclick="TogglePanel('pages-panel');"><span class="fa fa-list"></span>Page Manager</a>
+                <a class="list-group-item" onclick="TogglePanel('blog-manager-panel');"><span class="fa fa-rss"></span>Blog Manager</a>
+                <a class="list-group-item" onclick="TogglePanel('theme-manager-panel');"><span class="fa fa-paint-brush"></span>Theme Manager</a>
+            </div>
+        </div>
+    </div>
+}
+
 <div class="post" style="background-color: white; min-height: 100vh;">
     <div class="post-banner" style="@string.Format("background-image: url('{0}'); color: white;", bannerImagePath)">
         <div class="overlay-medium"></div>
@@ -83,10 +120,6 @@
             <div class="row">
                 <div class="col-xs-12 col-md-10 col-lg-7">
                     <div title="Category" class="category-item"><span class="fa fa-tag"></span>@Model.CurrentPost.PostCategory.PostCategoryName</div>
-                    @if (isEditor)
-                    {
-                        <a href="@Url.Action("Edit", "BlogManager", new { area = "Admin", postId = Model.CurrentPost.PostId })" class="category-item launch-modal" data-title="Edit Post"><span class="fa fa-pencil"></span>Edit</a>
-                    }
                     <div title="Views" class="hidden-xs category-item"><span class="fa fa-users"></span>@Model.CurrentPost.PostViews.Count()</div>
                     <div title="Comments" class="hidden-xs category-item"><span class="fa fa-comment"></span>@Model.CurrentPost.PostComments.Count()</div>
 
