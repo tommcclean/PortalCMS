@@ -58,21 +58,9 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-cog"></span>Administration <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                @if (isAdmin)
-                                {
-                                    <li><a href="@Url.Action("Index", "Dashboard", new { area="Admin"})"><span class="fa fa-dashboard"></span>Dashboard</a></li>
-                                }
-                                @if (isEditor)
-                                {
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="@Url.Action("UploadImage", "MediaManager", new { area="Admin"})" class="launch-modal" data-title="Upload Image"><span class="fa fa-cloud-upload"></span>Upload Media</a></li>
-                                    <li><a href="@Url.Action("Create", "BlogManager", new { area="Admin"})" class="launch-modal" data-title="Create Post"><span class="fa fa-pencil"></span>Create Blog Post</a></li>
-                                }
-                                @if (isAdmin)
-                                {
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="@Url.Action("Setup", "SettingManager", new { area="Admin"})" class="launch-modal" data-title="Website Settings"><span class="fa fa-cog"></span>Website Settings</a></li>
-                                }
+                                <li><a href="@Url.Action("Index", "Dashboard", new { area="Admin"})"><span class="fa fa-dashboard"></span>Dashboard</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="@Url.Action("Setup", "SettingManager", new { area="Admin"})" class="launch-modal" data-title="Website Settings"><span class="fa fa-cog"></span>Website Settings</a></li>
                             </ul>
                         </li>
                     }
