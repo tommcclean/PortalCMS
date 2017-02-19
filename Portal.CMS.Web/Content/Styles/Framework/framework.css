@@ -217,3 +217,91 @@
     {
         margin-bottom: 20px;
     }
+
+.page-admin-wrapper
+{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+}
+
+.admin-wrapper .button
+{
+    display: inline-block;
+    background-color: black;
+    padding: 12px 18px;
+    font-size: 13px;
+    color: white;
+    text-transform: uppercase;
+    margin-right: 2px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border: 1px solid gray;
+    letter-spacing: 1px;
+    border-bottom: 0;
+    cursor: pointer;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    opacity: 0.9;
+}
+
+    .admin-wrapper .button:hover
+    {
+        opacity: 1;
+    }
+
+    .admin-wrapper .button.add
+    {
+        background-color: #d32d27;
+        border-color: #B72722;
+    }
+
+        .admin-wrapper .button.add:hover
+        {
+            background-color: #B72722;
+        }
+
+    .admin-wrapper .button.options
+    {
+        background-color: #255F85;
+        border-color: #1A455E;
+    }
+
+        .admin-wrapper .button.options:hover
+        {
+            background-color: #1A455E;
+        }
+
+    .admin-wrapper .button.more
+    {
+        background-color: #28464B;
+        border-color: #1E3438;
+        margin-right: 10px;
+    }
+
+        .admin-wrapper .button.more:hover
+        {
+            background-color: #1E3438;
+        }
+
+.popover-content
+{
+    padding: 0;
+}
+
+.popover-menu .list-group-item
+{
+    font-size: 15px;
+    color: black;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+    .popover-menu .list-group-item:hover
+    {
+        background-color: #DDDDDD;
+        color: black;
+    }

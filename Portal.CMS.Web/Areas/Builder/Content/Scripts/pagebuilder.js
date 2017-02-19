@@ -153,6 +153,10 @@ function InitialiseEditor() {
         showModalEditor("Edit Image Properties", href);
     });
 
+    $(".admin-wrapper .button").click(function (event) {
+        $('.admin-wrapper .button').popover('hide');
+    });
+
     tinymce.init({
         selector: '.admin section p, .admin section h1, .admin section h2, .admin section h3, .admin section h4, .admin section code',
         menubar: false, inline: true,
@@ -366,7 +370,8 @@ function ChangeOrder() {
     $('#page-wrapper').toggleClass("change-order");
     $('#page-wrapper.change-order').sortable({ placeholder: "ui-state-highlight", helper: 'clone' });
 
-    $('.action-container.global').fadeOut();
+    $('.admin-wrapper .button').popover('hide');
+    $('.page-admin-wrapper').fadeOut();
     $('.action-container.section-order').fadeIn();
 
     $('.panel-overlay').slideUp(300);
@@ -386,6 +391,8 @@ function SaveOrder() {
 }
 
 function TogglePanel(focusPanel) {
+    $('.admin-wrapper .button').popover('hide');
+
     var isActive = $('#' + focusPanel).hasClass('visible');
 
     $('.panel-overlay').slideUp(300);
@@ -397,8 +404,7 @@ function TogglePanel(focusPanel) {
     }
 }
 
-function ClosePanels()
-{
+function ClosePanels() {
     $('.panel-overlay').slideUp(300);
     $('.panel-overlay').removeClass('visible');
 }

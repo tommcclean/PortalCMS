@@ -26,13 +26,30 @@
 
 @if (isAdmin)
 {
-    <div class="action-container wide global">
-        <div id="tour-add-section" class="action" onclick="TogglePanel('section-panel');"><span class="fa fa-plus"></span><span class="hidden-xs">Add Section</span></div>
-        <div id="tour-add-component" class="action" onclick="TogglePanel('component-panel');"><span class="fa fa-briefcase"></span><span class="hidden-xs">Add Component</span></div>
-        <div id="tour-change-order" class="action" onclick="ChangeOrder();"><span class="fa fa-sort"></span><span class="hidden-xs">Edit Order</span></div>
-        <div id="tour-page-manager" class="action" onclick="TogglePanel('pages-panel');"><span class="fa fa-th-list"></span><span class="hidden-xs">Page Manager</span></div>
-        <div id="tour-theme-manager" class="action" onclick="TogglePanel('theme-manager-panel');"><span class="fa fa-paint-brush"></span><span class="hidden-xs">Theme Manager</span></div>
-        <div id="tour-blog-manager" class="action" onclick="TogglePanel('blog-manager-panel');"><span class="fa fa-rss"></span><span class="hidden-xs">Blog Manager</span></div>
+    <div class="page-admin-wrapper admin-wrapper">
+        <div class="button add" data-toggle="popover" data-placement="top" data-trigger="click" data-container="body"><span class="fa fa-plus-circle"></span>Add</div>
+        <div class="button options" data-toggle="popover" data-placement="top" data-trigger="click" data-container="body"><span class="fa fa-cog"></span><span class="hidden-xs">Page </span>Options</div>
+        <div class="button more" data-toggle="popover" data-placement="top" data-trigger="click" data-container="body"><span class="fa fa-suitcase"></span>More<span class="hidden-xs"> Content</span></div>
+
+        <div id="popover-add" class="list-group" style="display: none;">
+            <div class="popover-menu">
+                <a class="list-group-item" onclick="TogglePanel('section-panel');"><span class="fa fa-plus"></span>Add Section</a>
+                <a class="list-group-item" onclick="TogglePanel('component-panel');"><span class="fa fa-plus"></span>Add Component</a>
+            </div>
+        </div>
+        <div id="popover-options" class="list-group" style="display: none;">
+            <div class="popover-menu">
+                <a class="list-group-item launch-modal" href="@Url.Action("Edit", "PageManager", new { pageId = @Model.Page.PageId, area = "Admin" })"><span class="fa fa-pencil"></span>Edit Page</a>
+                <a class="list-group-item" onclick="ChangeOrder();"><span class="fa fa-sort"></span>Change Section Order</a>
+            </div>
+        </div>
+        <div id="popover-more" class="list-group" style="display: none;">
+            <div class="popover-menu">
+                <a class="list-group-item" onclick="TogglePanel('pages-panel');"><span class="fa fa-list"></span>Page Manager</a>
+                <a class="list-group-item" onclick="TogglePanel('blog-manager-panel');"><span class="fa fa-rss"></span>Blog Manager</a>
+                <a class="list-group-item" onclick="TogglePanel('theme-manager-panel');"><span class="fa fa-paint-brush"></span>Theme Manager</a>
+            </div>
+        </div>
     </div>
 
     <div class="action-container section-order" style="display: none;">
@@ -50,7 +67,7 @@
 
 <div id="page-wrapper" class="@(isAdmin ? "admin" : "visitor" )">
     @foreach (var section in Model.Page.PageSections.OrderBy(x => x.PageSectionOrder).ThenBy(x => x.PageSectionId))
-    {
+            {
         <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper@(isAdmin ? " admin sortable" : "" )" data-section="@(section.PageSectionId)">
             @Html.Raw(section.PageSectionBody)
         </div>
