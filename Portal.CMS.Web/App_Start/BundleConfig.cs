@@ -37,9 +37,11 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/ImageSelector").Include("~/Content/Scripts/ImageSelector/*.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilder/Admin").Include("~/Content/Scripts/PageBuilder/ToolMenu.js").Include("~/Content/Scripts/PageBuilder/Menubuilder.js").Include("~/Content/Scripts/PageBuilder/PageBuilder.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilder/Anonymous").Include("~/Content/Scripts/PageBuilder/PageBuilder-Anonymous.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/BlogManager/Admin").Include("~/Content/Scripts/PageBuilder/ToolMenu.js").Include("~/Content/Scripts/PageBuilder/MenuBuilder.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilder/Admin").Include("~/Content/Scripts/PageBuilder/ToolMenu-Admin.js").Include("~/Content/Scripts/PageBuilder/Menubuilder-Admin.js").Include("~/Content/Scripts/PageBuilder/PageBuilder-Admin.js"));
+
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/BlogManager/Admin").Include("~/Content/Scripts/PageBuilder/ToolMenu-Admin.js").Include("~/Content/Scripts/PageBuilder/MenuBuilder-Admin.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/FAQSpoilerEvents").Include("~/Content/Scripts/Components/component.expand.js"));
 
@@ -47,7 +49,7 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Pagination").Include("~/Content/Scripts/Framework/pagination.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/ThemeManager/Sliders").Include("~/Content/Scripts/PageBuilder/ThemeManager.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/ThemeManager/Sliders").Include("~/Content/Scripts/PageBuilder/ThemeManager-Admin.js"));
 
             #endregion Script Bundles
 

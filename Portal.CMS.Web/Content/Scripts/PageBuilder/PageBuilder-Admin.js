@@ -74,14 +74,6 @@
     $('#page-wrapper h1').first().attr('class', 'tour-edit-element');
 });
 
-function InitialiseWidgets() {
-    if ($('.post-list-wrapper').length) {
-        $.get("/Builder/Widget/RecentPostList", function (data) {
-            $(".post-list-wrapper").html(data);
-        });
-    }
-}
-
 function InitialiseEditor() {
     $('.admin section').unbind();
     $('.admin .component-container').unbind();
