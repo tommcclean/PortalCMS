@@ -1,7 +1,7 @@
 ﻿section.header-split
 {
     position: relative;
-    background-image: url('../Images/Sample/Sample-8.jpg');
+    background-image: url('/Areas/Builder/Content/Images/Sample/Sample-8.jpg');
     overflow: hidden;
 }
 
@@ -14,7 +14,7 @@
         width: 50%;
         padding-top: 6%;
         padding-bottom: 3.5%;
-        background-image: url('../../../Admin/Content/Images/block_black_medium.png');
+        background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
     }
 
         section.header-split .details-wrapper .details
@@ -57,7 +57,7 @@
         padding: 10px;
         width: 90%;
         margin-bottom: 20px;
-        background-image: url('../../../Admin/Content/Images/block_black_medium.png');
+        background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
         background-color: transparent;
         border: 1px solid white;
         color: white;
@@ -119,7 +119,7 @@
 
     section.header-split .details
     {
-        background-image: url('../../../Admin/Content/Images/block_black_medium.png');
+        background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
     }
 
     section.header-split .details-wrapper .details

@@ -382,8 +382,8 @@
     <Content Include="Areas\Builder\Content\Images\Sample\texture-notebook.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-office.png" />
     <Content Include="Content\Scripts\PageBuilder\MenuBuilder.js" />
-    <Content Include="Areas\Builder\Content\Styles\components.css" />
-    <Content Include="Areas\Builder\Content\Styles\sections.css" />
+    <Content Include="Content\Styles\PageBuilder\PageBuilder-Components.css" />
+    <Content Include="Content\Styles\PageBuilder\PageBuilder-Sections.css" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-tour.min.js" />
     <Content Include="Content\Scripts\FontAwesome\fontawesome-iconpicker.min.js" />
     <Content Include="Content\Scripts\Framework\framework.js" />
@@ -443,7 +443,7 @@
     <Content Include="Areas\Admin\Content\Styles\administration.css" />
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox-thumbs.js" />
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox.js" />
-    <Content Include="Areas\Builder\Content\Styles\Administration\drawer.css" />
+    <Content Include="Content\Styles\PageBuilder\Administration\drawer.css" />
     <Content Include="Content\Styles\FontAwesome\fontawesome-iconpicker.min.css" />
     <Content Include="Content\Styles\FontAwesome\font-awesome.min.css" />
     <Content Include="Content\Styles\Fonts\fontawesome-webfont.svg" />
@@ -451,7 +451,7 @@
     <Content Include="Content\Scripts\Bootstrap\bootstrap.min.js" />
     <Content Include="Content\Styles\Bootstrap\bootstrap.min.css" />
     <Content Include="Content\Styles\Framework\framework.css" />
-    <Content Include="Areas\Builder\Content\Styles\pagebuilder.css" />
+    <Content Include="Content\Styles\PageBuilder\PageBuilder.css" />
     <Content Include="Content\Styles\FancyBox\blank.gif" />
     <Content Include="Content\Styles\FancyBox\fancybox_loading%402x.gif" />
     <Content Include="Content\Styles\FancyBox\fancybox_loading.gif" />

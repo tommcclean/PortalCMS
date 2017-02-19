@@ -44,20 +44,20 @@ section.background-parallax
 .header
 {
     max-height: calc(100vh - 50px);
-    background-image: url('../Images/Sample/Sample-2.jpg');
+    background-image: url('/Areas/Builder/Content/Images/Sample/Sample-2.jpg');
     color: white;
 }
 
 .blank
 {
-    background-image: url('../../../Admin/Content/Images/texture.png');
+    background-image: url('/Areas/Admin/Content/Images/texture.png');
     padding: 30px 2.5% 30px 2.5%;
     text-align: center;
 }
 
 .highlight
 {
-    background-image: url('../Images/Sample/Sample-5.jpg');
+    background-image: url('/Areas/Builder/Content/Images/Sample/Sample-5.jpg');
 }
 
 section p, section a
@@ -106,7 +106,7 @@ table
 
 .mce-ico.mce-i-trash
 {
-    background-image: url('../Images/Toolbar/mce-trash.png');
+    background-image: url('/Areas/Builder/Content/Images/Toolbar/mce-trash.png');
 }
 
 @media (max-width: 1024px)
