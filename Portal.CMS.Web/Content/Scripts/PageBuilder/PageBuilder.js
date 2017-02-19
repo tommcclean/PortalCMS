@@ -153,14 +153,6 @@ function InitialiseEditor() {
         showModalEditor("Edit Image Properties", href);
     });
 
-    $(".admin-wrapper .button").click(function (event) {
-        $('.admin-wrapper .button').popover('hide');
-    });
-
-    $(".admin-wrapper .button").click(function (event) {
-        $('.admin-wrapper .button').popover('hide');
-    });
-
     tinymce.init({
         selector: '.admin section p, .admin section h1, .admin section h2, .admin section h3, .admin section h4, .admin section code',
         menubar: false, inline: true,
@@ -392,25 +384,6 @@ function SaveOrder() {
     });
     $('#order-list').val(sectionList);
     $('#order-submit').click();
-}
-
-function TogglePanel(focusPanel) {
-    $('.admin-wrapper .button').popover('hide');
-
-    var isActive = $('#' + focusPanel).hasClass('visible');
-
-    $('.panel-overlay').slideUp(300);
-    $('.panel-overlay').removeClass('visible');
-
-    if (isActive != true) {
-        $('#' + focusPanel).slideDown(300);
-        $('#' + focusPanel).addClass('visible');
-    }
-}
-
-function ClosePanels() {
-    $('.panel-overlay').slideUp(300);
-    $('.panel-overlay').removeClass('visible');
 }
 
 function ApplySectionControls() {

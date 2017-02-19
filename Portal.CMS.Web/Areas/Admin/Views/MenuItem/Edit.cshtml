@@ -2,8 +2,9 @@
 @{
     Layout = "";
 }
+
 @Styles.Render("~/Resources/CSS/FontAwesome/Picker")
-@Scripts.Render("~/Resources/JavaScript/FontAwesome/Picker")
+@Scripts.Render("~/Resources/JavaScript/FontAwesome")
 
 <script type="text/javascript">
     $('.icp-auto').iconpicker();
@@ -30,11 +31,11 @@
         </div>
     </div>
 
-        @Html.ValidationMessage("LinkURL")
-        <div class="control-group">
-            @Html.LabelFor(x => x.LinkURL)
-            @Html.TextBoxFor(x => x.LinkURL, new { placeholder = "Link Address (URL)" })
-        </div>
+    @Html.ValidationMessage("LinkURL")
+    <div class="control-group">
+        @Html.LabelFor(x => x.LinkURL)
+        @Html.TextBoxFor(x => x.LinkURL, new { placeholder = "Link Address (URL)" })
+    </div>
 
         <br />
 

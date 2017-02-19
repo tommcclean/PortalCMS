@@ -2,7 +2,6 @@
 @using Portal.CMS.Web.Architecture.Helpers;
 @{
     ViewBag.Title = Model.Page.PageName;
-
     var isAdmin = UserHelper.IsAdmin;
 }
 
@@ -13,9 +12,9 @@
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
         @Scripts.Render("~/Resources/JavaScript/JQueryTouch")
+        @Scripts.Render("~/Resources/JavaScript/PageBuilder/Admin")
     }
 
-    @Scripts.Render("~/Resources/JavaScript/PageBuilderAdministration")
     @Scripts.Render("~/Resources/JavaScript/FAQSpoilerEvents")
 
     <script type="text/javascript">

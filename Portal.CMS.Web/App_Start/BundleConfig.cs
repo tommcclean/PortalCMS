@@ -23,7 +23,7 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Confirmation").Include("~/Content/Scripts/BootstrapConfirmation/bootstrap-confirmation.min.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/FontAwesome/Picker").Include("~/Content/Scripts/FontAwesomePicker/fontawesome-iconpicker.min.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/FontAwesome").Include("~/Content/Scripts/FontAwesome/fontawesome-iconpicker.min.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework").Include("~/Content/Scripts/Framework/framework.js"));
 
@@ -37,9 +37,11 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/ImageSelector").Include("~/Content/Scripts/ImageSelector/*.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilderAdministration").Include("~/Areas/Builder/Content/Scripts/pagebuilder.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilder/Admin").Include("~/Content/Scripts/PageBuilder/ToolMenu.js").Include("~/Content/Scripts/PageBuilder/Menubuilder.js").Include("~/Content/Scripts/PageBuilder/PageBuilder.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/FAQSpoilerEvents").Include("~/Areas/Builder/Content/Scripts/component.expand.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/BlogManager/Admin").Include("~/Content/Scripts/PageBuilder/ToolMenu.js").Include("~/Content/Scripts/PageBuilder/MenuBuilder.js"));
+
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/FAQSpoilerEvents").Include("~/Content/Scripts/Components/component.expand.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Spectrum").Include("~/Content/Scripts/Spectrum/spectrum.js"));
 
@@ -55,8 +57,6 @@ namespace Portal.CMS.Web
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Bootstrap/Tour").Include("~/Content/Styles/BootstrapTour/bootstrap-tour.min.css"));
 
-            bundles.Add(new StyleBundle("~/Resources/CSS/FontAwesome/Picker").Include("~/Content/Styles/FontAwesomePicker/fontawesome-iconpicker.min.css"));
-
             bundles.Add(new StyleBundle("~/Resources/CSS/FancyBox").Include("~/Content/Styles/FancyBox/*.css", new CssRewriteUrlTransform()));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/C3Graphing").Include("~/Content/Styles/C3Graphing/*.css", new CssRewriteUrlTransform()));
@@ -64,6 +64,8 @@ namespace Portal.CMS.Web
             bundles.Add(new StyleBundle("~/Resources/CSS/JQuery/JQueryUI").Include("~/Content/Styles/JQueryUI/jquery-ui.min.css", new CssRewriteUrlTransform()));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/FontAwesome", "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css").Include("~/Content/Styles/FontAwesome/font-awesome.min.css", new CssRewriteUrlTransform()));
+
+            bundles.Add(new StyleBundle("~/Resources/CSS/FontAwesome/Picker").Include("~/Content/Styles/FontAwesome/fontawesome-iconpicker.min.css"));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework").Include("~/Content/Styles/Framework/*.css", new CssRewriteUrlTransform()));
 
