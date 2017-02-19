@@ -1,0 +1,42 @@
+﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager.AppDrawerViewModel
+@using Portal.CMS.Entities.Entities.Posts
+@{
+    Layout = "";
+}
+
+<div id="blog-manager-panel" class="panel-overlay">
+    <div class="panel-title">
+        <h4>Blog Manager</h4>
+        <div class="panel-action right" onclick="ClosePanels();"><span class="fa fa-remove"></span></div>
+        <div class="panel-action right" data-toggle="popover" data-trigger="click" data-container="body" data-placement="bottom" data-title="Blog Manager" data-content="The Blog Manager gives you easy access into the posts you have written on this website."><span class="fa fa-info"></span></div>
+    </div>
+
+    <div class="panel-inner">
+        <a href="@Url.Action("Create", "BlogManager", new { area = "Admin" })" class="btn primary launch-modal" data-title="New Page" style="font-size: 15px;"><span class="fa fa-plus"></span>New</a>
+        <a href="@Url.Action("Index", "BlogManager", new { area = "Admin" })" class="btn" style="font-size: 15px;"><span class="fa fa-th-list"></span>Blog Manager</a>
+
+        <div class="tab-content" style="padding-top: 10px; padding-right: 10px; padding-left: 2px; border: 0; max-height: 74vh;">
+            @foreach (var post in Model.PostList)
+            {
+                string bannerImagePath = "/Areas/Builder/Content/Images/Sample/Sample-1.jpg";
+                if (post.PostImages.Any(x => x.PostImageType == PostImageType.Banner))
+                {
+                    bannerImagePath = post.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
+                }
+
+                <a class="col-xs-12" href="@Url.Action("Index", "Blog", new { area = "", id = @post.PostId })">
+                    <div class="box article-item float-container" style="@string.Format("background-image: url('{0}'); color: white;", bannerImagePath)">
+                        <div class="inner">
+                            <div class="category-item"><span class="fa fa-tag"></span>@post.PostCategory.PostCategoryName</div>
+                            <div title="Views" class="hidden-xs category-item"><span class="fa fa-users"></span>@post.PostViews.Count()</div>
+                            <div title="Comments" class="hidden-xs category-item"><span class="fa fa-comment"></span>@post.PostComments.Count()</div>
+                            <h3>@post.PostTitle</h3>
+                            <p>@post.PostDescription</p>
+                        </div>
+                        <div class="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? "overlay-medium" : "")"></div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>

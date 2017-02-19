@@ -27,11 +27,12 @@
 @if (isAdmin)
 {
     <div class="action-container wide global">
-        <div id="tour-add-section" class="action" onclick="ToggleSectionPanel();"><span class="fa fa-plus"></span><span class="hidden-xs">Add Section</span></div>
-        <div id="tour-add-component" class="action" onclick="ToggleComponentPanel();"><span class="fa fa-briefcase"></span><span class="hidden-xs">Add Component</span></div>
+        <div id="tour-add-section" class="action" onclick="TogglePanel('section-panel');"><span class="fa fa-plus"></span><span class="hidden-xs">Add Section</span></div>
+        <div id="tour-add-component" class="action" onclick="TogglePanel('component-panel');"><span class="fa fa-briefcase"></span><span class="hidden-xs">Add Component</span></div>
         <div id="tour-change-order" class="action" onclick="ChangeOrder();"><span class="fa fa-sort"></span><span class="hidden-xs">Edit Order</span></div>
-        <div id="tour-page-manager" class="action" onclick="TogglePageList();"><span class="fa fa-th-list"></span><span class="hidden-xs">Page Manager</span></div>
-        <div id="tour-theme-manager" class="action" onclick="ToggleThemeManager();"><span class="fa fa-paint-brush"></span><span class="hidden-xs">Theme Manager</span></div>
+        <div id="tour-page-manager" class="action" onclick="TogglePanel('pages-panel');"><span class="fa fa-th-list"></span><span class="hidden-xs">Page Manager</span></div>
+        <div id="tour-theme-manager" class="action" onclick="TogglePanel('theme-manager-panel');"><span class="fa fa-paint-brush"></span><span class="hidden-xs">Theme Manager</span></div>
+        <div id="tour-blog-manager" class="action" onclick="TogglePanel('blog-manager-panel');"><span class="fa fa-rss"></span><span class="hidden-xs">Blog Manager</span></div>
     </div>
 
     <div class="action-container section-order" style="display: none;">
@@ -62,4 +63,5 @@
     @Html.Action("Add", "Component")
     @Html.Action("AppDrawer", "PageManager", new { area = "Admin" })
     @Html.Action("AppDrawer", "ThemeManager", new { area = "Admin" })
+    @Html.Action("AppDrawer", "BlogManager", new { area = "Admin" })
 }

@@ -19,7 +19,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Manifest Constants
 
-        const string BANNER_IMAGE_ID = "BannerImageId;";
+        const string BANNER_IMAGE_ID = "BannerImageId";
         const string BANNER = "Banner";
         const string GALLERY_IMAGE_LIST = "GalleryImageList";
         const string GALLERY = "Gallery";
@@ -259,6 +259,17 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             _postService.Headline(postId, markup);
 
             return Content("Refresh");
+        }
+
+        [HttpGet]
+        public ActionResult AppDrawer()
+        {
+            var model = new AppDrawerViewModel
+            {
+                PostList = _postService.Read(UserHelper.UserId, string.Empty).ToList()
+            };
+
+            return PartialView("_AppDrawer", model);
         }
 
         #region Private Methods
