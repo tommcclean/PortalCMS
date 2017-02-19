@@ -1,7 +1,6 @@
 ﻿using Portal.CMS.Entities.Entities.Menu;
 using Portal.CMS.Services.Menu;
 using Portal.CMS.Web.DependencyResolution;
-using StructureMap;
 using System.Collections.Generic;
 
 namespace Portal.CMS.Web.Architecture.Helpers
