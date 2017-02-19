@@ -374,7 +374,7 @@
     <Content Include="Areas\Admin\Content\Images\icon-thememanager.png" />
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
-    <Content Include="Areas\Admin\Content\Scripts\ThemeManager\initialise.js" />
+    <Content Include="Content\Scripts\PageBuilder\ThemeManager.js" />
     <Content Include="Areas\Builder\Content\Images\Sample\sample-help.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\sample-rocket.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-lightgray.png" />
@@ -705,10 +705,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\AnalyticManager\ReviewException.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Builder\ViewModels\Shared\" />
-    <Folder Include="Areas\Builder\Views\Shared\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>

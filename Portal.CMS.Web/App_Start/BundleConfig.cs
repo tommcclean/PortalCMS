@@ -47,7 +47,7 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Pagination").Include("~/Content/Scripts/Framework/pagination.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/ThemeManager/Sliders").Include("~/Areas/Admin/Content/Scripts/ThemeManager/initialise.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/ThemeManager/Sliders").Include("~/Content/Scripts/PageBuilder/ThemeManager.js"));
 
             #endregion Script Bundles
 
