@@ -31,7 +31,7 @@
     .panel-overlay .panel-inner
     {
         width: 100%;
-        padding: 15px;
+        padding: 6px;
     }
 
         .panel-overlay .panel-inner .tab-content
@@ -48,8 +48,9 @@
             margin-bottom: 50px;
             border: 1px solid black;
             cursor: pointer;
-            -ms-zoom: 0.2;
-            zoom: 0.2;
+            -ms-zoom: 0.25;
+            zoom: 0.25;
+            overflow: hidden;
         }
 
             .panel-overlay .panel-inner .section-preview:hover
