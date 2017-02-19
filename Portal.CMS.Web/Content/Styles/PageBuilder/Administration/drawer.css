@@ -37,7 +37,7 @@
         .panel-overlay .panel-inner .tab-content
         {
             min-height: 300px;
-            max-height: 78vh;
+            max-height: 83vh;
             overflow-y: auto;
         }
 

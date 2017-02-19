@@ -186,3 +186,8 @@ ul.pagination
 {
     display: none;
 }
+
+.click-through
+{
+    pointer-events:none;
+}
