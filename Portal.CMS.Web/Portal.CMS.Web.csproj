@@ -384,28 +384,28 @@
     <Content Include="Content\Scripts\PageBuilder\MenuBuilder.js" />
     <Content Include="Areas\Builder\Content\Styles\components.css" />
     <Content Include="Areas\Builder\Content\Styles\sections.css" />
-    <Content Include="Content\Scripts\BootstrapTour\bootstrap-tour.min.js" />
+    <Content Include="Content\Scripts\Bootstrap\bootstrap-tour.min.js" />
     <Content Include="Content\Scripts\FontAwesome\fontawesome-iconpicker.min.js" />
     <Content Include="Content\Scripts\Framework\framework.js" />
     <Content Include="Content\Scripts\Framework\pagination.js" />
     <Content Include="Content\Scripts\PageBuilder\ToolMenu.js" />
-    <Content Include="Content\Scripts\JQueryUI\jquery-ui.min.js" />
+    <Content Include="Content\Scripts\JQuery\jquery-ui.min.js" />
     <Content Include="Content\Scripts\JQuery\jquery-2.2.1.min.js" />
     <Content Include="Content\Scripts\PageBuilder\PageBuilder.js" />
     <Content Include="Content\Scripts\Spectrum\spectrum.js" />
-    <Content Include="Content\Styles\BootstrapTour\bootstrap-tour.min.css" />
+    <Content Include="Content\Styles\Bootstrap\bootstrap-tour.min.css" />
     <Content Include="Content\Styles\C3Graphing\c3.css" />
     <Content Include="Content\Styles\C3Graphing\c3.min.css">
       <DependentUpon>c3.css</DependentUpon>
     </Content>
     <Content Include="Content\Scripts\C3Graphing\c3.min.js" />
     <Content Include="Content\Scripts\C3Graphing\d3.min.js" />
-    <Content Include="Content\Scripts\BootstrapConfirmation\bootstrap-confirmation.min.js" />
+    <Content Include="Content\Scripts\Bootstrap\bootstrap-confirmation.min.js" />
     <Content Include="Content\Scripts\FancyBox\initialise.js" />
     <Content Include="Content\Styles\FancyBox\jquery.fancybox-thumbs.min.css">
       <DependentUpon>jquery.fancybox-thumbs.css</DependentUpon>
     </Content>
-    <Content Include="Content\Scripts\JQueryTouch\jquery.ui.touch-punch.min.js" />
+    <Content Include="Content\Scripts\JQuery\jquery.ui.touch-punch.min.js" />
     <Content Include="Content\Scripts\TinyMCE\initialise.js" />
     <Content Include="Content\Scripts\TinyMCE\tinymce.min.js" />
     <Content Include="Areas\Admin\Content\Styles\Framework\images.css" />
@@ -460,7 +460,7 @@
     <Content Include="Content\Styles\FancyBox\fancybox_sprite.png" />
     <Content Include="Content\Styles\FancyBox\jquery.fancybox-thumbs.css" />
     <Content Include="Content\Styles\FancyBox\jquery.fancybox.css" />
-    <Content Include="Content\Styles\JQueryUI\jquery-ui.min.css" />
+    <Content Include="Content\Styles\JQuery\jquery-ui.min.css" />
     <Content Include="Content\Styles\Spectrum\spectrum.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
