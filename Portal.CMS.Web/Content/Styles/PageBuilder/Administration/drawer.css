@@ -68,6 +68,11 @@
                 background-attachment: scroll;
             }
 
+            .panel-overlay .panel-inner .section-preview .freestyle
+            {
+                border: 0;
+            }
+
     .panel-overlay .freestyle
     {
         border: 1px dashed purple;
