@@ -135,26 +135,6 @@ body
     margin-left: 7px;
 }
 
-.popover.tour
-{
-    min-width: 276px;
-}
-
-    .popover.tour .popover-title
-    {
-        font-size: 16px;
-    }
-
-    .popover.tour p
-    {
-        font-size: 16px;
-    }
-
-    .popover.tour .btn
-    {
-        font-size: 16px;
-    }
-
 @media (min-width: 768px)
 {
     .modal-dialog

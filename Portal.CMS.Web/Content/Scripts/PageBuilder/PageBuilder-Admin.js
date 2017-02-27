@@ -25,53 +25,7 @@
                 success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
             });
         });
-
-        var tour = new Tour({
-            container: 'body',
-            backdrop: true,
-            template: "<div class='popover tour'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div><div class='popover-navigation'><button class='btn btn-default' data-role='prev'>«</button><button class='btn btn-default' data-role='next'>»</button><button class='btn btn-default' data-role='end'>Exit</button></div></div>",
-            steps:
-            [
-                {
-                    element: "#tour-add-section",
-                    placement: "top",
-                    title: "Add a Section",
-                    content: "<p>A page is made up of one or more sections.</p><p>click 'Add Section' to add new content to your page.</p>"
-                },
-                {
-                    element: "#tour-add-component",
-                    placement: "top",
-                    title: "Add Components",
-                    content: "<p>Components are types of content you can add to a section, like text, buttons, images and more.</p><p>Drag and drop a component onto your page and then click it to change it.</p>"
-                },
-                {
-                    element: "#tour-page-manager",
-                    placement: "top",
-                    title: "Page Manager",
-                    content: "<p>Open the Page Manager to create a new Page</p><p>You can also use the Page Manager to navigate to your other pages</p>"
-                },
-                {
-                    element: "#tour-edit-section",
-                    placement: "bottom",
-                    title: "Edit Section",
-                    content: "<p>Every section has a settings button allowing you to change it.</p><p>Change the background, the size or even who can view a section.</p>"
-                },
-                {
-                    element: ".tour-edit-element",
-                    placement: "bottom",
-                    title: "Edit Components",
-                    content: "<p>Simply click or tap on any component in order to change it..</p>"
-                }
-            ]
-        });
-
-        tour.init();
-
-        tour.start();
     }
-
-    $('.edit-section').first().attr('id', 'tour-edit-section');
-    $('#page-wrapper h1').first().attr('class', 'tour-edit-element');
 });
 
 function InitialiseEditor() {

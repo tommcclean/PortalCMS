@@ -14,7 +14,6 @@
 
     @if (UserHelper.IsAdmin)
     {
-        @Styles.Render("~/Resources/CSS/Bootstrap/Tour")
         @Styles.Render("~/Resources/CSS/PageBuilder/Framework/Administration")
     }
 
@@ -22,9 +21,7 @@
 
     @Scripts.Render("~/Resources/JavaScript/JQuery")
     @Scripts.Render("~/Resources/JavaScript/JQueryUI")
-
     @RenderSection("HEADScripts", false)
-
     @Html.Partial("_Analytics")
 </head>
 <body>
