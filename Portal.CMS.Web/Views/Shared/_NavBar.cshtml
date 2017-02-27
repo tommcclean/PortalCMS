@@ -48,17 +48,6 @@
                             <li><a href="@Url.Action("Logout", "Authentication", new { area="Admin"})"><span class="fa fa-lock"></span>Logout</a></li>
                         </ul>
                     </li>
-                    @if (isAdmin || isEditor)
-                    {
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-cog"></span>Administration <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="@Url.Action("Index", "Dashboard", new { area="Admin"})"><span class="fa fa-dashboard"></span>Dashboard</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="@Url.Action("Setup", "SettingManager", new { area="Admin"})" class="launch-modal" data-title="Website Settings"><span class="fa fa-cog"></span>Website Settings</a></li>
-                            </ul>
-                        </li>
-                    }
                 </ul>
             }
             else

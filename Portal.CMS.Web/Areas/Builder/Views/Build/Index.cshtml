@@ -41,12 +41,13 @@
         </div>
         <div id="popover-options" class="list-group" style="display: none;">
             <div class="popover-menu">
-                <a class="list-group-item launch-modal" href="@Url.Action("Edit", "PageManager", new { pageId = @Model.Page.PageId, area = "Admin" })"><span class="fa fa-pencil"></span>Edit Page</a>
-                <a class="list-group-item" onclick="ChangeOrder();"><span class="fa fa-sort"></span>Change Section Order</a>
+                <a class="list-group-item launch-modal" href="@Url.Action("Edit", "PageManager", new { pageId = @Model.Page.PageId, area = "Admin" })" data-title="Edit Page"><span class="fa fa-pencil"></span>Edit Page</a>
+                <a class="list-group-item" onclick="ChangeOrder();"><span class="fa fa-sort"></span>Change Order</a>
             </div>
         </div>
         <div id="popover-more" class="list-group" style="display: none;">
             <div class="popover-menu">
+                <a class="list-group-item" href="@Url.Action("Index", "Dashboard", new { area = "Admin" })"><span class="fa fa-cog"></span>Administration</a>
                 <a class="list-group-item" onclick="TogglePanel('pages-panel');"><span class="fa fa-list"></span>Page Manager</a>
                 <a class="list-group-item" onclick="TogglePanel('blog-manager-panel');"><span class="fa fa-rss"></span>Blog Manager</a>
                 <a class="list-group-item" onclick="TogglePanel('theme-manager-panel');"><span class="fa fa-paint-brush"></span>Theme Manager</a>
