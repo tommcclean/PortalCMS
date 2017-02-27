@@ -2,10 +2,10 @@
 {
     overflow-y: auto;
     position: fixed;
-    width: 70px;
+    width: 60px;
     height: 100vh;
     background-color: #1C1C1E;
-    padding-top: 70px;
+    padding-top: 60px;
 }
 
     #sidebar .link
@@ -16,7 +16,7 @@
         border-bottom: 1px solid #28282B;
     }
 
-        #sidebar .link.first
+        #sidebar .link:first-child
         {
             border-top: 1px solid #28282B;
         }
@@ -30,20 +30,17 @@
         {
             width: 30px;
             height: 30px;
-            margin-top: 19px;
-            margin-bottom: 19px;
+            margin: 15px;
         }
 
 header
 {
     position: fixed;
-    left: 70px;
-    top: 0;
+    left: 60px;
     right: 0;
-    height: 70px;
     background-color: #1C1C1E;
     color: white;
-    padding: 5px 10px 5px 10px;
+    padding: 0 10px 5px 10px;
 }
 
     header h3
@@ -61,12 +58,12 @@ header
 #page-container
 {
     position: fixed;
-    left: 70px;
+    left: 60px;
     right: 0;
-    top: 70px;
+    top: 60px;
     bottom: 0;
     background-color: #EEEEF6;
-    padding: 30px;
+    padding: 25px;
     overflow-y: auto;
 }
 
@@ -75,45 +72,21 @@ header
     width: 100%;
     height: 220px;
     overflow-y: auto;
-    ;
-}
-
-.article-item .inner p
-{
-    height: 90px;
-    overflow: hidden;
 }
 
 .media-img
 {
     float: left;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin: 5px;
     height: 90px;
     width: 30%;
     max-width: 118px;
-    margin-bottom: 10px;
 }
 
 @media (max-width: 700px)
 {
-    header
-    {
-        left: 0;
-        padding-left: 20px;
-    }
-
-    #sidebar
-    {
-        padding: 0;
-        height: 70px;
-        right: 0;
-        width: 75px;
-        border-left: 1px solid #292C33;
-    }
-
     #page-container
     {
-        left: 0;
+        padding: 10px;
     }
 }
