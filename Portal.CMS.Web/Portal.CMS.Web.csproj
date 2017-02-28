@@ -314,9 +314,6 @@
     <Compile Include="Areas\Admin\ViewModels\BlogManager\PostsViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\RoleManager\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\RoleManager\EditViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\SettingManager\CreateViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\SettingManager\EditViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\SettingManager\SettingsViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\SettingManager\SetupViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\DefaultViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\ThemeViewModel.cs" />
@@ -542,9 +539,6 @@
     <Content Include="Areas\Admin\Views\UserManager\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\SettingManager\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Admin\Views\MediaManager\_UploadImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -578,8 +572,6 @@
     <Content Include="Areas\Admin\Views\CopyManager\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CopyManager\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\CopyManager\_Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\SettingManager\_Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\SettingManager\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\RoleManager\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\RoleManager\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\Menu\_Create.cshtml" />
