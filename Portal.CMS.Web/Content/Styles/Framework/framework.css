@@ -279,7 +279,6 @@
     {
         background-color: #28464B;
         border-color: #1E3438;
-        margin-right: 10px;
     }
 
         .admin-wrapper .button.more:hover
@@ -287,6 +286,22 @@
             background-color: #1E3438;
         }
 
+        .admin-wrapper .button.admin
+        {
+            background-color: #2E303A;
+            border-color: #262730;
+            margin-right: 10px;
+        }
+
+        .admin-wrapper .button.admin .fa
+        {
+            margin: 0;
+        }
+
+        .admin-wrapper .button.admin:hover
+        {
+            background-color: #262730;
+        }
 .popover-content
 {
     padding: 0;

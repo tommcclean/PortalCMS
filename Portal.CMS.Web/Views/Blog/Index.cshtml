@@ -91,6 +91,7 @@
         <div class="button add" data-toggle="popover" data-placement="top" data-trigger="click" data-container="body"><span class="click-through"><span class="fa fa-plus-circle"></span>Add</span></div>
         <div class="button options" data-toggle="popover" data-placement="top" data-trigger="click" data-container="body"><span class="click-through"><span class="fa fa-cog"></span><span class="hidden-xs">Post </span>Options</span></div>
         <div class="button more" data-toggle="popover" data-placement="top" data-trigger="click" data-container="body"><span class="click-through"><span class="fa fa-suitcase"></span>More<span class="hidden-xs"> Content</span></span></div>
+        <a class="button admin" href="@Url.Action("Index", "Dashboard", new { area = "Admin" })"><span class="fa fa-cog"></span></a>
 
         <div id="popover-add" class="list-group" style="display: none;">
             <div class="popover-menu">
@@ -105,7 +106,6 @@
         </div>
         <div id="popover-more" class="list-group" style="display: none;">
             <div class="popover-menu">
-                <a class="list-group-item" href="@Url.Action("Index", "Dashboard", new { area = "Admin" })"><span class="fa fa-cog"></span>Administration</a>
                 <a class="list-group-item" onclick="TogglePanel('pages-panel');"><span class="fa fa-list"></span>Page Manager</a>
                 <a class="list-group-item" onclick="TogglePanel('blog-manager-panel');"><span class="fa fa-rss"></span>Blog Manager</a>
                 <a class="list-group-item" onclick="TogglePanel('theme-manager-panel');"><span class="fa fa-paint-brush"></span>Theme Manager</a>
