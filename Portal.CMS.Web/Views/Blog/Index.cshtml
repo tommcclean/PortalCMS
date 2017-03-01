@@ -86,32 +86,7 @@
     @Html.Action("AppDrawer", "ThemeManager", new { area = "Admin" })
     @Html.Action("AppDrawer", "BlogManager", new { area = "Admin" })
 
-    <div class="page-admin-wrapper admin-wrapper">
-        <div class="button add" data-toggle="popover" data-placement="top" data-trigger="click" data-container="body"><span class="click-through"><span class="fa fa-plus-circle"></span>Add</span></div>
-        <div class="button options" data-toggle="popover" data-placement="top" data-trigger="click" data-container="body"><span class="click-through"><span class="fa fa-cog"></span><span class="hidden-xs">Post </span>Options</span></div>
-        <div class="button more" data-toggle="popover" data-placement="top" data-trigger="click" data-container="body"><span class="click-through"><span class="fa fa-suitcase"></span>More<span class="hidden-xs"> Content</span></span></div>
-        <a class="button admin" href="@Url.Action("Index", "Dashboard", new { area = "Admin" })"><span class="fa fa-cog"></span></a>
-
-        <div id="popover-add" class="list-group" style="display: none;">
-            <div class="popover-menu">
-                <a class="list-group-item launch-modal" href="@Url.Action("Create", "BlogManager", new { area = "Admin" })" data-title="Write Blog Post"><span class="fa fa-rss"></span>Write Blog Post</a>
-                <a class="list-group-item launch-modal" href="@Url.Action("UploadImage", "MediaManager", new { area = "Admin" })" data-title="Upload Image"><span class="fa fa-image"></span>Upload Image</a>
-            </div>
-        </div>
-        <div id="popover-options" class="list-group" style="display: none;">
-            <div class="popover-menu">
-                <a class="list-group-item launch-modal" href="@Url.Action("Edit", "BlogManager", new { postId = @Model.CurrentPost.PostId, area = "Admin" })"><span class="fa fa-pencil"></span>Edit Blog Post</a>
-            </div>
-        </div>
-        <div id="popover-more" class="list-group" style="display: none;">
-            <div class="popover-menu">
-                <a class="list-group-item" onclick="TogglePanel('pages-panel');"><span class="fa fa-list"></span>Page Manager</a>
-                <a class="list-group-item" onclick="TogglePanel('blog-manager-panel');"><span class="fa fa-rss"></span>Blog Manager</a>
-                <a class="list-group-item" onclick="TogglePanel('theme-manager-panel');"><span class="fa fa-paint-brush"></span>Theme Manager</a>
-                <a class="list-group-item" href="@Url.Action("Index", "AnalyticManager", new { area = "Admin" })"><span class="fa fa-area-chart"></span>View Analytics</a>
-            </div>
-        </div>
-    </div>
+    @Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.BlogManager, contentId = Model.CurrentPost.PostId })
 }
 
 <div class="post" style="background-color: white; min-height: 100vh;">

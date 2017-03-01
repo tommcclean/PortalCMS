@@ -296,6 +296,7 @@
     <Compile Include="Areas\Admin\ViewModels\CopyManager\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\CopyManager\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Dashboard\DashboardViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Dashboard\QuickAccessViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\MediaManager\MediaViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\MediaManager\UploadFontViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\MediaManager\UploadImageViewModel.cs" />
@@ -382,7 +383,7 @@
     <Content Include="Content\Scripts\FontAwesome\fontawesome-iconpicker.min.js" />
     <Content Include="Content\Scripts\Framework\framework.js" />
     <Content Include="Content\Scripts\Framework\pagination.js" />
-    <Content Include="Content\Scripts\Administration\ToolMenu-Admin.js" />
+    <Content Include="Content\Scripts\Administration\QuickAccess-Admin.js" />
     <Content Include="Content\Scripts\JQuery\jquery-ui.min.js" />
     <Content Include="Content\Scripts\JQuery\jquery-2.2.1.min.js" />
     <Content Include="Content\Scripts\Administration\PageBuilder-Admin.js" />
@@ -702,6 +703,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\BlogManager\_AppDrawer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Dashboard\_QuickAccess.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

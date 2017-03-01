@@ -1,6 +1,11 @@
 ﻿$(document).ready(function () {
     $(".admin-wrapper .button").click(function (event) {
-        $('.admin-wrapper .button').popover('hide');
+        var href = $(this).attr("href");
+
+        if (href === undefined)
+        {
+            $('.admin-wrapper .button').popover('hide');
+        }
     });
 });
 
