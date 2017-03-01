@@ -361,7 +361,6 @@
     <Content Include="Areas\Admin\Content\Images\block_black_dark.png" />
     <Content Include="Areas\Admin\Content\Images\block_black_light.png" />
     <Content Include="Areas\Admin\Content\Images\block_black_medium.png" />
-    <Content Include="Areas\Admin\Content\Images\icon-exit.png" />
     <Content Include="Areas\Admin\Content\Images\icon-media.png" />
     <Content Include="Areas\Admin\Content\Images\icon-dashboard.png" />
     <Content Include="Areas\Admin\Content\Images\icon-reports.png" />
