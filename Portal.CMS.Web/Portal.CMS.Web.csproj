@@ -404,7 +404,7 @@
     <Content Include="Content\Scripts\JQuery\jquery.ui.touch-punch.min.js" />
     <Content Include="Content\Scripts\TinyMCE\initialise.js" />
     <Content Include="Content\Scripts\TinyMCE\tinymce.min.js" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\images.css" />
+    <Content Include="Content\Styles\Framework\images.css" />
     <Content Include="Areas\Builder\Content\Images\Sample\icon-1.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\icon-2.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\icon-3.png" />
@@ -432,10 +432,10 @@
     <Content Include="Areas\Builder\Content\Images\Toolbar\mce-trash.png" />
     <Content Include="Content\Scripts\Components\component.expand.js" />
     <Content Include="Content\Scripts\Bootstrap\initialise.js" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\boxes.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\fields.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\override.css" />
-    <Content Include="Areas\Admin\Content\Styles\Framework\helper.css" />
+    <Content Include="Content\Styles\Framework\boxes.css" />
+    <Content Include="Content\Styles\Framework\fields.css" />
+    <Content Include="Content\Styles\Framework\override.css" />
+    <Content Include="Content\Styles\Framework\helper.css" />
     <Content Include="Areas\Admin\Content\Styles\administration.css" />
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox-thumbs.js" />
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox.js" />
@@ -512,7 +512,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\Emeric.ttf" />
+    <Content Include="Content\Fonts\Emeric.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Authentication\_Register.cshtml" />
@@ -631,49 +631,49 @@
     <Content Include="Areas\Admin\Views\ThemeManager\_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\Thin_Line_Font.otf" />
+    <Content Include="Content\Fonts\Thin_Line_Font.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\Sniglet-Regular.otf" />
+    <Content Include="Content\Fonts\Sniglet-Regular.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\Roboto-Thin.ttf" />
+    <Content Include="Content\Fonts\Roboto-Thin.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\Roboto-Bold.ttf" />
+    <Content Include="Content\Fonts\Roboto-Bold.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\Railway.otf" />
+    <Content Include="Content\Fonts\Railway.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\Organo.ttf" />
+    <Content Include="Content\Fonts\Organo.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\GrandHotel-Regular.otf" />
+    <Content Include="Content\Fonts\GrandHotel-Regular.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\DancingScript-Regular.otf" />
+    <Content Include="Content\Fonts\DancingScript-Regular.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\carbontype.ttf" />
+    <Content Include="Content\Fonts\carbontype.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\BubblegumSans-Regular.otf" />
+    <Content Include="Content\Fonts\BubblegumSans-Regular.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\BreeSerif-Regular.otf" />
+    <Content Include="Content\Fonts\BreeSerif-Regular.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\Blackout-2am.ttf" />
+    <Content Include="Content\Fonts\Blackout-2am.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\ArchitectsDaughter.ttf" />
+    <Content Include="Content\Fonts\ArchitectsDaughter.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\Anagram.ttf" />
+    <Content Include="Content\Fonts\Anagram.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\Fonts\AllerDisplay.ttf" />
+    <Content Include="Content\Fonts\AllerDisplay.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Theme\Render.cscss" />

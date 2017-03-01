@@ -33,6 +33,14 @@ namespace Portal.CMS.Entities.Seed
                 context.Fonts.AddRange(fonts);
             }
 
+            if (context.Fonts.Any(x => x.FontPath.Contains("Area")))
+            {
+                foreach(var font in context.Fonts)
+                {
+                    font.FontPath = font.FontPath.Replace("/Areas/Admin/Content/Fonts", "/Content/Fonts");
+                }
+            }
+
             context.SaveChanges();
 
             var themes = new List<Theme>();
