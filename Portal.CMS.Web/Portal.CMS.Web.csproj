@@ -683,9 +683,6 @@
     <Content Include="Content\Scripts\Spectrum\spectrum.md" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_DOMScripts.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\_RenderPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
