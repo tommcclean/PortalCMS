@@ -22,7 +22,7 @@
             @foreach (var pageItem in Model.PageList)
             {
                 <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="box article-item float-container light">
+                    <div class="box float-container light">
                         <div class="inner">
                             <h3>@pageItem.PageName</h3>
                             <p>Last Updated: @pageItem.DateUpdated.ToString("dd/MM/yyyy HH:mm")</p>
@@ -52,7 +52,7 @@
                 @foreach (var pageItem in Model.PageList.Where(x => x.PageArea == area))
                 {
                     <div class="col-xs-12 col-md-6 col-lg-4">
-                        <div class="box article-item float-container light">
+                        <div class="box float-container light">
                             <div class="inner">
                                 <h3>@pageItem.PageName</h3>
                                 <p>Last Updated: @pageItem.DateUpdated.ToString("dd/MM/yyyy HH:mm")</p>

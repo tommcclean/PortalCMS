@@ -15,7 +15,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('../../Images/block_black_dark.png');
+    background-image: url('/Areas/Admin/Content/Images/');
 }
 
 .overlay-light
@@ -26,7 +26,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('../../Images/block_black_light.png');
+    background-image: url('/Areas/Admin/Content/Images/block_black_light.png');
 }
 
 .overlay-medium
@@ -37,7 +37,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('../../Images/block_black_medium.png');
+    background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
 }
 
 .field-validation-error
@@ -131,7 +131,7 @@
     display: inline-block;
     padding: 7px 10px 7px 10px;
     margin: 2px;
-    background-image: url('../../Images/block_black_dark.png');
+    background-image: url('/Areas/Admin/Content/Images/block_black_dark.png');
     border-radius: 5px;
     text-transform: uppercase;
     font-size: 12px;

@@ -17,7 +17,7 @@
     <div class="panel-title">
         <h4>Add Section</h4>
         <div class="panel-action right" onclick="ClosePanels();"><span class="fa fa-remove"></span></div>
-        <div class="panel-action right"data-toggle="popover" data-trigger="click" data-container="body" data-placement="bottom" data-title="Add Section" data-content="Its easy to add a pre designed section to your page, simply click the one you want to add and it will appear at the bottom of your page."><span class="fa fa-info"></span></div>
+        <div class="panel-action right" data-toggle="popover" data-trigger="click" data-container="body" data-placement="bottom" data-title="Add Section" data-content="Its easy to add a pre designed section to your page, simply click the one you want to add and it will appear at the bottom of your page."><span class="fa fa-info"></span></div>
     </div>
 
     <div class="panel-inner">
@@ -52,9 +52,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        // Bootstrap Popover
-        $('.panel-action').popover();
-
         $('#section-panel .section-preview').on('click', function (e) {
             var sectionTypeId = $(this).attr("data-sectiontypeid");
             $('#PageSectionTypeId').val(sectionTypeId);

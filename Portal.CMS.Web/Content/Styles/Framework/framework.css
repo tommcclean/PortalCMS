@@ -286,12 +286,12 @@
             background-color: #1E3438;
         }
 
-        .admin-wrapper .button.admin
-        {
-            background-color: #2E303A;
-            border-color: #262730;
-            margin-right: 10px;
-        }
+    .admin-wrapper .button.admin
+    {
+        background-color: #2E303A;
+        border-color: #262730;
+        margin-right: 10px;
+    }
 
         .admin-wrapper .button.admin .fa
         {
@@ -302,7 +302,8 @@
         {
             background-color: #262730;
         }
-.popover-content
+
+.page-builder .popover-content
 {
     padding: 0;
 }

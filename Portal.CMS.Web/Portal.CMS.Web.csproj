@@ -380,8 +380,8 @@
     <Content Include="Areas\Builder\Content\Images\Sample\texture-notebook.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\texture-office.png" />
     <Content Include="Content\Scripts\PageBuilder\MenuBuilder-Admin.js" />
-    <Content Include="Content\Styles\PageBuilder\PageBuilder-Components.css" />
-    <Content Include="Content\Styles\PageBuilder\PageBuilder-Sections.css" />
+    <Content Include="Content\Styles\Framework\pagebuilder-components.css" />
+    <Content Include="Content\Styles\Framework\pagebuilder-sections.css" />
     <Content Include="Content\Scripts\FontAwesome\fontawesome-iconpicker.min.js" />
     <Content Include="Content\Scripts\Framework\framework.js" />
     <Content Include="Content\Scripts\Framework\pagination.js" />
@@ -404,7 +404,7 @@
     <Content Include="Content\Scripts\JQuery\jquery.ui.touch-punch.min.js" />
     <Content Include="Content\Scripts\TinyMCE\initialise.js" />
     <Content Include="Content\Scripts\TinyMCE\tinymce.min.js" />
-    <Content Include="Content\Styles\Framework\images.css" />
+    <Content Include="Content\Styles\Framework\framework-images.css" />
     <Content Include="Areas\Builder\Content\Images\Sample\icon-1.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\icon-2.png" />
     <Content Include="Areas\Builder\Content\Images\Sample\icon-3.png" />
@@ -432,14 +432,14 @@
     <Content Include="Areas\Builder\Content\Images\Toolbar\mce-trash.png" />
     <Content Include="Content\Scripts\Components\component.expand.js" />
     <Content Include="Content\Scripts\Bootstrap\initialise.js" />
-    <Content Include="Content\Styles\Framework\boxes.css" />
-    <Content Include="Content\Styles\Framework\fields.css" />
-    <Content Include="Content\Styles\Framework\override.css" />
-    <Content Include="Content\Styles\Framework\helper.css" />
-    <Content Include="Areas\Admin\Content\Styles\administration.css" />
+    <Content Include="Content\Styles\Framework\framework-boxes.css" />
+    <Content Include="Content\Styles\Framework\framework-fields.css" />
+    <Content Include="Content\Styles\Framework\framework-override.css" />
+    <Content Include="Content\Styles\Framework\framework-helpers.css" />
+    <Content Include="Content\Styles\Administration\administration-panel.css" />
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox-thumbs.js" />
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox.js" />
-    <Content Include="Content\Styles\PageBuilder\Administration\drawer.css" />
+    <Content Include="Content\Styles\Administration\app-drawers.css" />
     <Content Include="Content\Styles\FontAwesome\fontawesome-iconpicker.min.css" />
     <Content Include="Content\Styles\FontAwesome\font-awesome.min.css" />
     <Content Include="Content\Styles\Fonts\fontawesome-webfont.svg" />
@@ -447,7 +447,7 @@
     <Content Include="Content\Scripts\Bootstrap\bootstrap.min.js" />
     <Content Include="Content\Styles\Bootstrap\bootstrap.min.css" />
     <Content Include="Content\Styles\Framework\framework.css" />
-    <Content Include="Content\Styles\PageBuilder\PageBuilder.css" />
+    <Content Include="Content\Styles\Framework\pagebuilder.css" />
     <Content Include="Content\Styles\FancyBox\blank.gif" />
     <Content Include="Content\Styles\FancyBox\fancybox_loading%402x.gif" />
     <Content Include="Content\Styles\FancyBox\fancybox_loading.gif" />
@@ -696,7 +696,9 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\AnalyticManager\ReviewException.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Styles\PageBuilder\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>

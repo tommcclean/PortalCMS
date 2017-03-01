@@ -8,12 +8,11 @@
     @RenderSection("Styles", false)
     @Styles.Render("~/Resources/CSS/Bootstrap")
     @Styles.Render("~/Resources/CSS/FontAwesome")
-    @Styles.Render("~/Resources/CSS/PageBuilder/Framework")
     @Styles.Render("~/Resources/CSS/Framework")
 
     @if (UserHelper.IsAdmin)
     {
-        @Styles.Render("~/Resources/CSS/PageBuilder/Framework/Administration")
+        @Styles.Render("~/Resources/CSS/Framework/Administration")
     }
 
     <link href="@Url.Action("Render", "Theme", new { area = "Builder" })" rel="stylesheet" type="text/css" />
@@ -23,7 +22,7 @@
     @RenderSection("HEADScripts", false)
     @Html.Partial("_Analytics")
 </head>
-<body>
+<body class="page-builder">
     @Html.Partial("_NavBar")
     @RenderBody()
     @Html.Partial("_DOMScripts")
