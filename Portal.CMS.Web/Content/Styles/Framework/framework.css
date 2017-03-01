@@ -253,13 +253,13 @@
         opacity: 1;
     }
 
-    .admin-wrapper .button.add
+    .admin-wrapper .button.add, .admin-wrapper .button.act
     {
         background-color: #d32d27;
         border-color: #B72722;
     }
 
-        .admin-wrapper .button.add:hover
+        .admin-wrapper .button.add:hover, .admin-wrapper .button.act:hover
         {
             background-color: #B72722;
         }

@@ -45,11 +45,19 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             switch (pageType)
             {
                 case QuickAccessPageType.AdministrationPanel:
+
+                    #region Administration Panel
+
                     model.Categories.Add(ExitButton());
+
+                    #endregion Administration Panel
 
                     break;
 
                 case QuickAccessPageType.PageBuilder:
+
+                    #region Page Builder
+
                     model.Categories.Add(new QuickAccessCategory
                     {
                         Icon = "fa fa-plus",
@@ -80,9 +88,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     model.Categories.Add(MoreContent());
                     model.Categories.Add(AdminButton());
 
+                    #endregion Page Builder
+
                     break;
 
                 case QuickAccessPageType.BlogManager:
+
+                    #region Blog Manager
+
                     model.Categories.Add(new QuickAccessCategory
                     {
                         Icon = "fa fa-plus",
@@ -109,13 +122,35 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     model.Categories.Add(MoreContent());
                     model.Categories.Add(AdminButton());
 
+                    #endregion Blog Manager
+
+                    break;
+
+                case QuickAccessPageType.UserManagement:
+
+                    #region User Management
+
+                    model.Categories.Add(new QuickAccessCategory
+                    {
+                        Icon = "fa fa-plus",
+                        DesktopText = "Add User",
+                        MobileText = "Add User",
+                        CssClass = "act",
+                        LaunchModal = true,
+                        Link = Url.Action("Create", "UserManager", new { area = nameof(Admin) })
+                    });
+
+                    model.Categories.Add(ExitButton());
+
+                    #endregion User Management
+
                     break;
             }
 
             return PartialView("_QuickAccess", model);
         }
 
-        private QuickAccessCategory MoreContent()
+        private static QuickAccessCategory MoreContent()
         {
             return new QuickAccessCategory
             {

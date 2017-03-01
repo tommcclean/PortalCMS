@@ -21,6 +21,8 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.Dashboard
 
         public string Link { get; set; }
 
+        public bool LaunchModal { get; set; }
+
         public List<QuickAccessAction> Actions { get; set; } = new List<QuickAccessAction>();
     }
 
@@ -42,5 +44,6 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.Dashboard
         PageBuilder = 1,
         BlogManager = 2,
         AdministrationPanel = 3,
+        UserManagement = 4
     }
 }

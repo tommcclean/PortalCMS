@@ -2,6 +2,7 @@
     $('.button.add[data-toggle="popover"]').popover({ html: true, content: function () { return $('#popover-add').html(); } });
     $('.button.options[data-toggle="popover"]').popover({ html: true, content: function () { return $('#popover-options').html(); } });
     $('.button.more[data-toggle="popover"]').popover({ html: true, content: function () { return $('#popover-more').html(); } });
+    $('.button.act[data-toggle="popover"]').popover('disable');
 
     // Bootstrap Popover
     $('[data-toggle="popover"]').popover();

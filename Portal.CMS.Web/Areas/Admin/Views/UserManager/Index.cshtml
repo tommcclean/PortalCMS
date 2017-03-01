@@ -4,9 +4,7 @@
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-users.png";
 }
 
-<a href="@Url.Action("Create", "UserManager")" class="action-container launch-modal" data-title="Register User">
-    <div class="action"><span class="fa fa-plus"></span></div>
-</a>
+@Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.UserManagement })
 
 <div class="row">
     @foreach (var user in Model.Users)

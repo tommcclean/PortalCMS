@@ -3,7 +3,7 @@
 <div class="page-admin-wrapper admin-wrapper">
     @foreach (var category in Model.Categories)
     {
-        <a href="@category.Link" class="button @category.CssClass" data-toggle="popover" data-placement="top" data-trigger="click" data-container="body"><span class="click-through"><span class="@category.Icon"></span><span class="visible-xs visible-sm visible-md visible-lg" style="display: inline-block !important;">@category.DesktopText</span></span></a>
+        <a href="@category.Link" class="button @category.CssClass @(category.LaunchModal ? "launch-modal" : "")" data-toggle="popover" data-placement="top" data-trigger="click" data-title="@(!string.IsNullOrWhiteSpace(category.Link) ? category.DesktopText : "")" data-container="body"><span class="click-through"><span class="@category.Icon"></span><span class="visible-xs visible-sm visible-md visible-lg" style="display: inline-block !important;">@category.DesktopText</span></span></a>
     }
 
     @foreach (var category in Model.Categories)

@@ -2,8 +2,7 @@
     $(".admin-wrapper .button").click(function (event) {
         var href = $(this).attr("href");
 
-        if (href === undefined)
-        {
+        if (href === undefined) {
             $('.admin-wrapper .button').popover('hide');
         }
     });
