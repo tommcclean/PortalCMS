@@ -267,7 +267,6 @@
     <Compile Include="Areas\Admin\Controllers\CopyManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\MediaManagerController.cs" />
-    <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuItemController.cs" />
     <Compile Include="Areas\Admin\Controllers\PageManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostCategoriesController.cs" />
@@ -302,8 +301,6 @@
     <Compile Include="Areas\Admin\ViewModels\MediaManager\UploadImageViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\MenuItem\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\MenuItem\CreateViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Menu\CreateViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Menu\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\PageManager\CreateViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\PageManager\EditViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\PageManager\PagesViewModel.cs" />
@@ -574,8 +571,6 @@
     <Content Include="Areas\Admin\Views\CopyManager\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\RoleManager\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\RoleManager\_Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\_Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\MenuItem\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\PageManager\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PageManager\_Create.cshtml" />

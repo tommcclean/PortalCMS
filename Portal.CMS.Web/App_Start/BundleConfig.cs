@@ -11,6 +11,14 @@ namespace Portal.CMS.Web
 
             #region Script Bundles
 
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework").Include("~/Content/Scripts/Framework/framework.js"));
+
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilder/Anonymous").Include("~/Content/Scripts/PageBuilder/PageBuilder-Anonymous.js"));
+
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilder/Admin").Include("~/Content/Scripts/PageBuilder/ToolMenu-Admin.js").Include("~/Content/Scripts/PageBuilder/Menubuilder-Admin.js").Include("~/Content/Scripts/PageBuilder/PageBuilder-Admin.js"));
+
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/BlogManager/Admin").Include("~/Content/Scripts/PageBuilder/ToolMenu-Admin.js").Include("~/Content/Scripts/PageBuilder/MenuBuilder-Admin.js"));
+
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js").Include("~/Content/Scripts/Bootstrap/bootstrap.min.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/JQueryUI", "https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js").Include("~/Content/Scripts/JQuery/jquery.ui.min.js"));
@@ -20,14 +28,6 @@ namespace Portal.CMS.Web
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/JQueryTouch").Include("~/Content/Scripts/JQuery/jquery.ui.touch-punch.min.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/FontAwesome").Include("~/Content/Scripts/FontAwesome/fontawesome-iconpicker.min.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework").Include("~/Content/Scripts/Framework/framework.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilder/Anonymous").Include("~/Content/Scripts/PageBuilder/PageBuilder-Anonymous.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilder/Admin").Include("~/Content/Scripts/PageBuilder/ToolMenu-Admin.js").Include("~/Content/Scripts/PageBuilder/Menubuilder-Admin.js").Include("~/Content/Scripts/PageBuilder/PageBuilder-Admin.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/BlogManager/Admin").Include("~/Content/Scripts/PageBuilder/ToolMenu-Admin.js").Include("~/Content/Scripts/PageBuilder/MenuBuilder-Admin.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Plugins/Popover").Include("~/Content/Scripts/Bootstrap/initialise.js").Include("~/Content/Scripts/Bootstrap/bootstrap-confirmation.min.js"));
 
