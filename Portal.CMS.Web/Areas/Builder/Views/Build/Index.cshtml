@@ -17,7 +17,7 @@
         @Scripts.Render("~/Resources/JavaScript/PageBuilder/Admin")
     }
 
-    @Scripts.Render("~/Resources/JavaScript/FAQSpoilerEvents")
+    @Scripts.Render("~/Resources/JavaScript/Plugins/FAQ")
     <script type="text/javascript">
         var dataParams = { "pageId": @Model.Page.PageId, "referrer": "@Request.UrlReferrer", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
         $.ajax({data: dataParams,type: 'POST',cache: false,url: '@Url.Action("Analytic", "Build", new { area = "Builder" })',success: function (data) {},});

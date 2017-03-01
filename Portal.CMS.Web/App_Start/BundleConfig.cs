@@ -19,21 +19,9 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/JQueryTouch").Include("~/Content/Scripts/JQuery/jquery.ui.touch-punch.min.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Popover").Include("~/Content/Scripts/Bootstrap/initialise.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Confirmation").Include("~/Content/Scripts/Bootstrap/bootstrap-confirmation.min.js"));
-
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/FontAwesome").Include("~/Content/Scripts/FontAwesome/fontawesome-iconpicker.min.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework").Include("~/Content/Scripts/Framework/framework.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/FancyBox").Include("~/Content/Scripts/FancyBox/jquery.fancybox.js").Include("~/Content/Scripts/FancyBox/jquery.fancybox-thumbs.js").Include("~/Content/Scripts/FancyBox/initialise.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/C3Graphing").Include("~/Content/Scripts/C3Graphing/c3.min.js").Include("~/Content/Scripts/C3Graphing/d3.min.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/TinyMCE").Include("~/Content/Scripts/TinyMCE/tinymce.min.js").Include("~/Content/Scripts/TinyMCE/initialise.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/ImageSelector").Include("~/Content/Scripts/ImageSelector/*.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilder/Anonymous").Include("~/Content/Scripts/PageBuilder/PageBuilder-Anonymous.js"));
 
@@ -41,13 +29,21 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/BlogManager/Admin").Include("~/Content/Scripts/PageBuilder/ToolMenu-Admin.js").Include("~/Content/Scripts/PageBuilder/MenuBuilder-Admin.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/FAQSpoilerEvents").Include("~/Content/Scripts/Components/component.expand.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Plugins/Popover").Include("~/Content/Scripts/Bootstrap/initialise.js").Include("~/Content/Scripts/Bootstrap/bootstrap-confirmation.min.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Spectrum").Include("~/Content/Scripts/Spectrum/spectrum.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/FancyBox").Include("~/Content/Scripts/FancyBox/jquery.fancybox.js").Include("~/Content/Scripts/FancyBox/jquery.fancybox-thumbs.js").Include("~/Content/Scripts/FancyBox/initialise.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Pagination").Include("~/Content/Scripts/Framework/pagination.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/C3Graphing").Include("~/Content/Scripts/C3Graphing/c3.min.js").Include("~/Content/Scripts/C3Graphing/d3.min.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/ThemeManager/Sliders").Include("~/Content/Scripts/PageBuilder/ThemeManager-Admin.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/ImageSelector").Include("~/Content/Scripts/ImageSelector/*.js"));
+
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/FAQ").Include("~/Content/Scripts/Components/component.expand.js"));
+
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/Spectrum").Include("~/Content/Scripts/Spectrum/spectrum.js"));
+
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/Pagination").Include("~/Content/Scripts/Framework/pagination.js"));
+
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/Sliders").Include("~/Content/Scripts/PageBuilder/ThemeManager-Admin.js"));
 
             #endregion Script Bundles
 
