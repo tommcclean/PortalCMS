@@ -1,4 +1,7 @@
-﻿$("a.admin-item, .action").click(function (event) {
+﻿"use strict";
+
+
+$("a.admin-item, .action").click(function (event) {
     var fontAwesomeIcon = $(this).find('.fa')
     fontAwesomeIcon.addClass('fa-spin');
 
@@ -58,8 +61,6 @@ function TogglePageList() {
         $('#pages-panel').toggleClass('visible');
     }
 }
-
-"use strict";
 
 $(document).ready(function () {
     $('body').on('click', '.launch-modal', function (e) {

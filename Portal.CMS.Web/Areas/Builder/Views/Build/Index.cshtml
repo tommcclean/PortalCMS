@@ -7,14 +7,12 @@
 
 @section HEADScripts
 {
-    @Scripts.Render("~/Resources/JavaScript/PageBuilder/Anonymous")
-
     @if (isAdmin)
     {
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
         @Scripts.Render("~/Resources/JavaScript/JQueryTouch")
-        @Scripts.Render("~/Resources/JavaScript/PageBuilder/Admin")
+        @Scripts.Render("~/Resources/JavaScript/Framework/Administration")
     }
 
     @Scripts.Render("~/Resources/JavaScript/Plugins/FAQ")

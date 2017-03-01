@@ -11,13 +11,9 @@ namespace Portal.CMS.Web
 
             #region Script Bundles
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework").Include("~/Content/Scripts/Framework/framework.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework").Include("~/Content/Scripts/Framework/*.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilder/Anonymous").Include("~/Content/Scripts/PageBuilder/PageBuilder-Anonymous.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/PageBuilder/Admin").Include("~/Content/Scripts/PageBuilder/ToolMenu-Admin.js").Include("~/Content/Scripts/PageBuilder/Menubuilder-Admin.js").Include("~/Content/Scripts/PageBuilder/PageBuilder-Admin.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/BlogManager/Admin").Include("~/Content/Scripts/PageBuilder/ToolMenu-Admin.js").Include("~/Content/Scripts/PageBuilder/MenuBuilder-Admin.js"));
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework/Administration").Include("~/Content/Scripts/Administration/*.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js").Include("~/Content/Scripts/Bootstrap/bootstrap.min.js"));
 

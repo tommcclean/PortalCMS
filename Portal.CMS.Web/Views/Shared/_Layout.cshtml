@@ -13,6 +13,7 @@
     @if (UserHelper.IsAdmin)
     {
         @Styles.Render("~/Resources/CSS/Framework/Administration")
+        @Scripts.Render("~/Resources/JavaScript/Framework/Administration")
     }
 
     <link href="@Url.Action("Render", "Theme", new { area = "Builder" })" rel="stylesheet" type="text/css" />
@@ -25,7 +26,10 @@
 <body class="page-builder">
     @Html.Partial("_NavBar")
     @RenderBody()
-    @Html.Partial("_DOMScripts")
+
+    @Scripts.Render("~/Resources/JavaScript/Bootstrap")
+    @Scripts.Render("~/Resources/JavaScript/Bootstrap/Plugins/Popover")
+    @Scripts.Render("~/Resources/JavaScript/Framework")
     @RenderSection("DOMScripts", false)
 </body>
 </html>
