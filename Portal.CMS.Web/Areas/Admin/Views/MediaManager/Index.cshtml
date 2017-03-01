@@ -17,7 +17,9 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#delete-media").click(function (event) {
+        $('.act.delete').hide();
+
+        $(".act.delete").click(function (event) {
             var elementId = $(".thumbnail.selected:first").attr("id");
             var elementParts = elementId.split('-');
             var imageId = elementParts[elementParts.length - 1];
@@ -38,11 +40,11 @@
 
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
-                $('#delete-media').fadeOut(200);
+                $('.act.delete').fadeOut(100);
             }
             else {
                 $('.thumbnail.selected').removeClass('selected');
-                $('#delete-media').fadeIn(200);
+                $('.act.delete').fadeIn(100);
                 $(this).addClass('selected');
             }
         }).children().click(function (e) {
@@ -51,11 +53,7 @@
     });
 </script>
 
-<div class="action-container">
-    <div id="delete-media" class="action" style="display: none;"><span class="fa fa-trash"></span></div>
-    <a href="@Url.Action("UploadFont", "MediaManager", new { area = "Admin" })" data-title="Upload Font" class="launch-modal"><div class="action"><span class="fa fa-font"></span></div></a>
-    <a href="@Url.Action("UploadImage", "MediaManager", new { area = "Admin" })" data-title="Upload Image" class="launch-modal"><div class="action"><span class="fa fa-camera"></span></div></a>
-</div>
+@Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.MediaManager_Admin })
 
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab"><span class="fa fa-file-image-o"></span>General</a></li>

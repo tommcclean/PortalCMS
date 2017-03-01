@@ -43,7 +43,13 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.Dashboard
     {
         PageBuilder = 1,
         BlogManager = 2,
-        AdministrationPanel = 3,
-        UserManagement = 4
+        ExitAdministrationPanel_Admin = 3,
+        AdministrationPanel_Admin = 4,
+        UserManagement_Admin = 5,
+        ThemeManager_Admin = 6,
+        PageManager_Admin = 7,
+        CopyManager_Admin = 8,
+        BlogManager_Admin = 9,
+        MediaManager_Admin = 10,
     }
 }

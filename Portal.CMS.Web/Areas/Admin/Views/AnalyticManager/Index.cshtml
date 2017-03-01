@@ -16,6 +16,8 @@
     <script type="text/javascript">$(document).ready(function () { $('.reframe').click(function (e) { window.dispatchEvent(new Event('resize')); }) });</script>
 }
 
+@Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.ExitAdministrationPanel_Admin })
+
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a class="reframe" href="#tab-day" aria-controls="tab-day" role="tab" data-toggle="tab"><span class="fa fa-clock-o"></span>Today</a></li>
     <li role="presentation" class=""><a class="reframe" href="#tab-week" aria-controls="tab-week" role="tab" data-toggle="tab"><span class="fa fa-road"></span>This Week</a></li>

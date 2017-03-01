@@ -9,9 +9,7 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 }
 
-<a href="@Url.Action("Create", "CopyManager")" class="action-container launch-modal" data-title="Create Copy">
-    <div class="action"><span class="fa fa-plus"></span></div>
-</a>
+@Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.CopyManager_Admin })
 
 <div class="row">
     @foreach (var copyItem in Model.CopyList)

@@ -11,10 +11,7 @@
 
 <div class="alert alert-warning" role="alert">Upload new images for use in your posts using the <a href="@Url.Action("Index", "MediaManager")" class="alert-link">Media Manager</a>.</div>
 
-<div class="action-container">
-    <a href="@Url.Action("Add", "PostCategories")" class="launch-modal" data-title="Add Post Category"><div class="action"><span class="fa fa-bookmark"></span></div></a>
-    <a href="@Url.Action("Create", "BlogManager")" class="launch-modal" data-title="Create Post"><div class="action"><span class="fa fa-plus"></span></div></a>
-</div>
+@Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.BlogManager_Admin })
 
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#tab-posts" aria-controls="tab-posts" role="tab" data-toggle="tab"><span class="fa fa-pencil"></span>Posts</a></li>

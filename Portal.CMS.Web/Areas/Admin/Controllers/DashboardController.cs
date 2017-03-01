@@ -44,106 +44,59 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             switch (pageType)
             {
-                case QuickAccessPageType.AdministrationPanel:
-
-                    #region Administration Panel
-
+                case QuickAccessPageType.ExitAdministrationPanel_Admin:
                     model.Categories.Add(ExitButton());
+                    break;
 
-                    #endregion Administration Panel
-
+                case QuickAccessPageType.AdministrationPanel_Admin:
+                    model.Categories.Add(ExitButton());
                     break;
 
                 case QuickAccessPageType.PageBuilder:
-
-                    #region Page Builder
-
-                    model.Categories.Add(new QuickAccessCategory
-                    {
-                        Icon = "fa fa-plus",
-                        DesktopText = "Add",
-                        MobileText = "Add",
-                        CssClass = "add",
-                        Actions = new System.Collections.Generic.List<QuickAccessAction> {
-                            new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Section", JavaScript = "TogglePanel('section-panel');" },
-                            new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Component", JavaScript = "TogglePanel('component-panel');" },
-                            new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Blank Page", Link = Url.Action("Create", "PageManager", new { area = nameof(Admin) }), LaunchModal = true },
-                            new QuickAccessAction { Icon = "fa fa-image", Text = "Upload Image", Link = Url.Action("UploadImage", "MediaManager", new { area = nameof(Admin) }), LaunchModal = true },
-                            new QuickAccessAction { Icon = "fa fa-rss", Text = "Write Blog Post", Link = Url.Action("Create", "BlogManager", new { area = nameof(Admin) }), LaunchModal = true },
-                        }
-                    });
-
-                    model.Categories.Add(new QuickAccessCategory
-                    {
-                        Icon = "fa fa-cog",
-                        DesktopText = "Page Options",
-                        MobileText = "Options",
-                        CssClass = "options",
-                        Actions = new System.Collections.Generic.List<QuickAccessAction> {
-                            new QuickAccessAction { Icon = "fa fa-pencil", Text = "Edit Page", Link = Url.Action("Edit", "PageManager", new { area = nameof(Admin), pageId = contentId }), LaunchModal = true },
-                            new QuickAccessAction { Icon = "fa fa-sort", Text = "Edit Order", JavaScript = "ChangeOrder()" },
-                        }
-                    });
-
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Add", MobileText = "Add", CssClass = "add", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Section", JavaScript = "TogglePanel('section-panel');" }, new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Component", JavaScript = "TogglePanel('component-panel');" }, new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Blank Page", Link = Url.Action("Create", "PageManager", new { area = nameof(Admin) }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-image", Text = "Upload Image", Link = Url.Action("UploadImage", "MediaManager", new { area = nameof(Admin) }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-rss", Text = "Write Blog Post", Link = Url.Action("Create", "BlogManager", new { area = nameof(Admin) }), LaunchModal = true }, } });
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-cog", DesktopText = "Page Options", MobileText = "Options", CssClass = "options", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-pencil", Text = "Edit Page", Link = Url.Action("Edit", "PageManager", new { area = nameof(Admin), pageId = contentId }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-sort", Text = "Edit Order", JavaScript = "ChangeOrder()" }, } });
                     model.Categories.Add(MoreContent());
                     model.Categories.Add(AdminButton());
-
-                    #endregion Page Builder
-
                     break;
 
                 case QuickAccessPageType.BlogManager:
-
-                    #region Blog Manager
-
-                    model.Categories.Add(new QuickAccessCategory
-                    {
-                        Icon = "fa fa-plus",
-                        DesktopText = "Add",
-                        MobileText = "Add",
-                        CssClass = "add",
-                        Actions = new System.Collections.Generic.List<QuickAccessAction> {
-                            new QuickAccessAction { Icon = "fa fa-rss", Text = "Write Blog Post", Link = Url.Action("Create", "BlogManager", new { area = nameof(Admin) }), LaunchModal = true },
-                            new QuickAccessAction { Icon = "fa fa-image", Text = "Upload Image", Link = Url.Action("UploadImage", "MediaManager", new { area = nameof(Admin) }), LaunchModal = true },
-                        }
-                    });
-
-                    model.Categories.Add(new QuickAccessCategory
-                    {
-                        Icon = "fa fa-cog",
-                        DesktopText = "Post Options",
-                        MobileText = "Options",
-                        CssClass = "options",
-                        Actions = new System.Collections.Generic.List<QuickAccessAction> {
-                            new QuickAccessAction { Icon = "fa fa-pencil", Text = "Edit Post", Link = Url.Action("Edit", "BlogManager", new { area = nameof(Admin), postId = contentId }), LaunchModal = true },
-                        }
-                    });
-
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Add", MobileText = "Add", CssClass = "add", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-rss", Text = "Write Blog Post", Link = Url.Action("Create", "BlogManager", new { area = nameof(Admin) }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-image", Text = "Upload Image", Link = Url.Action("UploadImage", "MediaManager", new { area = nameof(Admin) }), LaunchModal = true }, } });
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-cog", DesktopText = "Post Options", MobileText = "Options", CssClass = "options", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-pencil", Text = "Edit Post", Link = Url.Action("Edit", "BlogManager", new { area = nameof(Admin), postId = contentId }), LaunchModal = true }, } });
                     model.Categories.Add(MoreContent());
                     model.Categories.Add(AdminButton());
-
-                    #endregion Blog Manager
-
                     break;
 
-                case QuickAccessPageType.UserManagement:
-
-                    #region User Management
-
-                    model.Categories.Add(new QuickAccessCategory
-                    {
-                        Icon = "fa fa-plus",
-                        DesktopText = "Add User",
-                        MobileText = "Add User",
-                        CssClass = "act",
-                        LaunchModal = true,
-                        Link = Url.Action("Create", "UserManager", new { area = nameof(Admin) })
-                    });
-
+                case QuickAccessPageType.UserManagement_Admin:
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Add User", MobileText = "Add User", CssClass = "act", LaunchModal = true, Link = Url.Action("Create", "UserManager", new { area = nameof(Admin) }) });
                     model.Categories.Add(ExitButton());
+                    break;
 
-                    #endregion User Management
+                case QuickAccessPageType.ThemeManager_Admin:
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Add Theme", MobileText = "Add Theme", CssClass = "act", LaunchModal = true, Link = Url.Action("Create", "ThemeManager", new { area = nameof(Admin) }) });
+                    model.Categories.Add(ExitButton());
+                    break;
 
+                case QuickAccessPageType.PageManager_Admin:
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Add Page", MobileText = "Add Page", CssClass = "act", LaunchModal = true, Link = Url.Action("Create", "PageManager", new { area = nameof(Admin) }) });
+                    model.Categories.Add(ExitButton());
+                    break;
+
+                case QuickAccessPageType.CopyManager_Admin:
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Add Copy", MobileText = "Add Copy", CssClass = "act", LaunchModal = true, Link = Url.Action("Create", "CopyManager", new { area = nameof(Admin) }) });
+                    model.Categories.Add(ExitButton());
+                    break;
+
+                case QuickAccessPageType.BlogManager_Admin:
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Add Blog Post", MobileText = "Add Post", CssClass = "act", LaunchModal = true, Link = Url.Action("Create", "BlogManager", new { area = nameof(Admin) }) });
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-bookmark", DesktopText = "Add Category", MobileText = "Add Category", CssClass = "act", LaunchModal = true, Link = Url.Action("Add", "PostCategories", new { area = nameof(Admin) }) });
+                    model.Categories.Add(ExitButton());
+                    break;
+
+                case QuickAccessPageType.MediaManager_Admin:
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-trash", DesktopText = "Delete Image", MobileText = "Delete", CssClass = "act delete" });
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Upload Image", MobileText = "Upload Image", CssClass = "act", LaunchModal = true, Link = Url.Action("UploadImage", "MediaManager", new { area = nameof(Admin) }) });
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-camera", DesktopText = "Upload Font", MobileText = "Upload Font", CssClass = "act", LaunchModal = true, Link = Url.Action("UploadFont", "MediaManager", new { area = nameof(Admin) }) });
+                    model.Categories.Add(ExitButton());
                     break;
             }
 
