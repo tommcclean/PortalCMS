@@ -368,6 +368,7 @@
     <Content Include="Areas\Admin\Content\Images\icon-thememanager.png" />
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
+    <Content Include="Areas\Builder\Content\Images\Sample\sample-9.png" />
     <Content Include="Content\Scripts\Framework\PageBuilder-Anonymous.js" />
     <Content Include="Content\Scripts\Administration\ThemeManager-Admin.js" />
     <Content Include="Areas\Builder\Content\Images\Sample\sample-help.png" />

@@ -41,8 +41,6 @@ function InitialiseEditor() {
         $(this).find('.widget-wrapper').removeClass('selected');
 
         $('#container-editor-' + sectionId).fadeOut();
-    }).children().click(function (e) {
-        return false;
     });
 
     $(".admin .component-container").click(function (event) {
@@ -60,8 +58,6 @@ function InitialiseEditor() {
             $('#container-editor-' + sectionId).fadeIn(200);
             $(this).addClass('selected');
         }
-    }).children().click(function (e) {
-        return false;
     });
 
     $(".admin .widget-wrapper").click(function (event) {
@@ -259,11 +255,12 @@ function PreventAppDrawerDrop() {
 function DropComponent(control, event, ui) {
     var newElement = $(ui.draggable).clone();
 
+    var componentStamp = new Date().valueOf();
     var sectionId = ExtractSectionId($(control));
     var newElementId = newElement.attr("id");
 
     newElementId = newElementId.replace('<sectionId>', sectionId);
-    newElementId = newElementId.replace('<componentStamp>', new Date().valueOf());
+    newElementId = newElementId.replace('<componentStamp>', componentStamp);
     newElement.attr("id", newElementId);
 
     $(control).append(newElement);
@@ -275,6 +272,9 @@ function DropComponent(control, event, ui) {
     ReplaceChildTokens(newElementId, sectionId);
 
     var newElementContent = $('#' + newElementId)[0].outerHTML;
+
+    newElementContent = newElementContent.replace(/&lt;componentStamp&gt;/g, componentStamp);
+    newElementContent = newElementContent.replace(/&lt;sectionId&gt;/g, sectionId);
 
     InitialiseEditor();
     InitialiseWidgets();

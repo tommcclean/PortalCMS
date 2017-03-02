@@ -30,6 +30,7 @@ namespace Portal.CMS.Entities.Seed
                 images.Add(new Image { ImagePath = "/Areas/Builder/Content/Images/Sample/sample-4.jpg", ImageCategory = ImageCategory.General });
                 images.Add(new Image { ImagePath = "/Areas/Builder/Content/Images/Sample/sample-5.jpg", ImageCategory = ImageCategory.General });
                 images.Add(new Image { ImagePath = "/Areas/Builder/Content/Images/Sample/sample-6.jpg", ImageCategory = ImageCategory.General });
+                images.Add(new Image { ImagePath = "/Areas/Builder/Content/Images/Sample/sample-9.png", ImageCategory = ImageCategory.General });
 
                 context.Images.AddRange(images);
             }

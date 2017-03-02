@@ -290,3 +290,31 @@ section .vertical-alignment
     padding-left: 6px;
     display: block;
 }
+
+    .carousel
+    {
+        min-height: 500px;
+    }
+
+        .carousel .item .component-container
+        {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            top: auto;
+            right: 0;
+            min-height: 100px;
+        }
+
+        .carousel .item
+        {
+            text-align: center;
+        }
+
+            .carousel .item img
+            {
+                display: inline;
+                max-height: 600px;
+                background-position: center center;
+                background-size: contain;
+            }
