@@ -158,6 +158,18 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return Content("Refresh");
         }
 
+        [HttpGet]
+        public ActionResult Container(int pageSectionId, string elementId)
+        {
+            var model = new ContainerViewModel
+            {
+                SectionId = pageSectionId,
+                ElementId = elementId
+            };
+
+            return View("_Container", model);
+        }
+
         private string SaveImage(HttpPostedFileBase imageFile)
         {
             var extension = Path.GetExtension(imageFile.FileName).ToUpper();

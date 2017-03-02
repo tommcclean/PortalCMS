@@ -1,0 +1,34 @@
+﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Component.ContainerViewModel
+@{
+    Layout = "";
+}
+
+<script type="text/javascript">
+    function Delete()
+    {
+        $('#@Model.ElementId').remove();
+
+        var dataParams = { "pageSectionId": @Model.SectionId , "elementId": "@Model.ElementId", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+
+        $.ajax({
+            data: dataParams,
+            type: 'POST',
+            cache: false,
+            url: '/Builder/Component/Delete',
+            success: function (data) {
+                if (data.State === false)
+                {
+                    alert("Error: The document has lost synchronisation. Reloading document...");
+                    location.reload();
+                }
+            },
+        });
+    }
+</script>
+
+<div class="alert alert-warning" role="alert">Removing this container will also remove all content inside it.</div>
+
+<div class="footer">
+    <a onclick="Delete()" data-dismiss="modal" class="btn delete">Delete</a>
+    <button class="btn" data-dismiss="modal">Cancel</button>
+</div>

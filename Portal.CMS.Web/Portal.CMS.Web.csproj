@@ -329,6 +329,7 @@
     <Compile Include="Areas\Builder\Controllers\WidgetController.cs" />
     <Compile Include="Areas\Admin\ViewModels\PageManager\AppDrawerViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\AddViewModel.cs" />
+    <Compile Include="Areas\Builder\ViewModels\Component\ContainerViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\ImageViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\AppDrawerViewModel.cs" />
@@ -706,6 +707,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Dashboard\_QuickAccess.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Builder\Views\Component\_Container.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

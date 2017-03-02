@@ -44,49 +44,36 @@ function InitialiseEditor() {
     });
 
     $(".admin .component-container").click(function (event) {
-        var elementId = $(this).attr("id");
+        if (event.target != this) return;
+
+        var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
 
-        if ($(this).hasClass('selected')) {
-            $(this).removeClass('selected');
-            $('#container-editor-' + sectionId).fadeOut();
-        }
-        else {
-            $('.component-container').removeClass('selected');
-            $('.widget-wrapper').removeClass('selected');
-            $('.component-editor').fadeOut(200);
-            $('#container-editor-' + sectionId).fadeIn(200);
-            $(this).addClass('selected');
-        }
+        var href = "/Builder/Component/Container?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
+
+        showModalEditor("Edit Container Properties", href);
     });
 
     $(".admin .widget-wrapper").click(function (event) {
+        if (event.target != this) return;
+
         var elementId = $(this).attr("id");
         var sectionId = ExtractSectionId($(this));
 
-        if ($(this).hasClass('selected')) {
-            $(this).removeClass('selected');
-            $('#container-editor-' + sectionId).fadeOut();
-        }
-        else {
-            $('.component-container').removeClass('selected');
-            $('.widget-wrapper').removeClass('selected');
-            $('.component-editor').fadeOut(200);
-            $('#container-editor-' + sectionId).fadeIn(200);
-            $(this).addClass('selected');
-        }
-    }).children().click(function (e) {
-        return false;
-    });
+        var href = "/Builder/Component/Container?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
+
+        showModalEditor("Edit Widget Properties", href);
+    })
 
     $(".admin section div.image").click(function (event) {
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
 
         var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
-
+        
         showModalEditor("Edit Image Properties", href);
     });
+
     $(".admin section img.image").click(function (event) {
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
@@ -336,7 +323,7 @@ function SaveOrder() {
 function ApplySectionControls() {
     $('.section-wrapper .action-container').remove();
 
-    var sectionButtonsTemplate = '<div class="action-container absolute"><a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/Builder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a><a class="action edit-section launch-modal" data-title="Edit Section" href="/Builder/Section/Edit?sectionId=<sectionId>"><span class="fa fa-cog"></span></a><a id="container-editor-<sectionId>" class="action component-editor" style="display: none;" data-title="Delete Container"><span class="fa fa-trash"></span></a></div>';
+    var sectionButtonsTemplate = '<div class="action-container absolute"><a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/Builder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a><a class="action edit-section launch-modal" data-title="Edit Section" href="/Builder/Section/Edit?sectionId=<sectionId>"><span class="fa fa-cog"></span></a></div>';
 
     $(".section-wrapper").each(function (index) {
         var sectionId = $(this).attr("data-section");
