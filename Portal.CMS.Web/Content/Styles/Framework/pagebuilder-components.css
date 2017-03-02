@@ -2,8 +2,8 @@
 {
     border: 1px dashed gray;
     border-radius: 5px;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    padding-bottom: 40px;
+    padding-top: 40px;
     -moz-transition: all 0.1s ease-in-out;
     -o-transition: all 0.1s ease-in-out;
     -webkit-transition: all 0.1s ease-in-out;
@@ -291,30 +291,32 @@ section .vertical-alignment
     display: block;
 }
 
-    .carousel
+.carousel
+{
+    max-height: 100vh;
+    min-height: 260px;
+}
+
+    .carousel .item .component-container
     {
-        min-height: 500px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        top: auto;
+        right: 0;
+        min-height: 100px;
+        padding-left: 10%;
+        padding-right: 10%;
     }
 
-        .carousel .item .component-container
-        {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            top: auto;
-            right: 0;
-            min-height: 100px;
-        }
+    .carousel .item
+    {
+        text-align: center;
+    }
 
-        .carousel .item
+        .carousel .item img
         {
-            text-align: center;
+            background-repeat: no-repeat;
+            display: inline;
+            margin: 0;
         }
-
-            .carousel .item img
-            {
-                display: inline;
-                max-height: 600px;
-                background-position: center center;
-                background-size: contain;
-            }
