@@ -5,25 +5,24 @@
         InitialiseEditor();
         InitialiseWidgets();
         ApplySectionControls();
+    }
+});
 
-        $(".admin .component-editor").click(function (event) {
-            var elementId = $(this).attr("id");
-            var sectionId = ExtractSectionId($(this));
+$.fn.extend({
+    animateOut: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function () {
+            $(this).removeClass('animated ' + animationName);
+            $(this).remove();
+        });
+    }
+});
 
-            var targetContainer = $("#section-" + sectionId + " .component-container.selected:first").attr("id");
-
-            if (targetContainer === undefined) {
-                targetContainer = $("#section-" + sectionId + " .widget-wrapper.selected:first").attr("id");
-            }
-
-            $('#' + targetContainer).remove();
-            $('.component-editor').fadeOut(200);
-
-            var dataParams = { "pageSectionId": sectionId, "elementId": targetContainer };
-            $.ajax({
-                data: dataParams, type: 'POST', cache: false, url: '/Builder/Component/Delete',
-                success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-            });
+$.fn.extend({
+    animateIn: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function () {
+            $(this).removeClass('animated ' + animationName);
         });
     }
 });
@@ -32,16 +31,6 @@ function InitialiseEditor() {
     $('.admin section').unbind();
     $('.admin .component-container').unbind();
     $('.admin .widget-wrapper').unbind();
-
-    $(".admin section").click(function (event) {
-        var elementId = $(this).attr("id");
-        var sectionId = ExtractSectionId($(this));
-
-        $(this).find('.component-container').removeClass('selected');
-        $(this).find('.widget-wrapper').removeClass('selected');
-
-        $('#container-editor-' + sectionId).fadeOut();
-    });
 
     $(".admin .component-container").click(function (event) {
         if (event.target != this) return;
@@ -70,7 +59,7 @@ function InitialiseEditor() {
         var sectionId = ExtractSectionId($(this));
 
         var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
-        
+
         showModalEditor("Edit Image Properties", href);
     });
 
@@ -208,7 +197,7 @@ function DeleteInlineComponent(editorId) {
     var sectionId = ExtractSectionId($('#' + editorId));
 
     var dataParams = { "pageSectionId": sectionId, "elementId": elementId };
-    $('#' + elementId).remove();
+    $('#' + elementId).animateOut('flipOutX');
     $.ajax({
         data: dataParams,
         type: 'POST',
@@ -255,6 +244,7 @@ function DropComponent(control, event, ui) {
     $('#' + newElementId).removeClass("ui-draggable");
     $('#' + newElementId).removeClass("ui-draggable-handle");
     $('#' + newElementId).unbind();
+    $('#' + newElementId).animateIn('bounce');
 
     ReplaceChildTokens(newElementId, sectionId);
 

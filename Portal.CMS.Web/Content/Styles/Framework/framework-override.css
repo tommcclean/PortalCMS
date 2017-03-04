@@ -4,6 +4,11 @@
     src: url('../../Fonts/Emeric.ttf') format('truetype');
 }
 
+.animated
+{
+    animation-duration: 0.75s !important;
+}
+
 body
 {
     font-family: 'Emeric';
@@ -53,6 +58,7 @@ input
 {
     margin-right: 10px;
 }
+
 .action .fa, .admin-item .fa, .action .fa, .confirmation-popover .fa
 {
     margin: 0;

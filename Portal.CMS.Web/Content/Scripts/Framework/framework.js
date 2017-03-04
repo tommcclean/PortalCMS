@@ -1,6 +1,5 @@
 ﻿"use strict";
 
-
 $("a.admin-item, .action").click(function (event) {
     var fontAwesomeIcon = $(this).find('.fa')
     fontAwesomeIcon.addClass('fa-spin');
@@ -72,7 +71,7 @@ $(document).ready(function () {
 function showModalEditor(title, url) {
     if ($('#ContentEditor').length == 0) {
         var html = [];
-        html.push('<div class="modal" id="ContentEditor" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content">');
+        html.push('<div class="modal" id="ContentEditor" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content animated fadeInDown">');
         html.push('<div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">Edit content</h4></div>');
         html.push('<div class="modal-data">');
         html.push('<div class="modal-body"></div>');

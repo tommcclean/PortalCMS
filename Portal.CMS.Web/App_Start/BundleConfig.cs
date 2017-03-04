@@ -63,6 +63,8 @@ namespace Portal.CMS.Web
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Spectrum").Include("~/Content/Styles/Spectrum/spectrum.css"));
 
+            bundles.Add(new StyleBundle("~/Resources/CSS/Plugins/Animate").Include("~/Content/Styles/Animate/animate.min.css"));
+
             #endregion Style Bundles
         }
     }

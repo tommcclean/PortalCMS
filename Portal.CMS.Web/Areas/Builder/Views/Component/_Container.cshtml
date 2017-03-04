@@ -6,7 +6,7 @@
 <script type="text/javascript">
     function Delete()
     {
-        $('#@Model.ElementId').remove();
+        $('#@Model.ElementId').animateOut('flipOutX');
 
         var dataParams = { "pageSectionId": @Model.SectionId , "elementId": "@Model.ElementId", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
 

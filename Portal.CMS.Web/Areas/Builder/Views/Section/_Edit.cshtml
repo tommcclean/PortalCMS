@@ -18,7 +18,7 @@
 
     function Delete()
     {
-        $('#section-wrapper-@Model.SectionId').remove();
+        $('#section-wrapper-@Model.SectionId').slideUp();
 
         var dataParams = { "pageSectionId": @Model.SectionId, "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
 

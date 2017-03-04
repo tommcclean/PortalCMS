@@ -48,6 +48,8 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateInput(false)]
         public JsonResult Add(int pageSectionId, string containerElementId, string elementBody)
         {
+            elementBody = elementBody.Replace("animated bounce", string.Empty);
+
             _pageComponentTypeService.Add(pageSectionId, containerElementId, elementBody);
 
             return Json(new { State = true });
