@@ -113,11 +113,18 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(AddViewModel model)
+        public JsonResult Add(int pageId, int pageSectionTypeId, string componentStamp)
         {
-            _pageSectionService.Add(model.PageId, model.PageSectionTypeId);
+            try
+            {
+                var pageSectionId = _pageSectionService.Add(pageId, pageSectionTypeId, componentStamp);
 
-            return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
+                return new JsonResult { Data = pageSectionId };
+            }
+            catch (Exception ex)
+            {
+                return Json(new { State = false, ex.InnerException.Message });
+            }
         }
 
         [HttpGet]

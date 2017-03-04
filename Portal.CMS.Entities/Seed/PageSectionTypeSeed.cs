@@ -2,6 +2,7 @@
 using Portal.CMS.Entities.Entities.PageBuilder;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Portal.CMS.Entities.Seed
 {
@@ -34,8 +35,11 @@ namespace Portal.CMS.Entities.Seed
             newSections.Add(new PageSectionType { PageSectionTypeName = "Quote", PageSectionTypeCategory = PageSectionTypeCategory.Misc, PageSectionTypeOrder = 4, PageSectionTypeBody = "<section id=\"section-<sectionId>\" class=\"quote\"><div class=\"quote-image-left\"></div><div class=\"quote-image-right\"></div><div id=\"container-<componentStamp>-<sectionId>\" class=\"vertical-alignment component-container\"><h2 id=\"quote-<componentStamp>-<sectionId>\">Perfection is not attainable, but if we chase perfection we can catch.</h2><p id=\"component-<componentStamp>-<sectionId>\">Tom McClean</p></div></section>" });
             newSections.Add(new PageSectionType { PageSectionTypeName = "Photo Gallery", PageSectionTypeCategory = PageSectionTypeCategory.Misc, PageSectionTypeOrder = 5, PageSectionTypeBody = "<section id=\"section-<sectionId>\" class=\"gallery height-standard background-parallax\"><div id=\"image-1-<componentStamp>-<sectionId>\" class=\"image\" style=\"background-image: url('/Areas/Builder/Content/Images/Sample/Sample-1.jpg');\"></div><div id=\"image-2-<componentStamp>-<sectionId>\" class=\"image\" style=\"background-image: url('/Areas/Builder/Content/Images/Sample/Sample-2.jpg');\"></div><div id=\"image-3-<componentStamp>-<sectionId>\" class=\"image\" style=\"background-image: url('/Areas/Builder/Content/Images/Sample/Sample-3.jpg');\"></div><div id=\"image-4-<componentStamp>-<sectionId>\" class=\"image\" style=\"background-image: url('/Areas/Builder/Content/Images/Sample/Sample-4.jpg');\"></div></section>" });
 
+            // PERFORM: Cleanup on Markup
             foreach (var section in newSections)
             {
+                section.PageSectionTypeBody = Regex.Replace(section.PageSectionTypeBody, @"-\d{13}-", "-<componentStamp>-");
+
                 section.PageSectionTypeBody = ResolveDuplicateIdentifiers(section.PageSectionTypeBody);
             }
 

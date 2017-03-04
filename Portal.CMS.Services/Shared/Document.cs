@@ -120,5 +120,13 @@ namespace Portal.CMS.Services.Shared
 
             return htmlBody;
         }
+
+        public static string ReplaceTokens(string htmlBody, int pageSectionId, string componentStamp)
+        {
+            htmlBody = htmlBody.Replace("<componentStamp>", componentStamp);
+            htmlBody = htmlBody.Replace("<sectionId>", pageSectionId.ToString());
+
+            return htmlBody;
+        }
     }
 }

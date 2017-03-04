@@ -290,6 +290,21 @@ function ReplaceChildTokens(parentElementId, sectionId) {
     });
 }
 
+function ReplaceSectionTokens(parentElementId, sectionId, componentId) {
+    $('#' + parentElementId).children().each(function () {
+        var childId = $(this).attr("id");
+
+        if (childId !== undefined) {
+            childId = childId.replace("<sectionId>", sectionId);
+            childId = childId.replace("<componentStamp>", componentId);
+
+            $(this).attr("id", childId);
+
+            ReplaceSectionTokens(childId, sectionId, componentId);
+        }
+    });
+}
+
 function ChangeOrder() {
     $('#page-wrapper').toggleClass("zoom");
     $('#page-wrapper').toggleClass("change-order");

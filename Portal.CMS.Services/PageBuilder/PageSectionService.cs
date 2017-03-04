@@ -3,6 +3,7 @@ using Portal.CMS.Entities.Entities.PageBuilder;
 using Portal.CMS.Services.Shared;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Portal.CMS.Services.PageBuilder
 {
@@ -10,7 +11,7 @@ namespace Portal.CMS.Services.PageBuilder
     {
         PageSection Get(int pageSectionId);
 
-        int Add(int pageId, int pageSectionTypeId);
+        int Add(int pageId, int pageSectionTypeId, string componentStamp);
 
         void Background(int pageSectionId, int backgroundImageId);
 
@@ -55,7 +56,7 @@ namespace Portal.CMS.Services.PageBuilder
             return pageSection;
         }
 
-        public int Add(int pageId, int pageSectionTypeId)
+        public int Add(int pageId, int pageSectionTypeId, string componentStamp)
         {
             var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
 
@@ -79,7 +80,7 @@ namespace Portal.CMS.Services.PageBuilder
 
             var document = new Document(newPageSection.PageSectionBody);
 
-            newPageSection.PageSectionBody = Document.ReplaceTokens(newPageSection.PageSectionBody, newPageSection.PageSectionId);
+            newPageSection.PageSectionBody = Document.ReplaceTokens(newPageSection.PageSectionBody, newPageSection.PageSectionId, componentStamp);
 
             _context.SaveChanges();
 
