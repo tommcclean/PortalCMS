@@ -1,4 +1,5 @@
-﻿using Portal.CMS.Entities.Entities.PageBuilder;
+﻿using HtmlAgilityPack;
+using Portal.CMS.Entities.Entities.PageBuilder;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,8 +9,6 @@ namespace Portal.CMS.Entities.Seed
     {
         public static void Seed(PortalEntityModel context)
         {
-            var componentList = context.PageComponentTypes.ToList();
-
             var newComponents = new List<PageComponentType>();
 
             if (!componentList.Any(x => x.PageComponentTypeName == "Heading (H1)"))
@@ -114,8 +113,44 @@ namespace Portal.CMS.Entities.Seed
             if (!componentList.Any(x => x.PageComponentTypeName == "Carousel (4 Slides)"))
                 newComponents.Add(new PageComponentType { PageComponentTypeName = "Carousel (4 Slides)", PageComponentTypeCategory = PageComponentTypeCategory.Text, PageComponentBody = "<div id=\"carousel-<componentStamp>-<sectionId>\" class=\"carousel slide\" data-ride=\"carousel\"><div id=\"carousel-inner-<componentStamp>-<sectionId>\" class=\"carousel-inner\" role=\"listbox\"><div id=\"item-1-<componentStamp>-<sectionId>\"class=\"item active\"><img id=\"carousel-item-1-<componentStamp>-<sectionId>\" class=\"image image-auto\" src=\"/Areas/Builder/Content/Images/Sample/sample-9.png\"><div id=\"carousel-contaner-1-<componentStamp>-<sectionId>\" class=\"component-container attach-bottom\"><div id=\"freestyle-1-<componentStamp>-<sectionId>\" class=\"freestyle\"><h3 id=\"mce_5\" class=\"mce-content-body\" style=\"position: relative;\"><span style=\"color: #ffffff;\">Lorem Ipsum</span></h3><p id=\"mce_6\" class=\"mce-content-body\" style=\"position: relative;\"><span style=\"color: #ffffff;\">Lorem ipsum dolor sit amet, eu qui accusam scriptorem.</span></p></div></div></div><div id=\"item-2-<componentStamp>-<sectionId>\"class=\"item\"><img id=\"carousel-item-2-<componentStamp>-<sectionId>\" class=\"image image-auto\" src=\"/Areas/Builder/Content/Images/Sample/sample-9.png\"><div id=\"carousel-contaner-2-<componentStamp>-<sectionId>\" class=\"component-container attach-bottom\"><div id=\"freestyle-2-<componentStamp>-<sectionId>\" class=\"freestyle\"><h3 id=\"mce_5\" class=\"mce-content-body\" style=\"position: relative;\"><span style=\"color: #ffffff;\">Lorem Ipsum</span></h3><p id=\"mce_6\" class=\"mce-content-body\" style=\"position: relative;\"><span style=\"color: #ffffff;\">Lorem ipsum dolor sit amet, eu qui accusam scriptorem.</span></p></div></div></div><div id=\"item-3-<componentStamp>-<sectionId>\" class=\"item\"><img id=\"carousel-item-3-<componentStamp>-<sectionId>\" class=\"image image-auto\" src=\"/Areas/Builder/Content/Images/Sample/sample-9.png\"><div id=\"carousel-contaner-3-<componentStamp>-<sectionId>\" class=\"component-container attach-bottom\"><div id=\"freestyle-<componentStamp>-<sectionId>\" class=\"freestyle\"><h3 id=\"mce_5\" class=\"mce-content-body\" style=\"position: relative;\"><span style=\"color: #ffffff;\">Lorem Ipsum</span></h3><p id=\"mce_6\" class=\"mce-content-body\" style=\"position: relative;\"><span style=\"color: #ffffff;\">Lorem ipsum dolor sit amet, eu qui accusam scriptorem.</span></p></div></div></div><div id=\"item-4-<componentStamp>-<sectionId>\" class=\"item\"><img id=\"carousel-item-4-<componentStamp>-<sectionId>\" class=\"image image-auto\" src=\"/Areas/Builder/Content/Images/Sample/sample-9.png\"><div id=\"carousel-contaner-4-<componentStamp>-<sectionId>\" class=\"component-container attach-bottom\"><div id=\"freestyle-<componentStamp>-<sectionId>\" class=\"freestyle\"><h3 id=\"mce_5\" class=\"mce-content-body\" style=\"position: relative;\"><span style=\"color: #ffffff;\">Lorem Ipsum</span></h3><p id=\"mce_6\" class=\"mce-content-body\" style=\"position: relative;\"><span style=\"color: #ffffff;\">Lorem ipsum dolor sit amet, eu qui accusam scriptorem.</span></p></div></div></div></div><a class=\"left carousel-control\" href=\"#carousel-<componentStamp>-<sectionId>\" role=\"button\" data-slide=\"prev\"><span class=\"carousel-arrow glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span><span class=\"sr-only\">Previous</span></a><a class=\"right carousel-control\" href=\"#carousel-<componentStamp>-<sectionId>\" role=\"button\" data-slide=\"next\"><span class=\"carousel-arrow glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span><span class=\"sr-only\">Next</span></a></div>" });
 
-            if (newComponents.Any())
-                context.PageComponentTypes.AddRange(newComponents);
+            foreach (var component in newComponents)
+            {
+                component.PageComponentBody = ResolveDuplicateIdentifiers(component.PageComponentBody);
+            }
+
+            foreach (var existingComponent in context.PageComponentTypes.ToList())
+            {
+                var matchedTemplate = newComponents.FirstOrDefault(x => x.PageComponentTypeName == existingComponent.PageComponentTypeName);
+
+                if (matchedTemplate == null) continue;
+
+                if (existingComponent.PageComponentBody != matchedTemplate.PageComponentBody)
+                    context.PageComponentTypes.Remove(existingComponent);
+                else
+                    newComponents.Remove(matchedTemplate);
+            }
+
+            context.PageComponentTypes.AddRange(newComponents);
+        }
+
+        private static string ResolveDuplicateIdentifiers(string htmlBody)
+        {
+            var document = new HtmlDocument();
+
+            document.LoadHtml(htmlBody);
+
+            var uniqueElementId = 0;
+
+            foreach (var child in document.DocumentNode.Descendants())
+            {
+                if (child.NodeType != HtmlNodeType.Element)
+                    continue;
+
+                uniqueElementId += 1;
+                child.SetAttributeValue("id", $"element-{uniqueElementId}-<componentStamp>-<sectionId>");
+            }
+
+            return document.DocumentNode.OuterHtml;
         }
     }
 }
