@@ -253,6 +253,11 @@ function DropComponent(control, event, ui) {
     newElementContent = newElementContent.replace(/&lt;componentStamp&gt;/g, componentStamp);
     newElementContent = newElementContent.replace(/&lt;sectionId&gt;/g, sectionId);
 
+    newElementContent = newElementContent.replace(/<componentStamp>/g, componentStamp);
+    newElementContent = newElementContent.replace(/<sectionId>/g, sectionId);
+
+    $('#' + newElementId).replaceWith(newElementContent);
+
     InitialiseEditor();
     InitialiseWidgets();
 
