@@ -68,7 +68,15 @@ namespace Portal.CMS.Entities.Seed
                     continue;
 
                 uniqueElementId += 1;
-                child.SetAttributeValue("id", $"element-{uniqueElementId}-<componentStamp>-<sectionId>");
+
+                if (child.Name.Equals("section", System.StringComparison.OrdinalIgnoreCase))
+                {
+                    child.SetAttributeValue("id", $"section-<sectionId>");
+                }
+                else
+                {
+                    child.SetAttributeValue("id", $"element-{uniqueElementId}-<componentStamp>-<sectionId>");
+                }
             }
 
             return document.DocumentNode.OuterHtml;

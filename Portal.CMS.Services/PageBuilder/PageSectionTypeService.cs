@@ -25,7 +25,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public IEnumerable<PageSectionType> Get()
         {
-            var results = _context.PageSectionTypes.OrderBy(x => x.PageSectionTypeId);
+            var results = _context.PageSectionTypes.OrderBy(x => x.PageSectionTypeId).ToList();
 
             return results;
         }
