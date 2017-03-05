@@ -16,6 +16,36 @@
         showButtons: false,
     });
 
+    $('form').submit(function (e) {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.State === true)
+                {
+                    $('#section-wrapper-@Model.SectionId').html(result.SectionMarkup);
+
+                    InitialiseEditor();
+                    InitialiseWidgets();
+                    ApplySectionControls();
+                    InitialiseDroppables();
+
+                    $('.modal').modal('toggle');
+                }
+                else
+                {
+                    alert("Error: The document has lost synchronisation. Reloading document...");
+                    location.reload();
+                }
+            }
+        });
+
+        DestroySpectrum();
+
+        return false;
+    });
+
     function Delete()
     {
         $('#section-wrapper-@Model.SectionId').slideUp();
@@ -35,6 +65,13 @@
                 }
             },
         });
+
+        DestroySpectrum();
+    }
+
+    function DestroySpectrum()
+    {
+        $(".spectrum").spectrum("destroy");
     }
 
     $(".checkbox-option").click(function (event) {
@@ -47,19 +84,11 @@
         if (backgroundType === "picture")
         {
             $('.panel-colour').slideUp(300);
-            $('.panel-upload').slideUp(300);
             $('.panel-picture').slideDown(300);
-        }
-        else if (backgroundType === "upload")
-        {
-            $('.panel-picture').slideUp(300);
-            $('.panel-upload').slideDown(300);
-            $('.panel-colour').slideUp(300);
         }
         else
         {
             $('.panel-picture').slideUp(300);
-            $('.panel-upload').slideUp(300);
             $('.panel-colour').slideDown(300);
         }
     });
@@ -110,21 +139,8 @@
                 <p>Choose whether to use a picture background or a solid colour background for your Section.</p>
 
                 <div class="checkbox-group float-container">
-                    <div class="checkbox-option picture" data-backgroundtype="upload"><div class="check"><span class="fa fa-check"></span></div><p>Upload a Photo</p></div>
                     <div class="checkbox-option picture" data-backgroundtype="picture"><div class="check"><span class="fa fa-check"></span></div><p>Picture Background</p></div>
                     <div class="checkbox-option colour" data-backgroundtype="colour"><div class="check"><span class="fa fa-check"></span></div><p>Solid Colour</p></div>
-                </div>
-
-                <div class="panel panel-upload" style="display: none;">
-                    <div class="control-group">
-                        @Html.LabelFor(x => x.AttachedImage)
-                        @Html.TextBoxFor(m => m.AttachedImage, new { @type = "file" })
-                    </div>
-
-                    <div class="control-group">
-                        @Html.LabelFor(x => x.ImageCategory)
-                        @Html.EnumDropDownListFor(m => m.ImageCategory, new { @class = "form-control" })
-                    </div>
                 </div>
 
                 <div class="panel panel-picture" style="display: none;">
@@ -153,7 +169,7 @@
 
     <div class="footer">
         <button class="btn primary"><span class="fa fa-check"></span><span class="hidden-xs">Save</span></button>
-        <button class="btn delete" onclick="Delete()" data-dismiss="modal"><span class="fa fa-trash"></span><span class="hidden-xs">Delete</span></button>
-        <button class="btn" data-dismiss="modal"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></button>
+        <button class="btn delete" onclick="Delete();" data-dismiss="modal"><span class="fa fa-trash"></span><span class="hidden-xs">Delete</span></button>
+        <button class="btn" data-dismiss="modal" onclick="DestroySpectrum();"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></button>
     </div>
 }

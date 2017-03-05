@@ -5,9 +5,7 @@ using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Section;
 using Portal.CMS.Web.ViewModels.Shared;
 using System;
-using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
@@ -52,7 +50,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 PageSectionHeight = _pageSectionService.DetermineSectionHeight(sectionId),
                 PageSectionBackgroundStyle = _pageSectionService.DetermineBackgroundStyle(sectionId),
                 BackgroundType = _pageSectionService.DetermineBackgroundType(sectionId),
-                BackgroundColour = "#ffffff",
+                BackgroundColour = _pageSectionService.DetermineBackgroundColour(sectionId),
                 RoleList = _roleService.Get(),
                 SelectedRoleList = pageSection.PageSectionRoles.Select(x => x.Role.RoleName).ToList()
             };
@@ -62,41 +60,36 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EditViewModel model)
+        public JsonResult Edit(EditViewModel model)
         {
-            if ("upload".Equals(model.BackgroundType, StringComparison.OrdinalIgnoreCase) && model.AttachedImage != null)
+            try
             {
-                var imageFilePath = SaveImage(model.AttachedImage);
+                if ("colour".Equals(model.BackgroundType, StringComparison.OrdinalIgnoreCase))
+                {
+                    _pageSectionService.SetBackgroundType(model.SectionId, false);
 
-                var uploadedImageId = _imageService.Create(imageFilePath, model.ImageCategory);
+                    if (!string.IsNullOrWhiteSpace(model.BackgroundColour))
+                        _pageSectionService.Background(model.SectionId, model.BackgroundColour);
+                }
+                else
+                {
+                    _pageSectionService.SetBackgroundType(model.SectionId, true);
 
-                _pageSectionService.SetBackgroundType(model.SectionId, true);
+                    if (model.BackgroundImageId > 0)
+                        _pageSectionService.Background(model.SectionId, model.BackgroundImageId);
 
-                _pageSectionService.Background(model.SectionId, uploadedImageId);
+                    _pageSectionService.SetBackgroundStyle(model.SectionId, model.PageSectionBackgroundStyle);
+                }
 
-                _pageSectionService.SetBackgroundStyle(model.SectionId, model.PageSectionBackgroundStyle);
+                _pageSectionService.Height(model.SectionId, model.PageSectionHeight);
+                _pageSectionService.Roles(model.SectionId, model.SelectedRoleList);
+
+                return Json(new { State = true, SectionMarkup = _pageSectionService.Get(model.SectionId).PageSectionBody });
             }
-            else if ("colour".Equals(model.BackgroundType, StringComparison.OrdinalIgnoreCase))
+            catch (Exception ex)
             {
-                _pageSectionService.SetBackgroundType(model.SectionId, false);
-
-                if (!string.IsNullOrWhiteSpace(model.BackgroundColour))
-                    _pageSectionService.Background(model.SectionId, model.BackgroundColour);
+                return Json(new { State = false });
             }
-            else
-            {
-                _pageSectionService.SetBackgroundType(model.SectionId, true);
-
-                if (model.BackgroundImageId > 0)
-                    _pageSectionService.Background(model.SectionId, model.BackgroundImageId);
-
-                _pageSectionService.SetBackgroundStyle(model.SectionId, model.PageSectionBackgroundStyle);
-            }
-
-            _pageSectionService.Height(model.SectionId, model.PageSectionHeight);
-            _pageSectionService.Roles(model.SectionId, model.SelectedRoleList);
-
-            return Content("Refresh");
         }
 
         [HttpGet]
@@ -165,29 +158,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             {
                 return Json(new { State = false, ex.InnerException.Message });
             }
-        }
-
-        private string SaveImage(HttpPostedFileBase imageFile)
-        {
-            var extension = Path.GetExtension(imageFile.FileName).ToUpper();
-
-            if (extension != ".PNG" && extension != ".JPG" && extension != ".GIF")
-                throw new ArgumentException("Unexpected Image Format Provided");
-
-            var destinationDirectory = Path.Combine(Server.MapPath(IMAGE_DIRECTORY));
-
-            if (!Directory.Exists(destinationDirectory))
-                Directory.CreateDirectory(destinationDirectory);
-
-            var imageFileName = $"media-{DateTime.Now.ToString("ddMMyyyyHHmmss")}-{imageFile.FileName}";
-            var path = Path.Combine(Server.MapPath(IMAGE_DIRECTORY), imageFileName);
-
-            imageFile.SaveAs(path);
-
-            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace("Builder/Section/Edit", string.Empty);
-            var relativeFilePath = $"{siteURL}{IMAGE_DIRECTORY}/{imageFileName}";
-
-            return relativeFilePath;
         }
     }
 }

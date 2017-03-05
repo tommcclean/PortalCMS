@@ -31,6 +31,8 @@ namespace Portal.CMS.Services.PageBuilder
 
         string DetermineBackgroundType(int pageSectionId);
 
+        string DetermineBackgroundColour(int pageSectionId);
+
         void Markup(int pageSectionId, string htmlBody);
 
         void Roles(int pageSectionId, List<string> roleList);
@@ -235,6 +237,23 @@ namespace Portal.CMS.Services.PageBuilder
                 return "background-colour";
             else
                 return "background-picture";
+        }
+
+        public string DetermineBackgroundColour(int pageSectionId)
+        {
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+
+            if (pageSection == null)
+                return "#ffffff";
+
+            var pattern = new Regex(@"(?<existingColour>#\d{6})");
+            var match = pattern.Match(pageSection.PageSectionBody);
+            var existingColour = match.Groups["existingColour"].Value;
+
+            if (string.IsNullOrWhiteSpace(existingColour))
+                return "#ffffff";
+
+            return existingColour;
         }
 
         public void Markup(int pageSectionId, string htmlBody)
