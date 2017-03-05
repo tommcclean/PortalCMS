@@ -43,7 +43,7 @@ function InitialiseEditor() {
         showModalEditor("Edit Container Properties", href);
     });
 
-    $(".admin .widget-wrapper").click(function (event) {
+    $(".admin .widget-wrapper:not(.video)").click(function (event) {
         if (event.target != this) return;
 
         var elementId = $(this).attr("id");
@@ -69,6 +69,16 @@ function InitialiseEditor() {
 
         var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=img";
         showModalEditor("Edit Image Properties", href);
+    });
+
+    $(".admin section .widget-wrapper.video").click(function (event) {
+        var elementId = event.target.id;
+        var sectionId = ExtractSectionId($(this));
+
+        var videoPlayerElementId = $(this).find('iframe').first().attr("id");
+
+        var href = "/Builder/Component/Video?pageSectionId=" + sectionId + "&widgetWrapperelementId=" + elementId + "&videoPlayerElementId=" + videoPlayerElementId;
+        showModalEditor("Edit Video Properties", href);
     });
 
     tinymce.init({

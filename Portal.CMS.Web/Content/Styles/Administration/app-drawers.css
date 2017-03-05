@@ -98,7 +98,7 @@
             border-bottom: 1px dashed silver;
         }
 
-        .panel-overlay .panel-inner .component-preview .freestyle *, .panel-overlay .panel-inner .component-preview .component-expand *, .component-preview .icon-text *, .component-preview .carousel-inner
+        .panel-overlay .panel-inner .component-preview .freestyle *, .panel-overlay .panel-inner .component-preview .component-expand *, .component-preview .icon-text *, .component-preview .carousel-inner, .component-preview iframe
         {
             pointer-events: none;
         }

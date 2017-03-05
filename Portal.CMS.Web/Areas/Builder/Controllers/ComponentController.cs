@@ -147,6 +147,36 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return Content("Refresh");
         }
 
+        [HttpGet]
+        public ActionResult Video(int pageSectionId, string widgetWrapperElementId, string videoPlayerElementId)
+        {
+            var model = new VideoViewModel
+            {
+                SectionId = pageSectionId,
+                WidgetWrapperElementId = widgetWrapperElementId,
+                VideoPlayerElementId = videoPlayerElementId,
+                VideoUrl = string.Empty
+            };
+
+            return View("_Video", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Video(VideoViewModel model)
+        {
+            try
+            {
+                _pageComponentService.UpdateSourcePath(model.SectionId, model.VideoPlayerElementId, model.VideoUrl);
+
+                return Json(new { State = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { State = false });
+            }
+        }
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Freestyle(int pageSectionId, string elementId, string elementHtml)

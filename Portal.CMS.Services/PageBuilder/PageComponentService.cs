@@ -13,6 +13,8 @@ namespace Portal.CMS.Services.PageBuilder
         void Anchor(int pageSectionId, string elementId, string elementText, string elementHref, string elementTarget);
 
         void Element(int pageSectionId, string elementId, string elementBody);
+
+        void UpdateSourcePath(int pageSectionId, string elementId, string newSourcePath);
     }
 
     public class PageComponentService : IPageComponentService
@@ -78,6 +80,22 @@ namespace Portal.CMS.Services.PageBuilder
                 document.UpdateElementAttribute(elementId, "style", string.Format("background-image: url('{0}');", image.ImagePath), true);
             else
                 document.UpdateElementAttribute(elementId, "src", image.ImagePath, true);
+
+            pageSection.PageSectionBody = document.OuterHtml;
+
+            _context.SaveChanges();
+        }
+
+        public void UpdateSourcePath(int pageSectionId, string elementId, string newSourcePath)
+        {
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+
+            if (pageSection == null)
+                return;
+
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.UpdateElementAttribute(elementId, "src", newSourcePath, true);
 
             pageSection.PageSectionBody = document.OuterHtml;
 
