@@ -7,7 +7,7 @@
 @Scripts.Render("~/Resources/JavaScript/Plugins/Pagination")
 
 <script type="text/javascript">
-    $('form').submit(function (e) {
+    $('#customForm').submit(function (e) {
         var selectedImageId = $('#SelectedImageId').val();
         var selectedImageSource = $('#SelectedImageSource').val();
         var elementType = $('#ElementType').val();
@@ -16,6 +16,10 @@
             url: this.action,
             type: this.method,
             data: $(this).serialize(),
+            cache: false,
+            beforeSend: function () {
+                setModalEditorContent('<div class="spinner"></div>');
+            },
             success: function (result) {
                 if (result.State === true)
                 {
@@ -62,7 +66,7 @@
     }
 </script>
 
-@using (Html.BeginForm("Image", "Component", FormMethod.Post))
+@using (Html.BeginForm("Image", "Component", FormMethod.Post, new { id = "customForm" }))
 {
     @Html.AntiForgeryToken()
 

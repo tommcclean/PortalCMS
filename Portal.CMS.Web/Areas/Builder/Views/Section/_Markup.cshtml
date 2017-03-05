@@ -13,16 +13,19 @@
 </style>
 
 <script type="text/javascript">
-    $('form').submit(function () {
+    $('#customForm').submit(function () {
         $.ajax({
             url: this.action,
             type: this.method,
             data: $(this).serialize(),
+            cache: false,
+            beforeSend: function () {
+                setModalEditorContent('<div class="spinner"></div>');
+            },
             success: function (result) {
                 if (result.State === true)
                 {
-                    $('#section-wrapper-' + @Model.PageSectionId).empty();
-                    $('#section-wrapper-' + @Model.PageSectionId).append(result.Markup);
+                    $('#section-wrapper-' + @Model.PageSectionId).html(result.Markup);
 
                     $('.modal').modal('toggle');
 
@@ -42,7 +45,7 @@
     });
 </script>
 
-@using (Html.BeginForm("Markup", "Section", FormMethod.Post))
+@using (Html.BeginForm("Markup", "Section", FormMethod.Post, new { id = "customForm" }))
 {
     @Html.AntiForgeryToken()
 

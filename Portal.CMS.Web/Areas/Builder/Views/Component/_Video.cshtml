@@ -4,13 +4,17 @@
 }
 
 <script type="text/javascript">
-    $('form').submit(function (e) {
+    $('#customForm').submit(function (e) {
         var videoUrl = $('#VideoUrl').val();
 
         $.ajax({
             url: this.action,
             type: this.method,
             data: $(this).serialize(),
+            cache: false,
+            beforeSend: function () {
+                setModalEditorContent('<div class="spinner"></div>');
+            },
             success: function (result) {
                 if (result.State === true)
                 {
@@ -50,7 +54,7 @@
     }
 </script>
 
-@using (Html.BeginForm("Video", "Component", FormMethod.Post))
+@using (Html.BeginForm("Video", "Component", FormMethod.Post, new { id = "customForm" }))
 {
     @Html.AntiForgeryToken()
 

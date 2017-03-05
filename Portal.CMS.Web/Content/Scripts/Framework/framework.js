@@ -153,7 +153,7 @@ function bindModalEditor() {
         });
     }
 
-    $('#ContentEditor form').submit(function (e) {
+    $('#ContentEditor form:not(#customForm)').submit(function (e) {
         e.preventDefault();
 
         var formType = $(this).attr('method');
