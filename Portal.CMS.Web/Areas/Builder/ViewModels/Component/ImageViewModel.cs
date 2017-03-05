@@ -1,7 +1,4 @@
-﻿using Portal.CMS.Entities.Entities.Generic;
-using Portal.CMS.Web.ViewModels.Shared;
-using System.ComponentModel;
-using System.Web;
+﻿using Portal.CMS.Web.ViewModels.Shared;
 
 namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
 {
@@ -17,11 +14,7 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
 
         public int SelectedImageId { get; set; }
 
-        [DisplayName("Attach Image")]
-        public HttpPostedFileBase AttachedImage { get; set; }
-
-        [DisplayName("Category")]
-        public ImageCategory ImageCategory { get; set; }
+        #region Enumerable Properties
 
         public PaginationViewModel GeneralImages { get; set; } = new PaginationViewModel();
 
@@ -30,5 +23,7 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
         public PaginationViewModel ScreenshotImages { get; set; } = new PaginationViewModel();
 
         public PaginationViewModel TextureImages { get; set; } = new PaginationViewModel();
+
+        #endregion Enumerable Properties
     }
 }

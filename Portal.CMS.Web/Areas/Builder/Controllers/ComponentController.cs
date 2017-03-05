@@ -131,20 +131,20 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         [HttpPost]
-        public ActionResult Image(ImageViewModel model)
+        public JsonResult Image(ImageViewModel model)
         {
-            var selectedImageId = model.SelectedImageId;
-
-            if (model.AttachedImage != null)
+            try
             {
-                var imageFilePath = SaveImage(model.AttachedImage);
+                _pageComponentService.EditImage(model.SectionId, model.ElementType, model.ElementId, model.SelectedImageId);
 
-                selectedImageId = _imageService.Create(imageFilePath, model.ImageCategory);
+                var selectedImage = _imageService.Get(model.SelectedImageId);
+
+                return Json(new { State = true, Source = selectedImage.ImagePath });
             }
-
-            _pageComponentService.EditImage(model.SectionId, model.ElementType, model.ElementId, selectedImageId);
-
-            return Content("Refresh");
+            catch (Exception ex)
+            {
+                return Json(new { State = false });
+            }
         }
 
         [HttpGet]

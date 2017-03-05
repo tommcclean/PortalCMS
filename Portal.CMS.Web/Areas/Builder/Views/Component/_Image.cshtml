@@ -7,6 +7,41 @@
 @Scripts.Render("~/Resources/JavaScript/Plugins/Pagination")
 
 <script type="text/javascript">
+    $('form').submit(function (e) {
+        var selectedImageId = $('#SelectedImageId').val();
+        var selectedImageSource = $('#SelectedImageSource').val();
+        var elementType = $('#ElementType').val();
+
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.State === true)
+                {
+                    alert(elementType);
+
+                    if (elementType === "img")
+                    {
+                        $('#@Model.ElementId').attr("src", result.Source);
+                    }
+                    else
+                    {
+                        $('#@Model.ElementId').attr("style", "background-image: url('" + result.Source + "')");
+                    }
+
+                    $('.modal').modal('toggle');
+                }
+                else
+                {
+                    alert("Error: The document has lost synchronisation. Reloading document...");
+                    location.reload();
+                }
+            }
+        });
+        return false;
+    });
+
     function Delete()
     {
         $('#@Model.ElementId').animateOut('flipOutX');
@@ -40,26 +75,14 @@
     @Html.HiddenFor(x => x.ElementType)
 
     <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#tab-upload" aria-controls="tab-upload" role="tab" data-toggle="tab"><span class="fa fa-upload"></span>Upload Image</a></li>
-        <li role="presentation" class=""><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab">General<span class="badge">@Model.GeneralImages.ImageList.Count()</span></a></li>
+        <li role="presentation" class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab">General<span class="badge">@Model.GeneralImages.ImageList.Count()</span></a></li>
         <li role="presentation" class=""><a href="#tab-icon" aria-controls="tab-icon" role="tab" data-toggle="tab">Icon<span class="badge">@Model.IconImages.ImageList.Count()</span></a></li>
         <li role="presentation" class=""><a href="#tab-screenshot" aria-controls="tab-screenshot" role="tab" data-toggle="tab">Screenshot<span class="badge">@Model.ScreenshotImages.ImageList.Count()</span></a></li>
         <li role="presentation" class=""><a href="#tab-texture" aria-controls="tab-texture" role="tab" data-toggle="tab">Texture<span class="badge">@Model.TextureImages.ImageList.Count()</span></a></li>
     </ul>
     <div id="banner-selector" class="image-selector x4 single float-container">
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="tab-upload">
-                <div class="control-group">
-                    @Html.LabelFor(x => x.AttachedImage)
-                    @Html.TextBoxFor(m => m.AttachedImage, new { @type = "file" })
-                </div>
-
-                <div class="control-group">
-                    @Html.LabelFor(x => x.ImageCategory)
-                    @Html.EnumDropDownListFor(m => m.ImageCategory, new { @class = "form-control" })
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="tab-general">
+            <div role="tabpanel" class="tab-pane active" id="tab-general">
                 @Html.Partial("_RenderPage", Model.GeneralImages)
             </div>
             <div role="tabpanel" class="tab-pane" id="tab-icon">
