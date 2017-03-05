@@ -222,7 +222,7 @@
 {
     position: fixed;
     right: 0;
-    bottom: 0;
+    bottom: -6px;
     z-index: 50;
 }
 
@@ -246,6 +246,7 @@
     -webkit-transition: all 0.1s ease-in-out;
     transition: all 0.1s ease-in-out;
     opacity: 0.9;
+    min-height: 43px;
 }
 
     .admin-wrapper .button:hover
