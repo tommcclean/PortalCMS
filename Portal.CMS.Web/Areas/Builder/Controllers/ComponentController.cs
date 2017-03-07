@@ -141,7 +141,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
                 return Json(new { State = true, Source = selectedImage.ImagePath });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Json(new { State = false });
             }
@@ -171,7 +171,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
                 return Json(new { State = true });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Json(new { State = false });
             }

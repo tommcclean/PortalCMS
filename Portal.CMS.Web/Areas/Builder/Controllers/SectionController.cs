@@ -86,7 +86,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
                 return Json(new { State = true, SectionMarkup = _pageSectionService.Get(model.SectionId).PageSectionBody });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Json(new { State = false });
             }
