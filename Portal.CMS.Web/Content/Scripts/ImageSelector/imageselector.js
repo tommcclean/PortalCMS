@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $(".image-selector.multiple img.thumbnail").click(function () {
-        $(this).toggleClass("selected")
+        $(this).toggleClass("selected");
 
         var parentControl = $(this).attr("data-parent");
         var targetControl = $(this).attr("data-target");
@@ -10,7 +10,7 @@
 
     $(".image-selector.single img.thumbnail").click(function () {
         $(".image-selector.single img.thumbnail").removeClass("selected");
-        $(this).toggleClass("selected")
+        $(this).toggleClass("selected");
 
         var parentControl = $(this).attr("data-parent");
         var targetControl = $(this).attr("data-target");

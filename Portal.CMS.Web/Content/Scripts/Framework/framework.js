@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 $("a.admin-item, .action").click(function (event) {
-    var fontAwesomeIcon = $(this).find('.fa')
+    var fontAwesomeIcon = $(this).find('.fa');
     fontAwesomeIcon.addClass('fa-spin');
 
     setTimeout(function () {
@@ -69,7 +69,7 @@ $(document).ready(function () {
 });
 
 function showModalEditor(title, url) {
-    if ($('#ContentEditor').length == 0) {
+    if ($('#ContentEditor').length === 0) {
         var html = [];
         html.push('<div class="modal" id="ContentEditor" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content animated fadeInDown">');
         html.push('<div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">Edit content</h4></div>');
@@ -98,7 +98,7 @@ function showModalEditor(title, url) {
     });
 
     return;
-};
+}
 
 function setModalEditorContent(content) {
     if (~content.indexOf('modal-footer')) {
@@ -121,7 +121,7 @@ function setModalEditorContent(content) {
     }
 
     bindModalEditor();
-};
+}
 
 function bindModalEditor() {
     if ($('#ContentEditor .tag-editor').length > 0) {
@@ -188,7 +188,7 @@ function bindModalEditor() {
                     setModalEditorContent('<div class="spinner"></div>');
                 },
                 success: function (data) {
-                    if (data == 'Refresh') {
+                    if (data === 'Refresh') {
                         window.location.reload();
                     }
                     else {
@@ -212,13 +212,13 @@ function bindModalEditor() {
                     setModalEditorContent('<div class="spinner"></div>');
                 },
                 success: function (data) {
-                    if (data == 'Refresh') {
+                    if (data === 'Refresh') {
                         window.location.reload();
                     }
-                    else if (data == 'Setup') {
+                    else if (data === 'Setup') {
                         showModalEditor("Setup Portal CMS", "/Admin/SettingManager/Setup");
                     }
-                    else if (data == "Blog") {
+                    else if (data === "Blog") {
                         window.location.href = "/Blog";
                     }
                     else {
@@ -233,4 +233,4 @@ function bindModalEditor() {
 
         return;
     });
-};
+}

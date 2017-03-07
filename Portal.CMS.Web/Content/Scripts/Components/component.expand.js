@@ -13,7 +13,7 @@
 
             componentBody.slideDown(300);
 
-            $(this).addClass("active")
+            $(this).addClass("active");
         }
     });
 });

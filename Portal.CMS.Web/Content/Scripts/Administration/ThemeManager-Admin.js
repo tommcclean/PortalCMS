@@ -15,7 +15,7 @@
         $("#" + sliderControl).slider({
             value: $(this).val(),
             min: 10,
-            max: 60,
+            max: 60
         });
     });
 
@@ -25,7 +25,7 @@
         $(this).slider({
             value: $("#" + parentControl).val(),
             min: 10,
-            max: 60,
+            max: 60
         });
     });
 });

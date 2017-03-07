@@ -16,7 +16,7 @@ function TogglePanel(focusPanel) {
     $('.panel-overlay').slideUp(300);
     $('.panel-overlay').removeClass('visible');
 
-    if (isActive != true) {
+    if (isActive !== true) {
         $('#' + focusPanel).removeClass('left');
         $('#' + focusPanel).slideDown(300);
         $('#' + focusPanel).addClass('visible');
