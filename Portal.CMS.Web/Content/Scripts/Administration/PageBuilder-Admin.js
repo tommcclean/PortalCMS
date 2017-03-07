@@ -61,6 +61,8 @@ function InitialiseEditor() {
         tinyMCE.execCommand("mceRemoveEditor", true, ed_id);
     }
 
+    $('.admin .component-container, .admin .widget-wrapper:not(.video), .admin section .widget-wrapper.video, .admin section .image').unbind();
+
     $(".admin .component-container, .admin .widget-wrapper:not(.video)").click(function (event) {
         if (event.target !== this) return;
         var elementId = event.target.id;
@@ -99,7 +101,7 @@ function InitialiseEditor() {
         toolbar: 'bold italic underline | link | forecolor backcolor | delete',
         setup: function (ed) {
             ed.addButton('delete', { icon: 'trash', onclick: function () { DeleteInlineComponent(tinyMCE.activeEditor.id); } }),
-            ed.on('change', function (e) { EditInlineText(tinyMCE.activeEditor.id, ed.getContent()); });
+                ed.on('blur', function (e) { EditInlineText(tinyMCE.activeEditor.id, ed.getContent()); });
         }
     });
     tinymce.init({
@@ -109,7 +111,7 @@ function InitialiseEditor() {
         toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | forecolor backcolor | bullist numlist outdent indent | link image | delete',
         setup: function (ed) {
             ed.addButton('delete', { icon: 'trash', onclick: function () { DeleteInlineComponent(tinyMCE.activeEditor.id); } }),
-            ed.on('change', function (e) { EditInlineFreestyle(tinyMCE.activeEditor.id, ed.getContent()); });
+                ed.on('blur', function (e) { EditInlineFreestyle(tinyMCE.activeEditor.id, ed.getContent()); });
         }
     });
 }
