@@ -18,6 +18,7 @@
         <h4>Add Section</h4>
         <div class="panel-action right" onclick="ClosePanels();"><span class="fa fa-remove"></span></div>
         <div class="panel-action right" onclick="TogglePanel('component-panel');"><span class="fa fa-suitcase"></span></div>
+        <div class="panel-action right hidden-xs" onclick="FloatPanel('section-panel')"><span class="fa fa-arrows-h"></span></div>
     </div>
 
     <div class="panel-inner">
@@ -65,10 +66,10 @@
                 url: '@Url.Action("Add", "Section", new { area = "Builder" })',
                 success: function (data)
                 {
-                    if (data.State === false) 
-                    { 
-                        alert("Error: The Page has lost synchronisation. Reloading Page..."); 
-                        location.reload(); 
+                    if (data.State === false)
+                    {
+                        alert("Error: The Page has lost synchronisation. Reloading Page...");
+                        location.reload();
                     }
 
                     var sectionWrapper = '<div id="section-wrapper-' + data + '" class="section-wrapper admin sortable animated bounce" data-section="' + data + '"></div>';

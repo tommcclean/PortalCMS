@@ -17,6 +17,7 @@ function TogglePanel(focusPanel) {
     $('.panel-overlay').removeClass('visible');
 
     if (isActive != true) {
+        $('#' + focusPanel).removeClass('left');
         $('#' + focusPanel).slideDown(300);
         $('#' + focusPanel).addClass('visible');
     }
@@ -25,4 +26,8 @@ function TogglePanel(focusPanel) {
 function ClosePanels() {
     $('.panel-overlay').slideUp(300);
     $('.panel-overlay').removeClass('visible');
+}
+
+function FloatPanel(elementId) {
+    $('#' + elementId).toggleClass('left');
 }

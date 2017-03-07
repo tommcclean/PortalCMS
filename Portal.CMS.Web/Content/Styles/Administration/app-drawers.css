@@ -11,6 +11,12 @@
     z-index: 50;
 }
 
+    .panel-overlay.left
+    {
+        right: auto;
+        left: 10px;
+    }
+
     .panel-overlay .panel-title h4
     {
         display: inline-block;
