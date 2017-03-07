@@ -1,14 +1,4 @@
-﻿$(document).ready(function () {
-    InitialiseWidgets();
-
-    if ($('#page-wrapper.admin').length) {
-        InitialiseEditor();
-        InitialiseWidgets();
-        ApplySectionControls();
-    }
-});
-
-$.fn.extend({
+﻿$.fn.extend({
     animateOut: function (animationName) {
         var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
         this.addClass('animated ' + animationName).one(animationEnd, function () {
@@ -17,7 +7,6 @@ $.fn.extend({
         });
     }
 });
-
 $.fn.extend({
     animateIn: function (animationName) {
         var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
@@ -27,55 +16,71 @@ $.fn.extend({
     }
 });
 
+function ChangeOrder() {
+    $('#page-wrapper').toggleClass("zoom");
+    $('#page-wrapper').toggleClass("change-order");
+    $('#page-wrapper.change-order').sortable({ placeholder: "ui-state-highlight", helper: 'clone' });
+
+    $('.admin-wrapper .button').popover('hide');
+    $('.page-admin-wrapper').fadeOut();
+    $('.action-container.section-order').fadeIn();
+
+    $('.panel-overlay').slideUp(300);
+    $('.panel-overlay').removeClass('visible');
+}
+function SaveOrder() {
+    var sectionList = [];
+    var orderId = 1;
+    $("#page-wrapper .sortable").each(function (index) {
+        var sectionId = $(this).attr("data-section");
+        sectionList.push(orderId + "-" + sectionId);
+        orderId += 1;
+    });
+    $('#order-list').val(sectionList);
+    $('#order-submit').click();
+}
+function ApplySectionControls() {
+    $('.section-wrapper .action-container').remove();
+    var sectionButtonsTemplate = '<div class="action-container absolute"><a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/Builder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a><a class="action edit-section launch-modal" data-title="Edit Section" href="/Builder/Section/Edit?sectionId=<sectionId>"><span class="fa fa-cog"></span></a></div>';
+    $(".section-wrapper").each(function (index) {
+        var sectionId = $(this).attr("data-section");
+        var sectionButtonsMarkup = sectionButtonsTemplate.replace(/<sectionId>/g, sectionId);
+        $(this).append(sectionButtonsMarkup);
+    });
+}
+
+$(document).ready(function () {
+    InitialiseWidgets();
+    InitialiseEditor();
+    ApplySectionControls();
+});
+
 function InitialiseEditor() {
     for (var i = tinymce.editors.length - 1 ; i > -1 ; i--) {
         var ed_id = tinymce.editors[i].id;
         tinyMCE.execCommand("mceRemoveEditor", true, ed_id);
     }
 
-    $('.admin section').unbind();
-    $('.admin .component-container').unbind();
-    $('.admin .widget-wrapper').unbind();
-
-    $(".admin .component-container").click(function (event) {
-        if (event.target != this) return;
-
+    $(".admin .component-container, .admin .widget-wrapper:not(.video)").click(function (event) {
+        if (event.target !== this) return;
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
 
         var href = "/Builder/Component/Container?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
-
         showModalEditor("Edit Container Properties", href);
     });
-
-    $(".admin .widget-wrapper:not(.video)").click(function (event) {
-        if (event.target != this) return;
-
-        var elementId = $(this).attr("id");
-        var sectionId = ExtractSectionId($(this));
-
-        var href = "/Builder/Component/Container?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
-
-        showModalEditor("Edit Widget Properties", href);
-    })
-
-    $(".admin section div.image").click(function (event) {
+    $(".admin section .image").click(function (event) {
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
+        var elementType = "div";
 
-        var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
+        if ($(this).is('img')) {
+            elementType = "img";
+        }
 
+        var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=" + elementType;
         showModalEditor("Edit Image Properties", href);
     });
-
-    $(".admin section img.image").click(function (event) {
-        var elementId = event.target.id;
-        var sectionId = ExtractSectionId($(this));
-
-        var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=img";
-        showModalEditor("Edit Image Properties", href);
-    });
-
     $(".admin section .widget-wrapper.video").click(function (event) {
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
@@ -87,7 +92,7 @@ function InitialiseEditor() {
     });
 
     tinymce.init({
-        selector: '.admin section p, .admin section h1, .admin section h2, .admin section h3, .admin section h4, .admin section code',
+        selector: '.admin section p, .admin section h1, .admin section h2, .admin section h3, .admin section h4, .admin section code, .admin section a, .admin section .btn',
         menubar: false, inline: true,
         plugins: ['advlist textcolor colorpicker link'],
 
@@ -97,18 +102,6 @@ function InitialiseEditor() {
             ed.on('change', function (e) { EditInlineText(tinyMCE.activeEditor.id, ed.getContent()); });
         }
     });
-
-    tinymce.init({
-        selector: '.admin section a, .admin section .btn',
-        menubar: false, inline: true,
-        plugins: ['advlist textcolor colorpicker link'],
-        toolbar: 'bold italic underline | link | forecolor backcolor | delete',
-        setup: function (ed) {
-            ed.addButton('delete', { icon: 'trash', onclick: function () { DeleteInlineComponent(tinyMCE.activeEditor.id); } }),
-            ed.on('change', function (e) { EditInlineAnchor(tinyMCE.activeEditor.id, ed.getContent()); });
-        }
-    });
-
     tinymce.init({
         selector: '.admin section .freestyle',
         menubar: true, inline: true,
@@ -120,13 +113,11 @@ function InitialiseEditor() {
         }
     });
 }
-
 function InitialiseContainer(elementId) {
     $("#" + elementId).droppable({
         tolerance: "intersect", activeClass: "ui-state-default", hoverClass: "ui-state-hover", greedy: "true", drop: function (event, ui) { DropComponent(this, event, ui); }
     });
 }
-
 function InitialiseDroppables() {
     $("section").droppable({
         accept: function () { return PreventAppDrawerDrop(); },
@@ -144,14 +135,6 @@ function InitialiseDroppables() {
         drop: function (event, ui) { DropComponent(this, event, ui); }
     });
 }
-
-function ExtractSectionId(element) {
-    var elementId = $(element).attr("id");
-    var elementParts = elementId.split('-');
-    var sectionId = elementParts[elementParts.length - 1];
-    return sectionId;
-}
-
 function EditInlineText(editorId, editorContent) {
     var elementId = editorId;
     var sectionId = ExtractSectionId($('#' + editorId));
@@ -167,7 +150,6 @@ function EditInlineText(editorId, editorContent) {
         success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
 }
-
 function RemoveTinyMCEAttributes(htmlContent) {
     htmlContent = htmlContent.replace('mce-content-body', '');
     htmlContent = htmlContent.replace('position: relative;', '');
@@ -175,7 +157,6 @@ function RemoveTinyMCEAttributes(htmlContent) {
 
     return htmlContent;
 }
-
 function EditInlineFreestyle(editorId, editorContent) {
     var elementId = editorId;
     var sectionId = ExtractSectionId($('#' + editorId));
@@ -189,7 +170,6 @@ function EditInlineFreestyle(editorId, editorContent) {
         success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
 }
-
 function EditInlineAnchor(editorId, editorContent) {
     var elementId = editorId;
     var sectionId = ExtractSectionId($('#' + editorId));
@@ -206,22 +186,6 @@ function EditInlineAnchor(editorId, editorContent) {
         success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
 }
-
-function DeleteInlineComponent(editorId) {
-    var elementId = editorId;
-    var sectionId = ExtractSectionId($('#' + editorId));
-
-    var dataParams = { "pageSectionId": sectionId, "elementId": elementId };
-    $('#' + elementId).animateOut('flipOutX');
-    $.ajax({
-        data: dataParams,
-        type: 'POST',
-        cache: false,
-        url: '/Builder/Component/Delete',
-        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
-    });
-}
-
 function PreventAppDrawerDrop() {
     if (window.innerHeight < 701 && window.innerWidth < 601) {
         return true;
@@ -230,19 +194,16 @@ function PreventAppDrawerDrop() {
     var tray = $("#component-panel").offset();
     var trayWidth = $("#component-panel").width();
     var trayHeight = $("#component-panel").height();
-
-    var trayTop = (tray.top - $(document).scrollTop());
+    var trayTop = tray.top - $(document).scrollTop();
 
     var x = event.clientX;
     var y = event.clientY;
-
-    if (x >= tray.left && x <= (tray.left + trayWidth) && y >= trayTop && y <= (trayTop + trayHeight)) {
+    if (x >= tray.left && x <= tray.left + trayWidth && y >= trayTop && y <= trayTop + trayHeight) {
         return false;
     }
 
     return true;
 }
-
 function DropComponent(control, event, ui) {
     var newElement = $(ui.draggable).clone();
 
@@ -261,7 +222,7 @@ function DropComponent(control, event, ui) {
     $('#' + newElementId).unbind();
     $('#' + newElementId).animateIn('bounce');
 
-    ReplaceChildTokens(newElementId, sectionId);
+    ReplaceChildTokens(newElementId, sectionId, componentStamp);
 
     var newElementContent = $('#' + newElementId)[0].outerHTML;
 
@@ -289,23 +250,28 @@ function DropComponent(control, event, ui) {
         success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
 }
+function DeleteInlineComponent(editorId) {
+    var elementId = editorId;
+    var sectionId = ExtractSectionId($('#' + editorId));
 
-function ReplaceChildTokens(parentElementId, sectionId) {
-    $('#' + parentElementId).children().each(function () {
-        var childId = $(this).attr("id");
-
-        if (childId !== undefined) {
-            childId = childId.replace("<sectionId>", sectionId);
-            childId = childId.replace("<componentStamp>", new Date().valueOf());
-
-            $(this).attr("id", childId);
-
-            ReplaceChildTokens(childId, sectionId);
-        }
+    var dataParams = { "pageSectionId": sectionId, "elementId": elementId };
+    $('#' + elementId).animateOut('flipOutX');
+    $.ajax({
+        data: dataParams,
+        type: 'POST',
+        cache: false,
+        url: '/Builder/Component/Delete',
+        success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
 }
 
-function ReplaceSectionTokens(parentElementId, sectionId, componentId) {
+function ExtractSectionId(element) {
+    var elementId = $(element).attr("id");
+    var elementParts = elementId.split('-');
+    var sectionId = elementParts[elementParts.length - 1];
+    return sectionId;
+}
+function ReplaceChildTokens(parentElementId, sectionId, componentId) {
     $('#' + parentElementId).children().each(function () {
         var childId = $(this).attr("id");
 
@@ -315,46 +281,7 @@ function ReplaceSectionTokens(parentElementId, sectionId, componentId) {
 
             $(this).attr("id", childId);
 
-            ReplaceSectionTokens(childId, sectionId, componentId);
+            ReplaceChildTokens(childId, sectionId, componentId);
         }
-    });
-}
-
-function ChangeOrder() {
-    $('#page-wrapper').toggleClass("zoom");
-    $('#page-wrapper').toggleClass("change-order");
-    $('#page-wrapper.change-order').sortable({ placeholder: "ui-state-highlight", helper: 'clone' });
-
-    $('.admin-wrapper .button').popover('hide');
-    $('.page-admin-wrapper').fadeOut();
-    $('.action-container.section-order').fadeIn();
-
-    $('.panel-overlay').slideUp(300);
-    $('.panel-overlay').removeClass('visible');
-}
-
-function SaveOrder() {
-    var sectionList = [];
-    var orderId = 1;
-    $("#page-wrapper .sortable").each(function (index) {
-        var sectionId = $(this).attr("data-section");
-        sectionList.push(orderId + "-" + sectionId);
-        orderId += 1;
-    });
-    $('#order-list').val(sectionList);
-    $('#order-submit').click();
-}
-
-function ApplySectionControls() {
-    $('.section-wrapper .action-container').remove();
-
-    var sectionButtonsTemplate = '<div class="action-container absolute"><a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/Builder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a><a class="action edit-section launch-modal" data-title="Edit Section" href="/Builder/Section/Edit?sectionId=<sectionId>"><span class="fa fa-cog"></span></a></div>';
-
-    $(".section-wrapper").each(function (index) {
-        var sectionId = $(this).attr("data-section");
-
-        var sectionButtonsMarkup = sectionButtonsTemplate.replace(/<sectionId>/g, sectionId);
-
-        $(this).append(sectionButtonsMarkup);
     });
 }

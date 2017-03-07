@@ -77,7 +77,7 @@
                     $('#page-wrapper').append(sectionWrapper);
                     $('#section-wrapper-' + data).append(sectionTypeContent);
 
-                    ReplaceSectionTokens('section-wrapper-' + data, data, componentStamp);
+                    ReplaceChildTokens('section-wrapper-' + data, data, componentStamp);
 
                     InitialiseEditor();
                     InitialiseWidgets();
