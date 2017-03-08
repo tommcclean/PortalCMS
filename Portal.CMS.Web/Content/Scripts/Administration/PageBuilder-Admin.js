@@ -256,6 +256,8 @@ function DeleteInlineComponent(editorId) {
     var elementId = editorId;
     var sectionId = ExtractSectionId($('#' + editorId));
 
+    tinymce.execCommand('mceRemoveControl', true, editorId);
+
     var dataParams = { "pageSectionId": sectionId, "elementId": elementId };
     $('#' + elementId).animateOut('flipOutX');
     $.ajax({
@@ -269,9 +271,13 @@ function DeleteInlineComponent(editorId) {
 
 function ExtractSectionId(element) {
     var elementId = $(element).attr("id");
-    var elementParts = elementId.split('-');
-    var sectionId = elementParts[elementParts.length - 1];
-    return sectionId;
+
+    if (elementId !== undefined)
+    {
+        var elementParts = elementId.split('-');
+        var sectionId = elementParts[elementParts.length - 1];
+        return sectionId;
+    }
 }
 function ReplaceChildTokens(parentElementId, sectionId, componentId) {
     $('#' + parentElementId).children().each(function () {
