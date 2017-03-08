@@ -74,6 +74,7 @@
     <Compile Include="Entities\Menu\Menu.cs" />
     <Compile Include="Entities\Menu\MenuItem.cs" />
     <Compile Include="Entities\Menu\MenuItemRole.cs" />
+    <Compile Include="Entities\PageBuilder\Animation.cs" />
     <Compile Include="Entities\PageBuilder\Page.cs" />
     <Compile Include="Entities\PageBuilder\PageComponentType.cs" />
     <Compile Include="Entities\PageBuilder\PageSectionBackup.cs" />

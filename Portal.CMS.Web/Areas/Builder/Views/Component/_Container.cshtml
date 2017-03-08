@@ -26,9 +26,22 @@
     }
 </script>
 
-<div class="alert alert-warning" role="alert">Removing this container will also remove all content inside it.</div>
+@using (Html.BeginForm("Container", "Component", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.SectionId)
+    @Html.HiddenFor(x => x.ElementId)
 
-<div class="footer">
-    <a onclick="Delete()" data-dismiss="modal" class="btn delete">Delete</a>
-    <button class="btn" data-dismiss="modal">Cancel</button>
-</div>
+    <div class="alert alert-warning" role="alert">Removing this container will also remove all content inside it.</div>
+
+    <div class="control-group">
+        @Html.LabelFor(x => x.Animation)
+        @Html.EnumDropDownListFor(m => m.Animation, new { @class = "form-control" })
+    </div>
+
+    <div class="footer">
+        <button class="btn primary">Save</button>
+        <a onclick="Delete()" data-dismiss="modal" class="btn delete">Delete</a>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

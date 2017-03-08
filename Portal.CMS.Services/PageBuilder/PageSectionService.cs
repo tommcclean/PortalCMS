@@ -43,6 +43,8 @@ namespace Portal.CMS.Services.PageBuilder
         string RestoreBackup(int pageSectionId, int backupId);
 
         void DeleteBackup(int backupId);
+
+        void SetAnimation(int pageSectionId, string elementId, string animation);
     }
 
     public class PageSectionService : IPageSectionService
@@ -339,6 +341,22 @@ namespace Portal.CMS.Services.PageBuilder
             if (pageSectionBackup == null) return;
 
             _context.PageSectionBackups.Remove(pageSectionBackup);
+
+            _context.SaveChanges();
+        }
+
+        public void SetAnimation(int pageSectionId, string elementId, string animation)
+        {
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+
+            if (pageSection == null)
+                return;
+
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.UpdateAnimation(elementId, animation);
+
+            pageSection.PageSectionBody = document.OuterHtml;
 
             _context.SaveChanges();
         }

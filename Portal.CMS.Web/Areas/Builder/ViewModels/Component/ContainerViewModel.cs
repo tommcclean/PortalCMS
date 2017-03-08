@@ -1,9 +1,15 @@
-﻿namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
+﻿using Portal.CMS.Entities.Entities.PageBuilder;
+using System.ComponentModel;
+
+namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
 {
     public class ContainerViewModel
     {
         public int SectionId { get; set; }
 
         public string ElementId { get; set; }
+
+        [DisplayName("Animation")]
+        public Animation Animation { get; set; }
     }
 }

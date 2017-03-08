@@ -202,6 +202,15 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return View("_Container", model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Container(ContainerViewModel model)
+        {
+            _pageSectionService.SetAnimation(model.SectionId, model.ElementId, model.Animation.ToString());
+
+            return Content("Refresh");
+        }
+
         private string SaveImage(HttpPostedFileBase imageFile)
         {
             var extension = Path.GetExtension(imageFile.FileName).ToUpper();

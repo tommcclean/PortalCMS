@@ -106,6 +106,33 @@ namespace Portal.CMS.Services.Shared
                 classAttribute.Value = classAttribute.Value.Replace(elementClass, selectedBackgroundType);
         }
 
+        public void UpdateAnimation(string elementId, string animation)
+        {
+            var element = _document.GetElementbyId(elementId);
+
+            var classAttribute = element.Attributes.SingleOrDefault(x => x.Name == "class");
+
+            classAttribute.Value = classAttribute.Value.Replace("animated ", string.Empty);
+
+            var classList = classAttribute.Value.Split(new char[0]).ToList();
+
+            foreach (var animationName in Enum.GetValues(typeof(Animation)))
+            {
+                var matchedClass = classList.FirstOrDefault(x => animationName.ToString() == x);
+
+                if (matchedClass != null)
+                    classList.Remove(matchedClass);
+            }
+
+            if (animation.ToLower() != "None")
+            {
+                classList.Add("animated");
+                classList.Add(animation);
+            }
+
+            classAttribute.Value = string.Join(" ", classList);
+        }
+
         public void DeleteElement(string elementId)
         {
             var element = _document.GetElementbyId(elementId);
