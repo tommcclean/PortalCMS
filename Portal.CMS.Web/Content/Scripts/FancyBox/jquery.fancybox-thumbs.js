@@ -46,10 +46,10 @@
 
         init: function (opts, obj) {
             var that = this,
-				list,
-				thumbWidth = opts.width,
-				thumbHeight = opts.height,
-				thumbSource = opts.source;
+                list,
+                thumbWidth = opts.width,
+                thumbHeight = opts.height,
+                thumbSource = opts.source;
 
             //Build list structure
             list = '';
@@ -71,8 +71,8 @@
 
                 $("<img />").load(function () {
                     var width = this.width,
-						height = this.height,
-						widthRatio, heightRatio, parent;
+                        height = this.height,
+                        widthRatio, heightRatio, parent;
 
                     if (!that.list || !width || !height) {
                         return;

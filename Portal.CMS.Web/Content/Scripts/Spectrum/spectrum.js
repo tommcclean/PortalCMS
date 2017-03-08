@@ -60,75 +60,75 @@
         disabled: false,
         offset: null
     },
-    spectrums = [],
-    IE = !!/msie/i.exec(window.navigator.userAgent),
-    rgbaSupport = (function () {
-        function contains(str, substr) {
-            return !!~('' + str).indexOf(substr);
-        }
+        spectrums = [],
+        IE = !!/msie/i.exec(window.navigator.userAgent),
+        rgbaSupport = (function () {
+            function contains(str, substr) {
+                return !!~('' + str).indexOf(substr);
+            }
 
-        var elem = document.createElement('div');
-        var style = elem.style;
-        style.cssText = 'background-color:rgba(0,0,0,.5)';
-        return contains(style.backgroundColor, 'rgba') || contains(style.backgroundColor, 'hsla');
-    })(),
-    replaceInput = [
-        "<div class='sp-replacer'>",
+            var elem = document.createElement('div');
+            var style = elem.style;
+            style.cssText = 'background-color:rgba(0,0,0,.5)';
+            return contains(style.backgroundColor, 'rgba') || contains(style.backgroundColor, 'hsla');
+        })(),
+        replaceInput = [
+            "<div class='sp-replacer'>",
             "<div class='sp-preview'><div class='sp-preview-inner'></div></div>",
             "<div class='sp-dd'>&#9660;</div>",
-        "</div>"
-    ].join(''),
-    markup = (function () {
+            "</div>"
+        ].join(''),
+        markup = (function () {
 
-        // IE does not support gradients with multiple stops, so we need to simulate
-        //  that for the rainbow slider with 8 divs that each have a single gradient
-        var gradientFix = "";
-        if (IE) {
-            for (var i = 1; i <= 6; i++) {
-                gradientFix += "<div class='sp-" + i + "'></div>";
+            // IE does not support gradients with multiple stops, so we need to simulate
+            //  that for the rainbow slider with 8 divs that each have a single gradient
+            var gradientFix = "";
+            if (IE) {
+                for (var i = 1; i <= 6; i++) {
+                    gradientFix += "<div class='sp-" + i + "'></div>";
+                }
             }
-        }
 
-        return [
-            "<div class='sp-container sp-hidden'>",
+            return [
+                "<div class='sp-container sp-hidden'>",
                 "<div class='sp-palette-container'>",
-                    "<div class='sp-palette sp-thumb sp-cf'></div>",
-                    "<div class='sp-palette-button-container sp-cf'>",
-                        "<button type='button' class='sp-palette-toggle'></button>",
-                    "</div>",
+                "<div class='sp-palette sp-thumb sp-cf'></div>",
+                "<div class='sp-palette-button-container sp-cf'>",
+                "<button type='button' class='sp-palette-toggle'></button>",
+                "</div>",
                 "</div>",
                 "<div class='sp-picker-container'>",
-                    "<div class='sp-top sp-cf'>",
-                        "<div class='sp-fill'></div>",
-                        "<div class='sp-top-inner'>",
-                            "<div class='sp-color'>",
-                                "<div class='sp-sat'>",
-                                    "<div class='sp-val'>",
-                                        "<div class='sp-dragger'></div>",
-                                    "</div>",
-                                "</div>",
-                            "</div>",
-                            "<div class='sp-clear sp-clear-display'>",
-                            "</div>",
-                            "<div class='sp-hue'>",
-                                "<div class='sp-slider'></div>",
-                                gradientFix,
-                            "</div>",
-                        "</div>",
-                        "<div class='sp-alpha'><div class='sp-alpha-inner'><div class='sp-alpha-handle'></div></div></div>",
-                    "</div>",
-                    "<div class='sp-input-container sp-cf'>",
-                        "<input class='sp-input' type='text' spellcheck='false'  />",
-                    "</div>",
-                    "<div class='sp-initial sp-thumb sp-cf'></div>",
-                    "<div class='sp-button-container sp-cf'>",
-                        "<a class='sp-cancel' href='#'></a>",
-                        "<button type='button' class='sp-choose'></button>",
-                    "</div>",
+                "<div class='sp-top sp-cf'>",
+                "<div class='sp-fill'></div>",
+                "<div class='sp-top-inner'>",
+                "<div class='sp-color'>",
+                "<div class='sp-sat'>",
+                "<div class='sp-val'>",
+                "<div class='sp-dragger'></div>",
                 "</div>",
-            "</div>"
-        ].join("");
-    })();
+                "</div>",
+                "</div>",
+                "<div class='sp-clear sp-clear-display'>",
+                "</div>",
+                "<div class='sp-hue'>",
+                "<div class='sp-slider'></div>",
+                gradientFix,
+                "</div>",
+                "</div>",
+                "<div class='sp-alpha'><div class='sp-alpha-inner'><div class='sp-alpha-handle'></div></div></div>",
+                "</div>",
+                "<div class='sp-input-container sp-cf'>",
+                "<input class='sp-input' type='text' spellcheck='false'  />",
+                "</div>",
+                "<div class='sp-initial sp-thumb sp-cf'></div>",
+                "<div class='sp-button-container sp-cf'>",
+                "<a class='sp-cancel' href='#'></a>",
+                "<button type='button' class='sp-choose'></button>",
+                "</div>",
+                "</div>",
+                "</div>"
+            ].join("");
+        })();
 
     function paletteTemplate(p, color, className, opts) {
         var html = [];
@@ -993,11 +993,11 @@
 
         offset.left -=
             Math.min(offset.left, (offset.left + dpWidth > viewWidth && viewWidth > dpWidth) ?
-            Math.abs(offset.left + dpWidth - viewWidth) : 0);
+                Math.abs(offset.left + dpWidth - viewWidth) : 0);
 
         offset.top -=
             Math.min(offset.top, ((offset.top + dpHeight > viewHeight && viewHeight > dpHeight) ?
-            Math.abs(dpHeight + inputHeight - extraY) : extraY));
+                Math.abs(dpHeight + inputHeight - extraY) : extraY));
 
         return offset;
     }
@@ -1239,12 +1239,12 @@
 
             var rgb = inputToRGB(color);
             this._originalInput = color,
-            this._r = rgb.r,
-            this._g = rgb.g,
-            this._b = rgb.b,
-            this._a = rgb.a,
-            this._roundA = mathRound(100 * this._a) / 100,
-            this._format = opts.format || rgb.format;
+                this._r = rgb.r,
+                this._g = rgb.g,
+                this._b = rgb.b,
+                this._a = rgb.a,
+                this._roundA = mathRound(100 * this._a) / 100,
+                this._format = opts.format || rgb.format;
             this._gradientType = opts.gradientType;
 
             // Don't let the range of [0,255] come back in [0,1].
@@ -1295,8 +1295,8 @@
                 var hsv = rgbToHsv(this._r, this._g, this._b);
                 var h = mathRound(hsv.h * 360), s = mathRound(hsv.s * 100), v = mathRound(hsv.v * 100);
                 return (this._a == 1) ?
-                  "hsv(" + h + ", " + s + "%, " + v + "%)" :
-                  "hsva(" + h + ", " + s + "%, " + v + "%, " + this._roundA + ")";
+                    "hsv(" + h + ", " + s + "%, " + v + "%)" :
+                    "hsva(" + h + ", " + s + "%, " + v + "%, " + this._roundA + ")";
             },
             toHsl: function () {
                 var hsl = rgbToHsl(this._r, this._g, this._b);
@@ -1306,8 +1306,8 @@
                 var hsl = rgbToHsl(this._r, this._g, this._b);
                 var h = mathRound(hsl.h * 360), s = mathRound(hsl.s * 100), l = mathRound(hsl.l * 100);
                 return (this._a == 1) ?
-                  "hsl(" + h + ", " + s + "%, " + l + "%)" :
-                  "hsla(" + h + ", " + s + "%, " + l + "%, " + this._roundA + ")";
+                    "hsl(" + h + ", " + s + "%, " + l + "%)" :
+                    "hsla(" + h + ", " + s + "%, " + l + "%, " + this._roundA + ")";
             },
             toHex: function (allow3Char) {
                 return rgbToHex(this._r, this._g, this._b, allow3Char);
@@ -1326,16 +1326,16 @@
             },
             toRgbString: function () {
                 return (this._a == 1) ?
-                  "rgb(" + mathRound(this._r) + ", " + mathRound(this._g) + ", " + mathRound(this._b) + ")" :
-                  "rgba(" + mathRound(this._r) + ", " + mathRound(this._g) + ", " + mathRound(this._b) + ", " + this._roundA + ")";
+                    "rgb(" + mathRound(this._r) + ", " + mathRound(this._g) + ", " + mathRound(this._b) + ")" :
+                    "rgba(" + mathRound(this._r) + ", " + mathRound(this._g) + ", " + mathRound(this._b) + ", " + this._roundA + ")";
             },
             toPercentageRgb: function () {
                 return { r: mathRound(bound01(this._r, 255) * 100) + "%", g: mathRound(bound01(this._g, 255) * 100) + "%", b: mathRound(bound01(this._b, 255) * 100) + "%", a: this._a };
             },
             toPercentageRgbString: function () {
                 return (this._a == 1) ?
-                  "rgb(" + mathRound(bound01(this._r, 255) * 100) + "%, " + mathRound(bound01(this._g, 255) * 100) + "%, " + mathRound(bound01(this._b, 255) * 100) + "%)" :
-                  "rgba(" + mathRound(bound01(this._r, 255) * 100) + "%, " + mathRound(bound01(this._g, 255) * 100) + "%, " + mathRound(bound01(this._b, 255) * 100) + "%, " + this._roundA + ")";
+                    "rgb(" + mathRound(bound01(this._r, 255) * 100) + "%, " + mathRound(bound01(this._g, 255) * 100) + "%, " + mathRound(bound01(this._b, 255) * 100) + "%)" :
+                    "rgba(" + mathRound(bound01(this._r, 255) * 100) + "%, " + mathRound(bound01(this._g, 255) * 100) + "%, " + mathRound(bound01(this._b, 255) * 100) + "%, " + this._roundA + ")";
             },
             toName: function () {
                 if (this._a === 0) {
