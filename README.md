@@ -1,4 +1,4 @@
-# Portal CMS (1.1)
+# Portal CMS (1.2)
 - Portal CMS is a free and open source content management system with a powerful integrated page builder using inline editing tools and drag and drop. 
 - Portal CMS can be used to create a fully featured website out of the box by anybody regardless of technical skills, but we aim it at .NET Developers who are looking for a modern framework to build content managed websites quickly.
 - Using Portal CMS you can work in a lean way by only writing code for the features you need when you need them.
