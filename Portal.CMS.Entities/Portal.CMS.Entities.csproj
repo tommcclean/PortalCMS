@@ -76,6 +76,7 @@
     <Compile Include="Entities\Menu\MenuItemRole.cs" />
     <Compile Include="Entities\PageBuilder\Page.cs" />
     <Compile Include="Entities\PageBuilder\PageComponentType.cs" />
+    <Compile Include="Entities\PageBuilder\PageSectionBackup.cs" />
     <Compile Include="Entities\PageBuilder\PageSectionTypeCategory.cs" />
     <Compile Include="Entities\PageBuilder\PageComponentTypeCategory.cs" />
     <Compile Include="Entities\PageBuilder\PageSection.cs" />
@@ -192,6 +193,10 @@
     <Compile Include="Migrations\201610091045086_CleanupPageBuilderEntities.Designer.cs">
       <DependentUpon>201610091045086_CleanupPageBuilderEntities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703081019598_AddPageSectionBackupEntity.cs" />
+    <Compile Include="Migrations\201703081019598_AddPageSectionBackupEntity.Designer.cs">
+      <DependentUpon>201703081019598_AddPageSectionBackupEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -285,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610091045086_CleanupPageBuilderEntities.resx">
       <DependentUpon>201610091045086_CleanupPageBuilderEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703081019598_AddPageSectionBackupEntity.resx">
+      <DependentUpon>201703081019598_AddPageSectionBackupEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -332,6 +332,7 @@
     <Compile Include="Areas\Builder\ViewModels\Component\ContainerViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\VideoViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\ImageViewModel.cs" />
+    <Compile Include="Areas\Builder\ViewModels\Section\RestoreViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\AppDrawerViewModel.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -716,6 +717,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Component\_Video.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Builder\Views\Section\_Restore.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

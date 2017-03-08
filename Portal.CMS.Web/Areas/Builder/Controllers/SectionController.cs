@@ -20,8 +20,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         private readonly IImageService _imageService;
         private readonly IRoleService _roleService;
 
-        private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
-
         public SectionController(IPageSectionService pageSectionService, IPageSectionTypeService pageSectionTypeService, IImageService imageService, IRoleService roleService)
         {
             _pageSectionService = pageSectionService;
@@ -31,6 +29,34 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         #endregion Dependencies
+
+        [HttpGet]
+        public ActionResult Add(int pageId)
+        {
+            var model = new AddViewModel
+            {
+                PageId = pageId,
+                SectionTypeList = _pageSectionTypeService.Get()
+            };
+
+            return View("_Add", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult Add(int pageId, int pageSectionTypeId, string componentStamp)
+        {
+            try
+            {
+                var pageSectionId = _pageSectionService.Add(pageId, pageSectionTypeId, componentStamp);
+
+                return new JsonResult { Data = pageSectionId };
+            }
+            catch (Exception ex)
+            {
+                return Json(new { State = false, ex.InnerException.Message });
+            }
+        }
 
         [HttpGet]
         public ActionResult Edit(int sectionId)
@@ -93,34 +119,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add(int pageId)
-        {
-            var model = new AddViewModel
-            {
-                PageId = pageId,
-                SectionTypeList = _pageSectionTypeService.Get()
-            };
-
-            return View("_Add", model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public JsonResult Add(int pageId, int pageSectionTypeId, string componentStamp)
-        {
-            try
-            {
-                var pageSectionId = _pageSectionService.Add(pageId, pageSectionTypeId, componentStamp);
-
-                return new JsonResult { Data = pageSectionId };
-            }
-            catch (Exception ex)
-            {
-                return Json(new { State = false, ex.InnerException.Message });
-            }
-        }
-
-        [HttpGet]
         public ActionResult Markup(int pageSectionId)
         {
             var pageSection = _pageSectionService.Get(pageSectionId);
@@ -159,5 +157,48 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 return Json(new { State = false, ex.InnerException.Message });
             }
         }
+
+        #region Section Backup Methods
+
+        [HttpGet]
+        public ActionResult Restore(int pageSectionId)
+        {
+            var pageSection = _pageSectionService.Get(pageSectionId);
+
+            var model = new RestoreViewModel
+            {
+                PageSectionId = pageSectionId,
+                PageSectionBackup = pageSection.PageSectionBackups.ToList()
+            };
+
+            return View("_Restore", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateBackup(int pageSectionId)
+        {
+            _pageSectionService.Backup(pageSectionId);
+
+            return Content("Refresh");
+        }
+
+        [HttpGet]
+        public ActionResult RestoreBackup(int pageSectionId, int restorePointId)
+        {
+            _pageSectionService.RestoreBackup(pageSectionId, restorePointId);
+
+            return Content("Refresh");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteBackup(int restorePointId)
+        {
+            _pageSectionService.DeleteBackup(restorePointId);
+
+            return Content("Refresh");
+        }
+
+        #endregion Section Backup Methods
     }
 }

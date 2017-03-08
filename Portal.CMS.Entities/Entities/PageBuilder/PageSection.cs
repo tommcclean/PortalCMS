@@ -20,5 +20,7 @@ namespace Portal.CMS.Entities.Entities.PageBuilder
         public int PageSectionOrder { get; set; }
 
         public virtual ICollection<PageSectionRole> PageSectionRoles { get; set; }
+
+        public virtual ICollection<PageSectionBackup> PageSectionBackups { get; set; }
     }
 }

@@ -1,0 +1,45 @@
+﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Section.RestoreViewModel
+@{
+    Layout = "";
+}
+
+<div class="panel-inner">
+    @using (Html.BeginForm("CreateBackup", "Section", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(x => x.PageSectionId)
+
+        if (!Model.PageSectionBackup.Any())
+        {
+            <div class="alert alert-warning" role="alert">You don't have any Restore Points for this Section yet...</div>
+            <br /><br /><br />
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">Create a new Backup for this Section or choose an existing Restore point.</div>
+        }
+
+        <div class="row">
+            @foreach (var backup in Model.PageSectionBackup.OrderByDescending(x => x.DateAdded))
+            {
+                <div class="col-xs-12 col-sm-6">
+                    <div class="box box-tall">
+                        <div class="alert alert-success" role="alert">Snapshot: @backup.DateAdded.ToString("dd/MM/yyyy HH:mm").</div>
+                        <div class="section-preview float-container" style="margin-bottom: 175px;">@Html.Raw(backup.PageSectionBody)</div>
+
+                        <div class="admin-container x2">
+                            <a href="@Url.Action("RestoreBackup", "Section", new { area = "Builder", pageSectionId = @Model.PageSectionId, restorePointId = @backup.PageSectionBackupId })" class="admin-item launch-modal" data-title="Restore"><span class="fa fa-clock-o"></span>Restore</a>
+                            <a href="@Url.Action("DeleteBackup", "Section", new { area = "Builder", restorePointId = backup.PageSectionBackupId })" class="admin-item launch-modal" data-title="Delete Restore Point"><span class="fa fa-trash"></span>Delete</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="footer">
+            <button class="btn primary">Create Restore Point</button>
+            <button class="btn" data-dismiss="modal">Cancel</button>
+        </div>
+    }
+</div>

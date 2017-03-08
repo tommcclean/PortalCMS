@@ -1,6 +1,7 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.PageBuilder;
 using Portal.CMS.Services.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -36,6 +37,12 @@ namespace Portal.CMS.Services.PageBuilder
         void Markup(int pageSectionId, string htmlBody);
 
         void Roles(int pageSectionId, List<string> roleList);
+
+        void Backup(int pageSectionId);
+
+        void RestoreBackup(int pageSectionId, int backupId);
+
+        void DeleteBackup(int backupId);
     }
 
     public class PageSectionService : IPageSectionService
@@ -290,6 +297,50 @@ namespace Portal.CMS.Services.PageBuilder
 
                 _context.PageSectionRoles.Add(new PageSectionRole { PageSectionId = pageSectionId, RoleId = currentRole.RoleId });
             }
+
+            _context.SaveChanges();
+        }
+
+        public void Backup(int pageSectionId)
+        {
+            var pageSection = Get(pageSectionId);
+
+            if (pageSection == null) return;
+
+            var newBackup = new PageSectionBackup
+            {
+                PageSectionId = pageSection.PageSectionId,
+                PageSectionBody = pageSection.PageSectionBody,
+                DateAdded = DateTime.Now
+            };
+
+            _context.PageSectionBackups.Add(newBackup);
+
+            _context.SaveChanges();
+        }
+
+        public void RestoreBackup(int pageSectionId, int backupId)
+        {
+            var pageSectionBackup = _context.PageSectionBackups.FirstOrDefault(x => x.PageSectionBackupId == backupId);
+
+            if (pageSectionBackup == null) return;
+
+            var pageSection = Get(pageSectionId);
+
+            if (pageSection == null) return;
+
+            pageSection.PageSectionBody = pageSectionBackup.PageSectionBody;
+
+            _context.SaveChanges();
+        }
+
+        public void DeleteBackup(int backupId)
+        {
+            var pageSectionBackup = _context.PageSectionBackups.FirstOrDefault(x => x.PageSectionBackupId == backupId);
+
+            if (pageSectionBackup == null) return;
+
+            _context.PageSectionBackups.Remove(pageSectionBackup);
 
             _context.SaveChanges();
         }

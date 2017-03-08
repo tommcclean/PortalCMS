@@ -90,6 +90,8 @@ namespace Portal.CMS.Entities
 
         public virtual DbSet<PageSection> PageSections { get; set; }
 
+        public virtual DbSet<PageSectionBackup> PageSectionBackups { get; set; }
+
         public virtual DbSet<PageSectionType> PageSectionTypes { get; set; }
 
         public virtual DbSet<PageComponentType> PageComponentTypes { get; set; }

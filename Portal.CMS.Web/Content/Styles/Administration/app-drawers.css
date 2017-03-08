@@ -47,123 +47,123 @@
             overflow-y: auto;
         }
 
-        .panel-overlay .panel-inner .section-preview
-        {
-            display: block;
-            width: 100%;
-            margin-bottom: 50px;
-            border: 1px solid black;
-            cursor: pointer;
-            -ms-zoom: 0.25;
-            zoom: 0.25;
-            overflow: hidden;
-        }
+.section-preview
+{
+    display: block;
+    width: 100%;
+    margin-bottom: 50px;
+    border: 1px solid black;
+    cursor: pointer;
+    -ms-zoom: 0.25;
+    zoom: 0.25;
+    overflow: hidden;
+}
 
-            .panel-overlay .panel-inner .section-preview:hover
-            {
-                border: 1px solid red;
-            }
+.panel-overlay .section-preview:hover
+{
+    border: 1px solid red;
+}
 
-            .panel-overlay .panel-inner .section-preview section
-            {
-                pointer-events: none;
-            }
+.section-preview section
+{
+    pointer-events: none;
+}
 
-            .panel-overlay .panel-inner .section-preview .background-parallax
-            {
-                background-attachment: scroll;
-            }
+.section-preview .background-parallax
+{
+    background-attachment: scroll;
+}
 
-            .panel-overlay .panel-inner .section-preview .freestyle
-            {
-                border: 0;
-            }
+.section-preview .freestyle
+{
+    border: 0 !important;
+}
 
-    .panel-overlay .freestyle
+.panel-overlay .freestyle
+{
+    border: 1px dashed purple;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.panel-overlay .panel-inner .component-preview
+{
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+    .panel-overlay .panel-inner .component-preview.border
     {
-        border: 1px dashed purple;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding: 10px 0 10px 0;
+        margin: 20px 0 20px 0;
+        min-height: 100px;
+        border-bottom: 1px dashed silver;
     }
 
-    .panel-overlay .panel-inner .component-preview
+    .panel-overlay .panel-inner .component-preview .freestyle *, .panel-overlay .panel-inner .component-preview .component-expand *, .component-preview .icon-text *, .component-preview .carousel-inner, .component-preview iframe
     {
-        position: relative;
-        cursor: pointer;
-        margin-bottom: 10px;
-        overflow: hidden;
-    }
-
-        .panel-overlay .panel-inner .component-preview.border
-        {
-            padding: 10px 0 10px 0;
-            margin: 20px 0 20px 0;
-            min-height: 100px;
-            border-bottom: 1px dashed silver;
-        }
-
-        .panel-overlay .panel-inner .component-preview .freestyle *, .panel-overlay .panel-inner .component-preview .component-expand *, .component-preview .icon-text *, .component-preview .carousel-inner, .component-preview iframe
-        {
-            pointer-events: none;
-        }
-
-    .panel-overlay .panel-inner .widget-preview
-    {
-        cursor: pointer;
-    }
-
-    .panel-overlay .panel-inner .component-preview .component-container
-    {
-        background-color: #E0E0E0;
-        min-height: 40px;
-    }
-
-    .panel-overlay .panel-inner .component-preview .carousel
-    {
-        min-height: 0;
-    }
-
-        .panel-overlay .panel-inner .component-preview .carousel .component-container
-        {
-            background-color: transparent;
-            min-height: 40px;
-        }
-
-    .panel-overlay .panel-inner .component-preview .component-container.ui-draggable-dragging
-    {
-        height: 50px;
-        width: 300px;
-        background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
-    }
-
-    .panel-overlay .panel-inner .widget-preview .post-list-wrapper a
-    {
-        width: 100%;
-    }
-
-    .panel-overlay .component-title
-    {
-        position: absolute;
-        right: 0px;
-        top: 15px;
-        padding: 5px 10px 5px 10px;
-        background-image: url('/Areas/Admin/Content/Images/block_black_dark.png');
-        display: inline-block;
-        color: white;
-        border-radius: 5px;
-        text-transform: uppercase;
-        z-index: 50;
         pointer-events: none;
     }
 
-    .panel-overlay .component-preview .btn.square
+.panel-overlay .panel-inner .widget-preview
+{
+    cursor: pointer;
+}
+
+.panel-overlay .panel-inner .component-preview .component-container
+{
+    background-color: #E0E0E0;
+    min-height: 40px;
+}
+
+.panel-overlay .panel-inner .component-preview .carousel
+{
+    min-height: 0;
+}
+
+    .panel-overlay .panel-inner .component-preview .carousel .component-container
     {
-        color: black;
-        border-color: black;
-        font-size: 16px;
+        background-color: transparent;
+        min-height: 40px;
     }
+
+.panel-overlay .panel-inner .component-preview .component-container.ui-draggable-dragging
+{
+    height: 50px;
+    width: 300px;
+    background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
+}
+
+.panel-overlay .panel-inner .widget-preview .post-list-wrapper a
+{
+    width: 100%;
+}
+
+.panel-overlay .component-title
+{
+    position: absolute;
+    right: 0px;
+    top: 15px;
+    padding: 5px 10px 5px 10px;
+    background-image: url('/Areas/Admin/Content/Images/block_black_dark.png');
+    display: inline-block;
+    color: white;
+    border-radius: 5px;
+    text-transform: uppercase;
+    z-index: 50;
+    pointer-events: none;
+}
+
+.panel-overlay .component-preview .btn.square
+{
+    color: black;
+    border-color: black;
+    font-size: 16px;
+}
 
 .ui-draggable-dragging
 {
