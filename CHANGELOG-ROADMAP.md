@@ -24,7 +24,7 @@ This file contains a list of changes between versions of Portal CMS and a roadma
   1. Including Inline editing for changing your posts quickly
   2. Including Comments, Photo Galleries and Tie ins to other posts
 
-##1.1 - Focus: Increasing Feature Set with oft expected features.
+##1.1 - (November 2016) Focus: Increasing Feature Set with oft expected features.
 1. Improvements to website reliability and architecture.
 2. Improved performance following Performance testing.
 3. Ability to upload your own Font's and use them in custom Themes.
@@ -39,7 +39,7 @@ This file contains a list of changes between versions of Portal CMS and a roadma
 11. Incorporation of a Unit Testing Technology.
 12. Change website from use of Glyphicons to Font Awesome.
 
-##1.2 - Focus: Increase Feature Set and Improve User Experience. **(LATEST STABLE RELEASE)**
+##1.2 - (March 2017) Focus: Increase Feature Set and Improve User Experience. **(LATEST STABLE RELEASE)**
 1. User Experience: Brand New Quick Access Panel for Administrator Users.
 2. User Experience: Page Builder no longer posts back when: Adding a Section, Editing Section Markup, Editing an Image, Editing a Section, Adding a Component, Deleting a Section, Deleting a Component.
 3. Architecture: Ability to Backup and Restore individual sections on demand.
