@@ -1,7 +1,7 @@
 # PortalCMS (1.2)
 - PortalCMS is a free and open source content management framework with a powerful integrated page builder featuring inline editing and drag and drop. 
-- PortalCMS gives you a fully featured content managed website out of the box which can be easily extended by developers with knowledge of C# MVC.
-- Non technical people can create unlimited pages and blog posts without writing any code using the easy to use Page Builder on any device.
+- PortalCMS gives you a fully featured website out of the box which can be easily extended by developers with knowledge of C# MVC.
+- Even non technical people can create unlimited pages and blog posts without writing any code using the easy to use Page Builder on any device.
 
 ### Learn More
 - Learn more about PortalCMS on its official website: [PortalCMS Official Website](http://www.portalcms.online)
