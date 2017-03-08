@@ -1,7 +1,7 @@
 #Portal CMS Roadmap / Changelog
 This file contains a list of changes between versions of Portal CMS and a roadmap that provides a brief outline of the features we intend to include in Portal CMS.
 
-**Portal CMS Latest Stable Release: 1.1**
+#Changelog
 
 ##1.0 - Initial Release
 1. Ability to use the Administration Panel with the following features...
@@ -63,6 +63,8 @@ This file contains a list of changes between versions of Portal CMS and a roadma
 21. Ground work completed ahead of next release, to make adding new component and section types much quicker and easier.
 22. Architecture: Refactoring to comply with Clean Code Rules
 23. Multiple usability and performance improvements across the framework.
+
+# Roadmap
 
 ##1.3 - Focus: Developers Update (Making it easier for developers to develop alongside / inside Portal CMS.)
 1. New Developer Administration Page
