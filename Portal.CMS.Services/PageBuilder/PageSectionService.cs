@@ -40,7 +40,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         void Backup(int pageSectionId);
 
-        void RestoreBackup(int pageSectionId, int backupId);
+        string RestoreBackup(int pageSectionId, int backupId);
 
         void DeleteBackup(int backupId);
     }
@@ -319,19 +319,17 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void RestoreBackup(int pageSectionId, int backupId)
+        public string RestoreBackup(int pageSectionId, int backupId)
         {
             var pageSectionBackup = _context.PageSectionBackups.FirstOrDefault(x => x.PageSectionBackupId == backupId);
 
-            if (pageSectionBackup == null) return;
-
             var pageSection = Get(pageSectionId);
-
-            if (pageSection == null) return;
 
             pageSection.PageSectionBody = pageSectionBackup.PageSectionBody;
 
             _context.SaveChanges();
+
+            return pageSection.PageSectionBody;
         }
 
         public void DeleteBackup(int backupId)

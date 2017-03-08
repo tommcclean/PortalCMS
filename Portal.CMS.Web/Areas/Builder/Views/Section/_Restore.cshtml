@@ -3,6 +3,56 @@
     Layout = "";
 }
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".restore-backup").click(function (event) {
+            var backupId = $(this).attr("data-backupid");
+            var pageSectionId = @Model.PageSectionId;
+            var dataParams = { "pageSectionId": pageSectionId, "restorePointId": backupId, "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+            $.ajax({
+                data: dataParams,
+                type: 'POST',
+                cache: false,
+                url: '/Builder/Section/RestoreBackup',
+                success: function (data) {
+                    if (data.State === false) {
+                        alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload();
+                    }
+
+                    $('#section-wrapper-' + @Model.PageSectionId).html(data.Markup);
+
+                    $('.modal').modal('toggle');
+
+                    InitialiseEditor();
+                    InitialiseWidgets();
+                    ApplySectionControls();
+                    InitialiseDroppables();
+
+                    $('#section-@Model.PageSectionId').animateIn('pulse');
+                }
+            });
+        });
+
+        $(".delete-backup").click(function (event) {
+            var backupId = $(this).attr("data-backupid");
+            var dataParams = { "restorePointId": backupId, "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+            $.ajax({
+                data: dataParams,
+                type: 'POST',
+                cache: false,
+                url: '/Builder/Section/DeleteBackup',
+                success: function (data) {
+                    if (data.State === false) {
+                        alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload();
+                    }
+
+                    $('#item-' + backupId).animateOut('flipOutX');
+                }
+            });
+        });
+    });
+</script>
+
 <div class="panel-inner">
     @using (Html.BeginForm("CreateBackup", "Section", FormMethod.Post))
     {
@@ -23,14 +73,14 @@
         <div class="row">
             @foreach (var backup in Model.PageSectionBackup.OrderByDescending(x => x.DateAdded))
             {
-                <div class="col-xs-12 col-sm-6">
+                <div id="item-@backup.PageSectionBackupId" class="col-xs-12 col-sm-6">
                     <div class="box box-tall">
                         <div class="alert alert-success" role="alert">Snapshot: @backup.DateAdded.ToString("dd/MM/yyyy HH:mm").</div>
                         <div class="section-preview float-container" style="margin-bottom: 175px;">@Html.Raw(backup.PageSectionBody)</div>
 
                         <div class="admin-container x2">
-                            <a href="@Url.Action("RestoreBackup", "Section", new { area = "Builder", pageSectionId = @Model.PageSectionId, restorePointId = @backup.PageSectionBackupId })" class="admin-item launch-modal" data-title="Restore"><span class="fa fa-clock-o"></span>Restore</a>
-                            <a href="@Url.Action("DeleteBackup", "Section", new { area = "Builder", restorePointId = backup.PageSectionBackupId })" class="admin-item launch-modal" data-title="Delete Restore Point"><span class="fa fa-trash"></span>Delete</a>
+                            <a href="#" class="admin-item restore-backup" data-backupid="@backup.PageSectionBackupId" data-title="Restore"><span class="fa fa-clock-o"></span>Restore</a>
+                            <a href="#" class="admin-item delete-backup" data-backupid="@backup.PageSectionBackupId" data-title="Delete Restore Point"><span class="fa fa-trash"></span>Delete</a>
                         </div>
                     </div>
                 </div>

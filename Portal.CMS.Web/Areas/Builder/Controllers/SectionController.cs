@@ -183,15 +183,17 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet]
-        public ActionResult RestoreBackup(int pageSectionId, int restorePointId)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult RestoreBackup(int pageSectionId, int restorePointId)
         {
-            _pageSectionService.RestoreBackup(pageSectionId, restorePointId);
+            var pageMarkup = _pageSectionService.RestoreBackup(pageSectionId, restorePointId);
 
-            return Content("Refresh");
+            return Json(new { State = true, Markup = pageMarkup });
         }
 
-        [HttpGet]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteBackup(int restorePointId)
         {
             _pageSectionService.DeleteBackup(restorePointId);
