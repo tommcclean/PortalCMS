@@ -17,6 +17,9 @@ $.fn.extend({
 });
 
 function ChangeOrder() {
+    $('section').droppable('disable');
+    $('.component-container').droppable('disable');
+
     $('#page-wrapper').toggleClass("zoom");
     $('#page-wrapper').toggleClass("change-order");
     $('#page-wrapper.change-order').sortable({ placeholder: "ui-state-highlight", helper: 'clone' });
@@ -53,6 +56,7 @@ $(document).ready(function () {
     InitialiseWidgets();
     InitialiseEditor();
     ApplySectionControls();
+    InitialiseDroppables();
 });
 
 function InitialiseEditor() {
@@ -272,8 +276,7 @@ function DeleteInlineComponent(editorId) {
 function ExtractSectionId(element) {
     var elementId = $(element).attr("id");
 
-    if (elementId !== undefined)
-    {
+    if (elementId !== undefined) {
         var elementParts = elementId.split('-');
         var sectionId = elementParts[elementParts.length - 1];
         return sectionId;
