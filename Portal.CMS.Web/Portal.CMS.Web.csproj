@@ -332,10 +332,12 @@
     <Compile Include="Areas\Builder\ViewModels\Component\ContainerViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\VideoViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\ImageViewModel.cs" />
+    <Compile Include="Areas\Builder\ViewModels\Section\EditPartialViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\RestoreViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\AppDrawerViewModel.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ExampleController.cs" />
     <Compile Include="ViewModels\Shared\PaginationViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Theme\ThemeViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Widget\PostListViewModel.cs" />
@@ -355,7 +357,7 @@
     <Compile Include="ViewModels\Blog\BlogViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\AddViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Build\CustomViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Section\EditViewModel.cs" />
+    <Compile Include="Areas\Builder\ViewModels\Section\EditSectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Content\Images\icon-pages.png" />
@@ -600,7 +602,7 @@
     <Content Include="Areas\Builder\Views\Widget\_RecentPostList.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
     <Content Include="Areas\Builder\Views\Component\_Add.cshtml" />
-    <Content Include="Areas\Builder\Views\Section\_Edit.cshtml" />
+    <Content Include="Areas\Builder\Views\Section\_EditSection.cshtml" />
     <Content Include="Views\Shared\_Analytics.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Blog\_Comments.cshtml" />
@@ -720,6 +722,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Section\_Restore.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Example\_ExamplePartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Builder\Views\Section\_EditPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

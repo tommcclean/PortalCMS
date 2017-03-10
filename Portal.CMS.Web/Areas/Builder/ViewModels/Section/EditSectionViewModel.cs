@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Web;
-using Portal.CMS.Entities.Entities.Authentication;
+﻿using Portal.CMS.Entities.Entities.Authentication;
 using Portal.CMS.Entities.Entities.Generic;
 using Portal.CMS.Entities.Entities.PageBuilder;
 using Portal.CMS.Web.ViewModels.Shared;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Web;
 
 namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
 {
-    public class EditViewModel
+    public class EditSectionViewModel
     {
+        public int PageAssociationId { get; set; }
+
         public int SectionId { get; set; }
 
         public string BackgroundType { get; set; }
@@ -36,6 +38,10 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
         [DisplayName("Category")]
         public ImageCategory ImageCategory { get; set; }
 
+        #region Enumerable Properties
+
         public List<Role> RoleList { get; set; }
+
+        #endregion Enumerable Properties
     }
 }

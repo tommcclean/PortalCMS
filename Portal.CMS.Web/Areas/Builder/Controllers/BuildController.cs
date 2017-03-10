@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Portal.CMS.Services.Analytics;
+﻿using Portal.CMS.Services.Analytics;
 using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
@@ -10,6 +6,10 @@ using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Build;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
 {
@@ -73,10 +73,10 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         [HttpPost, AdminFilter]
-        public ActionResult Order(int pageId, string sectionList)
+        public ActionResult Order(int pageId, string associationList)
         {
-            if (sectionList != null && sectionList.Length > 2)
-                _pageService.Order(pageId, sectionList);
+            if (associationList != null && associationList.Length > 2)
+                _pageService.Order(pageId, associationList);
 
             return RedirectToAction(nameof(Index), "Build", new { pageId });
         }

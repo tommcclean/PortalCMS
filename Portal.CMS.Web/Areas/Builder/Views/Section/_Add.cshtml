@@ -26,6 +26,7 @@
             <li role="presentation" class="active"><a href="#tab-headers" aria-controls="tab-headers" role="tab" data-toggle="tab">Headers</a></li>
             <li role="presentation" class=""><a href="#tab-content" aria-controls="tab-content" role="tab" data-toggle="tab">Content</a></li>
             <li role="presentation" class=""><a href="#tab-design" aria-controls="tab-design" role="tab" data-toggle="tab">Design</a></li>
+            <li role="presentation" class=""><a href="#tab-partial" aria-controls="tab-partial" role="tab" data-toggle="tab">Extensions</a></li>
         </ul>
 
         <div class="tab-content">
@@ -47,12 +48,55 @@
                     <div class="section-preview float-container" data-sectiontypeid="@sectionType.PageSectionTypeId">@Html.Raw(sectionType.PageSectionTypeBody)</div>
                 }
             </div>
+            <div role="tabpanel" class="tab-pane float-container" id="tab-partial" style="padding: 9px;">
+                <div class="alert alert-warning" role="alert">Learn more about Partials?</div>
+
+                <div class="slim-field">
+                    @Html.TextBox("areaName", "", new { @placeholder = "Area Name" })
+                    @Html.TextBox("controllerName", "", new { @placeholder = "Controller Name" })
+                    @Html.TextBox("actionName", "", new { @placeholder = "Action Name" })
+
+                    <div>
+                        <a href="#" id="add-partial" class="btn" style="float: right;">Add Partial</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#add-partial').on('click', function (e) {
+            var dataParams = { "pageId": @Model.PageId, "areaName": $('#areaName').val(), "controllerName": $('#controllerName').val(), "actionName": $('#actionName').val(), "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+            $.ajax({
+                data: dataParams,
+                type: 'POST',
+                cache: false,
+                url: '@Url.Action("AddPartial", "Section", new { area = "Builder" })',
+                success: function (data)
+                {
+                    if (data.State === false)
+                    {
+                        if (data.Reason === "Invalid")
+                        {
+                            alert("Error: The Partial Route Specified is Invalid. No Action Exists on that Route...");
+
+                            return false;
+                        }
+                        else
+                        {
+                            alert("Error: The Page has lost synchronisation. Reloading Page...");
+
+                            location.reload();
+                        }
+                    }
+
+                    location.reload();
+                },
+            });
+        });
+
         $('#section-panel .section-preview').on('click', function (e) {
             var sectionTypeId = $(this).attr("data-sectiontypeid");
             var sectionTypeContent = $(this).html();
@@ -63,7 +107,7 @@
                 data: dataParams,
                 type: 'POST',
                 cache: false,
-                url: '@Url.Action("Add", "Section", new { area = "Builder" })',
+                url: '@Url.Action("AddSection", "Section", new { area = "Builder" })',
                 success: function (data)
                 {
                     if (data.State === false)
@@ -72,19 +116,19 @@
                         location.reload();
                     }
 
-                    var sectionWrapper = '<div id="section-wrapper-' + data + '" class="section-wrapper admin sortable animated bounce" data-section="' + data + '"></div>';
+                    var sectionWrapper = "<div id='section-wrapper-" + data.PageSectionId + "' class='section-wrapper admin sortable animated bounce' data-section='" + data.PageSectionId + "' data-association='" + data.PageAssociationId + "'></div>";
 
                     $('#page-wrapper').append(sectionWrapper);
-                    $('#section-wrapper-' + data).append(sectionTypeContent);
+                    $('#section-wrapper-' + data.PageSectionId).append(sectionTypeContent);
 
-                    ReplaceChildTokens('section-wrapper-' + data, data, componentStamp);
+                    ReplaceChildTokens('section-wrapper-' + data.PageSectionId, data.PageSectionId, componentStamp);
 
                     InitialiseEditor();
                     InitialiseWidgets();
                     ApplySectionControls();
                     InitialiseDroppables();
 
-                    location.href='#section-wrapper-' + data;
+                    location.href='#section-wrapper-' + data.PageSectionId;
                 },
             });
         });

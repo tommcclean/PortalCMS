@@ -34,7 +34,7 @@
 
     using (Html.BeginForm("Order", "Build", FormMethod.Post, new { @style = "display: none;" }))
     {
-        <input id="order-list" name="sectionList" />
+        <input id="order-list" name="associationList" />
         <input id="order-pageId" value="@Model.Page.PageId" name="pageId" />
         <button id="order-submit"></button>
     }
@@ -45,8 +45,14 @@
     {
         if (pageAssociation.PageSection != null)
         {
-            <div id="section-wrapper-@(pageAssociation.PageSection.PageSectionId)" class="section-wrapper@(isAdmin ? " admin sortable" : "" )" data-section="@(pageAssociation.PageSection.PageSectionId)">
+            <div id="section-wrapper-@(pageAssociation.PageSection.PageSectionId)" class="section-wrapper@(isAdmin ? " admin sortable" : "" )" data-section="@(pageAssociation.PageSection.PageSectionId)" data-association="@pageAssociation.PageAssociationId">
                 @Html.Raw(pageAssociation.PageSection.PageSectionBody)
+            </div>
+        }
+        else if (pageAssociation.PagePartial != null)
+        {
+            <div id="partial-wrapper-@(pageAssociation.PagePartialId)" class="partial-wrapper@(isAdmin ? " admin sortable" : "" )" data-partial="@pageAssociation.PagePartialId" data-association="@pageAssociation.PageAssociationId">
+                @Html.Action(pageAssociation.PagePartial.RouteAction, pageAssociation.PagePartial.RouteController, new { area = pageAssociation.PagePartial.RouteArea })
             </div>
         }
     }

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using Portal.CMS.Entities;
+﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.PageBuilder;
 using Portal.CMS.Entities.Entities.Posts;
 using Portal.CMS.Services.Authentication;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
 namespace Portal.CMS.Services.PageBuilder
 {
@@ -147,23 +147,21 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void Order(int pageId, string sectionList)
+        public void Order(int pageId, string associationList)
         {
             var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
+            if (page == null) return;
 
-            if (page == null)
-                return;
+            var associations = associationList.Split(',');
 
-            var sections = sectionList.Split(',');
-
-            foreach (var sectionProperties in sections)
+            foreach (var associationProperties in associations)
             {
-                var properties = sectionProperties.Split('-');
+                var properties = associationProperties.Split('-');
 
                 var orderId = properties[0];
-                var sectionId = properties[1];
+                var associationId = properties[1];
 
-                var pageAssociation = page.PageAssociations.SingleOrDefault(x => x.PageSectionId.ToString() == sectionId.ToString());
+                var pageAssociation = page.PageAssociations.SingleOrDefault(x => x.PageAssociationId.ToString() == associationId.ToString());
 
                 if (pageAssociation == null)
                     continue;

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Portal.CMS.Entities;
+using Portal.CMS.Entities.Entities.PageBuilder;
+using Portal.CMS.Services.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities.PageBuilder;
-using Portal.CMS.Services.Shared;
 
 namespace Portal.CMS.Services.PageBuilder
 {
@@ -12,7 +12,7 @@ namespace Portal.CMS.Services.PageBuilder
     {
         PageSection Get(int pageSectionId);
 
-        int Add(int pageId, int pageSectionTypeId, string componentStamp);
+        PageAssociation Add(int pageId, int pageSectionTypeId, string componentStamp);
 
         void Background(int pageSectionId, int backgroundImageId);
 
@@ -67,7 +67,7 @@ namespace Portal.CMS.Services.PageBuilder
             return pageSection;
         }
 
-        public int Add(int pageId, int pageSectionTypeId, string componentStamp)
+        public PageAssociation Add(int pageId, int pageSectionTypeId, string componentStamp)
         {
             var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
 
@@ -98,7 +98,7 @@ namespace Portal.CMS.Services.PageBuilder
 
             _context.SaveChanges();
 
-            return newPageAssociation.PageSection.PageSectionId;
+            return newPageAssociation;
         }
 
         public void Background(int pageSectionId, int backgroundImageId)

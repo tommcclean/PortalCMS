@@ -93,6 +93,16 @@
     line-height: 45px;
 }
 
+.slim-field
+{
+}
+
+    .slim-field input
+    {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
 div.iconpicker-popover input
 {
     float: none;
