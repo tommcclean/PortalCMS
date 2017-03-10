@@ -1,6 +1,6 @@
-﻿using Portal.CMS.Entities.Entities.Menu;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Portal.CMS.Entities.Entities.Menu;
 
 namespace Portal.CMS.Entities.Seed
 {

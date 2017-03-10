@@ -1,6 +1,6 @@
-﻿using Portal.CMS.Entities.Entities.Settings;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Portal.CMS.Entities.Entities.Settings;
 
 namespace Portal.CMS.Entities.Seed
 {

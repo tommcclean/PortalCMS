@@ -1,7 +1,7 @@
 namespace Portal.CMS.Entities.Migrations
 {
-    using Seed;
     using System.Data.Entity.Migrations;
+    using Seed;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Portal.CMS.Entities.PortalEntityModel>
     {

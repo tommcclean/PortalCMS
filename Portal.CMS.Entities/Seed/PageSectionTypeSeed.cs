@@ -1,8 +1,8 @@
-﻿using HtmlAgilityPack;
-using Portal.CMS.Entities.Entities.PageBuilder;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using HtmlAgilityPack;
+using Portal.CMS.Entities.Entities.PageBuilder;
 
 namespace Portal.CMS.Entities.Seed
 {

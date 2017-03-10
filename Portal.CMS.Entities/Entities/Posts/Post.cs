@@ -1,8 +1,8 @@
-﻿using Portal.CMS.Entities.Entities.Analytics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Portal.CMS.Entities.Entities.Analytics;
 
 namespace Portal.CMS.Entities.Entities.Posts
 {

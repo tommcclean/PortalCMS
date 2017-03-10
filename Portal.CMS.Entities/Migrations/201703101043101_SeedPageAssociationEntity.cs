@@ -1,6 +1,5 @@
 namespace Portal.CMS.Entities.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
     using Portal.CMS.Entities.Entities.PageBuilder;
 
@@ -23,7 +22,7 @@ namespace Portal.CMS.Entities.Migrations
 
             _context.SaveChanges();
         }
-        
+
         public override void Down()
         {
         }

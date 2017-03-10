@@ -1,6 +1,6 @@
-﻿using Portal.CMS.Entities.Entities.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Portal.CMS.Entities.Entities.Generic;
 
 namespace Portal.CMS.Entities.Entities.Posts
 {

@@ -1,7 +1,7 @@
-﻿using Portal.CMS.Entities.Entities.Themes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Portal.CMS.Entities.Entities.Themes;
 
 namespace Portal.CMS.Entities.Seed
 {

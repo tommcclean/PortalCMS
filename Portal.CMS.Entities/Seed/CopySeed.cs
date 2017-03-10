@@ -1,7 +1,7 @@
-﻿using Portal.CMS.Entities.Entities.Copy;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Portal.CMS.Entities.Entities.Copy;
 
 namespace Portal.CMS.Entities.Seed
 {

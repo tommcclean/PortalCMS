@@ -1,7 +1,7 @@
-﻿using Portal.CMS.Entities.Entities.Posts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Portal.CMS.Entities.Entities.Posts;
 
 namespace Portal.CMS.Entities.Seed
 {
