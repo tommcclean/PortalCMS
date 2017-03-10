@@ -41,11 +41,14 @@
 }
 
 <div id="page-wrapper" class="@(isAdmin ? "admin" : "visitor" )">
-    @foreach (var section in Model.Page.PageSections.OrderBy(x => x.PageSectionOrder).ThenBy(x => x.PageSectionId))
-            {
-        <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper@(isAdmin ? " admin sortable" : "" )" data-section="@(section.PageSectionId)">
-            @Html.Raw(section.PageSectionBody)
-        </div>
+    @foreach (var pageAssociation in Model.Page.PageAssociations.OrderBy(x => x.PageAssociationOrder).ThenBy(x => x.PageAssociationId))
+    {
+        if (pageAssociation.PageSection != null)
+        {
+            <div id="section-wrapper-@(pageAssociation.PageSection.PageSectionId)" class="section-wrapper@(isAdmin ? " admin sortable" : "" )" data-section="@(pageAssociation.PageSection.PageSectionId)">
+                @Html.Raw(pageAssociation.PageSection.PageSectionBody)
+            </div>
+        }
     }
 </div>
 

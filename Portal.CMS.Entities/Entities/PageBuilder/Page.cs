@@ -27,10 +27,12 @@ namespace Portal.CMS.Entities.Entities.PageBuilder
         [Required]
         public DateTime DateUpdated { get; set; }
 
+        #region Virtual Properties
+
         public virtual ICollection<PageAssociation> PageAssociations { get; set; }
 
-        public virtual ICollection<PageSection> PageSections { get; set; }
-
         public virtual ICollection<PageRole> PageRoles { get; set; }
+
+        #endregion Virtual Properties
     }
 }

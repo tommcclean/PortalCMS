@@ -1,17 +1,15 @@
-﻿using Portal.CMS.Entities.Entities.Authentication;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Web;
+using Portal.CMS.Entities.Entities.Authentication;
 using Portal.CMS.Entities.Entities.Generic;
 using Portal.CMS.Entities.Entities.PageBuilder;
 using Portal.CMS.Web.ViewModels.Shared;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Web;
 
 namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
 {
     public class EditViewModel
     {
-        public int PageId { get; set; }
-
         public int SectionId { get; set; }
 
         public string BackgroundType { get; set; }

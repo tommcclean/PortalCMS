@@ -4,8 +4,6 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
 {
     public class ImageViewModel
     {
-        public int PageId { get; set; }
-
         public int SectionId { get; set; }
 
         public string ElementType { get; set; }

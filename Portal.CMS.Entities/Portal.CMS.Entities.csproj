@@ -208,6 +208,10 @@
     <Compile Include="Migrations\201703101043101_SeedPageAssociationEntity.Designer.cs">
       <DependentUpon>201703101043101_SeedPageAssociationEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.cs" />
+    <Compile Include="Migrations\201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.Designer.cs">
+      <DependentUpon>201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -310,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703101043101_SeedPageAssociationEntity.resx">
       <DependentUpon>201703101043101_SeedPageAssociationEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.resx">
+      <DependentUpon>201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

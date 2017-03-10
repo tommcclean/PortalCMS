@@ -1,12 +1,12 @@
-﻿using Portal.CMS.Services.Authentication;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
+using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Section;
 using Portal.CMS.Web.ViewModels.Shared;
-using System;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
 {
@@ -65,7 +65,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
             var model = new EditViewModel
             {
-                PageId = pageSection.PageId,
                 SectionId = sectionId,
                 MediaLibrary = new PaginationViewModel
                 {

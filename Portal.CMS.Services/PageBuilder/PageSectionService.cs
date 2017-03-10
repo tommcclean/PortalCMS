@@ -1,10 +1,10 @@
-﻿using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities.PageBuilder;
-using Portal.CMS.Services.Shared;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Portal.CMS.Entities;
+using Portal.CMS.Entities.Entities.PageBuilder;
+using Portal.CMS.Services.Shared;
 
 namespace Portal.CMS.Services.PageBuilder
 {
@@ -51,7 +51,7 @@ namespace Portal.CMS.Services.PageBuilder
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
+        private readonly PortalEntityModel _context;
 
         public PageSectionService(PortalEntityModel context)
         {
@@ -75,27 +75,30 @@ namespace Portal.CMS.Services.PageBuilder
 
             var sectionPosition = 1;
 
-            if (page.PageSections.Any())
-                sectionPosition = (page.PageSections.Max(x => x.PageSectionId) + 1);
+            if (page.PageAssociations.Any())
+                sectionPosition = (page.PageAssociations.Max(x => x.PageAssociationOrder) + 1);
 
-            var newPageSection = new PageSection
+            var newPageAssociation = new PageAssociation
             {
                 PageId = pageId,
-                PageSectionBody = sectionType.PageSectionTypeBody,
-                PageSectionOrder = sectionPosition
+                PageSection = new PageSection
+                {
+                    PageSectionBody = sectionType.PageSectionTypeBody,
+                },
+                PageAssociationOrder = sectionPosition
             };
 
-            _context.PageSections.Add(newPageSection);
+            _context.PageAssociations.Add(newPageAssociation);
 
             _context.SaveChanges();
 
-            var document = new Document(newPageSection.PageSectionBody);
+            var document = new Document(newPageAssociation.PageSection.PageSectionBody);
 
-            newPageSection.PageSectionBody = Document.ReplaceTokens(newPageSection.PageSectionBody, newPageSection.PageSectionId, componentStamp);
+            newPageAssociation.PageSection.PageSectionBody = Document.ReplaceTokens(newPageAssociation.PageSection.PageSectionBody, newPageAssociation.PageSection.PageSectionId, componentStamp);
 
             _context.SaveChanges();
 
-            return newPageSection.PageSectionId;
+            return newPageAssociation.PageSection.PageSectionId;
         }
 
         public void Background(int pageSectionId, int backgroundImageId)
@@ -140,14 +143,22 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void Delete(int pageSectionId)
+        public void Delete(int pageAssociationId)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageAssociation = _context.PageAssociations.SingleOrDefault(x => x.PageAssociationId == pageAssociationId);
+            if (pageAssociation == null) return;
 
-            if (pageSection == null)
-                return;
+            var pageSectionId = pageAssociation.PageSectionId;
 
-            _context.PageSections.Remove(pageSection);
+            _context.PageAssociations.Remove(pageAssociation);
+
+            if (!_context.PageAssociations.Any(x => x.PageSectionId == pageAssociation.PageSectionId))
+            {
+                var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
+
+                if (pageSection != null)
+                    _context.PageSections.Remove(pageSection);
+            }
 
             _context.SaveChanges();
         }

@@ -1,13 +1,13 @@
-﻿using Portal.CMS.Services.Generic;
-using Portal.CMS.Services.PageBuilder;
-using Portal.CMS.Web.Architecture.ActionFilters;
-using Portal.CMS.Web.Areas.Builder.ViewModels.Component;
-using Portal.CMS.Web.ViewModels.Shared;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Portal.CMS.Services.Generic;
+using Portal.CMS.Services.PageBuilder;
+using Portal.CMS.Web.Architecture.ActionFilters;
+using Portal.CMS.Web.Areas.Builder.ViewModels.Component;
+using Portal.CMS.Web.ViewModels.Shared;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
 {
@@ -97,7 +97,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
             var model = new ImageViewModel
             {
-                PageId = pageSection.PageId,
                 SectionId = pageSectionId,
                 ElementType = elementType,
                 ElementId = elementId,
