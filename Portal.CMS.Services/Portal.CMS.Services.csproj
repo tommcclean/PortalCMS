@@ -74,14 +74,14 @@
     <Compile Include="Authentication\TokenService.cs" />
     <Compile Include="Authentication\UserService.cs" />
     <Compile Include="Copy\CopyService.cs" />
+    <Compile Include="PageBuilder\PageAssociationService.cs" />
+    <Compile Include="PageBuilder\PagePartialService.cs" />
     <Compile Include="Themes\FontService.cs" />
     <Compile Include="Generic\ImageService.cs" />
     <Compile Include="Menu\MenuItemService.cs" />
     <Compile Include="Menu\MenuService.cs" />
     <Compile Include="PageBuilder\PageComponentService.cs" />
-    <Compile Include="PageBuilder\PageComponentTypeService.cs" />
     <Compile Include="PageBuilder\PageSectionService.cs" />
-    <Compile Include="PageBuilder\PageSectionTypeService.cs" />
     <Compile Include="PageBuilder\PageService.cs" />
     <Compile Include="Posts\PostCategoryService.cs" />
     <Compile Include="Posts\PostCommentService.cs" />

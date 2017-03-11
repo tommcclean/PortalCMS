@@ -15,17 +15,19 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
     {
         #region Dependencies
 
-        private readonly IPageSectionService _pageSectionService;
-        private readonly IPageSectionTypeService _pageSectionTypeService;
+        private readonly IPageSectionService _sectionService;
+        private readonly IPagePartialService _partialService;
+        private readonly IPageAssociationService _associationService;
         private readonly IImageService _imageService;
         private readonly IRoleService _roleService;
 
-        public SectionController(IPageSectionService pageSectionService, IPageSectionTypeService pageSectionTypeService, IImageService imageService, IRoleService roleService)
+        public SectionController(IPageSectionService sectionService, IImageService imageService, IRoleService roleService, IPagePartialService partialService, IPageAssociationService associationService)
         {
-            _pageSectionService = pageSectionService;
-            _pageSectionTypeService = pageSectionTypeService;
+            _sectionService = sectionService;
             _imageService = imageService;
             _roleService = roleService;
+            _partialService = partialService;
+            _associationService = associationService;
         }
 
         #endregion Dependencies
@@ -36,7 +38,8 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             var model = new AddViewModel
             {
                 PageId = pageId,
-                SectionTypeList = _pageSectionTypeService.Get()
+                SectionTypeList = _sectionService.GetSectionTypes(),
+                PartialList = _associationService.Get()
             };
 
             return View("_Add", model);
@@ -44,73 +47,159 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Add(int pageId, int pageSectionTypeId, string componentStamp)
+        public ActionResult Delete(int pageAssociationId)
         {
             try
             {
-                var pageSectionId = _pageSectionService.Add(pageId, pageSectionTypeId, componentStamp);
+                _associationService.Delete(pageAssociationId);
 
-                return new JsonResult { Data = pageSectionId };
+                return Json(new { State = true });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Json(new { State = false, ex.InnerException.Message });
+                return Json(new { State = false });
             }
         }
 
-        [HttpGet]
-        public ActionResult Edit(int sectionId)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult AddSection(int pageId, int pageSectionTypeId, string componentStamp)
         {
-            var pageSection = _pageSectionService.Get(sectionId);
-
-            var model = new EditViewModel
+            try
             {
-                PageId = pageSection.PageId,
-                SectionId = sectionId,
+                var pageAssociation = _sectionService.Add(pageId, pageSectionTypeId, componentStamp);
+
+                return Json(new { State = true, PageSectionId = pageAssociation.PageSection.PageSectionId, PageAssociationId = pageAssociation.PageAssociationId });
+            }
+            catch (Exception)
+            {
+                return Json(new { State = false });
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult AddPartial(int pageId, string areaName, string controllerName, string actionName)
+        {
+            try
+            {
+                Type[] types = System.Reflection.Assembly.GetExecutingAssembly().GetTypes();
+
+                Type type = types.Where(t => t.Name == $"{controllerName}Controller").SingleOrDefault();
+
+                if (type != null && type.GetMethod(actionName) != null)
+                {
+                    _partialService.Add(pageId, areaName, controllerName, actionName);
+
+                    return Json(new { State = true });
+                }
+
+                return Json(new { State = false, Reason = "Invalid" });
+            }
+            catch (Exception)
+            {
+                return Json(new { State = false, Reason = "Exception" });
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditOrder(int pageId, string associationList)
+        {
+            if (associationList != null && associationList.Length > 2)
+                _associationService.EditOrder(pageId, associationList);
+
+            return RedirectToAction("Index", "Build", new { pageId });
+        }
+
+        #region Section Edit Methods
+
+        [HttpGet]
+        public ActionResult EditSection(int pageAssociationId)
+        {
+            var pageAssociation = _associationService.Get(pageAssociationId);
+
+            var pageSection = _sectionService.Get(pageAssociation.PageSection.PageSectionId);
+
+            var model = new EditSectionViewModel
+            {
+                PageAssociationId = pageAssociationId,
+                SectionId = pageSection.PageSectionId,
                 MediaLibrary = new PaginationViewModel
                 {
                     ImageList = _imageService.Get(),
                     TargetInputField = "BackgroundImageId",
                     PaginationType = "section"
                 },
-                PageSectionHeight = _pageSectionService.DetermineSectionHeight(sectionId),
-                PageSectionBackgroundStyle = _pageSectionService.DetermineBackgroundStyle(sectionId),
-                BackgroundType = _pageSectionService.DetermineBackgroundType(sectionId),
-                BackgroundColour = _pageSectionService.DetermineBackgroundColour(sectionId),
+                PageSectionHeight = _sectionService.DetermineSectionHeight(pageSection.PageSectionId),
+                PageSectionBackgroundStyle = _sectionService.DetermineBackgroundStyle(pageSection.PageSectionId),
+                BackgroundType = _sectionService.DetermineBackgroundType(pageSection.PageSectionId),
+                BackgroundColour = _sectionService.DetermineBackgroundColour(pageSection.PageSectionId),
                 RoleList = _roleService.Get(),
-                SelectedRoleList = pageSection.PageSectionRoles.Select(x => x.Role.RoleName).ToList()
+                SelectedRoleList = pageAssociation.PageAssociationRoles.Select(x => x.Role.RoleName).ToList()
             };
 
-            return View("_Edit", model);
+            return View("_EditSection", model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Edit(EditViewModel model)
+        public JsonResult EditSection(EditSectionViewModel model)
         {
             try
             {
                 if ("colour".Equals(model.BackgroundType, StringComparison.OrdinalIgnoreCase))
                 {
-                    _pageSectionService.SetBackgroundType(model.SectionId, false);
+                    _sectionService.EditBackgroundType(model.SectionId, false);
 
                     if (!string.IsNullOrWhiteSpace(model.BackgroundColour))
-                        _pageSectionService.Background(model.SectionId, model.BackgroundColour);
+                        _sectionService.EditBackgroundColour(model.SectionId, model.BackgroundColour);
                 }
                 else
                 {
-                    _pageSectionService.SetBackgroundType(model.SectionId, true);
+                    _sectionService.EditBackgroundType(model.SectionId, true);
 
                     if (model.BackgroundImageId > 0)
-                        _pageSectionService.Background(model.SectionId, model.BackgroundImageId);
+                        _sectionService.EditBackgroundImage(model.SectionId, model.BackgroundImageId);
 
-                    _pageSectionService.SetBackgroundStyle(model.SectionId, model.PageSectionBackgroundStyle);
+                    _sectionService.EditBackgroundStyle(model.SectionId, model.PageSectionBackgroundStyle);
                 }
 
-                _pageSectionService.Height(model.SectionId, model.PageSectionHeight);
-                _pageSectionService.Roles(model.SectionId, model.SelectedRoleList);
+                _sectionService.EditHeight(model.SectionId, model.PageSectionHeight);
+                _associationService.EditRoles(model.PageAssociationId, model.SelectedRoleList);
 
-                return Json(new { State = true, SectionMarkup = _pageSectionService.Get(model.SectionId).PageSectionBody });
+                return Json(new { State = true, SectionMarkup = _sectionService.Get(model.SectionId).PageSectionBody });
+            }
+            catch (Exception)
+            {
+                return Json(new { State = false });
+            }
+        }
+
+        [HttpGet]
+        public ActionResult EditPartial(int pageAssociationId)
+        {
+            var pageAssociation = _associationService.Get(pageAssociationId);
+
+            var model = new EditPartialViewModel
+            {
+                PageAssociationId = pageAssociationId,
+                PagePartialId = pageAssociation.PagePartial.PagePartialId,
+                RoleList = _roleService.Get(),
+                SelectedRoleList = pageAssociation.PageAssociationRoles.Select(x => x.Role.RoleName).ToList()
+            };
+
+            return View("_EditPartial", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPartial(EditPartialViewModel model)
+        {
+            try
+            {
+                _associationService.EditRoles(model.PageAssociationId, model.SelectedRoleList);
+
+                return Json(new { State = true });
             }
             catch (Exception)
             {
@@ -121,7 +210,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [HttpGet]
         public ActionResult Markup(int pageSectionId)
         {
-            var pageSection = _pageSectionService.Get(pageSectionId);
+            var pageSection = _sectionService.Get(pageSectionId);
 
             var model = new MarkupViewModel
             {
@@ -137,33 +226,19 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult Markup(MarkupViewModel model)
         {
-            _pageSectionService.Markup(model.PageSectionId, model.PageSectionBody);
+            _sectionService.EditMarkup(model.PageSectionId, model.PageSectionBody);
 
             return Json(new { State = true, Markup = model.PageSectionBody });
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int pageSectionId)
-        {
-            try
-            {
-                _pageSectionService.Delete(pageSectionId);
-
-                return Json(new { State = true });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { State = false, ex.InnerException.Message });
-            }
-        }
+        #endregion Section Edit Methods
 
         #region Section Backup Methods
 
         [HttpGet]
         public ActionResult Restore(int pageSectionId)
         {
-            var pageSection = _pageSectionService.Get(pageSectionId);
+            var pageSection = _sectionService.Get(pageSectionId);
 
             var model = new RestoreViewModel
             {
@@ -178,7 +253,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateBackup(int pageSectionId)
         {
-            _pageSectionService.Backup(pageSectionId);
+            _sectionService.Backup(pageSectionId);
 
             return Content("Refresh");
         }
@@ -187,7 +262,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult RestoreBackup(int pageSectionId, int restorePointId)
         {
-            var pageMarkup = _pageSectionService.RestoreBackup(pageSectionId, restorePointId);
+            var pageMarkup = _sectionService.RestoreBackup(pageSectionId, restorePointId);
 
             return Json(new { State = true, Markup = pageMarkup });
         }
@@ -196,7 +271,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteBackup(int restorePointId)
         {
-            _pageSectionService.DeleteBackup(restorePointId);
+            _sectionService.DeleteBackup(restorePointId);
 
             return Content("Refresh");
         }

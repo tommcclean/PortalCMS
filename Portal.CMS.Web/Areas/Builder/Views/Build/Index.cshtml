@@ -12,10 +12,7 @@
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
         @Scripts.Render("~/Resources/JavaScript/JQueryTouch")
-        @Scripts.Render("~/Resources/JavaScript/Framework/Administration")
     }
-
-    @Scripts.Render("~/Resources/JavaScript/Plugins/FAQ")
 
     <script type="text/javascript">
         var dataParams = { "pageId": @Model.Page.PageId, "referrer": "@Request.UrlReferrer", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
@@ -32,27 +29,36 @@
         <div onclick="location.reload();" class="action"><span class="fa fa-remove"></span></div>
     </div>
 
-    using (Html.BeginForm("Order", "Build", FormMethod.Post, new { @style = "display: none;" }))
+    using (Html.BeginForm("EditOrder", "Section", FormMethod.Post, new { @style = "display: none;" }))
     {
-        <input id="order-list" name="sectionList" />
+        <input id="order-list" name="associationList" />
         <input id="order-pageId" value="@Model.Page.PageId" name="pageId" />
         <button id="order-submit"></button>
     }
 }
 
 <div id="page-wrapper" class="@(isAdmin ? "admin" : "visitor" )">
-    @foreach (var section in Model.Page.PageSections.OrderBy(x => x.PageSectionOrder).ThenBy(x => x.PageSectionId))
-            {
-        <div id="section-wrapper-@(section.PageSectionId)" class="section-wrapper@(isAdmin ? " admin sortable" : "" )" data-section="@(section.PageSectionId)">
-            @Html.Raw(section.PageSectionBody)
-        </div>
+    @foreach (var pageAssociation in Model.Page.PageAssociations.OrderBy(x => x.PageAssociationOrder).ThenBy(x => x.PageAssociationId))
+    {
+        if (pageAssociation.PageSection != null)
+        {
+            <div id="section-wrapper-@(pageAssociation.PageSection.PageSectionId)" class="section-wrapper@(isAdmin ? " admin sortable" : "" )" data-section="@(pageAssociation.PageSection.PageSectionId)" data-association="@pageAssociation.PageAssociationId">
+                @Html.Raw(pageAssociation.PageSection.PageSectionBody)
+            </div>
+        }
+        else if (pageAssociation.PagePartial != null)
+        {
+            <div id="partial-wrapper-@(pageAssociation.PagePartialId)" class="partial-wrapper@(isAdmin ? " admin sortable" : "" )" data-partial="@pageAssociation.PagePartialId" data-association="@pageAssociation.PageAssociationId">
+                @Html.Action(pageAssociation.PagePartial.RouteAction, pageAssociation.PagePartial.RouteController, new { area = pageAssociation.PagePartial.RouteArea, pageId = @Model.Page.PageId })
+            </div>
+        }
     }
 </div>
 
 @if (isAdmin)
 {
-    @Html.Action("Add", "Section", new { @pageId = Model.Page.PageId })
-    @Html.Action("Add", "Component")
+    @Html.Action("Add", "Section", new { @pageId = Model.Page.PageId, area = "Builder" })
+    @Html.Action("Add", "Component", new { area = "Builder" })
     @Html.Action("AppDrawer", "PageManager", new { area = "Admin" })
     @Html.Action("AppDrawer", "ThemeManager", new { area = "Admin" })
     @Html.Action("AppDrawer", "BlogManager", new { area = "Admin" })

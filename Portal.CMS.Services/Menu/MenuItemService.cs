@@ -33,7 +33,7 @@ namespace Portal.CMS.Services.Menu
 
         public MenuItem Get(int menuItemId)
         {
-            var menuItem = _context.MenuItems.FirstOrDefault(x => x.MenuItemId == menuItemId);
+            var menuItem = _context.MenuItems.SingleOrDefault(x => x.MenuItemId == menuItemId);
 
             return menuItem;
         }

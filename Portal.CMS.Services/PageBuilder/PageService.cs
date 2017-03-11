@@ -23,8 +23,6 @@ namespace Portal.CMS.Services.PageBuilder
 
         void Delete(int pageId);
 
-        void Order(int pageId, string sectionList);
-
         void Roles(int pageId, List<string> roleList);
     }
 
@@ -32,14 +30,12 @@ namespace Portal.CMS.Services.PageBuilder
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
-        readonly IUserService _userService;
-        readonly IRoleService _roleService;
+        private readonly PortalEntityModel _context;
+        private readonly IRoleService _roleService;
 
-        public PageService(PortalEntityModel context, IUserService userService, IRoleService roleService)
+        public PageService(PortalEntityModel context, IRoleService roleService)
         {
             _context = context;
-            _userService = userService;
             _roleService = roleService;
         }
 
@@ -54,7 +50,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public Page View(int? userId, int pageId)
         {
-            var page = _context.Pages.Include(x => x.PageSections).SingleOrDefault(x => x.PageId == pageId);
+            var page = _context.Pages.Include(x => x.PageAssociations).SingleOrDefault(x => x.PageId == pageId);
 
             if (!page.PageRoles.Any())
                 return FilterSectionList(page, userId);
@@ -69,30 +65,9 @@ namespace Portal.CMS.Services.PageBuilder
             return null;
         }
 
-        private Page FilterSectionList(Page page, int? userId)
-        {
-            for (int loop = 0; loop < page.PageSections.Count(); loop += 1)
-            {
-                var pageSection = page.PageSections.ToList()[loop];
-
-                var userRoles = _roleService.Get(userId);
-
-                var hasAccess = _roleService.Validate(pageSection.PageSectionRoles.Select(x => x.Role), userRoles);
-
-                if (!hasAccess)
-                {
-                    page.PageSections.Remove(page.PageSections.ToList()[loop]);
-
-                    loop = loop - 1;
-                }
-            }
-
-            return page;
-        }
-
         public Page Get(int pageId)
         {
-            var page = _context.Pages.Include(x => x.PageSections).SingleOrDefault(x => x.PageId == pageId);
+            var page = _context.Pages.Include(x => x.PageAssociations).SingleOrDefault(x => x.PageId == pageId);
 
             return page;
         }
@@ -119,9 +94,7 @@ namespace Portal.CMS.Services.PageBuilder
         public void Edit(int pageId, string pageName, string area, string controller, string action)
         {
             var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
-
-            if (page == null)
-                return;
+            if (page == null) return;
 
             page.PageName = pageName;
             page.PageArea = area;
@@ -135,38 +108,9 @@ namespace Portal.CMS.Services.PageBuilder
         public void Delete(int pageId)
         {
             var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
-
-            if (page == null)
-                return;
+            if (page == null) return;
 
             _context.Pages.Remove(page);
-
-            _context.SaveChanges();
-        }
-
-        public void Order(int pageId, string sectionList)
-        {
-            var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
-
-            if (page == null)
-                return;
-
-            var sections = sectionList.Split(',');
-
-            foreach (var sectionProperties in sections)
-            {
-                var properties = sectionProperties.Split('-');
-
-                var orderId = properties[0];
-                var sectionId = properties[1];
-
-                var section = page.PageSections.SingleOrDefault(x => x.PageSectionId.ToString() == sectionId.ToString());
-
-                if (section == null)
-                    continue;
-
-                section.PageSectionOrder = Convert.ToInt32(orderId);
-            }
 
             _context.SaveChanges();
         }
@@ -174,9 +118,7 @@ namespace Portal.CMS.Services.PageBuilder
         public void Roles(int pageId, List<string> roleList)
         {
             var page = Get(pageId);
-
-            if (page == null)
-                return;
+            if (page == null) return;
 
             var roles = _context.Roles.ToList();
 
@@ -196,5 +138,33 @@ namespace Portal.CMS.Services.PageBuilder
 
             _context.SaveChanges();
         }
+
+        #region Private Methods
+
+        private Page FilterSectionList(Page page, int? userId)
+        {
+            for (int loop = 0; loop < page.PageAssociations.Count(); loop += 1)
+            {
+                var pageAssociation = page.PageAssociations.ToList()[loop];
+
+                if (pageAssociation != null)
+                {
+                    var userRoles = _roleService.Get(userId);
+
+                    var hasAccess = _roleService.Validate(pageAssociation.PageAssociationRoles.Select(x => x.Role), userRoles);
+
+                    if (!hasAccess)
+                    {
+                        page.PageAssociations.Remove(pageAssociation);
+
+                        loop = loop - 1;
+                    }
+                }
+            }
+
+            return page;
+        }
+
+        #endregion Private Methods
     }
 }

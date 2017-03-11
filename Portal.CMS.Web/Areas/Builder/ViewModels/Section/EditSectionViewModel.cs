@@ -8,9 +8,9 @@ using System.Web;
 
 namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
 {
-    public class EditViewModel
+    public class EditSectionViewModel
     {
-        public int PageId { get; set; }
+        public int PageAssociationId { get; set; }
 
         public int SectionId { get; set; }
 
@@ -38,6 +38,10 @@ namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
         [DisplayName("Category")]
         public ImageCategory ImageCategory { get; set; }
 
+        #region Enumerable Properties
+
         public List<Role> RoleList { get; set; }
+
+        #endregion Enumerable Properties
     }
 }

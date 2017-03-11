@@ -88,7 +88,11 @@ namespace Portal.CMS.Entities
 
         public virtual DbSet<Page> Pages { get; set; }
 
+        public virtual DbSet<PageAssociation> PageAssociations { get; set; }
+
         public virtual DbSet<PageSection> PageSections { get; set; }
+
+        public virtual DbSet<PagePartial> PagePartials { get; set; }
 
         public virtual DbSet<PageSectionBackup> PageSectionBackups { get; set; }
 
@@ -98,7 +102,7 @@ namespace Portal.CMS.Entities
 
         public virtual DbSet<PageRole> PageRoles { get; set; }
 
-        public virtual DbSet<PageSectionRole> PageSectionRoles { get; set; }
+        public virtual DbSet<PageAssociationRole> PageAssociationRoles { get; set; }
 
         #endregion Page Builder Entities
 

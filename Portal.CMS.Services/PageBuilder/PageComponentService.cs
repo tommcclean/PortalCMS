@@ -1,20 +1,26 @@
 ﻿using Portal.CMS.Entities;
+using Portal.CMS.Entities.Entities.PageBuilder;
 using Portal.CMS.Services.Shared;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Portal.CMS.Services.PageBuilder
 {
     public interface IPageComponentService
     {
-        void Delete(int pageSectionId, string componentId);
+        List<PageComponentType> GetComponentTypes();
+
+        void Add(int pageSectionId, string containerElementId, string elementBody);
 
         void EditImage(int pageSectionId, string elementType, string elementId, int selectedImageId);
 
-        void Anchor(int pageSectionId, string elementId, string elementText, string elementHref, string elementTarget);
+        void EditAnchor(int pageSectionId, string elementId, string elementText, string elementHref, string elementTarget);
 
-        void Element(int pageSectionId, string elementId, string elementBody);
+        void EditElement(int pageSectionId, string elementId, string elementBody);
 
-        void UpdateSourcePath(int pageSectionId, string elementId, string newSourcePath);
+        void EditSource(int pageSectionId, string elementId, string newSourcePath);
+
+        void Delete(int pageSectionId, string componentId);
     }
 
     public class PageComponentService : IPageComponentService
@@ -30,12 +36,31 @@ namespace Portal.CMS.Services.PageBuilder
 
         #endregion Dependencies
 
-        public void Element(int pageSectionId, string elementId, string elementBody)
+        public List<PageComponentType> GetComponentTypes()
+        {
+            var results = _context.PageComponentTypes.OrderBy(x => x.PageComponentTypeId).ToList();
+
+            return results;
+        }
+
+        public void Add(int pageSectionId, string containerElementId, string elementBody)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            if (pageSection == null) return;
 
-            if (pageSection == null)
-                return;
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.AddElement(containerElementId, elementBody);
+
+            pageSection.PageSectionBody = document.OuterHtml;
+
+            _context.SaveChanges();
+        }
+
+        public void EditElement(int pageSectionId, string elementId, string elementBody)
+        {
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
 
@@ -46,33 +71,13 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void Delete(int pageSectionId, string componentId)
-        {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
-
-            if (pageSection == null)
-                return;
-
-            var document = new Document(pageSection.PageSectionBody);
-
-            document.DeleteElement(componentId);
-
-            pageSection.PageSectionBody = document.OuterHtml;
-
-            _context.SaveChanges();
-        }
-
         public void EditImage(int pageSectionId, string elementType, string elementId, int selectedImageId)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
-
-            if (pageSection == null)
-                return;
+            if (pageSection == null) return;
 
             var image = _context.Images.SingleOrDefault(x => x.ImageId == selectedImageId);
-
-            if (image == null)
-                return;
+            if (image == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
 
@@ -86,12 +91,26 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void UpdateSourcePath(int pageSectionId, string elementId, string newSourcePath)
+        public void EditAnchor(int pageSectionId, string elementId, string elementText, string elementHref, string elementTarget)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            if (pageSection == null) return;
 
-            if (pageSection == null)
-                return;
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.UpdateElementContent(elementId, elementText);
+            document.UpdateElementAttribute(elementId, "href", elementHref, true);
+            document.UpdateElementAttribute(elementId, "target", elementTarget ?? "", true);
+
+            pageSection.PageSectionBody = document.OuterHtml;
+
+            _context.SaveChanges();
+        }
+
+        public void EditSource(int pageSectionId, string elementId, string newSourcePath)
+        {
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
 
@@ -102,18 +121,14 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void Anchor(int pageSectionId, string elementId, string elementText, string elementHref, string elementTarget)
+        public void Delete(int pageSectionId, string componentId)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
-
-            if (pageSection == null)
-                return;
+            if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
 
-            document.UpdateElementContent(elementId, elementText);
-            document.UpdateElementAttribute(elementId, "href", elementHref, true);
-            document.UpdateElementAttribute(elementId, "target", elementTarget ?? "", true);
+            document.DeleteElement(componentId);
 
             pageSection.PageSectionBody = document.OuterHtml;
 

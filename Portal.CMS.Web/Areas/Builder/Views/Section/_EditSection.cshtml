@@ -1,4 +1,4 @@
-﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Section.EditViewModel
+﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Section.EditSectionViewModel
 @{
     Layout = "";
 }
@@ -32,7 +32,6 @@
 
                     InitialiseEditor();
                     InitialiseWidgets();
-                    ApplySectionControls();
                     InitialiseDroppables();
 
                     $('.modal').modal('toggle');
@@ -54,7 +53,7 @@
     {
         $('#section-wrapper-@Model.SectionId').slideUp();
 
-        var dataParams = { "pageSectionId": @Model.SectionId, "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+        var dataParams = { "pageAssociationId": @Model.PageAssociationId, "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
 
         $.ajax({
             data: dataParams,
@@ -109,11 +108,12 @@
     }
 </script>
 
-@using (Html.BeginForm("Edit", "Section", FormMethod.Post, new { id = "customForm" }))
+@using (Html.BeginForm("EditSection", "Section", FormMethod.Post, new { id = "customForm" }))
 {
     @Html.AntiForgeryToken()
 
     @Html.HiddenFor(x => x.SectionId)
+    @Html.HiddenFor(x => x.PageAssociationId)
     @Html.HiddenFor(x => x.BackgroundImageId)
     @Html.HiddenFor(x => x.BackgroundType)
 

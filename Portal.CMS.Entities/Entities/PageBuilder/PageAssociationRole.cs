@@ -4,15 +4,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portal.CMS.Entities.Entities.PageBuilder
 {
-    public class PageSectionRole
+    public class PageAssociationRole
     {
         [Key]
-        public int PageSectionRoleId { get; set; }
+        public int PageAssociationRoleId { get; set; }
 
-        [ForeignKey(nameof(PageSection))]
-        public int PageSectionId { get; set; }
+        [ForeignKey(nameof(PageAssociation))]
+        public int PageAssociationId { get; set; }
 
-        public virtual PageSection PageSection { get; set; }
+        public virtual PageAssociation PageAssociation { get; set; }
 
         [ForeignKey(nameof(Role))]
         public int RoleId { get; set; }

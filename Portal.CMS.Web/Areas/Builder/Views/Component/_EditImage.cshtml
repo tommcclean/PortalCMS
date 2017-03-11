@@ -66,11 +66,10 @@
     }
 </script>
 
-@using (Html.BeginForm("Image", "Component", FormMethod.Post, new { id = "customForm" }))
+@using (Html.BeginForm("EditImage", "Component", FormMethod.Post, new { id = "customForm" }))
 {
     @Html.AntiForgeryToken()
 
-    @Html.HiddenFor(x => x.PageId)
     @Html.HiddenFor(x => x.SectionId)
     @Html.HiddenFor(x => x.ElementId)
     @Html.HiddenFor(x => x.SelectedImageId)

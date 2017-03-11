@@ -6,7 +6,7 @@
     public class DropAndMigrateDatabaseToLatestVersion<TContext, TMigrationsConfiguration> : IDatabaseInitializer<TContext>
         where TContext : DbContext, new() where TMigrationsConfiguration : DbMigrationsConfiguration<TContext>, new()
     {
-        readonly TMigrationsConfiguration config;
+        private readonly TMigrationsConfiguration config;
 
         public DropAndMigrateDatabaseToLatestVersion()
         {

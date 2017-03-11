@@ -58,7 +58,7 @@ namespace Portal.CMS.Services.Posts
 
         public Post Read(int? userId, int postId)
         {
-            var post = _context.Posts.FirstOrDefault(x => x.PostId == postId && x.IsPublished);
+            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId && x.IsPublished);
 
             var userRoles = _roleService.Get(userId);
 

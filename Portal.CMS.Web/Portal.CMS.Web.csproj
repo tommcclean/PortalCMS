@@ -51,10 +51,6 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Effort, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6a46696d54971e6d, processorArchitecture=MSIL">
-      <HintPath>..\packages\Effort.EF6.1.3.0\lib\net45\Effort.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Glimpse.Ado, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
       <Private>True</Private>
@@ -73,10 +69,6 @@
     </Reference>
     <Reference Include="Glimpse.Mvc5, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogBook.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -98,10 +90,6 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NMemory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6a46696d54971e6d, processorArchitecture=MSIL">
-      <HintPath>..\packages\NMemory.1.1.2\lib\net45\NMemory.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SendGrid, Version=6.3.4.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
@@ -332,10 +320,13 @@
     <Compile Include="Areas\Builder\ViewModels\Component\ContainerViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\VideoViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Component\ImageViewModel.cs" />
+    <Compile Include="Areas\Builder\ViewModels\Section\EditPartialViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\RestoreViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\AppDrawerViewModel.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\CustomController.cs" />
+    <Compile Include="ViewModels\Custom\AdvancedViewModel.cs" />
     <Compile Include="ViewModels\Shared\PaginationViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Theme\ThemeViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Widget\PostListViewModel.cs" />
@@ -355,7 +346,7 @@
     <Compile Include="ViewModels\Blog\BlogViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Section\AddViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Build\CustomViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Section\EditViewModel.cs" />
+    <Compile Include="Areas\Builder\ViewModels\Section\EditSectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Content\Images\icon-pages.png" />
@@ -583,7 +574,7 @@
     <Content Include="Areas\Admin\Views\PageManager\_Edit.cshtml" />
     <Content Include="Areas\Builder\Views\web.config" />
     <Content Include="Areas\Builder\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Builder\Views\Component\_Image.cshtml" />
+    <Content Include="Areas\Builder\Views\Component\_EditImage.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Markup.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Add.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Edit.cshtml" />
@@ -600,7 +591,7 @@
     <Content Include="Areas\Builder\Views\Widget\_RecentPostList.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
     <Content Include="Areas\Builder\Views\Component\_Add.cshtml" />
-    <Content Include="Areas\Builder\Views\Section\_Edit.cshtml" />
+    <Content Include="Areas\Builder\Views\Section\_EditSection.cshtml" />
     <Content Include="Views\Shared\_Analytics.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Blog\_Comments.cshtml" />
@@ -713,13 +704,22 @@
     <Content Include="Areas\Admin\Views\Dashboard\_QuickAccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Builder\Views\Component\_Container.cshtml" />
+    <Content Include="Areas\Builder\Views\Component\_EditContainer.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Builder\Views\Component\_Video.cshtml" />
+    <Content Include="Areas\Builder\Views\Component\_EditVideo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Section\_Restore.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Custom\_SimplePartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Builder\Views\Section\_EditPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Custom\_AdvancedPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

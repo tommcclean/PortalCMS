@@ -74,18 +74,20 @@
     <Compile Include="Entities\Menu\Menu.cs" />
     <Compile Include="Entities\Menu\MenuItem.cs" />
     <Compile Include="Entities\Menu\MenuItemRole.cs" />
-    <Compile Include="Entities\PageBuilder\Animation.cs" />
+    <Compile Include="Entities\PageBuilder\Enums\Animation.cs" />
     <Compile Include="Entities\PageBuilder\Page.cs" />
     <Compile Include="Entities\PageBuilder\PageComponentType.cs" />
+    <Compile Include="Entities\PageBuilder\PageAssociation.cs" />
+    <Compile Include="Entities\PageBuilder\PagePartial.cs" />
     <Compile Include="Entities\PageBuilder\PageSectionBackup.cs" />
-    <Compile Include="Entities\PageBuilder\PageSectionTypeCategory.cs" />
-    <Compile Include="Entities\PageBuilder\PageComponentTypeCategory.cs" />
+    <Compile Include="Entities\PageBuilder\Enums\PageSectionTypeCategory.cs" />
+    <Compile Include="Entities\PageBuilder\Enums\PageComponentTypeCategory.cs" />
     <Compile Include="Entities\PageBuilder\PageSection.cs" />
-    <Compile Include="Entities\PageBuilder\PageSectionBackgroundStyle.cs" />
-    <Compile Include="Entities\PageBuilder\PageSectionHeight.cs" />
+    <Compile Include="Entities\PageBuilder\Enums\PageSectionBackgroundStyle.cs" />
+    <Compile Include="Entities\PageBuilder\Enums\PageSectionHeight.cs" />
     <Compile Include="Entities\PageBuilder\PageSectionType.cs" />
     <Compile Include="Entities\PageBuilder\PageRole.cs" />
-    <Compile Include="Entities\PageBuilder\PageSectionRole.cs" />
+    <Compile Include="Entities\PageBuilder\PageAssociationRole.cs" />
     <Compile Include="Entities\Posts\Post.cs" />
     <Compile Include="Entities\Posts\PostCategory.cs" />
     <Compile Include="Entities\Posts\PostComment.cs" />
@@ -198,6 +200,22 @@
     <Compile Include="Migrations\201703081019598_AddPageSectionBackupEntity.Designer.cs">
       <DependentUpon>201703081019598_AddPageSectionBackupEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703101042490_AddPageAssociationEntity.cs" />
+    <Compile Include="Migrations\201703101042490_AddPageAssociationEntity.Designer.cs">
+      <DependentUpon>201703101042490_AddPageAssociationEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703101043101_SeedPageAssociationEntity.cs" />
+    <Compile Include="Migrations\201703101043101_SeedPageAssociationEntity.Designer.cs">
+      <DependentUpon>201703101043101_SeedPageAssociationEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.cs" />
+    <Compile Include="Migrations\201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.Designer.cs">
+      <DependentUpon>201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703111606414_ConvertSectionRolesIntoAssociationRoles.cs" />
+    <Compile Include="Migrations\201703111606414_ConvertSectionRolesIntoAssociationRoles.Designer.cs">
+      <DependentUpon>201703111606414_ConvertSectionRolesIntoAssociationRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -294,6 +312,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703081019598_AddPageSectionBackupEntity.resx">
       <DependentUpon>201703081019598_AddPageSectionBackupEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703101042490_AddPageAssociationEntity.resx">
+      <DependentUpon>201703101042490_AddPageAssociationEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703101043101_SeedPageAssociationEntity.resx">
+      <DependentUpon>201703101043101_SeedPageAssociationEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.resx">
+      <DependentUpon>201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703111606414_ConvertSectionRolesIntoAssociationRoles.resx">
+      <DependentUpon>201703111606414_ConvertSectionRolesIntoAssociationRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

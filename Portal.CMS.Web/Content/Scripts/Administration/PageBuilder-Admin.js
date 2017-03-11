@@ -32,50 +32,63 @@ function ChangeOrder() {
     $('.panel-overlay').removeClass('visible');
 }
 function SaveOrder() {
-    var sectionList = [];
+    var associationList = [];
     var orderId = 1;
     $("#page-wrapper .sortable").each(function (index) {
-        var sectionId = $(this).attr("data-section");
-        sectionList.push(orderId + "-" + sectionId);
+        var associationId = $(this).attr("data-association");
+        associationList.push(orderId + "-" + associationId);
         orderId += 1;
     });
-    $('#order-list').val(sectionList);
+    $('#order-list').val(associationList);
     $('#order-submit').click();
 }
 function ApplySectionControls() {
     $('.section-wrapper .action-container').remove();
-    var sectionButtonsTemplate = '<div class="action-container absolute"><a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/Builder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a><a class="action launch-modal hidden-xs" data-title="Backup or Restore a Section" href="/Builder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a><a class="action edit-section launch-modal" data-title="Edit Section" href="/Builder/Section/Edit?sectionId=<sectionId>"><span class="fa fa-cog"></span></a></div>';
+    var sectionButtonsTemplate = '<div class="action-container absolute"><a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/Builder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a><a class="action launch-modal hidden-xs" data-title="Backup or Restore a Section" href="/Builder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a><a class="action edit-section launch-modal" data-title="Edit Section" href="/Builder/Section/EditSection?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a></div>';
     $(".section-wrapper").each(function (index) {
         var sectionId = $(this).attr("data-section");
+        var associationId = $(this).attr("data-association");
+
         var sectionButtonsMarkup = sectionButtonsTemplate.replace(/<sectionId>/g, sectionId);
+        sectionButtonsMarkup = sectionButtonsMarkup.replace(/<associationId>/g, associationId);
+
         $(this).append(sectionButtonsMarkup);
+    });
+
+    $('.partial-wrapper .action-container').remove();
+    var partialButtonsTemplate = '<div class="action-container absolute"><a class="action edit-partial launch-modal" data-title="Edit Partial" href="/Builder/Section/EditPartial?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a></div>';
+    $(".partial-wrapper").each(function (index) {
+        var associationId = $(this).attr("data-association");
+        partialButtonsMarkup = partialButtonsTemplate.replace(/<associationId>/g, associationId);
+
+        $(this).append(partialButtonsMarkup);
     });
 }
 
 $(document).ready(function () {
-    InitialiseWidgets();
     InitialiseEditor();
-    ApplySectionControls();
     InitialiseDroppables();
 });
 
 function InitialiseEditor() {
+    ApplySectionControls();
+
     for (var i = tinymce.editors.length - 1; i > -1; i--) {
         var ed_id = tinymce.editors[i].id;
         tinyMCE.execCommand("mceRemoveEditor", true, ed_id);
     }
 
-    $('.admin .component-container, .admin .widget-wrapper:not(.video), .admin section .widget-wrapper.video, .admin section .image').unbind();
+    $('.admin .section-wrapper .component-container, .admin .section-wrapper .widget-wrapper:not(.video), .admin .section-wrapper section .widget-wrapper.video, .admin .section-wrapper section .image').unbind();
 
-    $(".admin .component-container, .admin .widget-wrapper:not(.video)").click(function (event) {
+    $(".admin .section-wrapper .component-container, .admin .section-wrapper .widget-wrapper:not(.video)").click(function (event) {
         if (event.target !== this) return;
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
 
-        var href = "/Builder/Component/Container?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
+        var href = "/Builder/Component/EditContainer?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
         showModalEditor("Edit Container Properties", href);
     });
-    $(".admin section .image").click(function (event) {
+    $(".admin .section-wrapper section .image").click(function (event) {
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
         var elementType = "div";
@@ -84,21 +97,21 @@ function InitialiseEditor() {
             elementType = "img";
         }
 
-        var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=" + elementType;
+        var href = "/Builder/Component/EditImage?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=" + elementType;
         showModalEditor("Edit Image Properties", href);
     });
-    $(".admin section .widget-wrapper.video").click(function (event) {
+    $(".admin .section-wrapper section .widget-wrapper.video").click(function (event) {
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
 
         var videoPlayerElementId = $(this).find('iframe').first().attr("id");
 
-        var href = "/Builder/Component/Video?pageSectionId=" + sectionId + "&widgetWrapperelementId=" + elementId + "&videoPlayerElementId=" + videoPlayerElementId;
+        var href = "/Builder/Component/EditVideo?pageSectionId=" + sectionId + "&widgetWrapperelementId=" + elementId + "&videoPlayerElementId=" + videoPlayerElementId;
         showModalEditor("Edit Video Properties", href);
     });
 
     tinymce.init({
-        selector: '.admin section p, .admin section h1, .admin section h2, .admin section h3, .admin section h4, .admin section code, .admin section a, .admin section .btn',
+        selector: '.admin .section-wrapper section p, .admin .section-wrapper section h1, .admin .section-wrapper section h2, .admin .section-wrapper section h3, .admin .section-wrapper section h4, .admin .section-wrapper section code, .admin .section-wrapper section a, .admin .section-wrapper section .btn',
         menubar: false, inline: true,
         plugins: ['advlist textcolor colorpicker link'],
 
@@ -109,7 +122,7 @@ function InitialiseEditor() {
         }
     });
     tinymce.init({
-        selector: '.admin section .freestyle',
+        selector: '.admin .section-wrapper section .freestyle',
         menubar: true, inline: true,
         plugins: ['advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table contextmenu paste textcolor colorpicker'],
         toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | forecolor backcolor | bullist numlist outdent indent | link image | delete',
@@ -172,7 +185,7 @@ function EditInlineFreestyle(editorId, editorContent) {
         data: dataParams,
         type: 'POST',
         cache: false,
-        url: '/Builder/Component/Freestyle',
+        url: '/Builder/Component/EditFreestyle',
         success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
 }
