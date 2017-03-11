@@ -38,7 +38,8 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             var model = new AddViewModel
             {
                 PageId = pageId,
-                SectionTypeList = _sectionService.GetSectionTypes()
+                SectionTypeList = _sectionService.GetSectionTypes(),
+                PartialList = _associationService.Get()
             };
 
             return View("_Add", model);

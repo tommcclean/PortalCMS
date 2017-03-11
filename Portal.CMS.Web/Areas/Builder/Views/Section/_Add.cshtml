@@ -8,7 +8,6 @@
     @Html.AntiForgeryToken()
 
     @Html.HiddenFor(x => x.PageId)
-    @Html.HiddenFor(x => x.PageSectionTypeId);
 
     <button id="submit-button" type="submit" style="display: none;"></button>
 }
@@ -57,6 +56,11 @@
                     @Html.TextBox("actionName", "", new { @placeholder = "Action Name (Required)" })
                     <div><a href="#" id="add-partial" class="btn" style="float: right;">Add Partial</a></div>
                 </div>
+
+                @foreach (var partial in Model.PartialList)
+                {
+                    <div class="section-preview partial float-container" data-area="@partial.RouteArea" data-controller="@partial.RouteController" data-action="@partial.RouteAction">@Html.Action(partial.RouteAction, partial.RouteController, new { area = partial.RouteArea })</div>
+                }
             </div>
         </div>
     </div>
@@ -64,8 +68,12 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#add-partial').on('click', function (e) {
-            var dataParams = { "pageId": @Model.PageId, "areaName": $('#areaName').val(), "controllerName": $('#controllerName').val(), "actionName": $('#actionName').val(), "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+        $('.section-preview.partial').on('click', function (e) {
+            var area = $(this).attr("data-area");
+            var controller = $(this).attr("data-controller");
+            var action = $(this).attr("data-action");
+
+            var dataParams = { "pageId": @Model.PageId, "areaName": area, "controllerName": controller, "actionName": action, "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
             $.ajax({
                 data: dataParams,
                 type: 'POST',
@@ -94,7 +102,7 @@
             });
         });
 
-        $('#section-panel .section-preview').on('click', function (e) {
+        $('#section-panel .section-preview:not(.partial)').on('click', function (e) {
             var sectionTypeId = $(this).attr("data-sectiontypeid");
             var sectionTypeContent = $(this).html();
             var componentStamp = new Date().valueOf();

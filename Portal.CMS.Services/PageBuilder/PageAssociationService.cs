@@ -8,6 +8,8 @@ namespace Portal.CMS.Services.PageBuilder
 {
     public interface IPageAssociationService
     {
+        List<PagePartial> Get();
+
         PageAssociation Get(int pageAssociationId);
 
         void Delete(int pageAssociationId);
@@ -29,6 +31,19 @@ namespace Portal.CMS.Services.PageBuilder
         }
 
         #endregion Dependencies
+
+        public List<PagePartial> Get()
+        {
+            var existingPartialList = _context.PagePartials.ToList();
+
+            var distinctPartialList = new List<PagePartial>();
+
+            foreach (var partial in existingPartialList)
+                if (!distinctPartialList.Any(x => x.RouteArea == partial.RouteArea && x.RouteController == partial.RouteController && x.RouteAction == partial.RouteAction))
+                    distinctPartialList.Add(partial);
+
+            return distinctPartialList;
+        }
 
         public PageAssociation Get(int pageAssociationId)
         {
