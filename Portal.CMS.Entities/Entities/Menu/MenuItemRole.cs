@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Portal.CMS.Entities.Entities.Authentication;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Portal.CMS.Entities.Entities.Authentication;
 
 namespace Portal.CMS.Entities.Entities.Menu
 {

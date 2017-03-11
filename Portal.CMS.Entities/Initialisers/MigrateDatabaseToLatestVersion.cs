@@ -1,7 +1,7 @@
 ﻿namespace Portal.CMS.Entities.Initialisers
 {
-    using System.Data.Entity;
     using Portal.CMS.Entities.Migrations;
+    using System.Data.Entity;
 
     internal class MigrateDatabaseToLatestVersion : MigrateDatabaseToLatestVersion<PortalEntityModel, Configuration>
     {

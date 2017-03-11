@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Portal.CMS.Entities.Entities.Posts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Portal.CMS.Entities.Entities.Posts;
 
 namespace Portal.CMS.Entities.Entities.PageBuilder
 {
