@@ -49,7 +49,7 @@
         else if (pageAssociation.PagePartial != null)
         {
             <div id="partial-wrapper-@(pageAssociation.PagePartialId)" class="partial-wrapper@(isAdmin ? " admin sortable" : "" )" data-partial="@pageAssociation.PagePartialId" data-association="@pageAssociation.PageAssociationId">
-                @Html.Action(pageAssociation.PagePartial.RouteAction, pageAssociation.PagePartial.RouteController, new { area = pageAssociation.PagePartial.RouteArea })
+                @Html.Action(pageAssociation.PagePartial.RouteAction, pageAssociation.PagePartial.RouteController, new { area = pageAssociation.PagePartial.RouteArea, pageId = @Model.Page.PageId })
             </div>
         }
     }

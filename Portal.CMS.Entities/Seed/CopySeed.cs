@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Portal.CMS.Entities.Entities.Copy;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Portal.CMS.Entities.Entities.Copy;
 
 namespace Portal.CMS.Entities.Seed
 {
@@ -26,6 +26,9 @@ namespace Portal.CMS.Entities.Seed
 
             if (!copyList.Any(x => x.CopyName == "Update Account Message"))
                 newCopyList.Add(new Copy { CopyName = "Update Account Message", CopyBody = "<p>If you change your email address, please remember to use this when logging in.</p>", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
+
+            if (!copyList.Any(x => x.CopyName == "Advanced Partial Message"))
+                newCopyList.Add(new Copy { CopyName = "Advanced Partial Message", CopyBody = "<h2>Recent Blog Posts</h2><p>Here is a sample of our most recent blog posts. Check back periodically as we are writing more...</p>", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
 
             if (newCopyList.Any())
                 context.CopySections.AddRange(newCopyList);

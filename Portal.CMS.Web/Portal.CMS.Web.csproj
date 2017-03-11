@@ -337,7 +337,8 @@
     <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\AppDrawerViewModel.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
-    <Compile Include="Controllers\ExampleController.cs" />
+    <Compile Include="Controllers\CustomController.cs" />
+    <Compile Include="ViewModels\Custom\AdvancedViewModel.cs" />
     <Compile Include="ViewModels\Shared\PaginationViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Theme\ThemeViewModel.cs" />
     <Compile Include="Areas\Builder\ViewModels\Widget\PostListViewModel.cs" />
@@ -724,10 +725,13 @@
     <Content Include="Areas\Builder\Views\Section\_Restore.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Example\_ExamplePartial.cshtml" />
+    <Content Include="Views\Custom\_SimplePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Section\_EditPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Custom\_AdvancedPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

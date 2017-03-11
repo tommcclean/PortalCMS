@@ -48,6 +48,8 @@
                 }
             </div>
             <div role="tabpanel" class="tab-pane float-container" id="tab-custom" style="padding: 9px;">
+                <div class="alert alert-warning" role="alert" style="cursor: pointer;" data-toggle="popover" data-container="body" data-placement="left" data-trigger="hover" data-content="You can use Custom Sections to render your own functionality in the PageBuilder. All you need to do is create a 'Partial Action' in your source code and enter the URL below. Check out the 'CustomController' for working examples."><span class="fa fa-question-circle"></span>Learn More About Custom Sections?</div>
+
                 <div class="slim-field">
                     @Html.TextBox("areaName", "", new { @placeholder = "Area Name" })
                     @Html.TextBox("controllerName", "", new { @placeholder = "Controller Name (Required)" })
@@ -66,6 +68,36 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#add-partial').on('click', function (e) {
+            var dataParams = { "pageId": @Model.PageId, "areaName": $('#areaName').val(), "controllerName": $('#controllerName').val(), "actionName": $('#actionName').val(), "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+            $.ajax({
+                data: dataParams,
+                type: 'POST',
+                cache: false,
+                url: '@Url.Action("AddPartial", "Section", new { area = "Builder" })',
+                success: function (data)
+                {
+                    if (data.State === false)
+                    {
+                        if (data.Reason === "Invalid")
+                        {
+                            alert("Error: The Partial Route Specified is Invalid. No Action Exists on that Route...");
+
+                            return false;
+                        }
+                        else
+                        {
+                            alert("Error: The Page has lost synchronisation. Reloading Page...");
+
+                            location.reload();
+                        }
+                    }
+
+                    location.reload();
+                },
+            });
+        });
+
         $('.section-preview.partial').on('click', function (e) {
             var area = $(this).attr("data-area");
             var controller = $(this).attr("data-controller");

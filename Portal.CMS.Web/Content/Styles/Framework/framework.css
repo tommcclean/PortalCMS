@@ -309,6 +309,11 @@
     padding: 0;
 }
 
+.page-builder .popover.left .popover-content
+{
+    padding: 10px;
+}
+
 .popover-menu .list-group-item
 {
     font-size: 15px;
