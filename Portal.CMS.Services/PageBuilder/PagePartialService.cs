@@ -14,28 +14,23 @@ namespace Portal.CMS.Services.PageBuilder
         #region Dependencies
 
         private readonly PortalEntityModel _context;
-        private readonly IPageService _pageService;
 
-        public PagePartialService(PortalEntityModel context, IPageService pageService)
+        public PagePartialService(PortalEntityModel context)
         {
             _context = context;
-            _pageService = pageService;
         }
 
         #endregion Dependencies
 
         public void Add(int pageId, string area, string controller, string action)
         {
-            var page = _pageService.Get(pageId);
-
+            var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
             if (page == null) return;
 
             var orderPosition = 0;
 
             if (page.PageAssociations.Any())
-            {
                 orderPosition = page.PageAssociations.Max(x => x.PageAssociationOrder + 1);
-            }
 
             var pageAssociation = new PageAssociation
             {

@@ -1,13 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Portal.CMS.Services.Generic;
+﻿using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Component;
 using Portal.CMS.Web.ViewModels.Shared;
+using System;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
 {
@@ -17,16 +17,14 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         #region Dependencies
 
         private readonly IPageSectionService _pageSectionService;
-        private readonly IPageComponentTypeService _pageComponentTypeService;
         private readonly IPageComponentService _pageComponentService;
         private readonly IImageService _imageService;
 
         private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
 
-        public ComponentController(IPageSectionService pageSectionService, IPageComponentTypeService pageComponentTypeService, IPageComponentService pageComponentService, IImageService imageService)
+        public ComponentController(IPageSectionService pageSectionService, IPageComponentService pageComponentService, IImageService imageService)
         {
             _pageSectionService = pageSectionService;
-            _pageComponentTypeService = pageComponentTypeService;
             _pageComponentService = pageComponentService;
             _imageService = imageService;
         }
@@ -38,7 +36,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             var model = new AddViewModel
             {
-                PageComponentTypeList = _pageComponentTypeService.Get()
+                PageComponentTypeList = _pageComponentService.GetComponentTypes()
             };
 
             return View("_Add", model);
@@ -50,7 +48,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             elementBody = elementBody.Replace("animated bounce", string.Empty);
 
-            _pageComponentTypeService.Add(pageSectionId, containerElementId, elementBody);
+            _pageComponentService.Add(pageSectionId, containerElementId, elementBody);
 
             return Json(new { State = true });
         }
@@ -74,7 +72,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateInput(false)]
         public ActionResult Edit(int pageSectionId, string elementId, string elementHtml)
         {
-            _pageComponentService.Element(pageSectionId, elementId, elementHtml);
+            _pageComponentService.EditElement(pageSectionId, elementId, elementHtml);
 
             return Content("Refresh");
         }
@@ -83,7 +81,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateInput(false)]
         public ActionResult Link(int pageSectionId, string elementId, string elementHtml, string elementHref, string elementTarget)
         {
-            _pageComponentService.Anchor(pageSectionId, elementId, elementHtml, elementHref, elementTarget);
+            _pageComponentService.EditAnchor(pageSectionId, elementId, elementHtml, elementHref, elementTarget);
 
             return Content("Refresh");
         }
@@ -166,7 +164,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             try
             {
-                _pageComponentService.UpdateSourcePath(model.SectionId, model.VideoPlayerElementId, model.VideoUrl);
+                _pageComponentService.EditSource(model.SectionId, model.VideoPlayerElementId, model.VideoUrl);
 
                 return Json(new { State = true });
             }
@@ -184,7 +182,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             elementHtml = elementHtml.Replace("ui-draggable ui-draggable-handle mce-content-body", string.Empty);
             elementHtml = elementHtml.Replace("contenteditable=\"true\" spellcheck=\"false\"", string.Empty);
 
-            _pageComponentService.Element(pageSectionId, elementId, elementHtml);
+            _pageComponentService.EditElement(pageSectionId, elementId, elementHtml);
 
             return Content("Refresh");
         }
@@ -205,7 +203,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Container(ContainerViewModel model)
         {
-            _pageSectionService.SetAnimation(model.SectionId, model.ElementId, model.Animation.ToString());
+            _pageSectionService.EditAnimation(model.SectionId, model.ElementId, model.Animation.ToString());
 
             return Content("Refresh");
         }

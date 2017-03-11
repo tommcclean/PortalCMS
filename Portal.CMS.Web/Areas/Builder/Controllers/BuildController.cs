@@ -1,9 +1,6 @@
 ﻿using Portal.CMS.Services.Analytics;
 using Portal.CMS.Services.Authentication;
-using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
-using Portal.CMS.Services.Themes;
-using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Build;
 using System;
@@ -18,26 +15,20 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         #region Dependencies
 
         private readonly IPageService _pageService;
-        private readonly IPageSectionService _pageSectionService;
-        private readonly IPageSectionTypeService _pageSectionTypeService;
-        private readonly IImageService _imageService;
+        private readonly IPageSectionService _sectionService;
         private readonly IAnalyticsService _analyticService;
         private readonly IUserService _userService;
         private readonly ILoginService _loginService;
         private readonly IRoleService _roleService;
-        private readonly IThemeService _themeService;
 
-        public BuildController(IPageService pageService, IPageSectionService pageSectionService, IPageSectionTypeService pageSectionTypeService, IImageService imageService, IAnalyticsService analyticService, IUserService userService, ILoginService loginService, IRoleService roleService, IThemeService themeService)
+        public BuildController(IPageService pageService, IPageSectionService sectionService, IAnalyticsService analyticService, IUserService userService, ILoginService loginService, IRoleService roleService)
         {
             _pageService = pageService;
-            _pageSectionService = pageSectionService;
-            _pageSectionTypeService = pageSectionTypeService;
-            _imageService = imageService;
+            _sectionService = sectionService;
             _analyticService = analyticService;
             _userService = userService;
             _loginService = loginService;
             _roleService = roleService;
-            _themeService = themeService;
         }
 
         #endregion Dependencies
@@ -72,19 +63,10 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return Json(new { State = true });
         }
 
-        [HttpPost, AdminFilter]
-        public ActionResult Order(int pageId, string associationList)
-        {
-            if (associationList != null && associationList.Length > 2)
-                _pageService.Order(pageId, associationList);
-
-            return RedirectToAction(nameof(Index), "Build", new { pageId });
-        }
-
         [HttpPost]
         public ActionResult Contact(int pageSectionId, string yourName, string yourEmail, string yourSubject, string yourMessage)
         {
-            var pageSection = _pageSectionService.Get(pageSectionId);
+            var pageSection = _sectionService.Get(pageSectionId);
 
             EmailHelper.Send(
                 _userService.Get(new List<string> { nameof(Admin) }).Select(x => x.EmailAddress).ToList(),
@@ -98,9 +80,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             return RedirectToAction(nameof(Index), new { pageId = pageSection.PageAssociations.First().PageId });
         }
 
-        /// <summary>
-        /// Automatically Log a User In When a Page Builder Page Requires a Website Reset
-        /// </summary>
         private void EvaluateSingleSignOn()
         {
             var resetCookie = Request.Cookies["PortalCMS_SSO"];

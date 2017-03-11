@@ -12,19 +12,25 @@ namespace Portal.CMS.Services.PageBuilder
     {
         PageSection Get(int pageSectionId);
 
+        List<PageSectionType> GetSectionTypes();
+
         PageAssociation Add(int pageId, int pageSectionTypeId, string componentStamp);
 
-        void Background(int pageSectionId, int backgroundImageId);
+        void EditBackgroundImage(int pageSectionId, int backgroundImageId);
 
-        void Background(int pageSectionId, string backgroundColour);
+        void EditBackgroundColour(int pageSectionId, string backgroundColour);
 
-        void Delete(int pageSectionId);
+        void EditHeight(int pageSectionId, PageSectionHeight height);
 
-        void Height(int pageSectionId, PageSectionHeight height);
+        void EditBackgroundStyle(int pageSectionId, PageSectionBackgroundStyle backgroundType);
 
-        void SetBackgroundStyle(int pageSectionId, PageSectionBackgroundStyle backgroundType);
+        void EditBackgroundType(int pageSectionId, bool isPicture);
 
-        void SetBackgroundType(int pageSectionId, bool isPicture);
+        void EditMarkup(int pageSectionId, string htmlBody);
+
+        void EditRoles(int pageSectionId, List<string> roleList);
+
+        void EditAnimation(int pageSectionId, string elementId, string animation);
 
         PageSectionHeight DetermineSectionHeight(int pageSectionId);
 
@@ -34,17 +40,11 @@ namespace Portal.CMS.Services.PageBuilder
 
         string DetermineBackgroundColour(int pageSectionId);
 
-        void Markup(int pageSectionId, string htmlBody);
-
-        void Roles(int pageSectionId, List<string> roleList);
-
         void Backup(int pageSectionId);
 
         string RestoreBackup(int pageSectionId, int backupId);
 
         void DeleteBackup(int backupId);
-
-        void SetAnimation(int pageSectionId, string elementId, string animation);
     }
 
     public class PageSectionService : IPageSectionService
@@ -60,6 +60,13 @@ namespace Portal.CMS.Services.PageBuilder
 
         #endregion Dependencies
 
+        public List<PageSectionType> GetSectionTypes()
+        {
+            var results = _context.PageSectionTypes.OrderBy(x => x.PageSectionTypeId).ToList();
+
+            return results;
+        }
+
         public PageSection Get(int pageSectionId)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
@@ -70,13 +77,15 @@ namespace Portal.CMS.Services.PageBuilder
         public PageAssociation Add(int pageId, int pageSectionTypeId, string componentStamp)
         {
             var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
+            if (page == null) return null;
 
             var sectionType = _context.PageSectionTypes.SingleOrDefault(x => x.PageSectionTypeId == pageSectionTypeId);
+            if (sectionType == null) return null;
 
             var sectionPosition = 1;
 
             if (page.PageAssociations.Any())
-                sectionPosition = (page.PageAssociations.Max(x => x.PageAssociationOrder) + 1);
+                sectionPosition = page.PageAssociations.Max(x => x.PageAssociationOrder) + 1;
 
             var newPageAssociation = new PageAssociation
             {
@@ -101,17 +110,13 @@ namespace Portal.CMS.Services.PageBuilder
             return newPageAssociation;
         }
 
-        public void Background(int pageSectionId, int backgroundImageId)
+        public void EditBackgroundImage(int pageSectionId, int backgroundImageId)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
-
-            if (pageSection == null)
-                return;
+            if (pageSection == null) return;
 
             var image = _context.Images.SingleOrDefault(x => x.ImageId == backgroundImageId);
-
-            if (image == null)
-                return;
+            if (image == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
 
@@ -127,12 +132,10 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void Background(int pageSectionId, string backgroundColour)
+        public void EditBackgroundColour(int pageSectionId, string backgroundColour)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
-
-            if (pageSection == null)
-                return;
+            if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
 
@@ -143,32 +146,10 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void Delete(int pageAssociationId)
-        {
-            var pageAssociation = _context.PageAssociations.SingleOrDefault(x => x.PageAssociationId == pageAssociationId);
-            if (pageAssociation == null) return;
-
-            var pageSectionId = pageAssociation.PageSectionId;
-
-            _context.PageAssociations.Remove(pageAssociation);
-
-            if (!_context.PageAssociations.Any(x => x.PageSectionId == pageAssociation.PageSectionId))
-            {
-                var pageSection = _context.PageSections.FirstOrDefault(x => x.PageSectionId == pageSectionId);
-
-                if (pageSection != null)
-                    _context.PageSections.Remove(pageSection);
-            }
-
-            _context.SaveChanges();
-        }
-
-        public void Height(int pageSectionId, PageSectionHeight height)
+        public void EditHeight(int pageSectionId, PageSectionHeight height)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
-
-            if (pageSection == null)
-                return;
+            if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
 
@@ -179,12 +160,10 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void SetBackgroundStyle(int pageSectionId, PageSectionBackgroundStyle backgroundType)
+        public void EditBackgroundStyle(int pageSectionId, PageSectionBackgroundStyle backgroundType)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
-
-            if (pageSection == null)
-                return;
+            if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
 
@@ -195,18 +174,64 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void SetBackgroundType(int pageSectionId, bool isPicture)
+        public void EditBackgroundType(int pageSectionId, bool isPicture)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
-
-            if (pageSection == null)
-                return;
+            if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
 
             document.UpdateBackgroundType(string.Format("section-{0}", pageSectionId), isPicture);
 
             pageSection.PageSectionBody = document.OuterHtml;
+
+            _context.SaveChanges();
+        }
+
+        public void EditAnimation(int pageSectionId, string elementId, string animation)
+        {
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            if (pageSection == null) return;
+
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.UpdateAnimation(elementId, animation);
+
+            pageSection.PageSectionBody = document.OuterHtml;
+
+            _context.SaveChanges();
+        }
+
+        public void EditMarkup(int pageSectionId, string htmlBody)
+        {
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            if (pageSection == null) return;
+
+            pageSection.PageSectionBody = htmlBody;
+
+            _context.SaveChanges();
+        }
+
+        public void EditRoles(int pageSectionId, List<string> roleList)
+        {
+            var pageSection = Get(pageSectionId);
+            if (pageSection == null) return;
+
+            var roles = _context.Roles.ToList();
+
+            if (pageSection != null)
+                foreach (var role in pageSection.PageSectionRoles.ToList())
+                    _context.PageSectionRoles.Remove(role);
+
+            foreach (var roleName in roleList)
+            {
+                var currentRole = roles.FirstOrDefault(x => x.RoleName == roleName);
+
+                if (currentRole == null)
+                    continue;
+
+                _context.PageSectionRoles.Add(new PageSectionRole { PageSectionId = pageSectionId, RoleId = currentRole.RoleId });
+            }
 
             _context.SaveChanges();
         }
@@ -276,43 +301,7 @@ namespace Portal.CMS.Services.PageBuilder
             return existingColour;
         }
 
-        public void Markup(int pageSectionId, string htmlBody)
-        {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
-
-            if (pageSection == null)
-                return;
-
-            pageSection.PageSectionBody = htmlBody;
-
-            _context.SaveChanges();
-        }
-
-        public void Roles(int pageSectionId, List<string> roleList)
-        {
-            var pageSection = Get(pageSectionId);
-
-            if (pageSection == null)
-                return;
-
-            var roles = _context.Roles.ToList();
-
-            if (pageSection != null)
-                foreach (var role in pageSection.PageSectionRoles.ToList())
-                    _context.PageSectionRoles.Remove(role);
-
-            foreach (var roleName in roleList)
-            {
-                var currentRole = roles.FirstOrDefault(x => x.RoleName == roleName);
-
-                if (currentRole == null)
-                    continue;
-
-                _context.PageSectionRoles.Add(new PageSectionRole { PageSectionId = pageSectionId, RoleId = currentRole.RoleId });
-            }
-
-            _context.SaveChanges();
-        }
+        #region Backup Methods
 
         public void Backup(int pageSectionId)
         {
@@ -334,8 +323,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public string RestoreBackup(int pageSectionId, int backupId)
         {
-            var pageSectionBackup = _context.PageSectionBackups.FirstOrDefault(x => x.PageSectionBackupId == backupId);
-
+            var pageSectionBackup = _context.PageSectionBackups.SingleOrDefault(x => x.PageSectionBackupId == backupId);
             var pageSection = Get(pageSectionId);
 
             pageSection.PageSectionBody = pageSectionBackup.PageSectionBody;
@@ -347,8 +335,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public void DeleteBackup(int backupId)
         {
-            var pageSectionBackup = _context.PageSectionBackups.FirstOrDefault(x => x.PageSectionBackupId == backupId);
-
+            var pageSectionBackup = _context.PageSectionBackups.SingleOrDefault(x => x.PageSectionBackupId == backupId);
             if (pageSectionBackup == null) return;
 
             _context.PageSectionBackups.Remove(pageSectionBackup);
@@ -356,20 +343,6 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void SetAnimation(int pageSectionId, string elementId, string animation)
-        {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
-
-            if (pageSection == null)
-                return;
-
-            var document = new Document(pageSection.PageSectionBody);
-
-            document.UpdateAnimation(elementId, animation);
-
-            pageSection.PageSectionBody = document.OuterHtml;
-
-            _context.SaveChanges();
-        }
+        #endregion Backup Methods
     }
 }

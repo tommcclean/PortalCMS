@@ -46,7 +46,7 @@ namespace Portal.CMS.Services.Themes
 
         public Theme Get(int themeId)
         {
-            var theme = _context.Themes.FirstOrDefault(x => x.ThemeId == themeId);
+            var theme = _context.Themes.SingleOrDefault(x => x.ThemeId == themeId);
 
             return theme;
         }
@@ -111,7 +111,7 @@ namespace Portal.CMS.Services.Themes
 
         public void Delete(int themeId)
         {
-            var existingTheme = _context.Themes.FirstOrDefault(x => x.ThemeId == themeId);
+            var existingTheme = _context.Themes.SingleOrDefault(x => x.ThemeId == themeId);
 
             if (existingTheme == null)
                 return;

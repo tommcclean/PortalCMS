@@ -26,7 +26,7 @@
             <li role="presentation" class="active"><a href="#tab-headers" aria-controls="tab-headers" role="tab" data-toggle="tab">Headers</a></li>
             <li role="presentation" class=""><a href="#tab-content" aria-controls="tab-content" role="tab" data-toggle="tab">Content</a></li>
             <li role="presentation" class=""><a href="#tab-design" aria-controls="tab-design" role="tab" data-toggle="tab">Design</a></li>
-            <li role="presentation" class=""><a href="#tab-partial" aria-controls="tab-partial" role="tab" data-toggle="tab">Extensions</a></li>
+            <li role="presentation" class=""><a href="#tab-custom" aria-controls="tab-custom" role="tab" data-toggle="tab">Custom</a></li>
         </ul>
 
         <div class="tab-content">
@@ -48,17 +48,14 @@
                     <div class="section-preview float-container" data-sectiontypeid="@sectionType.PageSectionTypeId">@Html.Raw(sectionType.PageSectionTypeBody)</div>
                 }
             </div>
-            <div role="tabpanel" class="tab-pane float-container" id="tab-partial" style="padding: 9px;">
+            <div role="tabpanel" class="tab-pane float-container" id="tab-custom" style="padding: 9px;">
                 <div class="alert alert-warning" role="alert">Learn more about Partials?</div>
 
                 <div class="slim-field">
                     @Html.TextBox("areaName", "", new { @placeholder = "Area Name" })
-                    @Html.TextBox("controllerName", "", new { @placeholder = "Controller Name" })
-                    @Html.TextBox("actionName", "", new { @placeholder = "Action Name" })
-
-                    <div>
-                        <a href="#" id="add-partial" class="btn" style="float: right;">Add Partial</a>
-                    </div>
+                    @Html.TextBox("controllerName", "", new { @placeholder = "Controller Name (Required)" })
+                    @Html.TextBox("actionName", "", new { @placeholder = "Action Name (Required)" })
+                    <div><a href="#" id="add-partial" class="btn" style="float: right;">Add Partial</a></div>
                 </div>
             </div>
         </div>

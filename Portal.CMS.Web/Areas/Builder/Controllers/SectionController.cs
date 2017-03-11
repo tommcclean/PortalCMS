@@ -15,17 +15,15 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
     {
         #region Dependencies
 
-        private readonly IPageSectionService _pageSectionService;
-        private readonly IPageSectionTypeService _pageSectionTypeService;
+        private readonly IPageSectionService _sectionService;
         private readonly IPagePartialService _partialService;
         private readonly IPageAssociationService _associationService;
         private readonly IImageService _imageService;
         private readonly IRoleService _roleService;
 
-        public SectionController(IPageSectionService pageSectionService, IPageSectionTypeService pageSectionTypeService, IImageService imageService, IRoleService roleService, IPagePartialService partialService, IPageAssociationService associationService)
+        public SectionController(IPageSectionService sectionService, IImageService imageService, IRoleService roleService, IPagePartialService partialService, IPageAssociationService associationService)
         {
-            _pageSectionService = pageSectionService;
-            _pageSectionTypeService = pageSectionTypeService;
+            _sectionService = sectionService;
             _imageService = imageService;
             _roleService = roleService;
             _partialService = partialService;
@@ -40,7 +38,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             var model = new AddViewModel
             {
                 PageId = pageId,
-                SectionTypeList = _pageSectionTypeService.Get()
+                SectionTypeList = _sectionService.GetSectionTypes()
             };
 
             return View("_Add", model);
@@ -52,7 +50,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             try
             {
-                var pageAssociation = _pageSectionService.Add(pageId, pageSectionTypeId, componentStamp);
+                var pageAssociation = _sectionService.Add(pageId, pageSectionTypeId, componentStamp);
 
                 return Json(new { State = true, PageSectionId = pageAssociation.PageSection.PageSectionId, PageAssociationId = pageAssociation.PageAssociationId });
             }
@@ -93,14 +91,23 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             try
             {
-                _pageSectionService.Delete(pageAssociationId);
+                _associationService.Delete(pageAssociationId);
 
                 return Json(new { State = true });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Json(new { State = false, ex.InnerException.Message });
+                return Json(new { State = false });
             }
+        }
+
+        [HttpPost]
+        public ActionResult EditOrder(int pageId, string associationList)
+        {
+            if (associationList != null && associationList.Length > 2)
+                _associationService.ChangeOrder(pageId, associationList);
+
+            return RedirectToAction("Index", "Build", new { pageId });
         }
 
         #region Section Edit Methods
@@ -110,7 +117,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         {
             var pageAssociation = _associationService.Get(pageAssociationId);
 
-            var pageSection = _pageSectionService.Get(pageAssociation.PageSection.PageSectionId);
+            var pageSection = _sectionService.Get(pageAssociation.PageSection.PageSectionId);
 
             var model = new EditSectionViewModel
             {
@@ -122,10 +129,10 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                     TargetInputField = "BackgroundImageId",
                     PaginationType = "section"
                 },
-                PageSectionHeight = _pageSectionService.DetermineSectionHeight(pageSection.PageSectionId),
-                PageSectionBackgroundStyle = _pageSectionService.DetermineBackgroundStyle(pageSection.PageSectionId),
-                BackgroundType = _pageSectionService.DetermineBackgroundType(pageSection.PageSectionId),
-                BackgroundColour = _pageSectionService.DetermineBackgroundColour(pageSection.PageSectionId),
+                PageSectionHeight = _sectionService.DetermineSectionHeight(pageSection.PageSectionId),
+                PageSectionBackgroundStyle = _sectionService.DetermineBackgroundStyle(pageSection.PageSectionId),
+                BackgroundType = _sectionService.DetermineBackgroundType(pageSection.PageSectionId),
+                BackgroundColour = _sectionService.DetermineBackgroundColour(pageSection.PageSectionId),
                 RoleList = _roleService.Get(),
                 SelectedRoleList = pageSection.PageSectionRoles.Select(x => x.Role.RoleName).ToList()
             };
@@ -141,25 +148,25 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             {
                 if ("colour".Equals(model.BackgroundType, StringComparison.OrdinalIgnoreCase))
                 {
-                    _pageSectionService.SetBackgroundType(model.SectionId, false);
+                    _sectionService.EditBackgroundType(model.SectionId, false);
 
                     if (!string.IsNullOrWhiteSpace(model.BackgroundColour))
-                        _pageSectionService.Background(model.SectionId, model.BackgroundColour);
+                        _sectionService.EditBackgroundColour(model.SectionId, model.BackgroundColour);
                 }
                 else
                 {
-                    _pageSectionService.SetBackgroundType(model.SectionId, true);
+                    _sectionService.EditBackgroundType(model.SectionId, true);
 
                     if (model.BackgroundImageId > 0)
-                        _pageSectionService.Background(model.SectionId, model.BackgroundImageId);
+                        _sectionService.EditBackgroundImage(model.SectionId, model.BackgroundImageId);
 
-                    _pageSectionService.SetBackgroundStyle(model.SectionId, model.PageSectionBackgroundStyle);
+                    _sectionService.EditBackgroundStyle(model.SectionId, model.PageSectionBackgroundStyle);
                 }
 
-                _pageSectionService.Height(model.SectionId, model.PageSectionHeight);
-                _pageSectionService.Roles(model.SectionId, model.SelectedRoleList);
+                _sectionService.EditHeight(model.SectionId, model.PageSectionHeight);
+                _sectionService.EditRoles(model.SectionId, model.SelectedRoleList);
 
-                return Json(new { State = true, SectionMarkup = _pageSectionService.Get(model.SectionId).PageSectionBody });
+                return Json(new { State = true, SectionMarkup = _sectionService.Get(model.SectionId).PageSectionBody });
             }
             catch (Exception)
             {
@@ -184,7 +191,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [HttpGet]
         public ActionResult Markup(int pageSectionId)
         {
-            var pageSection = _pageSectionService.Get(pageSectionId);
+            var pageSection = _sectionService.Get(pageSectionId);
 
             var model = new MarkupViewModel
             {
@@ -200,7 +207,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult Markup(MarkupViewModel model)
         {
-            _pageSectionService.Markup(model.PageSectionId, model.PageSectionBody);
+            _sectionService.EditMarkup(model.PageSectionId, model.PageSectionBody);
 
             return Json(new { State = true, Markup = model.PageSectionBody });
         }
@@ -212,7 +219,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [HttpGet]
         public ActionResult Restore(int pageSectionId)
         {
-            var pageSection = _pageSectionService.Get(pageSectionId);
+            var pageSection = _sectionService.Get(pageSectionId);
 
             var model = new RestoreViewModel
             {
@@ -227,7 +234,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateBackup(int pageSectionId)
         {
-            _pageSectionService.Backup(pageSectionId);
+            _sectionService.Backup(pageSectionId);
 
             return Content("Refresh");
         }
@@ -236,7 +243,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult RestoreBackup(int pageSectionId, int restorePointId)
         {
-            var pageMarkup = _pageSectionService.RestoreBackup(pageSectionId, restorePointId);
+            var pageMarkup = _sectionService.RestoreBackup(pageSectionId, restorePointId);
 
             return Json(new { State = true, Markup = pageMarkup });
         }
@@ -245,7 +252,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteBackup(int restorePointId)
         {
-            _pageSectionService.DeleteBackup(restorePointId);
+            _sectionService.DeleteBackup(restorePointId);
 
             return Content("Refresh");
         }
