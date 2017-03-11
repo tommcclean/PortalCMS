@@ -66,13 +66,13 @@ function ApplySectionControls() {
 }
 
 $(document).ready(function () {
-    InitialiseWidgets();
     InitialiseEditor();
-    ApplySectionControls();
     InitialiseDroppables();
 });
 
 function InitialiseEditor() {
+    ApplySectionControls();
+
     for (var i = tinymce.editors.length - 1; i > -1; i--) {
         var ed_id = tinymce.editors[i].id;
         tinyMCE.execCommand("mceRemoveEditor", true, ed_id);

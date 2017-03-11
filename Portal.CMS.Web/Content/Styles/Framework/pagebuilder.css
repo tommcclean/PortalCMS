@@ -99,7 +99,7 @@ table
         pointer-events: none;
     }
 
-    #page-wrapper.zoom .section-wrapper .action-container
+    #page-wrapper.zoom .section-wrapper .action-container, #page-wrapper.zoom .partial-wrapper .action-container
     {
         display: none;
     }
