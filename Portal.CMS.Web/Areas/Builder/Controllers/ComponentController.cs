@@ -20,8 +20,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         private readonly IPageComponentService _pageComponentService;
         private readonly IImageService _imageService;
 
-        private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
-
         public ComponentController(IPageSectionService pageSectionService, IPageComponentService pageComponentService, IImageService imageService)
         {
             _pageSectionService = pageSectionService;
@@ -87,7 +85,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         [HttpGet]
-        public ActionResult Image(int pageSectionId, string elementId, string elementType)
+        public ActionResult EditImage(int pageSectionId, string elementId, string elementType)
         {
             var pageSection = _pageSectionService.Get(pageSectionId);
 
@@ -124,11 +122,11 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 }
             };
 
-            return View("_Image", model);
+            return View("_EditImage", model);
         }
 
         [HttpPost]
-        public JsonResult Image(ImageViewModel model)
+        public JsonResult EditImage(ImageViewModel model)
         {
             try
             {
@@ -145,7 +143,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         [HttpGet]
-        public ActionResult Video(int pageSectionId, string widgetWrapperElementId, string videoPlayerElementId)
+        public ActionResult EditVideo(int pageSectionId, string widgetWrapperElementId, string videoPlayerElementId)
         {
             var model = new VideoViewModel
             {
@@ -155,12 +153,12 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 VideoUrl = string.Empty
             };
 
-            return View("_Video", model);
+            return View("_EditVideo", model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Video(VideoViewModel model)
+        public ActionResult EditVideo(VideoViewModel model)
         {
             try
             {
@@ -176,7 +174,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Freestyle(int pageSectionId, string elementId, string elementHtml)
+        public ActionResult EditFreestyle(int pageSectionId, string elementId, string elementHtml)
         {
             // REPLACE: MCE Tokens
             elementHtml = elementHtml.Replace("ui-draggable ui-draggable-handle mce-content-body", string.Empty);
@@ -188,7 +186,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         [HttpGet]
-        public ActionResult Container(int pageSectionId, string elementId)
+        public ActionResult EditContainer(int pageSectionId, string elementId)
         {
             var model = new ContainerViewModel
             {
@@ -196,39 +194,16 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 ElementId = elementId
             };
 
-            return View("_Container", model);
+            return View("_EditContainer", model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Container(ContainerViewModel model)
+        public ActionResult EditContainer(ContainerViewModel model)
         {
             _pageSectionService.EditAnimation(model.SectionId, model.ElementId, model.Animation.ToString());
 
             return Content("Refresh");
-        }
-
-        private string SaveImage(HttpPostedFileBase imageFile)
-        {
-            var extension = Path.GetExtension(imageFile.FileName).ToUpper();
-
-            if (extension != ".PNG" && extension != ".JPG" && extension != ".GIF")
-                throw new ArgumentException("Unexpected Image Format Provided");
-
-            var destinationDirectory = Path.Combine(Server.MapPath(IMAGE_DIRECTORY));
-
-            if (!Directory.Exists(destinationDirectory))
-                Directory.CreateDirectory(destinationDirectory);
-
-            var imageFileName = $"media-{DateTime.Now.ToString("ddMMyyyyHHmmss")}-{imageFile.FileName}";
-            var path = Path.Combine(Server.MapPath(IMAGE_DIRECTORY), imageFileName);
-
-            imageFile.SaveAs(path);
-
-            var siteURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.Replace("Builder/Component/Image", string.Empty);
-            var relativeFilePath = $"{siteURL}{IMAGE_DIRECTORY}/{imageFileName}";
-
-            return relativeFilePath;
         }
     }
 }

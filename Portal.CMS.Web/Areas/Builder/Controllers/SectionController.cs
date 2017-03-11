@@ -47,6 +47,22 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public ActionResult Delete(int pageAssociationId)
+        {
+            try
+            {
+                _associationService.Delete(pageAssociationId);
+
+                return Json(new { State = true });
+            }
+            catch (Exception)
+            {
+                return Json(new { State = false });
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult AddSection(int pageId, int pageSectionTypeId, string componentStamp)
         {
             try
@@ -83,22 +99,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             catch (Exception)
             {
                 return Json(new { State = false, Reason = "Exception" });
-            }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int pageAssociationId)
-        {
-            try
-            {
-                _associationService.Delete(pageAssociationId);
-
-                return Json(new { State = true });
-            }
-            catch (Exception)
-            {
-                return Json(new { State = false });
             }
         }
 

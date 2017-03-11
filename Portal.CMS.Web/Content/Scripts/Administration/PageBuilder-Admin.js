@@ -85,7 +85,7 @@ function InitialiseEditor() {
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
 
-        var href = "/Builder/Component/Container?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
+        var href = "/Builder/Component/EditContainer?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
         showModalEditor("Edit Container Properties", href);
     });
     $(".admin .section-wrapper section .image").click(function (event) {
@@ -97,7 +97,7 @@ function InitialiseEditor() {
             elementType = "img";
         }
 
-        var href = "/Builder/Component/Image?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=" + elementType;
+        var href = "/Builder/Component/EditImage?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=" + elementType;
         showModalEditor("Edit Image Properties", href);
     });
     $(".admin .section-wrapper section .widget-wrapper.video").click(function (event) {
@@ -106,7 +106,7 @@ function InitialiseEditor() {
 
         var videoPlayerElementId = $(this).find('iframe').first().attr("id");
 
-        var href = "/Builder/Component/Video?pageSectionId=" + sectionId + "&widgetWrapperelementId=" + elementId + "&videoPlayerElementId=" + videoPlayerElementId;
+        var href = "/Builder/Component/EditVideo?pageSectionId=" + sectionId + "&widgetWrapperelementId=" + elementId + "&videoPlayerElementId=" + videoPlayerElementId;
         showModalEditor("Edit Video Properties", href);
     });
 
@@ -185,7 +185,7 @@ function EditInlineFreestyle(editorId, editorContent) {
         data: dataParams,
         type: 'POST',
         cache: false,
-        url: '/Builder/Component/Freestyle',
+        url: '/Builder/Component/EditFreestyle',
         success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
 }

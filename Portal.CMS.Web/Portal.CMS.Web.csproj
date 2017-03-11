@@ -574,7 +574,7 @@
     <Content Include="Areas\Admin\Views\PageManager\_Edit.cshtml" />
     <Content Include="Areas\Builder\Views\web.config" />
     <Content Include="Areas\Builder\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Builder\Views\Component\_Image.cshtml" />
+    <Content Include="Areas\Builder\Views\Component\_EditImage.cshtml" />
     <Content Include="Areas\Builder\Views\Section\_Markup.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Add.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Edit.cshtml" />
@@ -704,10 +704,10 @@
     <Content Include="Areas\Admin\Views\Dashboard\_QuickAccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Builder\Views\Component\_Container.cshtml" />
+    <Content Include="Areas\Builder\Views\Component\_EditContainer.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Builder\Views\Component\_Video.cshtml" />
+    <Content Include="Areas\Builder\Views\Component\_EditVideo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Builder\Views\Section\_Restore.cshtml" />

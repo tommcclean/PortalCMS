@@ -19,7 +19,6 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
         #endregion Dependencies
 
-        // GET: Builder/Widget
         public ActionResult RecentPostList()
         {
             var model = new PostListViewModel
