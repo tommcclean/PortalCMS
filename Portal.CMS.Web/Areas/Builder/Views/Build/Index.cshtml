@@ -14,8 +14,6 @@
         @Scripts.Render("~/Resources/JavaScript/JQueryTouch")
     }
 
-    @Scripts.Render("~/Resources/JavaScript/Plugins/FAQ")
-
     <script type="text/javascript">
         var dataParams = { "pageId": @Model.Page.PageId, "referrer": "@Request.UrlReferrer", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
         $.ajax({data: dataParams,type: 'POST',cache: false,url: '@Url.Action("Analytic", "Build", new { area = "Builder" })',success: function (data) {},});
@@ -59,8 +57,8 @@
 
 @if (isAdmin)
 {
-    @Html.Action("Add", "Section", new { @pageId = Model.Page.PageId })
-    @Html.Action("Add", "Component")
+    @Html.Action("Add", "Section", new { @pageId = Model.Page.PageId, area = "Builder" })
+    @Html.Action("Add", "Component", new { area = "Builder" })
     @Html.Action("AppDrawer", "PageManager", new { area = "Admin" })
     @Html.Action("AppDrawer", "ThemeManager", new { area = "Admin" })
     @Html.Action("AppDrawer", "BlogManager", new { area = "Admin" })
