@@ -28,8 +28,6 @@ namespace Portal.CMS.Services.PageBuilder
 
         void EditMarkup(int pageSectionId, string htmlBody);
 
-        void EditRoles(int pageSectionId, List<string> roleList);
-
         void EditAnimation(int pageSectionId, string elementId, string animation);
 
         PageSectionHeight DetermineSectionHeight(int pageSectionId);
@@ -208,30 +206,6 @@ namespace Portal.CMS.Services.PageBuilder
             if (pageSection == null) return;
 
             pageSection.PageSectionBody = htmlBody;
-
-            _context.SaveChanges();
-        }
-
-        public void EditRoles(int pageSectionId, List<string> roleList)
-        {
-            var pageSection = Get(pageSectionId);
-            if (pageSection == null) return;
-
-            var roles = _context.Roles.ToList();
-
-            if (pageSection != null)
-                foreach (var role in pageSection.PageSectionRoles.ToList())
-                    _context.PageSectionRoles.Remove(role);
-
-            foreach (var roleName in roleList)
-            {
-                var currentRole = roles.FirstOrDefault(x => x.RoleName == roleName);
-
-                if (currentRole == null)
-                    continue;
-
-                _context.PageSectionRoles.Add(new PageSectionRole { PageSectionId = pageSectionId, RoleId = currentRole.RoleId });
-            }
 
             _context.SaveChanges();
         }

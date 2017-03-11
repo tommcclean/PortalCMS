@@ -105,7 +105,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         public ActionResult EditOrder(int pageId, string associationList)
         {
             if (associationList != null && associationList.Length > 2)
-                _associationService.ChangeOrder(pageId, associationList);
+                _associationService.EditOrder(pageId, associationList);
 
             return RedirectToAction("Index", "Build", new { pageId });
         }
@@ -134,7 +134,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 BackgroundType = _sectionService.DetermineBackgroundType(pageSection.PageSectionId),
                 BackgroundColour = _sectionService.DetermineBackgroundColour(pageSection.PageSectionId),
                 RoleList = _roleService.Get(),
-                SelectedRoleList = pageSection.PageSectionRoles.Select(x => x.Role.RoleName).ToList()
+                SelectedRoleList = pageAssociation.PageAssociationRoles.Select(x => x.Role.RoleName).ToList()
             };
 
             return View("_EditSection", model);
@@ -164,7 +164,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 }
 
                 _sectionService.EditHeight(model.SectionId, model.PageSectionHeight);
-                _sectionService.EditRoles(model.SectionId, model.SelectedRoleList);
+                _associationService.EditRoles(model.PageAssociationId, model.SelectedRoleList);
 
                 return Json(new { State = true, SectionMarkup = _sectionService.Get(model.SectionId).PageSectionBody });
             }
@@ -182,10 +182,28 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             var model = new EditPartialViewModel
             {
                 PageAssociationId = pageAssociationId,
-                PagePartialId = pageAssociation.PagePartial.PagePartialId
+                PagePartialId = pageAssociation.PagePartial.PagePartialId,
+                RoleList = _roleService.Get(),
+                SelectedRoleList = pageAssociation.PageAssociationRoles.Select(x => x.Role.RoleName).ToList()
             };
 
             return View("_EditPartial", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPartial(EditPartialViewModel model)
+        {
+            try
+            {
+                _associationService.EditRoles(model.PageAssociationId, model.SelectedRoleList);
+
+                return Json(new { State = true });
+            }
+            catch (Exception)
+            {
+                return Json(new { State = false });
+            }
         }
 
         [HttpGet]

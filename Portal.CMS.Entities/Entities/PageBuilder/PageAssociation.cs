@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portal.CMS.Entities.Entities.PageBuilder
@@ -28,6 +29,8 @@ namespace Portal.CMS.Entities.Entities.PageBuilder
         public virtual PageSection PageSection { get; set; }
 
         public virtual PagePartial PagePartial { get; set; }
+
+        public virtual ICollection<PageAssociationRole> PageAssociationRoles { get; set; }
 
         #endregion Virtual Properties
     }

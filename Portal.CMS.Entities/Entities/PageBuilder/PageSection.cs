@@ -12,8 +12,6 @@ namespace Portal.CMS.Entities.Entities.PageBuilder
 
         #region Virtual Properties
 
-        public virtual ICollection<PageSectionRole> PageSectionRoles { get; set; }
-
         public virtual ICollection<PageSectionBackup> PageSectionBackups { get; set; }
 
         public virtual ICollection<PageAssociation> PageAssociations { get; set; }

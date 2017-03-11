@@ -1,6 +1,7 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities.PageBuilder;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Portal.CMS.Services.PageBuilder
@@ -11,7 +12,9 @@ namespace Portal.CMS.Services.PageBuilder
 
         void Delete(int pageAssociationId);
 
-        void ChangeOrder(int pageId, string associationList);
+        void EditRoles(int pageAssociationId, List<string> roleList);
+
+        void EditOrder(int pageId, string associationList);
     }
 
     public class PageAssociationService : IPageAssociationService
@@ -63,7 +66,28 @@ namespace Portal.CMS.Services.PageBuilder
             _context.SaveChanges();
         }
 
-        public void ChangeOrder(int pageId, string associationList)
+        public void EditRoles(int pageAssociationId, List<string> roleList)
+        {
+            var pageAssociation = _context.PageAssociations.SingleOrDefault(pa => pa.PageAssociationId == pageAssociationId);
+            if (pageAssociation == null) return;
+
+            var roles = _context.Roles.ToList();
+
+            foreach (var role in pageAssociation.PageAssociationRoles.ToList())
+                _context.PageAssociationRoles.Remove(role);
+
+            foreach (var roleName in roleList)
+            {
+                var currentRole = roles.FirstOrDefault(x => x.RoleName == roleName);
+                if (currentRole == null) continue;
+
+                _context.PageAssociationRoles.Add(new PageAssociationRole { PageAssociationId = pageAssociationId, RoleId = currentRole.RoleId });
+            }
+
+            _context.SaveChanges();
+        }
+
+        public void EditOrder(int pageId, string associationList)
         {
             var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
             if (page == null) return;

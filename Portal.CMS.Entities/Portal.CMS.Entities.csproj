@@ -87,7 +87,7 @@
     <Compile Include="Entities\PageBuilder\Enums\PageSectionHeight.cs" />
     <Compile Include="Entities\PageBuilder\PageSectionType.cs" />
     <Compile Include="Entities\PageBuilder\PageRole.cs" />
-    <Compile Include="Entities\PageBuilder\PageSectionRole.cs" />
+    <Compile Include="Entities\PageBuilder\PageAssociationRole.cs" />
     <Compile Include="Entities\Posts\Post.cs" />
     <Compile Include="Entities\Posts\PostCategory.cs" />
     <Compile Include="Entities\Posts\PostComment.cs" />
@@ -212,6 +212,10 @@
     <Compile Include="Migrations\201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.Designer.cs">
       <DependentUpon>201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703111606414_ConvertSectionRolesIntoAssociationRoles.cs" />
+    <Compile Include="Migrations\201703111606414_ConvertSectionRolesIntoAssociationRoles.Designer.cs">
+      <DependentUpon>201703111606414_ConvertSectionRolesIntoAssociationRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -317,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.resx">
       <DependentUpon>201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703111606414_ConvertSectionRolesIntoAssociationRoles.resx">
+      <DependentUpon>201703111606414_ConvertSectionRolesIntoAssociationRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

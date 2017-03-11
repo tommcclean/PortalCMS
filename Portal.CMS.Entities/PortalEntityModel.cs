@@ -1,7 +1,5 @@
 namespace Portal.CMS.Entities
 {
-    using System.Data.Common;
-    using System.Data.Entity;
     using Entities.Analytics;
     using Entities.Authentication;
     using Entities.Copy;
@@ -11,6 +9,8 @@ namespace Portal.CMS.Entities
     using Entities.Posts;
     using Entities.Settings;
     using Entities.Themes;
+    using System.Data.Common;
+    using System.Data.Entity;
 
     public class PortalEntityModel : DbContext
     {
@@ -102,7 +102,7 @@ namespace Portal.CMS.Entities
 
         public virtual DbSet<PageRole> PageRoles { get; set; }
 
-        public virtual DbSet<PageSectionRole> PageSectionRoles { get; set; }
+        public virtual DbSet<PageAssociationRole> PageAssociationRoles { get; set; }
 
         #endregion Page Builder Entities
 

@@ -145,17 +145,17 @@ namespace Portal.CMS.Services.PageBuilder
         {
             for (int loop = 0; loop < page.PageAssociations.Count(); loop += 1)
             {
-                if (page.PageAssociations.ToList()[loop].PageSectionId != null)
-                {
-                    var pageSection = page.PageAssociations.ToList()[loop].PageSection;
+                var pageAssociation = page.PageAssociations.ToList()[loop];
 
+                if (pageAssociation != null)
+                {
                     var userRoles = _roleService.Get(userId);
 
-                    var hasAccess = _roleService.Validate(pageSection.PageSectionRoles.Select(x => x.Role), userRoles);
+                    var hasAccess = _roleService.Validate(pageAssociation.PageAssociationRoles.Select(x => x.Role), userRoles);
 
                     if (!hasAccess)
                     {
-                        page.PageAssociations.Remove(page.PageAssociations.ToList()[loop]);
+                        page.PageAssociations.Remove(pageAssociation);
 
                         loop = loop - 1;
                     }
