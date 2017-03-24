@@ -27,8 +27,8 @@
 
         $('#customForm').submit(function (e) {
         $.ajax({
-            url: action,
-            type: method,
+            url: this.action,
+            type: this.method,
             data: $(this).serialize(),
             cache: false,
             beforeSend: function () {
