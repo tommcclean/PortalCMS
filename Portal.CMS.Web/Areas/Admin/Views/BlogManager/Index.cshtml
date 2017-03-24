@@ -26,9 +26,9 @@
                 string bannerImagePath = "";
                 bool hasBannerImage = false;
 
-                if (post.PostImages.Any(x => x.PostImageType == Portal.CMS.Entities.Entities.Posts.PostImageType.Banner))
+                if (post.PostImages.Any(x => x.PostImageType == PostImageType.Banner))
                 {
-                    bannerImagePath = post.PostImages.First(x => x.PostImageType == Portal.CMS.Entities.Entities.Posts.PostImageType.Banner).Image.ImagePath;
+                    bannerImagePath = post.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
                     hasBannerImage = true;
                 }
 

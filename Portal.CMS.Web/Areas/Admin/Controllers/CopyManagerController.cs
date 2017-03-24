@@ -48,7 +48,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _copyService.Create(model.CopyName, model.CopyBody);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet, AdminFilter]
@@ -76,7 +76,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _copyService.Edit(model.CopyId, model.CopyName, model.CopyBody);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet, AdminFilter]

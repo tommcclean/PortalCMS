@@ -1,5 +1,5 @@
 ﻿using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities.Menu;
+using Portal.CMS.Entities.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -40,7 +40,7 @@ namespace Portal.CMS.Services.Menu
 
         public int Create(int menuId, string linkText, string linkURL, string linkIcon)
         {
-            var newMenuItem = new Entities.Entities.Menu.MenuItem
+            var newMenuItem = new MenuItem
             {
                 MenuId = menuId,
                 LinkText = linkText,

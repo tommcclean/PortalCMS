@@ -1,4 +1,4 @@
-﻿using Portal.CMS.Entities.Entities.Analytics;
+﻿using Portal.CMS.Entities.Enumerators;
 using System.Collections.Generic;
 
 namespace Portal.CMS.Web.Areas.Admin.ViewModels.AnalyticManager

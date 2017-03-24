@@ -1,4 +1,5 @@
-﻿using Portal.CMS.Entities.Entities.Generic;
+﻿using Portal.CMS.Entities.Entities;
+using Portal.CMS.Entities.Enumerators;
 using System.Collections.Generic;
 using System.Linq;
 

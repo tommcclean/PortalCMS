@@ -1,4 +1,4 @@
-﻿using Portal.CMS.Entities.Entities.Authentication;
+﻿using Portal.CMS.Entities.Entities;
 using System.Collections.Generic;
 
 namespace Portal.CMS.Web.Areas.Admin.ViewModels.UserManager

@@ -21,13 +21,13 @@
 
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active float-container" id="tab-text">
-                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Text))
+                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == PageComponentTypeCategory.Text))
                 {
                     <div class="component-preview float-container">@Html.Raw(componentType.PageComponentBody)</div>
                 }
             </div>
             <div role="tabpanel" class="tab-pane float-container" id="tab-images">
-                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Image))
+                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == PageComponentTypeCategory.Image))
                 {
                     <div class="component-preview border float-container">
                         <div class="component-title">@componentType.PageComponentTypeName</div>
@@ -38,7 +38,7 @@
             <div role="tabpanel" class="tab-pane float-container" id="tab-ui">
                 <div class="accordion">
                     <h4>Bootstrap Components</h4>
-                    @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Bootstrap))
+                    @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == PageComponentTypeCategory.Bootstrap))
                     {
                         <div class="component-preview border float-container">
                             <div class="component-title">@componentType.PageComponentTypeName</div>
@@ -47,7 +47,7 @@
                     }
                     <br />
                     <h4>UI Helpers</h4>
-                    @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.UI))
+                    @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == PageComponentTypeCategory.UI))
                     {
                         <div class="component-preview border float-container">
                             <div class="component-title">@componentType.PageComponentTypeName</div>
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane float-container" id="tab-widget">
-                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageComponentTypeCategory.Widget))
+                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == PageComponentTypeCategory.Widget))
                 {
                     <div class="widget-preview float-container">
                         @Html.Raw(componentType.PageComponentBody)

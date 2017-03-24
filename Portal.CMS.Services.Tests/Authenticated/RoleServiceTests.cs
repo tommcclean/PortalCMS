@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities.Authentication;
+using Portal.CMS.Entities.Entities;
 using Portal.CMS.Services.Authentication;
 using System;
 using System.Collections.Generic;

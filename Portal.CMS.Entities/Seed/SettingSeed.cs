@@ -1,4 +1,4 @@
-﻿using Portal.CMS.Entities.Entities.Settings;
+﻿using Portal.CMS.Entities.Entities;
 using System.Collections.Generic;
 using System.Linq;
 

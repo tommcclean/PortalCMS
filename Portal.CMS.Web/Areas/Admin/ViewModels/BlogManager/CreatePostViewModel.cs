@@ -1,6 +1,5 @@
-﻿using Portal.CMS.Entities.Entities.Authentication;
-using Portal.CMS.Entities.Entities.Generic;
-using Portal.CMS.Entities.Entities.Posts;
+﻿using Portal.CMS.Entities.Entities;
+using Portal.CMS.Entities.Enumerators;
 using Portal.CMS.Web.ViewModels.Shared;
 using System.Collections.Generic;
 using System.ComponentModel;

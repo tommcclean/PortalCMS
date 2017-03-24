@@ -1,7 +1,9 @@
-﻿namespace Portal.CMS.Web.Areas.Builder.ViewModels.Theme
+﻿using Portal.CMS.Entities.Entities;
+
+namespace Portal.CMS.Web.Areas.Builder.ViewModels.Theme
 {
     public class ThemeViewModel
     {
-        public Portal.CMS.Entities.Entities.Themes.Theme Theme { get; set; }
+        public CustomTheme Theme { get; set; }
     }
 }

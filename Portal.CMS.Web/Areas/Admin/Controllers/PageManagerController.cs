@@ -1,4 +1,5 @@
-﻿using Portal.CMS.Services.Authentication;
+﻿using Portal.CMS.Entities.Enumerators;
+using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
@@ -75,7 +76,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _pageService.Roles(pageId, model.SelectedRoleList);
 
-            var token = _tokenService.Add(UserHelper.EmailAddress, Entities.Entities.Authentication.UserTokenType.SSO);
+            var token = _tokenService.Add(UserHelper.EmailAddress, UserTokenType.SSO);
 
             var cookie = new HttpCookie("PortalCMS_SSO", string.Join(",", UserHelper.UserId, HttpContext.Request.Url.AbsoluteUri, token))
             {
@@ -86,7 +87,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             System.Web.HttpRuntime.UnloadAppDomain();
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet]

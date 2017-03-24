@@ -1146,7 +1146,7 @@
             var returnValue = this;
             var args = Array.prototype.slice.call(arguments, 1);
 
-            this.each(function () {
+            each(function () {
                 var spect = spectrums[$(this).data(dataID)];
                 if (spect) {
                     var method = spect[opts];
@@ -1177,7 +1177,7 @@
         }
 
         // Initializing a new instance of spectrum
-        return this.spectrum("destroy").each(function () {
+        return spectrum("destroy").each(function () {
             var options = $.extend({}, opts, $(this).data());
             var spect = spectrum(this, options);
             $(this).data(dataID, spect.id);
@@ -1238,120 +1238,120 @@
             }
 
             var rgb = inputToRGB(color);
-            this._originalInput = color,
-                this._r = rgb.r,
-                this._g = rgb.g,
-                this._b = rgb.b,
-                this._a = rgb.a,
-                this._roundA = mathRound(100 * this._a) / 100,
-                this._format = opts.format || rgb.format;
-            this._gradientType = opts.gradientType;
+            _originalInput = color,
+                _r = rgb.r,
+                _g = rgb.g,
+                _b = rgb.b,
+                _a = rgb.a,
+                _roundA = mathRound(100 * _a) / 100,
+                _format = opts.format || rgb.format;
+            _gradientType = opts.gradientType;
 
             // Don't let the range of [0,255] come back in [0,1].
             // Potentially lose a little bit of precision here, but will fix issues where
             // .5 gets interpreted as half of the total, instead of half of 1
             // If it was supposed to be 128, this was already taken care of by `inputToRgb`
-            if (this._r < 1) { this._r = mathRound(this._r); }
-            if (this._g < 1) { this._g = mathRound(this._g); }
-            if (this._b < 1) { this._b = mathRound(this._b); }
+            if (_r < 1) { _r = mathRound(_r); }
+            if (_g < 1) { _g = mathRound(_g); }
+            if (_b < 1) { _b = mathRound(_b); }
 
-            this._ok = rgb.ok;
-            this._tc_id = tinyCounter++;
+            _ok = rgb.ok;
+            _tc_id = tinyCounter++;
         };
 
         tinycolor.prototype = {
             isDark: function () {
-                return this.getBrightness() < 128;
+                return getBrightness() < 128;
             },
             isLight: function () {
-                return !this.isDark();
+                return !isDark();
             },
             isValid: function () {
-                return this._ok;
+                return _ok;
             },
             getOriginalInput: function () {
-                return this._originalInput;
+                return _originalInput;
             },
             getFormat: function () {
-                return this._format;
+                return _format;
             },
             getAlpha: function () {
-                return this._a;
+                return _a;
             },
             getBrightness: function () {
-                var rgb = this.toRgb();
+                var rgb = toRgb();
                 return (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
             },
             setAlpha: function (value) {
-                this._a = boundAlpha(value);
-                this._roundA = mathRound(100 * this._a) / 100;
+                _a = boundAlpha(value);
+                _roundA = mathRound(100 * _a) / 100;
                 return this;
             },
             toHsv: function () {
-                var hsv = rgbToHsv(this._r, this._g, this._b);
-                return { h: hsv.h * 360, s: hsv.s, v: hsv.v, a: this._a };
+                var hsv = rgbToHsv(_r, _g, _b);
+                return { h: hsv.h * 360, s: hsv.s, v: hsv.v, a: _a };
             },
             toHsvString: function () {
-                var hsv = rgbToHsv(this._r, this._g, this._b);
+                var hsv = rgbToHsv(_r, _g, _b);
                 var h = mathRound(hsv.h * 360), s = mathRound(hsv.s * 100), v = mathRound(hsv.v * 100);
-                return (this._a == 1) ?
+                return (_a == 1) ?
                     "hsv(" + h + ", " + s + "%, " + v + "%)" :
-                    "hsva(" + h + ", " + s + "%, " + v + "%, " + this._roundA + ")";
+                    "hsva(" + h + ", " + s + "%, " + v + "%, " + _roundA + ")";
             },
             toHsl: function () {
-                var hsl = rgbToHsl(this._r, this._g, this._b);
-                return { h: hsl.h * 360, s: hsl.s, l: hsl.l, a: this._a };
+                var hsl = rgbToHsl(_r, _g, _b);
+                return { h: hsl.h * 360, s: hsl.s, l: hsl.l, a: _a };
             },
             toHslString: function () {
-                var hsl = rgbToHsl(this._r, this._g, this._b);
+                var hsl = rgbToHsl(_r, _g, _b);
                 var h = mathRound(hsl.h * 360), s = mathRound(hsl.s * 100), l = mathRound(hsl.l * 100);
-                return (this._a == 1) ?
+                return (_a == 1) ?
                     "hsl(" + h + ", " + s + "%, " + l + "%)" :
-                    "hsla(" + h + ", " + s + "%, " + l + "%, " + this._roundA + ")";
+                    "hsla(" + h + ", " + s + "%, " + l + "%, " + _roundA + ")";
             },
             toHex: function (allow3Char) {
-                return rgbToHex(this._r, this._g, this._b, allow3Char);
+                return rgbToHex(_r, _g, _b, allow3Char);
             },
             toHexString: function (allow3Char) {
-                return '#' + this.toHex(allow3Char);
+                return '#' + toHex(allow3Char);
             },
             toHex8: function () {
-                return rgbaToHex(this._r, this._g, this._b, this._a);
+                return rgbaToHex(_r, _g, _b, _a);
             },
             toHex8String: function () {
-                return '#' + this.toHex8();
+                return '#' + toHex8();
             },
             toRgb: function () {
-                return { r: mathRound(this._r), g: mathRound(this._g), b: mathRound(this._b), a: this._a };
+                return { r: mathRound(_r), g: mathRound(_g), b: mathRound(_b), a: _a };
             },
             toRgbString: function () {
-                return (this._a == 1) ?
-                    "rgb(" + mathRound(this._r) + ", " + mathRound(this._g) + ", " + mathRound(this._b) + ")" :
-                    "rgba(" + mathRound(this._r) + ", " + mathRound(this._g) + ", " + mathRound(this._b) + ", " + this._roundA + ")";
+                return (_a == 1) ?
+                    "rgb(" + mathRound(_r) + ", " + mathRound(_g) + ", " + mathRound(_b) + ")" :
+                    "rgba(" + mathRound(_r) + ", " + mathRound(_g) + ", " + mathRound(_b) + ", " + _roundA + ")";
             },
             toPercentageRgb: function () {
-                return { r: mathRound(bound01(this._r, 255) * 100) + "%", g: mathRound(bound01(this._g, 255) * 100) + "%", b: mathRound(bound01(this._b, 255) * 100) + "%", a: this._a };
+                return { r: mathRound(bound01(_r, 255) * 100) + "%", g: mathRound(bound01(_g, 255) * 100) + "%", b: mathRound(bound01(_b, 255) * 100) + "%", a: _a };
             },
             toPercentageRgbString: function () {
-                return (this._a == 1) ?
-                    "rgb(" + mathRound(bound01(this._r, 255) * 100) + "%, " + mathRound(bound01(this._g, 255) * 100) + "%, " + mathRound(bound01(this._b, 255) * 100) + "%)" :
-                    "rgba(" + mathRound(bound01(this._r, 255) * 100) + "%, " + mathRound(bound01(this._g, 255) * 100) + "%, " + mathRound(bound01(this._b, 255) * 100) + "%, " + this._roundA + ")";
+                return (_a == 1) ?
+                    "rgb(" + mathRound(bound01(_r, 255) * 100) + "%, " + mathRound(bound01(_g, 255) * 100) + "%, " + mathRound(bound01(_b, 255) * 100) + "%)" :
+                    "rgba(" + mathRound(bound01(_r, 255) * 100) + "%, " + mathRound(bound01(_g, 255) * 100) + "%, " + mathRound(bound01(_b, 255) * 100) + "%, " + _roundA + ")";
             },
             toName: function () {
-                if (this._a === 0) {
+                if (_a === 0) {
                     return "transparent";
                 }
 
-                if (this._a < 1) {
+                if (_a < 1) {
                     return false;
                 }
 
-                return hexNames[rgbToHex(this._r, this._g, this._b, true)] || false;
+                return hexNames[rgbToHex(_r, _g, _b, true)] || false;
             },
             toFilter: function (secondColor) {
-                var hex8String = '#' + rgbaToHex(this._r, this._g, this._b, this._a);
+                var hex8String = '#' + rgbaToHex(_r, _g, _b, _a);
                 var secondHex8String = hex8String;
-                var gradientType = this._gradientType ? "GradientType = 1, " : "";
+                var gradientType = _gradientType ? "GradientType = 1, " : "";
 
                 if (secondColor) {
                     var s = tinycolor(secondColor);
@@ -1362,99 +1362,99 @@
             },
             toString: function (format) {
                 var formatSet = !!format;
-                format = format || this._format;
+                format = format || _format;
 
                 var formattedString = false;
-                var hasAlpha = this._a < 1 && this._a >= 0;
+                var hasAlpha = _a < 1 && _a >= 0;
                 var needsAlphaFormat = !formatSet && hasAlpha && (format === "hex" || format === "hex6" || format === "hex3" || format === "name");
 
                 if (needsAlphaFormat) {
 
                     // Special case for "transparent", all other non-alpha formats
                     // will return rgba when there is transparency.
-                    if (format === "name" && this._a === 0) {
-                        return this.toName();
+                    if (format === "name" && _a === 0) {
+                        return toName();
                     }
-                    return this.toRgbString();
+                    return toRgbString();
                 }
                 if (format === "rgb") {
-                    formattedString = this.toRgbString();
+                    formattedString = toRgbString();
                 }
                 if (format === "prgb") {
-                    formattedString = this.toPercentageRgbString();
+                    formattedString = toPercentageRgbString();
                 }
                 if (format === "hex" || format === "hex6") {
-                    formattedString = this.toHexString();
+                    formattedString = toHexString();
                 }
                 if (format === "hex3") {
-                    formattedString = this.toHexString(true);
+                    formattedString = toHexString(true);
                 }
                 if (format === "hex8") {
-                    formattedString = this.toHex8String();
+                    formattedString = toHex8String();
                 }
                 if (format === "name") {
-                    formattedString = this.toName();
+                    formattedString = toName();
                 }
                 if (format === "hsl") {
-                    formattedString = this.toHslString();
+                    formattedString = toHslString();
                 }
                 if (format === "hsv") {
-                    formattedString = this.toHsvString();
+                    formattedString = toHsvString();
                 }
 
-                return formattedString || this.toHexString();
+                return formattedString || toHexString();
             },
 
             _applyModification: function (fn, args) {
                 var color = fn.apply(null, [this].concat([].slice.call(args)));
-                this._r = color._r;
-                this._g = color._g;
-                this._b = color._b;
-                this.setAlpha(color._a);
+                _r = color._r;
+                _g = color._g;
+                _b = color._b;
+                setAlpha(color._a);
                 return this;
             },
             lighten: function () {
-                return this._applyModification(lighten, arguments);
+                return _applyModification(lighten, arguments);
             },
             brighten: function () {
-                return this._applyModification(brighten, arguments);
+                return _applyModification(brighten, arguments);
             },
             darken: function () {
-                return this._applyModification(darken, arguments);
+                return _applyModification(darken, arguments);
             },
             desaturate: function () {
-                return this._applyModification(desaturate, arguments);
+                return _applyModification(desaturate, arguments);
             },
             saturate: function () {
-                return this._applyModification(saturate, arguments);
+                return _applyModification(saturate, arguments);
             },
             greyscale: function () {
-                return this._applyModification(greyscale, arguments);
+                return _applyModification(greyscale, arguments);
             },
             spin: function () {
-                return this._applyModification(spin, arguments);
+                return _applyModification(spin, arguments);
             },
 
             _applyCombination: function (fn, args) {
                 return fn.apply(null, [this].concat([].slice.call(args)));
             },
             analogous: function () {
-                return this._applyCombination(analogous, arguments);
+                return _applyCombination(analogous, arguments);
             },
             complement: function () {
-                return this._applyCombination(complement, arguments);
+                return _applyCombination(complement, arguments);
             },
             monochromatic: function () {
-                return this._applyCombination(monochromatic, arguments);
+                return _applyCombination(monochromatic, arguments);
             },
             splitcomplement: function () {
-                return this._applyCombination(splitcomplement, arguments);
+                return _applyCombination(splitcomplement, arguments);
             },
             triad: function () {
-                return this._applyCombination(triad, arguments);
+                return _applyCombination(triad, arguments);
             },
             tetrad: function () {
-                return this._applyCombination(tetrad, arguments);
+                return _applyCombination(tetrad, arguments);
             }
         };
 

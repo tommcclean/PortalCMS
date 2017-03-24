@@ -1,12 +1,11 @@
-﻿using Portal.CMS.Services.Generic;
+﻿using Portal.CMS.Entities.Enumerators;
+using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Builder.ViewModels.Component;
 using Portal.CMS.Web.ViewModels.Shared;
 using System;
-using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
@@ -100,25 +99,25 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
                 {
                     PaginationType = "general",
                     TargetInputField = "SelectedImageId",
-                    ImageList = imageList.Where(x => x.ImageCategory == Entities.Entities.Generic.ImageCategory.General)
+                    ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.General)
                 },
                 IconImages = new PaginationViewModel
                 {
                     PaginationType = "icon",
                     TargetInputField = "SelectedImageId",
-                    ImageList = imageList.Where(x => x.ImageCategory == Entities.Entities.Generic.ImageCategory.Icon)
+                    ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.Icon)
                 },
                 ScreenshotImages = new PaginationViewModel
                 {
                     PaginationType = "screenshot",
                     TargetInputField = "SelectedImageId",
-                    ImageList = imageList.Where(x => x.ImageCategory == Entities.Entities.Generic.ImageCategory.Screenshot)
+                    ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.Screenshot)
                 },
                 TextureImages = new PaginationViewModel
                 {
                     PaginationType = "texture",
                     TargetInputField = "SelectedImageId",
-                    ImageList = imageList.Where(x => x.ImageCategory == Entities.Entities.Generic.ImageCategory.Texture)
+                    ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.Texture)
                 }
             };
 

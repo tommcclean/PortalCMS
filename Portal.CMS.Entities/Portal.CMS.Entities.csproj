@@ -57,46 +57,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Analytics\AnalyticPageView.cs" />
-    <Compile Include="Entities\Analytics\AnalyticPostView.cs" />
-    <Compile Include="Entities\Analytics\ChartSize.cs" />
-    <Compile Include="Entities\Analytics\ChartType.cs" />
-    <Compile Include="Entities\Analytics\TimePeriod.cs" />
-    <Compile Include="Entities\Authentication\Role.cs" />
-    <Compile Include="Entities\Authentication\User.cs" />
-    <Compile Include="Entities\Authentication\UserRole.cs" />
-    <Compile Include="Entities\Authentication\UserToken.cs" />
-    <Compile Include="Entities\Authentication\UserTokenType.cs" />
-    <Compile Include="Entities\Copy\Copy.cs" />
-    <Compile Include="Entities\Generic\Image.cs" />
-    <Compile Include="Entities\Generic\ImageCategory.cs" />
-    <Compile Include="Entities\Generic\PublicationState.cs" />
-    <Compile Include="Entities\Menu\Menu.cs" />
-    <Compile Include="Entities\Menu\MenuItem.cs" />
-    <Compile Include="Entities\Menu\MenuItemRole.cs" />
-    <Compile Include="Entities\PageBuilder\Enums\Animation.cs" />
-    <Compile Include="Entities\PageBuilder\Page.cs" />
-    <Compile Include="Entities\PageBuilder\PageComponentType.cs" />
-    <Compile Include="Entities\PageBuilder\PageAssociation.cs" />
-    <Compile Include="Entities\PageBuilder\PagePartial.cs" />
-    <Compile Include="Entities\PageBuilder\PageSectionBackup.cs" />
-    <Compile Include="Entities\PageBuilder\Enums\PageSectionTypeCategory.cs" />
-    <Compile Include="Entities\PageBuilder\Enums\PageComponentTypeCategory.cs" />
-    <Compile Include="Entities\PageBuilder\PageSection.cs" />
-    <Compile Include="Entities\PageBuilder\Enums\PageSectionBackgroundStyle.cs" />
-    <Compile Include="Entities\PageBuilder\Enums\PageSectionHeight.cs" />
-    <Compile Include="Entities\PageBuilder\PageSectionType.cs" />
-    <Compile Include="Entities\PageBuilder\PageRole.cs" />
-    <Compile Include="Entities\PageBuilder\PageAssociationRole.cs" />
-    <Compile Include="Entities\Posts\Post.cs" />
-    <Compile Include="Entities\Posts\PostCategory.cs" />
-    <Compile Include="Entities\Posts\PostComment.cs" />
-    <Compile Include="Entities\Posts\PostImage.cs" />
-    <Compile Include="Entities\Posts\PostImageType.cs" />
-    <Compile Include="Entities\Posts\PostRole.cs" />
-    <Compile Include="Entities\Settings\Setting.cs" />
-    <Compile Include="Entities\Themes\Font.cs" />
-    <Compile Include="Entities\Themes\Theme.cs" />
+    <Compile Include="Entities\AnalyticPageView.cs" />
+    <Compile Include="Entities\AnalyticPostView.cs" />
+    <Compile Include="Enumerators\ChartSize.cs" />
+    <Compile Include="Enumerators\ChartType.cs" />
+    <Compile Include="Enumerators\TimePeriod.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserRole.cs" />
+    <Compile Include="Entities\UserToken.cs" />
+    <Compile Include="Enumerators\UserTokenType.cs" />
+    <Compile Include="Entities\CopyItem.cs" />
+    <Compile Include="Entities\Image.cs" />
+    <Compile Include="Enumerators\ImageCategory.cs" />
+    <Compile Include="Enumerators\PublicationState.cs" />
+    <Compile Include="Entities\MenuSystem.cs" />
+    <Compile Include="Entities\MenuItem.cs" />
+    <Compile Include="Entities\MenuItemRole.cs" />
+    <Compile Include="Enumerators\Animation.cs" />
+    <Compile Include="Entities\Page.cs" />
+    <Compile Include="Entities\PageComponentType.cs" />
+    <Compile Include="Entities\PageAssociation.cs" />
+    <Compile Include="Entities\PagePartial.cs" />
+    <Compile Include="Entities\PageSectionBackup.cs" />
+    <Compile Include="Enumerators\PageSectionTypeCategory.cs" />
+    <Compile Include="Enumerators\PageComponentTypeCategory.cs" />
+    <Compile Include="Entities\PageSection.cs" />
+    <Compile Include="Enumerators\PageSectionBackgroundStyle.cs" />
+    <Compile Include="Enumerators\PageSectionHeight.cs" />
+    <Compile Include="Entities\PageSectionType.cs" />
+    <Compile Include="Entities\PageRole.cs" />
+    <Compile Include="Entities\PageAssociationRole.cs" />
+    <Compile Include="Entities\Post.cs" />
+    <Compile Include="Entities\PostCategory.cs" />
+    <Compile Include="Entities\PostComment.cs" />
+    <Compile Include="Entities\PostImage.cs" />
+    <Compile Include="Enumerators\PostImageType.cs" />
+    <Compile Include="Entities\PostRole.cs" />
+    <Compile Include="Entities\Setting.cs" />
+    <Compile Include="Entities\Font.cs" />
+    <Compile Include="Entities\CustomTheme.cs" />
     <Compile Include="Initialisers\DropAndMigrateDatabaseToLatestVersion.cs" />
     <Compile Include="Initialisers\Environments\DefaultInitialiser.cs" />
     <Compile Include="Initialisers\MigrateDatabaseToLatestVersion.cs" />
@@ -216,6 +216,10 @@
     <Compile Include="Migrations\201703111606414_ConvertSectionRolesIntoAssociationRoles.Designer.cs">
       <DependentUpon>201703111606414_ConvertSectionRolesIntoAssociationRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703242023520_AvoidReservedTypeNames.cs" />
+    <Compile Include="Migrations\201703242023520_AvoidReservedTypeNames.Designer.cs">
+      <DependentUpon>201703242023520_AvoidReservedTypeNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -325,6 +329,12 @@
     <EmbeddedResource Include="Migrations\201703111606414_ConvertSectionRolesIntoAssociationRoles.resx">
       <DependentUpon>201703111606414_ConvertSectionRolesIntoAssociationRoles.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703242023520_AvoidReservedTypeNames.resx">
+      <DependentUpon>201703242023520_AvoidReservedTypeNames.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Portal\CMS\Entities\Entities\Generic\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

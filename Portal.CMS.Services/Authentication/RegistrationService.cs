@@ -1,5 +1,5 @@
 ﻿using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities.Authentication;
+using Portal.CMS.Entities.Entities;
 using System;
 using System.Linq;
 using System.Security.Cryptography;

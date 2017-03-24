@@ -1,5 +1,6 @@
 ﻿using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities.PageBuilder;
+using Portal.CMS.Entities.Entities;
+using Portal.CMS.Entities.Enumerators;
 using Portal.CMS.Services.Shared;
 using System;
 using System.Collections.Generic;
@@ -120,7 +121,7 @@ namespace Portal.CMS.Services.PageBuilder
 
             document.UpdateElementAttribute(string.Format("section-{0}", pageSectionId), "style", string.Format("background-image: url('{0}');", image.ImagePath), true);
 
-            if (image.ImageCategory == Entities.Entities.Generic.ImageCategory.Texture)
+            if (image.ImageCategory == ImageCategory.Texture)
                 document.UpdateElementAttribute(string.Format("section-{0}", pageSectionId), "style", "background-size: initial;", false);
             else
                 document.UpdateElementAttribute(string.Format("section-{0}", pageSectionId), "style", "background-size: cover;", false);

@@ -1,5 +1,5 @@
 ﻿using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities.PageBuilder;
+using Portal.CMS.Entities.Entities;
 using Portal.CMS.Services.Shared;
 using System.Collections.Generic;
 using System.Linq;

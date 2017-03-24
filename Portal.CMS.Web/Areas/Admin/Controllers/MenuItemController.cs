@@ -70,7 +70,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _menuItemService.Roles(menuItemId, model.SelectedRoleList);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet]

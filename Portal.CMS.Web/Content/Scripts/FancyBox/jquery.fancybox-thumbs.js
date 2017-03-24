@@ -58,8 +58,8 @@
                 list += '<li><a style="width:' + thumbWidth + 'px;height:' + thumbHeight + 'px;" href="javascript:jQuery.fancybox.jumpto(' + n + ');"></a></li>';
             }
 
-            this.wrap = $('<div id="fancybox-thumbs"></div>').addClass(opts.position).appendTo('body');
-            this.list = $('<ul>' + list + '</ul>').appendTo(this.wrap);
+            wrap = $('<div id="fancybox-thumbs"></div>').addClass(opts.position).appendTo('body');
+            list = $('<ul>' + list + '</ul>').appendTo(wrap);
 
             //Load each thumbnail
             $.each(obj.group, function (i) {
@@ -70,8 +70,8 @@
                 }
 
                 $("<img />").load(function () {
-                    var width = this.width,
-                        height = this.height,
+                    var width = width,
+                        height = height,
                         widthRatio, heightRatio, parent;
 
                     if (!that.list || !width || !height) {
@@ -108,9 +108,9 @@
             });
 
             //Set initial width
-            this.width = this.list.children().eq(0).outerWidth(true);
+            width = list.children().eq(0).outerWidth(true);
 
-            this.list.width(this.width * (obj.group.length + 1)).css('left', Math.floor($(window).width() * 0.5 - (obj.index * this.width + this.width * 0.5)));
+            list.width(width * (obj.group.length + 1)).css('left', Math.floor($(window).width() * 0.5 - (obj.index * width + width * 0.5)));
         },
 
         beforeLoad: function (opts, obj) {
@@ -129,33 +129,33 @@
         afterShow: function (opts, obj) {
 
             //Check if exists and create or update list
-            if (this.list) {
-                this.onUpdate(opts, obj);
+            if (list) {
+                onUpdate(opts, obj);
             } else {
-                this.init(opts, obj);
+                init(opts, obj);
             }
 
             //Set active element
-            this.list.children().removeClass('active').eq(obj.index).addClass('active');
+            list.children().removeClass('active').eq(obj.index).addClass('active');
         },
 
         //Center list
         onUpdate: function (opts, obj) {
-            if (this.list) {
-                this.list.stop(true).animate({
-                    'left': Math.floor($(window).width() * 0.5 - (obj.index * this.width + this.width * 0.5))
+            if (list) {
+                list.stop(true).animate({
+                    'left': Math.floor($(window).width() * 0.5 - (obj.index * width + width * 0.5))
                 }, 150);
             }
         },
 
         beforeClose: function () {
-            if (this.wrap) {
-                this.wrap.remove();
+            if (wrap) {
+                wrap.remove();
             }
 
-            this.wrap = null;
-            this.list = null;
-            this.width = 0;
+            wrap = null;
+            list = null;
+            width = 0;
         }
     }
 }(jQuery));

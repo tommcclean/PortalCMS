@@ -1,4 +1,5 @@
 ﻿using Portal.CMS.Entities;
+using Portal.CMS.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,11 @@ namespace Portal.CMS.Services.Copy
 
         void Edit(int copyId, string copyName, string copyBody);
 
-        IEnumerable<Portal.CMS.Entities.Entities.Copy.Copy> Get();
+        IEnumerable<CopyItem> Get();
 
-        Portal.CMS.Entities.Entities.Copy.Copy Get(int copyId);
+        CopyItem Get(int copyId);
 
-        Entities.Entities.Copy.Copy Get(string copyName);
+        CopyItem Get(string copyName);
 
         void Delete(int copyId);
     }
@@ -35,7 +36,7 @@ namespace Portal.CMS.Services.Copy
 
         public int Create(string copyName, string copyBody)
         {
-            var newCopy = new Portal.CMS.Entities.Entities.Copy.Copy
+            var newCopy = new CopyItem
             {
                 CopyName = copyName,
                 CopyBody = copyBody,
@@ -43,7 +44,7 @@ namespace Portal.CMS.Services.Copy
                 DateUpdated = DateTime.Now
             };
 
-            _context.CopySections.Add(newCopy);
+            _context.CopyItems.Add(newCopy);
 
             _context.SaveChanges();
 
@@ -52,7 +53,7 @@ namespace Portal.CMS.Services.Copy
 
         public void Edit(int copyId, string copyName, string copyBody)
         {
-            var copy = _context.CopySections.SingleOrDefault(x => x.CopyId == copyId);
+            var copy = _context.CopyItems.SingleOrDefault(x => x.CopyId == copyId);
 
             if (copy == null)
                 return;
@@ -64,33 +65,33 @@ namespace Portal.CMS.Services.Copy
             _context.SaveChanges();
         }
 
-        public IEnumerable<Portal.CMS.Entities.Entities.Copy.Copy> Get()
+        public IEnumerable<CopyItem> Get()
         {
-            var copySections = _context.CopySections.OrderBy(x => x.CopyName).ThenBy(x => x.CopyId);
+            var copySections = _context.CopyItems.OrderBy(x => x.CopyName).ThenBy(x => x.CopyId);
 
             return copySections;
         }
 
-        public Portal.CMS.Entities.Entities.Copy.Copy Get(int copyId)
+        public CopyItem Get(int copyId)
         {
-            var copyItem = _context.CopySections.SingleOrDefault(x => x.CopyId == copyId);
+            var copyItem = _context.CopyItems.SingleOrDefault(x => x.CopyId == copyId);
 
             return copyItem;
         }
 
-        public Entities.Entities.Copy.Copy Get(string copyName)
+        public CopyItem Get(string copyName)
         {
-            var copyItem = _context.CopySections.FirstOrDefault(x => x.CopyName == copyName);
+            var copyItem = _context.CopyItems.FirstOrDefault(x => x.CopyName == copyName);
 
             return copyItem;
         }
 
         public void Delete(int copyId)
         {
-            var copyItem = _context.CopySections.SingleOrDefault(x => x.CopyId == copyId);
+            var copyItem = _context.CopyItems.SingleOrDefault(x => x.CopyId == copyId);
 
             if (copyItem != null)
-                _context.CopySections.Remove(copyItem);
+                _context.CopyItems.Remove(copyItem);
 
             _context.SaveChanges();
         }

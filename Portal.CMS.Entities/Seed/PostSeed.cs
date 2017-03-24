@@ -1,4 +1,5 @@
-﻿using Portal.CMS.Entities.Entities.Posts;
+﻿using Portal.CMS.Entities.Entities;
+using Portal.CMS.Entities.Enumerators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace Portal.CMS.Entities.Seed
         {
             if (!context.Posts.Any())
             {
-                var image = context.Images.First(x => x.ImageCategory == Entities.Generic.ImageCategory.General);
+                var image = context.Images.First(x => x.ImageCategory == ImageCategory.General);
 
-                var firstPost = new Entities.Posts.Post
+                var firstPost = new Post
                 {
                     PostTitle = "My First Post",
                     PostDescription = "This is just an example post to get you started, why not change it or create a new post?",

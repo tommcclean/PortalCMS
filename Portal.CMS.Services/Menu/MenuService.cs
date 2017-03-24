@@ -1,5 +1,5 @@
 ﻿using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities.Menu;
+using Portal.CMS.Entities.Entities;
 using Portal.CMS.Services.Authentication;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +8,11 @@ namespace Portal.CMS.Services.Menu
 {
     public interface IMenuService
     {
-        IEnumerable<Entities.Entities.Menu.Menu> Get();
+        IEnumerable<MenuSystem> Get();
 
-        Entities.Entities.Menu.Menu Get(int menuId);
+        MenuSystem Get(int menuId);
 
-        Entities.Entities.Menu.Menu Get(string menuName);
+        MenuSystem Get(string menuName);
 
         List<MenuItem> View(int? userId, string menuName);
 
@@ -40,21 +40,21 @@ namespace Portal.CMS.Services.Menu
 
         #endregion Dependencies
 
-        public IEnumerable<Entities.Entities.Menu.Menu> Get()
+        public IEnumerable<MenuSystem> Get()
         {
             var results = _context.Menus.OrderBy(x => x.MenuName).ThenBy(x => x.MenuId);
 
             return results;
         }
 
-        public Entities.Entities.Menu.Menu Get(int menuId)
+        public MenuSystem Get(int menuId)
         {
             var menu = _context.Menus.SingleOrDefault(x => x.MenuId == menuId);
 
             return menu;
         }
 
-        public Entities.Entities.Menu.Menu Get(string menuName)
+        public MenuSystem Get(string menuName)
         {
             var menu = _context.Menus.FirstOrDefault(x => x.MenuName == menuName);
 
@@ -86,7 +86,7 @@ namespace Portal.CMS.Services.Menu
 
         public int Create(string menuName)
         {
-            var newMenu = new Entities.Entities.Menu.Menu
+            var newMenu = new MenuSystem
             {
                 MenuName = menuName
             };

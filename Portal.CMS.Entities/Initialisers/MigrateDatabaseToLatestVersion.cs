@@ -9,7 +9,7 @@
         {
             base.InitializeDatabase(context);
 
-            this.Seed(context);
+            Seed(context);
         }
 
         public virtual void Seed(PortalEntityModel context)

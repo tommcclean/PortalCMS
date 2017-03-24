@@ -1,4 +1,4 @@
-﻿@model List<Portal.CMS.Entities.Entities.Generic.Image>
+﻿@model List<Portal.CMS.Entities.Entities.Image>
 
 @if (Model == null || !Model.Any())
 {
@@ -22,7 +22,7 @@ else
             <div class="box-title">Media Manager</div>
 
             <div class="media-container">
-                @foreach (var image in Model.Where(x => x.ImageCategory == Portal.CMS.Entities.Entities.Generic.ImageCategory.General))
+                @foreach (var image in Model.Where(x => x.ImageCategory == ImageCategory.General))
                 {
                     <a class="fancybox-thumb" rel="fancybox-thumb" href="@image.ImagePath" title="Media Manager">
                         <img class="thumbnail media-img" alt="Image Thumbnail" src="@image.ImagePath" />

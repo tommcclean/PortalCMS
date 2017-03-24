@@ -1,6 +1,4 @@
-﻿using Portal.CMS.Entities.Entities.Authentication;
-using Portal.CMS.Entities.Entities.PageBuilder;
-using Portal.CMS.Entities.Entities.Posts;
+﻿using Portal.CMS.Entities.Entities;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -29,7 +27,7 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.MenuItem
 
         public List<Role> RoleList { get; set; }
 
-        public IEnumerable<Entities.Entities.Menu.Menu> MenuList { get; set; }
+        public IEnumerable<MenuSystem> MenuList { get; set; }
 
         public IEnumerable<Page> PageList { get; set; }
 

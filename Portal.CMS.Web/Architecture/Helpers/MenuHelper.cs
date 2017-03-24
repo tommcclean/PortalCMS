@@ -1,4 +1,4 @@
-﻿using Portal.CMS.Entities.Entities.Menu;
+﻿using Portal.CMS.Entities.Entities;
 using Portal.CMS.Services.Menu;
 using Portal.CMS.Web.DependencyResolution;
 using System.Collections.Generic;

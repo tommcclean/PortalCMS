@@ -1,6 +1,5 @@
 ﻿using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities.PageBuilder;
-using Portal.CMS.Entities.Entities.Posts;
+using Portal.CMS.Entities.Entities;
 using Portal.CMS.Services.Authentication;
 using System;
 using System.Collections.Generic;

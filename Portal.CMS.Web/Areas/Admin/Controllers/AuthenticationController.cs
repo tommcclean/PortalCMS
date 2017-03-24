@@ -1,4 +1,5 @@
-﻿using Portal.CMS.Services.Authentication;
+﻿using Portal.CMS.Entities.Enumerators;
+using Portal.CMS.Services.Authentication;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Authentication;
@@ -71,7 +72,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             Session.Add(USER_ACCOUNT, _userService.GetUser(userId.Value));
             Session.Add(USER_ROLES, _roleService.Get(userId));
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet]
@@ -188,7 +189,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             Session.Add(USER_ACCOUNT, _userService.GetUser(userId.Value));
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet, LoggedInFilter]
@@ -229,7 +230,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Forgot(LoginViewModel model)
         {
-            var token = _tokenService.Add(model.EmailAddress, Entities.Entities.Authentication.UserTokenType.ForgottenPassword);
+            var token = _tokenService.Add(model.EmailAddress, UserTokenType.ForgottenPassword);
 
             if (!string.IsNullOrWhiteSpace(token))
             {

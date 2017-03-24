@@ -1,5 +1,4 @@
-﻿using Portal.CMS.Entities.Entities.Generic;
-using Portal.CMS.Entities.Entities.Posts;
+﻿using Portal.CMS.Entities.Entities;
 using System.Collections.Generic;
 
 namespace Portal.CMS.Web.Areas.Admin.ViewModels.Dashboard

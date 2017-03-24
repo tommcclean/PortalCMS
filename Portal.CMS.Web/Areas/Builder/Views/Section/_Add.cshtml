@@ -30,19 +30,19 @@
 
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active float-container" id="tab-headers" style="padding: 9px;">
-                @foreach (var sectionType in Model.SectionTypeList.Where(x => x.PageSectionTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageSectionTypeCategory.Header))
+                @foreach (var sectionType in Model.SectionTypeList.Where(x => x.PageSectionTypeCategory == PageSectionTypeCategory.Header))
                 {
                     <div class="section-preview float-container" data-sectiontypeid="@sectionType.PageSectionTypeId">@Html.Raw(sectionType.PageSectionTypeBody)</div>
                 }
             </div>
             <div role="tabpanel" class="tab-pane float-container" id="tab-content" style="padding: 9px;">
-                @foreach (var sectionType in Model.SectionTypeList.Where(x => x.PageSectionTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageSectionTypeCategory.Content))
+                @foreach (var sectionType in Model.SectionTypeList.Where(x => x.PageSectionTypeCategory == PageSectionTypeCategory.Content))
                 {
                     <div class="section-preview float-container" data-sectiontypeid="@sectionType.PageSectionTypeId">@Html.Raw(sectionType.PageSectionTypeBody)</div>
                 }
             </div>
             <div role="tabpanel" class="tab-pane float-container" id="tab-design" style="padding: 9px;">
-                @foreach (var sectionType in Model.SectionTypeList.Where(x => x.PageSectionTypeCategory == Portal.CMS.Entities.Entities.PageBuilder.PageSectionTypeCategory.Misc))
+                @foreach (var sectionType in Model.SectionTypeList.Where(x => x.PageSectionTypeCategory == PageSectionTypeCategory.Misc))
                 {
                     <div class="section-preview float-container" data-sectiontypeid="@sectionType.PageSectionTypeId">@Html.Raw(sectionType.PageSectionTypeBody)</div>
                 }

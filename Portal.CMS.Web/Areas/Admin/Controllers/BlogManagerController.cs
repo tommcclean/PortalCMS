@@ -1,5 +1,4 @@
-﻿using Portal.CMS.Entities.Entities.Generic;
-using Portal.CMS.Entities.Entities.Posts;
+﻿using Portal.CMS.Entities.Enumerators;
 using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.Posts;
@@ -125,7 +124,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _postService.Roles(postId, model.SelectedRoleList);
 
-            return this.Content("Blog");
+            return Content("Blog");
         }
 
         [HttpGet, EditorFilter]
@@ -207,7 +206,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _postService.Roles(model.PostId, model.SelectedRoleList);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet, AdminFilter]

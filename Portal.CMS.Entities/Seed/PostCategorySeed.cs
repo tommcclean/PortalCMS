@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Portal.CMS.Entities.Entities;
+using System.Linq;
 
 namespace Portal.CMS.Entities.Seed
 {
@@ -7,10 +8,7 @@ namespace Portal.CMS.Entities.Seed
         public static void Seed(PortalEntityModel context)
         {
             if (!context.PostCategories.Any())
-            {
-                context.PostCategories.Add(new Entities.Posts.PostCategory { PostCategoryName = "General" });
-                context.PostCategories.Add(new Entities.Posts.PostCategory { PostCategoryName = "Blog" });
-            }
+                context.PostCategories.Add(new PostCategory { PostCategoryName = "Blog" });
         }
     }
 }

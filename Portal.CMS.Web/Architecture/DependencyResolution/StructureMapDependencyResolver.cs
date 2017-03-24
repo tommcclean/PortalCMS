@@ -29,7 +29,7 @@ namespace Portal.CMS.Web.DependencyResolution
         /// <returns>The System.Web.Http.Dependencies.IDependencyScope.</returns>
         public IDependencyScope BeginScope()
         {
-            var child = this.Container.GetNestedContainer();
+            var child = Container.GetNestedContainer();
             return new StructureMapDependencyResolver(child);
         }
 

@@ -1,4 +1,4 @@
-﻿using Portal.CMS.Entities.Entities.PageBuilder;
+﻿using Portal.CMS.Entities.Enumerators;
 using System.ComponentModel;
 
 namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component

@@ -1,5 +1,5 @@
 ﻿using LogBook.Services;
-using Portal.CMS.Entities.Entities.Analytics;
+using Portal.CMS.Entities.Enumerators;
 using Portal.CMS.Services.Analytics;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.AnalyticManager;

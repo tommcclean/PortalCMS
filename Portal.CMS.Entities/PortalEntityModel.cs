@@ -1,19 +1,13 @@
+using Portal.CMS.Entities.Entities;
+using System.Data.Common;
+using System.Data.Entity;
+
 namespace Portal.CMS.Entities
 {
-    using Entities.Analytics;
-    using Entities.Authentication;
-    using Entities.Copy;
-    using Entities.Generic;
-    using Entities.Menu;
-    using Entities.PageBuilder;
-    using Entities.Posts;
-    using Entities.Settings;
-    using Entities.Themes;
-    using System.Data.Common;
-    using System.Data.Entity;
-
     public class PortalEntityModel : DbContext
     {
+        #region Dependencies
+
         public PortalEntityModel(DbConnection connection) : base(connection, true)
         {
         }
@@ -22,7 +16,7 @@ namespace Portal.CMS.Entities
         {
         }
 
-        #region Authentication Entities
+        #endregion Dependencies
 
         public virtual DbSet<User> Users { get; set; }
 
@@ -32,17 +26,9 @@ namespace Portal.CMS.Entities
 
         public virtual DbSet<UserToken> UserTokens { get; set; }
 
-        #endregion Authentication Entities
+        public virtual DbSet<AnalyticPageView> AnalyticPageViews { get; set; }
 
-        #region Analytic Entities
-
-        public DbSet<AnalyticPageView> AnalyticPageViews { get; set; }
-
-        public DbSet<AnalyticPostView> AnalyticPostViews { get; set; }
-
-        #endregion Analytic Entities
-
-        #region Post Entities
+        public virtual DbSet<AnalyticPostView> AnalyticPostViews { get; set; }
 
         public virtual DbSet<Post> Posts { get; set; }
 
@@ -54,37 +40,17 @@ namespace Portal.CMS.Entities
 
         public virtual DbSet<PostRole> PostRoles { get; set; }
 
-        #endregion Post Entities
-
-        #region Generic Entities
-
         public virtual DbSet<Image> Images { get; set; }
 
-        #endregion Generic Entities
+        public virtual DbSet<CopyItem> CopyItems { get; set; }
 
-        #region Copy Entities
-
-        public virtual DbSet<Copy> CopySections { get; set; }
-
-        #endregion Copy Entities
-
-        #region Menu Entities
-
-        public virtual DbSet<Menu> Menus { get; set; }
+        public virtual DbSet<MenuSystem> Menus { get; set; }
 
         public virtual DbSet<MenuItem> MenuItems { get; set; }
 
         public virtual DbSet<MenuItemRole> MenuItemRoles { get; set; }
 
-        #endregion Menu Entities
-
-        #region Setting Entities
-
         public virtual DbSet<Setting> Settings { get; set; }
-
-        #endregion Setting Entities
-
-        #region Page Builder Entities
 
         public virtual DbSet<Page> Pages { get; set; }
 
@@ -104,14 +70,8 @@ namespace Portal.CMS.Entities
 
         public virtual DbSet<PageAssociationRole> PageAssociationRoles { get; set; }
 
-        #endregion Page Builder Entities
-
-        #region Theme Entities
-
         public virtual DbSet<Font> Fonts { get; set; }
 
-        public virtual DbSet<Theme> Themes { get; set; }
-
-        #endregion Theme Entities
+        public virtual DbSet<CustomTheme> Themes { get; set; }
     }
 }

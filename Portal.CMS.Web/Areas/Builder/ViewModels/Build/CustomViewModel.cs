@@ -1,4 +1,4 @@
-﻿using Portal.CMS.Entities.Entities.PageBuilder;
+﻿using Portal.CMS.Entities.Entities;
 
 namespace Portal.CMS.Web.Areas.Builder.ViewModels.Build
 {

@@ -1,5 +1,5 @@
 ﻿using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities.Themes;
+using Portal.CMS.Entities.Entities;
 using Portal.CMS.Services.PageBuilder;
 using System;
 using System.Collections.Generic;
@@ -9,9 +9,9 @@ namespace Portal.CMS.Services.Themes
 {
     public interface IThemeService
     {
-        Theme Get(int themeId);
+        CustomTheme Get(int themeId);
 
-        IEnumerable<Theme> Get();
+        IEnumerable<CustomTheme> Get();
 
         int Upsert(int themeId, string themeName, int titleFontId, int textFontId, int largeTitleFontSize, int mediumTitleFontSize, int smallTitleFontSize, int tinyTitleFontSize, int textStandardFontSize, string pageBackgroundColour, string menuBackgroundColour, string menuTextColour);
 
@@ -19,7 +19,7 @@ namespace Portal.CMS.Services.Themes
 
         void Default(int themeId);
 
-        Theme GetDefault();
+        CustomTheme GetDefault();
     }
 
     public class ThemeService : IThemeService
@@ -37,21 +37,21 @@ namespace Portal.CMS.Services.Themes
 
         #endregion Dependencies
 
-        public Theme GetDefault()
+        public CustomTheme GetDefault()
         {
             var defaultTheme = _context.Themes.FirstOrDefault(x => x.IsDefault == true);
 
             return defaultTheme;
         }
 
-        public Theme Get(int themeId)
+        public CustomTheme Get(int themeId)
         {
             var theme = _context.Themes.SingleOrDefault(x => x.ThemeId == themeId);
 
             return theme;
         }
 
-        public IEnumerable<Theme> Get()
+        public IEnumerable<CustomTheme> Get()
         {
             var results = _context.Themes.ToList();
 
@@ -64,7 +64,7 @@ namespace Portal.CMS.Services.Themes
 
             if (existingTheme == null)
             {
-                var newTheme = new Theme
+                var newTheme = new CustomTheme
                 {
                     ThemeName = themeName,
                     TitleFontId = titleFontId,

@@ -1,5 +1,6 @@
 ﻿using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities.Posts;
+using Portal.CMS.Entities.Entities;
+using Portal.CMS.Entities.Enumerators;
 using System.Linq;
 
 namespace Portal.CMS.Services.Posts

@@ -42,7 +42,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _roleService.Add(model.RoleName);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet]
@@ -68,7 +68,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _roleService.Edit(model.RoleId, model.RoleName);
 
-            return this.Content("Refresh");
+            return Content("Refresh");
         }
 
         [HttpGet]
