@@ -826,7 +826,7 @@
             /*
 			 * Add reference to the group, so it`s possible to access from callbacks, example:
 			 * afterLoad : function() {
-			 *     title = 'Image ' + (index + 1) + ' of ' + group.length + (title ? ' - ' + title : '');
+			 *     this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
 			 * }
 			 */
 
@@ -929,16 +929,16 @@
             var img = F.imgPreload = new Image();
 
             img.onload = function () {
-                onload = onerror = null;
+                this.onload = this.onerror = null;
 
-                F.coming.width = width / F.opts.pixelRatio;
-                F.coming.height = height / F.opts.pixelRatio;
+                F.coming.width = this.width / F.opts.pixelRatio;
+                F.coming.height = this.height / F.opts.pixelRatio;
 
                 F._afterLoad();
             };
 
             img.onerror = function () {
-                onload = onerror = null;
+                this.onload = this.onerror = null;
 
                 F._error('image');
             };
@@ -1564,7 +1564,7 @@
             delete endPos.position;
 
             if (elastic) {
-                startPos = getOrigPosition();
+                startPos = this.getOrigPosition();
 
                 if (current.openOpacity) {
                     startPos.opacity = 0.1;
@@ -1576,7 +1576,7 @@
             F.wrap.css(startPos).animate(endPos, {
                 duration: effect === 'none' ? 0 : current.openSpeed,
                 easing: current.openEasing,
-                step: elastic ? step : null,
+                step: elastic ? this.step : null,
                 complete: F._afterZoomIn
             });
         },
@@ -1588,7 +1588,7 @@
                 endPos = { opacity: 0.1 };
 
             if (elastic) {
-                endPos = getOrigPosition();
+                endPos = this.getOrigPosition();
 
                 if (current.closeOpacity) {
                     endPos.opacity = 0.1;
@@ -1598,7 +1598,7 @@
             F.wrap.animate(endPos, {
                 duration: effect === 'none' ? 0 : current.closeSpeed,
                 easing: current.closeEasing,
-                step: elastic ? step : null,
+                step: elastic ? this.step : null,
                 complete: F._afterZoomOut
             });
         },
@@ -1679,41 +1679,41 @@
 
         // Public methods
         create: function (opts) {
-            opts = $.extend({}, defaults, opts);
+            opts = $.extend({}, this.defaults, opts);
 
-            if (overlay) {
-                close();
+            if (this.overlay) {
+                this.close();
             }
 
-            overlay = $('<div class="fancybox-overlay"></div>').appendTo(F.coming ? F.coming.parent : opts.parent);
-            fixed = false;
+            this.overlay = $('<div class="fancybox-overlay"></div>').appendTo(F.coming ? F.coming.parent : opts.parent);
+            this.fixed = false;
 
             if (opts.fixed && F.defaults.fixed) {
-                overlay.addClass('fancybox-overlay-fixed');
+                this.overlay.addClass('fancybox-overlay-fixed');
 
-                fixed = true;
+                this.fixed = true;
             }
         },
 
         open: function (opts) {
             var that = this;
 
-            opts = $.extend({}, defaults, opts);
+            opts = $.extend({}, this.defaults, opts);
 
-            if (overlay) {
-                overlay.unbind('.overlay').width('auto').height('auto');
+            if (this.overlay) {
+                this.overlay.unbind('.overlay').width('auto').height('auto');
             } else {
-                create(opts);
+                this.create(opts);
             }
 
-            if (!fixed) {
-                W.bind('resize.overlay', $.proxy(update, this));
+            if (!this.fixed) {
+                W.bind('resize.overlay', $.proxy(this.update, this));
 
-                update();
+                this.update();
             }
 
             if (opts.closeClick) {
-                overlay.bind('click.overlay', function (e) {
+                this.overlay.bind('click.overlay', function (e) {
                     if ($(e.target).hasClass('fancybox-overlay')) {
                         if (F.isActive) {
                             F.close();
@@ -1726,7 +1726,7 @@
                 });
             }
 
-            overlay.css(opts.css).show();
+            this.overlay.css(opts.css).show();
         },
 
         close: function () {
@@ -1734,13 +1734,13 @@
 
             W.unbind('resize.overlay');
 
-            if (el.hasClass('fancybox-lock')) {
+            if (this.el.hasClass('fancybox-lock')) {
                 $('.fancybox-margin').removeClass('fancybox-margin');
 
                 scrollV = W.scrollTop();
                 scrollH = W.scrollLeft();
 
-                el.removeClass('fancybox-lock');
+                this.el.removeClass('fancybox-lock');
 
                 W.scrollTop(scrollV).scrollLeft(scrollH);
             }
@@ -1759,7 +1759,7 @@
             var width = '100%', offsetWidth;
 
             // Reset width/height so it will not mess
-            overlay.width(width).height('100%');
+            this.overlay.width(width).height('100%');
 
             // jQuery does not return reliable result for IE
             if (IE) {
@@ -1772,30 +1772,30 @@
                 width = D.width();
             }
 
-            overlay.width(width).height(D.height());
+            this.overlay.width(width).height(D.height());
         },
 
         // This is where we can manipulate DOM, because later it would cause iframes to reload
         onReady: function (opts, obj) {
-            var overlay = overlay;
+            var overlay = this.overlay;
 
             $('.fancybox-overlay').stop(true, true);
 
             if (!overlay) {
-                create(opts);
+                this.create(opts);
             }
 
-            if (opts.locked && fixed && obj.fixed) {
+            if (opts.locked && this.fixed && obj.fixed) {
                 if (!overlay) {
-                    margin = D.height() > W.height() ? $('html').css('margin-right').replace("px", "") : false;
+                    this.margin = D.height() > W.height() ? $('html').css('margin-right').replace("px", "") : false;
                 }
 
-                obj.locked = overlay.append(obj.wrap);
+                obj.locked = this.overlay.append(obj.wrap);
                 obj.fixed = false;
             }
 
             if (opts.showEarly === true) {
-                beforeShow.apply(this, arguments);
+                this.beforeShow.apply(this, arguments);
             }
         },
 
@@ -1803,28 +1803,28 @@
             var scrollV, scrollH;
 
             if (obj.locked) {
-                if (margin !== false) {
+                if (this.margin !== false) {
                     $('*').filter(function () {
                         return ($(this).css('position') === 'fixed' && !$(this).hasClass("fancybox-overlay") && !$(this).hasClass("fancybox-wrap"));
                     }).addClass('fancybox-margin');
 
-                    el.addClass('fancybox-margin');
+                    this.el.addClass('fancybox-margin');
                 }
 
                 scrollV = W.scrollTop();
                 scrollH = W.scrollLeft();
 
-                el.addClass('fancybox-lock');
+                this.el.addClass('fancybox-lock');
 
                 W.scrollTop(scrollV).scrollLeft(scrollH);
             }
 
-            open(opts);
+            this.open(opts);
         },
 
         onUpdate: function () {
-            if (!fixed) {
-                update();
+            if (!this.fixed) {
+                this.update();
             }
         },
 
@@ -1832,9 +1832,9 @@
 
             // Remove overlay if exists and fancyBox is not opening
             // (e.g., it is not being open using afterClose callback)
-            //if (overlay && !F.isActive) {
-            if (overlay && !F.coming) {
-                overlay.fadeOut(opts.speedOut, $.proxy(close, this));
+            //if (this.overlay && !F.isActive) {
+            if (this.overlay && !F.coming) {
+                this.overlay.fadeOut(opts.speedOut, $.proxy(this.close, this));
             }
         }
     };
@@ -1903,7 +1903,7 @@
     $.fn.fancybox = function (options) {
         var index,
             that = $(this),
-            selector = selector || '',
+            selector = this.selector || '',
             run = function (e) {
                 var what = $(this).blur(), idx = index, relType, relVal;
 
@@ -1940,7 +1940,7 @@
             D.undelegate(selector, 'click.fb-start').delegate(selector + ":not('.fancybox-item, .fancybox-nav')", 'click.fb-start', run);
         }
 
-        filter('[data-fancybox-start=1]').trigger('click');
+        this.filter('[data-fancybox-start=1]').trigger('click');
 
         return this;
     };
