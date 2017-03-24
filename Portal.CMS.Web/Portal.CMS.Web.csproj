@@ -685,9 +685,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\AnalyticManager\ReviewException.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Styles\PageBuilder\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>
