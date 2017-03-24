@@ -47,9 +47,11 @@
       <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LogBook.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\tommcclean.LogBook.1.0.4\lib\net452\LogBook.Entities.dll</HintPath>
+    </Reference>
     <Reference Include="LogBook.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\tommcclean.LogBook.1.0.3\lib\net452\LogBook.Services.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\tommcclean.LogBook.1.0.4\lib\net452\LogBook.Services.dll</HintPath>
     </Reference>
     <Reference Include="NMemory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6a46696d54971e6d, processorArchitecture=MSIL">
       <HintPath>..\packages\NMemory.1.1.2\lib\net45\NMemory.dll</HintPath>
