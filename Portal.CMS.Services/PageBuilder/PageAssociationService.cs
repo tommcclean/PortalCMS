@@ -144,8 +144,12 @@ namespace Portal.CMS.Services.PageBuilder
                     PageSectionId = pageAssociation.PageSectionId,
                     PageId = page.PageId,
                     PageAssociationRoles = pageAssociation.PageAssociationRoles,
-                    PageAssociationOrder = page.PageAssociations.Max(pa => pa.PageAssociationOrder + 1),
                 };
+
+                if (page.PageAssociations.Any())
+                    clonePageAssociation.PageAssociationOrder = page.PageAssociations.Max(pa => pa.PageAssociationOrder + 1);
+                else
+                    clonePageAssociation.PageAssociationOrder = 1;
 
                 _context.PageAssociations.Add(clonePageAssociation);
 
