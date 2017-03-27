@@ -1,0 +1,28 @@
+﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Section.CloneViewModel
+@{
+    Layout = "";
+
+    var pageList = Model.PageList.Select(x => new SelectListItem { Value = x.PageId.ToString(), Text = x.PageName });
+}
+
+<div class="panel-inner">
+    @using (Html.BeginForm("Clone", "Section", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(x => x.PageAssociationId)
+
+        <div class="alert alert-warning" role="alert">Clone a Section onto another Page to keep your content synced across all relevant pages</div>
+
+        @Html.ValidationMessage("PageId")
+        <div class="control-group">
+            @Html.LabelFor(x => x.PageId)
+            @Html.DropDownListFor(m => m.PageId, pageList)
+        </div>
+
+        <div class="footer">
+            <button class="btn primary"><span class="fa fa-check"></span><span class="hidden-xs">Clone Section</span></button>
+            <button class="btn" data-dismiss="modal"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></button>
+        </div>
+    }
+</div>

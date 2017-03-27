@@ -20,14 +20,16 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         private readonly IPageAssociationService _associationService;
         private readonly IImageService _imageService;
         private readonly IRoleService _roleService;
+        private readonly IPageService _pageService;
 
-        public SectionController(IPageSectionService sectionService, IImageService imageService, IRoleService roleService, IPagePartialService partialService, IPageAssociationService associationService)
+        public SectionController(IPageSectionService sectionService, IImageService imageService, IRoleService roleService, IPagePartialService partialService, IPageAssociationService associationService, IPageService pageService)
         {
             _sectionService = sectionService;
             _imageService = imageService;
             _roleService = roleService;
             _partialService = partialService;
             _associationService = associationService;
+            _pageService = pageService;
         }
 
         #endregion Dependencies
@@ -277,5 +279,28 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         }
 
         #endregion Section Backup Methods
+
+        [HttpGet]
+        public ActionResult Clone(int pageAssociationId)
+        {
+            var pageAssociation = _associationService.Get(pageAssociationId);
+
+            var model = new CloneViewModel
+            {
+                PageAssociationId = pageAssociationId,
+                PageList = _pageService.Get().ToList()
+            };
+
+            return View("_Clone", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Clone(CloneViewModel model)
+        {
+            _associationService.Clone(model.PageAssociationId, model.PageId);
+
+            return Content("Refresh");
+        }
     }
 }

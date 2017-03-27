@@ -62,14 +62,14 @@
 .action
 {
     display: inline-block;
-    height: 45px;
-    width: 45px;
+    height: 40px;
+    width: 40px;
     margin: 2px;
     border-radius: 50%;
     background-color: #D32D27;
     color: white;
-    font-size: 16px;
-    line-height: 45px;
+    font-size: 15px;
+    line-height: 40px;
     text-align: center;
     cursor: pointer;
 }

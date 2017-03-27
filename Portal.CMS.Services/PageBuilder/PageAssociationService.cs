@@ -17,6 +17,8 @@ namespace Portal.CMS.Services.PageBuilder
         void EditRoles(int pageAssociationId, List<string> roleList);
 
         void EditOrder(int pageId, string associationList);
+
+        void Clone(int pageAssociationId, int pageId);
     }
 
     public class PageAssociationService : IPageAssociationService
@@ -125,6 +127,30 @@ namespace Portal.CMS.Services.PageBuilder
             }
 
             _context.SaveChanges();
+        }
+
+        public void Clone(int pageAssociationId, int pageId)
+        {
+            var pageAssociation = _context.PageAssociations.FirstOrDefault(pa => pa.PageAssociationId == pageAssociationId);
+            if (pageAssociation == null) return;
+
+            var page = _context.Pages.FirstOrDefault(p => p.PageId == pageId);
+            if (page == null) return;
+
+            if (pageAssociation.PageSection != null)
+            {
+                var clonePageAssociation = new PageAssociation
+                {
+                    PageSectionId = pageAssociation.PageSectionId,
+                    PageId = page.PageId,
+                    PageAssociationRoles = pageAssociation.PageAssociationRoles,
+                    PageAssociationOrder = page.PageAssociations.Max(pa => pa.PageAssociationOrder + 1),
+                };
+
+                _context.PageAssociations.Add(clonePageAssociation);
+
+                _context.SaveChanges();
+            }
         }
     }
 }

@@ -44,7 +44,7 @@ function SaveOrder() {
 }
 function ApplySectionControls() {
     $('.section-wrapper .action-container').remove();
-    var sectionButtonsTemplate = '<div class="action-container absolute"><a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/Builder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a><a class="action launch-modal hidden-xs" data-title="Backup or Restore a Section" href="/Builder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a><a class="action edit-section launch-modal" data-title="Edit Section" href="/Builder/Section/EditSection?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a></div>';
+    var sectionButtonsTemplate = '<div class="action-container absolute"><a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/Builder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a><a class="action launch-modal hidden-xs" data-title="Backup or Restore a Section" href="/Builder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a><a class="action edit-section launch-modal" data-title="Clone Section" href="/Builder/Section/Clone?pageAssociationId=<associationId>"><span class="fa fa-clone"></span></a><a class="action edit-section launch-modal" data-title="Edit Section" href="/Builder/Section/EditSection?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a></div>';
     $(".section-wrapper").each(function (index) {
         var sectionId = $(this).attr("data-section");
         var associationId = $(this).attr("data-association");
