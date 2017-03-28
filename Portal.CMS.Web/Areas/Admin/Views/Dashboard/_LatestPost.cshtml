@@ -2,17 +2,8 @@
 
 @if (Model != null)
 {
-    string bannerImagePath = "";
-    bool hasBannerImage = false;
-
-    if (Model.PostImages.Any(x => x.PostImageType == PostImageType.Banner))
-    {
-        bannerImagePath = Model.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
-        hasBannerImage = true;
-    }
-
     <div class="col-xs-12 col-md-6 col-lg-4">
-        <div class="box box-tall article-item @(hasBannerImage ? "dark" : "light")" style="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? string.Format("background-image: url('{0}'); color: white;", bannerImagePath) : "")">
+        <div class="box box-tall article-item dark" style="@string.Format("background-image: url('{0}'); color: white;", Model.BannerImageUrl())">
             <div class="box-title">Latest Post</div>
             <div class="inner">
                 <div class="category-item">@Model.PostCategory.PostCategoryName</div>
@@ -25,7 +16,7 @@
                     <a href="@Url.Action("Index", "BlogManager")" class="admin-item" data-title="Manage Posts"><span class="fa fa-th-list"></span>More</a>
                 </div>
             </div>
-            <div class="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? "overlay-medium" : "")"></div>
+            <div class="overlay-medium"></div>
         </div>
     </div>
 }

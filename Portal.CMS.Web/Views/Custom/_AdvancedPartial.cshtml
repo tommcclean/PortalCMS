@@ -14,16 +14,9 @@
                 {
                     var post = Model.PostList[loop];
 
-                    var bannerImagePath = "/Areas/Builder/Content/Images/Sample/Sample-1.jpg";
-
-                    if (post.PostImages.Any(x => x.PostImageType == PostImageType.Banner))
-                    {
-                        bannerImagePath = post.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
-                    }
-
                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
-                            <img src="@bannerImagePath" alt="@post.PostTitle" />
+                            <img src="@post.BannerImageUrl()" alt="@post.PostTitle" />
                             <div class="caption">
                                 <h3>@post.PostTitle</h3>
                                 <p>@post.PostDescription</p>

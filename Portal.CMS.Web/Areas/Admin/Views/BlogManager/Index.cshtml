@@ -23,17 +23,8 @@
         <div class="row">
             @foreach (var post in Model.Posts)
             {
-                string bannerImagePath = "";
-                bool hasBannerImage = false;
-
-                if (post.PostImages.Any(x => x.PostImageType == PostImageType.Banner))
-                {
-                    bannerImagePath = post.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
-                    hasBannerImage = true;
-                }
-
                 <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="box box-tall article-item float-container @(hasBannerImage ? "dark" : "light")" style="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? string.Format("background-image: url('{0}'); color: white;", bannerImagePath) : "")">
+                    <div class="box box-tall article-item float-container dark" style="@string.Format("background-image: url('{0}'); color: white;", post.BannerImageUrl())">
                         <div class="inner">
                             <div class="category-item">@post.PostCategory.PostCategoryName</div>
                             <h3>@(post.IsPublished ? "" : "Draft: ") @post.PostTitle</h3>
@@ -53,7 +44,7 @@
                                 <a href="@Url.Action("Delete", "BlogManager", new { postId = @post.PostId })" class="admin-item" data-title="Delete Post" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
                             </div>
                         </div>
-                        <div class="@(!string.IsNullOrWhiteSpace(bannerImagePath) ? "overlay-medium" : "")"></div>
+                        <div class="overlay-medium"></div>
                     </div>
                 </div>
             }
