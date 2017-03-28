@@ -5,13 +5,6 @@
     var galleryCount = Model.CurrentPost.PostImages.Where(x => x.PostImageType == PostImageType.Gallery).Count();
     var commentCount = Model.CurrentPost.PostComments.Count();
 
-    var bannerImagePath = "/Areas/Builder/Content/Images/Sample/Sample-1.jpg";
-
-    if (Model.CurrentPost.PostImages.Any(x => x.PostImageType == PostImageType.Banner))
-    {
-        bannerImagePath = Model.CurrentPost.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
-    }
-
     var isAdmin = UserHelper.IsAdmin;
     var isEditor = UserHelper.IsEditor;
 }
@@ -89,7 +82,7 @@
 }
 
 <div class="post" style="background-color: white; min-height: 100vh;">
-    <div class="post-banner animated slideInDown" style="@string.Format("background-image: url('{0}'); color: white;", bannerImagePath)">
+    <div class="post-banner animated slideInDown" style="@string.Format("background-image: url('{0}'); color: white;", Model.CurrentPost.BannerImageUrl())">
         <div class="overlay-medium"></div>
         <div class="inner vertical-alignment">
             <div class="row">
