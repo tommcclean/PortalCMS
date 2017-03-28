@@ -328,6 +328,11 @@
         color: black;
     }
 
+.sp-container
+{
+    display: none;
+}
+
 @media (max-width: 450px)
 {
     .admin-wrapper .button

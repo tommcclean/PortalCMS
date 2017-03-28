@@ -28,6 +28,8 @@
             success: function (result) {
                 if (result.State === true)
                 {
+                    DestroySpectrum();
+
                     $('#section-wrapper-@Model.SectionId').html(result.SectionMarkup);
 
                     InitialiseEditor();
