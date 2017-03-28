@@ -42,7 +42,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public IEnumerable<Page> Get()
         {
-            var results = _context.Pages.OrderBy(x => x.PageName);
+            var results = _context.Pages.OrderBy(x => x.PageName).ToList();
 
             return results;
         }
@@ -66,7 +66,9 @@ namespace Portal.CMS.Services.PageBuilder
 
         public Page Get(int pageId)
         {
-            var page = _context.Pages.Include(x => x.PageAssociations).SingleOrDefault(x => x.PageId == pageId);
+            var page = _context.Pages
+                .Include(x => x.PageAssociations)
+                .SingleOrDefault(x => x.PageId == pageId);
 
             return page;
         }

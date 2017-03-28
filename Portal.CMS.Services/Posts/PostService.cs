@@ -123,7 +123,7 @@ namespace Portal.CMS.Services.Posts
 
         public List<Post> Get(string postCategoryName, bool published)
         {
-            var results = _context.Posts.Where(x => (x.PostCategory.PostCategoryName.Equals(postCategoryName, StringComparison.OrdinalIgnoreCase) || postCategoryName == string.Empty) && (published && x.IsPublished || !published));
+            var results = _context.Posts.Where(x => (x.PostCategory.PostCategoryName.Equals(postCategoryName, StringComparison.OrdinalIgnoreCase) || postCategoryName == string.Empty) && (published && x.IsPublished || !published)).ToList();
 
             return results.OrderByDescending(x => x.DateUpdated).ThenByDescending(x => x.PostId).ToList();
         }

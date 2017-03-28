@@ -40,7 +40,7 @@ namespace Portal.CMS.Services.Posts
 
         public IEnumerable<PostCategory> Get()
         {
-            var results = _context.PostCategories.OrderBy(x => x.PostCategoryName);
+            var results = _context.PostCategories.OrderBy(x => x.PostCategoryName).ToList();
 
             return results;
         }
@@ -62,9 +62,7 @@ namespace Portal.CMS.Services.Posts
         public void Edit(int postCategoryId, string postCategoryName)
         {
             var postCategory = _context.PostCategories.SingleOrDefault(x => x.PostCategoryId == postCategoryId);
-
-            if (postCategory == null)
-                return;
+            if (postCategory == null) return;
 
             postCategory.PostCategoryName = postCategoryName;
 
@@ -74,9 +72,7 @@ namespace Portal.CMS.Services.Posts
         public void Delete(int postCategoryId)
         {
             var postCategory = _context.PostCategories.SingleOrDefault(x => x.PostCategoryId == postCategoryId);
-
-            if (postCategory == null)
-                return;
+            if (postCategory == null) return;
 
             _context.PostCategories.Remove(postCategory);
 

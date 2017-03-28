@@ -30,9 +30,7 @@ namespace Portal.CMS.Services.Authentication
         public int? Login(string emailAddress, string password)
         {
             var userAccount = _context.Users.FirstOrDefault(x => x.EmailAddress.Equals(emailAddress, System.StringComparison.OrdinalIgnoreCase));
-
-            if (userAccount == null)
-                return null;
+            if (userAccount == null) return null;
 
             if (!CompareSecurePassword(password, userAccount.Password))
                 return null;
@@ -45,9 +43,7 @@ namespace Portal.CMS.Services.Authentication
             var tokenResult = _tokenService.RedeemSSOToken(userId, token);
 
             if (string.IsNullOrWhiteSpace(tokenResult))
-            {
                 return userId;
-            }
 
             return null;
         }

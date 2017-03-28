@@ -67,7 +67,7 @@ namespace Portal.CMS.Services.Copy
 
         public IEnumerable<CopyItem> Get()
         {
-            var copySections = _context.CopyItems.OrderBy(x => x.CopyName).ThenBy(x => x.CopyId);
+            var copySections = _context.CopyItems.OrderBy(x => x.CopyName).ThenBy(x => x.CopyId).ToList();
 
             return copySections;
         }

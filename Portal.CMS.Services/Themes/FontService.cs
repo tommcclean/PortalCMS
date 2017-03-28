@@ -65,9 +65,7 @@ namespace Portal.CMS.Services.Themes
         public void Delete(int fontId)
         {
             var font = _context.Fonts.SingleOrDefault(x => x.FontId == fontId);
-
-            if (font == null)
-                return;
+            if (font == null) return;
 
             _context.Fonts.Remove(font);
 

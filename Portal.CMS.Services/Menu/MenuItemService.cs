@@ -58,9 +58,7 @@ namespace Portal.CMS.Services.Menu
         public void Edit(int menuItemId, string linkText, string linkURL, string linkIcon)
         {
             var menuItem = _context.MenuItems.SingleOrDefault(x => x.MenuItemId == menuItemId);
-
-            if (menuItem == null)
-                return;
+            if (menuItem == null) return;
 
             menuItem.LinkText = linkText;
             menuItem.LinkURL = linkURL;
@@ -72,9 +70,7 @@ namespace Portal.CMS.Services.Menu
         public void Delete(int menuItemId)
         {
             var menuItem = _context.MenuItems.SingleOrDefault(x => x.MenuItemId == menuItemId);
-
-            if (menuItem == null)
-                return;
+            if (menuItem == null) return;
 
             _context.MenuItems.Remove(menuItem);
 
@@ -84,9 +80,7 @@ namespace Portal.CMS.Services.Menu
         public void Roles(int menuItemId, List<string> roleList)
         {
             var menuItem = Get(menuItemId);
-
-            if (menuItem == null)
-                return;
+            if (menuItem == null) return;
 
             var roles = _context.Roles.ToList();
 
@@ -98,8 +92,7 @@ namespace Portal.CMS.Services.Menu
             {
                 var currentRole = roles.FirstOrDefault(x => x.RoleName == roleName);
 
-                if (currentRole == null)
-                    continue;
+                if (currentRole == null) continue;
 
                 _context.MenuItemRoles.Add(new MenuItemRole { MenuItemId = menuItemId, RoleId = currentRole.RoleId });
             }

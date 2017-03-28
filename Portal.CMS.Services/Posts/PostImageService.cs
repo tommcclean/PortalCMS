@@ -44,9 +44,7 @@ namespace Portal.CMS.Services.Posts
             var postImages = _context.PostImages.Where(x => x.PostId == postId && x.PostImageType == postImageType);
 
             foreach (var postImage in postImages)
-            {
                 _context.PostImages.Remove(postImage);
-            }
 
             _context.SaveChanges();
         }

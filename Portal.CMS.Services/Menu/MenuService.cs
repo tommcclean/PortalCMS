@@ -42,7 +42,7 @@ namespace Portal.CMS.Services.Menu
 
         public IEnumerable<MenuSystem> Get()
         {
-            var results = _context.Menus.OrderBy(x => x.MenuName).ThenBy(x => x.MenuId);
+            var results = _context.Menus.OrderBy(x => x.MenuName).ThenBy(x => x.MenuId).ToList();
 
             return results;
         }

@@ -57,7 +57,7 @@ namespace Portal.CMS.Services.Authentication
 
         public IEnumerable<User> Get()
         {
-            var userList = _context.Users.OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName).ThenBy(x => x.UserId);
+            var userList = _context.Users.OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName).ThenBy(x => x.UserId).ToList();
 
             return userList;
         }

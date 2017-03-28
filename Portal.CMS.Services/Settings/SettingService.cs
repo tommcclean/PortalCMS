@@ -37,7 +37,7 @@ namespace Portal.CMS.Services.Settings
 
         public IEnumerable<Setting> Get()
         {
-            var results = _context.Settings.OrderBy(x => x.SettingName);
+            var results = _context.Settings.OrderBy(x => x.SettingName).ToList();
 
             return results;
         }
@@ -74,9 +74,7 @@ namespace Portal.CMS.Services.Settings
         public void Edit(int settingId, string settingName, string settingValue)
         {
             var setting = _context.Settings.SingleOrDefault(x => x.SettingId == settingId);
-
-            if (setting == null)
-                return;
+            if (setting == null) return;
 
             setting.SettingName = settingName;
             setting.SettingValue = settingValue;
@@ -87,9 +85,7 @@ namespace Portal.CMS.Services.Settings
         public void Edit(string settingName, string settingValue)
         {
             var setting = _context.Settings.FirstOrDefault(x => x.SettingName == settingName);
-
-            if (setting == null)
-                return;
+            if (setting == null) return;
 
             setting.SettingValue = settingValue;
 
@@ -99,9 +95,7 @@ namespace Portal.CMS.Services.Settings
         public void Delete(int settingId)
         {
             var setting = _context.Settings.SingleOrDefault(x => x.SettingId == settingId);
-
-            if (setting == null)
-                return;
+            if (setting == null) return;
 
             _context.Settings.Remove(setting);
 

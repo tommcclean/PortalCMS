@@ -91,7 +91,6 @@ namespace Portal.CMS.Services.Authentication
         public void Delete(int roleId)
         {
             var role = _context.Roles.SingleOrDefault(x => x.RoleId == roleId);
-
             if (role == null) return;
 
             _context.Roles.Remove(role);
@@ -102,7 +101,6 @@ namespace Portal.CMS.Services.Authentication
         public void Update(int userId, List<string> roleList)
         {
             var user = _context.Users.SingleOrDefault(x => x.UserId == userId);
-
             if (user == null) return;
 
             var systemRoles = Get();

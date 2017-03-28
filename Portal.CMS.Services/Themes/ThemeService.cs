@@ -112,9 +112,7 @@ namespace Portal.CMS.Services.Themes
         public void Delete(int themeId)
         {
             var existingTheme = _context.Themes.SingleOrDefault(x => x.ThemeId == themeId);
-
-            if (existingTheme == null)
-                return;
+            if (existingTheme == null) return;
 
             _context.Themes.Remove(existingTheme);
 
@@ -126,12 +124,10 @@ namespace Portal.CMS.Services.Themes
             var themes = Get();
 
             foreach (var theme in themes)
-            {
                 if (theme.ThemeId == themeId)
                     theme.IsDefault = true;
                 else
                     theme.IsDefault = false;
-            }
 
             _context.SaveChanges();
         }

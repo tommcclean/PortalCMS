@@ -35,9 +35,7 @@ namespace Portal.CMS.Services.Authentication
         public string Add(string emailAddress, UserTokenType userTokenType)
         {
             var user = _userService.Get(emailAddress);
-
-            if (user == null)
-                return string.Empty;
+            if (user == null) return string.Empty;
 
             var userToken = new UserToken
             {
