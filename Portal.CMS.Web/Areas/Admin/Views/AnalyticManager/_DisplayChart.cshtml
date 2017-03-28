@@ -19,9 +19,6 @@
             data: {
                 columns: [ @foreach(var column in Model.ChartColumns) { <text>['@column.ColumnName', @string.Join(",", column.ColumnValues)],</text> }],
                 type: '@Model.ChartType.ToString().ToLower()',
-                onclick: function (d, i) { console.log("onclick", d, i); },
-                onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-                onmouseout: function (d, i) { console.log("onmouseout", d, i); }
             }
         });
     });

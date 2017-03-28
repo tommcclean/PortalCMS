@@ -344,3 +344,23 @@ a.category-item:hover
         box-shadow: 32px -32px #dfdfdf, 32px 32px #4f4d49, -32px 32px #dfdfdf, -32px -32px #4f4d49;
     }
 }
+
+.console-title
+{
+    background-color: #5D5A58;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    letter-spacing: 1px;
+}
+
+.console
+{
+    min-height: 400px;
+    max-height: 500px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    overflow-y: scroll;
+    letter-spacing: 1px;
+}
