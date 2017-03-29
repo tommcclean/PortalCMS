@@ -110,7 +110,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             if (associationList != null && associationList.Length > 2)
                 _associationService.EditOrder(pageId, associationList);
 
-            return RedirectToAction("Index", "Build", new { pageId });
+            return RedirectToAction("Index", "Page", new { pageId });
         }
 
         #region Section Edit Methods

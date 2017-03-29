@@ -15,7 +15,7 @@
 
     <script type="text/javascript">
         var dataParams = { "pageId": @Model.PageId, "referrer": "@Request.UrlReferrer", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
-        $.ajax({data: dataParams,type: 'POST',cache: false,url: '@Url.Action("Analytic", "Build", new { area = "PageBuilder" })',success: function (data) {},});
+        $.ajax({data: dataParams,type: 'POST',cache: false,url: '@Url.Action("Analytic", "Page", new { area = "PageBuilder" })',success: function (data) {},});
     </script>
 }
 

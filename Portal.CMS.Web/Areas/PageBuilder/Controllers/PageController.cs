@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Builder.Controllers
 {
-    public class BuildController : Controller
+    public class PageController : Controller
     {
         #region Dependencies
 
@@ -20,7 +20,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
         private readonly ILoginService _loginService;
         private readonly IRoleService _roleService;
 
-        public BuildController(IPageService pageService, IPageSectionService sectionService, IAnalyticsService analyticService, IUserService userService, ILoginService loginService, IRoleService roleService)
+        public PageController(IPageService pageService, IPageSectionService sectionService, IAnalyticsService analyticService, IUserService userService, ILoginService loginService, IRoleService roleService)
         {
             _pageService = pageService;
             _sectionService = sectionService;
@@ -44,7 +44,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             if (currentPage == null)
                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
-            return View("/Areas/PageBuilder/Views/Build/Index.cshtml", currentPage);
+            return View("/Areas/PageBuilder/Views/Page/Index.cshtml", currentPage);
         }
 
         public ActionResult Analytic(int pageId, string referrer)

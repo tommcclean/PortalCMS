@@ -310,7 +310,7 @@
     <Compile Include="Areas\Admin\ViewModels\UserManager\RolesViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserManager\UsersViewModel.cs" />
     <Compile Include="Areas\PageBuilder\PageBuilderAreaRegistration.cs" />
-    <Compile Include="Areas\PageBuilder\Controllers\BuildController.cs" />
+    <Compile Include="Areas\PageBuilder\Controllers\PageController.cs" />
     <Compile Include="Areas\PageBuilder\Controllers\ComponentController.cs" />
     <Compile Include="Areas\PageBuilder\Controllers\SectionController.cs" />
     <Compile Include="Areas\PageBuilder\Controllers\ThemeController.cs" />
@@ -580,7 +580,7 @@
     <Content Include="Areas\Admin\Views\PostCategories\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AnalyticManager\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AnalyticManager\_DisplayChart.cshtml" />
-    <Content Include="Areas\PageBuilder\Views\Build\Index.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Page\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Password.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Account.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Avatar.cshtml" />
