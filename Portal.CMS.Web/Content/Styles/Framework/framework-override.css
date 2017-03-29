@@ -21,12 +21,14 @@ h1
     font-size: 35px;
     letter-spacing: 2.5px;
     margin-bottom: 30px;
+    zoom: 1;
 }
 
 h2
 {
     font-size: 35px;
     margin-bottom: 30px;
+    zoom: 1;
 }
 
 h3
@@ -35,6 +37,7 @@ h3
     font-size: 24px;
     letter-spacing: 1.2px;
     margin-bottom: 30px;
+    zoom: 1;
 }
 
 h4
@@ -42,11 +45,13 @@ h4
     font-weight: bold;
     font-size: 22px;
     margin-bottom: 15px;
+    zoom: 1;
 }
 
 p, a, code
 {
     font-size: 18px;
+    zoom: 1;
 }
 
 input
