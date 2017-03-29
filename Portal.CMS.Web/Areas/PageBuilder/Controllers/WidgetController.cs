@@ -1,10 +1,10 @@
 ﻿using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Architecture.Helpers;
-using Portal.CMS.Web.Areas.Builder.ViewModels.Widget;
+using Portal.CMS.Web.Areas.PageBuilder.ViewModels.Widget;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace Portal.CMS.Web.Areas.Builder.Controllers
+namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 {
     public class WidgetController : Controller
     {

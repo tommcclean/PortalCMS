@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Portal.CMS.Web.Areas.Builder.ViewModels.Section
+namespace Portal.CMS.Web.Areas.PageBuilder.ViewModels.Section
 {
     public class CloneViewModel
     {

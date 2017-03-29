@@ -327,7 +327,7 @@
     <Compile Include="Areas\PageBuilder\ViewModels\Section\RestoreViewModel.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Section\MarkupViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\AppDrawerViewModel.cs" />
-    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Areas\PageBuilder\Controllers\ErrorController.cs" />
     <Compile Include="Controllers\CustomController.cs" />
     <Compile Include="ViewModels\Custom\AdvancedViewModel.cs" />
     <Compile Include="ViewModels\Shared\PaginationViewModel.cs" />
@@ -690,13 +690,13 @@
     <Content Include="Areas\PageBuilder\Views\Section\_Clone.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Error\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Error\_Layout.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Error\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\BlogManager\_AppDrawer.cshtml" />

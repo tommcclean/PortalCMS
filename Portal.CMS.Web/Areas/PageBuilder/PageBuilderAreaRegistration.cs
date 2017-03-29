@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Portal.CMS.Web.Areas.Builder
+namespace Portal.CMS.Web.Areas.PageBuilder
 {
     public class PageBuilderAreaRegistration : AreaRegistration
     {

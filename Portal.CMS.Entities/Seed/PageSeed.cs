@@ -28,34 +28,6 @@ namespace Portal.CMS.Entities.Seed
                     new PageAssociation { PageSection = new PageSection { PageSectionBody = "<section id=\"section-4\" class=\"blank height-small background-static\" style=\"background-size: contain;\"><h1 id=\"title-31072016183145-4\">Recent Posts</h1><p id=\"text-31072016183145-4\">Here are the most recent posts on our blog.</p><div id=\"widget-31072016183145-4\" class=\"widget-wrapper post-list-wrapper\" style=\"text-align: left;\"><div class=\"vertical-alignment\"><div class=\"loading-wrapper\" style=\"text-align: center;\"><div style=\"background-color: black; padding: 10px; display: inline-block;\"><img src=\"/Areas/PageBuilder/Content/Images/Sample/loading-graphic.gif\"></div></div></div></div></section>" },},
                 }
             });
-
-            context.Pages.Add(new Page
-            {
-                PageId = 2,
-                PageName = "Server Error",
-                PageController = "Error",
-                PageAction = "Index",
-                DateAdded = DateTime.Now,
-                DateUpdated = DateTime.Now,
-                PageAssociations = new List<PageAssociation>
-                {
-                    new PageAssociation { PageSection = new PageSection { PageSectionBody = "<section id=\"section-5\" class=\"header background-parallax height-tall\"><div class=\"overlay-medium\"></div><div id=\"component-100916160418-5\" class=\"vertical-alignment component-container\"><h1 id=\"title-5\" data-section=\"5\">Server Error</h1><p id=\"subtitle-5\">Sorry but something went wrong. We have logged the problem and will look into it.</p><a id=\"component-1473519891239-5\" onclick=\"history.go(-1);\"  class=\"btn square\" target=\"\">Back</a></div></section>" }, }
-                }
-            });
-
-            context.Pages.Add(new Page
-            {
-                PageId = 3,
-                PageName = "Page Not Found",
-                PageController = "Error",
-                PageAction = "NotFound",
-                DateAdded = DateTime.Now,
-                DateUpdated = DateTime.Now,
-                PageAssociations = new List<PageAssociation>
-                {
-                    new PageAssociation { PageSection = new PageSection { PageSectionBody = "<section id=\"section-6\" class=\"header background-parallax height-tall\"><div class=\"overlay-medium\"></div><div id=\"component-100916160418-6\" class=\"vertical-alignment component-container\"><h1 id=\"title-6\" data-section=\"6\">Page Not Found</h1><p id=\"subtitle-6\">Sorry but the page you just tried to access is not there. You might be able to find it via the Home Page.</p><a id=\"component-1473519891239-6\" href=\"~/\"  class=\"btn square\" target=\"\">Back</a></div></section>" }, }
-                }
-            });
         }
     }
 }

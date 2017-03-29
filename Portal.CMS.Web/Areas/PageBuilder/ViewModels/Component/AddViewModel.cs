@@ -1,7 +1,7 @@
 ﻿using Portal.CMS.Entities.Entities;
 using System.Collections.Generic;
 
-namespace Portal.CMS.Web.Areas.Builder.ViewModels.Component
+namespace Portal.CMS.Web.Areas.PageBuilder.ViewModels.Component
 {
     public class AddViewModel
     {
