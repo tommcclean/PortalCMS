@@ -2,7 +2,6 @@
 using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.Helpers;
-using Portal.CMS.Web.Areas.Builder.ViewModels.Build;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,15 +39,12 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
 
             EvaluateSingleSignOn();
 
-            var model = new CustomViewModel
-            {
-                Page = _pageService.View(UserHelper.UserId, pageId)
-            };
+            var currentPage = _pageService.View(UserHelper.UserId, pageId);
 
-            if (model.Page == null)
+            if (currentPage == null)
                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
-            return View("/Areas/PageBuilder/Views/Build/Index.cshtml", model);
+            return View("/Areas/PageBuilder/Views/Build/Index.cshtml", currentPage);
         }
 
         public ActionResult Analytic(int pageId, string referrer)

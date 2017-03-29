@@ -1,6 +1,6 @@
-﻿@model Portal.CMS.Web.Areas.Builder.ViewModels.Build.CustomViewModel
+﻿@model Portal.CMS.Entities.Entities.Page
 @{
-    ViewBag.Title = Model.Page.PageName;
+    ViewBag.Title = Model.PageName;
     var isAdmin = UserHelper.IsAdmin;
 }
 
@@ -14,14 +14,14 @@
     }
 
     <script type="text/javascript">
-        var dataParams = { "pageId": @Model.Page.PageId, "referrer": "@Request.UrlReferrer", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+        var dataParams = { "pageId": @Model.PageId, "referrer": "@Request.UrlReferrer", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
         $.ajax({data: dataParams,type: 'POST',cache: false,url: '@Url.Action("Analytic", "Build", new { area = "PageBuilder" })',success: function (data) {},});
     </script>
 }
 
 @if (isAdmin)
 {
-    @Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.PageBuilder, contentId = Model.Page.PageId })
+    @Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.PageBuilder, contentId = Model.PageId })
 
     <div class="action-container section-order" style="display: none;">
         <div onclick="SaveOrder();" class="action"><span class="fa fa-check"></span></div>
@@ -31,13 +31,13 @@
     using (Html.BeginForm("EditOrder", "Section", FormMethod.Post, new { @style = "display: none;" }))
     {
         <input id="order-list" name="associationList" />
-        <input id="order-pageId" value="@Model.Page.PageId" name="pageId" />
+        <input id="order-pageId" value="@Model.PageId" name="pageId" />
         <button id="order-submit"></button>
     }
 }
 
 <div id="page-wrapper" class="@(isAdmin ? "admin" : "visitor" )">
-    @foreach (var pageAssociation in Model.Page.PageAssociations.OrderBy(x => x.PageAssociationOrder).ThenBy(x => x.PageAssociationId))
+    @foreach (var pageAssociation in Model.PageAssociations.OrderBy(x => x.PageAssociationOrder).ThenBy(x => x.PageAssociationId))
     {
         if (pageAssociation.PageSection != null)
         {
@@ -48,7 +48,7 @@
         else if (pageAssociation.PagePartial != null)
         {
             <div id="partial-wrapper-@(pageAssociation.PagePartialId)" class="partial-wrapper@(isAdmin ? " admin sortable" : "" )" data-partial="@pageAssociation.PagePartialId" data-association="@pageAssociation.PageAssociationId">
-                @Html.Action(pageAssociation.PagePartial.RouteAction, pageAssociation.PagePartial.RouteController, new { area = pageAssociation.PagePartial.RouteArea, pageId = @Model.Page.PageId })
+                @Html.Action(pageAssociation.PagePartial.RouteAction, pageAssociation.PagePartial.RouteController, new { area = pageAssociation.PagePartial.RouteArea, pageId = @Model.PageId })
             </div>
         }
     }
@@ -56,7 +56,7 @@
 
 @if (isAdmin)
 {
-    @Html.Action("Add", "Section", new { @pageId = Model.Page.PageId, area = "PageBuilder" })
+    @Html.Action("Add", "Section", new { @pageId = Model.PageId, area = "PageBuilder" })
     @Html.Action("Add", "Component", new { area = "PageBuilder" })
     @Html.Action("AppDrawer", "PageManager", new { area = "Admin" })
     @Html.Action("AppDrawer", "ThemeManager", new { area = "Admin" })

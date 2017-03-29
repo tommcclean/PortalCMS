@@ -346,7 +346,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Blog\BlogViewModel.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Section\AddViewModel.cs" />
-    <Compile Include="Areas\PageBuilder\ViewModels\Build\CustomViewModel.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Section\EditSectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
