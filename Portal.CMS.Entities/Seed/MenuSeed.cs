@@ -13,7 +13,7 @@ namespace Portal.CMS.Entities.Seed
                 var menuItems = new List<MenuItem>();
 
                 menuItems.Add(new MenuItem { LinkText = "Home", LinkURL = "/Home/Index", LinkIcon = "fa-home" });
-                menuItems.Add(new MenuItem { LinkText = "Blog", LinkURL = "/Blog/Index", LinkIcon = "fa-book" });
+                menuItems.Add(new MenuItem { LinkText = "Blog", LinkURL = "/Blog/Read/Index", LinkIcon = "fa-book" });
 
                 context.Menus.Add(new MenuSystem { MenuName = "Main Menu", MenuItems = menuItems });
             }

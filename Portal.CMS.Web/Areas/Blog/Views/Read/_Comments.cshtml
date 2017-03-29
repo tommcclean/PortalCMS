@@ -3,7 +3,7 @@
 <div class="comment-item">
     @if (UserHelper.IsLoggedIn)
     {
-        using (Html.BeginForm("Comment", "Blog", FormMethod.Post))
+        using (Html.BeginForm("Comment", "Read", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             @Html.Hidden("postId", Model.PostId)

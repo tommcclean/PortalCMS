@@ -309,6 +309,8 @@
     <Compile Include="Areas\Admin\ViewModels\UserManager\DetailsViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserManager\RolesViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserManager\UsersViewModel.cs" />
+    <Compile Include="Areas\Blog\BlogAreaRegistration.cs" />
+    <Compile Include="Areas\Blog\Controllers\ReadController.cs" />
     <Compile Include="Areas\PageBuilder\PageBuilderAreaRegistration.cs" />
     <Compile Include="Areas\PageBuilder\Controllers\PageController.cs" />
     <Compile Include="Areas\PageBuilder\Controllers\ComponentController.cs" />
@@ -331,7 +333,6 @@
     <Compile Include="ViewModels\Shared\PaginationViewModel.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Theme\ThemeViewModel.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Widget\PostListViewModel.cs" />
-    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Architecture\DependencyResolution\ControllerConvention.cs" />
     <Compile Include="Architecture\DependencyResolution\DefaultRegistry.cs" />
     <Compile Include="Architecture\DependencyResolution\IoC.cs" />
@@ -344,7 +345,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Blog\BlogViewModel.cs" />
+    <Compile Include="Areas\Blog\ViewModels\Read\BlogViewModel.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Section\AddViewModel.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Section\EditSectionViewModel.cs" />
   </ItemGroup>
@@ -536,7 +537,7 @@
     <Content Include="Areas\Admin\Views\MediaManager\_UploadImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Areas\Blog\Views\Read\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\_ViewStart.cshtml" />
@@ -545,7 +546,7 @@
     <Content Include="Areas\Admin\Views\Authentication\_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Blog\_List.cshtml" />
+    <Content Include="Areas\Blog\Views\Read\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\UserManager\_Roles.cshtml" />
@@ -594,8 +595,8 @@
     <Content Include="Areas\PageBuilder\Views\Section\_EditSection.cshtml" />
     <Content Include="Views\Shared\_Analytics.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
-    <Content Include="Views\Blog\_Comments.cshtml" />
-    <Content Include="Views\Blog\_Gallery.cshtml" />
+    <Content Include="Areas\Blog\Views\Read\_Comments.cshtml" />
+    <Content Include="Areas\Blog\Views\Read\_Gallery.cshtml" />
     <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.woff" />
@@ -720,6 +721,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Custom\_AdvancedPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Blog\Views\web.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Areas\Blog\Views\_ViewStart.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

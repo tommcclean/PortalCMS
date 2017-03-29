@@ -3,13 +3,13 @@ using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Posts;
 using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Architecture.Helpers;
-using Portal.CMS.Web.ViewModels.Blog;
+using Portal.CMS.Web.Areas.BlogManager.ViewModels.Read;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace Portal.CMS.Web.Controllers
+namespace Portal.CMS.Web.Areas.BlogManager.Controllers
 {
-    public class BlogController : Controller
+    public class ReadController : Controller
     {
         #region Dependencies
 
@@ -19,7 +19,7 @@ namespace Portal.CMS.Web.Controllers
         readonly IUserService _userService;
         readonly IThemeService _themeService;
 
-        public BlogController(IPostService postService, IPostCommentService postCommentService, IAnalyticsService analyticsService, IUserService userService, IThemeService themeService)
+        public ReadController(IPostService postService, IPostCommentService postCommentService, IAnalyticsService analyticsService, IUserService userService, IThemeService themeService)
         {
             _postService = postService;
             _postCommentService = postCommentService;
@@ -39,7 +39,7 @@ namespace Portal.CMS.Web.Controllers
             };
 
             if (!model.RecentPosts.Any())
-                return RedirectToAction(nameof(Index), "Home");
+                return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
             if (id.HasValue)
                 model.CurrentPost = _postService.Read(UserHelper.UserId, id.Value);
@@ -47,7 +47,7 @@ namespace Portal.CMS.Web.Controllers
                 model.CurrentPost = model.RecentPosts.First();
 
             if (model.CurrentPost == null)
-                return RedirectToAction(nameof(Index), "Home");
+                return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
             model.Author = _userService.GetUser(model.CurrentPost.PostAuthorUserId);
 
@@ -64,7 +64,7 @@ namespace Portal.CMS.Web.Controllers
         {
             _postCommentService.Add(UserHelper.UserId.Value, postId, commentBody);
 
-            return RedirectToAction(nameof(Index), "Blog", new { postId = postId });
+            return RedirectToAction(nameof(Index), "Read", new { postId = postId });
         }
 
         public ActionResult Analytic(int postId, string referrer)
