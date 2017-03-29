@@ -12,9 +12,16 @@
 
         @Html.HiddenFor(x => x.PageAssociationId)
 
-        <div class="alert alert-warning" role="alert">Clone a Section onto another Page to keep your content synced across all relevant pages</div>
+        if (pageList.Any())
+        {
+            <div class="alert alert-warning" role="alert">Clone a Section onto another Page to keep your content synced across all relevant pages</div>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">You can't Clone this Section because you don't have any other pages yet...</div>
+        }
 
-        @Html.ValidationMessage("PageId")
+        @Html.ValidationMessageFor(x => x.PageId)
         <div class="control-group">
             @Html.LabelFor(x => x.PageId)
             @Html.DropDownListFor(m => m.PageId, pageList)
