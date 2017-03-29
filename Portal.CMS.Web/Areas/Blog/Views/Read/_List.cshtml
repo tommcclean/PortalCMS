@@ -9,7 +9,7 @@
 
 @foreach (var post in Model)
 {
-    <a class="col-xs-12" href="@Url.Action("Index", "Blog", new { area = "", id = @post.PostId })">
+    <a class="col-xs-12" href="@Url.Action("Index", "Read", new { area = "Blog", id = @post.PostId })">
         <div class="box article-item float-container" style="@string.Format("background-image: url('{0}'); color: white;", post.BannerImageUrl())">
             <div class="inner">
                 <div class="category-item"><span class="fa fa-tag"></span>@post.PostCategory.PostCategoryName</div>

@@ -1,7 +1,7 @@
 ﻿using Portal.CMS.Entities.Entities;
 using System.Collections.Generic;
 
-namespace Portal.CMS.Web.ViewModels.Custom
+namespace Portal.CMS.Web.Areas.Custom.ViewModels.Example
 {
     public class AdvancedViewModel
     {

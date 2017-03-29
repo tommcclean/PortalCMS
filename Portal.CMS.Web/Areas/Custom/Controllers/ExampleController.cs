@@ -1,18 +1,18 @@
 ﻿using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Architecture.Helpers;
-using Portal.CMS.Web.ViewModels.Custom;
+using Portal.CMS.Web.Areas.Custom.ViewModels.Example;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace Portal.CMS.Web.Controllers
+namespace Portal.CMS.Web.Areas.Custom.Controllers
 {
-    public class CustomController : Controller
+    public class ExampleController : Controller
     {
         #region Dependencies
 
         private readonly IPostService _postService;
 
-        public CustomController(IPostService postService)
+        public ExampleController(IPostService postService)
         {
             _postService = postService;
         }
