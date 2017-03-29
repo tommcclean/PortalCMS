@@ -16,7 +16,7 @@
         <div class="tab-content" style="padding-top: 5px; padding-right: 5px; padding-left: 5px; border: 0; max-height: 74vh;">
             @foreach (var post in Model.PostList)
             {
-                <a class="col-xs-12" href="@Url.Action("Index", "Blog", new { area = "", id = @post.PostId })" style="padding-left: 0; padding-right: 0;">
+                <a class="col-xs-12" href="@Url.Action("Index", "Read", new { area = "Blog", id = @post.PostId })" style="padding-left: 0; padding-right: 0;">
                     <div class="box article-item float-container" style="@string.Format("background-image: url('{0}'); color: white;", post.BannerImageUrl())">
                         <div class="inner">
                             <div class="category-item"><span class="fa fa-tag"></span>@post.PostCategory.PostCategoryName</div>
