@@ -291,6 +291,9 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
                 PageList = _pageService.Get().ToList()
             };
 
+            var currentPage = model.PageList.FirstOrDefault(x => x.PageId == pageAssociation.PageId);
+            model.PageList.Remove(currentPage);
+
             return View("_Clone", model);
         }
 
