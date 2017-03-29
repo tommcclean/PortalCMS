@@ -1,4 +1,9 @@
-﻿section.header-split
+﻿section
+{
+    zoom: 1;
+}
+
+section.header-split
 {
     position: relative;
     background-image: url('/Areas/PageBuilder/Content/Images/Sample/Sample-8.jpg');
