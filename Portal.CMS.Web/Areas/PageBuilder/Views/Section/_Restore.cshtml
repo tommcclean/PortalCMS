@@ -13,7 +13,7 @@
                 data: dataParams,
                 type: 'POST',
                 cache: false,
-                url: '/Builder/Section/RestoreBackup',
+                url: '/PageBuilder/Section/RestoreBackup',
                 success: function (data) {
                     if (data.State === false) {
                         alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload();
@@ -39,7 +39,7 @@
                 data: dataParams,
                 type: 'POST',
                 cache: false,
-                url: '/Builder/Section/DeleteBackup',
+                url: '/PageBuilder/Section/DeleteBackup',
                 success: function (data) {
                     if (data.State === false) {
                         alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload();

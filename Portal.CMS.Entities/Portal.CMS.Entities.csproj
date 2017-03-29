@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201703242023520_AvoidReservedTypeNames.Designer.cs">
       <DependentUpon>201703242023520_AvoidReservedTypeNames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703291711230_UpdateBuilderAreaName.cs" />
+    <Compile Include="Migrations\201703291711230_UpdateBuilderAreaName.Designer.cs">
+      <DependentUpon>201703291711230_UpdateBuilderAreaName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -331,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703242023520_AvoidReservedTypeNames.resx">
       <DependentUpon>201703242023520_AvoidReservedTypeNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703291711230_UpdateBuilderAreaName.resx">
+      <DependentUpon>201703291711230_UpdateBuilderAreaName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

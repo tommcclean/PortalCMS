@@ -10,7 +10,7 @@ namespace Portal.CMS.Web.Architecture.ViewEngines
             {
             "~/Views/{1}/{0}.cscss",
             "~/Views/Shared/{0}.cscss",
-            "~/Areas/Builder/Views/Theme/{0}.cscss"
+            "~/Areas/PageBuilder/Views/Theme/{0}.cscss"
         };
             FileExtensions = new[] { "cscss" };
         }

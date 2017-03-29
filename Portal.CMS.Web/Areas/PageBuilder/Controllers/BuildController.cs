@@ -48,7 +48,7 @@ namespace Portal.CMS.Web.Areas.Builder.Controllers
             if (model.Page == null)
                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
-            return View("/Areas/Builder/Views/Build/Index.cshtml", model);
+            return View("/Areas/PageBuilder/Views/Build/Index.cshtml", model);
         }
 
         public ActionResult Analytic(int pageId, string referrer)

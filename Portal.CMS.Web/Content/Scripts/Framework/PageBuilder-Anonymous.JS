@@ -4,7 +4,7 @@
 
 function InitialiseWidgets() {
     if ($('.post-list-wrapper').length) {
-        $.get("/Builder/Widget/RecentPostList", function (data) {
+        $.get("/PageBuilder/Widget/RecentPostList", function (data) {
             $(".post-list-wrapper").html(data);
         });
     }

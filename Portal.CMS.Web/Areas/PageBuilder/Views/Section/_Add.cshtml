@@ -74,7 +74,7 @@
                 data: dataParams,
                 type: 'POST',
                 cache: false,
-                url: '@Url.Action("AddPartial", "Section", new { area = "Builder" })',
+                url: '@Url.Action("AddPartial", "Section", new { area = "PageBuilder" })',
                 success: function (data)
                 {
                     if (data.State === false)
@@ -108,7 +108,7 @@
                 data: dataParams,
                 type: 'POST',
                 cache: false,
-                url: '@Url.Action("AddPartial", "Section", new { area = "Builder" })',
+                url: '@Url.Action("AddPartial", "Section", new { area = "PageBuilder" })',
                 success: function (data)
                 {
                     if (data.State === false)
@@ -142,7 +142,7 @@
                 data: dataParams,
                 type: 'POST',
                 cache: false,
-                url: '@Url.Action("AddSection", "Section", new { area = "Builder" })',
+                url: '@Url.Action("AddSection", "Section", new { area = "PageBuilder" })',
                 success: function (data)
                 {
                     if (data.State === false)

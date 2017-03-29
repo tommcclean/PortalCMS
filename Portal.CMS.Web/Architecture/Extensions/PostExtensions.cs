@@ -6,7 +6,7 @@ namespace Portal.CMS.Web.Architecture.Extensions
 {
     public static class PostExtensions
     {
-        public const string DEFAULT_IMAGE_PATH = "/Areas/Builder/Content/Images/Sample/Sample-1.jpg";
+        public const string DEFAULT_IMAGE_PATH = "/Areas/PageBuilder/Content/Images/Sample/Sample-1.jpg";
 
         public static string BannerImageUrl(this Post post)
         {

@@ -309,28 +309,28 @@
     <Compile Include="Areas\Admin\ViewModels\UserManager\DetailsViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserManager\RolesViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserManager\UsersViewModel.cs" />
-    <Compile Include="Areas\Builder\BuilderAreaRegistration.cs" />
-    <Compile Include="Areas\Builder\Controllers\BuildController.cs" />
-    <Compile Include="Areas\Builder\Controllers\ComponentController.cs" />
-    <Compile Include="Areas\Builder\Controllers\SectionController.cs" />
-    <Compile Include="Areas\Builder\Controllers\ThemeController.cs" />
-    <Compile Include="Areas\Builder\Controllers\WidgetController.cs" />
+    <Compile Include="Areas\PageBuilder\PageBuilderAreaRegistration.cs" />
+    <Compile Include="Areas\PageBuilder\Controllers\BuildController.cs" />
+    <Compile Include="Areas\PageBuilder\Controllers\ComponentController.cs" />
+    <Compile Include="Areas\PageBuilder\Controllers\SectionController.cs" />
+    <Compile Include="Areas\PageBuilder\Controllers\ThemeController.cs" />
+    <Compile Include="Areas\PageBuilder\Controllers\WidgetController.cs" />
     <Compile Include="Areas\Admin\ViewModels\PageManager\AppDrawerViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Component\AddViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Component\ContainerViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Component\VideoViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Component\ImageViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Section\CloneViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Section\EditPartialViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Section\RestoreViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Section\MarkupViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Component\AddViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Component\ContainerViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Component\VideoViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Component\ImageViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Section\CloneViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Section\EditPartialViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Section\RestoreViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Section\MarkupViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\AppDrawerViewModel.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\CustomController.cs" />
     <Compile Include="ViewModels\Custom\AdvancedViewModel.cs" />
     <Compile Include="ViewModels\Shared\PaginationViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Theme\ThemeViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Widget\PostListViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Theme\ThemeViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Widget\PostListViewModel.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Architecture\DependencyResolution\ControllerConvention.cs" />
     <Compile Include="Architecture\DependencyResolution\DefaultRegistry.cs" />
@@ -345,9 +345,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Blog\BlogViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Section\AddViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Build\CustomViewModel.cs" />
-    <Compile Include="Areas\Builder\ViewModels\Section\EditSectionViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Section\AddViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Build\CustomViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Section\EditSectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Content\Images\icon-pages.png" />
@@ -363,15 +363,15 @@
     <Content Include="Areas\Admin\Content\Images\icon-thememanager.png" />
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\sample-9.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\sample-9.png" />
     <Content Include="Content\Scripts\Framework\PageBuilder-Anonymous.js" />
     <Content Include="Content\Scripts\Administration\ThemeManager-Admin.js" />
-    <Content Include="Areas\Builder\Content\Images\Sample\sample-help.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\sample-rocket.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\texture-lightgray.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\texture-linen.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\texture-notebook.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\texture-office.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\sample-help.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\sample-rocket.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\texture-lightgray.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\texture-linen.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\texture-notebook.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\texture-office.png" />
     <Content Include="Content\Scripts\Administration\MenuBuilder-Admin.js" />
     <Content Include="Content\Scripts\Spectrum\initialise.js" />
     <Content Include="Content\Styles\Animate\animate.min.css" />
@@ -400,31 +400,31 @@
     <Content Include="Content\Scripts\TinyMCE\initialise.js" />
     <Content Include="Content\Scripts\TinyMCE\tinymce.min.js" />
     <Content Include="Content\Styles\Framework\framework-images.css" />
-    <Content Include="Areas\Builder\Content\Images\Sample\icon-1.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\icon-2.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\icon-3.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\icon-4.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\icon-5.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\icon-6.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\loading-graphic.gif" />
-    <Content Include="Areas\Builder\Content\Images\Sample\pattern-1.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\quote-image-left.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\quote-image-right.png" />
-    <Content Include="Areas\Builder\Content\Images\Sample\Sample-1.jpg" />
-    <Content Include="Areas\Builder\Content\Images\Sample\Sample-2.jpg" />
-    <Content Include="Areas\Builder\Content\Images\Sample\Sample-3.jpg" />
-    <Content Include="Areas\Builder\Content\Images\Sample\Sample-4.jpg" />
-    <Content Include="Areas\Builder\Content\Images\Sample\Sample-5.jpg" />
-    <Content Include="Areas\Builder\Content\Images\Sample\Sample-6.jpg" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\icon-1.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\icon-2.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\icon-3.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\icon-4.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\icon-5.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\icon-6.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\loading-graphic.gif" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\pattern-1.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\quote-image-left.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\quote-image-right.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\Sample-1.jpg" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\Sample-2.jpg" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\Sample-3.jpg" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\Sample-4.jpg" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\Sample-5.jpg" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\Sample-6.jpg" />
     <Content Include="Areas\Admin\Content\Images\texture.png" />
     <Content Include="Content\Styles\FancyBox\jquery.fancybox.min.css">
       <DependentUpon>jquery.fancybox.css</DependentUpon>
     </Content>
     <Content Include="Content\Scripts\ImageSelector\imageselector.js" />
-    <Content Include="Areas\Builder\Content\Images\Sample\sample-7.jpg" />
-    <Content Include="Areas\Builder\Content\Images\Sample\Sample-8.jpg" />
-    <Content Include="Areas\Builder\Content\Images\Sample\small-sample-1.jpg" />
-    <Content Include="Areas\Builder\Content\Images\Toolbar\mce-trash.png" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\sample-7.jpg" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\Sample-8.jpg" />
+    <Content Include="Areas\PageBuilder\Content\Images\Sample\small-sample-1.jpg" />
+    <Content Include="Areas\PageBuilder\Content\Images\Toolbar\mce-trash.png" />
     <Content Include="Content\Scripts\Components\component.expand.js" />
     <Content Include="Content\Scripts\Bootstrap\initialise.js" />
     <Content Include="Content\Styles\Framework\framework-boxes.css" />
@@ -573,15 +573,15 @@
     <Content Include="Areas\Admin\Views\PageManager\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PageManager\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\PageManager\_Edit.cshtml" />
-    <Content Include="Areas\Builder\Views\web.config" />
-    <Content Include="Areas\Builder\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Builder\Views\Component\_EditImage.cshtml" />
-    <Content Include="Areas\Builder\Views\Section\_Markup.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\web.config" />
+    <Content Include="Areas\PageBuilder\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Component\_EditImage.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Section\_Markup.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Add.cshtml" />
     <Content Include="Areas\Admin\Views\PostCategories\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AnalyticManager\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AnalyticManager\_DisplayChart.cshtml" />
-    <Content Include="Areas\Builder\Views\Build\Index.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Build\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Password.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Account.cshtml" />
     <Content Include="Areas\Admin\Views\Authentication\_Avatar.cshtml" />
@@ -589,10 +589,10 @@
     <Content Include="Areas\Admin\Views\Authentication\_Bio.cshtml" />
     <Content Include="Areas\Admin\Views\CopyManager\_Copy.cshtml" />
     <Content Include="Areas\Admin\Views\SettingManager\_Setup.cshtml" />
-    <Content Include="Areas\Builder\Views\Widget\_RecentPostList.cshtml" />
-    <Content Include="Areas\Builder\Views\Section\_Add.cshtml" />
-    <Content Include="Areas\Builder\Views\Component\_Add.cshtml" />
-    <Content Include="Areas\Builder\Views\Section\_EditSection.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Widget\_RecentPostList.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Section\_Add.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Component\_Add.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Section\_EditSection.cshtml" />
     <Content Include="Views\Shared\_Analytics.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Blog\_Comments.cshtml" />
@@ -669,7 +669,7 @@
     <Content Include="Content\Fonts\AllerDisplay.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Builder\Views\Theme\Render.cscss" />
+    <Content Include="Areas\PageBuilder\Views\Theme\Render.cscss" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\AnalyticManager\LogEntries.cshtml" />
@@ -687,7 +687,7 @@
     <Content Include="Areas\Admin\Views\AnalyticManager\ReviewException.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Builder\Views\Section\_Clone.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Section\_Clone.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Error\Index.cshtml" />
@@ -705,19 +705,19 @@
     <Content Include="Areas\Admin\Views\Dashboard\_QuickAccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Builder\Views\Component\_EditContainer.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Component\_EditContainer.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Builder\Views\Component\_EditVideo.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Component\_EditVideo.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Builder\Views\Section\_Restore.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Section\_Restore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Custom\_SimplePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Builder\Views\Section\_EditPartial.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Section\_EditPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Custom\_AdvancedPartial.cshtml" />

@@ -61,7 +61,7 @@
             data: dataParams,
             type: 'POST',
             cache: false,
-            url: '@Url.Action("Delete", "Section", new { area = "Builder" })',
+            url: '@Url.Action("Delete", "Section", new { area = "PageBuilder" })',
             success: function (data) {
                 if (data.State === false)
                 {

@@ -44,7 +44,7 @@ function SaveOrder() {
 }
 function ApplySectionControls() {
     $('.section-wrapper .action-container').remove();
-    var sectionButtonsTemplate = '<div class="action-container absolute"><a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/Builder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a><a class="action launch-modal hidden-xs" data-title="Backup or Restore a Section" href="/Builder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a><a class="action edit-section launch-modal" data-title="Clone Section" href="/Builder/Section/Clone?pageAssociationId=<associationId>"><span class="fa fa-clone"></span></a><a class="action edit-section launch-modal" data-title="Edit Section" href="/Builder/Section/EditSection?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a></div>';
+    var sectionButtonsTemplate = '<div class="action-container absolute"><a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/PageBuilder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a><a class="action launch-modal hidden-xs" data-title="Backup or Restore a Section" href="/PageBuilder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a><a class="action edit-section launch-modal" data-title="Clone Section" href="/PageBuilder/Section/Clone?pageAssociationId=<associationId>"><span class="fa fa-clone"></span></a><a class="action edit-section launch-modal" data-title="Edit Section" href="/PageBuilder/Section/EditSection?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a></div>';
     $(".section-wrapper").each(function (index) {
         var sectionId = $(this).attr("data-section");
         var associationId = $(this).attr("data-association");
@@ -56,7 +56,7 @@ function ApplySectionControls() {
     });
 
     $('.partial-wrapper .action-container').remove();
-    var partialButtonsTemplate = '<div class="action-container absolute"><a class="action edit-partial launch-modal" data-title="Edit Partial" href="/Builder/Section/EditPartial?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a></div>';
+    var partialButtonsTemplate = '<div class="action-container absolute"><a class="action edit-partial launch-modal" data-title="Edit Partial" href="/PageBuilder/Section/EditPartial?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a></div>';
     $(".partial-wrapper").each(function (index) {
         var associationId = $(this).attr("data-association");
         partialButtonsMarkup = partialButtonsTemplate.replace(/<associationId>/g, associationId);
@@ -85,7 +85,7 @@ function InitialiseEditor() {
         var elementId = event.target.id;
         var sectionId = ExtractSectionId($(this));
 
-        var href = "/Builder/Component/EditContainer?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
+        var href = "/PageBuilder/Component/EditContainer?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=div";
         showModalEditor("Edit Container Properties", href);
     });
     $(".admin .section-wrapper section .image").click(function (event) {
@@ -97,7 +97,7 @@ function InitialiseEditor() {
             elementType = "img";
         }
 
-        var href = "/Builder/Component/EditImage?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=" + elementType;
+        var href = "/PageBuilder/Component/EditImage?pageSectionId=" + sectionId + "&elementId=" + elementId + "&elementType=" + elementType;
         showModalEditor("Edit Image Properties", href);
     });
     $(".admin .section-wrapper section .widget-wrapper.video").click(function (event) {
@@ -106,7 +106,7 @@ function InitialiseEditor() {
 
         var videoPlayerElementId = $(this).find('iframe').first().attr("id");
 
-        var href = "/Builder/Component/EditVideo?pageSectionId=" + sectionId + "&widgetWrapperelementId=" + elementId + "&videoPlayerElementId=" + videoPlayerElementId;
+        var href = "/PageBuilder/Component/EditVideo?pageSectionId=" + sectionId + "&widgetWrapperelementId=" + elementId + "&videoPlayerElementId=" + videoPlayerElementId;
         showModalEditor("Edit Video Properties", href);
     });
 
@@ -165,7 +165,7 @@ function EditInlineText(editorId, editorContent) {
         data: dataParams,
         type: 'POST',
         cache: false,
-        url: '/Builder/Component/Edit',
+        url: '/PageBuilder/Component/Edit',
         success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
 }
@@ -185,7 +185,7 @@ function EditInlineFreestyle(editorId, editorContent) {
         data: dataParams,
         type: 'POST',
         cache: false,
-        url: '/Builder/Component/EditFreestyle',
+        url: '/PageBuilder/Component/EditFreestyle',
         success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
 }
@@ -201,7 +201,7 @@ function EditInlineAnchor(editorId, editorContent) {
         data: dataParams,
         type: 'POST',
         cache: false,
-        url: '/Builder/Component/Link',
+        url: '/PageBuilder/Component/Link',
         success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
 }
@@ -265,7 +265,7 @@ function DropComponent(control, event, ui) {
         data: dataParams,
         type: 'POST',
         cache: false,
-        url: '/Builder/Component/Add',
+        url: '/PageBuilder/Component/Add',
         success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
 }
@@ -281,7 +281,7 @@ function DeleteInlineComponent(editorId) {
         data: dataParams,
         type: 'POST',
         cache: false,
-        url: '/Builder/Component/Delete',
+        url: '/PageBuilder/Component/Delete',
         success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
 }
