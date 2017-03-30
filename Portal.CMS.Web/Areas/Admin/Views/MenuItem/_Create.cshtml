@@ -162,7 +162,7 @@
 
                         @foreach (var post in Model.PostList)
                         {
-                            var target = string.Format("/Blog/Index/postId={0}", post.PostId);
+                            var target = string.Format("/Blog/Read/Index/postId={0}", post.PostId);
                             <div class="list list-simple" data-link-target="@target" data-link-title="@post.PostTitle" data-link-roles="@string.Join(",", post.PostRoles.Select(x => x.Role.RoleName))">
                                 <h4>@post.PostTitle</h4>
                                 <p>@target</p>
