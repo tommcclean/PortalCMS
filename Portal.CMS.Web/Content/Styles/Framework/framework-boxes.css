@@ -107,22 +107,27 @@
     padding-top: 5px;
 }
 
-    .admin-container .admin-item
-    {
-        display: inline-block;
-        padding: 10px;
-        color: #9395A0;
-        text-transform: uppercase;
-        font-weight: bold;
-        font-size: 14px;
-        text-align: center;
-        margin-bottom: 0;
-    }
+.overlay .admin-container
+{
+    margin-left: 5%;
+}
 
-        .admin-container .admin-item .fa
-        {
-            margin-right: 15px;
-        }
+.admin-container .admin-item
+{
+    display: inline-block;
+    padding: 10px;
+    color: #9395A0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+    .admin-container .admin-item .fa
+    {
+        margin-right: 15px;
+    }
 
 .dark .admin-container .admin-item
 {

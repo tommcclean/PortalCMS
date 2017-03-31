@@ -52,11 +52,13 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-6 col-lg-4">
-                <div class="box box-tall">
+                <div class="box box-tall dark" style="background-image: url('/Areas/Custom/Content/Images/security-image.jpg')">
                     <div class="box-title">Account Security</div>
 
-                    <div class="admin-container x1">
-                        <a href="@Url.Action("Password", "Authentication", new { area = "Admin" })" class="admin-item launch-modal" data-title="Edit Bio"><span class="fa fa-lock"></span>Edit Password</a>
+                    <div class="overlay overlay-medium">
+                        <div class="admin-container x1">
+                            <a href="@Url.Action("Password", "Authentication", new { area = "Admin" })" class="admin-item launch-modal" data-title="Edit Password"><span class="fa fa-lock"></span>Edit Password</a>
+                        </div>
                     </div>
                 </div>
             </div>
