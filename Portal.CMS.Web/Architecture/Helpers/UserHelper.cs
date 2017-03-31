@@ -118,5 +118,18 @@ namespace Portal.CMS.Web.Architecture.Helpers
                 return userAccount.EmailAddress;
             }
         }
+
+        public static string Bio
+        {
+            get
+            {
+                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+
+                if (string.IsNullOrWhiteSpace(userAccount.Bio))
+                    return "You haven't written a Bio yet...";
+
+                return userAccount.Bio;
+            }
+        }
     }
 }

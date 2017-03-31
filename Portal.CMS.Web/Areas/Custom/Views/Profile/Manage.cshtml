@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "";
+}
+
+<style>
+    .manage-profile h1
+    {
+        font-weight: normal;
+        font-size: 28px !important;
+        color: #636363;
+    }
+
+    .manage-profile h4
+    {
+        color: #636363;
+    }
+
+    .manage-profile p
+    {
+        color: #9b9b9b;
+        font-size: 20px !important;
+    }
+</style>
+
+<section class="blank manage-profile height-small background-static background-colour" style="background-color: #FFFFFF;">
+    <div class="container wide-container">
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-lg-4">
+                <div class="box box-tall">
+                    <div class="box-title">My Profile</div>
+
+                    <img class="avatar" alt="My Avatar" src="@UserHelper.AvatarImagePath" style="margin-bottom: 10px;" />
+                    <h4>@UserHelper.FullName</h4>
+                    <p>@UserHelper.EmailAddress</p>
+
+                    <div class="admin-container x2">
+                        <a href="@Url.Action("Avatar", "Authentication", new { area = "Admin" })" class="admin-item launch-modal" data-title="Edit Avatar"><span class="fa fa-picture-o"></span>Edit Avatar</a>
+                        <a href="@Url.Action("Account", "Authentication", new { area = "Admin" })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Edit Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-4">
+                <div class="box box-tall">
+                    <div class="box-title">Bio</div>
+
+                    <h1>About Me</h1>
+                    <p>@UserHelper.Bio</p>
+
+                    <div class="admin-container x1">
+                        <a href="@Url.Action("Bio", "Authentication", new { area = "Admin" })" class="admin-item launch-modal" data-title="Edit Bio"><span class="fa fa-book"></span>Edit Bio</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-4">
+                <div class="box box-tall">
+                    <div class="box-title">Account Security</div>
+
+                    <div class="admin-container x1">
+                        <a href="@Url.Action("Password", "Authentication", new { area = "Admin" })" class="admin-item launch-modal" data-title="Edit Bio"><span class="fa fa-lock"></span>Edit Password</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

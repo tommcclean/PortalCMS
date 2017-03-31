@@ -2,17 +2,17 @@
 
 namespace Portal.CMS.Web.Areas.Custom
 {
-    public class CustomAreaRegistration : AreaRegistration 
+    public class CustomAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "Custom";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Custom_default",

@@ -23,7 +23,7 @@
 
     .box.box-tall
     {
-        min-height: 300px;
+        min-height: 330px;
     }
 
 .tab-pane .box
@@ -116,6 +116,7 @@
         font-weight: bold;
         font-size: 14px;
         text-align: center;
+        margin-bottom: 0;
     }
 
         .admin-container .admin-item .fa

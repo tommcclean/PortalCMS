@@ -14,6 +14,11 @@ body
     font-family: 'Emeric';
 }
 
+.container.wide-container
+{
+    min-width: 80%;
+}
+
 h1
 {
     text-transform: uppercase;

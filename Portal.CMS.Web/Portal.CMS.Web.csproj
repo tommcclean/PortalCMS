@@ -311,6 +311,7 @@
     <Compile Include="Areas\Admin\ViewModels\UserManager\UsersViewModel.cs" />
     <Compile Include="Areas\Blog\BlogAreaRegistration.cs" />
     <Compile Include="Areas\Blog\Controllers\ReadController.cs" />
+    <Compile Include="Areas\Custom\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Custom\CustomAreaRegistration.cs" />
     <Compile Include="Areas\PageBuilder\PageBuilderAreaRegistration.cs" />
     <Compile Include="Areas\PageBuilder\Controllers\PageController.cs" />
@@ -732,7 +733,9 @@
   <ItemGroup>
     <Content Include="Areas\Blog\Views\_ViewStart.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Areas\Custom\Views\Profile\Manage.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
