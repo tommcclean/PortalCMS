@@ -1,9 +1,9 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Authentication.AvatarViewModel
+﻿@model Portal.CMS.Web.Areas.Profile.ViewModels.Manage.AvatarViewModel
 @{
     Layout = "";
 }
 
-@using (Html.BeginForm("Avatar", "Authentication", FormMethod.Post, new { id = "uploadImageForm", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("EditAvatar", "Manage", FormMethod.Post, new { id = "uploadImageForm", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

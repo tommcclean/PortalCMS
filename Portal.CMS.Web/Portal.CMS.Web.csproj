@@ -273,12 +273,13 @@
     <Compile Include="Areas\Admin\ViewModels\AnalyticManager\LogEntriesViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\AnalyticManager\ReviewExceptionViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\LoginViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Authentication\AccountViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Authentication\BioViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Authentication\PasswordViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Authentication\RegisterViewModel.cs" />
-    <Compile Include="Areas\Admin\ViewModels\Authentication\AvatarViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Authentication\ResetViewModel.cs" />
+    <Compile Include="Areas\Profile\Controllers\ManageController.cs" />
+    <Compile Include="Areas\Profile\ViewModels\Manage\AccountViewModel.cs" />
+    <Compile Include="Areas\Profile\ViewModels\Manage\BioViewModel.cs" />
+    <Compile Include="Areas\Profile\ViewModels\Manage\PasswordViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Authentication\RegisterViewModel.cs" />
+    <Compile Include="Areas\Profile\ViewModels\Manage\AvatarViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\BlogManager\AppDrawerViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\CopyManager\CopyViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\CopyManager\CreateViewModel.cs" />
@@ -584,11 +585,10 @@
     <Content Include="Areas\Admin\Views\AnalyticManager\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AnalyticManager\_DisplayChart.cshtml" />
     <Content Include="Areas\PageBuilder\Views\Page\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Authentication\_Password.cshtml" />
-    <Content Include="Areas\Admin\Views\Authentication\_Account.cshtml" />
-    <Content Include="Areas\Admin\Views\Authentication\_Avatar.cshtml" />
-    <Content Include="Areas\Admin\Views\Authentication\Reset.cshtml" />
-    <Content Include="Areas\Admin\Views\Authentication\_Bio.cshtml" />
+    <Content Include="Areas\Profile\Views\Manage\_Password.cshtml" />
+    <Content Include="Areas\Profile\Views\Manage\_Account.cshtml" />
+    <Content Include="Areas\Profile\Views\Manage\_Avatar.cshtml" />
+    <Content Include="Areas\Profile\Views\Manage\_Bio.cshtml" />
     <Content Include="Areas\Admin\Views\CopyManager\_Copy.cshtml" />
     <Content Include="Areas\Admin\Views\SettingManager\_Setup.cshtml" />
     <Content Include="Areas\Blog\Views\Widgets\_TilesWidget.cshtml" />
@@ -742,6 +742,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Profile\Views\Widgets\_SignIn.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Authentication\Reset.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

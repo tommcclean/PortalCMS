@@ -1,9 +1,9 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Authentication.AccountViewModel
+﻿@model Portal.CMS.Web.Areas.Profile.ViewModels.Manage.AccountViewModel
 @{
     Layout = "";
 }
 
-@using (Html.BeginForm("Account", "Authentication", FormMethod.Post))
+@using (Html.BeginForm("EditAccount", "Manage", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

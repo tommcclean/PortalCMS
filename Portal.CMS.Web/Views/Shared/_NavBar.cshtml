@@ -40,10 +40,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span>@UserHelper.FullName <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Account", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Update Account"><span class="fa fa-user"></span>Update Account</a></li>
-                            <li><a href="@Url.Action("Bio", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Update Bio"><span class="fa fa-book"></span>Update Bio</a></li>
-                            <li><a href="@Url.Action("Avatar", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Upload Avatar"><span class="fa fa-picture-o"></span>Upload Avatar</a></li>
-                            <li><a href="@Url.Action("Password", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Change Password"><span class="fa fa-key"></span>Change Password</a></li>
+                            <li><a href="@Url.Action("EditAccount", "Manage", new { area="Profile"})" class="launch-modal" data-title="Update Account"><span class="fa fa-user"></span>Update Account</a></li>
+                            <li><a href="@Url.Action("EditBio", "Manage", new { area="Profile"})" class="launch-modal" data-title="Update Bio"><span class="fa fa-book"></span>Update Bio</a></li>
+                            <li><a href="@Url.Action("EditAvatar", "Manage", new { area="Profile"})" class="launch-modal" data-title="Upload Avatar"><span class="fa fa-picture-o"></span>Upload Avatar</a></li>
+                            <li><a href="@Url.Action("EditPassword", "Manage", new { area="Profile"})" class="launch-modal" data-title="Change Password"><span class="fa fa-key"></span>Change Password</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="@Url.Action("Logout", "Authentication", new { area="Admin"})"><span class="fa fa-lock"></span>Logout</a></li>
                         </ul>

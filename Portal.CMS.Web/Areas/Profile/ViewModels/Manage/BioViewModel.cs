@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Portal.CMS.Web.Areas.Admin.ViewModels.Authentication
+namespace Portal.CMS.Web.Areas.Profile.ViewModels.Manage
 {
     public class BioViewModel
     {

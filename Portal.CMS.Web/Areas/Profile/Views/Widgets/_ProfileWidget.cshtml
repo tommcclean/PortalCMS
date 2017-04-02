@@ -31,8 +31,8 @@
         <p>@UserHelper.EmailAddress</p>
 
         <div class="admin-container x2">
-            <a href="@Url.Action("Avatar", "Authentication", new { area = "Admin" })" class="admin-item launch-modal" data-title="Edit Avatar"><span class="fa fa-picture-o"></span>Edit Avatar</a>
-            <a href="@Url.Action("Account", "Authentication", new { area = "Admin" })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Edit Details</a>
+            <a href="@Url.Action("EditAvatar", "Manage", new { area = "Profile" })" c class="admin-item launch-modal" data-title="Edit Avatar"><span class="fa fa-picture-o"></span>Edit Avatar</a>
+            <a href="@Url.Action("EditAccount", "Manage", new { area = "Profile" })" c class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Edit Details</a>
         </div>
     }
     else

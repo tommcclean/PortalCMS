@@ -1,9 +1,9 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Authentication.BioViewModel
+﻿@model Portal.CMS.Web.Areas.Profile.ViewModels.Manage.BioViewModel
 @{
     Layout = "";
 }
 
-@using (Html.BeginForm("Bio", "Authentication", FormMethod.Post))
+@using (Html.BeginForm("EditBio", "Manage", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
