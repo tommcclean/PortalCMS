@@ -47,7 +47,7 @@ namespace Portal.CMS.Web.Areas.Forms.Controllers
                 <p>Subject: {model.Subject}</p>
                 <p>Message: {model.Message}</p>");
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
     }
 }
