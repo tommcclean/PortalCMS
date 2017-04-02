@@ -1,9 +1,9 @@
 ﻿using Portal.CMS.Entities.Entities;
 using System.Collections.Generic;
 
-namespace Portal.CMS.Web.Areas.PageBuilder.ViewModels.Widget
+namespace Portal.CMS.Web.Areas.Blog.ViewModels.Widgets
 {
-    public class PostListViewModel
+    public class PostsWidgetViewModel
     {
         public List<Post> PostList { get; set; }
     }

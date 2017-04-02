@@ -3,9 +3,21 @@
 });
 
 function InitialiseWidgets() {
-    if ($('.post-list-wrapper').length) {
-        $.get("/PageBuilder/Widget/RecentPostList", function (data) {
-            $(".post-list-wrapper").html(data);
-        });
-    }
+    $(".widget-wrapper").each(function () {
+        var self = $(this);
+
+        $(self).empty();
+        $(self).append('<div class="spinner"></div>');
+
+        var areaName = $(self).attr("data-area");
+        var controllerName = $(self).attr("data-controller");
+        var actionName = $(self).attr("data-action");
+
+        if (areaName !== undefined) {
+            $.get("/" + areaName + "/" + controllerName + "/" + actionName, function (data) {
+                $(self).empty();
+                $(self).append(data);
+            });
+        }
+    });
 }

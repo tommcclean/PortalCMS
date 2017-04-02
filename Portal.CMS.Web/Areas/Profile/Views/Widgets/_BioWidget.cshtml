@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "";
+}
+
+<div class="box box-tall">
+    <div class="box-title">Bio</div>
+    @if (UserHelper.IsLoggedIn)
+    {
+        <h1>About Me</h1>
+        <p>@UserHelper.Bio</p>
+
+        <div class="admin-container x1">
+            <a href="@Url.Action("Bio", "Authentication", new { area = "Admin" })" class="admin-item launch-modal" data-title="Edit Bio"><span class="fa fa-book"></span>Edit Bio</a>
+        </div>
+    }
+    else
+    {
+        Html.RenderPartial("_SignIn");
+    }
+</div>

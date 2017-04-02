@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "";
+}
+
+<img src="~/Areas/Profile/Content/Images/admin-icon.png" alt="Padlock Icon" style="margin-bottom: 10px;" />
+<h4>Please Login</h4>
+<p>Please Register an account or Login to access this Feature...</p>
+
+<div class="admin-container x2">
+    <a href="@Url.Action("Login", "Authentication", new { area = "Admin" })" class="admin-item launch-modal" data-title="Login"><span class="fa fa-lock"></span>Login</a>
+    <a href="@Url.Action("Register", "Authentication", new { area = "Admin" })" class="admin-item launch-modal" data-title="Register"><span class="fa fa-user"></span>Register</a>
+</div>

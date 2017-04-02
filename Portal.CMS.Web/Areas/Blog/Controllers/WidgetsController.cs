@@ -1,32 +1,37 @@
 ﻿using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Architecture.Helpers;
-using Portal.CMS.Web.Areas.PageBuilder.ViewModels.Widget;
+using Portal.CMS.Web.Areas.Blog.ViewModels.Widgets;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
+namespace Portal.CMS.Web.Areas.BlogManager.Controllers
 {
-    public class WidgetController : Controller
+    public class WidgetsController : Controller
     {
         #region Dependencies
 
         readonly IPostService _postService;
 
-        public WidgetController(IPostService postService)
+        public WidgetsController(IPostService postService)
         {
             _postService = postService;
         }
 
         #endregion Dependencies
 
-        public ActionResult RecentPostList()
+        public ActionResult Index()
         {
-            var model = new PostListViewModel
+            return View();
+        }
+
+        public ActionResult TilesWidget()
+        {
+            var model = new PostsWidgetViewModel
             {
                 PostList = _postService.Read(UserHelper.UserId, string.Empty).Take(6).ToList()
             };
 
-            return View("_RecentPostList", model);
+            return View("_TilesWidget", model);
         }
     }
 }

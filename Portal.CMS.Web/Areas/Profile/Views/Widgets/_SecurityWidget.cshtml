@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "";
+}
+
+@if (UserHelper.IsLoggedIn)
+{
+    <div class="box box-tall dark" style="background-image: url('/Areas/Profile/Content/Images/security-image.jpg')">
+        <div class="box-title">Account Security</div>
+
+        <div class="overlay overlay-medium">
+            <div class="admin-container x1">
+                <a href="@Url.Action("Password", "Authentication", new { area = "Admin" })" class="admin-item launch-modal" data-title="Edit Password"><span class="fa fa-lock"></span>Edit Password</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="box box-tall">
+        <div class="box-title">Account Security</div>
+        @Html.Partial("_SignIn")
+    </div>
+}
