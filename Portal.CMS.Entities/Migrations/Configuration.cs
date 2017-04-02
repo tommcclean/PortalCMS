@@ -15,7 +15,6 @@ namespace Portal.CMS.Entities.Migrations
             ThemeSeed.Seed(context);
             RoleSeed.Seed(context);
             SettingSeed.Seed(context);
-            MenuSeed.Seed(context);
             PostCategorySeed.Seed(context);
             PageSectionTypeSeed.Seed(context);
             PageComponentTypeSeed.Seed(context);
@@ -23,7 +22,7 @@ namespace Portal.CMS.Entities.Migrations
             CopySeed.Seed(context);
 
             context.SaveChanges();
-
+            MenuSeed.Seed(context);
             PageSeed.Seed(context);
             PostSeed.Seed(context);
         }
