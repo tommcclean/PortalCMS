@@ -736,10 +736,7 @@
   <ItemGroup>
     <Content Include="Areas\Profile\Views\web.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\PageBuilder\ViewModels\Widget\" />
-    <Folder Include="Areas\PageBuilder\Views\Widget\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Areas\Profile\Views\Widgets\_BioWidget.cshtml" />
   </ItemGroup>
