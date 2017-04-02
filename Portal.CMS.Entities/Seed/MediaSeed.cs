@@ -19,6 +19,12 @@ namespace Portal.CMS.Entities.Seed
                 images.Add(new Image { ImagePath = "/Areas/PageBuilder/Content/Images/Sample/icon-4.png", ImageCategory = ImageCategory.Icon });
                 images.Add(new Image { ImagePath = "/Areas/PageBuilder/Content/Images/Sample/icon-5.png", ImageCategory = ImageCategory.Icon });
                 images.Add(new Image { ImagePath = "/Areas/PageBuilder/Content/Images/Sample/icon-6.png", ImageCategory = ImageCategory.Icon });
+                images.Add(new Image { ImagePath = "/Areas/PageBuilder/Content/Images/Sample/icon-7.png", ImageCategory = ImageCategory.Icon });
+                images.Add(new Image { ImagePath = "/Areas/PageBuilder/Content/Images/Sample/icon-8.png", ImageCategory = ImageCategory.Icon });
+                images.Add(new Image { ImagePath = "/Areas/PageBuilder/Content/Images/Sample/icon-9.png", ImageCategory = ImageCategory.Icon });
+                images.Add(new Image { ImagePath = "/Areas/PageBuilder/Content/Images/Sample/icon-10.png", ImageCategory = ImageCategory.Icon });
+                images.Add(new Image { ImagePath = "/Areas/PageBuilder/Content/Images/Sample/icon-11.png", ImageCategory = ImageCategory.Icon });
+                images.Add(new Image { ImagePath = "/Areas/PageBuilder/Content/Images/Sample/icon-12.png", ImageCategory = ImageCategory.Icon });
 
                 images.Add(new Image { ImagePath = "/Areas/PageBuilder/Content/Images/Sample/pattern-1.png", ImageCategory = ImageCategory.Texture });
                 images.Add(new Image { ImagePath = "/Areas/PageBuilder/Content/Images/Sample/texture-linen.png", ImageCategory = ImageCategory.Texture });
