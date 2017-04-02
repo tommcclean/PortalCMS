@@ -3,70 +3,70 @@
     zoom: 1;
 }
 
-section.header-split
-{
-    position: relative;
-    background-image: url('/Areas/PageBuilder/Content/Images/Sample/Sample-8.jpg');
-    overflow: hidden;
-}
-
-    section.header-split .details-wrapper
+    section.header-split
     {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 50%;
-        padding-top: 6%;
-        padding-bottom: 3.5%;
-        background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
+        position: relative;
+        background-image: url('/Areas/PageBuilder/Content/Images/Sample/Sample-8.jpg');
+        overflow: hidden;
     }
 
-        section.header-split .details-wrapper .details
+        section.header-split .details-wrapper
         {
-            float: right;
-            width: 64%;
-            left: auto;
-            padding-right: 30px;
-            padding-left: 30px;
-            padding-bottom: 70px;
-            text-align: right;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 50%;
+            padding-top: 6%;
+            padding-bottom: 3.5%;
+            background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
         }
 
-    section.header-split h1
-    {
-        color: white;
-        margin-bottom: 45px;
-    }
+            section.header-split .details-wrapper .details
+            {
+                float: right;
+                width: 64%;
+                left: auto;
+                padding-right: 30px;
+                padding-left: 30px;
+                padding-bottom: 70px;
+                text-align: right;
+            }
 
-    section.header-split p
-    {
-        color: #E5E5E5;
-        margin-bottom: 30px;
-    }
+        section.header-split h1
+        {
+            color: white;
+            margin-bottom: 45px;
+        }
 
-    section.header-split a
-    {
-        color: #E5E5E5;
-        text-decoration: underline;
-    }
+        section.header-split p
+        {
+            color: #E5E5E5;
+            margin-bottom: 30px;
+        }
 
-    section.header-split input.upload
-    {
-        border: 0;
-    }
+        section.header-split a
+        {
+            color: #E5E5E5;
+            text-decoration: underline;
+        }
 
-    section.header-split input, section.header-split textarea
-    {
-        min-width: 275px;
-        padding: 10px;
-        width: 90%;
-        margin-bottom: 20px;
-        background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
-        background-color: transparent;
-        border: 1px solid white;
-        color: white;
-    }
+        section.header-split input.upload
+        {
+            border: 0;
+        }
+
+        section.header-split input, section.header-split textarea
+        {
+            min-width: 275px;
+            padding: 10px;
+            width: 90%;
+            margin-bottom: 20px;
+            background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+        }
 
     section.background-colour
     {
@@ -280,69 +280,6 @@ section.gallery
     }
 }
 
-section.contact
-{
-    color: white;
-    text-align: center;
-    background-image: url('/Areas/PageBuilder/Content/Images/Sample/sample-7.jpg');
-    min-height: 600px;
-}
-
-    section.contact .inner
-    {
-        position: relative;
-        z-index: 2;
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
-
-    section.contact input
-    {
-        width: 100%;
-        background-color: transparent;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        border: 1px solid white;
-        font-size: 20px;
-        padding: 10px 10px 10px 10px;
-    }
-
-    section.contact textarea
-    {
-        width: 100%;
-        background-color: transparent;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        border: 1px solid white;
-        font-size: 20px;
-        padding: 10px 10px 10px 10px;
-        height: 230px;
-        min-height: initial;
-    }
-
-    section.contact button
-    {
-        width: 100%;
-        background-color: transparent;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        border: 1px solid white;
-        color: white;
-        font-size: 16px;
-        padding: 15px 10px 15px 10px;
-        text-transform: uppercase;
-        -moz-transition: all 0.3s ease-in-out;
-        -o-transition: all 0.3s ease-in-out;
-        -webkit-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
-    }
-
-        section.contact button:hover
-        {
-            background-color: white;
-            color: black;
-        }
-
 section.block
 {
     text-align: center;
@@ -412,4 +349,53 @@ section.block
     {
         top: 0;
         bottom: 0;
+    }
+
+.form-contact input
+{
+    width: 100%;
+    background-color: transparent;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid silver;
+    font-size: 20px;
+    padding: 10px 10px 10px 10px;
+    color: white;
+}
+
+.form-contact textarea
+{
+    width: 100%;
+    background-color: transparent;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid silver;
+    font-size: 20px;
+    padding: 10px 10px 10px 10px;
+    height: 230px;
+    min-height: initial;
+    color: white;
+}
+
+.form-contact button
+{
+    width: 100%;
+    background-color: transparent;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid silver;
+    color: white;
+    font-size: 16px;
+    padding: 15px 10px 15px 10px;
+    text-transform: uppercase;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+    .form-contact button:hover
+    {
+        background-color: white;
+        color: black;
     }

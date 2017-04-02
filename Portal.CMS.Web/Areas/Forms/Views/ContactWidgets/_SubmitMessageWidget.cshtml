@@ -1,0 +1,23 @@
+﻿@model Portal.CMS.Web.Areas.Forms.ViewModels.ContactWidgets.SubmitMessageViewModel
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("SubmitMessageWidget", "ContactWidgets", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row form-contact">
+        <div class="col-xs-12 col-sm-6">
+            @Html.TextBoxFor(x => x.Name, new { placeholder = "Name (Required)" })<br />
+            @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address (Required)" })<br />
+            @Html.TextBoxFor(x => x.Subject, new { placeholder = "Subject" })<br />
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            @Html.TextAreaFor(x => x.Message, new { placeholder = "Message (Required)" })
+        </div>
+        <div class="col-xs-12">
+            <button>Send Message</button>
+        </div>
+    </div>
+}

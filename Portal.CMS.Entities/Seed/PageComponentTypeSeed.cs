@@ -58,6 +58,7 @@ namespace Portal.CMS.Entities.Seed
             newComponents.Add(new PageComponentType { PageComponentTypeName = "My Profile Tile", PageComponentTypeCategory = PageComponentTypeCategory.Widget, PageComponentBody = "<div id=\"widget-<componentStamp>-<sectionId>\" class=\"widget-wrapper\" data-area=\"Profile\" data-controller=\"Widgets\" data-action=\"ProfileWidget\"></div>" });
             newComponents.Add(new PageComponentType { PageComponentTypeName = "My Bio Tile", PageComponentTypeCategory = PageComponentTypeCategory.Widget, PageComponentBody = "<div id=\"widget-<componentStamp>-<sectionId>\" class=\"widget-wrapper\" data-area=\"Profile\" data-controller=\"Widgets\" data-action=\"BioWidget\"></div>" });
             newComponents.Add(new PageComponentType { PageComponentTypeName = "Account Security Tile", PageComponentTypeCategory = PageComponentTypeCategory.Widget, PageComponentBody = "<div id=\"widget-<componentStamp>-<sectionId>\" class=\"widget-wrapper\" data-area=\"Profile\" data-controller=\"Widgets\" data-action=\"SecurityWidget\"></div>" });
+            newComponents.Add(new PageComponentType { PageComponentTypeName = "Contact Form", PageComponentTypeCategory = PageComponentTypeCategory.Widget, PageComponentBody = "<div id=\"widget-<componentStamp>-<sectionId>\" class=\"widget-wrapper\" data-area=\"Forms\" data-controller=\"ContactWidgets\" data-action=\"SubmitMessageWidget\"></div>" });
 
             foreach (var component in newComponents)
             {

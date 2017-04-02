@@ -3,8 +3,6 @@ using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
@@ -57,23 +55,6 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
                 _analyticService.LogPageView(page.PageArea, page.PageController, page.PageAction, referrer, Request.UserHostAddress, Request.Browser.Browser, null);
 
             return Json(new { State = true });
-        }
-
-        [HttpPost]
-        public ActionResult Contact(int pageSectionId, string yourName, string yourEmail, string yourSubject, string yourMessage)
-        {
-            var pageSection = _sectionService.Get(pageSectionId);
-
-            EmailHelper.Send(
-                _userService.Get(new List<string> { nameof(Admin) }).Select(x => x.EmailAddress).ToList(),
-                "Contact Submitted",
-                $@"<p>Hello, we thought you might like to know that a visitor to your website has submitted a message, here are the details we recorded.</p>
-                <p>Name: {yourName}</p>
-                <p>Email Address: {yourEmail}</p>
-                <p>Subject: {yourSubject}</p>
-                <p>Message: {yourMessage}</p>");
-
-            return RedirectToAction(nameof(Index), new { pageId = pageSection.PageAssociations.First().PageId });
         }
 
         private void EvaluateSingleSignOn()

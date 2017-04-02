@@ -7,6 +7,11 @@
     clear: both;
 }
 
+.overlay
+{
+    padding: 30px;
+}
+
 .overlay-dark
 {
     z-index: 1;

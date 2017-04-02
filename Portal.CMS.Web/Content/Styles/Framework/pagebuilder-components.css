@@ -11,6 +11,12 @@
     cursor: pointer;
 }
 
+.component-container
+{
+    position: relative;
+    z-index: 2;
+}
+
 .admin .row
 {
     border-color: brown;
