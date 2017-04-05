@@ -463,6 +463,7 @@
     <Content Include="Content\Styles\FancyBox\fancybox_sprite.png" />
     <Content Include="Content\Styles\FancyBox\jquery.fancybox-thumbs.css" />
     <Content Include="Content\Styles\FancyBox\jquery.fancybox.css" />
+    <Content Include="Content\Styles\Hover\hover-min.css" />
     <Content Include="Content\Styles\JQuery\jquery-ui.min.css" />
     <Content Include="Content\Styles\Spectrum\spectrum.css" />
     <Content Include="Global.asax" />
