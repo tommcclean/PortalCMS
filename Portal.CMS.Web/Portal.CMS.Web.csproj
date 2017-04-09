@@ -386,6 +386,9 @@
     <Content Include="Areas\PageBuilder\Content\Images\Sample\texture-office.png" />
     <Content Include="Content\Scripts\Administration\MenuBuilder-Admin.js" />
     <Content Include="Content\Scripts\Spectrum\initialise.js" />
+    <Content Include="Content\Styles\Administration\AppDrawers\component-preview.css" />
+    <Content Include="Content\Styles\Administration\AppDrawers\section-preview.css" />
+    <Content Include="Content\Styles\Administration\AppDrawers\widget-preview.css" />
     <Content Include="Content\Styles\Animate\animate.min.css" />
     <Content Include="Content\Styles\Framework\pagebuilder-components.css" />
     <Content Include="Content\Styles\Framework\pagebuilder-sections.css" />
@@ -446,7 +449,7 @@
     <Content Include="Content\Styles\Administration\administration-panel.css" />
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox-thumbs.js" />
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox.js" />
-    <Content Include="Content\Styles\Administration\app-drawers.css" />
+    <Content Include="Content\Styles\Administration\AppDrawers\app-drawers.css" />
     <Content Include="Content\Styles\FontAwesome\fontawesome-iconpicker.min.css" />
     <Content Include="Content\Styles\FontAwesome\font-awesome.min.css" />
     <Content Include="Content\Styles\Fonts\fontawesome-webfont.svg" />

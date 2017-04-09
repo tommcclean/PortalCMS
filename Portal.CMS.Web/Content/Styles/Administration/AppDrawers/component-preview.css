@@ -1,0 +1,74 @@
+﻿.panel-overlay .panel-inner .component-preview
+{
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+    .panel-overlay .panel-inner .component-preview.border
+    {
+        padding: 10px 0 10px 0;
+        margin: 10px 0 10px 0;
+        border-bottom: 1px dashed silver;
+        min-height: 70px;
+    }
+
+/* Overrides for Displaying in the App Drawer */
+.panel-overlay .component-preview .btn.square
+{
+    color: black;
+    border-color: black;
+    font-size: 16px;
+}
+
+.panel-overlay .panel-inner .component-preview .component-container
+{
+    background-color: #E0E0E0;
+    min-height: 40px;
+}
+
+.panel-overlay .panel-inner .component-preview .carousel .component-container
+{
+    background-color: transparent;
+    min-height: 40px;
+}
+
+/* Prevent Elements Inside Component Containers From Acting Inside App Drawer */
+.panel-overlay .panel-inner .component-preview .freestyle *, .panel-overlay .panel-inner .component-preview .component-expand *, .component-preview .icon-text *, .component-preview .carousel-inner, .component-preview iframe
+{
+    pointer-events: none;
+}
+
+/* Manage UI When Dragging a Component onto the Page */
+.panel-overlay .panel-inner .component-preview .component-container.ui-draggable-dragging
+{
+    height: 50px;
+    width: 300px;
+    background-image: url('/Areas/Admin/Content/Images/block_black_light.png');
+}
+
+.ui-draggable-dragging
+{
+    display: block;
+    min-width: 100px;
+    min-height: 50px;
+    max-width: 400px;
+    max-height: 250px;
+    padding: 5px;
+    transform: scale(0.5);
+    border-radius: 5px;
+    color: white;
+    background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
+    text-align: center;
+}
+
+.ui-accordion-content-active
+{
+    height: auto !important;
+}
+
+.ui-accordion .ui-accordion-header
+{
+    margin-bottom: 10px !important;
+}
