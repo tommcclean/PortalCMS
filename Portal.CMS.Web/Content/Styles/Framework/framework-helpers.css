@@ -9,39 +9,27 @@
 
 .overlay
 {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     padding: 30px;
 }
 
 .overlay-dark
 {
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     background-image: url('/Areas/Admin/Content/Images/block_black_dark.png');
 }
 
 .overlay-light
 {
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     background-image: url('/Areas/Admin/Content/Images/block_black_light.png');
 }
 
 .overlay-medium
 {
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     background-image: url('/Areas/Admin/Content/Images/block_black_medium.png');
 }
 
@@ -99,6 +87,11 @@
 .margin-none
 {
     margin: 0;
+}
+
+.padding-none
+{
+    padding: 0;
 }
 
 @media (max-width: 767px)

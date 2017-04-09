@@ -3,7 +3,7 @@
 @if (Model != null)
 {
     <div class="col-xs-12 col-md-6 col-lg-4">
-        <div class="box box-tall article-item dark" style="@string.Format("background-image: url('{0}'); color: white;", Model.BannerImageUrl())">
+        <div class="box article-item dark" style="min-height: 330px; @string.Format("background-image: url('{0}'); color: white;", Model.BannerImageUrl())">
             <div class="box-title">Latest Post</div>
             <div class="inner">
                 <div class="category-item">@Model.PostCategory.PostCategoryName</div>
@@ -16,7 +16,7 @@
                     <a href="@Url.Action("Index", "BlogManager")" class="admin-item" data-title="Manage Posts"><span class="fa fa-th-list"></span>More</a>
                 </div>
             </div>
-            <div class="overlay-medium"></div>
+            <div class="overlay overlay-medium"></div>
         </div>
     </div>
 }
