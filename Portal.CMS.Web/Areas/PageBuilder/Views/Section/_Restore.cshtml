@@ -27,6 +27,10 @@
                     InitialiseWidgets();
                     InitialiseDroppables();
 
+                    $('html, body').animate({
+                        scrollTop: $('#section-@Model.PageSectionId').offset().top - 20
+                    }, 0);
+
                     $('#section-@Model.PageSectionId').animateIn('pulse');
                 }
             });
