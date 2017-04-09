@@ -1,0 +1,33 @@
+﻿.action-container
+{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+}
+
+.action
+{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    margin: 2px;
+    background-color: black;
+    border: 2px dashed #191919;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    -moz-transition: border, background-color 0.2s ease-out;
+    -o-transition: border, background-color 0.2s ease-out;
+    -webkit-transition: border, background-color 0.2s ease-out;
+    transition: border, background-color 0.2s ease-out;
+}
+
+.action-container .action:hover
+{
+    color: white;
+    background-color: #191919;
+    border: 2px dashed #424242;
+}

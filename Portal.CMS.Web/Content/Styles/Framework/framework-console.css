@@ -1,0 +1,19 @@
+﻿.console-title
+{
+    background-color: #5D5A58;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    letter-spacing: 1px;
+}
+
+.console
+{
+    min-height: 400px;
+    max-height: 500px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    overflow-y: scroll;
+    letter-spacing: 1px;
+}

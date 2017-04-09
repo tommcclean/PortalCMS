@@ -386,10 +386,13 @@
     <Content Include="Areas\PageBuilder\Content\Images\Sample\texture-office.png" />
     <Content Include="Content\Scripts\Administration\MenuBuilder-Admin.js" />
     <Content Include="Content\Scripts\Spectrum\initialise.js" />
+    <Content Include="Content\Styles\Administration\action-container.css" />
     <Content Include="Content\Styles\Administration\AppDrawers\component-preview.css" />
     <Content Include="Content\Styles\Administration\AppDrawers\section-preview.css" />
     <Content Include="Content\Styles\Administration\AppDrawers\widget-preview.css" />
     <Content Include="Content\Styles\Animate\animate.min.css" />
+    <Content Include="Content\Styles\Framework\framework-console.css" />
+    <Content Include="Content\Styles\Framework\framework-spinners.css" />
     <Content Include="Content\Styles\Framework\pagebuilder-components.css" />
     <Content Include="Content\Styles\Framework\pagebuilder-sections.css" />
     <Content Include="Content\Scripts\FontAwesome\fontawesome-iconpicker.min.js" />
