@@ -758,7 +758,9 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Authentication\Reset.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Areas\Blog\Views\Widgets\_RetroWidget.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Forms\Views\ContactWidgets\_SubmitMessageWidget.cshtml" />
   </ItemGroup>

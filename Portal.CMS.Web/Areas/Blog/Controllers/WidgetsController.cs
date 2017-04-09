@@ -33,5 +33,15 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
 
             return View("_TilesWidget", model);
         }
+
+        public ActionResult RetroWidget()
+        {
+            var model = new PostsWidgetViewModel
+            {
+                PostList = _postService.Read(UserHelper.UserId, string.Empty).Take(6).ToList()
+            };
+
+            return View("_RetroWidget", model);
+        }
     }
 }

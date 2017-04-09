@@ -1,0 +1,40 @@
+﻿@model Portal.CMS.Web.Areas.Blog.ViewModels.Widgets.PostsWidgetViewModel
+@{
+    Layout = "";
+}
+
+<style>
+    .post-list-wrapper.retro
+    {
+        text-align: left;
+    }
+
+        .post-list-wrapper.retro p
+        {
+            min-height: 160px;
+            height: 160px;
+            max-height: 160px;
+            margin: 0;
+        }
+
+        .post-list-wrapper.retro img
+        {
+            width: 100%;
+            height: 160px;
+            margin-bottom: 10px;
+        }
+</style>
+
+<div class="container-fluid post-list-wrapper retro">
+    <div class="row">
+        @foreach (var post in Model.PostList)
+        {
+            <div class="col-xs-12 col-sm-6 col-lg-3">
+                <img src="@post.BannerImageUrl()" />
+                <h4>@post.PostTitle</h4>
+                <p>@post.PostDescription</p>
+                <a href="@Url.Action("Index", "Read", new { area = "Blog" })" class="btn margin-none">Read Post</a>
+            </div>
+        }
+    </div>
+</div>

@@ -358,3 +358,8 @@ a.category-item:hover
     overflow-y: scroll;
     letter-spacing: 1px;
 }
+
+.margin-none
+{
+    margin: 0;
+}
