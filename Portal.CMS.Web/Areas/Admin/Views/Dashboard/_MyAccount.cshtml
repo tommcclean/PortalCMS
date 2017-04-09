@@ -13,9 +13,9 @@
         </div>
 
         <div class="admin-container x3">
-            <a href="@Url.Action("Avatar", "Authentication")" class="admin-item launch-modal" data-title="Change Avatar"><span class="fa fa-picture-o"></span>Avatar</a>
-            <a href="@Url.Action("Details", "UserManager", new { userId = UserHelper.UserId })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Details</a>
-            <a href="@Url.Action("Roles", "UserManager", new { userId = UserHelper.UserId })" class="admin-item launch-modal" data-title="Edit Roles"><span class="fa fa-building"></span>Roles</a>
+            <a href="@Url.Action("EditAvatar", "Manage", new { area = "Profile" })" class="admin-item launch-modal" data-title="Change Avatar"><span class="fa fa-picture-o"></span>Avatar</a>
+            <a href="@Url.Action("EditAccount", "Manage", new { area = "Profile", userId = UserHelper.UserId })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Details</a>
+            <a href="@Url.Action("Roles", "UserManager", new { area = "Admin", userId = UserHelper.UserId })" class="admin-item launch-modal" data-title="Edit Roles"><span class="fa fa-building"></span>Roles</a>
         </div>
     </div>
 </div>

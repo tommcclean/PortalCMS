@@ -36,11 +36,6 @@
         box-shadow: 1px 1px 50px #ABABAD;
     }
 
-.box.high
-{
-    min-height: 540px;
-}
-
 .box .inner
 {
     position: absolute;
