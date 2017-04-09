@@ -229,12 +229,6 @@ section.quote
         padding-top: 20px;
         padding-bottom: 20px;
     }
-
-        section.quote .vertical-alignment
-        {
-            top: 0;
-            height: auto;
-        }
 }
 
 section.gallery
@@ -399,3 +393,25 @@ section.block
         background-color: white;
         color: black;
     }
+
+section.header-carousel .carousel
+{
+    max-height: 65vh;
+}
+
+section.header-carousel .carousel-inner
+{
+    max-height: 65vh;
+}
+
+    section.header-carousel .carousel-inner .item
+    {
+        height: 65vh;
+    }
+
+section.header-carousel .carousel .item .component-container
+{
+    top: 50%;
+    bottom: auto;
+    padding: 0;
+}

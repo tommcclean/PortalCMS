@@ -189,17 +189,6 @@ a.category-item:hover
         margin-right: 0;
     }
 
-    .vertical-alignment, section .vertical-alignment
-    {
-        position: relative;
-        -moz-transform: translateY(0%);
-        -ms-transform: translateY(0%);
-        -o-transform: translateY(0%);
-        -webkit-transform: translateY(0%);
-        transform: translateY(0%);
-        top: 0;
-    }
-
     .action-container.wide .action
     {
         text-align: center;

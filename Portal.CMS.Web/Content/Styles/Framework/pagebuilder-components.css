@@ -128,18 +128,6 @@ section .vertical-alignment
 
 @media (max-width: 767px)
 {
-    section .vertical-alignment
-    {
-        position: relative;
-        -moz-transform: translateY(0%);
-        -ms-transform: translateY(0%);
-        -o-transform: translateY(0%);
-        -webkit-transform: translateY(0%);
-        transform: translateY(0%);
-        padding-top: 5vh;
-        padding-bottom: 5vh;
-    }
-
     .action-container.wide .action
     {
         text-align: center;
@@ -250,6 +238,13 @@ section .vertical-alignment
         min-height: 280px;
     }
 
+    .image.image-block
+    {
+        width: 100%;
+        margin: 0;
+        height: 65vh;
+    }
+
 .admin .image
 {
     cursor: pointer;
@@ -322,7 +317,6 @@ section .vertical-alignment
 .carousel
 {
     max-height: 100vh;
-    min-height: 260px;
 }
 
     .carousel .item .component-container
