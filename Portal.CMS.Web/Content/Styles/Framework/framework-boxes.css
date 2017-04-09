@@ -26,39 +26,13 @@
         min-height: 330px;
     }
 
-.tab-pane .box
-{
-    box-shadow: 1px 1px 30px #C5C5C9;
-}
-
-    .tab-pane .box:hover
+    .box img.avatar
     {
-        box-shadow: 1px 1px 50px #ABABAD;
+        height: 130px;
+        width: 130px;
+        border-radius: 50%;
+        margin-left: 10px;
     }
-
-.box .inner
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 20px;
-    z-index: 10;
-}
-
-.box .row img
-{
-    width: 100%;
-}
-
-.box img.avatar
-{
-    height: 130px;
-    width: 130px;
-    border-radius: 50%;
-    margin-left: 10px;
-}
 
 .box-title
 {
@@ -102,27 +76,22 @@
     padding-top: 5px;
 }
 
-.overlay .admin-container
-{
-    margin-left: 5%;
-}
-
-.admin-container .admin-item
-{
-    display: inline-block;
-    padding: 10px;
-    color: #9395A0;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 0;
-}
-
-    .admin-container .admin-item .fa
+    .admin-container .admin-item
     {
-        margin-right: 15px;
+        display: inline-block;
+        padding: 10px;
+        color: #9395A0;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 0;
     }
+
+        .admin-container .admin-item .fa
+        {
+            margin-right: 15px;
+        }
 
 .dark .admin-container .admin-item
 {
