@@ -1,0 +1,82 @@
+﻿@font-face
+{
+    font-family: 'Emeric';
+    src: url('../../Fonts/Emeric.ttf') format('truetype');
+}
+
+body
+{
+    font-family: 'Emeric';
+}
+
+h1
+{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 35px;
+    letter-spacing: 2.5px;
+    margin-bottom: 30px;
+    zoom: 1;
+}
+
+h2
+{
+    font-size: 35px;
+    margin-bottom: 30px;
+    zoom: 1;
+}
+
+h3
+{
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 1.2px;
+    margin-bottom: 30px;
+    zoom: 1;
+}
+
+h4
+{
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 15px;
+    zoom: 1;
+}
+
+p, a, code
+{
+    font-size: 18px;
+    zoom: 1;
+}
+
+.dark h1, .dark h2, .dark h3, .dark h4, .dark p
+{
+    color: white;
+}
+
+.fa
+{
+    margin-right: 10px;
+}
+
+.action .fa, .admin-item .fa, .action .fa, .confirmation-popover .fa
+{
+    margin: 0;
+}
+
+.btn
+{
+    font-size: 18px;
+}
+
+code
+{
+    display: block;
+    text-align: left;
+    padding: 10px;
+}
+
+.alert-link
+{
+    font-size: 14px;
+}

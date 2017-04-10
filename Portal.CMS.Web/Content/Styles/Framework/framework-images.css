@@ -4,12 +4,6 @@
     margin-right: 20px;
 }
 
-.image-container
-{
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
 .x2 img.thumbnail
 {
     max-width: calc((100% - 45px) / 2);

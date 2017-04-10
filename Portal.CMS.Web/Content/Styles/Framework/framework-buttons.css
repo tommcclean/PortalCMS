@@ -1,0 +1,44 @@
+﻿.button-group
+{
+    text-align: center;
+}
+
+.btn
+{
+    background-color: #CECECE;
+    color: black;
+    padding: 10px 20px 10px 20px;
+    margin: 10px 5px 20px 5px;
+}
+
+    .btn.primary
+    {
+        background-color: #337AB7;
+        color: white;
+    }
+
+    .btn.delete
+    {
+        background-color: red;
+        color: white;
+    }
+
+    .btn.square
+    {
+        border-radius: 3px;
+        background-color: transparent;
+        border: 1px solid white;
+        color: white;
+        text-transform: uppercase;
+        text-decoration: none;
+        -moz-transition: color, background-color 0.2s ease-in;
+        -o-transition: color, background-color 0.2s ease-in;
+        -webkit-transition: color, background-color 0.2s ease-in;
+        transition: color, background-color 0.2s ease-in;
+    }
+
+        .btn.square:hover
+        {
+            background-color: white;
+            color: black;
+        }

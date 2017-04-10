@@ -3,27 +3,16 @@
     margin-bottom: 10px;
 }
 
-    .control-group:after
-    {
-        visibility: hidden;
-        display: block;
-        font-size: 0;
-        content: " ";
-        clear: both;
-    }
-
     .control-group label, .control-group input, .control-group select
     {
         float: left;
-        font-weight: normal;
         border: 1px solid #ccc;
     }
 
     .control-group label
     {
         width: 110px;
-        padding: 0 10px 0 10px;
-        line-height: 43px;
+        padding: 12px 10px 11px 10px;
         background-color: #eee;
         text-align: center;
         border-top-left-radius: 5px;
@@ -93,147 +82,27 @@
     line-height: 45px;
 }
 
-    .slim-field input
-    {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 10px;
-    }
-
-div.iconpicker-popover input
-{
-    float: none;
-    width: 100%;
-    border: 1px solid #ccc;
-}
-
-select[multiple="multiple"]
+.slim-field input
 {
     width: 100%;
-    height: 200px;
-    margin-bottom: 20px;
-}
-
-.button-group
-{
-    text-align: center;
-    margin-top: 10px;
-}
-
-.btn
-{
-    background-color: #CECECE;
-    color: black;
-    padding: 10px 20px 10px 20px;
-    margin: 10px 5px 20px 5px;
-}
-
-    .btn.primary
-    {
-        background-color: #337AB7;
-        color: white;
-    }
-
-    .btn.delete
-    {
-        background-color: red;
-        color: white;
-    }
-
-    .btn.square
-    {
-        border-radius: 3px;
-        background-color: transparent;
-        border: 1px solid white;
-        color: white;
-        text-transform: uppercase;
-        text-decoration: none;
-        -moz-transition: color, background-color 0.2s ease-in;
-        -o-transition: color, background-color 0.2s ease-in;
-        -webkit-transition: color, background-color 0.2s ease-in;
-        transition: color, background-color 0.2s ease-in;
-    }
-
-        .btn.square:hover
-        {
-            background-color: white;
-            color: black;
-        }
-
-.navbar-nav a
-{
-    font-size: 14px;
-    -moz-transition: all 0.15s ease-in;
-    -o-transition: all 0.15s ease-in;
-    -webkit-transition: all 0.15s ease-in;
-    transition: all 0.15s ease-in;
-    cursor: pointer;
-}
-
-.navbar-nav > li > a.btn
-{
-    padding: 5px 10px 5px 10px;
-    margin: 8px 8px 8px 0px;
-    background-color: #191919;
-    border: 1px solid #2B2B2B;
-}
-
-    .navbar-nav > li > a.btn:hover
-    {
-        background-color: #2B2B2B;
-    }
-
-[readonly]
-{
-    cursor: not-allowed;
+    padding: 8px;
+    margin-bottom: 10px;
 }
 
 input, textarea, select
 {
     padding: 5px 10px 5px 10px;
+    outline: none;
 }
+
+    select[multiple="multiple"]
+    {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+    }
 
 textarea
 {
     height: 125px;
 }
-
-.table-data span.value
-{
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 40px;
-    color: white;
-}
-
-.table-data
-{
-    margin: 0px;
-    margin-top: 5px;
-}
-
-    .table-data a
-    {
-        font-size: 13px;
-    }
-
-    .table-data .header div
-    {
-        padding: 8px 10px 7px 10px;
-        background-color: #1C1C1E;
-        border-left: 1px solid white;
-        color: white;
-    }
-
-    .table-data .record div
-    {
-        padding: 8px 10px 7px 10px;
-        background-color: #F2F2F2;
-        border-left: 1px solid white;
-    }
-
-    .table-data .record:nth-child(2n+1) div
-    {
-        background-color: #EAEAEA;
-    }

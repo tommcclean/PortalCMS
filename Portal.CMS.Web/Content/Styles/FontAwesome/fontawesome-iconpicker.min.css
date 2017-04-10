@@ -352,3 +352,10 @@
 {
     cursor: pointer;
 }
+
+.iconpicker-popover input
+{
+    float: none;
+    width: 100%;
+    border: 1px solid #ccc;
+}

@@ -1,4 +1,4 @@
-﻿.float-container:after
+﻿.float-container:after, .control-group:after
 {
     visibility: hidden;
     display: block;
@@ -84,14 +84,35 @@
     margin-bottom: 20px;
 }
 
+[readonly]
+{
+    cursor: not-allowed;
+}
+
 .margin-none
 {
     margin: 0;
 }
 
+.margin-bottom
+{
+    margin-bottom: 15px;
+}
+
 .padding-none
 {
     padding: 0;
+}
+
+.padding-sides
+{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.click-through
+{
+    pointer-events: none;
 }
 
 @media (max-width: 767px)

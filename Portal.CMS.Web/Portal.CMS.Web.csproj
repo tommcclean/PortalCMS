@@ -391,8 +391,13 @@
     <Content Include="Content\Styles\Administration\AppDrawers\section-preview.css" />
     <Content Include="Content\Styles\Administration\AppDrawers\widget-preview.css" />
     <Content Include="Content\Styles\Animate\animate.min.css" />
+    <Content Include="Content\Styles\Framework\framework-buttons.css" />
     <Content Include="Content\Styles\Framework\framework-console.css" />
+    <Content Include="Content\Styles\Framework\framework-nav.css" />
+    <Content Include="Content\Styles\Framework\framework-posts.css" />
     <Content Include="Content\Styles\Framework\framework-spinners.css" />
+    <Content Include="Content\Styles\Framework\framework-tables.css" />
+    <Content Include="Content\Styles\Framework\framework-text.css" />
     <Content Include="Content\Styles\Framework\pagebuilder-components.css" />
     <Content Include="Content\Styles\Framework\pagebuilder-sections.css" />
     <Content Include="Content\Scripts\FontAwesome\fontawesome-iconpicker.min.js" />

@@ -1,6 +1,6 @@
 ﻿@model Portal.CMS.Entities.Entities.Post
 
-<div class="row image-container x3">
+<div class="row padding-sides x3">
     @if (!Model.PostImages.Any(x => x.PostImageType == PostImageType.Gallery))
     {
         @Html.Action("Get", "CopyManager", new { area = "Admin", copyName = "No Gallery Message" })

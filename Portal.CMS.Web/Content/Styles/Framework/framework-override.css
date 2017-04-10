@@ -1,99 +1,11 @@
-﻿@font-face
+﻿.container.container-wide
 {
-    font-family: 'Emeric';
-    src: url('../../Fonts/Emeric.ttf') format('truetype');
+    min-width: 80%;
 }
 
 .animated
 {
     animation-duration: 0.75s !important;
-}
-
-body
-{
-    font-family: 'Emeric';
-}
-
-.container.container-wide
-{
-    min-width: 80%;
-}
-
-h1
-{
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 35px;
-    letter-spacing: 2.5px;
-    margin-bottom: 30px;
-    zoom: 1;
-}
-
-h2
-{
-    font-size: 35px;
-    margin-bottom: 30px;
-    zoom: 1;
-}
-
-h3
-{
-    font-weight: bold;
-    font-size: 24px;
-    letter-spacing: 1.2px;
-    margin-bottom: 30px;
-    zoom: 1;
-}
-
-h4
-{
-    font-weight: bold;
-    font-size: 22px;
-    margin-bottom: 15px;
-    zoom: 1;
-}
-
-p, a, code
-{
-    font-size: 18px;
-    zoom: 1;
-}
-
-input
-{
-    outline: none;
-}
-
-.fa
-{
-    margin-right: 10px;
-}
-
-.action .fa, .admin-item .fa, .action .fa, .confirmation-popover .fa
-{
-    margin: 0;
-}
-
-.btn
-{
-    font-size: 18px;
-}
-
-.dark h1, .dark h2, .dark h3, .dark h4, .dark p
-{
-    color: white;
-}
-
-code
-{
-    display: block;
-    text-align: left;
-    padding: 10px;
-}
-
-.alert-link
-{
-    font-size: 14px;
 }
 
 .modal .footer
@@ -163,11 +75,6 @@ ul.pagination
 .sp-container .sp-palette-disabled.sp-initial-disabled
 {
     display: none;
-}
-
-.click-through
-{
-    pointer-events: none;
 }
 
 @media (min-width: 768px)
