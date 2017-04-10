@@ -219,7 +219,7 @@ function bindModalEditor() {
                         showModalEditor("Setup Portal CMS", "/Admin/SettingManager/Setup");
                     }
                     else if (data === "Blog") {
-                        window.location.href = "/Blog";
+                        window.location.href = "/Blog/Read/Index";
                     }
                     else {
                         setModalEditorContent(data);
