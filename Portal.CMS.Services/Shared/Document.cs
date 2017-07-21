@@ -140,14 +140,6 @@ namespace Portal.CMS.Services.Shared
             element.Remove();
         }
 
-        public static string ReplaceTokens(string htmlBody, int pageSectionId)
-        {
-            htmlBody = htmlBody.Replace("<componentStamp>", DateTime.Now.ToString("ddMMyyHHmmss"));
-            htmlBody = htmlBody.Replace("<sectionId>", pageSectionId.ToString());
-
-            return htmlBody;
-        }
-
         public static string ReplaceTokens(string htmlBody, int pageSectionId, string componentStamp)
         {
             htmlBody = htmlBody.Replace("<componentStamp>", componentStamp);

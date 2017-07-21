@@ -9,8 +9,6 @@ namespace Portal.CMS.Services.Posts
     public interface IPostCommentService
     {
         void Add(int userId, int postId, string commentBody);
-
-        IEnumerable<PostComment> Get();
     }
 
     public class PostCommentService : IPostCommentService
@@ -39,13 +37,6 @@ namespace Portal.CMS.Services.Posts
             _context.PostComments.Add(comment);
 
             _context.SaveChanges();
-        }
-
-        public IEnumerable<PostComment> Get()
-        {
-            var comments = _context.PostComments.OrderBy(x => x.DateAdded);
-
-            return comments;
         }
     }
 }

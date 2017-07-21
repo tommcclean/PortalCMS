@@ -10,17 +10,7 @@ namespace Portal.CMS.Services.Menu
     {
         IEnumerable<MenuSystem> Get();
 
-        MenuSystem Get(int menuId);
-
-        MenuSystem Get(string menuName);
-
         List<MenuItem> View(int? userId, string menuName);
-
-        int Create(string menuName);
-
-        void Edit(int menuId, string menuName);
-
-        void Delete(int menuId);
     }
 
     public class MenuService : IMenuService
@@ -47,20 +37,6 @@ namespace Portal.CMS.Services.Menu
             return results;
         }
 
-        public MenuSystem Get(int menuId)
-        {
-            var menu = _context.Menus.SingleOrDefault(x => x.MenuId == menuId);
-
-            return menu;
-        }
-
-        public MenuSystem Get(string menuName)
-        {
-            var menu = _context.Menus.FirstOrDefault(x => x.MenuName == menuName);
-
-            return menu;
-        }
-
         public List<MenuItem> View(int? userId, string menuName)
         {
             var menu = _context.Menus.FirstOrDefault(x => x.MenuName == menuName);
@@ -82,44 +58,6 @@ namespace Portal.CMS.Services.Menu
             }
 
             return menuItemList;
-        }
-
-        public int Create(string menuName)
-        {
-            var newMenu = new MenuSystem
-            {
-                MenuName = menuName
-            };
-
-            _context.Menus.Add(newMenu);
-
-            _context.SaveChanges();
-
-            return newMenu.MenuId;
-        }
-
-        public void Edit(int menuId, string menuName)
-        {
-            var menu = _context.Menus.SingleOrDefault(x => x.MenuId == menuId);
-
-            if (menu == null)
-                return;
-
-            menu.MenuName = menuName;
-
-            _context.SaveChanges();
-        }
-
-        public void Delete(int menuId)
-        {
-            var menu = _context.Menus.SingleOrDefault(x => x.MenuId == menuId);
-
-            if (menu == null)
-                return;
-
-            _context.Menus.Remove(menu);
-
-            _context.SaveChanges();
         }
     }
 }
