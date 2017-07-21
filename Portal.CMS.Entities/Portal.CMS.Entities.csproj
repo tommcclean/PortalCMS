@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201703291711230_UpdateBuilderAreaName.Designer.cs">
       <DependentUpon>201703291711230_UpdateBuilderAreaName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707211220449_StripWebsiteAddressFromUploadedContent.cs" />
+    <Compile Include="Migrations\201707211220449_StripWebsiteAddressFromUploadedContent.Designer.cs">
+      <DependentUpon>201707211220449_StripWebsiteAddressFromUploadedContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -338,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703291711230_UpdateBuilderAreaName.resx">
       <DependentUpon>201703291711230_UpdateBuilderAreaName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707211220449_StripWebsiteAddressFromUploadedContent.resx">
+      <DependentUpon>201707211220449_StripWebsiteAddressFromUploadedContent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
