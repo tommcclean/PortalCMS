@@ -91,6 +91,7 @@
         bottom: 0;
         padding: 20px;
         z-index: 10;
+        text-align: left;
     }
 
         .article-item .inner p
