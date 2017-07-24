@@ -23,6 +23,7 @@
         <li role="presentation" class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab">General</a></li>
         <li role="presentation" class=""><a href="#tab-email" aria-controls="tab-email" role="tab" data-toggle="tab">Email</a></li>
         <li role="presentation" class=""><a href="#tab-analytics" aria-controls="tab-analytics" role="tab" data-toggle="tab">Analytics</a></li>
+        <li role="presentation" class=""><a href="#tab-cdn" aria-controls="tab-cdn" role="tab" data-toggle="tab">CDN</a></li>
     </ul>
 
     <div class="tab-content">
@@ -70,6 +71,16 @@
             <div class="control-group">
                 @Html.LabelFor(x => x.GoogleAnalyticsId)
                 @Html.TextBoxFor(x => x.GoogleAnalyticsId)
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-cdn">
+            <h4>Content Delivery Network</h4>
+            <p>Portal CMS can utilise a Content Delivery Network that is setup to cache the content of your website. When configured Portal CMS will load Stylesheets, Scripts and Uploaded Fonts and Images from the CDN.</p>
+            <br />
+            <div class="alert alert-warning" role="alert">Please enter your CDN Address below. For example: cdn.portalcms.online</div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.CDNAddress)
+                @Html.TextBoxFor(x => x.CDNAddress)
             </div>
         </div>
     </div>

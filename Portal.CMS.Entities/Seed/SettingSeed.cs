@@ -30,6 +30,9 @@ namespace Portal.CMS.Entities.Seed
             if (!settingList.Any(x => x.SettingName == "SendGrid Password"))
                 newSettings.Add(new Setting { SettingName = "SendGrid Password", SettingValue = "" });
 
+            if (!settingList.Any(x => x.SettingName == "CDN Address"))
+                newSettings.Add(new Setting { SettingName = "CDN Address", SettingValue = "" });
+
             if (newSettings.Any())
                 context.Settings.AddRange(newSettings);
         }

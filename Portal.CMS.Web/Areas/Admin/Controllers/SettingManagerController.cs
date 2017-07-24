@@ -30,7 +30,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 GoogleAnalyticsId = SettingHelper.Get("Google Analytics Tracking ID"),
                 EmailFromAddress = SettingHelper.Get("Email From Address"),
                 SendGridUserName = SettingHelper.Get("SendGrid UserName"),
-                SendGridPassword = SettingHelper.Get("SendGrid Password")
+                SendGridPassword = SettingHelper.Get("SendGrid Password"),
+                CDNAddress = SettingHelper.Get("CDN Address")
             };
 
             if (string.IsNullOrWhiteSpace(model.EmailFromAddress))
@@ -62,6 +63,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _settingService.Edit("SendGrid Password", model.SendGridPassword);
             Session.Remove("Setting-SendGrid Password");
+
+            _settingService.Edit("CDN Address", model.CDNAddress);
+            Session.Remove("Setting-CDN Address");
 
             return Content("Refresh");
         }

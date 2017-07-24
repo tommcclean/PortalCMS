@@ -24,5 +24,8 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.SettingManager
 
         [DisplayName("SendGrid Password")]
         public string SendGridPassword { get; set; }
+
+        [DisplayName("CDN Address")]
+        public string CDNAddress { get; set; }
     }
 }
