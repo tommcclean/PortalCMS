@@ -1,5 +1,6 @@
 ﻿using Portal.CMS.Entities.Entities;
 using Portal.CMS.Entities.Enumerators;
+using Portal.CMS.Web.Architecture.Helpers;
 using System.Linq;
 
 namespace Portal.CMS.Web.Architecture.Extensions
@@ -11,7 +12,18 @@ namespace Portal.CMS.Web.Architecture.Extensions
         public static string BannerImageUrl(this Post post)
         {
             if (post.PostImages.Any(x => x.PostImageType == PostImageType.Banner))
-                return post.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
+            {
+                var cdnAddress = SettingHelper.Get("CDN Address");
+
+                var imagePath = post.PostImages.First(x => x.PostImageType == PostImageType.Banner).Image.ImagePath;
+
+                if (string.IsNullOrWhiteSpace(cdnAddress))
+                {
+                    return imagePath;
+                }
+
+                return $"{cdnAddress}{imagePath}";
+            }
 
             return DEFAULT_IMAGE_PATH;
         }
