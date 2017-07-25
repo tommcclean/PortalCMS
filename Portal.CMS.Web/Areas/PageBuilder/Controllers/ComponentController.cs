@@ -2,6 +2,7 @@
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
+using Portal.CMS.Web.Architecture.Extensions;
 using Portal.CMS.Web.Areas.PageBuilder.ViewModels.Component;
 using Portal.CMS.Web.ViewModels.Shared;
 using System;
@@ -129,11 +130,11 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         {
             try
             {
-                _pageComponentService.EditImage(model.SectionId, model.ElementType, model.ElementId, model.SelectedImageId);
-
                 var selectedImage = _imageService.Get(model.SelectedImageId);
 
-                return Json(new { State = true, Source = selectedImage.ImagePath });
+                _pageComponentService.EditImage(model.SectionId, model.ElementType, model.ElementId, selectedImage.CDNImagePath());
+
+                return Json(new { State = true, Source = selectedImage.CDNImagePath() });
             }
             catch (Exception)
             {
