@@ -4,14 +4,15 @@ using Portal.CMS.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Analytics
 {
     public interface IAnalyticsService
     {
-        void LogPageView(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, int? userId);
+        Task LogPageView(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, int? userId);
 
-        void LogPostView(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId);
+        Task LogPostView(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId);
 
         List<KeyValuePair<string, int>> TotalHitsToday();
 
@@ -41,7 +42,7 @@ namespace Portal.CMS.Services.Analytics
 
         #endregion Dependencies
 
-        public void LogPageView(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, int? userId)
+        public async Task LogPageView(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, int? userId)
         {
             var newAnalyticPageView = new AnalyticPageView
             {
@@ -57,10 +58,10 @@ namespace Portal.CMS.Services.Analytics
 
             _context.AnalyticPageViews.Add(newAnalyticPageView);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void LogPostView(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId)
+        public async Task LogPostView(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId)
         {
             var analyticPostView = new AnalyticPostView
             {
@@ -74,7 +75,7 @@ namespace Portal.CMS.Services.Analytics
 
             _context.AnalyticPostViews.Add(analyticPostView);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public List<KeyValuePair<string, int>> TotalHitsToday()
