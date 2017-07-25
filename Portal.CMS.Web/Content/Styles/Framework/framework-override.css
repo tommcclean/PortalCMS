@@ -77,6 +77,11 @@ ul.pagination
     display: none;
 }
 
+label
+{
+    font-weight: normal;
+}
+
 @media (min-width: 768px)
 {
     .modal-dialog
