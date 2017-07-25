@@ -17,7 +17,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         PageAssociation Add(int pageId, int pageSectionTypeId, string componentStamp);
 
-        void EditBackgroundImage(int pageSectionId, int backgroundImageId);
+        void EditBackgroundImage(int pageSectionId, string imagePath, ImageCategory imageCategory);
 
         void EditBackgroundColour(int pageSectionId, string backgroundColour);
 
@@ -109,19 +109,16 @@ namespace Portal.CMS.Services.PageBuilder
             return newPageAssociation;
         }
 
-        public void EditBackgroundImage(int pageSectionId, int backgroundImageId)
+        public void EditBackgroundImage(int pageSectionId, string imagePath, ImageCategory imageCategory)
         {
             var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
-            var image = _context.Images.SingleOrDefault(x => x.ImageId == backgroundImageId);
-            if (image == null) return;
-
             var document = new Document(pageSection.PageSectionBody);
 
-            document.UpdateElementAttribute(string.Format("section-{0}", pageSectionId), "style", string.Format("background-image: url('{0}');", image.ImagePath), true);
+            document.UpdateElementAttribute(string.Format("section-{0}", pageSectionId), "style", string.Format("background-image: url('{0}');", imagePath), true);
 
-            if (image.ImageCategory == ImageCategory.Texture)
+            if (imageCategory == ImageCategory.Texture)
                 document.UpdateElementAttribute(string.Format("section-{0}", pageSectionId), "style", "background-size: initial;", false);
             else
                 document.UpdateElementAttribute(string.Format("section-{0}", pageSectionId), "style", "background-size: cover;", false);

@@ -2,6 +2,7 @@
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
+using Portal.CMS.Web.Architecture.Extensions;
 using Portal.CMS.Web.Areas.PageBuilder.ViewModels.Section;
 using Portal.CMS.Web.ViewModels.Shared;
 using System;
@@ -161,7 +162,11 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
                     _sectionService.EditBackgroundType(model.SectionId, true);
 
                     if (model.BackgroundImageId > 0)
-                        _sectionService.EditBackgroundImage(model.SectionId, model.BackgroundImageId);
+                    {
+                        var selectedBackgroundImage = _imageService.Get(model.BackgroundImageId);
+
+                        _sectionService.EditBackgroundImage(model.SectionId, selectedBackgroundImage.CDNImagePath(), selectedBackgroundImage.ImageCategory);
+                    }
 
                     _sectionService.EditBackgroundStyle(model.SectionId, model.PageSectionBackgroundStyle);
                 }
