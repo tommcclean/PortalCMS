@@ -1,4 +1,5 @@
 ﻿@model Portal.CMS.Web.Areas.PageBuilder.ViewModels.Theme.ThemeViewModel
+@using Portal.CMS.Web.Architecture.Extensions
 
 @@font-face { font-family: '@Model.Theme.TitleFont.FontName'; src: url('@Model.Theme.TitleFont.FontPath') format('@Model.Theme.TitleFont.FontType'); }
 
@@ -6,7 +7,6 @@
 {
 	<text>@@font-face { font-family: '@Model.Theme.TextFont.FontName'; src: url('@Model.Theme.TextFont.FontPath') format('@Model.Theme.TextFont.FontType'); }</text>
 }
-
 
 html, body
 {

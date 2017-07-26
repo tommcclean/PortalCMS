@@ -243,6 +243,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="Architecture\Extensions\FontExtensions.cs" />
     <Compile Include="Architecture\Extensions\ImageExtensions.cs" />
     <Compile Include="Architecture\Extensions\PostExtensions.cs" />
     <Compile Include="Architecture\Modules\RemoveResponseHeadersModule.cs" />

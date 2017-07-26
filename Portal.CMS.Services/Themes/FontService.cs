@@ -1,6 +1,5 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities;
-using Portal.CMS.Services.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,29 +21,18 @@ namespace Portal.CMS.Services.Themes
     {
         #region Dependencies
 
-        private const string CDN_SETTING_NAME = "CDN Address";
-
         readonly PortalEntityModel _context;
-        readonly ISettingService _settingService;
 
-        public FontService(PortalEntityModel context, ISettingService settingService)
+        public FontService(PortalEntityModel context)
         {
             _context = context;
-            _settingService = settingService;
         }
 
         #endregion Dependencies
 
         public Font Get(int fontId)
         {
-            var cdnAddress = _settingService.Get(CDN_SETTING_NAME).SettingValue;
-
             var font = _context.Fonts.SingleOrDefault(x => x.FontId == fontId);
-
-            if (!string.IsNullOrWhiteSpace(cdnAddress))
-            {
-                font.FontPath = $"{cdnAddress}{font.FontPath}";
-            }
 
             return font;
         }
@@ -52,16 +40,6 @@ namespace Portal.CMS.Services.Themes
         public List<Font> Get()
         {
             var fontList = _context.Fonts.OrderBy(x => x.FontName).ToList();
-
-            var cdnAddress = _settingService.Get(CDN_SETTING_NAME).SettingValue;
-
-            if (!string.IsNullOrWhiteSpace(cdnAddress))
-            {
-                foreach (var font in fontList)
-                {
-                    font.FontPath = $"{cdnAddress}{font.FontPath}";
-                }
-            }
 
             return fontList;
         }
