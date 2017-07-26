@@ -67,7 +67,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var dataParams = { "postId": @Model.CurrentPost.PostId, "referrer": "@Request.UrlReferrer", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
-            $.ajax({data: dataParams, type: 'POST', cache: false, url: '@Url.Action("Analytic", "Blog")', success: function (data) { }, });
+            $.ajax({data: dataParams, type: 'POST', cache: false, url: '@Url.Action("Analytic", "Read")', success: function (data) { }, });
         });
     </script>
 }
