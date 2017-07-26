@@ -75,6 +75,7 @@
     border: 1px solid transparent;
     opacity: 0.9;
     transition: all 0.2s ease-in;
+    overflow: hidden;
 }
 
     .article-item:hover
@@ -96,7 +97,7 @@
 
         .article-item .inner p
         {
-            height: 100px;
+            height: 105px;
             overflow: hidden;
             font-size: 17px;
             color: white;
