@@ -44,20 +44,13 @@ section.background-parallax
 .header
 {
     max-height: calc(100vh - 50px);
-    background-image: url('/Areas/PageBuilder/Content/Images/Sample/Sample-2.jpg');
     color: white;
 }
 
 .blank
 {
-    background-image: url('/Areas/Admin/Content/Images/texture.png');
     padding: 30px 2.5% 30px 2.5%;
     text-align: center;
-}
-
-.highlight
-{
-    background-image: url('/Areas/PageBuilder/Content/Images/Sample/Sample-5.jpg');
 }
 
 section p, section a

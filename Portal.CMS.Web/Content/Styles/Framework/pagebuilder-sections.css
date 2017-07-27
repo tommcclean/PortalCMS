@@ -6,7 +6,6 @@
     section.header-split
     {
         position: relative;
-        background-image: url('/Areas/PageBuilder/Content/Images/Sample/Sample-8.jpg');
         overflow: hidden;
     }
 
@@ -141,7 +140,6 @@ section.quote
     height: 300px;
     background-color: #191919;
     text-align: center;
-    background-image: url('/Areas/PageBuilder/Content/Images/Sample/pattern-1.png');
     background-attachment: fixed;
     background-color: transparent;
     color: #F7F7F7;
@@ -164,7 +162,6 @@ section.quote
     section.quote .quote-image-left
     {
         position: absolute;
-        background-image: url('/Areas/PageBuilder/Content/Images/Sample/quote-image-left.png');
         background-repeat: no-repeat;
         background-position: center center;
         top: 30px;
@@ -177,7 +174,6 @@ section.quote
     section.quote .quote-image-right
     {
         position: absolute;
-        background-image: url('/Areas/PageBuilder/Content/Images/Sample/quote-image-right.png');
         background-repeat: no-repeat;
         background-position: center center;
         top: 30px;
