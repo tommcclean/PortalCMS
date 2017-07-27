@@ -53,7 +53,7 @@
     });
 </script>
 
-@Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.MediaManager_Admin })
+@Html.Action("Render", "QuickAccess", new { area = "Admin", pageType = QuickAccessPageType.MediaManager_Admin })
 
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab"><span class="fa fa-file-image-o"></span>General</a></li>

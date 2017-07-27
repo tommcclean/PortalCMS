@@ -4,7 +4,7 @@
     ViewBag.Icon = "/Areas/Admin/Content/Images/icon-users.png";
 }
 
-@Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.UserManagement_Admin })
+@Html.Action("Render", "QuickAccess", new { area = "Admin", pageType = QuickAccessPageType.UserManagement_Admin })
 
 <div class="row">
     @foreach (var user in Model.Users)

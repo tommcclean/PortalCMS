@@ -21,7 +21,7 @@
 
 @if (isAdmin)
 {
-    @Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.PageBuilder, contentId = Model.PageId })
+    @Html.Action("Render", "QuickAccess", new { area = "Admin", pageType = QuickAccessPageType.PageBuilder, contentId = Model.PageId })
 
     <div class="action-container action-container-footer section-order" style="display: none;">
         <div onclick="SaveOrder();" class="action"><span class="fa fa-check"></span></div>

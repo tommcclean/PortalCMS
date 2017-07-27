@@ -6,7 +6,7 @@
 
 <div class="alert alert-warning" role="alert">Upload new Fonts for your Themes using the <a href="@Url.Action("Index", "MediaManager")" class="alert-link">Media Manager</a>.</div>
 
-@Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.ThemeManager_Admin })
+@Html.Action("Render", "QuickAccess", new { area = "Admin", pageType = QuickAccessPageType.ThemeManager_Admin })
 
 <style>
     @foreach(var font in Model.Fonts)

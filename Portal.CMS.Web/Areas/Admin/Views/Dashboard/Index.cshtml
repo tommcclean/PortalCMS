@@ -18,7 +18,7 @@
 }
 
 <div class="row">
-    @Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.AdministrationPanel_Admin })
+    @Html.Action("Render", "QuickAccess", new { area = "Admin", pageType = QuickAccessPageType.AdministrationPanel_Admin })
 
     @Html.Partial("_Welcome")
     @Html.Partial("_MyAccount")

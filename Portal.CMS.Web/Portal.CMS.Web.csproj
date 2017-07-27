@@ -261,6 +261,7 @@
     <Compile Include="Areas\Admin\Controllers\PostCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogManagerController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuickAccessController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThemeManagerController.cs" />
@@ -727,7 +728,7 @@
     <Content Include="Areas\Admin\Views\BlogManager\_AppDrawer.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Dashboard\_QuickAccess.cshtml" />
+    <Content Include="Areas\Admin\Views\QuickAccess\_Render.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\PageBuilder\Views\Component\_EditContainer.cshtml" />
@@ -774,6 +775,7 @@
   <ItemGroup>
     <Content Include="Areas\Forms\Views\ContactWidgets\_SubmitMessageWidget.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

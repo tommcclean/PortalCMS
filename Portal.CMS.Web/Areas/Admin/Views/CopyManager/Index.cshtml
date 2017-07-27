@@ -9,7 +9,7 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 }
 
-@Html.Action("QuickAccess", "Dashboard", new { area = "Admin", pageType = QuickAccessPageType.CopyManager_Admin })
+@Html.Action("Render", "QuickAccess", new { area = "Admin", pageType = QuickAccessPageType.CopyManager_Admin })
 
 <div class="row">
     @foreach (var copyItem in Model.CopyList)
