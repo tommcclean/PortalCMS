@@ -6,6 +6,13 @@
     z-index: 10;
 }
 
+.action-container-footer{
+    right: 20px;
+    bottom: 20px;
+    top: auto;
+    left: auto;
+}
+
 .action
 {
     display: inline-block;
@@ -19,6 +26,7 @@
     color: white;
     text-align: center;
     font-size: 15px;
+    cursor: pointer;
     -moz-transition: border, background-color 0.2s ease-out;
     -o-transition: border, background-color 0.2s ease-out;
     -webkit-transition: border, background-color 0.2s ease-out;
