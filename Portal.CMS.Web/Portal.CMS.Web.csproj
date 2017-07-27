@@ -478,6 +478,7 @@
     <Content Include="Content\Styles\Hover\hover-min.css" />
     <Content Include="Content\Styles\JQuery\jquery-ui.min.css" />
     <Content Include="Content\Styles\Spectrum\spectrum.css" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
