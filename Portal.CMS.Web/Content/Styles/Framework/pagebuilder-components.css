@@ -198,7 +198,6 @@ section .vertical-alignment
     display: inline-block;
     height: 125px;
     width: 125px;
-    background-image: url('/Areas/PageBuilder/Content/Images/Sample/Sample-1.jpg');
     background-size: cover;
     background-position: center center;
     margin: 10px;
@@ -207,7 +206,6 @@ section .vertical-alignment
 
     .image.image-circle
     {
-        background-image: url('/Areas/PageBuilder/Content/Images/Sample/Sample-4.jpg');
         border-radius: 50%;
     }
 
@@ -215,14 +213,12 @@ section .vertical-alignment
     {
         height: 64px;
         width: 64px;
-        background-image: url('/Areas/PageBuilder/Content/Images/Sample/icon-1.png');
     }
 
     .image.image-standard
     {
         width: 300px;
         height: 225px;
-        background-image: url('/Areas/PageBuilder/Content/Images/Sample/Sample-5.jpg');
     }
 
     .image.image-auto
