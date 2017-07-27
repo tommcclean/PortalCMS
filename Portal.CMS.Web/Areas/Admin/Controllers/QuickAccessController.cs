@@ -111,7 +111,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 DesktopText = string.Empty,
                 MobileText = string.Empty,
                 CssClass = "admin",
-                Link = Url.Action(nameof(Render), "Home", new { area = "" })
+                Link = Url.Action("Index", "Home", new { area = "" })
             };
         }
     }
