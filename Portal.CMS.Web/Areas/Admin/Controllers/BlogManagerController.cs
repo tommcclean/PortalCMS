@@ -13,7 +13,6 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [LoggedInFilter]
     public class BlogManagerController : Controller
     {
         #region Manifest Constants
@@ -58,7 +57,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpGet, EditorFilter]
+        [HttpGet, AdminModalFilter]
         public ActionResult Create()
         {
             var postCategories = _postCategoryService.Get();
@@ -88,7 +87,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Create", model);
         }
 
-        [HttpPost, EditorFilter]
+        [HttpPost, AdminModalFilter]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreatePostViewModel model)
@@ -127,7 +126,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Blog");
         }
 
-        [HttpGet, EditorFilter]
+        [HttpGet, AdminModalFilter]
         public ActionResult Edit(int postId)
         {
             var post = _postService.Get(postId);
@@ -168,7 +167,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Edit", model);
         }
 
-        [HttpPost, EditorFilter]
+        [HttpPost, AdminModalFilter]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditPostviewModel model)

@@ -1,4 +1,5 @@
 ﻿using Portal.CMS.Services.Posts;
+using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.PostCategories;
 using System.Web.Mvc;
 
@@ -17,7 +18,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         #endregion Dependencies
 
-        [HttpGet]
+        [HttpGet, AdminModalFilter]
         public ActionResult Add()
         {
             var model = new AddViewModel();
@@ -25,7 +26,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Add", model);
         }
 
-        [HttpPost]
+        [HttpPost, AdminModalFilter]
         [ValidateAntiForgeryToken]
         public ActionResult Add(AddViewModel model)
         {
@@ -39,7 +40,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet]
+        [HttpGet, AdminModalFilter]
         public ActionResult Edit(int postCategoryId)
         {
             var postCategory = _postCategoryService.Get(postCategoryId);
@@ -53,7 +54,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Edit", model);
         }
 
-        [HttpPost]
+        [HttpPost, AdminModalFilter]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditViewModel model)
         {
@@ -67,7 +68,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet]
+        [HttpGet, AdminFilter]
         public ActionResult Delete(int postCategoryId)
         {
             _postCategoryService.Delete(postCategoryId);

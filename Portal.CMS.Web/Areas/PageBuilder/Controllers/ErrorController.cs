@@ -13,5 +13,10 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         {
             return View();
         }
+
+        public ActionResult SignedOut()
+        {
+            return View();
+        }
     }
 }

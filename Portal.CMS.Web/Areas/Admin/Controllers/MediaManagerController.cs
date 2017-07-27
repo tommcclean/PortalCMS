@@ -1,16 +1,15 @@
-﻿using System;
-using System.IO;
-using System.Web;
-using System.Web.Mvc;
-using Portal.CMS.Services.Generic;
+﻿using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.Posts;
 using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.MediaManager;
+using System;
+using System.IO;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [LoggedInFilter]
     public class MediaManagerController : Controller
     {
         #region Dependencies
@@ -45,7 +44,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpGet, EditorFilter]
+        [HttpGet, AdminModalFilter]
         public ActionResult UploadImage()
         {
             var model = new UploadImageViewModel();
@@ -53,7 +52,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_UploadImage", model);
         }
 
-        [HttpPost, EditorFilter]
+        [HttpPost, AdminModalFilter]
         [ValidateAntiForgeryToken]
         public ActionResult UploadImage(UploadImageViewModel model)
         {
@@ -67,7 +66,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet, EditorFilter]
+        [HttpGet, AdminModalFilter]
         public ActionResult UploadFont()
         {
             var model = new UploadFontViewModel();
@@ -75,7 +74,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_UploadFont", model);
         }
 
-        [HttpPost, EditorFilter]
+        [HttpPost, AdminModalFilter]
         [ValidateAntiForgeryToken]
         public ActionResult UploadFont(UploadFontViewModel model)
         {

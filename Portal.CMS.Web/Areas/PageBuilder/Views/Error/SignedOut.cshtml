@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "Signed Out";
+    Layout = "";
+}
+
+<p>Sorry but your session has ended and you are no longer signed in.</p>
+<p>Please login again to continue: <a href="@Url.Action("Login", "Authentication", new { area = "Admin" })" class="launch-modal" data-title="Sign In">Login</a></p>

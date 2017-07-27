@@ -30,7 +30,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpGet, AdminFilter]
+        [HttpGet, AdminModalFilter]
         public ActionResult Create()
         {
             var model = new CreateViewModel();
@@ -38,7 +38,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Create", model);
         }
 
-        [HttpPost, AdminFilter]
+        [HttpPost, AdminModalFilter]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateViewModel model)
@@ -51,7 +51,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet, AdminFilter]
+        [HttpGet, AdminModalFilter]
         public ActionResult Edit(int copyId)
         {
             var copy = _copyService.Get(copyId);
@@ -66,7 +66,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Edit", model);
         }
 
-        [HttpPost, AdminFilter]
+        [HttpPost, AdminModalFilter]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditViewModel model)
@@ -79,7 +79,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet, AdminFilter]
+        [HttpGet, AdminModalFilter]
         public ActionResult Delete(int copyId)
         {
             _copyService.Delete(copyId);

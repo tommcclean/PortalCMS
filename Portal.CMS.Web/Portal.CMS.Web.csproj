@@ -243,6 +243,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="Architecture\ActionFilters\AdminModalFilter.cs" />
     <Compile Include="Architecture\Extensions\FontExtensions.cs" />
     <Compile Include="Architecture\Extensions\ImageExtensions.cs" />
     <Compile Include="Architecture\Extensions\PostExtensions.cs" />
@@ -775,7 +776,9 @@
   <ItemGroup>
     <Content Include="Areas\Forms\Views\ContactWidgets\_SubmitMessageWidget.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Areas\PageBuilder\Views\Error\SignedOut.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -9,7 +9,6 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [AdminFilter]
     public class ThemeManagerController : Controller
     {
         #region Dependencies
@@ -25,6 +24,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         #endregion Dependencies
 
+        [AdminFilter]
         public ActionResult Index()
         {
             var model = new ThemeViewModel
@@ -36,7 +36,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpGet, AdminModalFilter]
         public ActionResult Create()
         {
             var model = new UpsertViewModel
@@ -50,7 +50,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_Create", model);
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken, AdminModalFilter]
         public ActionResult Create(UpsertViewModel model)
         {
             if (!ModelState.IsValid)
@@ -65,7 +65,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet]
+        [HttpGet, AdminModalFilter]
         public ActionResult Edit(int themeId)
         {
             var theme = _themeService.Get(themeId);
@@ -94,7 +94,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_Edit", model);
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken, AdminModalFilter]
         public ActionResult Edit(UpsertViewModel model)
         {
             if (!ModelState.IsValid)
@@ -109,13 +109,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet]
+        [HttpGet, AdminFilter]
         public ActionResult Default(int themeId)
         {
             return View("_Default", new DefaultViewModel { ThemeId = themeId });
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken, AdminFilter]
         public ActionResult Default(DefaultViewModel model)
         {
             _themeService.Default(model.ThemeId);
@@ -123,7 +123,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet]
+        [HttpGet, AdminFilter]
         public ActionResult Delete(int themeId)
         {
             _themeService.Delete(themeId);

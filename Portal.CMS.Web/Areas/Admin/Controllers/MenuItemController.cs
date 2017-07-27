@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [LoggedInFilter, AdminFilter]
+    [AdminModalFilter]
     public class MenuItemController : Controller
     {
         #region Dependencies
@@ -30,12 +30,6 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         #endregion Dependencies
-
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return RedirectToAction(nameof(Index), "SettingManager");
-        }
 
         [HttpGet]
         public ActionResult Create()

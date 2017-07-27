@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 {
-    [AdminFilter]
+    [AdminModalFilter]
     public class SectionController : Controller
     {
         #region Dependencies

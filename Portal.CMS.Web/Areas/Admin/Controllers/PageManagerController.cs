@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [LoggedInFilter, AdminFilter]
+    [AdminFilter]
     public class PageManagerController : Controller
     {
         #region Dependencies
