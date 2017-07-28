@@ -2,11 +2,12 @@
 @{
     ViewBag.Title = Model.PageName;
     var isAdmin = UserHelper.IsAdmin;
+    var isEditor = UserHelper.IsEditor;
 }
 
 @section HEADScripts
 {
-    @if (isAdmin)
+    @if (isEditor)
     {
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
@@ -19,10 +20,13 @@
     </script>
 }
 
-@if (isAdmin)
+@if (isEditor)
 {
     @Html.Action("Render", "QuickAccess", new { area = "Admin", pageType = QuickAccessPageType.PageBuilder, contentId = Model.PageId })
+}
 
+@if (isAdmin)
+{
     <div class="action-container action-container-footer section-order" style="display: none;">
         <div onclick="SaveOrder();" class="action"><span class="fa fa-check"></span></div>
         <div onclick="location.reload();" class="action"><span class="fa fa-remove"></span></div>
@@ -60,5 +64,9 @@
     @Html.Action("Add", "Component", new { area = "PageBuilder" })
     @Html.Action("AppDrawer", "PageManager", new { area = "Admin" })
     @Html.Action("AppDrawer", "ThemeManager", new { area = "Admin" })
+}
+
+@if (isEditor)
+{
     @Html.Action("AppDrawer", "BlogManager", new { area = "Admin" })
 }

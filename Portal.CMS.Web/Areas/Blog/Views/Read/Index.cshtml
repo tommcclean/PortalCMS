@@ -18,7 +18,7 @@
 {
     @Scripts.Render("~/Resources/JavaScript/Plugins/FancyBox")
 
-    @if (isAdmin)
+    @if (isEditor)
     {
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
@@ -76,8 +76,11 @@
 {
     @Html.Action("AppDrawer", "PageManager", new { area = "Admin" })
     @Html.Action("AppDrawer", "ThemeManager", new { area = "Admin" })
-    @Html.Action("AppDrawer", "BlogManager", new { area = "Admin" })
+}
 
+@if (isEditor)
+{
+    @Html.Action("AppDrawer", "BlogManager", new { area = "Admin" })
     @Html.Action("Render", "QuickAccess", new { area = "Admin", pageType = QuickAccessPageType.BlogManager, contentId = Model.CurrentPost.PostId })
 }
 

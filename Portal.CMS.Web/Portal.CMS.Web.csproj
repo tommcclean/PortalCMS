@@ -406,7 +406,7 @@
     <Content Include="Content\Scripts\FontAwesome\fontawesome-iconpicker.min.js" />
     <Content Include="Content\Scripts\Framework\framework.js" />
     <Content Include="Content\Scripts\Framework\pagination.js" />
-    <Content Include="Content\Scripts\Administration\QuickAccess-Admin.js" />
+    <Content Include="Content\Scripts\Editor\QuickAccess.js" />
     <Content Include="Content\Scripts\JQuery\jquery-ui.min.js" />
     <Content Include="Content\Scripts\JQuery\jquery-2.2.1.min.js" />
     <Content Include="Content\Scripts\Administration\PageBuilder-Admin.js" />

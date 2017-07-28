@@ -16,6 +16,11 @@
         @Styles.Render("~/Resources/CSS/Framework/Administration")
     }
 
+    @if (UserHelper.IsEditor)
+    {
+        @Styles.Render("~/Resources/CSS/Framework/Editor")
+    }
+
     <link href="@Url.Action("Render", "Theme", new { area = "PageBuilder" })" rel="stylesheet" type="text/css" />
 
     @Scripts.Render("~/Resources/JavaScript/JQuery")
@@ -25,6 +30,11 @@
     @if (UserHelper.IsAdmin)
     {
         @Scripts.Render("~/Resources/JavaScript/Framework/Administration")
+    }
+
+    @if (UserHelper.IsEditor)
+    {
+        @Scripts.Render("~/Resources/JavaScript/Framework/Editor")
     }
 
     @RenderSection("HEADScripts", false)

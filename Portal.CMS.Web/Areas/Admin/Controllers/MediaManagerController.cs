@@ -1,12 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Web;
-using System.Web.Mvc;
-using Portal.CMS.Services.Generic;
+﻿using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.Posts;
 using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.MediaManager;
+using System;
+using System.IO;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
@@ -44,7 +44,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
+        [HttpGet, EditorFilter(ActionFilterResponseType.Modal)]
         public ActionResult UploadImage()
         {
             var model = new UploadImageViewModel();
@@ -52,7 +52,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_UploadImage", model);
         }
 
-        [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
+        [HttpPost, EditorFilter(ActionFilterResponseType.Modal)]
         [ValidateAntiForgeryToken]
         public ActionResult UploadImage(UploadImageViewModel model)
         {

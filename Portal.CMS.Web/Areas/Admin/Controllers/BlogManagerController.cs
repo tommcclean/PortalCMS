@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Portal.CMS.Entities.Enumerators;
+﻿using Portal.CMS.Entities.Enumerators;
 using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.Posts;
@@ -10,6 +6,10 @@ using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager;
 using Portal.CMS.Web.ViewModels.Shared;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
@@ -57,7 +57,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
+        [HttpGet, EditorFilter(ActionFilterResponseType.Modal)]
         public ActionResult Create()
         {
             var postCategories = _postCategoryService.Get();
@@ -87,7 +87,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Create", model);
         }
 
-        [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
+        [HttpPost, EditorFilter(ActionFilterResponseType.Modal)]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreatePostViewModel model)
@@ -126,7 +126,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Blog");
         }
 
-        [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
+        [HttpGet, EditorFilter(ActionFilterResponseType.Modal)]
         public ActionResult Edit(int postId)
         {
             var post = _postService.Get(postId);
@@ -167,7 +167,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Edit", model);
         }
 
-        [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
+        [HttpPost, EditorFilter(ActionFilterResponseType.Modal)]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditPostviewModel model)
