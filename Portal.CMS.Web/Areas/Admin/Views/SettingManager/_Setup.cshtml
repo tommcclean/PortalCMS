@@ -75,9 +75,9 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-cdn">
             <h4>Content Delivery Network</h4>
-            <p>Portal CMS can utilise a Content Delivery Network that is setup to cache the content of your website. When configured Portal CMS will load Stylesheets, Scripts and Uploaded Fonts and Images from the CDN.</p>
+            <p>Portal CMS can utilise a Content Delivery Network that is setup to cache the content of your website. When configured Portal CMS will load your Uploaded Images from the CDN.</p>
             <br />
-            <div class="alert alert-warning" role="alert">Please enter your CDN Address below. For example: cdn.portalcms.online</div>
+            <div class="alert alert-warning" role="alert">Please enter your CDN Address below. For example: http://cdn.portalcms.online</div>
             <div class="control-group">
                 @Html.LabelFor(x => x.CDNAddress)
                 @Html.TextBoxFor(x => x.CDNAddress)
