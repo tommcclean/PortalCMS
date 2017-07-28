@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [EditorFilter]
+    [EditorFilter(ActionFilterResponseType.Page)]
     public class QuickAccessController : Controller
     {
         public ActionResult Render(QuickAccessPageType pageType, int contentId = 0)

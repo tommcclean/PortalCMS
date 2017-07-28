@@ -232,7 +232,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index), "BlogManager");
         }
 
-        [HttpPost, EditorFilter]
+        [HttpPost, EditorFilter(ActionFilterResponseType.Page)]
         [ValidateInput(false)]
         public ActionResult Inline(int postId, string markup)
         {
@@ -241,7 +241,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpPost, EditorFilter]
+        [HttpPost, EditorFilter(ActionFilterResponseType.Page)]
         [ValidateInput(false)]
         public ActionResult Description(int postId, string markup)
         {
@@ -250,7 +250,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpPost, EditorFilter]
+        [HttpPost, EditorFilter(ActionFilterResponseType.Page)]
         [ValidateInput(false)]
         public ActionResult Headline(int postId, string markup)
         {
