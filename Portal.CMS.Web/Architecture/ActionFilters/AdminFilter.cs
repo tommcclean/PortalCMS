@@ -13,8 +13,6 @@ namespace Portal.CMS.Web.Architecture.ActionFilters
             this.responseType = modal;
         }
 
-        public ActionFilterResponseType actionFilterResponseType { get; set; }
-
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (!UserHelper.IsAdmin)
