@@ -1,7 +1,7 @@
-﻿using Portal.CMS.Services.Posts;
+﻿using System.Web.Mvc;
+using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.PostCategories;
-using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
@@ -9,7 +9,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        readonly IPostCategoryService _postCategoryService;
+        private readonly IPostCategoryService _postCategoryService;
 
         public PostCategoriesController(IPostCategoryService postCategoryService)
         {
@@ -18,7 +18,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         #endregion Dependencies
 
-        [HttpGet, AdminModalFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
         public ActionResult Add()
         {
             var model = new AddViewModel();
@@ -26,7 +26,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Add", model);
         }
 
-        [HttpPost, AdminModalFilter]
+        [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
         [ValidateAntiForgeryToken]
         public ActionResult Add(AddViewModel model)
         {
@@ -40,7 +40,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet, AdminModalFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
         public ActionResult Edit(int postCategoryId)
         {
             var postCategory = _postCategoryService.Get(postCategoryId);
@@ -54,7 +54,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Edit", model);
         }
 
-        [HttpPost, AdminModalFilter]
+        [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditViewModel model)
         {
@@ -68,7 +68,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet, AdminFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
         public ActionResult Delete(int postCategoryId)
         {
             _postCategoryService.Delete(postCategoryId);

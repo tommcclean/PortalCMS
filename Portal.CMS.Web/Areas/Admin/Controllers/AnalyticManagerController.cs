@@ -1,27 +1,27 @@
-﻿using LogBook.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using LogBook.Services;
 using Portal.CMS.Entities.Enumerators;
 using Portal.CMS.Services.Analytics;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.AnalyticManager;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [AdminFilter]
+    [AdminFilter(ActionFilterResponseType.Page)]
     public class AnalyticManagerController : Controller
     {
         #region Manifest Constants
 
-        const string DISPLAY_CHART_VIEW = "_DisplayChart";
+        private const string DISPLAY_CHART_VIEW = "_DisplayChart";
 
         #endregion Manifest Constants
 
         #region Dependencies
 
-        readonly IAnalyticsService _analyticsService;
+        private readonly IAnalyticsService _analyticsService;
 
         public AnalyticManagerController(IAnalyticsService analyticsService)
         {
@@ -220,7 +220,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
-        static DateTime? DetermineTimePeriod(TimePeriod timePeriod)
+        private static DateTime? DetermineTimePeriod(TimePeriod timePeriod)
         {
             DateTime? earliest;
 

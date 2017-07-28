@@ -1,24 +1,24 @@
-﻿using Portal.CMS.Services.Authentication;
+﻿using System.Linq;
+using System.Web.Mvc;
+using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Menu;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.MenuItem;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [AdminModalFilter]
+    [AdminFilter(ActionFilterResponseType.Modal)]
     public class MenuItemController : Controller
     {
         #region Dependencies
 
-        readonly IMenuService _menuService;
-        readonly IMenuItemService _menuItemService;
-        readonly IPageService _pageService;
-        readonly IPostService _postService;
-        readonly IRoleService _roleService;
+        private readonly IMenuService _menuService;
+        private readonly IMenuItemService _menuItemService;
+        private readonly IPageService _pageService;
+        private readonly IPostService _postService;
+        private readonly IRoleService _roleService;
 
         public MenuItemController(IMenuService menuService, IMenuItemService menuItemService, IPageService pageService, IPostService postService, IRoleService roleService)
         {

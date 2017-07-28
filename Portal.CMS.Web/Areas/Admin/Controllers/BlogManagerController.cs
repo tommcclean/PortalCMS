@@ -1,4 +1,8 @@
-﻿using Portal.CMS.Entities.Enumerators;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using Portal.CMS.Entities.Enumerators;
 using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.Posts;
@@ -6,10 +10,6 @@ using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager;
 using Portal.CMS.Web.ViewModels.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
@@ -17,10 +17,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Manifest Constants
 
-        const string BANNER_IMAGE_ID = "BannerImageId";
-        const string BANNER = "Banner";
-        const string GALLERY_IMAGE_LIST = "GalleryImageList";
-        const string GALLERY = "Gallery";
+        private const string BANNER_IMAGE_ID = "BannerImageId";
+        private const string BANNER = "Banner";
+        private const string GALLERY_IMAGE_LIST = "GalleryImageList";
+        private const string GALLERY = "Gallery";
 
         #endregion Manifest Constants
 
@@ -45,7 +45,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         #endregion Dependencies
 
-        [HttpGet, AdminFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
         public ActionResult Index()
         {
             var model = new PostsViewModel
@@ -57,7 +57,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpGet, AdminModalFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
         public ActionResult Create()
         {
             var postCategories = _postCategoryService.Get();
@@ -87,7 +87,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Create", model);
         }
 
-        [HttpPost, AdminModalFilter]
+        [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreatePostViewModel model)
@@ -126,7 +126,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Blog");
         }
 
-        [HttpGet, AdminModalFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
         public ActionResult Edit(int postId)
         {
             var post = _postService.Get(postId);
@@ -167,7 +167,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Edit", model);
         }
 
-        [HttpPost, AdminModalFilter]
+        [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditPostviewModel model)
@@ -208,7 +208,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet, AdminFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
         public ActionResult Delete(int postId)
         {
             _postService.Delete(postId);
@@ -216,7 +216,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index), "BlogManager");
         }
 
-        [HttpGet, AdminFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
         public ActionResult Publish(int postId)
         {
             _postService.Publish(postId);
@@ -224,7 +224,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index), "BlogManager");
         }
 
-        [HttpGet, AdminFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
         public ActionResult Draft(int postId)
         {
             _postService.Draft(postId);
@@ -272,7 +272,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         #region Private Methods
 
-        void UpdateBanner(int postId, int bannerImageId)
+        private void UpdateBanner(int postId, int bannerImageId)
         {
             if (bannerImageId != 0)
             {
@@ -282,7 +282,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             }
         }
 
-        void UpdateGallery(int postId, string galleryImageIds)
+        private void UpdateGallery(int postId, string galleryImageIds)
         {
             if (!string.IsNullOrWhiteSpace(galleryImageIds))
             {

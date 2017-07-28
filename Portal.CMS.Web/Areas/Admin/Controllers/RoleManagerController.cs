@@ -1,16 +1,16 @@
-﻿using Portal.CMS.Services.Authentication;
+﻿using System.Web.Mvc;
+using Portal.CMS.Services.Authentication;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.RoleManager;
-using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [AdminFilter]
+    [AdminFilter(ActionFilterResponseType.Page)]
     public class RoleManagerController : Controller
     {
         #region Dependencies
 
-        readonly IRoleService _roleService;
+        private readonly IRoleService _roleService;
 
         public RoleManagerController(IRoleService roleService)
         {

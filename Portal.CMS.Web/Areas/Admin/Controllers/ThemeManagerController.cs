@@ -1,11 +1,11 @@
-﻿using Portal.CMS.Entities.Entities;
-using Portal.CMS.Services.Themes;
-using Portal.CMS.Web.Architecture.ActionFilters;
-using Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Portal.CMS.Entities.Entities;
+using Portal.CMS.Services.Themes;
+using Portal.CMS.Web.Architecture.ActionFilters;
+using Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
@@ -13,8 +13,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        readonly IThemeService _themeService;
-        readonly IFontService _fontService;
+        private readonly IThemeService _themeService;
+        private readonly IFontService _fontService;
 
         public ThemeManagerController(IThemeService themeService, IFontService fontService)
         {
@@ -24,7 +24,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         #endregion Dependencies
 
-        [AdminFilter]
+        [AdminFilter(ActionFilterResponseType.Page)]
         public ActionResult Index()
         {
             var model = new ThemeViewModel
@@ -36,7 +36,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpGet, AdminModalFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
         public ActionResult Create()
         {
             var model = new UpsertViewModel
@@ -50,7 +50,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_Create", model);
         }
 
-        [HttpPost, ValidateAntiForgeryToken, AdminModalFilter]
+        [HttpPost, ValidateAntiForgeryToken, AdminFilter(ActionFilterResponseType.Modal)]
         public ActionResult Create(UpsertViewModel model)
         {
             if (!ModelState.IsValid)
@@ -65,7 +65,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet, AdminModalFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
         public ActionResult Edit(int themeId)
         {
             var theme = _themeService.Get(themeId);
@@ -94,7 +94,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_Edit", model);
         }
 
-        [HttpPost, ValidateAntiForgeryToken, AdminModalFilter]
+        [HttpPost, ValidateAntiForgeryToken, AdminFilter(ActionFilterResponseType.Modal)]
         public ActionResult Edit(UpsertViewModel model)
         {
             if (!ModelState.IsValid)
@@ -109,13 +109,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet, AdminFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
         public ActionResult Default(int themeId)
         {
             return View("_Default", new DefaultViewModel { ThemeId = themeId });
         }
 
-        [HttpPost, ValidateAntiForgeryToken, AdminFilter]
+        [HttpPost, ValidateAntiForgeryToken, AdminFilter(ActionFilterResponseType.Page)]
         public ActionResult Default(DefaultViewModel model)
         {
             _themeService.Default(model.ThemeId);
@@ -123,7 +123,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet, AdminFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
         public ActionResult Delete(int themeId)
         {
             _themeService.Delete(themeId);
@@ -131,7 +131,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpGet, AdminFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
         public ActionResult AppDrawer()
         {
             var model = new AppDrawerViewModel

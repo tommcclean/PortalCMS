@@ -1,20 +1,20 @@
-﻿using Portal.CMS.Services.Authentication;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using Portal.CMS.Services.Authentication;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.UserManager;
-using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [AdminFilter]
+    [AdminFilter(ActionFilterResponseType.Page)]
     public class UserManagerController : Controller
     {
         #region Dependencies
 
-        readonly IUserService _userService;
-        readonly IRegistrationService _registrationService;
-        readonly IRoleService _roleService;
+        private readonly IUserService _userService;
+        private readonly IRegistrationService _registrationService;
+        private readonly IRoleService _roleService;
 
         public UserManagerController(IUserService userService, IRegistrationService registrationService, IRoleService roleService)
         {

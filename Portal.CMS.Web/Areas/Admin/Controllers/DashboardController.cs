@@ -1,19 +1,19 @@
-﻿using Portal.CMS.Services.Generic;
+﻿using System.Linq;
+using System.Web.Mvc;
+using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Dashboard;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [AdminFilter]
+    [AdminFilter(ActionFilterResponseType.Page)]
     public class DashboardController : Controller
     {
         #region Dependencies
 
-        readonly IPostService _postService;
-        readonly IImageService _imageService;
+        private readonly IPostService _postService;
+        private readonly IImageService _imageService;
 
         public DashboardController(IPostService postService, IImageService imageService)
         {

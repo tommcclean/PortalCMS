@@ -1,8 +1,8 @@
-﻿using Portal.CMS.Services.Copy;
+﻿using System;
+using System.Web.Mvc;
+using Portal.CMS.Services.Copy;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.CopyManager;
-using System;
-using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
@@ -10,7 +10,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
     {
         #region Dependencies
 
-        readonly ICopyService _copyService;
+        private readonly ICopyService _copyService;
 
         public CopyManagerController(ICopyService copyService)
         {
@@ -19,7 +19,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         #endregion Dependencies
 
-        [HttpGet, AdminFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
         public ActionResult Index()
         {
             var model = new CopyViewModel
@@ -30,7 +30,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpGet, AdminModalFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
         public ActionResult Create()
         {
             var model = new CreateViewModel();
@@ -38,7 +38,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Create", model);
         }
 
-        [HttpPost, AdminModalFilter]
+        [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateViewModel model)
@@ -51,7 +51,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet, AdminModalFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
         public ActionResult Edit(int copyId)
         {
             var copy = _copyService.Get(copyId);
@@ -66,7 +66,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View("_Edit", model);
         }
 
-        [HttpPost, AdminModalFilter]
+        [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditViewModel model)
@@ -79,7 +79,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet, AdminModalFilter]
+        [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
         public ActionResult Delete(int copyId)
         {
             _copyService.Delete(copyId);
@@ -87,7 +87,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost, AdminFilter]
+        [HttpPost, AdminFilter(ActionFilterResponseType.Page)]
         [ValidateInput(false)]
         public ActionResult Inline(int copyId, string copyName, string copyBody)
         {

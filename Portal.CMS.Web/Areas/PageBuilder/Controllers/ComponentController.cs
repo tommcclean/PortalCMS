@@ -1,17 +1,17 @@
-﻿using Portal.CMS.Entities.Enumerators;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
+using Portal.CMS.Entities.Enumerators;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Extensions;
 using Portal.CMS.Web.Areas.PageBuilder.ViewModels.Component;
 using Portal.CMS.Web.ViewModels.Shared;
-using System;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 {
-    [AdminModalFilter]
+    [AdminFilter(ActionFilterResponseType.Modal)]
     public class ComponentController : Controller
     {
         #region Dependencies

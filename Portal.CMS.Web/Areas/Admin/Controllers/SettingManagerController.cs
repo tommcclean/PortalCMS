@@ -1,17 +1,17 @@
-﻿using Portal.CMS.Services.Settings;
+﻿using System.Web.Mvc;
+using Portal.CMS.Services.Settings;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.SettingManager;
-using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
-    [AdminFilter]
+    [AdminFilter(ActionFilterResponseType.Page)]
     public class SettingManagerController : Controller
     {
         #region Dependencies
 
-        readonly ISettingService _settingService;
+        private readonly ISettingService _settingService;
 
         public SettingManagerController(ISettingService settingService)
         {
