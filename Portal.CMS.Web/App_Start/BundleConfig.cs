@@ -56,11 +56,11 @@ namespace Portal.CMS.Web
 
             bundles.Add(new StyleBundle("~/Resources/CSS/C3Graphing").Include("~/Content/Styles/C3Graphing/*.css", new CssRewriteUrlTransform()));
 
-            bundles.Add(new StyleBundle("~/Resources/CSS/JQuery/JQueryUI").Include("~/Content/Styles/JQuery/jquery-ui.min.css", new CssRewriteUrlTransform()));
+            bundles.Add(GenerateCDNStyleBundle("~/Resources/CSS/JQuery/JQueryUI", "/Content/Styles/JQuery/jquery-ui.min.css", cdnRootAddress));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/FontAwesome", "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css").Include("~/Content/Styles/FontAwesome/font-awesome.min.css", new CssRewriteUrlTransform()));
 
-            bundles.Add(new StyleBundle("~/Resources/CSS/FontAwesome/Picker").Include("~/Content/Styles/FontAwesome/fontawesome-iconpicker.min.css"));
+            bundles.Add(GenerateCDNStyleBundle("~/Resources/CSS/FontAwesome/Picker", "/Content/Styles/FontAwesome/fontawesome-iconpicker.min.css", cdnRootAddress));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework").Include("~/Content/Styles/Framework/*.css", new CssRewriteUrlTransform()));
 
@@ -68,7 +68,7 @@ namespace Portal.CMS.Web
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework/Editor").Include("~/Content/Styles/Administration/AppDrawers/*.css", new CssRewriteUrlTransform()));
 
-            bundles.Add(new StyleBundle("~/Resources/CSS/Spectrum").Include("~/Content/Styles/Spectrum/spectrum.css"));
+            bundles.Add(GenerateCDNStyleBundle("~/Resources/CSS/Spectrum", "/Content/Styles/Spectrum/spectrum.css", cdnRootAddress));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Plugins/Effects").Include("~/Content/Styles/Animate/animate.min.css").Include("~/Content/Styles/Hover/hover-min.css"));
 
@@ -85,6 +85,18 @@ namespace Portal.CMS.Web
             var cdnFilePath = $"{cdnRootAddress}{filePath}";
 
             return new ScriptBundle(bundleName, $"{cdnRootAddress}{filePath}").Include($"~{filePath}");
+        }
+
+        private static Bundle GenerateCDNStyleBundle(string bundleName, string filePath, string cdnRootAddress)
+        {
+            if (string.IsNullOrEmpty(cdnRootAddress))
+            {
+                return new StyleBundle(bundleName).Include($"~{filePath}");
+            }
+
+            var cdnFilePath = $"{cdnRootAddress}{filePath}";
+
+            return new StyleBundle(bundleName, $"{cdnRootAddress}{filePath}").Include($"~{filePath}");
         }
     }
 }
