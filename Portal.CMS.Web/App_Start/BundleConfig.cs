@@ -1,4 +1,5 @@
-﻿using System.Web.Optimization;
+﻿using Portal.CMS.Web.Architecture.Helpers;
+using System.Web.Optimization;
 
 namespace Portal.CMS.Web
 {
@@ -9,13 +10,15 @@ namespace Portal.CMS.Web
             bundles.UseCdn = true;
             BundleTable.EnableOptimizations = true;
 
+            var cdnRootAddress = SettingHelper.Get("CDN Address");
+
             #region Script Bundles
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework").Include("~/Content/Scripts/Framework/*.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework/Administration").Include("~/Content/Scripts/Administration/*.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework/Editor").Include("~/Content/Scripts/Editor/QuickAccess.js"));
+            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Framework/Editor","/Content/Scripts/Editor/QuickAccess.js",cdnRootAddress));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js").Include("~/Content/Scripts/Bootstrap/bootstrap.min.js"));
 
@@ -23,9 +26,9 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/JQuery", "https://code.jquery.com/jquery-2.2.1.min.js").Include("~/Content/Scripts/JQuery/jquery-2.2.1.min.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/JQueryTouch").Include("~/Content/Scripts/JQuery/jquery.ui.touch-punch.min.js"));
+            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/JQueryTouch", "/Content/Scripts/JQuery/jquery.ui.touch-punch.min.js", cdnRootAddress));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/FontAwesome").Include("~/Content/Scripts/FontAwesome/fontawesome-iconpicker.min.js"));
+            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/FontAwesome", "/Content/Scripts/FontAwesome/fontawesome-iconpicker.min.js", cdnRootAddress));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Plugins/Popover").Include("~/Content/Scripts/Bootstrap/initialise.js").Include("~/Content/Scripts/Bootstrap/bootstrap-confirmation.min.js"));
 
@@ -35,13 +38,13 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/ImageSelector").Include("~/Content/Scripts/ImageSelector/*.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/FAQ").Include("~/Content/Scripts/Components/component.expand.js"));
+            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/FAQ", "/Content/Scripts/Components/component.expand.js", cdnRootAddress));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/Spectrum").Include("~/Content/Scripts/Spectrum/spectrum.js").Include("~/Content/Scripts/Spectrum/initialise.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/Pagination").Include("~/Content/Scripts/Framework/pagination.js"));
+            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/Pagination", "/Content/Scripts/Framework/pagination.js", cdnRootAddress));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/Sliders").Include("~/Content/Scripts/Administration/ThemeManager-Admin.js"));
+            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/Sliders", "/Content/Scripts/Administration/ThemeManager-Admin.js", cdnRootAddress));
 
             #endregion Script Bundles
 
@@ -70,6 +73,18 @@ namespace Portal.CMS.Web
             bundles.Add(new StyleBundle("~/Resources/CSS/Plugins/Effects").Include("~/Content/Styles/Animate/animate.min.css").Include("~/Content/Styles/Hover/hover-min.css"));
 
             #endregion Style Bundles
+        }
+
+        private static Bundle GenerateCDNScriptBundle(string bundleName, string filePath, string cdnRootAddress)
+        {
+            if (string.IsNullOrEmpty(cdnRootAddress))
+            {
+                return new ScriptBundle(bundleName).Include($"~{filePath}");
+            }
+
+            var cdnFilePath = $"{cdnRootAddress}{filePath}";
+
+            return new ScriptBundle(bundleName, $"{cdnRootAddress}{filePath}").Include($"~{filePath}");
         }
     }
 }

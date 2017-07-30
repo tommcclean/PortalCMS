@@ -7,8 +7,15 @@ namespace Portal.CMS.Web.Architecture.Helpers
     {
         public static string Get(string settingName)
         {
-            var sessionSetting = System.Web.HttpContext.Current.Session[$"Setting-{settingName}"];
+            var validSession = System.Web.HttpContext.Current.Session != null;
 
+            object sessionSetting = null;
+
+            if (validSession)
+            {
+                sessionSetting = System.Web.HttpContext.Current.Session[$"Setting-{settingName}"];
+            }
+            
             if (sessionSetting != null)
             {
                 return sessionSetting.ToString();
@@ -24,7 +31,10 @@ namespace Portal.CMS.Web.Architecture.Helpers
                 if (setting == null)
                     return string.Empty;
 
-                System.Web.HttpContext.Current.Session.Add($"Setting-{settingName}", setting.SettingValue);
+                if (validSession)
+                {
+                    System.Web.HttpContext.Current.Session.Add($"Setting-{settingName}", setting.SettingValue);
+                }
 
                 return setting.SettingValue;
             }
