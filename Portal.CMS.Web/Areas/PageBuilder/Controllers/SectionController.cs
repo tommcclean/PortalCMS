@@ -1,13 +1,13 @@
-﻿using System;
-using System.Linq;
-using System.Web.Mvc;
-using Portal.CMS.Services.Authentication;
+﻿using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Extensions;
 using Portal.CMS.Web.Areas.PageBuilder.ViewModels.Section;
 using Portal.CMS.Web.ViewModels.Shared;
+using System;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 {
@@ -309,6 +309,14 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             _associationService.Clone(model.PageAssociationId, model.PageId);
 
             return Content("Refresh");
+        }
+
+        [HttpGet]
+        public ActionResult Reload(int pageSectionId)
+        {
+            var pageSection = _sectionService.Get(pageSectionId);
+
+            return Content(pageSection.PageSectionBody);
         }
     }
 }

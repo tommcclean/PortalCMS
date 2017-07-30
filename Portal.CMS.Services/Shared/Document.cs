@@ -3,6 +3,7 @@ using Portal.CMS.Entities.Enumerators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Portal.CMS.Services.Shared
 {
@@ -138,6 +139,27 @@ namespace Portal.CMS.Services.Shared
             var element = _document.GetElementbyId(elementId);
 
             element.Remove();
+        }
+
+        public void CloneElement(string elementId, string componentStamp)
+        {
+            var existingElement = _document.GetElementbyId(elementId);
+            var clonedElement = existingElement.Clone();
+            var clonedElementContent = clonedElement.OuterHtml;
+
+            clonedElementContent = ResetComponentStamp(clonedElementContent);
+            clonedElementContent = ReplaceTokens(clonedElementContent, 0, componentStamp);
+
+            var newnode = HtmlNode.CreateNode(clonedElementContent);
+            existingElement.ParentNode.ChildNodes.Add(clonedElement);
+            existingElement.ParentNode.ReplaceChild(newnode, clonedElement);
+        }
+
+        public static string ResetComponentStamp(string htmlBody)
+        {
+            htmlBody = Regex.Replace(htmlBody, @"-\d{13}-", "-<componentStamp>-");
+
+            return htmlBody;
         }
 
         public static string ReplaceTokens(string htmlBody, int pageSectionId, string componentStamp)

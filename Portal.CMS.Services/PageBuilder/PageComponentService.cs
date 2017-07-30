@@ -20,6 +20,8 @@ namespace Portal.CMS.Services.PageBuilder
 
         void EditSource(int pageSectionId, string elementId, string newSourcePath);
 
+        void CloneElement(int pageSectionId, string elementId, string componentStamp);
+
         void Delete(int pageSectionId, string componentId);
     }
 
@@ -112,6 +114,20 @@ namespace Portal.CMS.Services.PageBuilder
             var document = new Document(pageSection.PageSectionBody);
 
             document.UpdateElementAttribute(elementId, "src", newSourcePath, true);
+
+            pageSection.PageSectionBody = document.OuterHtml;
+
+            _context.SaveChanges();
+        }
+
+        public void CloneElement(int pageSectionId, string elementId, string componentStamp)
+        {
+            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            if (pageSection == null) return;
+
+            var document = new Document(pageSection.PageSectionBody);
+
+            document.CloneElement(elementId, componentStamp);
 
             pageSection.PageSectionBody = document.OuterHtml;
 

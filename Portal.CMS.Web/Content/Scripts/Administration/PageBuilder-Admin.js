@@ -309,3 +309,20 @@ function ReplaceChildTokens(parentElementId, sectionId, componentId) {
         }
     });
 }
+
+function ReloadSection(pageSectionId) {
+    $.ajax({
+        data: { "pageSectionId": pageSectionId },
+        type: 'GET',
+        cache: false,
+        url: '/PageBuilder/Section/Reload',
+        success: function (data) {
+            $('#section-wrapper-' + pageSectionId).empty();
+            $('#section-wrapper-' + pageSectionId).append(data);
+
+            InitialiseEditor();
+            InitialiseWidgets();
+            InitialiseDroppables();
+        },
+    });
+}

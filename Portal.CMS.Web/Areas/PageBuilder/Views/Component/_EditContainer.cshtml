@@ -24,6 +24,29 @@
             },
         });
     }
+
+    function Clone()
+    {
+        var dataParams = { "pageSectionId": @Model.SectionId , "elementId": "@Model.ElementId", "componentStamp": new Date().valueOf(), "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+
+        $.ajax({
+            data: dataParams,
+            type: 'POST',
+            cache: false,
+            url: '/PageBuilder/Component/Clone',
+            success: function (data) {
+                if (data.State === false)
+                {
+                    alert("Error: The document has lost synchronisation. Reloading document...");
+                    location.reload();
+                }
+                else
+                {
+                    ReloadSection(@Model.SectionId);
+                }
+            },
+        });
+    }
 </script>
 
 @using (Html.BeginForm("EditContainer", "Component", FormMethod.Post))
@@ -41,6 +64,7 @@
 
     <div class="footer">
         <button class="btn primary">Save</button>
+        <a onclick="Clone()" data-dismiss="modal" class="btn">Clone</a>
         <a onclick="Delete()" data-dismiss="modal" class="btn delete">Delete</a>
         <button class="btn" data-dismiss="modal">Cancel</button>
     </div>
