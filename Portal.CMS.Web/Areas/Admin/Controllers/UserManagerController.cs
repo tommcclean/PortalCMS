@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Portal.CMS.Services.Authentication;
+﻿using Portal.CMS.Services.Authentication;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.UserManager;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {

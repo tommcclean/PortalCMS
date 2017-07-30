@@ -99,7 +99,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
                 return Json(new { State = false, Reason = "Invalid" });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json(new { State = false, Reason = "Exception" });
             }
