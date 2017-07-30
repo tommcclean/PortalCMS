@@ -141,7 +141,7 @@ namespace Portal.CMS.Services.Shared
             element.Remove();
         }
 
-        public void CloneElement(string elementId, string componentStamp)
+        public void CloneElement(int pageSectionId, string elementId, string componentStamp)
         {
             var existingElement = _document.GetElementbyId(elementId);
             var clonedElement = existingElement.Clone();
@@ -151,8 +151,26 @@ namespace Portal.CMS.Services.Shared
             clonedElementContent = ReplaceTokens(clonedElementContent, 0, componentStamp);
 
             var newnode = HtmlNode.CreateNode(clonedElementContent);
+            ApplyUniqueIdentifiers(newnode, pageSectionId, componentStamp);
+
             existingElement.ParentNode.ChildNodes.Add(clonedElement);
             existingElement.ParentNode.ReplaceChild(newnode, clonedElement);
+        }
+
+        public void ApplyUniqueIdentifiers(HtmlNode node, int pageSectionId, string componentStamp)
+        {
+            var elementCount = 1;
+
+            node.Id = $"element-{elementCount}-{componentStamp}-{pageSectionId}";
+
+            elementCount += 1;
+
+            foreach (var childNode in node.Descendants().Where(x => !string.IsNullOrEmpty(x.Id)))
+            {
+                childNode.Id = $"element-{elementCount}-{componentStamp}-{pageSectionId}";
+
+                elementCount += 1;
+            }
         }
 
         public static string ResetComponentStamp(string htmlBody)

@@ -127,7 +127,7 @@ namespace Portal.CMS.Services.PageBuilder
 
             var document = new Document(pageSection.PageSectionBody);
 
-            document.CloneElement(elementId, componentStamp);
+            document.CloneElement(pageSectionId, elementId, componentStamp);
 
             pageSection.PageSectionBody = document.OuterHtml;
 
