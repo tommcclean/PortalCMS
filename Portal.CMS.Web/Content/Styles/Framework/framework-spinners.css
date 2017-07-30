@@ -1,4 +1,30 @@
-﻿.spinner
+﻿#spinner-wrapper
+{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-image: url('/Areas/Admin/Content/Images/block_black_dark.png');
+}
+
+.spinner-background
+{
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    height: 150px;
+    width: 150px;
+    border-radius: 25px;
+}
+
+.spinner
 {
     position: absolute;
     margin: auto;

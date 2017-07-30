@@ -311,6 +311,7 @@ function ReplaceChildTokens(parentElementId, sectionId, componentId) {
 }
 
 function ReloadSection(pageSectionId) {
+    $('#spinner-wrapper').show();
     $.ajax({
         data: { "pageSectionId": pageSectionId },
         type: 'GET',
@@ -323,6 +324,8 @@ function ReloadSection(pageSectionId) {
             InitialiseEditor();
             InitialiseWidgets();
             InitialiseDroppables();
+
+            $('#spinner-wrapper').hide();
         },
     });
 }

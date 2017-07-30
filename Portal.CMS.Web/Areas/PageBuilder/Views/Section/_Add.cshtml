@@ -116,13 +116,11 @@
                         if (data.Reason === "Invalid")
                         {
                             alert("Error: The Partial Route Specified is Invalid. No Action Exists on that Route...");
-
                             return false;
                         }
                         else
                         {
                             alert("Error: The Page has lost synchronisation. Reloading Page...");
-
                             location.reload();
                         }
                     }
@@ -137,6 +135,8 @@
             var sectionTypeContent = $(this).html();
             var componentStamp = new Date().valueOf();
 
+            $('#spinner-wrapper').show();
+
             var dataParams = { "pageId": @Model.PageId, "pageSectionTypeId": sectionTypeId, "componentStamp": componentStamp, "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
             $.ajax({
                 data: dataParams,
@@ -145,6 +145,8 @@
                 url: '@Url.Action("AddSection", "Section", new { area = "PageBuilder" })',
                 success: function (data)
                 {
+                    $('#spinner-wrapper').hide();
+
                     if (data.State === false)
                     {
                         alert("Error: The Page has lost synchronisation. Reloading Page...");
