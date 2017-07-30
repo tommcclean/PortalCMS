@@ -1,9 +1,9 @@
-#Portal CMS Roadmap / Changelog
+# Portal CMS Roadmap / Changelog
 This file contains a list of changes between versions of Portal CMS and a roadmap that provides a brief outline of the features we intend to include in Portal CMS.
 
-#Changelog
+# Changelog
 
-##1.3 - (August 2017) Focus: Performance Optimisation, Improvements to the Page Builder and making it easier to develop bespoke functionality **(LATEST STABLE RELEASE)**
+## 1.3 - (August 2017) Focus: Performance Optimisation, Improvements to the Page Builder and making it easier to develop bespoke functionality **(LATEST STABLE RELEASE)**
 1. Ability to clone components in the page builder, helping you build up pages even quicker.
 2. Ability to display the same section on multiple pages at once. Meaning if you update it in one place, it updates everywhere.
 3. Ability to write your own MVC Partial Actions and render them on Page Builder pages.
@@ -22,7 +22,7 @@ This file contains a list of changes between versions of Portal CMS and a roadma
 16. Improved user experience across the page builder on Tablet and Desktop.
 17. Improved Administration user experience when you are logged out while editing a modal window, you are automatically redirected to login again.
 
-##1.2 - (March 2017) Focus: Increase Feature Set and Improve User Experience.
+## 1.2 - (March 2017) Focus: Increase Feature Set and Improve User Experience.
 1. User Experience: Brand New Quick Access Panel for Administrator Users.
 2. User Experience: Page Builder no longer posts back when: Adding a Section, Editing Section Markup, Editing an Image, Editing a Section, Adding a Component, Deleting a Section, Deleting a Component.
 3. Architecture: Ability to Backup and Restore individual sections on demand.
@@ -47,7 +47,7 @@ This file contains a list of changes between versions of Portal CMS and a roadma
 22. Architecture: Refactoring to comply with Clean Code Rules
 23. Multiple usability and performance improvements across the framework.
 
-##1.1 - (November 2016) Focus: Increasing Feature Set with oft expected features.
+## 1.1 - (November 2016) Focus: Increasing Feature Set with oft expected features.
 1. Improvements to website reliability and architecture.
 2. Improved performance following Performance testing.
 3. Ability to upload your own Font's and use them in custom Themes.
@@ -62,7 +62,7 @@ This file contains a list of changes between versions of Portal CMS and a roadma
 11. Incorporation of a Unit Testing Technology.
 12. Change website from use of Glyphicons to Font Awesome.
 
-##1.0 - Initial Release
+## 1.0 - Initial Release
 1. Ability to use the Administration Panel with the following features...
   1. Dashboard
   2. Media Manager (Upload Images)
@@ -83,7 +83,7 @@ This file contains a list of changes between versions of Portal CMS and a roadma
   1. Including Inline editing for changing your posts quickly
   2. Including Comments, Photo Galleries and Tie ins to other posts
 
-##Future Intentions
+## Future Intentions
 1. Upgrade from .NET 4.6.1 to .NET Core
 2. Upgrade from Bootstrap 3 to Bootstrap 4
 3. New Mailing List Widgets
