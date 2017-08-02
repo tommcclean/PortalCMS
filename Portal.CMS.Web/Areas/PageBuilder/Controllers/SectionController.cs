@@ -38,6 +38,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         #endregion Dependencies
 
         [HttpGet]
+        [OutputCache(Duration = 60)]
         public ActionResult Add(int pageId)
         {
             var model = new AddViewModel
@@ -288,6 +289,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         #endregion Section Backup Methods
 
         [HttpGet]
+        [OutputCache(Duration = 60)]
         public ActionResult Clone(int pageAssociationId)
         {
             var pageAssociation = _associationService.Get(pageAssociationId);

@@ -23,6 +23,7 @@ namespace Portal.CMS.Web.Areas.Forms.Controllers
         #endregion Dependencies
 
         [HttpGet]
+        [OutputCache(Duration = 60)]
         public ActionResult SubmitMessageWidget()
         {
             var model = new SubmitMessageViewModel();
