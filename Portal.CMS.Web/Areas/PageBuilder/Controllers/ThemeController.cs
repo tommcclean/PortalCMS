@@ -1,9 +1,11 @@
 ﻿using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Areas.PageBuilder.ViewModels.Theme;
 using System.Web.Mvc;
+using System.Web.SessionState;
 
 namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 {
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class ThemeController : Controller
     {
         #region Dependencies

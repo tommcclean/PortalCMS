@@ -4,9 +4,11 @@ using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.Helpers;
 using System;
 using System.Web.Mvc;
+using System.Web.SessionState;
 
 namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 {
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class PageController : Controller
     {
         #region Dependencies

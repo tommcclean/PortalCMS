@@ -1,7 +1,9 @@
 ﻿using System.Web.Mvc;
+using System.Web.SessionState;
 
 namespace Portal.CMS.Web.Areas.Profile.Controllers
 {
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class WidgetsController : Controller
     {
         public ActionResult ProfileWidget()

@@ -3,9 +3,11 @@ using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Blog.ViewModels.Widgets;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.SessionState;
 
 namespace Portal.CMS.Web.Areas.BlogManager.Controllers
-{
+{ 
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class WidgetsController : Controller
     {
         #region Dependencies

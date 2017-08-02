@@ -8,10 +8,12 @@ using Portal.CMS.Web.ViewModels.Shared;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.SessionState;
 
 namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 {
     [AdminFilter(ActionFilterResponseType.Modal)]
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class SectionController : Controller
     {
         #region Dependencies
