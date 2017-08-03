@@ -2,23 +2,25 @@
 using Portal.CMS.Entities.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.PageBuilder
 {
     public interface IPageAssociationService
     {
-        List<PagePartial> Get();
+        Task<List<PagePartial>> GetAsync();
 
-        PageAssociation Get(int pageAssociationId);
+        Task<PageAssociation> GetAsync(int pageAssociationId);
 
-        void Delete(int pageAssociationId);
+        Task DeleteAsync(int pageAssociationId);
 
-        void EditRoles(int pageAssociationId, List<string> roleList);
+        Task EditRolesAsync(int pageAssociationId, List<string> roleList);
 
-        void EditOrder(int pageId, string associationList);
+        Task EditOrderAsync(int pageId, string associationList);
 
-        void Clone(int pageAssociationId, int pageId);
+        Task CloneAsync(int pageAssociationId, int pageId);
     }
 
     public class PageAssociationService : IPageAssociationService
@@ -34,9 +36,9 @@ namespace Portal.CMS.Services.PageBuilder
 
         #endregion Dependencies
 
-        public List<PagePartial> Get()
+        public async Task<List<PagePartial>> GetAsync()
         {
-            var existingPartialList = _context.PagePartials.ToList();
+            var existingPartialList = await _context.PagePartials.ToListAsync();
 
             var distinctPartialList = new List<PagePartial>();
 
@@ -47,23 +49,23 @@ namespace Portal.CMS.Services.PageBuilder
             return distinctPartialList;
         }
 
-        public PageAssociation Get(int pageAssociationId)
+        public async Task<PageAssociation> GetAsync(int pageAssociationId)
         {
-            var pageAssociation = _context.PageAssociations.SingleOrDefault(pa => pa.PageAssociationId == pageAssociationId);
+            var pageAssociation = await _context.PageAssociations.SingleOrDefaultAsync(pa => pa.PageAssociationId == pageAssociationId);
 
             return pageAssociation;
         }
 
-        public void Delete(int pageAssociationId)
+        public async Task DeleteAsync(int pageAssociationId)
         {
-            var pageAssociation = _context.PageAssociations.SingleOrDefault(x => x.PageAssociationId == pageAssociationId);
+            var pageAssociation = await _context.PageAssociations.SingleOrDefaultAsync(x => x.PageAssociationId == pageAssociationId);
             if (pageAssociation == null) return;
 
             if (pageAssociation.PageSection != null)
             {
                 if (!_context.PageAssociations.Any(x => x.PageSectionId == pageAssociation.PageSectionId))
                 {
-                    var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageAssociation.PageSectionId);
+                    var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageAssociation.PageSectionId);
 
                     _context.PageSections.Remove(pageSection);
                 }
@@ -72,7 +74,7 @@ namespace Portal.CMS.Services.PageBuilder
             {
                 if (!_context.PageAssociations.Any(x => x.PagePartialId == pageAssociation.PagePartialId))
                 {
-                    var pagePartial = _context.PagePartials.SingleOrDefault(x => x.PagePartialId == pageAssociation.PagePartialId);
+                    var pagePartial = await _context.PagePartials.SingleOrDefaultAsync(x => x.PagePartialId == pageAssociation.PagePartialId);
 
                     _context.PagePartials.Remove(pagePartial);
                 }
@@ -80,12 +82,12 @@ namespace Portal.CMS.Services.PageBuilder
 
             _context.PageAssociations.Remove(pageAssociation);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void EditRoles(int pageAssociationId, List<string> roleList)
+        public async Task EditRolesAsync(int pageAssociationId, List<string> roleList)
         {
-            var pageAssociation = _context.PageAssociations.SingleOrDefault(pa => pa.PageAssociationId == pageAssociationId);
+            var pageAssociation = await _context.PageAssociations.SingleOrDefaultAsync(pa => pa.PageAssociationId == pageAssociationId);
             if (pageAssociation == null) return;
 
             var roles = _context.Roles.ToList();
@@ -101,12 +103,12 @@ namespace Portal.CMS.Services.PageBuilder
                 _context.PageAssociationRoles.Add(new PageAssociationRole { PageAssociationId = pageAssociationId, RoleId = currentRole.RoleId });
             }
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void EditOrder(int pageId, string associationList)
+        public async Task EditOrderAsync(int pageId, string associationList)
         {
-            var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
+            var page = await _context.Pages.SingleOrDefaultAsync(x => x.PageId == pageId);
             if (page == null) return;
 
             var associations = associationList.Split(',');
@@ -126,15 +128,15 @@ namespace Portal.CMS.Services.PageBuilder
                 pageAssociation.PageAssociationOrder = Convert.ToInt32(orderId);
             }
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Clone(int pageAssociationId, int pageId)
+        public async Task CloneAsync(int pageAssociationId, int pageId)
         {
-            var pageAssociation = _context.PageAssociations.FirstOrDefault(pa => pa.PageAssociationId == pageAssociationId);
+            var pageAssociation = await _context.PageAssociations.FirstOrDefaultAsync(pa => pa.PageAssociationId == pageAssociationId);
             if (pageAssociation == null) return;
 
-            var page = _context.Pages.FirstOrDefault(p => p.PageId == pageId);
+            var page = await _context.Pages.FirstOrDefaultAsync(p => p.PageId == pageId);
             if (page == null) return;
 
             if (pageAssociation.PageSection != null)
@@ -153,7 +155,7 @@ namespace Portal.CMS.Services.PageBuilder
 
                 _context.PageAssociations.Add(clonePageAssociation);
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
         }
     }

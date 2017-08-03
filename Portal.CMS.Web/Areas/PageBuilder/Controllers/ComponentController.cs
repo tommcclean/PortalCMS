@@ -10,6 +10,7 @@ using Portal.CMS.Web.Areas.PageBuilder.ViewModels.Component;
 using Portal.CMS.Web.ViewModels.Shared;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.SessionState;
 
@@ -93,9 +94,9 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditImage(int pageSectionId, string elementId, string elementType)
+        public async Task<ActionResult> EditImage(int pageSectionId, string elementId, string elementType)
         {
-            var pageSection = _pageSectionService.Get(pageSectionId);
+            var pageSection = await _pageSectionService.GetAsync(pageSectionId);
 
             var imageList = _imageService.Get();
 
@@ -226,7 +227,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditContainer(ContainerViewModel model)
         {
-            _pageSectionService.EditAnimation(model.SectionId, model.ElementId, model.Animation.ToString());
+            _pageSectionService.EditAnimationAsync(model.SectionId, model.ElementId, model.Animation.ToString());
 
             return Content("Refresh");
         }

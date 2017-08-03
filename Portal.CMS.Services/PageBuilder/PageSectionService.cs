@@ -4,46 +4,48 @@ using Portal.CMS.Entities.Enumerators;
 using Portal.CMS.Services.Shared;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.PageBuilder
 {
     public interface IPageSectionService
     {
-        PageSection Get(int pageSectionId);
+        Task<PageSection> GetAsync(int pageSectionId);
 
-        List<PageSectionType> GetSectionTypes();
+        Task<List<PageSectionType>> GetSectionTypesAsync();
 
-        PageAssociation Add(int pageId, int pageSectionTypeId, string componentStamp);
+        Task<PageAssociation> AddAsync(int pageId, int pageSectionTypeId, string componentStamp);
 
-        void EditBackgroundImage(int pageSectionId, string imagePath, ImageCategory imageCategory);
+        Task EditBackgroundImageAsync(int pageSectionId, string imagePath, ImageCategory imageCategory);
 
-        void EditBackgroundColour(int pageSectionId, string backgroundColour);
+        Task EditBackgroundColourAsync(int pageSectionId, string backgroundColour);
 
-        void EditHeight(int pageSectionId, PageSectionHeight height);
+        Task EditHeightAsync(int pageSectionId, PageSectionHeight height);
 
-        void EditBackgroundStyle(int pageSectionId, PageSectionBackgroundStyle backgroundType);
+        Task EditBackgroundStyleAsync(int pageSectionId, PageSectionBackgroundStyle backgroundType);
 
-        void EditBackgroundType(int pageSectionId, bool isPicture);
+        Task EditBackgroundTypeAsync(int pageSectionId, bool isPicture);
 
-        void EditMarkup(int pageSectionId, string htmlBody);
+        Task EditMarkupAsync(int pageSectionId, string htmlBody);
 
-        void EditAnimation(int pageSectionId, string elementId, string animation);
+        Task EditAnimationAsync(int pageSectionId, string elementId, string animation);
 
-        PageSectionHeight DetermineSectionHeight(int pageSectionId);
+        Task<PageSectionHeight> DetermineSectionHeightAsync(int pageSectionId);
 
-        PageSectionBackgroundStyle DetermineBackgroundStyle(int pageSectionId);
+        Task<PageSectionBackgroundStyle> DetermineBackgroundStyleAsync(int pageSectionId);
 
-        string DetermineBackgroundType(int pageSectionId);
+        Task<string> DetermineBackgroundTypeAsync(int pageSectionId);
 
-        string DetermineBackgroundColour(int pageSectionId);
+        Task<string> DetermineBackgroundColourAsync(int pageSectionId);
 
-        void Backup(int pageSectionId);
+        Task BackupAsync(int pageSectionId);
 
-        string RestoreBackup(int pageSectionId, int backupId);
+        Task<string> RestoreBackupAsync(int pageSectionId, int backupId);
 
-        void DeleteBackup(int backupId);
+        Task DeleteBackupAsync(int backupId);
     }
 
     public class PageSectionService : IPageSectionService
@@ -59,23 +61,23 @@ namespace Portal.CMS.Services.PageBuilder
 
         #endregion Dependencies
 
-        public List<PageSectionType> GetSectionTypes()
+        public async Task<List<PageSectionType>> GetSectionTypesAsync()
         {
-            var results = _context.PageSectionTypes.OrderBy(x => x.PageSectionTypeId).ToList();
+            var results = await _context.PageSectionTypes.OrderBy(x => x.PageSectionTypeId).ToListAsync();
 
             return results;
         }
 
-        public PageSection Get(int pageSectionId)
+        public async Task<PageSection> GetAsync(int pageSectionId)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
 
             return pageSection;
         }
 
-        public PageAssociation Add(int pageId, int pageSectionTypeId, string componentStamp)
+        public async Task<PageAssociation> AddAsync(int pageId, int pageSectionTypeId, string componentStamp)
         {
-            var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
+            var page = await _context.Pages.SingleOrDefaultAsync(x => x.PageId == pageId);
             if (page == null) return null;
 
             var sectionType = _context.PageSectionTypes.SingleOrDefault(x => x.PageSectionTypeId == pageSectionTypeId);
@@ -98,20 +100,20 @@ namespace Portal.CMS.Services.PageBuilder
 
             _context.PageAssociations.Add(newPageAssociation);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             var document = new Document(newPageAssociation.PageSection.PageSectionBody);
 
             newPageAssociation.PageSection.PageSectionBody = Document.ReplaceTokens(newPageAssociation.PageSection.PageSectionBody, newPageAssociation.PageSection.PageSectionId, componentStamp);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return newPageAssociation;
         }
 
-        public void EditBackgroundImage(int pageSectionId, string imagePath, ImageCategory imageCategory)
+        public async Task EditBackgroundImageAsync(int pageSectionId, string imagePath, ImageCategory imageCategory)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
@@ -125,12 +127,12 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = document.OuterHtml;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void EditBackgroundColour(int pageSectionId, string backgroundColour)
+        public async Task EditBackgroundColourAsync(int pageSectionId, string backgroundColour)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
@@ -139,12 +141,12 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = document.OuterHtml;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void EditHeight(int pageSectionId, PageSectionHeight height)
+        public async Task EditHeightAsync(int pageSectionId, PageSectionHeight height)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
@@ -153,12 +155,12 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = document.OuterHtml;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void EditBackgroundStyle(int pageSectionId, PageSectionBackgroundStyle backgroundType)
+        public async Task EditBackgroundStyleAsync(int pageSectionId, PageSectionBackgroundStyle backgroundType)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
@@ -167,12 +169,12 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = document.OuterHtml;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void EditBackgroundType(int pageSectionId, bool isPicture)
+        public async Task EditBackgroundTypeAsync(int pageSectionId, bool isPicture)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
@@ -181,12 +183,12 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = document.OuterHtml;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void EditAnimation(int pageSectionId, string elementId, string animation)
+        public async Task EditAnimationAsync(int pageSectionId, string elementId, string animation)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
@@ -195,22 +197,22 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = document.OuterHtml;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void EditMarkup(int pageSectionId, string htmlBody)
+        public async Task EditMarkupAsync(int pageSectionId, string htmlBody)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             pageSection.PageSectionBody = htmlBody;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public PageSectionHeight DetermineSectionHeight(int pageSectionId)
+        public async Task<PageSectionHeight> DetermineSectionHeightAsync(int pageSectionId)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return PageSectionHeight.Tall;
@@ -230,9 +232,9 @@ namespace Portal.CMS.Services.PageBuilder
             return pageSection.PageSectionBody.Contains("height-tiny") ? PageSectionHeight.Tiny : PageSectionHeight.Tall;
         }
 
-        public PageSectionBackgroundStyle DetermineBackgroundStyle(int pageSectionId)
+        public async Task<PageSectionBackgroundStyle> DetermineBackgroundStyleAsync(int pageSectionId)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return PageSectionBackgroundStyle.Static;
@@ -243,9 +245,9 @@ namespace Portal.CMS.Services.PageBuilder
             return pageSection.PageSectionBody.Contains("background-parallax") ? PageSectionBackgroundStyle.Parallax : PageSectionBackgroundStyle.Static;
         }
 
-        public string DetermineBackgroundType(int pageSectionId)
+        public async Task<string> DetermineBackgroundTypeAsync(int pageSectionId)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return "background-picture";
@@ -256,9 +258,9 @@ namespace Portal.CMS.Services.PageBuilder
                 return "background-picture";
         }
 
-        public string DetermineBackgroundColour(int pageSectionId)
+        public async Task<string> DetermineBackgroundColourAsync(int pageSectionId)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
 
             if (pageSection == null)
                 return "#ffffff";
@@ -275,9 +277,9 @@ namespace Portal.CMS.Services.PageBuilder
 
         #region Backup Methods
 
-        public void Backup(int pageSectionId)
+        public async Task BackupAsync(int pageSectionId)
         {
-            var pageSection = Get(pageSectionId);
+            var pageSection = await GetAsync(pageSectionId);
 
             if (pageSection == null) return;
 
@@ -290,29 +292,29 @@ namespace Portal.CMS.Services.PageBuilder
 
             _context.PageSectionBackups.Add(newBackup);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public string RestoreBackup(int pageSectionId, int backupId)
+        public async Task<string> RestoreBackupAsync(int pageSectionId, int backupId)
         {
             var pageSectionBackup = _context.PageSectionBackups.SingleOrDefault(x => x.PageSectionBackupId == backupId);
-            var pageSection = Get(pageSectionId);
+            var pageSection = await GetAsync(pageSectionId);
 
             pageSection.PageSectionBody = pageSectionBackup.PageSectionBody;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return pageSection.PageSectionBody;
         }
 
-        public void DeleteBackup(int backupId)
+        public async Task DeleteBackupAsync(int backupId)
         {
-            var pageSectionBackup = _context.PageSectionBackups.SingleOrDefault(x => x.PageSectionBackupId == backupId);
+            var pageSectionBackup = await _context.PageSectionBackups.SingleOrDefaultAsync(x => x.PageSectionBackupId == backupId);
             if (pageSectionBackup == null) return;
 
             _context.PageSectionBackups.Remove(pageSectionBackup);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         #endregion Backup Methods

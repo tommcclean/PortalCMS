@@ -7,6 +7,7 @@ using Portal.CMS.Web.Areas.PageBuilder.ViewModels.Section;
 using Portal.CMS.Web.ViewModels.Shared;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.SessionState;
 
@@ -39,13 +40,13 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpGet]
         [OutputCache(Duration = 60)]
-        public ActionResult Add(int pageId)
+        public async Task<ActionResult> Add(int pageId)
         {
             var model = new AddViewModel
             {
                 PageId = pageId,
-                SectionTypeList = _sectionService.GetSectionTypes(),
-                PartialList = _associationService.Get()
+                SectionTypeList = await _sectionService.GetSectionTypesAsync(),
+                PartialList = await _associationService.GetAsync()
             };
 
             return View("_Add", model);
@@ -53,11 +54,11 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int pageAssociationId)
+        public async Task<ActionResult> Delete(int pageAssociationId)
         {
             try
             {
-                _associationService.Delete(pageAssociationId);
+                await _associationService.DeleteAsync(pageAssociationId);
 
                 return Json(new { State = true });
             }
@@ -69,11 +70,11 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult AddSection(int pageId, int pageSectionTypeId, string componentStamp)
+        public async Task<JsonResult> AddSection(int pageId, int pageSectionTypeId, string componentStamp)
         {
             try
             {
-                var pageAssociation = _sectionService.Add(pageId, pageSectionTypeId, componentStamp);
+                var pageAssociation = await _sectionService.AddAsync(pageId, pageSectionTypeId, componentStamp);
 
                 return Json(new { State = true, PageSectionId = pageAssociation.PageSection.PageSectionId, PageAssociationId = pageAssociation.PageAssociationId });
             }
@@ -102,17 +103,17 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
                 return Json(new { State = false, Reason = "Invalid" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Json(new { State = false, Reason = "Exception" });
             }
         }
 
         [HttpPost]
-        public ActionResult EditOrder(int pageId, string associationList)
+        public async Task<ActionResult> EditOrder(int pageId, string associationList)
         {
             if (associationList != null && associationList.Length > 2)
-                _associationService.EditOrder(pageId, associationList);
+                await _associationService.EditOrderAsync(pageId, associationList);
 
             return RedirectToAction("Index", "Page", new { pageId });
         }
@@ -120,11 +121,11 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         #region Section Edit Methods
 
         [HttpGet]
-        public ActionResult EditSection(int pageAssociationId)
+        public async Task<ActionResult> EditSection(int pageAssociationId)
         {
-            var pageAssociation = _associationService.Get(pageAssociationId);
+            var pageAssociation = await _associationService.GetAsync(pageAssociationId);
 
-            var pageSection = _sectionService.Get(pageAssociation.PageSection.PageSectionId);
+            var pageSection = await _sectionService.GetAsync(pageAssociation.PageSection.PageSectionId);
 
             var model = new EditSectionViewModel
             {
@@ -136,10 +137,10 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
                     TargetInputField = "BackgroundImageId",
                     PaginationType = "section"
                 },
-                PageSectionHeight = _sectionService.DetermineSectionHeight(pageSection.PageSectionId),
-                PageSectionBackgroundStyle = _sectionService.DetermineBackgroundStyle(pageSection.PageSectionId),
-                BackgroundType = _sectionService.DetermineBackgroundType(pageSection.PageSectionId),
-                BackgroundColour = _sectionService.DetermineBackgroundColour(pageSection.PageSectionId),
+                PageSectionHeight = await _sectionService.DetermineSectionHeightAsync(pageSection.PageSectionId),
+                PageSectionBackgroundStyle = await _sectionService.DetermineBackgroundStyleAsync(pageSection.PageSectionId),
+                BackgroundType = await _sectionService.DetermineBackgroundTypeAsync(pageSection.PageSectionId),
+                BackgroundColour = await _sectionService.DetermineBackgroundColourAsync(pageSection.PageSectionId),
                 RoleList = _roleService.Get(),
                 SelectedRoleList = pageAssociation.PageAssociationRoles.Select(x => x.Role.RoleName).ToList()
             };
@@ -149,35 +150,37 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult EditSection(EditSectionViewModel model)
+        public async Task<JsonResult> EditSection(EditSectionViewModel model)
         {
             try
             {
                 if ("colour".Equals(model.BackgroundType, StringComparison.OrdinalIgnoreCase))
                 {
-                    _sectionService.EditBackgroundType(model.SectionId, false);
+                    await _sectionService.EditBackgroundTypeAsync(model.SectionId, false);
 
                     if (!string.IsNullOrWhiteSpace(model.BackgroundColour))
-                        _sectionService.EditBackgroundColour(model.SectionId, model.BackgroundColour);
+                        await _sectionService.EditBackgroundColourAsync(model.SectionId, model.BackgroundColour);
                 }
                 else
                 {
-                    _sectionService.EditBackgroundType(model.SectionId, true);
+                    await _sectionService.EditBackgroundTypeAsync(model.SectionId, true);
 
                     if (model.BackgroundImageId > 0)
                     {
                         var selectedBackgroundImage = _imageService.Get(model.BackgroundImageId);
 
-                        _sectionService.EditBackgroundImage(model.SectionId, selectedBackgroundImage.CDNImagePath(), selectedBackgroundImage.ImageCategory);
+                        await _sectionService.EditBackgroundImageAsync(model.SectionId, selectedBackgroundImage.CDNImagePath(), selectedBackgroundImage.ImageCategory);
                     }
 
-                    _sectionService.EditBackgroundStyle(model.SectionId, model.PageSectionBackgroundStyle);
+                    await _sectionService.EditBackgroundStyleAsync(model.SectionId, model.PageSectionBackgroundStyle);
                 }
 
-                _sectionService.EditHeight(model.SectionId, model.PageSectionHeight);
-                _associationService.EditRoles(model.PageAssociationId, model.SelectedRoleList);
+                await _sectionService.EditHeightAsync(model.SectionId, model.PageSectionHeight);
+                await _associationService.EditRolesAsync(model.PageAssociationId, model.SelectedRoleList);
 
-                return Json(new { State = true, SectionMarkup = _sectionService.Get(model.SectionId).PageSectionBody });
+                var pageSection = await _sectionService.GetAsync(model.SectionId);
+
+                return Json(new { State = true, SectionMarkup = pageSection.PageSectionBody });
             }
             catch (Exception)
             {
@@ -186,9 +189,9 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditPartial(int pageAssociationId)
+        public async Task<ActionResult> EditPartial(int pageAssociationId)
         {
-            var pageAssociation = _associationService.Get(pageAssociationId);
+            var pageAssociation = await _associationService.GetAsync(pageAssociationId);
 
             var model = new EditPartialViewModel
             {
@@ -203,11 +206,11 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPartial(EditPartialViewModel model)
+        public async Task<ActionResult> EditPartial(EditPartialViewModel model)
         {
             try
             {
-                _associationService.EditRoles(model.PageAssociationId, model.SelectedRoleList);
+                await _associationService.EditRolesAsync(model.PageAssociationId, model.SelectedRoleList);
 
                 return Json(new { State = true });
             }
@@ -218,9 +221,9 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         }
 
         [HttpGet]
-        public ActionResult Markup(int pageSectionId)
+        public async Task<ActionResult> Markup(int pageSectionId)
         {
-            var pageSection = _sectionService.Get(pageSectionId);
+            var pageSection = await _sectionService.GetAsync(pageSectionId);
 
             var model = new MarkupViewModel
             {
@@ -236,7 +239,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult Markup(MarkupViewModel model)
         {
-            _sectionService.EditMarkup(model.PageSectionId, model.PageSectionBody);
+            _sectionService.EditMarkupAsync(model.PageSectionId, model.PageSectionBody);
 
             return Json(new { State = true, Markup = model.PageSectionBody });
         }
@@ -246,9 +249,9 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         #region Section Backup Methods
 
         [HttpGet]
-        public ActionResult Restore(int pageSectionId)
+        public async Task<ActionResult> Restore(int pageSectionId)
         {
-            var pageSection = _sectionService.Get(pageSectionId);
+            var pageSection = await _sectionService.GetAsync(pageSectionId);
 
             var model = new RestoreViewModel
             {
@@ -261,27 +264,27 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateBackup(int pageSectionId)
+        public async Task<ActionResult> CreateBackup(int pageSectionId)
         {
-            _sectionService.Backup(pageSectionId);
+            await _sectionService.BackupAsync(pageSectionId);
 
             return Content("Refresh");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult RestoreBackup(int pageSectionId, int restorePointId)
+        public async Task<JsonResult> RestoreBackup(int pageSectionId, int restorePointId)
         {
-            var pageMarkup = _sectionService.RestoreBackup(pageSectionId, restorePointId);
+            var pageMarkup = await _sectionService.RestoreBackupAsync(pageSectionId, restorePointId);
 
             return Json(new { State = true, Markup = pageMarkup });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteBackup(int restorePointId)
+        public async Task<ActionResult> DeleteBackup(int restorePointId)
         {
-            _sectionService.DeleteBackup(restorePointId);
+            await _sectionService.DeleteBackupAsync(restorePointId);
 
             return Content("Refresh");
         }
@@ -290,9 +293,9 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpGet]
         [OutputCache(Duration = 60)]
-        public ActionResult Clone(int pageAssociationId)
+        public async Task<ActionResult> Clone(int pageAssociationId)
         {
-            var pageAssociation = _associationService.Get(pageAssociationId);
+            var pageAssociation = await _associationService.GetAsync(pageAssociationId);
 
             var model = new CloneViewModel
             {
@@ -308,17 +311,17 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Clone(CloneViewModel model)
+        public async Task<ActionResult> Clone(CloneViewModel model)
         {
-            _associationService.Clone(model.PageAssociationId, model.PageId);
+            await _associationService.CloneAsync(model.PageAssociationId, model.PageId);
 
             return Content("Refresh");
         }
 
         [HttpGet]
-        public ActionResult Reload(int pageSectionId)
+        public async Task<ActionResult> Reload(int pageSectionId)
         {
-            var pageSection = _sectionService.Get(pageSectionId);
+            var pageSection = await _sectionService.GetAsync(pageSectionId);
 
             return Content(pageSection.PageSectionBody);
         }
