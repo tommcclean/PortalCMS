@@ -15,7 +15,6 @@ $.fn.extend({
         });
     }
 });
-
 function ChangeOrder() {
     $('section').droppable('disable');
     $('.component-container').droppable('disable');
@@ -67,7 +66,6 @@ function ApplySectionControls() {
 
 $(document).ready(function () {
     InitialiseEditor();
-    InitialiseDroppables();
 });
 
 function InitialiseEditor() {
@@ -309,7 +307,6 @@ function ReplaceChildTokens(parentElementId, sectionId, componentId) {
         }
     });
 }
-
 function ReloadSection(pageSectionId) {
     $('#spinner-wrapper').show();
     $.ajax({
@@ -326,6 +323,6 @@ function ReloadSection(pageSectionId) {
             InitialiseDroppables();
 
             $('#spinner-wrapper').hide();
-        },
+        }
     });
 }

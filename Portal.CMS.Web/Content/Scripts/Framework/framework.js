@@ -1,12 +1,32 @@
 ﻿"use strict";
 
-$("a.admin-item, .action").click(function (event) {
-    var fontAwesomeIcon = $(this).find('.fa');
-    fontAwesomeIcon.addClass('fa-spin');
+$(document).ready(function () {
+    $("a.admin-item, .action").click(function (event) {
+        var fontAwesomeIcon = $(this).find('.fa');
+        fontAwesomeIcon.addClass('fa-spin');
 
-    setTimeout(function () {
-        fontAwesomeIcon.removeClass('fa-spin');
-    }, 2000);
+        setTimeout(function () {
+            fontAwesomeIcon.removeClass('fa-spin');
+        }, 2000);
+    });
+
+    $(".load-action:not(.loaded)").each(function () {
+        var loadingPanel = $(this);
+        var url = $(loadingPanel).attr("data-url");
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            cache: false,
+            success: function (data) {
+                $(loadingPanel).addClass("loaded");
+                $(loadingPanel).html(data);
+            },
+            error: function () {
+                $(loadingPanel).html('<p>Sorry, an error occurred. Please try again.</p>');
+            }
+        });
+    });
 });
 
 function ToggleThemeManager() {

@@ -70,6 +70,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        InitialiseDroppables();
+
         $("#component-panel .component-preview, #component-panel .widget-preview").mousedown(function (event) {
             if ($(window).width() < 739) {
                 $('#component-panel').fadeOut();
