@@ -1,39 +1,40 @@
-﻿using LogBook.Services;
-using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using LogBook.Services;
+using Portal.CMS.Entities;
+using Portal.CMS.Entities.Entities;
 
 namespace Portal.CMS.Services.Analytics
 {
     public interface IAnalyticsService
     {
-        Task LogPageView(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, int? userId);
+        Task LogPageViewAsync(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, int? userId);
 
-        Task LogPostView(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId);
+        Task LogPostViewAsync(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId);
 
-        List<KeyValuePair<string, int>> TotalHitsToday();
+        Task<List<KeyValuePair<string, int>>> TotalHitsTodayAsync();
 
-        List<KeyValuePair<string, int>> ErrorPercentage(DateTime sinceDate);
+        Task<List<KeyValuePair<string, int>>> ErrorPercentageAsync(DateTime sinceDate);
 
-        List<KeyValuePair<string, int>> TotalHitsThisWeek();
+        Task<List<KeyValuePair<string, int>>> TotalHitsThisWeekAsync();
 
-        List<KeyValuePair<string, int>> TotalHitsThisMonth();
+        Task<List<KeyValuePair<string, int>>> TotalHitsThisMonthAsync();
 
-        List<KeyValuePair<string, int>> GetTopPages(DateTime? earliest);
+        Task<List<KeyValuePair<string, int>>> GetTopPagesAsync(DateTime? earliest);
 
-        List<KeyValuePair<string, int>> GetTopPosts(DateTime? earliest);
+        Task<List<KeyValuePair<string, int>>> GetTopPostsAsync(DateTime? earliest);
 
-        List<KeyValuePair<string, int>> GetTopPostCategories(DateTime? earliest);
+        Task<List<KeyValuePair<string, int>>> GetTopPostCategoriesAsync(DateTime? earliest);
     }
 
     public class AnalyticsService : IAnalyticsService
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
+        private readonly PortalEntityModel _context;
 
         public AnalyticsService(PortalEntityModel context)
         {
@@ -42,7 +43,7 @@ namespace Portal.CMS.Services.Analytics
 
         #endregion Dependencies
 
-        public async Task LogPageView(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, int? userId)
+        public async Task LogPageViewAsync(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, int? userId)
         {
             var newAnalyticPageView = new AnalyticPageView
             {
@@ -61,7 +62,7 @@ namespace Portal.CMS.Services.Analytics
             await _context.SaveChangesAsync();
         }
 
-        public async Task LogPostView(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId)
+        public async Task LogPostViewAsync(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId)
         {
             var analyticPostView = new AnalyticPostView
             {
@@ -78,12 +79,12 @@ namespace Portal.CMS.Services.Analytics
             await _context.SaveChangesAsync();
         }
 
-        public List<KeyValuePair<string, int>> TotalHitsToday()
+        public async Task<List<KeyValuePair<string, int>>> TotalHitsTodayAsync()
         {
             var results = new List<KeyValuePair<string, int>>();
 
-            var analyticPageViews = _context.AnalyticPageViews.ToList();
-            var analyticPostViews = _context.AnalyticPostViews.ToList();
+            var analyticPageViews = await _context.AnalyticPageViews.ToListAsync();
+            var analyticPostViews = await _context.AnalyticPostViews.ToListAsync();
 
             var pageViewsToday = analyticPageViews.Count(x => x.DateAdded.Year == DateTime.Now.Year && x.DateAdded.Month == DateTime.Now.Month && x.DateAdded.Day == DateTime.Now.Day);
             var postViewsToday = analyticPostViews.Count(x => x.DateAdded.Year == DateTime.Now.Year && x.DateAdded.Month == DateTime.Now.Month && x.DateAdded.Day == DateTime.Now.Day);
@@ -98,12 +99,12 @@ namespace Portal.CMS.Services.Analytics
             return results;
         }
 
-        public List<KeyValuePair<string, int>> ErrorPercentage(DateTime sinceDate)
+        public async Task<List<KeyValuePair<string, int>>> ErrorPercentageAsync(DateTime sinceDate)
         {
             var results = new List<KeyValuePair<string, int>>();
 
-            var pageViews = _context.AnalyticPageViews.Count(x => x.DateAdded >= sinceDate);
-            var postViews = _context.AnalyticPostViews.Count(x => x.DateAdded >= sinceDate);
+            var pageViews = await _context.AnalyticPageViews.CountAsync(x => x.DateAdded >= sinceDate);
+            var postViews = await _context.AnalyticPostViews.CountAsync(x => x.DateAdded >= sinceDate);
             results.Add(new KeyValuePair<string, int>("Total Hits", (pageViews + postViews)));
 
             var logHandler = new LogHandler();
@@ -114,12 +115,12 @@ namespace Portal.CMS.Services.Analytics
             return results;
         }
 
-        public List<KeyValuePair<string, int>> TotalHitsThisWeek()
+        public async Task<List<KeyValuePair<string, int>>> TotalHitsThisWeekAsync()
         {
             var results = new List<KeyValuePair<string, int>>();
 
-            var analyticPageViews = _context.AnalyticPageViews.ToList();
-            var analyticPostViews = _context.AnalyticPostViews.ToList();
+            var analyticPageViews = await _context.AnalyticPageViews.ToListAsync();
+            var analyticPostViews = await _context.AnalyticPostViews.ToListAsync();
 
             for (int loop = 1; loop < 8; loop += 1)
             {
@@ -136,12 +137,12 @@ namespace Portal.CMS.Services.Analytics
             return results;
         }
 
-        public List<KeyValuePair<string, int>> TotalHitsThisMonth()
+        public async Task<List<KeyValuePair<string, int>>> TotalHitsThisMonthAsync()
         {
             var results = new List<KeyValuePair<string, int>>();
 
-            var analyticPageViews = _context.AnalyticPageViews.ToList();
-            var analyticPostViews = _context.AnalyticPostViews.ToList();
+            var analyticPageViews = await _context.AnalyticPageViews.ToListAsync();
+            var analyticPostViews = await _context.AnalyticPostViews.ToListAsync();
 
             var daysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
 
@@ -165,10 +166,10 @@ namespace Portal.CMS.Services.Analytics
             return results;
         }
 
-        public List<KeyValuePair<string, int>> GetTopPages(DateTime? earliest)
+        public async Task<List<KeyValuePair<string, int>>> GetTopPagesAsync(DateTime? earliest)
         {
             var customPages = _context.Pages.ToList();
-            var analyticPageViews = _context.AnalyticPageViews.Where(x => !earliest.HasValue || x.DateAdded > earliest.Value).ToList();
+            var analyticPageViews = await _context.AnalyticPageViews.Where(x => !earliest.HasValue || x.DateAdded > earliest.Value).ToListAsync();
             var analyticPages = analyticPageViews.GroupBy(page => new { page.Area, page.Controller, page.Action });
 
             var results = new List<KeyValuePair<string, int>>();
@@ -186,11 +187,11 @@ namespace Portal.CMS.Services.Analytics
             return PruneAndOrder(results);
         }
 
-        public List<KeyValuePair<string, int>> GetTopPosts(DateTime? earliest)
+        public async Task<List<KeyValuePair<string, int>>> GetTopPostsAsync(DateTime? earliest)
         {
             var results = new List<KeyValuePair<string, int>>();
 
-            var analyticPostViews = _context.AnalyticPostViews.Where(x => !earliest.HasValue || x.DateAdded > earliest.Value).ToList();
+            var analyticPostViews = await _context.AnalyticPostViews.Where(x => !earliest.HasValue || x.DateAdded > earliest.Value).ToListAsync();
 
             foreach (var post in _context.Posts.ToList())
             {
@@ -202,11 +203,11 @@ namespace Portal.CMS.Services.Analytics
             return PruneAndOrder(results);
         }
 
-        public List<KeyValuePair<string, int>> GetTopPostCategories(DateTime? earliest)
+        public async Task<List<KeyValuePair<string, int>>> GetTopPostCategoriesAsync(DateTime? earliest)
         {
             var results = new List<KeyValuePair<string, int>>();
 
-            var analyticPostViews = _context.AnalyticPostViews.Where(x => !earliest.HasValue || x.DateAdded > earliest.Value).ToList();
+            var analyticPostViews = await _context.AnalyticPostViews.Where(x => !earliest.HasValue || x.DateAdded > earliest.Value).ToListAsync();
 
             foreach (var postCategory in _context.PostCategories.ToList())
             {

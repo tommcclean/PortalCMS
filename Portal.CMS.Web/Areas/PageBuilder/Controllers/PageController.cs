@@ -1,10 +1,11 @@
-﻿using Portal.CMS.Services.Analytics;
+﻿using System;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using System.Web.SessionState;
+using Portal.CMS.Services.Analytics;
 using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.Helpers;
-using System;
-using System.Web.Mvc;
-using System.Web.SessionState;
 
 namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 {
@@ -47,14 +48,14 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             return View("/Areas/PageBuilder/Views/Page/Index.cshtml", currentPage);
         }
 
-        public ActionResult Analytic(int pageId, string referrer)
+        public async Task<ActionResult> Analytic(int pageId, string referrer)
         {
             var page = _pageService.Get(pageId);
 
             if (UserHelper.IsLoggedIn)
-                _analyticService.LogPageView(page.PageArea, page.PageController, page.PageAction, referrer, Request.UserHostAddress, Request.Browser.Browser, UserHelper.UserId);
+                await _analyticService.LogPageViewAsync(page.PageArea, page.PageController, page.PageAction, referrer, Request.UserHostAddress, Request.Browser.Browser, UserHelper.UserId);
             else
-                _analyticService.LogPageView(page.PageArea, page.PageController, page.PageAction, referrer, Request.UserHostAddress, Request.Browser.Browser, null);
+                await _analyticService.LogPageViewAsync(page.PageArea, page.PageController, page.PageAction, referrer, Request.UserHostAddress, Request.Browser.Browser, null);
 
             return Json(new { State = true });
         }

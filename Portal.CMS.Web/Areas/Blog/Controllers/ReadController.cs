@@ -1,12 +1,13 @@
-﻿using Portal.CMS.Services.Analytics;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using System.Web.SessionState;
+using Portal.CMS.Services.Analytics;
 using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Posts;
 using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.BlogManager.ViewModels.Read;
-using System.Linq;
-using System.Web.Mvc;
-using System.Web.SessionState;
 
 namespace Portal.CMS.Web.Areas.BlogManager.Controllers
 {
@@ -15,11 +16,11 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
     {
         #region Dependencies
 
-        readonly IPostService _postService;
-        readonly IPostCommentService _postCommentService;
-        readonly IAnalyticsService _analyticsService;
-        readonly IUserService _userService;
-        readonly IThemeService _themeService;
+        private readonly IPostService _postService;
+        private readonly IPostCommentService _postCommentService;
+        private readonly IAnalyticsService _analyticsService;
+        private readonly IUserService _userService;
+        private readonly IThemeService _themeService;
 
         public ReadController(IPostService postService, IPostCommentService postCommentService, IAnalyticsService analyticsService, IUserService userService, IThemeService themeService)
         {
@@ -69,12 +70,12 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
             return RedirectToAction(nameof(Index), "Read", new { postId = postId });
         }
 
-        public ActionResult Analytic(int postId, string referrer)
+        public async Task<ActionResult> Analytic(int postId, string referrer)
         {
             if (UserHelper.IsLoggedIn)
-                _analyticsService.LogPostView(postId, referrer, Request.UserHostAddress, Request.Browser.Browser, UserHelper.UserId);
+                await _analyticsService.LogPostViewAsync(postId, referrer, Request.UserHostAddress, Request.Browser.Browser, UserHelper.UserId);
             else
-                _analyticsService.LogPostView(postId, referrer, Request.UserHostAddress, Request.Browser.Browser, null);
+                await _analyticsService.LogPostViewAsync(postId, referrer, Request.UserHostAddress, Request.Browser.Browser, null);
 
             return Json(new { State = true });
         }

@@ -27,11 +27,11 @@
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="tab-day">
         <div class="row">
-            @Html.Action("TotalHitsToday", "AnalyticManager", new { chartSize = ChartSize.Third })
-            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Today })
-            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Today })
-            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Today })
-            @Html.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (Today)", chartSize = ChartSize.Third, sinceDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day) })
+            <div class="load-action" data-url="@Url.Action("TotalHitsToday", "AnalyticManager", new { chartSize = ChartSize.Third })"></div>
+            <div class="load-action" data-url="@Url.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Today })"></div>
+            <div class="load-action" data-url="@Url.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Today })"></div>
+            <div class="load-action" data-url="@Url.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Today })"></div>
+            <div class="load-action" data-url="@Url.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (Today)", chartSize = ChartSize.Third, sinceDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day) })"></div>
         </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="tab-week">
@@ -43,28 +43,28 @@
             }
         }
         <div class="row">
-            @Html.Action("TotalHitsWeekly", "AnalyticManager", new { chartSize = ChartSize.Third })
-            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Week })
-            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Week })
-            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Week })
-            @Html.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (This Week)", chartSize = ChartSize.Third, sinceDate = new DateTime(firstDayOfweek.Year, firstDayOfweek.Month, firstDayOfweek.Day) })
+            <div class="load-action" data-url="@Url.Action("TotalHitsWeekly", "AnalyticManager", new { chartSize = ChartSize.Third })"></div>
+            <div class="load-action" data-url="@Url.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Week })"></div>
+            <div class="load-action" data-url="@Url.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Week })"></div>
+            <div class="load-action" data-url="@Url.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Week })"></div>
+            <div class="load-action" data-url="@Url.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (This Week)", chartSize = ChartSize.Third, sinceDate = new DateTime(firstDayOfweek.Year, firstDayOfweek.Month, firstDayOfweek.Day) })"></div>
         </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="tab-month">
         <div class="row">
-            @Html.Action("TotalHitsMonthly", "AnalyticManager", new { chartSize = ChartSize.Third })
-            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Month })
-            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Month })
-            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Month })
-            @Html.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (This Month)", chartSize = ChartSize.Third, sinceDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1) })
+            <div class="load-action" data-url="@Url.Action("TotalHitsMonthly", "AnalyticManager", new { chartSize = ChartSize.Third })"></div>
+            <div class="load-action" data-url="@Url.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Month })"></div>
+            <div class="load-action" data-url="@Url.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Month })"></div>
+            <div class="load-action" data-url="@Url.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.Month })"></div>
+            <div class="load-action" data-url="@Url.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (This Month)", chartSize = ChartSize.Third, sinceDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1) })"></div>
         </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="tab-all">
         <div class="row">
-            @Html.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.All })
-            @Html.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.All })
-            @Html.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Half, timePeriod = TimePeriod.All })
-            @Html.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (All Time)", chartSize = ChartSize.Half, sinceDate = DateTime.MinValue })
+            <div class="load-action" data-url="@Url.Action("TopPages", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.All })"></div>
+            <div class="load-action" data-url="@Url.Action("TopPosts", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.All })"></div>
+            <div class="load-action" data-url="@Url.Action("TopPostCategories", "AnalyticManager", new { chartSize = ChartSize.Third, timePeriod = TimePeriod.All })"></div>
+            <div class="load-action" data-url="@Url.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (All Time)", chartSize = ChartSize.Half, sinceDate = DateTime.MinValue })"></div>
         </div>
     </div>
 </div>

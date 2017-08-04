@@ -1,12 +1,13 @@
-﻿using LogBook.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using LogBook.Services;
 using Portal.CMS.Entities.Enumerators;
 using Portal.CMS.Services.Analytics;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.AnalyticManager;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
 {
@@ -65,10 +66,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        [ChildActionOnly]
-        public ActionResult TotalHitsToday(ChartSize chartSize)
+        public async Task<ActionResult> TotalHitsToday(ChartSize chartSize)
         {
-            var dataSet = _analyticsService.TotalHitsToday();
+            var dataSet = await _analyticsService.TotalHitsTodayAsync();
 
             var model = new ChartViewModel
             {
@@ -87,10 +87,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView(DISPLAY_CHART_VIEW, model);
         }
 
-        [ChildActionOnly]
-        public ActionResult ErrorPercentage(string chartName, ChartSize chartSize, DateTime sinceDate)
+        public async Task<ActionResult> ErrorPercentage(string chartName, ChartSize chartSize, DateTime sinceDate)
         {
-            var dataSet = _analyticsService.ErrorPercentage(sinceDate);
+            var dataSet = await _analyticsService.ErrorPercentageAsync(sinceDate);
 
             var model = new ChartViewModel
             {
@@ -110,10 +109,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView(DISPLAY_CHART_VIEW, model);
         }
 
-        [ChildActionOnly]
-        public ActionResult TotalHitsWeekly(ChartSize chartSize)
+        [OutputCache(Duration = 3600, VaryByParam = "timePeriod")]
+        public async Task<ActionResult> TotalHitsWeekly(ChartSize chartSize)
         {
-            var dataSet = _analyticsService.TotalHitsThisWeek();
+            var dataSet = await _analyticsService.TotalHitsThisWeekAsync();
 
             var model = new ChartViewModel
             {
@@ -132,10 +131,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView(DISPLAY_CHART_VIEW, model);
         }
 
-        [ChildActionOnly]
-        public ActionResult TotalHitsMonthly(ChartSize chartSize)
+        [OutputCache(Duration = 3600, VaryByParam = "timePeriod")]
+        public async Task<ActionResult> TotalHitsMonthly(ChartSize chartSize)
         {
-            var dataSet = _analyticsService.TotalHitsThisMonth();
+            var dataSet = await _analyticsService.TotalHitsThisMonthAsync();
 
             var model = new ChartViewModel
             {
@@ -154,10 +153,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView("_DisplayChart", model);
         }
 
-        [ChildActionOnly]
-        public ActionResult TopPages(ChartSize chartSize, TimePeriod timePeriod)
+        [OutputCache(Duration = 3600, VaryByParam = "timePeriod")]
+        public async Task<ActionResult> TopPages(ChartSize chartSize, TimePeriod timePeriod)
         {
-            var dataSet = _analyticsService.GetTopPages(DetermineTimePeriod(timePeriod));
+            var dataSet = await _analyticsService.GetTopPagesAsync(DetermineTimePeriod(timePeriod));
 
             var model = new ChartViewModel
             {
@@ -176,10 +175,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView(DISPLAY_CHART_VIEW, model);
         }
 
-        [ChildActionOnly]
-        public ActionResult TopPosts(ChartSize chartSize, TimePeriod timePeriod)
+        [OutputCache(Duration = 3600, VaryByParam = "timePeriod")]
+        public async Task<ActionResult> TopPosts(ChartSize chartSize, TimePeriod timePeriod)
         {
-            var dataSet = _analyticsService.GetTopPosts(DetermineTimePeriod(timePeriod));
+            var dataSet = await _analyticsService.GetTopPostsAsync(DetermineTimePeriod(timePeriod));
 
             var model = new ChartViewModel
             {
@@ -198,10 +197,10 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return PartialView(DISPLAY_CHART_VIEW, model);
         }
 
-        [ChildActionOnly]
-        public ActionResult TopPostCategories(ChartSize chartSize, TimePeriod timePeriod)
+        [OutputCache(Duration = 3600, VaryByParam = "timePeriod")]
+        public async Task<ActionResult> TopPostCategories(ChartSize chartSize, TimePeriod timePeriod)
         {
-            var dataSet = _analyticsService.GetTopPostCategories(DetermineTimePeriod(timePeriod));
+            var dataSet = await _analyticsService.GetTopPostCategoriesAsync(DetermineTimePeriod(timePeriod));
 
             var model = new ChartViewModel
             {

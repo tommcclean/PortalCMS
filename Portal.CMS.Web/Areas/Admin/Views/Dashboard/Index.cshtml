@@ -23,7 +23,8 @@
     @Html.Partial("_Welcome")
     @Html.Partial("_MyAccount")
     @Html.Partial("_LatestPost", new ViewDataDictionary(Model.LatestPost))
-    @Html.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (Today)", chartSize = ChartSize.Third, sinceDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day) })
-    @Html.Action("TotalHitsWeekly", "AnalyticManager", new { chartSize = ChartSize.Third })
+    <div class="load-action" data-url="@Url.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (Today)", chartSize = ChartSize.Third, sinceDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day) })"></div>
+    <div class="load-action" data-url="@Url.Action("TotalHitsWeekly", "AnalyticManager", new { chartSize = ChartSize.Third })"></div>
+
     @Html.Partial("_MediaManager", new ViewDataDictionary(Model.Media))
 </div>
