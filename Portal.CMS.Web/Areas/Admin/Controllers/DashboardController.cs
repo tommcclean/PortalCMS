@@ -2,7 +2,7 @@
 using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Dashboard;
-using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -23,12 +23,12 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         #endregion Dependencies
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var model = new DashboardViewModel
             {
                 LatestPost = _postService.GetLatest(),
-                Media = _imageService.Get().ToList()
+                Media = await _imageService.GetAsync()
             };
 
             return View(model);

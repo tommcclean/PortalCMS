@@ -2,19 +2,21 @@
 using Portal.CMS.Entities.Entities;
 using Portal.CMS.Entities.Enumerators;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Generic
 {
     public interface IImageService
     {
-        Image Get(int imageId);
+        Task<Image> GetAsync(int imageId);
 
-        List<Image> Get();
+        Task<List<Image>> GetAsync();
 
-        int Create(string imageFilePath, ImageCategory imageCategory);
+        Task<int> CreateAsync(string imageFilePath, ImageCategory imageCategory);
 
-        void Delete(int imageId);
+        Task DeleteAsync(int imageId);
     }
 
     public class ImageService : IImageService
@@ -30,21 +32,21 @@ namespace Portal.CMS.Services.Generic
 
         #endregion Dependencies
 
-        public Image Get(int imageId)
+        public async Task<Image> GetAsync(int imageId)
         {
-            var results = _context.Images.SingleOrDefault(x => x.ImageId == imageId);
+            var results = await _context.Images.SingleOrDefaultAsync(x => x.ImageId == imageId);
 
             return results;
         }
 
-        public List<Image> Get()
+        public async Task<List<Image>> GetAsync()
         {
-            var results = _context.Images.OrderByDescending(x => x.ImageId).ToList();
+            var results = await _context.Images.OrderByDescending(x => x.ImageId).ToListAsync();
 
             return results;
         }
 
-        public int Create(string imageFilePath, ImageCategory imageCategory)
+        public async Task<int> CreateAsync(string imageFilePath, ImageCategory imageCategory)
         {
             var image = new Image
             {
@@ -54,19 +56,19 @@ namespace Portal.CMS.Services.Generic
 
             _context.Images.Add(image);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return image.ImageId;
         }
 
-        public void Delete(int imageId)
+        public async Task DeleteAsync(int imageId)
         {
-            var image = _context.Images.SingleOrDefault(x => x.ImageId == imageId);
+            var image = await _context.Images.SingleOrDefaultAsync(x => x.ImageId == imageId);
             if (image == null) return;
 
             _context.Images.Remove(image);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

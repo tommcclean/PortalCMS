@@ -98,7 +98,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         {
             var pageSection = await _pageSectionService.GetAsync(pageSectionId);
 
-            var imageList = _imageService.Get();
+            var imageList = await _imageService.GetAsync();
 
             var model = new ImageViewModel
             {
@@ -135,11 +135,11 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         }
 
         [HttpPost]
-        public JsonResult EditImage(ImageViewModel model)
+        public async Task<JsonResult> EditImage(ImageViewModel model)
         {
             try
             {
-                var selectedImage = _imageService.Get(model.SelectedImageId);
+                var selectedImage = await _imageService.GetAsync(model.SelectedImageId);
 
                 _pageComponentService.EditImage(model.SectionId, model.ElementType, model.ElementId, selectedImage.CDNImagePath());
 

@@ -133,7 +133,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
                 SectionId = pageSection.PageSectionId,
                 MediaLibrary = new PaginationViewModel
                 {
-                    ImageList = _imageService.Get(),
+                    ImageList = await _imageService.GetAsync(),
                     TargetInputField = "BackgroundImageId",
                     PaginationType = "section"
                 },
@@ -167,7 +167,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
                     if (model.BackgroundImageId > 0)
                     {
-                        var selectedBackgroundImage = _imageService.Get(model.BackgroundImageId);
+                        var selectedBackgroundImage = await _imageService.GetAsync(model.BackgroundImageId);
 
                         await _sectionService.EditBackgroundImageAsync(model.SectionId, selectedBackgroundImage.CDNImagePath(), selectedBackgroundImage.ImageCategory);
                     }

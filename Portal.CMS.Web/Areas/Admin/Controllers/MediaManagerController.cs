@@ -5,6 +5,7 @@ using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.MediaManager;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -33,18 +34,19 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         #endregion Dependencies
 
         [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var model = new MediaViewModel
             {
-                Images = _imageService.Get(),
-                Fonts = _fontService.Get()
+                Images = await _imageService.GetAsync(),
+                Fonts = await _fontService.GetAsync()
             };
 
             return View(model);
         }
 
         [HttpGet, EditorFilter(ActionFilterResponseType.Modal)]
+        [OutputCache(Duration = 86400)]
         public ActionResult UploadImage()
         {
             var model = new UploadImageViewModel();
@@ -54,19 +56,20 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         [HttpPost, EditorFilter(ActionFilterResponseType.Modal)]
         [ValidateAntiForgeryToken]
-        public ActionResult UploadImage(UploadImageViewModel model)
+        public async Task<ActionResult> UploadImage(UploadImageViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_UploadImage", model);
 
             var imageFilePath = SaveImage(model.AttachedImage, nameof(UploadImage));
 
-            var imageId = _imageService.Create(imageFilePath, model.ImageCategory);
+            var imageId = await _imageService.CreateAsync(imageFilePath, model.ImageCategory);
 
             return Content("Refresh");
         }
 
         [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
+        [OutputCache(Duration = 86400)]
         public ActionResult UploadFont()
         {
             var model = new UploadFontViewModel();
@@ -76,22 +79,22 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
         [ValidateAntiForgeryToken]
-        public ActionResult UploadFont(UploadFontViewModel model)
+        public async Task<ActionResult> UploadFont(UploadFontViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_UploadFont", model);
 
             var fontFilePath = SaveFont(model.AttachedFont, nameof(UploadFont));
 
-            var fontId = _fontService.Create(model.FontName, model.FontType, fontFilePath);
+            var fontId = await _fontService.CreateAsync(model.FontName, model.FontType, fontFilePath);
 
             return Content("Refresh");
         }
 
         [HttpPost, AdminFilter(ActionFilterResponseType.Page)]
-        public ActionResult DeleteImage(int imageId)
+        public async Task<ActionResult> DeleteImage(int imageId)
         {
-            var image = _imageService.Get(imageId);
+            var image = await _imageService.GetAsync(imageId);
 
             var fileNamePosition = image.ImagePath.LastIndexOf("/", StringComparison.OrdinalIgnoreCase) + 1;
             var fileName = image.ImagePath.Substring(fileNamePosition, image.ImagePath.Length - fileNamePosition);
@@ -103,15 +106,15 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (System.IO.File.Exists(imageFilePath))
                 System.IO.File.Delete(imageFilePath);
 
-            _imageService.Delete(imageId);
+            await _imageService.DeleteAsync(imageId);
 
             return RedirectToAction(nameof(Index), "MediaManager");
         }
 
         [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
-        public ActionResult DeleteFont(int fontId)
+        public async Task<ActionResult> DeleteFont(int fontId)
         {
-            var font = _fontService.Get(fontId);
+            var font = await _fontService.GetAsync(fontId);
 
             var fileNamePosition = font.FontPath.LastIndexOf("/", StringComparison.OrdinalIgnoreCase) + 1;
             var fileName = font.FontPath.Substring(fileNamePosition, font.FontPath.Length - fileNamePosition);
@@ -123,7 +126,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (System.IO.File.Exists(fontFilePath))
                 System.IO.File.Delete(fontFilePath);
 
-            _fontService.Delete(fontId);
+            await _fontService.DeleteAsync(fontId);
 
             return RedirectToAction(nameof(Index), "MediaManager");
         }

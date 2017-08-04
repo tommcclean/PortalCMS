@@ -23,7 +23,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         {
             var model = new ThemeViewModel
             {
-                Theme = _themeService.GetDefault()
+                Theme = _themeService.GetDefaultSync()
             };
 
             return View(model);

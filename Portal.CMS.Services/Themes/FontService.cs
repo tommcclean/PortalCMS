@@ -2,19 +2,21 @@
 using Portal.CMS.Entities.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Themes
 {
     public interface IFontService
     {
-        Font Get(int fontId);
+        Task<Font> GetAsync(int fontId);
 
-        List<Font> Get();
+        Task<List<Font>> GetAsync();
 
-        int Create(string fontName, string fontType, string fontFilePath);
+        Task<int> CreateAsync(string fontName, string fontType, string fontFilePath);
 
-        void Delete(int fontId);
+        Task DeleteAsync(int fontId);
     }
 
     public class FontService : IFontService
@@ -30,21 +32,21 @@ namespace Portal.CMS.Services.Themes
 
         #endregion Dependencies
 
-        public Font Get(int fontId)
+        public async Task<Font> GetAsync(int fontId)
         {
-            var font = _context.Fonts.SingleOrDefault(x => x.FontId == fontId);
+            var font = await _context.Fonts.SingleOrDefaultAsync(x => x.FontId == fontId);
 
             return font;
         }
 
-        public List<Font> Get()
+        public async Task<List<Font>> GetAsync()
         {
-            var fontList = _context.Fonts.OrderBy(x => x.FontName).ToList();
+            var fontList = await _context.Fonts.OrderBy(x => x.FontName).ToListAsync();
 
             return fontList;
         }
 
-        public int Create(string fontName, string fontType, string fontFilePath)
+        public async Task<int> CreateAsync(string fontName, string fontType, string fontFilePath)
         {
             var newFont = new Font
             {
@@ -57,19 +59,19 @@ namespace Portal.CMS.Services.Themes
 
             _context.Fonts.Add(newFont);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return newFont.FontId;
         }
 
-        public void Delete(int fontId)
+        public async Task DeleteAsync(int fontId)
         {
-            var font = _context.Fonts.SingleOrDefault(x => x.FontId == fontId);
+            var font = await _context.Fonts.SingleOrDefaultAsync(x => x.FontId == fontId);
             if (font == null) return;
 
             _context.Fonts.Remove(font);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

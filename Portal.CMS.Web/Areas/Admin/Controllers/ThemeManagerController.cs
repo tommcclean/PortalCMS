@@ -5,6 +5,7 @@ using Portal.CMS.Web.Areas.Admin.ViewModels.ThemeManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -25,23 +26,23 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         #endregion Dependencies
 
         [AdminFilter(ActionFilterResponseType.Page)]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var model = new ThemeViewModel
             {
-                Themes = _themeService.Get(),
-                Fonts = _fontService.Get()
+                Themes = await _themeService.GetAsync(),
+                Fonts = await _fontService.GetAsync()
             };
 
             return View(model);
         }
 
         [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             var model = new UpsertViewModel
             {
-                FontList = _fontService.Get(),
+                FontList = await _fontService.GetAsync(),
                 PageBackgroundColour = "#000000",
                 MenuBackgroundColour = "#000000",
                 MenuTextColour = "#9d9d9d"
@@ -51,24 +52,24 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken, AdminFilter(ActionFilterResponseType.Modal)]
-        public ActionResult Create(UpsertViewModel model)
+        public async Task<ActionResult> Create(UpsertViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                model.FontList = _fontService.Get();
+                model.FontList = await _fontService.GetAsync();
 
                 return PartialView("_Create", model);
             }
 
-            _themeService.Upsert(0, model.ThemeName, model.TitleFontId, model.TextFontId, model.LargeTitleFontSize, model.MediumTitleFontSize, model.SmallTitleFontSize, model.TinyTitleFontSize, model.TextStandardFontSize, model.PageBackgroundColour, model.MenuBackgroundColour, model.MenuTextColour);
+            await _themeService.UpsertAsync(0, model.ThemeName, model.TitleFontId, model.TextFontId, model.LargeTitleFontSize, model.MediumTitleFontSize, model.SmallTitleFontSize, model.TinyTitleFontSize, model.TextStandardFontSize, model.PageBackgroundColour, model.MenuBackgroundColour, model.MenuTextColour);
 
             return Content("Refresh");
         }
 
         [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
-        public ActionResult Edit(int themeId)
+        public async Task<ActionResult> Edit(int themeId)
         {
-            var theme = _themeService.Get(themeId);
+            var theme = await _themeService.GetAsync(themeId);
 
             if (theme == null)
                 throw new ArgumentException($"Unable to Identify Theme: {themeId}");
@@ -79,7 +80,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 ThemeName = theme.ThemeName,
                 TextFontId = theme.TextFontId.Value,
                 TitleFontId = theme.TitleFontId.Value,
-                FontList = _fontService.Get(),
+                FontList = await _fontService.GetAsync(),
                 LargeTitleFontSize = theme.TitleLargeFontSize,
                 MediumTitleFontSize = theme.TitleMediumFontSize,
                 SmallTitleFontSize = theme.TitleSmallFontSize,
@@ -95,16 +96,16 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken, AdminFilter(ActionFilterResponseType.Modal)]
-        public ActionResult Edit(UpsertViewModel model)
+        public async Task<ActionResult> Edit(UpsertViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                model.FontList = _fontService.Get();
+                model.FontList = await _fontService.GetAsync();
 
                 return PartialView("_Edit", model);
             }
 
-            _themeService.Upsert(model.ThemeId, model.ThemeName, model.TitleFontId, model.TextFontId, model.LargeTitleFontSize, model.MediumTitleFontSize, model.SmallTitleFontSize, model.TinyTitleFontSize, model.TextStandardFontSize, model.PageBackgroundColour, model.MenuBackgroundColour, model.MenuTextColour);
+            await _themeService.UpsertAsync(model.ThemeId, model.ThemeName, model.TitleFontId, model.TextFontId, model.LargeTitleFontSize, model.MediumTitleFontSize, model.SmallTitleFontSize, model.TinyTitleFontSize, model.TextStandardFontSize, model.PageBackgroundColour, model.MenuBackgroundColour, model.MenuTextColour);
 
             return Content("Refresh");
         }
@@ -116,27 +117,27 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken, AdminFilter(ActionFilterResponseType.Page)]
-        public ActionResult Default(DefaultViewModel model)
+        public async Task<ActionResult> Default(DefaultViewModel model)
         {
-            _themeService.Default(model.ThemeId);
+            await _themeService.DefaultAsync(model.ThemeId);
 
             return Content("Refresh");
         }
 
         [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
-        public ActionResult Delete(int themeId)
+        public async Task<ActionResult> Delete(int themeId)
         {
-            _themeService.Delete(themeId);
+            await _themeService.DeleteAsync(themeId);
 
             return RedirectToAction(nameof(Index));
         }
 
         [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
-        public ActionResult AppDrawer()
+        public async Task<ActionResult> AppDrawer()
         {
             var model = new AppDrawerViewModel
             {
-                Themes = _themeService.Get(),
+                Themes = await _themeService.GetAsync(),
                 Fonts = new List<Font>()
             };
 

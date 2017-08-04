@@ -9,6 +9,7 @@ using Portal.CMS.Web.ViewModels.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -58,9 +59,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet, EditorFilter(ActionFilterResponseType.Modal)]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             var postCategories = _postCategoryService.Get();
+
+            var imageList = await _imageService.GetAsync();
 
             var model = new CreatePostViewModel
             {
@@ -71,13 +74,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PublicationState = PublicationState.Published,
                 BannerImages = new PaginationViewModel
                 {
-                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
                     TargetInputField = BANNER_IMAGE_ID,
                     PaginationType = BANNER
                 },
                 GalleryImages = new PaginationViewModel
                 {
-                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
                     TargetInputField = GALLERY_IMAGE_LIST,
                     PaginationType = GALLERY
                 },
@@ -90,19 +93,21 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpPost, EditorFilter(ActionFilterResponseType.Modal)]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreatePostViewModel model)
+        public async Task<ActionResult> Create(CreatePostViewModel model)
         {
+            var imageList = await _imageService.GetAsync();
+
             if (!ModelState.IsValid)
             {
                 model.BannerImages = new PaginationViewModel
                 {
-                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
                     TargetInputField = BANNER_IMAGE_ID,
                     PaginationType = BANNER
                 };
                 model.GalleryImages = new PaginationViewModel
                 {
-                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
                     TargetInputField = GALLERY_IMAGE_LIST,
                     PaginationType = GALLERY
                 };
@@ -127,9 +132,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet, EditorFilter(ActionFilterResponseType.Modal)]
-        public ActionResult Edit(int postId)
+        public async Task<ActionResult> Edit(int postId)
         {
             var post = _postService.Get(postId);
+
+            var imageList = await _imageService.GetAsync();
 
             var model = new EditPostviewModel
             {
@@ -144,13 +151,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" }),
                 BannerImages = new PaginationViewModel
                 {
-                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
                     TargetInputField = BANNER_IMAGE_ID,
                     PaginationType = BANNER
                 },
                 GalleryImages = new PaginationViewModel
                 {
-                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
                     TargetInputField = GALLERY_IMAGE_LIST,
                     PaginationType = GALLERY
                 },
@@ -170,19 +177,21 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpPost, EditorFilter(ActionFilterResponseType.Modal)]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EditPostviewModel model)
+        public async Task<ActionResult> Edit(EditPostviewModel model)
         {
+            var imageList = await _imageService.GetAsync();
+
             if (!ModelState.IsValid)
             {
                 model.BannerImages = new PaginationViewModel
                 {
-                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
                     TargetInputField = BANNER_IMAGE_ID,
                     PaginationType = BANNER
                 };
                 model.GalleryImages = new PaginationViewModel
                 {
-                    ImageList = _imageService.Get().Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
+                    ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
                     TargetInputField = GALLERY_IMAGE_LIST,
                     PaginationType = GALLERY
                 };

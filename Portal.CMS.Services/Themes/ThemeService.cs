@@ -3,23 +3,27 @@ using Portal.CMS.Entities.Entities;
 using Portal.CMS.Services.PageBuilder;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Themes
 {
     public interface IThemeService
     {
-        CustomTheme Get(int themeId);
+        Task<CustomTheme> GetAsync(int themeId);
 
-        IEnumerable<CustomTheme> Get();
+        Task<List<CustomTheme>> GetAsync();
 
-        int Upsert(int themeId, string themeName, int titleFontId, int textFontId, int largeTitleFontSize, int mediumTitleFontSize, int smallTitleFontSize, int tinyTitleFontSize, int textStandardFontSize, string pageBackgroundColour, string menuBackgroundColour, string menuTextColour);
+        Task<int> UpsertAsync(int themeId, string themeName, int titleFontId, int textFontId, int largeTitleFontSize, int mediumTitleFontSize, int smallTitleFontSize, int tinyTitleFontSize, int textStandardFontSize, string pageBackgroundColour, string menuBackgroundColour, string menuTextColour);
 
-        void Delete(int themeId);
+        Task DeleteAsync(int themeId);
 
-        void Default(int themeId);
+        Task DefaultAsync(int themeId);
 
-        CustomTheme GetDefault();
+        CustomTheme GetDefaultSync();
+
+        Task<CustomTheme> GetDefaultAsync();
     }
 
     public class ThemeService : IThemeService
@@ -37,30 +41,37 @@ namespace Portal.CMS.Services.Themes
 
         #endregion Dependencies
 
-        public CustomTheme GetDefault()
+        public CustomTheme GetDefaultSync()
         {
             var defaultTheme = _context.Themes.FirstOrDefault(x => x.IsDefault == true);
 
             return defaultTheme;
         }
 
-        public CustomTheme Get(int themeId)
+        public async Task<CustomTheme> GetDefaultAsync()
         {
-            var theme = _context.Themes.SingleOrDefault(x => x.ThemeId == themeId);
+            var defaultTheme = await _context.Themes.FirstOrDefaultAsync(x => x.IsDefault == true);
+
+            return defaultTheme;
+        }
+
+        public async Task<CustomTheme> GetAsync(int themeId)
+        {
+            var theme = await _context.Themes.SingleOrDefaultAsync(x => x.ThemeId == themeId);
 
             return theme;
         }
 
-        public IEnumerable<CustomTheme> Get()
+        public async Task<List<CustomTheme>> GetAsync()
         {
-            var results = _context.Themes.ToList();
+            var results = await _context.Themes.ToListAsync();
 
-            return results.OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.DateUpdated);
+            return results.OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.DateUpdated).ToList();
         }
 
-        public int Upsert(int themeId, string themeName, int titleFontId, int textFontId, int largeTitleFontSize, int mediumTitleFontSize, int smallTitleFontSize, int tinyTitleFontSize, int textStandardFontSize, string pageBackgroundColour, string menuBackgroundColour, string menuTextColour)
+        public async Task<int> UpsertAsync(int themeId, string themeName, int titleFontId, int textFontId, int largeTitleFontSize, int mediumTitleFontSize, int smallTitleFontSize, int tinyTitleFontSize, int textStandardFontSize, string pageBackgroundColour, string menuBackgroundColour, string menuTextColour)
         {
-            var existingTheme = Get(themeId);
+            var existingTheme = await GetAsync(themeId);
 
             if (existingTheme == null)
             {
@@ -84,7 +95,7 @@ namespace Portal.CMS.Services.Themes
 
                 _context.Themes.Add(newTheme);
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 return newTheme.ThemeId;
             }
@@ -103,25 +114,25 @@ namespace Portal.CMS.Services.Themes
                 existingTheme.MenuBackgroundColour = menuBackgroundColour;
                 existingTheme.MenuTextColour = menuTextColour;
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 return existingTheme.ThemeId;
             }
         }
 
-        public void Delete(int themeId)
+        public async Task DeleteAsync(int themeId)
         {
-            var existingTheme = _context.Themes.SingleOrDefault(x => x.ThemeId == themeId);
+            var existingTheme = await _context.Themes.SingleOrDefaultAsync(x => x.ThemeId == themeId);
             if (existingTheme == null) return;
 
             _context.Themes.Remove(existingTheme);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Default(int themeId)
+        public async Task DefaultAsync(int themeId)
         {
-            var themes = Get();
+            var themes = await GetAsync();
 
             foreach (var theme in themes)
                 if (theme.ThemeId == themeId)
@@ -129,7 +140,7 @@ namespace Portal.CMS.Services.Themes
                 else
                     theme.IsDefault = false;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
