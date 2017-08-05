@@ -3,6 +3,7 @@ using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.UserManager;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -26,11 +27,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         #endregion Dependencies
 
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var model = new UsersViewModel
             {
-                Users = _userService.Get()
+                Users = await _userService.GetAsync()
             };
 
             return View(model);
@@ -44,12 +45,12 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateViewModel model)
+        public async Task<ActionResult> Create(CreateViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_Create", model);
 
-            var userId = _registrationService.Register(model.EmailAddress, model.Password, model.GivenName, model.FamilyName);
+            var userId = await _registrationService.RegisterAsync(model.EmailAddress, model.Password, model.GivenName, model.FamilyName);
 
             switch (userId.Value)
             {
@@ -58,22 +59,22 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     return View("_Create", model);
 
                 default:
-                    if (_userService.GetUserCount() == 1)
-                        _roleService.Update(userId.Value, new List<string> { nameof(Admin) });
+                    if (await _userService.GetUserCountAsync() == 1)
+                        await _roleService.UpdateAsync(userId.Value, new List<string> { nameof(Admin) });
                     else
-                        _roleService.Update(userId.Value, new List<string> { "Authenticated" });
+                        await _roleService.UpdateAsync(userId.Value, new List<string> { "Authenticated" });
 
                     if (!UserHelper.IsLoggedIn)
-                        Session.Add("UserAccount", _userService.GetUser(userId.Value));
+                        Session.Add("UserAccount", await _userService.GetUserAsync(userId.Value));
 
                     return Content("Refresh");
             }
         }
 
         [HttpGet]
-        public ActionResult Details(int userId)
+        public async Task<ActionResult> Details(int userId)
         {
-            var user = _userService.GetUser(userId);
+            var user = await _userService.GetUserAsync(userId);
 
             var model = new DetailsViewModel
             {
@@ -89,33 +90,33 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Details(DetailsViewModel model)
+        public async Task<ActionResult> Details(DetailsViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_Details", model);
 
-            _userService.UpdateDetails(model.UserId, model.EmailAddress, model.GivenName, model.FamilyName);
+            await _userService.UpdateDetailsAsync(model.UserId, model.EmailAddress, model.GivenName, model.FamilyName);
 
             if (model.UserId == UserHelper.UserId)
             {
                 Session.Remove("UserAccount");
 
-                Session.Add("UserAccount", _userService.GetUser(model.UserId));
+                Session.Add("UserAccount", await _userService.GetUserAsync(model.UserId));
             }
 
             return Content("Refresh");
         }
 
         [HttpGet]
-        public ActionResult Roles(int? userId)
+        public async Task<ActionResult> Roles(int? userId)
         {
             var model = new RolesViewModel
             {
                 UserId = userId.Value,
-                RoleList = _roleService.Get()
+                RoleList = await _roleService.GetAsync()
             };
 
-            var userRoles = _roleService.Get(userId);
+            var userRoles = await _roleService.GetAsync(userId);
 
             foreach (var role in userRoles)
                 model.SelectedRoleList.Add(role.RoleName);
@@ -125,29 +126,29 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Roles(RolesViewModel model)
+        public async Task<ActionResult> Roles(RolesViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_Roles", model);
 
-            _roleService.Update(model.UserId.Value, model.SelectedRoleList);
+            await _roleService.UpdateAsync(model.UserId.Value, model.SelectedRoleList);
 
             if (model.UserId == UserHelper.UserId)
             {
                 Session.Remove("UserAccount");
                 Session.Remove("UserRoles");
 
-                Session.Add("UserAccount", _userService.GetUser(model.UserId.Value));
-                Session.Add("UserRoles", _roleService.Get(model.UserId));
+                Session.Add("UserAccount", await _userService.GetUserAsync(model.UserId.Value));
+                Session.Add("UserRoles", await _roleService.GetAsync(model.UserId));
             }
 
             return Content("Refresh");
         }
 
         [HttpGet]
-        public ActionResult Delete(int userId)
+        public async Task<ActionResult> Delete(int userId)
         {
-            _userService.DeleteUser(userId);
+            await _userService.DeleteUserAsync(userId);
 
             return RedirectToAction(nameof(Index));
         }

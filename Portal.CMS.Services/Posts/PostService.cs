@@ -5,14 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Posts
 {
     public interface IPostService
     {
-        Post Read(int? userId, int postId);
+        Task<Post> ReadAsync(int? userId, int postId);
 
-        IEnumerable<Post> Read(int? userId, string postCategoryName);
+        Task<IEnumerable<Post>> ReadAsync(int? userId, string postCategoryName);
 
         Post Get(int postId);
 
@@ -56,11 +57,11 @@ namespace Portal.CMS.Services.Posts
 
         #endregion Dependencies
 
-        public Post Read(int? userId, int postId)
+        public async Task<Post> ReadAsync(int? userId, int postId)
         {
             var post = _context.Posts.SingleOrDefault(x => x.PostId == postId && x.IsPublished);
 
-            var userRoles = _roleService.Get(userId);
+            var userRoles = await _roleService.GetAsync(userId);
 
             if (_roleService.Validate(post.PostRoles.Select(x => x.Role), userRoles))
                 return post;
@@ -68,14 +69,14 @@ namespace Portal.CMS.Services.Posts
             return null;
         }
 
-        public IEnumerable<Post> Read(int? userId, string postCategoryName)
+        public async Task<IEnumerable<Post>> ReadAsync(int? userId, string postCategoryName)
         {
             var userRoleList = new List<string>();
             var isAdministrator = false;
 
             if (userId.HasValue)
             {
-                var user = _userService.GetUser(userId.Value);
+                var user = await _userService.GetUserAsync(userId.Value);
 
                 if (user.Roles.Any())
                     userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using System.Web.SessionState;
-using Portal.CMS.Services.Analytics;
+﻿using Portal.CMS.Services.Analytics;
 using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.Helpers;
+using System;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using System.Web.SessionState;
 
 namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 {
@@ -33,14 +33,14 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         #endregion Dependencies
 
-        public ActionResult Index(int pageId = 0)
+        public async Task<ActionResult> Index(int pageId = 0)
         {
             if (pageId == 0)
                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
-            EvaluateSingleSignOn();
+            await EvaluateSingleSignOnAsync();
 
-            var currentPage = _pageService.View(UserHelper.UserId, pageId);
+            var currentPage = await _pageService.ViewAsync(UserHelper.UserId, pageId);
 
             if (currentPage == null)
                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
@@ -60,7 +60,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             return Json(new { State = true });
         }
 
-        private void EvaluateSingleSignOn()
+        private async Task EvaluateSingleSignOnAsync()
         {
             var resetCookie = Request.Cookies["PortalCMS_SSO"];
 
@@ -68,12 +68,12 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             {
                 var cookieValues = resetCookie.Value.Split(',');
 
-                var result = _loginService.SSO(Convert.ToInt32(cookieValues[0]), cookieValues[2]);
+                var result = await _loginService.SSOAsync(Convert.ToInt32(cookieValues[0]), cookieValues[2]);
 
                 if (result.HasValue)
                 {
-                    Session.Add("UserAccount", _userService.GetUser(result.Value));
-                    Session.Add("UserRoles", _roleService.Get(result));
+                    Session.Add("UserAccount", await _userService.GetUserAsync(result.Value));
+                    Session.Add("UserRoles", await _roleService.GetAsync(result));
                 }
 
                 resetCookie.Expires = DateTime.Now.AddDays(-1);

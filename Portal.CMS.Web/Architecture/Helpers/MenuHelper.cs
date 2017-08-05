@@ -9,13 +9,34 @@ namespace Portal.CMS.Web.Architecture.Helpers
     {
         public static List<MenuItem> Get(string menuName)
         {
-            var container = IoC.Initialize();
+            var validSession = System.Web.HttpContext.Current.Session != null;
 
-            IMenuService menuService = container.GetInstance<MenuService>();
+            object sessionMenu = null;
 
-            var menuItems = menuService.View(UserHelper.UserId, menuName);
+            if (validSession)
+            {
+                sessionMenu = System.Web.HttpContext.Current.Session[$"Menu-{menuName}"];
+            }
 
-            return menuItems;
+            if (sessionMenu != null)
+            {
+                return (List<MenuItem>)sessionMenu;
+            }
+            else
+            {
+                var container = IoC.Initialize();
+
+                IMenuService menuService = container.GetInstance<MenuService>();
+
+                var menuItems = AsyncHelpers.RunSync(() => menuService.ViewAsync(UserHelper.UserId, menuName));
+
+                if (validSession)
+                {
+                    System.Web.HttpContext.Current.Session.Add($"Menu-{menuName}", menuItems);
+                }
+
+                return menuItems;
+            }
         }
     }
 }

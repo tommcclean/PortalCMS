@@ -3,6 +3,7 @@ using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Forms.ViewModels.ContactWidgets;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.SessionState;
 
@@ -39,10 +40,12 @@ namespace Portal.CMS.Web.Areas.Forms.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitMessageWidget(SubmitMessageViewModel model)
+        public async Task<ActionResult> SubmitMessageWidget(SubmitMessageViewModel model)
         {
+            var recipients = await _userService.GetAsync(new List<string> { nameof(Admin) });
+
             EmailHelper.Send(
-                _userService.Get(new List<string> { nameof(Admin) }).Select(x => x.EmailAddress).ToList(),
+                recipients.Select(x => x.EmailAddress).ToList(),
                 "Contact Submitted",
                 $@"<p>Hello, we thought you might like to know that a visitor to your website has submitted a message, here are the details we recorded.</p>
                 <p>Name: {model.Name}</p>

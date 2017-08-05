@@ -5,6 +5,7 @@ using Portal.CMS.Services.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Tests.Authenticated
 {
@@ -35,7 +36,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
         #region RoleService.Get
 
         [Test]
-        public void GetUserRoles_ReturnsRoles()
+        public async Task GetUserRoles_ReturnsRoles()
         {
             int? userId = 1;
 
@@ -62,14 +63,14 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.SaveChanges();
 
-            var result = _roleService.Get(userId);
+            var result = await _roleService.GetAsync(userId);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Count() > 0);
         }
 
         [Test]
-        public void GetUserRoles_ReturnsCorrectRole()
+        public async Task GetUserRoles_ReturnsCorrectRole()
         {
             int? userId = 1;
 
@@ -97,7 +98,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.SaveChanges();
 
-            var result = _roleService.Get(userId);
+            var result = await _roleService.GetAsync(userId);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Count() == 1);
@@ -105,20 +106,20 @@ namespace Portal.CMS.Services.Tests.Authenticated
         }
 
         [Test]
-        public void GetUserRoles_NullUserReturnsAnonymous()
+        public async Task GetUserRoles_NullUserReturnsAnonymous()
         {
-            var result = _roleService.Get(null);
+            var result = await _roleService.GetAsync(null);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Count() == 1);
         }
 
         [Test]
-        public void GetUserRoles_InvalidUserReturnsNoRoles()
+        public async Task GetUserRoles_InvalidUserReturnsNoRoles()
         {
             int? userId = 100;
 
-            var result = _roleService.Get(userId);
+            var result = await _roleService.GetAsync(userId);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Count() == 0);
@@ -129,7 +130,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
         #region RoleService.Update
 
         [Test]
-        public void Update_RemovesAllRoles()
+        public async Task Update_RemovesAllRoles()
         {
             int? userId = 1;
 
@@ -160,21 +161,21 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             #endregion Setup Mock
 
-            var result = _roleService.Get(userId);
+            var result = await _roleService.GetAsync(userId);
 
             if (!result.Any())
                 throw new ArgumentException("Mock Invalid, Expected Mock User to have 2 User Roles");
 
-            _roleService.Update(userId.Value, new List<string>());
+            await _roleService.UpdateAsync(userId.Value, new List<string>());
 
-            result = _roleService.Get(userId);
+            result = await _roleService.GetAsync(userId);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Count() == 0);
         }
 
         [Test]
-        public void Update_AddsAdditionalRole()
+        public async Task Update_AddsAdditionalRole()
         {
             int? userId = 1;
 
@@ -204,14 +205,14 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             #endregion Setup Mock
 
-            var result = _roleService.Get(userId);
+            var result = await _roleService.GetAsync(userId);
 
             if (!result.Any())
                 throw new ArgumentException("Mock Invalid, Expected Mock User to have 2 User Roles");
 
-            _roleService.Update(userId.Value, new List<string> { "Role 1", "Role 2" });
+            await _roleService.UpdateAsync(userId.Value, new List<string> { "Role 1", "Role 2" });
 
-            result = _roleService.Get(userId);
+            result = await _roleService.GetAsync(userId);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Count() == 2);

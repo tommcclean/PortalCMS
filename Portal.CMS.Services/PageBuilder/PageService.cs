@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.PageBuilder
 {
@@ -12,7 +13,7 @@ namespace Portal.CMS.Services.PageBuilder
     {
         IEnumerable<Page> Get();
 
-        Page View(int? userId, int pageId);
+        Task<Page> ViewAsync(int? userId, int pageId);
 
         Page Get(int pageId);
 
@@ -47,19 +48,19 @@ namespace Portal.CMS.Services.PageBuilder
             return results;
         }
 
-        public Page View(int? userId, int pageId)
+        public async Task<Page> ViewAsync(int? userId, int pageId)
         {
-            var page = _context.Pages.Include(x => x.PageAssociations).SingleOrDefault(x => x.PageId == pageId);
+            var page = await _context.Pages.Include(x => x.PageAssociations).SingleOrDefaultAsync(x => x.PageId == pageId);
 
             if (!page.PageRoles.Any())
-                return FilterSectionList(page, userId);
+                return await FilterSectionListAsync(page, userId);
 
-            var userRoles = _roleService.Get(userId);
+            var userRoles = await _roleService.GetAsync(userId);
 
             var hasAccess = _roleService.Validate(page.PageRoles.Select(x => x.Role), userRoles);
 
             if (hasAccess)
-                return FilterSectionList(page, userId);
+                return await FilterSectionListAsync(page, userId);
 
             return null;
         }
@@ -142,7 +143,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         #region Private Methods
 
-        private Page FilterSectionList(Page page, int? userId)
+        private async Task<Page> FilterSectionListAsync(Page page, int? userId)
         {
             for (int loop = 0; loop < page.PageAssociations.Count(); loop += 1)
             {
@@ -150,7 +151,7 @@ namespace Portal.CMS.Services.PageBuilder
 
                 if (pageAssociation != null)
                 {
-                    var userRoles = _roleService.Get(userId);
+                    var userRoles = await _roleService.GetAsync(userId);
 
                     var hasAccess = _roleService.Validate(pageAssociation.PageAssociationRoles.Select(x => x.Role), userRoles);
 

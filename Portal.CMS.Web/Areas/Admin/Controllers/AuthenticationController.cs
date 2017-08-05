@@ -4,6 +4,7 @@ using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Authentication;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -52,12 +53,12 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model)
+        public async Task<ActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_Login", model);
 
-            var userId = _loginService.Login(model.EmailAddress, model.Password);
+            var userId = await _loginService.LoginAsync(model.EmailAddress, model.Password);
 
             if (!userId.HasValue)
             {
@@ -66,8 +67,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View("_Login", model);
             }
 
-            Session.Add(USER_ACCOUNT, _userService.GetUser(userId.Value));
-            Session.Add(USER_ROLES, _roleService.Get(userId));
+            Session.Add(USER_ACCOUNT, await _userService.GetUserAsync(userId.Value));
+            Session.Add(USER_ROLES, await _roleService.GetAsync(userId));
 
             return Content("Refresh");
         }
@@ -89,14 +90,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_Register", model);
 
             var isAdministrator = false;
 
-            var userId = _registrationService.Register(model.EmailAddress, model.Password, model.GivenName, model.FamilyName);
+            var userId = await _registrationService.RegisterAsync(model.EmailAddress, model.Password, model.GivenName, model.FamilyName);
 
             switch (userId.Value)
             {
@@ -105,19 +106,19 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     return View("_Register", model);
 
                 default:
-                    if (_userService.GetUserCount() == 1)
+                    if (await _userService.GetUserCountAsync() == 1)
                     {
-                        _roleService.Update(userId.Value, new List<string> { nameof(Admin), "Authenticated" });
+                        await _roleService.UpdateAsync(userId.Value, new List<string> { nameof(Admin), "Authenticated" });
 
                         isAdministrator = true;
                     }
                     else
                     {
-                        _roleService.Update(userId.Value, new List<string> { "Authenticated" });
+                        await _roleService.UpdateAsync(userId.Value, new List<string> { "Authenticated" });
                     }
 
-                    Session.Add(USER_ACCOUNT, _userService.GetUser(userId.Value));
-                    Session.Add(USER_ROLES, _roleService.Get(userId));
+                    Session.Add(USER_ACCOUNT, await _userService.GetUserAsync(userId.Value));
+                    Session.Add(USER_ROLES, await _roleService.GetAsync(userId));
 
                     if (isAdministrator)
                         return Content("Setup");
@@ -128,9 +129,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Forgot(LoginViewModel model)
+        public async Task<ActionResult> Forgot(LoginViewModel model)
         {
-            var token = _tokenService.Add(model.EmailAddress, UserTokenType.ForgottenPassword);
+            var token = await _tokenService.AddAsync(model.EmailAddress, UserTokenType.ForgottenPassword);
 
             if (!string.IsNullOrWhiteSpace(token))
             {
@@ -152,7 +153,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Reset(ResetViewModel model)
+        public async Task<ActionResult> Reset(ResetViewModel model)
         {
             if (!string.IsNullOrWhiteSpace(model.Password) && !string.IsNullOrWhiteSpace(model.ConfirmPassword))
             {
@@ -163,7 +164,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var result = _tokenService.RedeemPasswordToken(model.Token, model.EmailAddress, model.Password);
+            var result = await _tokenService.RedeemPasswordTokenAsync(model.Token, model.EmailAddress, model.Password);
 
             if (!string.IsNullOrWhiteSpace(result))
             {

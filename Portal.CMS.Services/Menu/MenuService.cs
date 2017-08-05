@@ -3,6 +3,7 @@ using Portal.CMS.Entities.Entities;
 using Portal.CMS.Services.Authentication;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Menu
 {
@@ -10,7 +11,7 @@ namespace Portal.CMS.Services.Menu
     {
         IEnumerable<MenuSystem> Get();
 
-        List<MenuItem> View(int? userId, string menuName);
+        Task<List<MenuItem>> ViewAsync(int? userId, string menuName);
     }
 
     public class MenuService : IMenuService
@@ -37,13 +38,13 @@ namespace Portal.CMS.Services.Menu
             return results;
         }
 
-        public List<MenuItem> View(int? userId, string menuName)
+        public async Task<List<MenuItem>> ViewAsync(int? userId, string menuName)
         {
             var menu = _context.Menus.FirstOrDefault(x => x.MenuName == menuName);
 
             var menuItemList = new List<MenuItem>();
 
-            var userRoleList = _roleService.Get(userId);
+            var userRoleList = await _roleService.GetAsync(userId);
 
             foreach (var menuItem in menu.MenuItems)
             {

@@ -247,6 +247,7 @@
     <Compile Include="Architecture\Extensions\FontExtensions.cs" />
     <Compile Include="Architecture\Extensions\ImageExtensions.cs" />
     <Compile Include="Architecture\Extensions\PostExtensions.cs" />
+    <Compile Include="Architecture\Helpers\AsyncHelpers.cs" />
     <Compile Include="Architecture\Modules\RemoveResponseHeadersModule.cs" />
     <Compile Include="Architecture\ViewEngines\CSSViewEngine.cs" />
     <Compile Include="Architecture\ActionFilters\EditorFilter.cs" />

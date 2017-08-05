@@ -1,25 +1,27 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Authentication
 {
     public interface IRoleService
     {
-        IEnumerable<Role> Get(int? userId);
+        Task<IEnumerable<Role>> GetAsync(int? userId);
 
-        List<Role> Get();
+        Task<List<Role>> GetAsync();
 
-        Role Get(int roleId);
+        Task<Role> GetAsync(int roleId);
 
-        int Add(string roleName);
+        Task<int> AddAsync(string roleName);
 
-        void Edit(int roleId, string roleName);
+        Task EditAsync(int roleId, string roleName);
 
-        void Update(int userId, List<string> roleList);
+        Task UpdateAsync(int userId, List<string> roleList);
 
-        void Delete(int roleId);
+        Task DeleteAsync(int roleId);
 
         bool Validate(IEnumerable<Role> entityRoles, IEnumerable<Role> userRoles);
     }
@@ -39,11 +41,11 @@ namespace Portal.CMS.Services.Authentication
 
         #endregion Dependencies
 
-        public IEnumerable<Role> Get(int? userId)
+        public async Task<IEnumerable<Role>> GetAsync(int? userId)
         {
             if (userId.HasValue)
             {
-                var userRoles = _context.UserRoles.Where(x => x.UserId == userId.Value).Select(x => x.Role).ToList();
+                var userRoles = await _context.UserRoles.Where(x => x.UserId == userId.Value).Select(x => x.Role).ToListAsync();
 
                 return userRoles;
             }
@@ -51,21 +53,21 @@ namespace Portal.CMS.Services.Authentication
             return new List<Role> { new Role { RoleName = "Anonymous" } };
         }
 
-        public List<Role> Get()
+        public async Task<List<Role>> GetAsync()
         {
-            var results = _context.Roles.OrderBy(x => x.RoleName).ToList();
+            var results = await _context.Roles.OrderBy(x => x.RoleName).ToListAsync();
 
             return results;
         }
 
-        public Role Get(int roleId)
+        public async Task<Role> GetAsync(int roleId)
         {
-            var role = _context.Roles.SingleOrDefault(x => x.RoleId == roleId);
+            var role = await _context.Roles.SingleOrDefaultAsync(x => x.RoleId == roleId);
 
             return role;
         }
 
-        public int Add(string roleName)
+        public async Task<int> AddAsync(string roleName)
         {
             var newRole = new Role
             {
@@ -74,36 +76,36 @@ namespace Portal.CMS.Services.Authentication
 
             _context.Roles.Add(newRole);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return newRole.RoleId;
         }
 
-        public void Edit(int roleId, string roleName)
+        public async Task EditAsync(int roleId, string roleName)
         {
-            var role = _context.Roles.SingleOrDefault(x => x.RoleId == roleId);
+            var role = await _context.Roles.SingleOrDefaultAsync(x => x.RoleId == roleId);
 
             role.RoleName = roleName;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int roleId)
+        public async Task DeleteAsync(int roleId)
         {
-            var role = _context.Roles.SingleOrDefault(x => x.RoleId == roleId);
+            var role = await _context.Roles.SingleOrDefaultAsync(x => x.RoleId == roleId);
             if (role == null) return;
 
             _context.Roles.Remove(role);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Update(int userId, List<string> roleList)
+        public async Task UpdateAsync(int userId, List<string> roleList)
         {
-            var user = _context.Users.SingleOrDefault(x => x.UserId == userId);
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserId == userId);
             if (user == null) return;
 
-            var systemRoles = Get();
+            var systemRoles = await GetAsync();
 
             if (user.Roles != null)
             {
@@ -131,7 +133,7 @@ namespace Portal.CMS.Services.Authentication
                 _context.UserRoles.Add(userRole);
             }
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public bool Validate(IEnumerable<Role> entityRoles, IEnumerable<Role> userRoles)

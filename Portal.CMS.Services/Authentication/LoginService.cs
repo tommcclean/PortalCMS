@@ -1,15 +1,16 @@
 ﻿using Portal.CMS.Entities;
 using System;
-using System.Linq;
+using System.Data.Entity;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Authentication
 {
     public interface ILoginService
     {
-        int? Login(string emailAddress, string password);
+        Task<int?> LoginAsync(string emailAddress, string password);
 
-        int? SSO(int userId, string token);
+        Task<int?> SSOAsync(int userId, string token);
     }
 
     public class LoginService : ILoginService
@@ -27,9 +28,9 @@ namespace Portal.CMS.Services.Authentication
 
         #endregion Dependencies
 
-        public int? Login(string emailAddress, string password)
+        public async Task<int?> LoginAsync(string emailAddress, string password)
         {
-            var userAccount = _context.Users.FirstOrDefault(x => x.EmailAddress.Equals(emailAddress, System.StringComparison.OrdinalIgnoreCase));
+            var userAccount = await _context.Users.FirstOrDefaultAsync(x => x.EmailAddress.Equals(emailAddress, StringComparison.OrdinalIgnoreCase));
             if (userAccount == null) return null;
 
             if (!CompareSecurePassword(password, userAccount.Password))
@@ -38,9 +39,9 @@ namespace Portal.CMS.Services.Authentication
             return userAccount.UserId;
         }
 
-        public int? SSO(int userId, string token)
+        public async Task<int?> SSOAsync(int userId, string token)
         {
-            var tokenResult = _tokenService.RedeemSSOToken(userId, token);
+            var tokenResult = await _tokenService.RedeemSSOTokenAsync(userId, token);
 
             if (string.IsNullOrWhiteSpace(tokenResult))
                 return userId;

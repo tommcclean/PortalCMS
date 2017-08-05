@@ -113,7 +113,9 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         public async Task<ActionResult> EditOrder(int pageId, string associationList)
         {
             if (associationList != null && associationList.Length > 2)
+            {
                 await _associationService.EditOrderAsync(pageId, associationList);
+            }
 
             return RedirectToAction("Index", "Page", new { pageId });
         }
@@ -141,7 +143,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
                 PageSectionBackgroundStyle = await _sectionService.DetermineBackgroundStyleAsync(pageSection.PageSectionId),
                 BackgroundType = await _sectionService.DetermineBackgroundTypeAsync(pageSection.PageSectionId),
                 BackgroundColour = await _sectionService.DetermineBackgroundColourAsync(pageSection.PageSectionId),
-                RoleList = _roleService.Get(),
+                RoleList = await _roleService.GetAsync(),
                 SelectedRoleList = pageAssociation.PageAssociationRoles.Select(x => x.Role.RoleName).ToList()
             };
 
@@ -197,7 +199,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             {
                 PageAssociationId = pageAssociationId,
                 PagePartialId = pageAssociation.PagePartial.PagePartialId,
-                RoleList = _roleService.Get(),
+                RoleList = await _roleService.GetAsync(),
                 SelectedRoleList = pageAssociation.PageAssociationRoles.Select(x => x.Role.RoleName).ToList()
             };
 
@@ -237,9 +239,9 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public JsonResult Markup(MarkupViewModel model)
+        public async Task<JsonResult> Markup(MarkupViewModel model)
         {
-            _sectionService.EditMarkupAsync(model.PageSectionId, model.PageSectionBody);
+            await _sectionService.EditMarkupAsync(model.PageSectionId, model.PageSectionBody);
 
             return Json(new { State = true, Markup = model.PageSectionBody });
         }

@@ -5,6 +5,7 @@ using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.MenuItem;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -32,14 +33,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         #endregion Dependencies
 
         [HttpGet]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             var model = new CreateViewModel
             {
                 MenuList = _menuService.Get(),
                 PageList = _pageService.Get(),
                 PostList = _postService.Get(string.Empty, true),
-                RoleList = _roleService.Get()
+                RoleList = await _roleService.GetAsync()
             };
 
             return View("_Create", model);
@@ -48,14 +49,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateViewModel model)
+        public async Task<ActionResult> Create(CreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 model.MenuList = _menuService.Get();
                 model.PageList = _pageService.Get();
                 model.PostList = _postService.Get(string.Empty, true);
-                model.RoleList = _roleService.Get();
+                model.RoleList = await _roleService.GetAsync();
 
                 return View("_Create", model);
             }
@@ -68,7 +69,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int menuItemId)
+        public async Task<ActionResult> Edit(int menuItemId)
         {
             var menuItem = _menuItemService.Get(menuItemId);
 
@@ -78,7 +79,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 LinkText = menuItem.LinkText,
                 LinkIcon = menuItem.LinkIcon,
                 LinkURL = menuItem.LinkURL,
-                RoleList = _roleService.Get(),
+                RoleList = await _roleService.GetAsync(),
                 SelectedRoleList = menuItem.MenuItemRoles.Select(x => x.Role.RoleName).ToList()
             };
 
@@ -86,11 +87,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Edit(EditViewModel model)
+        public async Task<ActionResult> Edit(EditViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                model.RoleList = _roleService.Get();
+                model.RoleList = await _roleService.GetAsync();
 
                 return View(model);
             }

@@ -5,6 +5,7 @@ using Portal.CMS.Web.Areas.Profile.ViewModels.Manage;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -47,14 +48,14 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
 
         [HttpPost, LoggedInFilter]
         [ValidateAntiForgeryToken]
-        public ActionResult EditAccount(AccountViewModel model)
+        public async Task<ActionResult> EditAccount(AccountViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_Account", model);
 
-            _userService.UpdateDetails(UserHelper.UserId.Value, model.EmailAddress, model.GivenName, model.FamilyName);
+            await _userService.UpdateDetailsAsync(UserHelper.UserId.Value, model.EmailAddress, model.GivenName, model.FamilyName);
 
-            ResetUserSessionValue();
+            await ResetUserSessionValueAsync();
 
             return Content("Refresh");
         }
@@ -69,15 +70,16 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
 
         [HttpPost, LoggedInFilter]
         [ValidateAntiForgeryToken]
-        public ActionResult EditAvatar(AvatarViewModel model)
+        public async Task<ActionResult> EditAvatar(AvatarViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_Avatar", model);
 
             var imageFilePath = SaveImage(model.AttachedImage, nameof(EditAvatar));
-            _userService.UpdateAvatar(UserHelper.UserId.Value, imageFilePath);
 
-            ResetUserSessionValue();
+            await _userService.UpdateAvatarAsync(UserHelper.UserId.Value, imageFilePath);
+
+            await ResetUserSessionValueAsync();
 
             return Content("Refresh");
         }
@@ -95,11 +97,11 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
 
         [HttpPost, LoggedInFilter]
         [ValidateAntiForgeryToken]
-        public ActionResult EditBio(BioViewModel model)
+        public async Task<ActionResult> EditBio(BioViewModel model)
         {
-            _userService.UpdateBio(UserHelper.UserId.Value, model.Bio);
+            await _userService.UpdateBioAsync(UserHelper.UserId.Value, model.Bio);
 
-            ResetUserSessionValue();
+            await ResetUserSessionValueAsync();
 
             return Content("Refresh");
         }
@@ -114,7 +116,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
 
         [HttpPost, LoggedInFilter]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPassword(PasswordViewModel model)
+        public async Task<ActionResult> EditPassword(PasswordViewModel model)
         {
             if (ModelState.IsValid && !model.NewPassword.Equals(model.ConfirmPassword, StringComparison.OrdinalIgnoreCase))
                 ModelState.AddModelError("NewPasswordMismatch", "Your new password and confirm password do not match...");
@@ -127,7 +129,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
                 return View("_Password", model);
             }
 
-            _registrationService.ChangePassword(UserHelper.UserId.Value, model.NewPassword);
+            await _registrationService.ChangePasswordAsync(UserHelper.UserId.Value, model.NewPassword);
 
             var websiteAddress = $@"http://{System.Web.HttpContext.Current.Request.Url.Authority}";
 
@@ -159,13 +161,13 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
             return relativeFilePath;
         }
 
-        private void ResetUserSessionValue()
+        private async Task ResetUserSessionValueAsync()
         {
             var userId = UserHelper.UserId;
 
             Session.Remove(USER_ACCOUNT);
 
-            Session.Add(USER_ACCOUNT, _userService.GetUser(userId.Value));
+            Session.Add(USER_ACCOUNT, await _userService.GetUserAsync(userId.Value));
         }
     }
 }

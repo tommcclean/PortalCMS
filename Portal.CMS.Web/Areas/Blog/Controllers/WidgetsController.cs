@@ -2,11 +2,12 @@
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Blog.ViewModels.Widgets;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.SessionState;
 
 namespace Portal.CMS.Web.Areas.BlogManager.Controllers
-{ 
+{
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class WidgetsController : Controller
     {
@@ -26,21 +27,25 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
             return View();
         }
 
-        public ActionResult TilesWidget()
+        public async Task<ActionResult> TilesWidget()
         {
+            var postList = await _postService.ReadAsync(UserHelper.UserId, string.Empty);
+
             var model = new PostsWidgetViewModel
             {
-                PostList = _postService.Read(UserHelper.UserId, string.Empty).Take(6).ToList()
+                PostList = postList.Take(6).ToList()
             };
 
             return View("_TilesWidget", model);
         }
 
-        public ActionResult RetroWidget()
+        public async Task<ActionResult> RetroWidget()
         {
+            var postList = await _postService.ReadAsync(UserHelper.UserId, string.Empty);
+
             var model = new PostsWidgetViewModel
             {
-                PostList = _postService.Read(UserHelper.UserId, string.Empty).Take(6).ToList()
+                PostList = postList.Take(6).ToList()
             };
 
             return View("_RetroWidget", model);

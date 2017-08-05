@@ -70,7 +70,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PostCategoryId = postCategories.First().PostCategoryId,
                 PostAuthorUserId = UserHelper.UserId.Value,
                 PostCategoryList = postCategories,
-                UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" }),
+                UserList = await _userService.GetAsync(new List<string> { nameof(Admin), "Editor" }),
                 PublicationState = PublicationState.Published,
                 BannerImages = new PaginationViewModel
                 {
@@ -84,7 +84,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     TargetInputField = GALLERY_IMAGE_LIST,
                     PaginationType = GALLERY
                 },
-                RoleList = _roleService.Get()
+                RoleList = await _roleService.GetAsync()
             };
 
             return View("_Create", model);
@@ -112,8 +112,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     PaginationType = GALLERY
                 };
                 model.PostCategoryList = _postCategoryService.Get();
-                model.UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" });
-                model.RoleList = _roleService.Get();
+                model.UserList = await _userService.GetAsync(new List<string> { nameof(Admin), "Editor" });
+                model.RoleList = await _roleService.GetAsync();
 
                 return View("_Create", model);
             }
@@ -148,7 +148,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PostAuthorUserId = post.PostAuthorUserId,
                 ExistingGalleryImageList = post.PostImages.Where(x => x.PostImageType == PostImageType.Gallery).Select(x => x.ImageId).ToList(),
                 PostCategoryList = _postCategoryService.Get(),
-                UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" }),
+                UserList = await _userService.GetAsync(new List<string> { nameof(Admin), "Editor" }),
                 BannerImages = new PaginationViewModel
                 {
                     ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
@@ -161,7 +161,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     TargetInputField = GALLERY_IMAGE_LIST,
                     PaginationType = GALLERY
                 },
-                RoleList = _roleService.Get(),
+                RoleList = await _roleService.GetAsync(),
                 SelectedRoleList = post.PostRoles.Select(x => x.Role.RoleName).ToList()
             };
 
@@ -196,8 +196,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     PaginationType = GALLERY
                 };
                 model.PostCategoryList = _postCategoryService.Get();
-                model.UserList = _userService.Get(new List<string> { nameof(Admin), "Editor" });
-                model.RoleList = _roleService.Get();
+                model.UserList = await _userService.GetAsync(new List<string> { nameof(Admin), "Editor" });
+                model.RoleList = await _roleService.GetAsync();
 
                 return View("_Edit", model);
             }
@@ -269,11 +269,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult AppDrawer()
+        public async Task<ActionResult> AppDrawer()
         {
+            var postList = await _postService.ReadAsync(UserHelper.UserId, string.Empty);
+
             var model = new AppDrawerViewModel
             {
-                PostList = _postService.Read(UserHelper.UserId, string.Empty).ToList()
+                PostList = postList.ToList()
             };
 
             return PartialView("_AppDrawer", model);

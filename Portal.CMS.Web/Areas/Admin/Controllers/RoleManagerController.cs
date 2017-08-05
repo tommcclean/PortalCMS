@@ -1,6 +1,7 @@
 ﻿using Portal.CMS.Services.Authentication;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.RoleManager;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -35,20 +36,20 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateViewModel model)
+        public async Task<ActionResult> Create(CreateViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_Create", model);
 
-            _roleService.Add(model.RoleName);
+            await _roleService.AddAsync(model.RoleName);
 
             return Content("Refresh");
         }
 
         [HttpGet]
-        public ActionResult Edit(int roleId)
+        public async Task<ActionResult> Edit(int roleId)
         {
-            var role = _roleService.Get(roleId);
+            var role = await _roleService.GetAsync(roleId);
 
             var model = new EditViewModel
             {
@@ -61,20 +62,20 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EditViewModel model)
+        public async Task<ActionResult> Edit(EditViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_Edit", model);
 
-            _roleService.Edit(model.RoleId, model.RoleName);
+            await _roleService.EditAsync(model.RoleId, model.RoleName);
 
             return Content("Refresh");
         }
 
         [HttpGet]
-        public ActionResult Delete(int roleId)
+        public async Task<ActionResult> Delete(int roleId)
         {
-            _roleService.Delete(roleId);
+            await _roleService.DeleteAsync(roleId);
 
             return RedirectToAction(nameof(Index), "SettingManager");
         }

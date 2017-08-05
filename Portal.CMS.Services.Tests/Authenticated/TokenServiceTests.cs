@@ -5,6 +5,7 @@ using Portal.CMS.Entities.Enumerators;
 using Portal.CMS.Services.Authentication;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Tests.Authenticated
 {
@@ -37,9 +38,9 @@ namespace Portal.CMS.Services.Tests.Authenticated
         #region TokenService.RedeemPasswordToken
 
         [Test]
-        public void RedeemPasswordToken_InvalidTokenReturnsValidation()
+        public async Task RedeemPasswordToken_InvalidTokenReturnsValidation()
         {
-            var result = _tokenService.RedeemPasswordToken(string.Empty, "test@test.com", "test");
+            var result = await _tokenService.RedeemPasswordTokenAsync(string.Empty, "test@test.com", "test");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result, "Invalid Token. Please Request Reset Password Token Again...");
@@ -62,7 +63,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.SaveChanges();
 
-            var result = _tokenService.RedeemPasswordToken("12345", "test@test.com", "test");
+            var result = _tokenService.RedeemPasswordTokenAsync("12345", "test@test.com", "test");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result, "Invalid Token. This Token does not match the Email Address you entered...");
@@ -85,7 +86,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.SaveChanges();
 
-            var result = _tokenService.RedeemPasswordToken("12345", "email", "test");
+            var result = _tokenService.RedeemPasswordTokenAsync("12345", "email", "test");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result, "Invalid Token. This Token has already been used");
@@ -108,7 +109,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.SaveChanges();
 
-            var result = _tokenService.RedeemPasswordToken("12345", "email", "test");
+            var result = _tokenService.RedeemPasswordTokenAsync("12345", "email", "test");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result, string.Empty);
@@ -121,7 +122,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
         [Test]
         public void RedeemSSOToken_InvalidTokenReturnsValidation()
         {
-            var result = _tokenService.RedeemSSOToken(0, "12345");
+            var result = _tokenService.RedeemSSOTokenAsync(0, "12345");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result, "Invalid Token.");
@@ -144,7 +145,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.SaveChanges();
 
-            var result = _tokenService.RedeemSSOToken(userId, "12345");
+            var result = _tokenService.RedeemSSOTokenAsync(userId, "12345");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result, "Invalid Token. This Token has already been used.");
@@ -167,7 +168,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.SaveChanges();
 
-            var result = _tokenService.RedeemSSOToken(userId, "12345");
+            var result = _tokenService.RedeemSSOTokenAsync(userId, "12345");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result, string.Empty);

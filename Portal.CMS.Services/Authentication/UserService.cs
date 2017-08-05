@@ -1,29 +1,31 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Authentication
 {
     public interface IUserService
     {
-        User GetUser(int userId);
+        Task<User> GetUserAsync(int userId);
 
-        IEnumerable<User> Get();
+        Task<IEnumerable<User>> GetAsync();
 
-        User Get(string emailAddress);
+        Task<User> GetAsync(string emailAddress);
 
-        IEnumerable<User> Get(List<string> roleNames);
+        Task<IEnumerable<User>> GetAsync(List<string> roleNames);
 
-        void UpdateDetails(int userId, string emailAddress, string givenName, string familyName);
+        Task UpdateDetailsAsync(int userId, string emailAddress, string givenName, string familyName);
 
-        void UpdateAvatar(int userId, string avatarImagePath);
+        Task UpdateAvatarAsync(int userId, string avatarImagePath);
 
-        void UpdateBio(int userId, string bio);
+        Task UpdateBioAsync(int userId, string bio);
 
-        void DeleteUser(int userId);
+        Task DeleteUserAsync(int userId);
 
-        int GetUserCount();
+        Task<int> GetUserCountAsync();
     }
 
     public class UserService : IUserService
@@ -39,32 +41,32 @@ namespace Portal.CMS.Services.Authentication
 
         #endregion Dependencies
 
-        public User GetUser(int userId)
+        public async Task<User> GetUserAsync(int userId)
         {
-            var result = _context.Users.SingleOrDefault(x => x.UserId == userId);
+            var result = await _context.Users.SingleOrDefaultAsync(x => x.UserId == userId);
 
             return result;
         }
 
-        public User Get(string emailAddress)
+        public async Task<User> GetAsync(string emailAddress)
         {
-            var result = _context.Users.FirstOrDefault(x => x.EmailAddress.Equals(emailAddress, System.StringComparison.OrdinalIgnoreCase));
+            var result = await _context.Users.FirstOrDefaultAsync(x => x.EmailAddress.Equals(emailAddress, System.StringComparison.OrdinalIgnoreCase));
 
             return result;
         }
 
-        public IEnumerable<User> Get()
+        public async Task<IEnumerable<User>> GetAsync()
         {
-            var userList = _context.Users.OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName).ThenBy(x => x.UserId).ToList();
+            var userList = await _context.Users.OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName).ThenBy(x => x.UserId).ToListAsync();
 
             return userList;
         }
 
-        public IEnumerable<User> Get(List<string> roleNames)
+        public async Task<IEnumerable<User>> GetAsync(List<string> roleNames)
         {
             var results = new List<User>();
 
-            foreach (var user in _context.Users)
+            foreach (var user in await _context.Users.ToListAsync())
             {
                 foreach (var roleName in roleNames)
                 {
@@ -76,47 +78,47 @@ namespace Portal.CMS.Services.Authentication
             return results.Distinct().OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName).ThenBy(x => x.UserId);
         }
 
-        public int GetUserCount()
+        public async Task<int> GetUserCountAsync()
         {
-            return _context.Users.Count();
+            return await _context.Users.CountAsync();
         }
 
-        public void UpdateDetails(int userId, string emailAddress, string givenName, string familyName)
+        public async Task UpdateDetailsAsync(int userId, string emailAddress, string givenName, string familyName)
         {
-            var user = _context.Users.SingleOrDefault(x => x.UserId == userId);
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserId == userId);
 
             user.EmailAddress = emailAddress;
             user.GivenName = givenName;
             user.FamilyName = familyName;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateAvatar(int userId, string avatarImagePath)
+        public async Task UpdateAvatarAsync(int userId, string avatarImagePath)
         {
-            var user = _context.Users.SingleOrDefault(x => x.UserId == userId);
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserId == userId);
 
             user.AvatarImagePath = avatarImagePath;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateBio(int userId, string bio)
+        public async Task UpdateBioAsync(int userId, string bio)
         {
-            var user = _context.Users.SingleOrDefault(x => x.UserId == userId);
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserId == userId);
 
             user.Bio = bio;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void DeleteUser(int userId)
+        public async Task DeleteUserAsync(int userId)
         {
-            var user = _context.Users.SingleOrDefault(x => x.UserId == userId);
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserId == userId);
 
             _context.Users.Remove(user);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

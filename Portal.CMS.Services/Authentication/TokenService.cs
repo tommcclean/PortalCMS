@@ -2,17 +2,18 @@
 using Portal.CMS.Entities.Entities;
 using Portal.CMS.Entities.Enumerators;
 using System;
-using System.Linq;
+using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Authentication
 {
     public interface ITokenService
     {
-        string Add(string emailAddress, UserTokenType userTokenType);
+        Task<string> AddAsync(string emailAddress, UserTokenType userTokenType);
 
-        string RedeemPasswordToken(string token, string emailAddress, string password);
+        Task<string> RedeemPasswordTokenAsync(string token, string emailAddress, string password);
 
-        string RedeemSSOToken(int userid, string token);
+        Task<string> RedeemSSOTokenAsync(int userid, string token);
     }
 
     public class TokenService : ITokenService
@@ -32,9 +33,9 @@ namespace Portal.CMS.Services.Authentication
 
         #endregion Dependencies
 
-        public string Add(string emailAddress, UserTokenType userTokenType)
+        public async Task<string> AddAsync(string emailAddress, UserTokenType userTokenType)
         {
-            var user = _userService.Get(emailAddress);
+            var user = await _userService.GetAsync(emailAddress);
             if (user == null) return string.Empty;
 
             var userToken = new UserToken
@@ -47,14 +48,14 @@ namespace Portal.CMS.Services.Authentication
 
             _context.UserTokens.Add(userToken);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return userToken.Token;
         }
 
-        public string RedeemPasswordToken(string token, string emailAddress, string password)
+        public async Task<string> RedeemPasswordTokenAsync(string token, string emailAddress, string password)
         {
-            var userToken = _context.UserTokens.FirstOrDefault(x => x.Token.Equals(token, StringComparison.OrdinalIgnoreCase));
+            var userToken = await _context.UserTokens.FirstOrDefaultAsync(x => x.Token.Equals(token, StringComparison.OrdinalIgnoreCase));
 
             if (userToken == null)
                 return "Invalid Token. Please Request Reset Password Token Again...";
@@ -65,17 +66,17 @@ namespace Portal.CMS.Services.Authentication
             if (userToken.DateRedeemed.HasValue)
                 return "Invalid Token. This Token has already been used";
 
-            _registrationService.ChangePassword(userToken.User.UserId, password);
+            await _registrationService.ChangePasswordAsync(userToken.User.UserId, password);
 
             userToken.DateRedeemed = DateTime.Now;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return string.Empty;
         }
 
-        public string RedeemSSOToken(int userid, string token)
+        public async Task<string> RedeemSSOTokenAsync(int userid, string token)
         {
-            var userToken = _context.UserTokens.FirstOrDefault(x => x.Token.Equals(token, StringComparison.OrdinalIgnoreCase) && x.UserId == userid);
+            var userToken = await _context.UserTokens.FirstOrDefaultAsync(x => x.Token.Equals(token, StringComparison.OrdinalIgnoreCase) && x.UserId == userid);
 
             if (userToken == null)
                 return "Invalid Token.";
@@ -84,7 +85,8 @@ namespace Portal.CMS.Services.Authentication
                 return "Invalid Token. This Token has already been used.";
 
             userToken.DateRedeemed = DateTime.Now;
-            _context.SaveChanges();
+
+            await _context.SaveChangesAsync();
 
             return string.Empty;
         }

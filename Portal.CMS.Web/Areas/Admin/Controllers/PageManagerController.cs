@@ -7,6 +7,7 @@ using Portal.CMS.Web.Areas.Admin.ViewModels.PageManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -51,11 +52,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             var model = new CreateViewModel
             {
-                RoleList = _roleService.Get()
+                RoleList = await _roleService.GetAsync()
             };
 
             return View("_Create", model);
@@ -64,11 +65,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateViewModel model)
+        public async Task<ActionResult> Create(CreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                model.RoleList = _roleService.Get();
+                model.RoleList = await _roleService.GetAsync();
                 return View("_Create", model);
             }
 
@@ -76,7 +77,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             _pageService.Roles(pageId, model.SelectedRoleList);
 
-            var token = _tokenService.Add(UserHelper.EmailAddress, UserTokenType.SSO);
+            var token = await _tokenService.AddAsync(UserHelper.EmailAddress, UserTokenType.SSO);
 
             var cookie = new HttpCookie("PortalCMS_SSO", string.Join(",", UserHelper.UserId, HttpContext.Request.Url.AbsoluteUri, token))
             {
@@ -85,13 +86,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             ControllerContext.HttpContext.Response.Cookies.Add(cookie);
 
-            System.Web.HttpRuntime.UnloadAppDomain();
+            HttpRuntime.UnloadAppDomain();
 
             return Content("Refresh");
         }
 
         [HttpGet]
-        public ActionResult Edit(int pageId)
+        public async Task<ActionResult> Edit(int pageId)
         {
             var page = _pageService.Get(pageId);
 
@@ -102,7 +103,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PageArea = page.PageArea,
                 PageController = page.PageController,
                 PageAction = page.PageAction,
-                RoleList = _roleService.Get(),
+                RoleList = await _roleService.GetAsync(),
                 SelectedRoleList = page.PageRoles.Select(x => x.Role.RoleName).ToList()
             };
 
@@ -112,7 +113,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EditViewModel model)
+        public async Task<ActionResult> Edit(EditViewModel model)
         {
             var page = _pageService.Get(model.PageId);
 
@@ -120,7 +121,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                model.RoleList = _roleService.Get();
+                model.RoleList = await _roleService.GetAsync();
                 return View("_Edit", model);
             }
 

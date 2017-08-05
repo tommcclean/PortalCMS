@@ -1,16 +1,17 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities;
 using System;
-using System.Linq;
+using System.Data.Entity;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Authentication
 {
     public interface IRegistrationService
     {
-        int? Register(string emailAddress, string password, string givenName, string familyName);
+        Task<int?> RegisterAsync(string emailAddress, string password, string givenName, string familyName);
 
-        void ChangePassword(int userId, string newPassword);
+        Task ChangePasswordAsync(int userId, string newPassword);
     }
 
     public class RegistrationService : IRegistrationService
@@ -26,9 +27,9 @@ namespace Portal.CMS.Services.Authentication
 
         #endregion Dependencies
 
-        public int? Register(string emailAddress, string password, string givenName, string familyName)
+        public async Task<int?> RegisterAsync(string emailAddress, string password, string givenName, string familyName)
         {
-            if (_context.Users.Any(x => x.EmailAddress.Equals(emailAddress, StringComparison.OrdinalIgnoreCase)))
+            if (await _context.Users.AnyAsync(x => x.EmailAddress.Equals(emailAddress, StringComparison.OrdinalIgnoreCase)))
                 return -1;
 
             var userAccount = new User
@@ -44,20 +45,20 @@ namespace Portal.CMS.Services.Authentication
 
             _context.Users.Add(userAccount);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return userAccount.UserId;
         }
 
-        public void ChangePassword(int userId, string newPassword)
+        public async Task ChangePasswordAsync(int userId, string newPassword)
         {
-            var userAccount = _context.Users.SingleOrDefault(x => x.UserId == userId);
+            var userAccount = await _context.Users.SingleOrDefaultAsync(x => x.UserId == userId);
             if (userAccount == null) return;
 
             userAccount.Password = GenerateSecurePassword(newPassword);
             userAccount.DateUpdated = DateTime.Now;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         private static string GenerateSecurePassword(string password)

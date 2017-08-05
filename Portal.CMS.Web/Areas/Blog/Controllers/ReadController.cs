@@ -1,13 +1,13 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using System.Web.SessionState;
-using Portal.CMS.Services.Analytics;
+﻿using Portal.CMS.Services.Analytics;
 using Portal.CMS.Services.Authentication;
 using Portal.CMS.Services.Posts;
 using Portal.CMS.Services.Themes;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.BlogManager.ViewModels.Read;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using System.Web.SessionState;
 
 namespace Portal.CMS.Web.Areas.BlogManager.Controllers
 {
@@ -34,27 +34,31 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
         #endregion Dependencies
 
         [HttpGet]
-        public ActionResult Index(int? id)
+        public async Task<ActionResult> Index(int? id)
         {
+            var recentPosts = await _postService.ReadAsync(UserHelper.UserId, string.Empty);
+
             var model = new BlogViewModel
             {
-                RecentPosts = _postService.Read(UserHelper.UserId, string.Empty).ToList()
+                RecentPosts = recentPosts.ToList()
             };
 
             if (!model.RecentPosts.Any())
                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
             if (id.HasValue)
-                model.CurrentPost = _postService.Read(UserHelper.UserId, id.Value);
+                model.CurrentPost = await _postService.ReadAsync(UserHelper.UserId, id.Value);
             else
                 model.CurrentPost = model.RecentPosts.First();
 
             if (model.CurrentPost == null)
                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
-            model.Author = _userService.GetUser(model.CurrentPost.PostAuthorUserId);
+            model.Author = await _userService.GetUserAsync(model.CurrentPost.PostAuthorUserId);
 
-            model.SimiliarPosts = _postService.Read(UserHelper.UserId, model.CurrentPost.PostCategory.PostCategoryName).ToList();
+            var similiarPosts = await _postService.ReadAsync(UserHelper.UserId, model.CurrentPost.PostCategory.PostCategoryName);
+
+            model.SimiliarPosts = similiarPosts.ToList();
 
             model.RecentPosts.Remove(model.CurrentPost);
             model.SimiliarPosts.Remove(model.CurrentPost);
