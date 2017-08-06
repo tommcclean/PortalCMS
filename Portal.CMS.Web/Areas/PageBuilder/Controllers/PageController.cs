@@ -50,7 +50,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         public async Task<ActionResult> Analytic(int pageId, string referrer)
         {
-            var page = _pageService.Get(pageId);
+            var page = await _pageService.GetAsync(pageId);
 
             if (UserHelper.IsLoggedIn)
                 await _analyticService.LogPageViewAsync(page.PageArea, page.PageController, page.PageAction, referrer, Request.UserHostAddress, Request.Browser.Browser, UserHelper.UserId);

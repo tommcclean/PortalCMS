@@ -86,7 +86,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult AddPartial(int pageId, string areaName, string controllerName, string actionName)
+        public async Task<JsonResult> AddPartial(int pageId, string areaName, string controllerName, string actionName)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
                 if (type != null && type.GetMethod(actionName) != null)
                 {
-                    _partialService.Add(pageId, areaName, controllerName, actionName);
+                    await _partialService.AddAsync(pageId, areaName, controllerName, actionName);
 
                     return Json(new { State = true });
                 }
@@ -302,7 +302,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             var model = new CloneViewModel
             {
                 PageAssociationId = pageAssociationId,
-                PageList = _pageService.Get().ToList()
+                PageList = await _pageService.GetAsync()
             };
 
             var currentPage = model.PageList.FirstOrDefault(x => x.PageId == pageAssociation.PageId);

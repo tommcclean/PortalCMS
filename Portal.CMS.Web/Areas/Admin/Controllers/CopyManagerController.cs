@@ -97,7 +97,6 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [ChildActionOnly]
         public async Task<ActionResult> Get(string copyName)
         {
             if (string.IsNullOrWhiteSpace(copyName))

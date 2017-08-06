@@ -1,4 +1,5 @@
 ﻿using Portal.CMS.Services.PageBuilder;
+using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.DependencyResolution;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -15,7 +16,7 @@ namespace Portal.CMS.Web
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            var pageList = pageService.Get();
+            var pageList = AsyncHelpers.RunSync(() => pageService.GetAsync());
 
             foreach (var page in pageList)
             {

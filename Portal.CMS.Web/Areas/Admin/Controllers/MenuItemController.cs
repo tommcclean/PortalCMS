@@ -38,7 +38,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             var model = new CreateViewModel
             {
                 MenuList = await _menuService.GetAsync(),
-                PageList = _pageService.Get(),
+                PageList = await _pageService.GetAsync(),
                 PostList = _postService.Get(string.Empty, true),
                 RoleList = await _roleService.GetAsync()
             };
@@ -54,7 +54,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 model.MenuList = await _menuService.GetAsync();
-                model.PageList = _pageService.Get();
+                model.PageList = await _pageService.GetAsync();
                 model.PostList = _postService.Get(string.Empty, true);
                 model.RoleList = await _roleService.GetAsync();
 

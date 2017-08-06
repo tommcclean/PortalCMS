@@ -7,7 +7,7 @@
 {
     @Html.AntiForgeryToken()
 
-    @Html.Action("Get", "CopyManager", new { area = "Admin", copyName = "Update Account Message" })
+    <div class="load-action" data-url="@Url.Action("Get", "CopyManager", new { area = "Admin", copyName = "Update Account Message" })"></div>
 
     @Html.ValidationMessage("EmailAddress")
     <div class="control-group">

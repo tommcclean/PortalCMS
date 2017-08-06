@@ -11,19 +11,19 @@ namespace Portal.CMS.Services.PageBuilder
 {
     public interface IPageService
     {
-        IEnumerable<Page> Get();
+        Task<List<Page>> GetAsync();
 
         Task<Page> ViewAsync(int? userId, int pageId);
 
-        Page Get(int pageId);
+        Task<Page> GetAsync(int pageId);
 
-        int Add(string pageName, string area, string controller, string action);
+        Task<int> AddAsync(string pageName, string area, string controller, string action);
 
-        void Edit(int pageId, string pageName, string area, string controller, string action);
+        Task EditAsync(int pageId, string pageName, string area, string controller, string action);
 
-        void Delete(int pageId);
+        Task DeleteAsync(int pageId);
 
-        void Roles(int pageId, List<string> roleList);
+        Task RolesAsync(int pageId, List<string> roleList);
     }
 
     public class PageService : IPageService
@@ -41,9 +41,9 @@ namespace Portal.CMS.Services.PageBuilder
 
         #endregion Dependencies
 
-        public IEnumerable<Page> Get()
+        public async Task<List<Page>> GetAsync()
         {
-            var results = _context.Pages.OrderBy(x => x.PageName).ToList();
+            var results = await _context.Pages.OrderBy(x => x.PageName).ToListAsync();
 
             return results;
         }
@@ -65,16 +65,14 @@ namespace Portal.CMS.Services.PageBuilder
             return null;
         }
 
-        public Page Get(int pageId)
+        public async Task<Page> GetAsync(int pageId)
         {
-            var page = _context.Pages
-                .Include(x => x.PageAssociations)
-                .SingleOrDefault(x => x.PageId == pageId);
+            var page = await _context.Pages.Include(x => x.PageAssociations).SingleOrDefaultAsync(x => x.PageId == pageId);
 
             return page;
         }
 
-        public int Add(string pageName, string area, string controller, string action)
+        public async Task<int> AddAsync(string pageName, string area, string controller, string action)
         {
             var newPage = new Page
             {
@@ -88,14 +86,14 @@ namespace Portal.CMS.Services.PageBuilder
 
             _context.Pages.Add(newPage);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return newPage.PageId;
         }
 
-        public void Edit(int pageId, string pageName, string area, string controller, string action)
+        public async Task EditAsync(int pageId, string pageName, string area, string controller, string action)
         {
-            var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
+            var page = await _context.Pages.SingleOrDefaultAsync(x => x.PageId == pageId);
             if (page == null) return;
 
             page.PageName = pageName;
@@ -104,25 +102,25 @@ namespace Portal.CMS.Services.PageBuilder
             page.PageAction = action;
             page.DateUpdated = DateTime.Now;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int pageId)
+        public async Task DeleteAsync(int pageId)
         {
-            var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
+            var page = await _context.Pages.SingleOrDefaultAsync(x => x.PageId == pageId);
             if (page == null) return;
 
             _context.Pages.Remove(page);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Roles(int pageId, List<string> roleList)
+        public async Task RolesAsync(int pageId, List<string> roleList)
         {
-            var page = Get(pageId);
+            var page = await GetAsync(pageId);
             if (page == null) return;
 
-            var roles = _context.Roles.ToList();
+            var roles = await _context.Roles.ToListAsync();
 
             if (page.PageRoles != null)
                 foreach (var role in page.PageRoles.ToList())
@@ -138,7 +136,7 @@ namespace Portal.CMS.Services.PageBuilder
                 _context.PageRoles.Add(new PageRole { PageId = pageId, RoleId = currentRole.RoleId });
             }
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         #region Private Methods

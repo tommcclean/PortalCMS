@@ -32,11 +32,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         #endregion Dependencies
 
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var model = new PagesViewModel
             {
-                PageList = _pageService.Get(),
+                PageList = await _pageService.GetAsync(),
                 PageAreas = new List<string>()
             };
 
@@ -73,9 +73,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View("_Create", model);
             }
 
-            var pageId = _pageService.Add(model.PageName, model.PageArea, model.PageController, model.PageAction);
+            var pageId = await _pageService.AddAsync(model.PageName, model.PageArea, model.PageController, model.PageAction);
 
-            _pageService.Roles(pageId, model.SelectedRoleList);
+            await _pageService.RolesAsync(pageId, model.SelectedRoleList);
 
             var token = await _tokenService.AddAsync(UserHelper.EmailAddress, UserTokenType.SSO);
 
@@ -94,7 +94,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit(int pageId)
         {
-            var page = _pageService.Get(pageId);
+            var page = await _pageService.GetAsync(pageId);
 
             var model = new EditViewModel
             {
@@ -115,7 +115,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(EditViewModel model)
         {
-            var page = _pageService.Get(model.PageId);
+            var page = await _pageService.GetAsync(model.PageId);
 
             var restartRequired = false || (!string.IsNullOrWhiteSpace(page.PageArea).Equals(string.IsNullOrWhiteSpace(model.PageArea)) || !page.PageController.Equals(model.PageController) || !page.PageAction.Equals(model.PageAction));
 
@@ -125,9 +125,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View("_Edit", model);
             }
 
-            _pageService.Edit(model.PageId, model.PageName, model.PageArea, model.PageController, model.PageAction);
+            await _pageService.EditAsync(model.PageId, model.PageName, model.PageArea, model.PageController, model.PageAction);
 
-            _pageService.Roles(model.PageId, model.SelectedRoleList);
+            await _pageService.RolesAsync(model.PageId, model.SelectedRoleList);
 
             // RESET: Routing by Starting the Website.
             if (restartRequired)
@@ -139,17 +139,17 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Delete(int pageId)
         {
-            _pageService.Delete(pageId);
+            _pageService.DeleteAsync(pageId);
 
             return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
-        public ActionResult AppDrawer()
+        public async Task<ActionResult> AppDrawer()
         {
             var model = new AppDrawerViewModel
             {
-                PageList = _pageService.Get().ToList()
+                PageList = await _pageService.GetAsync()
             };
 
             return PartialView("_AppDrawer", model);

@@ -21,7 +21,7 @@
 @if (!Model.PostComments.Any())
 {
     <br />
-    @Html.Action("Get", "CopyManager", new { area = "Admin", copyName = "No Comments Message" })
+    <div class="load-action" data-url="@Url.Action("Get", "CopyManager", new { area = "Admin", copyName = "No Comments Message" })"></div>
 }
 
 @foreach (var comment in Model.PostComments)

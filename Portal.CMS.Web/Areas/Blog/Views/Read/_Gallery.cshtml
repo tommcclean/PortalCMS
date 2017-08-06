@@ -3,7 +3,7 @@
 <div class="row padding-sides x3">
     @if (!Model.PostImages.Any(x => x.PostImageType == PostImageType.Gallery))
     {
-        @Html.Action("Get", "CopyManager", new { area = "Admin", copyName = "No Gallery Message" })
+        <div class="load-action" data-url="@Url.Action("Get", "CopyManager", new { area = "Admin", copyName = "No Gallery Message" })"></div>
     }
 
     @foreach (var image in Model.PostImages.Where(x => x.PostImageType == PostImageType.Gallery))

@@ -4,7 +4,7 @@
 }
 @if (!Model.Any())
 {
-    @Html.Action("Get", "CopyManager", new { area = "Admin", copyName = "No Posts Message" })
+    <div class="load-action" data-url="@Url.Action("Get", "CopyManager", new { area = "Admin", copyName = "No Posts Message" })"></div>
 }
 
 @foreach (var post in Model)

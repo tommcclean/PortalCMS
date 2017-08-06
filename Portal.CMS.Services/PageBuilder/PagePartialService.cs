@@ -1,12 +1,14 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.PageBuilder
 {
     public interface IPagePartialService
     {
-        void Add(int pageId, string area, string controller, string action);
+        Task AddAsync(int pageId, string area, string controller, string action);
     }
 
     public class PagePartialService : IPagePartialService
@@ -22,9 +24,9 @@ namespace Portal.CMS.Services.PageBuilder
 
         #endregion Dependencies
 
-        public void Add(int pageId, string area, string controller, string action)
+        public async Task AddAsync(int pageId, string area, string controller, string action)
         {
-            var page = _context.Pages.SingleOrDefault(x => x.PageId == pageId);
+            var page = await _context.Pages.SingleOrDefaultAsync(x => x.PageId == pageId);
             if (page == null) return;
 
             var orderPosition = 0;
@@ -46,7 +48,7 @@ namespace Portal.CMS.Services.PageBuilder
 
             _context.PageAssociations.Add(pageAssociation);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
