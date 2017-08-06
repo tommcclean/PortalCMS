@@ -39,7 +39,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpGet]
         [OutputCache(Duration = 86400)]
-        public async Task<ActionResult> AddA()
+        public async Task<ActionResult> Add()
         {
             var model = new AddViewModel
             {

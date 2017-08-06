@@ -123,8 +123,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (model.PublicationState == PublicationState.Published)
                 await _postService.PublishAsync(postId);
 
-            UpdateBanner(postId, model.BannerImageId);
-            UpdateGallery(postId, model.GalleryImageList);
+            await UpdateBannerAsync(postId, model.BannerImageId);
+            await UpdateGalleryAsync(postId, model.GalleryImageList);
 
             await _postService.RolesAsync(postId, model.SelectedRoleList);
 
@@ -209,8 +209,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             else
                 await _postService.DraftAsync(model.PostId);
 
-            UpdateBanner(model.PostId, model.BannerImageId);
-            UpdateGallery(model.PostId, model.GalleryImageList);
+            await UpdateBannerAsync(model.PostId, model.BannerImageId);
+            await UpdateGalleryAsync(model.PostId, model.GalleryImageList);
 
             await _postService.RolesAsync(model.PostId, model.SelectedRoleList);
 
@@ -283,26 +283,26 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         #region Private Methods
 
-        private void UpdateBanner(int postId, int bannerImageId)
+        private async Task UpdateBannerAsync(int postId, int bannerImageId)
         {
             if (bannerImageId != 0)
             {
-                _postImageService.RemoveAsync(postId, PostImageType.Banner);
+                await _postImageService.RemoveAsync(postId, PostImageType.Banner);
 
-                _postImageService.AddAsync(postId, bannerImageId, PostImageType.Banner);
+                await _postImageService.AddAsync(postId, bannerImageId, PostImageType.Banner);
             }
         }
 
-        private void UpdateGallery(int postId, string galleryImageIds)
+        private async Task UpdateGalleryAsync(int postId, string galleryImageIds)
         {
             if (!string.IsNullOrWhiteSpace(galleryImageIds))
             {
-                _postImageService.RemoveAsync(postId, PostImageType.Gallery);
+                await _postImageService.RemoveAsync(postId, PostImageType.Gallery);
 
                 var galleryImageList = galleryImageIds.Split(',');
 
                 foreach (var image in galleryImageList)
-                    _postImageService.AddAsync(postId, Convert.ToInt32(image), PostImageType.Gallery);
+                    await _postImageService.AddAsync(postId, Convert.ToInt32(image), PostImageType.Gallery);
             }
         }
 

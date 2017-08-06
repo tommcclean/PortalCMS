@@ -117,7 +117,7 @@ namespace Portal.CMS.Services.Posts
 
         public async Task<Post> GetAsync(int postId)
         {
-            var result = await _context.Posts.Include(x => x.PostComments).Include(x => x.PostImages).Include(x => x.PostCategory).SingleOrDefaultAsync(x => x.PostId == postId);
+            var result = await _context.Posts.Include(x => x.PostComments).SingleOrDefaultAsync(x => x.PostId == postId);
 
             return result;
         }
