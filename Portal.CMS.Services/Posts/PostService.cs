@@ -13,31 +13,31 @@ namespace Portal.CMS.Services.Posts
     {
         Task<Post> ReadAsync(int? userId, int postId);
 
-        Task<IEnumerable<Post>> ReadAsync(int? userId, string postCategoryName);
+        Task<List<Post>> ReadAsync(int? userId, string postCategoryName);
 
-        Post Get(int postId);
+        Task<Post> GetAsync(int postId);
 
-        List<Post> Get(string postCategoryName, bool published);
+        Task<List<Post>> GetAsync(string postCategoryName, bool published);
 
-        Post GetLatest();
+        Task<Post> GetLatestAsync();
 
-        int Create(string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody);
+        Task<int> CreateAsync(string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody);
 
-        void Edit(int postId, string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody);
+        Task EditAsync(int postId, string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody);
 
-        void Edit(int postId, string postBody);
+        Task EditAsync(int postId, string postBody);
 
-        void Description(int postId, string description);
+        Task DescriptionAsync(int postId, string description);
 
-        void Headline(int postId, string headline);
+        Task HeadlineAsync(int postId, string headline);
 
-        void Delete(int postId);
+        Task DeleteAsync(int postId);
 
-        void Publish(int postId);
+        Task PublishAsync(int postId);
 
-        void Draft(int postId);
+        Task DraftAsync(int postId);
 
-        void Roles(int postId, List<string> roleList);
+        Task RolesAsync(int postId, List<string> roleList);
     }
 
     public class PostService : IPostService
@@ -59,7 +59,7 @@ namespace Portal.CMS.Services.Posts
 
         public async Task<Post> ReadAsync(int? userId, int postId)
         {
-            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId && x.IsPublished);
+            var post = await _context.Posts.SingleOrDefaultAsync(x => x.PostId == postId && x.IsPublished);
 
             var userRoles = await _roleService.GetAsync(userId);
 
@@ -69,7 +69,7 @@ namespace Portal.CMS.Services.Posts
             return null;
         }
 
-        public async Task<IEnumerable<Post>> ReadAsync(int? userId, string postCategoryName)
+        public async Task<List<Post>> ReadAsync(int? userId, string postCategoryName)
         {
             var userRoleList = new List<string>();
             var isAdministrator = false;
@@ -85,7 +85,7 @@ namespace Portal.CMS.Services.Posts
                     isAdministrator = true;
             }
 
-            var postList = _context.Posts.Where(x => (postCategoryName == string.Empty || x.PostCategory.PostCategoryName == postCategoryName) && x.IsPublished);
+            var postList = await _context.Posts.Where(x => (postCategoryName == string.Empty || x.PostCategory.PostCategoryName == postCategoryName) && x.IsPublished).ToListAsync();
 
             var returnList = new List<Post>();
 
@@ -112,31 +112,31 @@ namespace Portal.CMS.Services.Posts
                 }
             }
 
-            return returnList.Distinct().OrderByDescending(x => x.DateUpdated).ThenByDescending(x => x.DateAdded);
+            return returnList.Distinct().OrderByDescending(x => x.DateUpdated).ThenByDescending(x => x.DateAdded).ToList();
         }
 
-        public Post Get(int postId)
+        public async Task<Post> GetAsync(int postId)
         {
-            var result = _context.Posts.Include(x => x.PostComments).Include(x => x.PostImages).Include(x => x.PostCategory).SingleOrDefault(x => x.PostId == postId);
+            var result = await _context.Posts.Include(x => x.PostComments).Include(x => x.PostImages).Include(x => x.PostCategory).SingleOrDefaultAsync(x => x.PostId == postId);
 
             return result;
         }
 
-        public List<Post> Get(string postCategoryName, bool published)
+        public async Task<List<Post>> GetAsync(string postCategoryName, bool published)
         {
-            var results = _context.Posts.Where(x => (x.PostCategory.PostCategoryName.Equals(postCategoryName, StringComparison.OrdinalIgnoreCase) || postCategoryName == string.Empty) && (published && x.IsPublished || !published)).ToList();
+            var results = await _context.Posts.Where(x => (x.PostCategory.PostCategoryName.Equals(postCategoryName, StringComparison.OrdinalIgnoreCase) || postCategoryName == string.Empty) && (published && x.IsPublished || !published)).ToListAsync();
 
             return results.OrderByDescending(x => x.DateUpdated).ThenByDescending(x => x.PostId).ToList();
         }
 
-        public Post GetLatest()
+        public async Task<Post> GetLatestAsync()
         {
-            var result = _context.Posts.Include(x => x.PostComments).Include(x => x.PostImages).Include(x => x.PostCategory).Where(x => x.IsPublished).OrderByDescending(x => x.DateUpdated).FirstOrDefault();
+            var result = await _context.Posts.Include(x => x.PostComments).Include(x => x.PostImages).Include(x => x.PostCategory).Where(x => x.IsPublished).OrderByDescending(x => x.DateUpdated).FirstOrDefaultAsync();
 
             return result;
         }
 
-        public int Create(string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody)
+        public async Task<int> CreateAsync(string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody)
         {
             var post = new Post
             {
@@ -151,14 +151,14 @@ namespace Portal.CMS.Services.Posts
 
             _context.Posts.Add(post);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return post.PostId;
         }
 
-        public void Edit(int postId, string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody)
+        public async Task EditAsync(int postId, string postTitle, int postCategoryId, int postAuthorUserId, string postDescription, string postBody)
         {
-            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
+            var post = await _context.Posts.SingleOrDefaultAsync(x => x.PostId == postId);
 
             if (post == null)
                 return;
@@ -170,12 +170,12 @@ namespace Portal.CMS.Services.Posts
             post.PostBody = postBody;
             post.DateUpdated = DateTime.Now;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Edit(int postId, string postBody)
+        public async Task EditAsync(int postId, string postBody)
         {
-            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
+            var post = await _context.Posts.SingleOrDefaultAsync(x => x.PostId == postId);
 
             if (post == null)
                 return;
@@ -183,12 +183,12 @@ namespace Portal.CMS.Services.Posts
             post.PostBody = postBody;
             post.DateUpdated = DateTime.Now;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Description(int postId, string description)
+        public async Task DescriptionAsync(int postId, string description)
         {
-            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
+            var post = await _context.Posts.SingleOrDefaultAsync(x => x.PostId == postId);
 
             if (post == null)
                 return;
@@ -196,12 +196,12 @@ namespace Portal.CMS.Services.Posts
             post.PostDescription = description;
             post.DateUpdated = DateTime.Now;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Headline(int postId, string headline)
+        public async Task HeadlineAsync(int postId, string headline)
         {
-            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
+            var post = await _context.Posts.SingleOrDefaultAsync(x => x.PostId == postId);
 
             if (post == null)
                 return;
@@ -209,53 +209,53 @@ namespace Portal.CMS.Services.Posts
             post.PostTitle = headline;
             post.DateUpdated = DateTime.Now;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int postId)
+        public async Task DeleteAsync(int postId)
         {
-            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
+            var post = await _context.Posts.SingleOrDefaultAsync(x => x.PostId == postId);
 
             if (post == null)
                 return;
 
             _context.Posts.Remove(post);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Publish(int postId)
+        public async Task PublishAsync(int postId)
         {
-            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
+            var post = await _context.Posts.SingleOrDefaultAsync(x => x.PostId == postId);
 
             if (post == null)
                 return;
 
             post.IsPublished = true;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Draft(int postId)
+        public async Task DraftAsync(int postId)
         {
-            var post = _context.Posts.SingleOrDefault(x => x.PostId == postId);
+            var post = await _context.Posts.SingleOrDefaultAsync(x => x.PostId == postId);
 
             if (post == null)
                 return;
 
             post.IsPublished = false;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Roles(int postId, List<string> roleList)
+        public async Task RolesAsync(int postId, List<string> roleList)
         {
-            var post = Get(postId);
+            var post = await GetAsync(postId);
 
             if (post == null)
                 return;
 
-            var roles = _context.Roles.ToList();
+            var roles = await _context.Roles.ToListAsync();
 
             if (post.PostRoles != null)
                 foreach (var role in post.PostRoles.ToList())
@@ -271,7 +271,7 @@ namespace Portal.CMS.Services.Posts
                 _context.PostRoles.Add(new PostRole { PostId = postId, RoleId = currentRole.RoleId });
             }
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

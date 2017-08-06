@@ -1,12 +1,13 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities;
 using System;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Posts
 {
     public interface IPostCommentService
     {
-        void Add(int userId, int postId, string commentBody);
+        Task AddAsync(int userId, int postId, string commentBody);
     }
 
     public class PostCommentService : IPostCommentService
@@ -22,7 +23,7 @@ namespace Portal.CMS.Services.Posts
 
         #endregion Dependencies
 
-        public void Add(int userId, int postId, string commentBody)
+        public async Task AddAsync(int userId, int postId, string commentBody)
         {
             var comment = new PostComment
             {
@@ -34,7 +35,7 @@ namespace Portal.CMS.Services.Posts
 
             _context.PostComments.Add(comment);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

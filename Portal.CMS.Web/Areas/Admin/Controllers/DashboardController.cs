@@ -27,7 +27,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var model = new DashboardViewModel
             {
-                LatestPost = _postService.GetLatest(),
+                LatestPost = await _postService.GetLatestAsync(),
                 Media = await _imageService.GetAsync()
             };
 

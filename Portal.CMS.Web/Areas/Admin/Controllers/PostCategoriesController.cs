@@ -1,6 +1,7 @@
 ﻿using Portal.CMS.Services.Posts;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.PostCategories;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -28,22 +29,22 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(AddViewModel model)
+        public async Task<ActionResult> Add(AddViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View("_Add", model);
             }
 
-            _postCategoryService.Add(model.PostCategoryName);
+            await _postCategoryService.AddAsync(model.PostCategoryName);
 
             return Content("Refresh");
         }
 
         [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
-        public ActionResult Edit(int postCategoryId)
+        public async Task<ActionResult> Edit(int postCategoryId)
         {
-            var postCategory = _postCategoryService.Get(postCategoryId);
+            var postCategory = await _postCategoryService.GetAsync(postCategoryId);
 
             var model = new EditViewModel
             {
@@ -56,22 +57,22 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
         [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EditViewModel model)
+        public async Task<ActionResult> Edit(EditViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View("_Edit", model);
             }
 
-            _postCategoryService.Edit(model.PostCategoryId, model.PostCategoryName);
+            await _postCategoryService.EditAsync(model.PostCategoryId, model.PostCategoryName);
 
             return Content("Refresh");
         }
 
         [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
-        public ActionResult Delete(int postCategoryId)
+        public async Task<ActionResult> Delete(int postCategoryId)
         {
-            _postCategoryService.Delete(postCategoryId);
+            await _postCategoryService.DeleteAsync(postCategoryId);
 
             return RedirectToAction("Index", "BlogManager");
         }

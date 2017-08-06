@@ -1,15 +1,17 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities;
 using Portal.CMS.Entities.Enumerators;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Posts
 {
     public interface IPostImageService
     {
-        void Add(int postId, int imageId, PostImageType postImageType);
+        Task AddAsync(int postId, int imageId, PostImageType postImageType);
 
-        void Remove(int postId, PostImageType postImageType);
+        Task RemoveAsync(int postId, PostImageType postImageType);
     }
 
     public class PostImageService : IPostImageService
@@ -25,7 +27,7 @@ namespace Portal.CMS.Services.Posts
 
         #endregion Dependencies
 
-        public void Add(int postId, int imageId, PostImageType postImageType)
+        public async Task AddAsync(int postId, int imageId, PostImageType postImageType)
         {
             var postImage = new PostImage
             {
@@ -36,17 +38,17 @@ namespace Portal.CMS.Services.Posts
 
             _context.PostImages.Add(postImage);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Remove(int postId, PostImageType postImageType)
+        public async Task RemoveAsync(int postId, PostImageType postImageType)
         {
-            var postImages = _context.PostImages.Where(x => x.PostId == postId && x.PostImageType == postImageType);
+            var postImages = await _context.PostImages.Where(x => x.PostId == postId && x.PostImageType == postImageType).ToListAsync();
 
             foreach (var postImage in postImages)
                 _context.PostImages.Remove(postImage);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

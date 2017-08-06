@@ -39,7 +39,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 MenuList = await _menuService.GetAsync(),
                 PageList = await _pageService.GetAsync(),
-                PostList = _postService.Get(string.Empty, true),
+                PostList = await _postService.GetAsync(string.Empty, true),
                 RoleList = await _roleService.GetAsync()
             };
 
@@ -55,7 +55,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 model.MenuList = await _menuService.GetAsync();
                 model.PageList = await _pageService.GetAsync();
-                model.PostList = _postService.Get(string.Empty, true);
+                model.PostList = await _postService.GetAsync(string.Empty, true);
                 model.RoleList = await _roleService.GetAsync();
 
                 return View("_Create", model);

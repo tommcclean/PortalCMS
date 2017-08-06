@@ -1,21 +1,23 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Posts
 {
     public interface IPostCategoryService
     {
-        PostCategory Get(int postCategoryId);
+        Task<PostCategory> GetAsync(int postCategoryId);
 
-        IEnumerable<PostCategory> Get();
+        Task<IEnumerable<PostCategory>> GetAsync();
 
-        int Add(string postCategoryName);
+        Task<int> AddAsync(string postCategoryName);
 
-        void Edit(int postCategoryId, string postCategoryName);
+        Task EditAsync(int postCategoryId, string postCategoryName);
 
-        void Delete(int postCategoryId);
+        Task DeleteAsync(int postCategoryId);
     }
 
     public class PostCategoryService : IPostCategoryService
@@ -31,21 +33,21 @@ namespace Portal.CMS.Services.Posts
 
         #endregion Dependencies
 
-        public PostCategory Get(int postCategoryId)
+        public async Task<PostCategory> GetAsync(int postCategoryId)
         {
-            var postCategory = _context.PostCategories.SingleOrDefault(x => x.PostCategoryId == postCategoryId);
+            var postCategory = await _context.PostCategories.SingleOrDefaultAsync(x => x.PostCategoryId == postCategoryId);
 
             return postCategory;
         }
 
-        public IEnumerable<PostCategory> Get()
+        public async Task<IEnumerable<PostCategory>> GetAsync()
         {
-            var results = _context.PostCategories.OrderBy(x => x.PostCategoryName).ToList();
+            var results = await _context.PostCategories.OrderBy(x => x.PostCategoryName).ToListAsync();
 
             return results;
         }
 
-        public int Add(string postCategoryName)
+        public async Task<int> AddAsync(string postCategoryName)
         {
             var newPostCategory = new PostCategory
             {
@@ -54,29 +56,29 @@ namespace Portal.CMS.Services.Posts
 
             _context.PostCategories.Add(newPostCategory);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return newPostCategory.PostCategoryId;
         }
 
-        public void Edit(int postCategoryId, string postCategoryName)
+        public async Task EditAsync(int postCategoryId, string postCategoryName)
         {
-            var postCategory = _context.PostCategories.SingleOrDefault(x => x.PostCategoryId == postCategoryId);
+            var postCategory = await _context.PostCategories.SingleOrDefaultAsync(x => x.PostCategoryId == postCategoryId);
             if (postCategory == null) return;
 
             postCategory.PostCategoryName = postCategoryName;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int postCategoryId)
+        public async Task DeleteAsync(int postCategoryId)
         {
-            var postCategory = _context.PostCategories.SingleOrDefault(x => x.PostCategoryId == postCategoryId);
+            var postCategory = await _context.PostCategories.SingleOrDefaultAsync(x => x.PostCategoryId == postCategoryId);
             if (postCategory == null) return;
 
             _context.PostCategories.Remove(postCategory);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
