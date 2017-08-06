@@ -26,7 +26,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
 
                 var settingService = container.GetInstance<SettingService>();
 
-                var setting = settingService.Get(settingName);
+                var setting = AsyncHelpers.RunSync(() => settingService.GetAsync(settingName));
 
                 if (setting == null)
                     return string.Empty;

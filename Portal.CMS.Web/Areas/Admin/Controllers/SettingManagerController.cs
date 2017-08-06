@@ -46,25 +46,25 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View("_Setup", model);
 
-            _settingService.Edit("Website Name", model.WebsiteName);
+            _settingService.EditAsync("Website Name", model.WebsiteName);
             Session.Remove("Setting-Website Name");
 
-            _settingService.Edit("Description Meta Tag", model.WebsiteDescription);
+            _settingService.EditAsync("Description Meta Tag", model.WebsiteDescription);
             Session.Remove("Setting-Description Meta Tag");
 
-            _settingService.Edit("Google Analytics Tracking ID", model.GoogleAnalyticsId);
+            _settingService.EditAsync("Google Analytics Tracking ID", model.GoogleAnalyticsId);
             Session.Remove("Setting-Google Analytics Tracking ID");
 
-            _settingService.Edit("Email From Address", model.EmailFromAddress);
+            _settingService.EditAsync("Email From Address", model.EmailFromAddress);
             Session.Remove("Setting-Email From Address");
 
-            _settingService.Edit("SendGrid UserName", model.SendGridUserName);
+            _settingService.EditAsync("SendGrid UserName", model.SendGridUserName);
             Session.Remove("Setting-SendGrid UserName");
 
-            _settingService.Edit("SendGrid Password", model.SendGridPassword);
+            _settingService.EditAsync("SendGrid Password", model.SendGridPassword);
             Session.Remove("Setting-SendGrid Password");
 
-            _settingService.Edit("CDN Address", model.CDNAddress);
+            _settingService.EditAsync("CDN Address", model.CDNAddress);
             Session.Remove("Setting-CDN Address");
 
             return Content("Refresh");
