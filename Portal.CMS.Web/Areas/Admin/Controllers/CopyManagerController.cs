@@ -1,5 +1,6 @@
 ﻿using Portal.CMS.Services.Copy;
 using Portal.CMS.Web.Architecture.ActionFilters;
+using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.CopyManager;
 using System;
 using System.Threading.Tasks;
@@ -109,6 +110,24 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 var copyId = await _copyService.CreateAsync(copyName, "This is example copy");
 
                 copy = await _copyService.GetAsync(copyId);
+            }
+
+            return View("_Copy", copy);
+        }
+
+        [ChildActionOnly]
+        public ActionResult Render(string copyName)
+        {
+            if (string.IsNullOrWhiteSpace(copyName))
+                throw new ArgumentException("Copy name must be specified");
+
+            var copy = AsyncHelpers.RunSync(() => _copyService.GetAsync(copyName));
+
+            if (copy == null)
+            {
+                var copyId = AsyncHelpers.RunSync(() => _copyService.CreateAsync(copyName, "This is example copy"));
+
+                copy = AsyncHelpers.RunSync(() => _copyService.GetAsync(copyId));
             }
 
             return View("_Copy", copy);

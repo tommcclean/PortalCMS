@@ -268,7 +268,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return Content("Refresh");
         }
 
-        [HttpGet]
+        [HttpGet, EditorFilter(ActionFilterResponseType.Modal)]
         public async Task<ActionResult> AppDrawer()
         {
             var postList = await _postService.ReadAsync(UserHelper.UserId, string.Empty);

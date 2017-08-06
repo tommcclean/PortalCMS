@@ -12,7 +12,7 @@
 </ul>
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="tab-login">
-        <div class="load-action" data-url="@Url.Action("Get", "CopyManager", new { area = "Admin", copyName = "Sign In Message" })"></div>
+        @Html.Action("Render", "CopyManager", new { area = "Admin", copyName = "Sign In Message" })
 
         @using (Html.BeginForm("Login", "Authentication", FormMethod.Post))
         {
