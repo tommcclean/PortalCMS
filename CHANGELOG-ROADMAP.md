@@ -3,7 +3,14 @@ This file contains a list of changes between versions of Portal CMS and a roadma
 
 # Changelog
 
-## 1.3 - (August 2017) Focus: Performance Optimisation, Improvements to the Page Builder and making it easier to develop bespoke functionality **(LATEST STABLE RELEASE)**
+## 1.3.1 - (August 2017) Continued Focus: Performance Optimisation
+1. Service layer refactored to be Asynchronous so that Calls to Entity Framework and other external services cannot cause a negative User Experience.
+2. Cache Retrieval of Menu Systems so that they do not need to hit the database on every page load.
+3. Reduce use of Html.Action to load associated functionality, now loaded through Ajax in all instances.
+4. Increased Output Caching on Rarely Changing Actions.
+5. Read Only Session Use to Reduce Session Locking Risks.
+
+## 1.3 - (August 2017) Focus: Performance Optimisation, Improvements to the Page Builder and making it easier to develop bespoke functionality
 1. Ability to clone components in the page builder, helping you build up pages even quicker.
 2. Ability to display the same section on multiple pages at once. Meaning if you update it in one place, it updates everywhere.
 3. Ability to write your own MVC Partial Actions and render them on Page Builder pages.
