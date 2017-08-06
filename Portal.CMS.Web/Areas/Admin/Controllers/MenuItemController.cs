@@ -37,7 +37,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             var model = new CreateViewModel
             {
-                MenuList = _menuService.Get(),
+                MenuList = await _menuService.GetAsync(),
                 PageList = _pageService.Get(),
                 PostList = _postService.Get(string.Empty, true),
                 RoleList = await _roleService.GetAsync()
@@ -53,7 +53,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.MenuList = _menuService.Get();
+                model.MenuList = await _menuService.GetAsync();
                 model.PageList = _pageService.Get();
                 model.PostList = _postService.Get(string.Empty, true);
                 model.RoleList = await _roleService.GetAsync();
@@ -61,9 +61,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View("_Create", model);
             }
 
-            var menuItemId = _menuItemService.Create(model.MenuId, model.LinkText, model.LinkURL, model.LinkIcon);
+            var menuItemId = await _menuItemService.CreateAsync(model.MenuId, model.LinkText, model.LinkURL, model.LinkIcon);
 
-            _menuItemService.Roles(menuItemId, model.SelectedRoleList);
+            await _menuItemService.RolesAsync(menuItemId, model.SelectedRoleList);
 
             return Content("Refresh");
         }
@@ -71,7 +71,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit(int menuItemId)
         {
-            var menuItem = _menuItemService.Get(menuItemId);
+            var menuItem = await _menuItemService.GetAsync(menuItemId);
 
             var model = new EditViewModel
             {
@@ -96,9 +96,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 return View(model);
             }
 
-            _menuItemService.Edit(model.MenuItemId, model.LinkText, model.LinkURL, model.LinkIcon);
+            await _menuItemService.EditAsync(model.MenuItemId, model.LinkText, model.LinkURL, model.LinkIcon);
 
-            _menuItemService.Roles(model.MenuItemId, model.SelectedRoleList);
+            await _menuItemService.RolesAsync(model.MenuItemId, model.SelectedRoleList);
 
             return Content("Refresh");
         }
@@ -106,7 +106,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Delete(int menuItemId)
         {
-            _menuItemService.Delete(menuItemId);
+            _menuItemService.DeleteAsync(menuItemId);
 
             return Redirect(HttpContext.Request.UrlReferrer.ToString());
         }

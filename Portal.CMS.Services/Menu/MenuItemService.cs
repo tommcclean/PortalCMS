@@ -1,21 +1,23 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Menu
 {
     public interface IMenuItemService
     {
-        MenuItem Get(int menuItemId);
+        Task<MenuItem> GetAsync(int menuItemId);
 
-        int Create(int menuId, string linkText, string linkURL, string linkIcon);
+        Task<int> CreateAsync(int menuId, string linkText, string linkURL, string linkIcon);
 
-        void Edit(int menuItemId, string linkText, string linkURL, string linkIcon);
+        Task EditAsync(int menuItemId, string linkText, string linkURL, string linkIcon);
 
-        void Delete(int menuItemId);
+        Task DeleteAsync(int menuItemId);
 
-        void Roles(int menuItemId, List<string> roleList);
+        Task RolesAsync(int menuItemId, List<string> roleList);
     }
 
     public class MenuItemService : IMenuItemService
@@ -31,14 +33,14 @@ namespace Portal.CMS.Services.Menu
 
         #endregion Dependencies
 
-        public MenuItem Get(int menuItemId)
+        public async Task<MenuItem> GetAsync(int menuItemId)
         {
-            var menuItem = _context.MenuItems.SingleOrDefault(x => x.MenuItemId == menuItemId);
+            var menuItem = await _context.MenuItems.SingleOrDefaultAsync(x => x.MenuItemId == menuItemId);
 
             return menuItem;
         }
 
-        public int Create(int menuId, string linkText, string linkURL, string linkIcon)
+        public async Task<int> CreateAsync(int menuId, string linkText, string linkURL, string linkIcon)
         {
             var newMenuItem = new MenuItem
             {
@@ -50,39 +52,39 @@ namespace Portal.CMS.Services.Menu
 
             _context.MenuItems.Add(newMenuItem);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return newMenuItem.MenuItemId;
         }
 
-        public void Edit(int menuItemId, string linkText, string linkURL, string linkIcon)
+        public async Task EditAsync(int menuItemId, string linkText, string linkURL, string linkIcon)
         {
-            var menuItem = _context.MenuItems.SingleOrDefault(x => x.MenuItemId == menuItemId);
+            var menuItem = await _context.MenuItems.SingleOrDefaultAsync(x => x.MenuItemId == menuItemId);
             if (menuItem == null) return;
 
             menuItem.LinkText = linkText;
             menuItem.LinkURL = linkURL;
             menuItem.LinkIcon = linkIcon;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int menuItemId)
+        public async Task DeleteAsync(int menuItemId)
         {
-            var menuItem = _context.MenuItems.SingleOrDefault(x => x.MenuItemId == menuItemId);
+            var menuItem = await _context.MenuItems.SingleOrDefaultAsync(x => x.MenuItemId == menuItemId);
             if (menuItem == null) return;
 
             _context.MenuItems.Remove(menuItem);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Roles(int menuItemId, List<string> roleList)
+        public async Task RolesAsync(int menuItemId, List<string> roleList)
         {
-            var menuItem = Get(menuItemId);
+            var menuItem = await GetAsync(menuItemId);
             if (menuItem == null) return;
 
-            var roles = _context.Roles.ToList();
+            var roles = await _context.Roles.ToListAsync();
 
             if (menuItem.MenuItemRoles != null)
                 foreach (var role in menuItem.MenuItemRoles.ToList())
@@ -97,7 +99,7 @@ namespace Portal.CMS.Services.Menu
                 _context.MenuItemRoles.Add(new MenuItemRole { MenuItemId = menuItemId, RoleId = currentRole.RoleId });
             }
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -2,6 +2,7 @@
 using Portal.CMS.Entities.Entities;
 using Portal.CMS.Services.Authentication;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace Portal.CMS.Services.Menu
 {
     public interface IMenuService
     {
-        IEnumerable<MenuSystem> Get();
+        Task<IEnumerable<MenuSystem>> GetAsync();
 
         Task<List<MenuItem>> ViewAsync(int? userId, string menuName);
     }
@@ -31,16 +32,16 @@ namespace Portal.CMS.Services.Menu
 
         #endregion Dependencies
 
-        public IEnumerable<MenuSystem> Get()
+        public async Task<IEnumerable<MenuSystem>> GetAsync()
         {
-            var results = _context.Menus.OrderBy(x => x.MenuName).ThenBy(x => x.MenuId).ToList();
+            var results = await _context.Menus.OrderBy(x => x.MenuName).ThenBy(x => x.MenuId).ToListAsync();
 
             return results;
         }
 
         public async Task<List<MenuItem>> ViewAsync(int? userId, string menuName)
         {
-            var menu = _context.Menus.FirstOrDefault(x => x.MenuName == menuName);
+            var menu = await _context.Menus.FirstOrDefaultAsync(x => x.MenuName == menuName);
 
             var menuItemList = new List<MenuItem>();
 
