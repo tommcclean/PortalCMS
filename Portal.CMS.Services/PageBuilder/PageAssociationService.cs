@@ -63,7 +63,7 @@ namespace Portal.CMS.Services.PageBuilder
 
             if (pageAssociation.PageSection != null)
             {
-                if (!_context.PageAssociations.Any(x => x.PageSectionId == pageAssociation.PageSectionId))
+                if (! await _context.PageAssociations.AnyAsync(x => x.PageSectionId == pageAssociation.PageSectionId))
                 {
                     var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageAssociation.PageSectionId);
 
@@ -90,7 +90,7 @@ namespace Portal.CMS.Services.PageBuilder
             var pageAssociation = await _context.PageAssociations.SingleOrDefaultAsync(pa => pa.PageAssociationId == pageAssociationId);
             if (pageAssociation == null) return;
 
-            var roles = _context.Roles.ToList();
+            var roles = await _context.Roles.ToListAsync();
 
             foreach (var role in pageAssociation.PageAssociationRoles.ToList())
                 _context.PageAssociationRoles.Remove(role);

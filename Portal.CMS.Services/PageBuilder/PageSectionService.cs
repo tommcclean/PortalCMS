@@ -80,7 +80,7 @@ namespace Portal.CMS.Services.PageBuilder
             var page = await _context.Pages.SingleOrDefaultAsync(x => x.PageId == pageId);
             if (page == null) return null;
 
-            var sectionType = _context.PageSectionTypes.SingleOrDefault(x => x.PageSectionTypeId == pageSectionTypeId);
+            var sectionType = await _context.PageSectionTypes.SingleOrDefaultAsync(x => x.PageSectionTypeId == pageSectionTypeId);
             if (sectionType == null) return null;
 
             var sectionPosition = 1;
@@ -280,7 +280,6 @@ namespace Portal.CMS.Services.PageBuilder
         public async Task BackupAsync(int pageSectionId)
         {
             var pageSection = await GetAsync(pageSectionId);
-
             if (pageSection == null) return;
 
             var newBackup = new PageSectionBackup
@@ -297,7 +296,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         public async Task<string> RestoreBackupAsync(int pageSectionId, int backupId)
         {
-            var pageSectionBackup = _context.PageSectionBackups.SingleOrDefault(x => x.PageSectionBackupId == backupId);
+            var pageSectionBackup = await _context.PageSectionBackups.SingleOrDefaultAsync(x => x.PageSectionBackupId == backupId);
             var pageSection = await GetAsync(pageSectionId);
 
             pageSection.PageSectionBody = pageSectionBackup.PageSectionBody;

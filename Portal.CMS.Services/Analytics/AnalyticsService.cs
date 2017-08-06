@@ -1,11 +1,11 @@
-﻿using System;
+﻿using LogBook.Services;
+using Portal.CMS.Entities;
+using Portal.CMS.Entities.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using LogBook.Services;
-using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities;
 
 namespace Portal.CMS.Services.Analytics
 {
@@ -168,7 +168,7 @@ namespace Portal.CMS.Services.Analytics
 
         public async Task<List<KeyValuePair<string, int>>> GetTopPagesAsync(DateTime? earliest)
         {
-            var customPages = _context.Pages.ToList();
+            var customPages = await _context.Pages.ToListAsync();
             var analyticPageViews = await _context.AnalyticPageViews.Where(x => !earliest.HasValue || x.DateAdded > earliest.Value).ToListAsync();
             var analyticPages = analyticPageViews.GroupBy(page => new { page.Area, page.Controller, page.Action });
 
@@ -209,7 +209,7 @@ namespace Portal.CMS.Services.Analytics
 
             var analyticPostViews = await _context.AnalyticPostViews.Where(x => !earliest.HasValue || x.DateAdded > earliest.Value).ToListAsync();
 
-            foreach (var postCategory in _context.PostCategories.ToList())
+            foreach (var postCategory in await _context.PostCategories.ToListAsync())
             {
                 var pageViews = 0;
 

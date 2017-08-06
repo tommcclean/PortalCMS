@@ -21,8 +21,6 @@ namespace Portal.CMS.Services.Themes
 
         Task DefaultAsync(int themeId);
 
-        CustomTheme GetDefaultSync();
-
         Task<CustomTheme> GetDefaultAsync();
     }
 
@@ -40,13 +38,6 @@ namespace Portal.CMS.Services.Themes
         }
 
         #endregion Dependencies
-
-        public CustomTheme GetDefaultSync()
-        {
-            var defaultTheme = _context.Themes.FirstOrDefault(x => x.IsDefault == true);
-
-            return defaultTheme;
-        }
 
         public async Task<CustomTheme> GetDefaultAsync()
         {
