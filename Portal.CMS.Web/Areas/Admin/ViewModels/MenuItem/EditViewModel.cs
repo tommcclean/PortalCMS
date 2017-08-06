@@ -21,6 +21,8 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.MenuItem
         [DisplayName("Roles")]
         public List<string> SelectedRoleList { get; set; } = new List<string>();
 
+        public int MenuId { get; set; }
+
         public int MenuItemId { get; set; }
 
         public List<Role> RoleList { get; set; }

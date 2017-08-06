@@ -35,7 +35,7 @@ namespace Portal.CMS.Services.Menu
 
         public async Task<MenuItem> GetAsync(int menuItemId)
         {
-            var menuItem = await _context.MenuItems.SingleOrDefaultAsync(x => x.MenuItemId == menuItemId);
+            var menuItem = await _context.MenuItems.Include(x => x.Menu).SingleOrDefaultAsync(x => x.MenuItemId == menuItemId);
 
             return menuItem;
         }

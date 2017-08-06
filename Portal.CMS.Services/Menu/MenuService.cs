@@ -12,6 +12,8 @@ namespace Portal.CMS.Services.Menu
     {
         Task<IEnumerable<MenuSystem>> GetAsync();
 
+        Task<MenuSystem> GetAsync(int menuId);
+
         Task<List<MenuItem>> ViewAsync(int? userId, string menuName);
     }
 
@@ -37,6 +39,13 @@ namespace Portal.CMS.Services.Menu
             var results = await _context.Menus.OrderBy(x => x.MenuName).ThenBy(x => x.MenuId).ToListAsync();
 
             return results;
+        }
+
+        public async Task<MenuSystem> GetAsync(int menuId)
+        {
+            var result = await _context.Menus.FirstOrDefaultAsync(x => x.MenuId == menuId);
+
+            return result;
         }
 
         public async Task<List<MenuItem>> ViewAsync(int? userId, string menuName)

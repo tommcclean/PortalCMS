@@ -65,6 +65,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             await _menuItemService.RolesAsync(menuItemId, model.SelectedRoleList);
 
+            await ResetSessionMenuAsync(model.MenuId);
+
             return Content("Refresh");
         }
 
@@ -75,6 +77,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             var model = new EditViewModel
             {
+                MenuId = menuItem.MenuId,
                 MenuItemId = menuItem.MenuItemId,
                 LinkText = menuItem.LinkText,
                 LinkIcon = menuItem.LinkIcon,
@@ -100,15 +103,29 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             await _menuItemService.RolesAsync(model.MenuItemId, model.SelectedRoleList);
 
+            await ResetSessionMenuAsync(model.MenuId);
+
             return Content("Refresh");
         }
 
         [HttpGet]
         public async Task<ActionResult> Delete(int menuItemId)
         {
+            var menuItem = await _menuItemService.GetAsync(menuItemId);
+            var menuId = menuItem.MenuId;
+
             await _menuItemService.DeleteAsync(menuItemId);
 
+            await ResetSessionMenuAsync(menuId);
+
             return Redirect(HttpContext.Request.UrlReferrer.ToString());
+        }
+
+        private async Task ResetSessionMenuAsync(int menuId)
+        {
+            var menu = await _menuService.GetAsync(menuId);
+
+            System.Web.HttpContext.Current.Session.Remove($"Menu-{menu.MenuName}");
         }
     }
 }
