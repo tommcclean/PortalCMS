@@ -2,6 +2,7 @@
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.SettingManager;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -41,30 +42,30 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Setup(SetupViewModel model)
+        public async Task<ActionResult> Setup(SetupViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_Setup", model);
 
-            _settingService.EditAsync("Website Name", model.WebsiteName);
+            await _settingService.EditAsync("Website Name", model.WebsiteName);
             Session.Remove("Setting-Website Name");
 
-            _settingService.EditAsync("Description Meta Tag", model.WebsiteDescription);
+            await _settingService.EditAsync("Description Meta Tag", model.WebsiteDescription);
             Session.Remove("Setting-Description Meta Tag");
 
-            _settingService.EditAsync("Google Analytics Tracking ID", model.GoogleAnalyticsId);
+            await _settingService.EditAsync("Google Analytics Tracking ID", model.GoogleAnalyticsId);
             Session.Remove("Setting-Google Analytics Tracking ID");
 
-            _settingService.EditAsync("Email From Address", model.EmailFromAddress);
+            await _settingService.EditAsync("Email From Address", model.EmailFromAddress);
             Session.Remove("Setting-Email From Address");
 
-            _settingService.EditAsync("SendGrid UserName", model.SendGridUserName);
+            await _settingService.EditAsync("SendGrid UserName", model.SendGridUserName);
             Session.Remove("Setting-SendGrid UserName");
 
-            _settingService.EditAsync("SendGrid Password", model.SendGridPassword);
+            await _settingService.EditAsync("SendGrid Password", model.SendGridPassword);
             Session.Remove("Setting-SendGrid Password");
 
-            _settingService.EditAsync("CDN Address", model.CDNAddress);
+            await _settingService.EditAsync("CDN Address", model.CDNAddress);
             Session.Remove("Setting-CDN Address");
 
             return Content("Refresh");

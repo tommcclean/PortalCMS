@@ -104,9 +104,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int menuItemId)
+        public async Task<ActionResult> Delete(int menuItemId)
         {
-            _menuItemService.DeleteAsync(menuItemId);
+            await _menuItemService.DeleteAsync(menuItemId);
 
             return Redirect(HttpContext.Request.UrlReferrer.ToString());
         }

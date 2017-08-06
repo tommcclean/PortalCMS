@@ -137,9 +137,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int pageId)
+        public async Task<ActionResult> Delete(int pageId)
         {
-            _pageService.DeleteAsync(pageId);
+            await _pageService.DeleteAsync(pageId);
 
             return RedirectToAction(nameof(Index));
         }
