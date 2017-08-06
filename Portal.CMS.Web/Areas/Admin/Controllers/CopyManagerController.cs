@@ -2,6 +2,7 @@
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Areas.Admin.ViewModels.CopyManager;
 using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -20,11 +21,11 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         #endregion Dependencies
 
         [HttpGet, AdminFilter(ActionFilterResponseType.Page)]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var model = new CopyViewModel
             {
-                CopyList = _copyService.Get()
+                CopyList = await _copyService.GetAsync()
             };
 
             return View(model);
@@ -41,20 +42,20 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateViewModel model)
+        public async Task<ActionResult> Create(CreateViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_Create", model);
 
-            _copyService.Create(model.CopyName, model.CopyBody);
+            await _copyService.CreateAsync(model.CopyName, model.CopyBody);
 
             return Content("Refresh");
         }
 
         [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
-        public ActionResult Edit(int copyId)
+        public async Task<ActionResult> Edit(int copyId)
         {
-            var copy = _copyService.Get(copyId);
+            var copy = await _copyService.GetAsync(copyId);
 
             var model = new EditViewModel
             {
@@ -69,46 +70,46 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpPost, AdminFilter(ActionFilterResponseType.Modal)]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EditViewModel model)
+        public async Task<ActionResult> Edit(EditViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("_Create", model);
 
-            _copyService.Edit(model.CopyId, model.CopyName, model.CopyBody);
+            await _copyService.EditAsync(model.CopyId, model.CopyName, model.CopyBody);
 
             return Content("Refresh");
         }
 
         [HttpGet, AdminFilter(ActionFilterResponseType.Modal)]
-        public ActionResult Delete(int copyId)
+        public async Task<ActionResult> Delete(int copyId)
         {
-            _copyService.Delete(copyId);
+            await _copyService.DeleteAsync(copyId);
 
             return RedirectToAction(nameof(Index));
         }
 
         [HttpPost, AdminFilter(ActionFilterResponseType.Page)]
         [ValidateInput(false)]
-        public ActionResult Inline(int copyId, string copyName, string copyBody)
+        public async Task<ActionResult> Inline(int copyId, string copyName, string copyBody)
         {
-            _copyService.Edit(copyId, copyName, copyBody);
+            await _copyService.EditAsync(copyId, copyName, copyBody);
 
             return Content("Refresh");
         }
 
         [ChildActionOnly]
-        public ActionResult Get(string copyName)
+        public async Task<ActionResult> Get(string copyName)
         {
             if (string.IsNullOrWhiteSpace(copyName))
                 throw new ArgumentException("Copy name must be specified");
 
-            var copy = _copyService.Get(copyName);
+            var copy = await _copyService.GetAsync(copyName);
 
             if (copy == null)
             {
-                var copyId = _copyService.Create(copyName, "This is example copy");
+                var copyId = await _copyService.CreateAsync(copyName, "This is example copy");
 
-                copy = _copyService.Get(copyId);
+                copy = await _copyService.GetAsync(copyId);
             }
 
             return View("_Copy", copy);

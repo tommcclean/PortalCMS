@@ -2,23 +2,25 @@
 using Portal.CMS.Entities.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Copy
 {
     public interface ICopyService
     {
-        int Create(string copyName, string copyBody);
+        Task<int> CreateAsync(string copyName, string copyBody);
 
-        void Edit(int copyId, string copyName, string copyBody);
+        Task EditAsync(int copyId, string copyName, string copyBody);
 
-        IEnumerable<CopyItem> Get();
+        Task<IEnumerable<CopyItem>> GetAsync();
 
-        CopyItem Get(int copyId);
+        Task<CopyItem> GetAsync(int copyId);
 
-        CopyItem Get(string copyName);
+        Task<CopyItem> GetAsync(string copyName);
 
-        void Delete(int copyId);
+        Task DeleteAsync(int copyId);
     }
 
     public class CopyService : ICopyService
@@ -34,7 +36,7 @@ namespace Portal.CMS.Services.Copy
 
         #endregion Dependencies
 
-        public int Create(string copyName, string copyBody)
+        public async Task<int> CreateAsync(string copyName, string copyBody)
         {
             var newCopy = new CopyItem
             {
@@ -46,14 +48,14 @@ namespace Portal.CMS.Services.Copy
 
             _context.CopyItems.Add(newCopy);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return newCopy.CopyId;
         }
 
-        public void Edit(int copyId, string copyName, string copyBody)
+        public async Task EditAsync(int copyId, string copyName, string copyBody)
         {
-            var copy = _context.CopyItems.SingleOrDefault(x => x.CopyId == copyId);
+            var copy = await _context.CopyItems.SingleOrDefaultAsync(x => x.CopyId == copyId);
 
             if (copy == null)
                 return;
@@ -62,38 +64,38 @@ namespace Portal.CMS.Services.Copy
             copy.CopyBody = copyBody;
             copy.DateUpdated = DateTime.Now;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<CopyItem> Get()
+        public async Task<IEnumerable<CopyItem>> GetAsync()
         {
-            var copySections = _context.CopyItems.OrderBy(x => x.CopyName).ThenBy(x => x.CopyId).ToList();
+            var copySections = await _context.CopyItems.OrderBy(x => x.CopyName).ThenBy(x => x.CopyId).ToListAsync();
 
             return copySections;
         }
 
-        public CopyItem Get(int copyId)
+        public async Task<CopyItem> GetAsync(int copyId)
         {
-            var copyItem = _context.CopyItems.SingleOrDefault(x => x.CopyId == copyId);
+            var copyItem = await _context.CopyItems.SingleOrDefaultAsync(x => x.CopyId == copyId);
 
             return copyItem;
         }
 
-        public CopyItem Get(string copyName)
+        public async Task<CopyItem> GetAsync(string copyName)
         {
-            var copyItem = _context.CopyItems.FirstOrDefault(x => x.CopyName == copyName);
+            var copyItem = await _context.CopyItems.FirstOrDefaultAsync(x => x.CopyName == copyName);
 
             return copyItem;
         }
 
-        public void Delete(int copyId)
+        public async Task DeleteAsync(int copyId)
         {
-            var copyItem = _context.CopyItems.SingleOrDefault(x => x.CopyId == copyId);
+            var copyItem = await _context.CopyItems.SingleOrDefaultAsync(x => x.CopyId == copyId);
 
             if (copyItem != null)
                 _context.CopyItems.Remove(copyItem);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
