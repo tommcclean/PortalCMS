@@ -2,27 +2,29 @@
 using Portal.CMS.Entities.Entities;
 using Portal.CMS.Services.Shared;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.PageBuilder
 {
     public interface IPageComponentService
     {
-        List<PageComponentType> GetComponentTypes();
+        Task<List<PageComponentType>> GetComponentTypesAsync();
 
-        void Add(int pageSectionId, string containerElementId, string elementBody);
+        Task AddAsync(int pageSectionId, string containerElementId, string elementBody);
 
-        void EditImage(int pageSectionId, string elementType, string elementId, string imagePath);
+        Task EditImageAsync(int pageSectionId, string elementType, string elementId, string imagePath);
 
-        void EditAnchor(int pageSectionId, string elementId, string elementText, string elementHref, string elementTarget);
+        Task EditAnchorAsync(int pageSectionId, string elementId, string elementText, string elementHref, string elementTarget);
 
-        void EditElement(int pageSectionId, string elementId, string elementBody);
+        Task EditElementAsync(int pageSectionId, string elementId, string elementBody);
 
-        void EditSource(int pageSectionId, string elementId, string newSourcePath);
+        Task EditSourceAsync(int pageSectionId, string elementId, string newSourcePath);
 
-        void CloneElement(int pageSectionId, string elementId, string componentStamp);
+        Task CloneElementAsync(int pageSectionId, string elementId, string componentStamp);
 
-        void Delete(int pageSectionId, string componentId);
+        Task DeleteAsync(int pageSectionId, string componentId);
     }
 
     public class PageComponentService : IPageComponentService
@@ -38,16 +40,16 @@ namespace Portal.CMS.Services.PageBuilder
 
         #endregion Dependencies
 
-        public List<PageComponentType> GetComponentTypes()
+        public async Task<List<PageComponentType>> GetComponentTypesAsync()
         {
-            var results = _context.PageComponentTypes.OrderBy(x => x.PageComponentTypeId).ToList();
+            var results = await _context.PageComponentTypes.OrderBy(x => x.PageComponentTypeId).ToListAsync();
 
             return results;
         }
 
-        public void Add(int pageSectionId, string containerElementId, string elementBody)
+        public async Task AddAsync(int pageSectionId, string containerElementId, string elementBody)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
@@ -56,12 +58,12 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = document.OuterHtml;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void EditElement(int pageSectionId, string elementId, string elementBody)
+        public async Task EditElementAsync(int pageSectionId, string elementId, string elementBody)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
@@ -70,12 +72,12 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = document.OuterHtml;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void EditImage(int pageSectionId, string elementType, string elementId, string imagePath)
+        public async Task EditImageAsync(int pageSectionId, string elementType, string elementId, string imagePath)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
@@ -87,12 +89,12 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = document.OuterHtml;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void EditAnchor(int pageSectionId, string elementId, string elementText, string elementHref, string elementTarget)
+        public async Task EditAnchorAsync(int pageSectionId, string elementId, string elementText, string elementHref, string elementTarget)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
@@ -103,12 +105,12 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = document.OuterHtml;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void EditSource(int pageSectionId, string elementId, string newSourcePath)
+        public async Task EditSourceAsync(int pageSectionId, string elementId, string newSourcePath)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
@@ -117,12 +119,12 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = document.OuterHtml;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void CloneElement(int pageSectionId, string elementId, string componentStamp)
+        public async Task CloneElementAsync(int pageSectionId, string elementId, string componentStamp)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
@@ -131,12 +133,12 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = document.OuterHtml;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int pageSectionId, string componentId)
+        public async Task DeleteAsync(int pageSectionId, string componentId)
         {
-            var pageSection = _context.PageSections.SingleOrDefault(x => x.PageSectionId == pageSectionId);
+            var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
             if (pageSection == null) return;
 
             var document = new Document(pageSection.PageSectionBody);
@@ -145,7 +147,7 @@ namespace Portal.CMS.Services.PageBuilder
 
             pageSection.PageSectionBody = document.OuterHtml;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

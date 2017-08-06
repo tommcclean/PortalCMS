@@ -39,7 +39,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         #endregion Dependencies
 
         [HttpGet]
-        [OutputCache(Duration = 60)]
+        [OutputCache(Duration = 86400)]
         public async Task<ActionResult> Add(int pageId)
         {
             var model = new AddViewModel
@@ -294,7 +294,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         #endregion Section Backup Methods
 
         [HttpGet]
-        [OutputCache(Duration = 60)]
+        [OutputCache(Duration = 86400)]
         public async Task<ActionResult> Clone(int pageAssociationId)
         {
             var pageAssociation = await _associationService.GetAsync(pageAssociationId);

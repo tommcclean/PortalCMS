@@ -38,12 +38,12 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         #endregion Dependencies
 
         [HttpGet]
-        [OutputCache(Duration = 60)]
-        public ActionResult Add()
+        [OutputCache(Duration = 86400)]
+        public async Task<ActionResult> AddA()
         {
             var model = new AddViewModel
             {
-                PageComponentTypeList = _pageComponentService.GetComponentTypes()
+                PageComponentTypeList = await _pageComponentService.GetComponentTypesAsync()
             };
 
             return View("_Add", model);
@@ -51,21 +51,21 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public JsonResult Add(int pageSectionId, string containerElementId, string elementBody)
+        public async Task<JsonResult> Add(int pageSectionId, string containerElementId, string elementBody)
         {
             elementBody = elementBody.Replace("animated bounce", string.Empty);
 
-            _pageComponentService.Add(pageSectionId, containerElementId, elementBody);
+            await _pageComponentService.AddAsync(pageSectionId, containerElementId, elementBody);
 
             return Json(new { State = true });
         }
 
         [HttpPost]
-        public ActionResult Delete(int pageSectionId, string elementId)
+        public async Task<ActionResult> Delete(int pageSectionId, string elementId)
         {
             try
             {
-                _pageComponentService.Delete(pageSectionId, elementId);
+                await _pageComponentService.DeleteAsync(pageSectionId, elementId);
 
                 return Json(new { State = true });
             }
@@ -77,18 +77,18 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(int pageSectionId, string elementId, string elementHtml)
+        public async Task<ActionResult> Edit(int pageSectionId, string elementId, string elementHtml)
         {
-            _pageComponentService.EditElement(pageSectionId, elementId, elementHtml);
+            await _pageComponentService.EditElementAsync(pageSectionId, elementId, elementHtml);
 
             return Content("Refresh");
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Link(int pageSectionId, string elementId, string elementHtml, string elementHref, string elementTarget)
+        public async Task<ActionResult> Link(int pageSectionId, string elementId, string elementHtml, string elementHref, string elementTarget)
         {
-            _pageComponentService.EditAnchor(pageSectionId, elementId, elementHtml, elementHref, elementTarget);
+            await _pageComponentService.EditAnchorAsync(pageSectionId, elementId, elementHtml, elementHref, elementTarget);
 
             return Content("Refresh");
         }
@@ -141,7 +141,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             {
                 var selectedImage = await _imageService.GetAsync(model.SelectedImageId);
 
-                _pageComponentService.EditImage(model.SectionId, model.ElementType, model.ElementId, selectedImage.CDNImagePath());
+                await _pageComponentService.EditImageAsync(model.SectionId, model.ElementType, model.ElementId, selectedImage.CDNImagePath());
 
                 return Json(new { State = true, Source = selectedImage.CDNImagePath() });
             }
@@ -152,11 +152,11 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         }
 
         [HttpPost]
-        public JsonResult Clone(int pageSectionId, string elementId, string componentStamp)
+        public async Task<JsonResult> Clone(int pageSectionId, string elementId, string componentStamp)
         {
             try
             {
-                _pageComponentService.CloneElement(pageSectionId, elementId, componentStamp);
+                await _pageComponentService.CloneElementAsync(pageSectionId, elementId, componentStamp);
 
                 return Json(new { State = true });
             }
@@ -184,11 +184,11 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditVideo(VideoViewModel model)
+        public async Task<ActionResult> EditVideo(VideoViewModel model)
         {
             try
             {
-                _pageComponentService.EditSource(model.SectionId, model.VideoPlayerElementId, model.VideoUrl);
+                await _pageComponentService.EditSourceAsync(model.SectionId, model.VideoPlayerElementId, model.VideoUrl);
 
                 return Json(new { State = true });
             }
@@ -200,13 +200,13 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult EditFreestyle(int pageSectionId, string elementId, string elementHtml)
+        public async Task<ActionResult> EditFreestyle(int pageSectionId, string elementId, string elementHtml)
         {
             // REPLACE: MCE Tokens
             elementHtml = elementHtml.Replace("ui-draggable ui-draggable-handle mce-content-body", string.Empty);
             elementHtml = elementHtml.Replace("contenteditable=\"true\" spellcheck=\"false\"", string.Empty);
 
-            _pageComponentService.EditElement(pageSectionId, elementId, elementHtml);
+            await _pageComponentService.EditElementAsync(pageSectionId, elementId, elementHtml);
 
             return Content("Refresh");
         }
@@ -225,9 +225,9 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditContainer(ContainerViewModel model)
+        public async Task<ActionResult> EditContainer(ContainerViewModel model)
         {
-            _pageSectionService.EditAnimationAsync(model.SectionId, model.ElementId, model.Animation.ToString());
+            await _pageSectionService.EditAnimationAsync(model.SectionId, model.ElementId, model.Animation.ToString());
 
             return Content("Refresh");
         }
