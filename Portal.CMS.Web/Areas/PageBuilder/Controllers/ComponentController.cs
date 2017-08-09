@@ -25,14 +25,12 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         private readonly IPageSectionService _pageSectionService;
         private readonly IPageComponentService _pageComponentService;
         private readonly IImageService _imageService;
-        private readonly LogHandler _logHandler;
 
-        public ComponentController(IPageSectionService pageSectionService, IPageComponentService pageComponentService, IImageService imageService, LogHandler logHandler)
+        public ComponentController(IPageSectionService pageSectionService, IPageComponentService pageComponentService, IImageService imageService)
         {
             _pageSectionService = pageSectionService;
             _pageComponentService = pageComponentService;
             _imageService = imageService;
-            _logHandler = logHandler;
         }
 
         #endregion Dependencies
@@ -154,18 +152,9 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         [HttpPost]
         public async Task<JsonResult> Clone(int pageSectionId, string elementId, string componentStamp)
         {
-            try
-            {
-                await _pageComponentService.CloneElementAsync(pageSectionId, elementId, componentStamp);
+            await _pageComponentService.CloneElementAsync(pageSectionId, elementId, componentStamp);
 
-                return Json(new { State = true });
-            }
-            catch (Exception ex)
-            {
-                _logHandler.WriteLog(LogType.Error, "Portal CMS", ex, ex.Message, $"{UserHelper.FullName} {UserHelper.UserId}");
-
-                return Json(new { State = false });
-            }
+            return Json(new { State = true });
         }
 
         [HttpGet]
