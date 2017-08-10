@@ -3,6 +3,10 @@ This file contains a list of changes between versions of Portal CMS and a roadma
 
 # Changelog
 
+## 1.3.2 - Upcoming Release Focus: I am using Portal CMS for another personal project, so I am bringing useful changes back into the PortalCMS repository when applicable.
+1. Improve Performance while Interacting with the Component Controller in the PageBuilder.
+2. New Ability to Show Content to Anonymous Users Only.
+
 ## 1.3.1 - (August 2017) Continued Focus: Performance Optimisation
 1. Service layer refactored to be Asynchronous so that Calls to Entity Framework and other external services cannot cause a negative User Experience.
 2. Cache Retrieval of Menu Systems so that they do not need to hit the database on every page load.
