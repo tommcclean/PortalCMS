@@ -227,6 +227,14 @@
     <Compile Include="Migrations\201707211220449_StripWebsiteAddressFromUploadedContent.Designer.cs">
       <DependentUpon>201707211220449_StripWebsiteAddressFromUploadedContent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708101940509_ExtendRolesEntityWithIsAssignableProperty.cs" />
+    <Compile Include="Migrations\201708101940509_ExtendRolesEntityWithIsAssignableProperty.Designer.cs">
+      <DependentUpon>201708101940509_ExtendRolesEntityWithIsAssignableProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708101946158_UpdateExistingAdminAndEditorRoles.cs" />
+    <Compile Include="Migrations\201708101946158_UpdateExistingAdminAndEditorRoles.Designer.cs">
+      <DependentUpon>201708101946158_UpdateExistingAdminAndEditorRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalEntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -344,6 +352,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707211220449_StripWebsiteAddressFromUploadedContent.resx">
       <DependentUpon>201707211220449_StripWebsiteAddressFromUploadedContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708101940509_ExtendRolesEntityWithIsAssignableProperty.resx">
+      <DependentUpon>201708101940509_ExtendRolesEntityWithIsAssignableProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708101946158_UpdateExistingAdminAndEditorRoles.resx">
+      <DependentUpon>201708101946158_UpdateExistingAdminAndEditorRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

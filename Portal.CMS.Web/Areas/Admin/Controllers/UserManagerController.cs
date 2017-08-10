@@ -113,7 +113,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             var model = new RolesViewModel
             {
                 UserId = userId.Value,
-                RoleList = await _roleService.GetAsync()
+                RoleList = await _roleService.GetUserAssignableRolesAsync()
             };
 
             var userRoles = await _roleService.GetAsync(userId);

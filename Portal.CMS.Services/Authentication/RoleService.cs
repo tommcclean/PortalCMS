@@ -13,6 +13,8 @@ namespace Portal.CMS.Services.Authentication
 
         Task<List<Role>> GetAsync();
 
+        Task<List<Role>> GetUserAssignableRolesAsync();
+
         Task<Role> GetAsync(int roleId);
 
         Task<int> AddAsync(string roleName);
@@ -56,6 +58,13 @@ namespace Portal.CMS.Services.Authentication
         public async Task<List<Role>> GetAsync()
         {
             var results = await _context.Roles.OrderBy(x => x.RoleName).ToListAsync();
+
+            return results;
+        }
+
+        public async Task<List<Role>> GetUserAssignableRolesAsync()
+        {
+            var results = await _context.Roles.Where(x => x.IsAssignable).OrderBy(x => x.RoleName).ToListAsync();
 
             return results;
         }

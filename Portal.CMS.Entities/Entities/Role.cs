@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Portal.CMS.Entities.Entities
 {
@@ -9,5 +10,9 @@ namespace Portal.CMS.Entities.Entities
 
         [Required]
         public string RoleName { get; set; }
+
+        [Required]
+        [DefaultValue("true")]
+        public bool IsAssignable { get; set; }
     }
 }
