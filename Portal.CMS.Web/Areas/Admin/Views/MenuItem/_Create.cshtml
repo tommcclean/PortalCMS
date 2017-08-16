@@ -145,7 +145,13 @@
                     <div role="tabpanel" class="tab-pane active" id="tab-menu-pages">
                         @foreach (var page in Model.PageList)
                         {
-                            var target = string.Format("{0}/{1}/{2}", page.PageArea, page.PageController, page.PageAction);
+                            var target = string.Format("/{0}/{1}/{2}", page.PageArea, page.PageController, page.PageAction);
+
+                            if (string.IsNullOrEmpty(page.PageArea))
+                            {
+                                target = string.Format("/{0}/{1}", page.PageController, page.PageAction);
+                            }
+
                             <div class="list list-simple" data-link-target="@target" data-link-title="@page.PageName" data-link-roles="@string.Join(",", page.PageRoles.Select(x => x.Role.RoleName))">
                                 <h4>@page.PageName</h4>
                                 <p>@target</p>
