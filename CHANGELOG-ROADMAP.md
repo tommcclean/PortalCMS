@@ -3,7 +3,7 @@ This file contains a list of changes between versions of Portal CMS and a roadma
 
 # Changelog
 
-## 1.3.2 - Upcoming Release Focus: I am using Portal CMS for another personal project, so I am bringing useful changes back into the PortalCMS repository when applicable.
+## 1.3.2 - Maintenance Release: I am using Portal CMS for another personal project, so I am bringing useful changes back into the PortalCMS repository when applicable.
 1. Improve Performance while Interacting with the Component Controller in the PageBuilder.
 2. New Ability to Show Content to Anonymous Users Only.
 
