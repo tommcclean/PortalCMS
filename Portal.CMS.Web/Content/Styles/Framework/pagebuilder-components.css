@@ -4,14 +4,21 @@
     border-radius: 5px;
     padding-bottom: 40px;
     padding-top: 40px;
-    -moz-transition: all 0.1s ease-in-out;
-    -o-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
     -webkit-transition: all 0.1s ease-in-out;
-    transition: all 0.1s ease-in-out;
     cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    min-height: 20px;
 }
 
-.component-container
+.section-wrapper.admin .component-container.ui-state-hover
+{
+    min-height: 275px;
+    border: 1px dashed red;
+}
+
+    .component-container
 {
     position: relative;
     z-index: 2;
