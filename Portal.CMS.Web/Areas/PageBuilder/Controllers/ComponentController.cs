@@ -1,11 +1,8 @@
-﻿using LogBook.Services;
-using LogBook.Services.Models;
-using Portal.CMS.Entities.Enumerators;
+﻿using Portal.CMS.Entities.Enumerators;
 using Portal.CMS.Services.Generic;
 using Portal.CMS.Services.PageBuilder;
 using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Extensions;
-using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.PageBuilder.ViewModels.Component;
 using Portal.CMS.Web.ViewModels.Shared;
 using System;
@@ -77,16 +74,11 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         [ValidateInput(false)]
         public async Task<ActionResult> Edit(int pageSectionId, string elementId, string elementHtml)
         {
+            // REPLACE: MCE Tokens
+            elementHtml = elementHtml.Replace("ui-draggable ui-draggable-handle mce-content-body", string.Empty);
+            elementHtml = elementHtml.Replace("contenteditable=\"true\" spellcheck=\"false\"", string.Empty);
+
             await _pageComponentService.EditElementAsync(pageSectionId, elementId, elementHtml);
-
-            return Content("Refresh");
-        }
-
-        [HttpPost]
-        [ValidateInput(false)]
-        public async Task<ActionResult> Link(int pageSectionId, string elementId, string elementHtml, string elementHref, string elementTarget)
-        {
-            await _pageComponentService.EditAnchorAsync(pageSectionId, elementId, elementHtml, elementHref, elementTarget);
 
             return Content("Refresh");
         }
@@ -149,14 +141,6 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<JsonResult> Clone(int pageSectionId, string elementId, string componentStamp)
-        {
-            await _pageComponentService.CloneElementAsync(pageSectionId, elementId, componentStamp);
-
-            return Json(new { State = true });
-        }
-
         [HttpGet]
         public ActionResult EditVideo(int pageSectionId, string widgetWrapperElementId, string videoPlayerElementId)
         {
@@ -187,19 +171,6 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             }
         }
 
-        [HttpPost]
-        [ValidateInput(false)]
-        public async Task<ActionResult> EditFreestyle(int pageSectionId, string elementId, string elementHtml)
-        {
-            // REPLACE: MCE Tokens
-            elementHtml = elementHtml.Replace("ui-draggable ui-draggable-handle mce-content-body", string.Empty);
-            elementHtml = elementHtml.Replace("contenteditable=\"true\" spellcheck=\"false\"", string.Empty);
-
-            await _pageComponentService.EditElementAsync(pageSectionId, elementId, elementHtml);
-
-            return Content("Refresh");
-        }
-
         [HttpGet]
         public ActionResult EditContainer(int pageSectionId, string elementId)
         {
@@ -219,6 +190,23 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             await _pageSectionService.EditAnimationAsync(model.SectionId, model.ElementId, model.Animation.ToString());
 
             return Content("Refresh");
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public async Task<ActionResult> Link(int pageSectionId, string elementId, string elementHtml, string elementHref, string elementTarget)
+        {
+            await _pageComponentService.EditAnchorAsync(pageSectionId, elementId, elementHtml, elementHref, elementTarget);
+
+            return Content("Refresh");
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> Clone(int pageSectionId, string elementId, string componentStamp)
+        {
+            await _pageComponentService.CloneElementAsync(pageSectionId, elementId, componentStamp);
+
+            return Json(new { State = true });
         }
     }
 }

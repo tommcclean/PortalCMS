@@ -183,7 +183,7 @@ function EditInlineFreestyle(editorId, editorContent) {
         data: dataParams,
         type: 'POST',
         cache: false,
-        url: '/PageBuilder/Component/EditFreestyle',
+        url: '/PageBuilder/Component/Edit',
         success: function (data) { if (data.State === false) { alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload(); } }
     });
 }
