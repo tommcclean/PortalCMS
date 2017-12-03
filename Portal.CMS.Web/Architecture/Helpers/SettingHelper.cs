@@ -15,7 +15,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
             {
                 sessionSetting = System.Web.HttpContext.Current.Session[$"Setting-{settingName}"];
             }
-            
+
             if (sessionSetting != null)
             {
                 return sessionSetting.ToString();

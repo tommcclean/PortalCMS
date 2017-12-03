@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace Portal.CMS.Web.Architecture.Helpers
 {
     public static class AsyncHelpers
     {
-        /// <summary>
-        /// Execute's an async Task<T> method which has a void return value synchronously
-        /// </summary>
-        /// <param name="task">Task<T> method to execute</param>
+        /// <summary> Execute's an async Task<T> method which has a void return value synchronously
+        /// </summary> <param name="task">Task<T> method to execute</param>
         public static void RunSync(Func<Task> task)
         {
             var oldContext = SynchronizationContext.Current;
@@ -39,12 +35,9 @@ namespace Portal.CMS.Web.Architecture.Helpers
             SynchronizationContext.SetSynchronizationContext(oldContext);
         }
 
-        /// <summary>
-        /// Execute's an async Task<T> method which has a T return type synchronously
-        /// </summary>
-        /// <typeparam name="T">Return Type</typeparam>
-        /// <param name="task">Task<T> method to execute</param>
-        /// <returns></returns>
+        /// <summary> Execute's an async Task<T> method which has a T return type synchronously
+        /// </summary> <typeparam name="T">Return Type</typeparam> <param name="task">Task<T> method
+        /// to execute</param> <returns></returns>
         public static T RunSync<T>(Func<Task<T>> task)
         {
             var oldContext = SynchronizationContext.Current;
@@ -75,8 +68,11 @@ namespace Portal.CMS.Web.Architecture.Helpers
         private class ExclusiveSynchronizationContext : SynchronizationContext
         {
             private bool done;
+
             public Exception InnerException { get; set; }
+
             readonly AutoResetEvent workItemsWaiting = new AutoResetEvent(false);
+
             readonly Queue<Tuple<SendOrPostCallback, object>> items =
                 new Queue<Tuple<SendOrPostCallback, object>>();
 

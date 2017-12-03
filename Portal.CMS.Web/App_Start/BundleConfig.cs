@@ -18,7 +18,7 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework/Administration").Include("~/Content/Scripts/Administration/*.js"));
 
-            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Framework/Editor","/Content/Scripts/Editor/QuickAccess.js",cdnRootAddress));
+            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Framework/Editor", "/Content/Scripts/Editor/QuickAccess.js", cdnRootAddress));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js").Include("~/Content/Scripts/Bootstrap/bootstrap.min.js"));
 
