@@ -42,14 +42,14 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 case QuickAccessPageType.PageBuilder:
                     model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Add", MobileText = "Add", CssClass = "add", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Section", JavaScript = "TogglePanel('section-panel');" }, new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Component", JavaScript = "TogglePanel('component-panel');" }, new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Blank Page", Link = Url.Action("Create", "PageManager", new { area = nameof(Admin) }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-image", Text = "Upload Image", Link = Url.Action("UploadImage", "MediaManager", new { area = nameof(Admin) }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-rss", Text = "Write Blog Post", Link = Url.Action("Create", "BlogManager", new { area = nameof(Admin) }), LaunchModal = true }, } });
                     model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-cog", DesktopText = "Page Options", MobileText = "Options", CssClass = "options", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-pencil", Text = "Edit Page", Link = Url.Action("Edit", "PageManager", new { area = nameof(Admin), pageId = contentId }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-sort", Text = "Edit Order", JavaScript = "ChangeOrder()" }, } });
-                    model.Categories.Add(MoreContent(true, true));
+                    model.Categories.Add(Content(true, true));
                     model.Categories.Add(AdminButton());
                     break;
 
                 case QuickAccessPageType.BlogManager:
                     model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Add", MobileText = "Add", CssClass = "add", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-rss", Text = "Write Blog Post", Link = Url.Action("Create", "BlogManager", new { area = nameof(Admin) }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-image", Text = "Upload Image", Link = Url.Action("UploadImage", "MediaManager", new { area = nameof(Admin) }), LaunchModal = true }, } });
                     model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-cog", DesktopText = "Post Options", MobileText = "Options", CssClass = "options", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-pencil", Text = "Edit Post", Link = Url.Action("Edit", "BlogManager", new { area = nameof(Admin), postId = contentId }), LaunchModal = true }, } });
-                    model.Categories.Add(MoreContent(true, true));
+                    model.Categories.Add(Content(true, true));
                     model.Categories.Add(AdminButton());
                     break;
 
@@ -94,24 +94,24 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 case QuickAccessPageType.PageBuilder:
                     model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Add", MobileText = "Add", CssClass = "add", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-image", Text = "Upload Image", Link = Url.Action("UploadImage", "MediaManager", new { area = nameof(Admin) }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-rss", Text = "Write Blog Post", Link = Url.Action("Create", "BlogManager", new { area = nameof(Admin) }), LaunchModal = true }, } });
-                    model.Categories.Add(MoreContent(false, true));
+                    model.Categories.Add(Content(false, true));
                     break;
 
                 case QuickAccessPageType.BlogManager:
                     model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Add", MobileText = "Add", CssClass = "add", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-rss", Text = "Write Blog Post", Link = Url.Action("Create", "BlogManager", new { area = nameof(Admin) }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-image", Text = "Upload Image", Link = Url.Action("UploadImage", "MediaManager", new { area = nameof(Admin) }), LaunchModal = true }, } });
                     model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-cog", DesktopText = "Post Options", MobileText = "Options", CssClass = "options", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-pencil", Text = "Edit Post", Link = Url.Action("Edit", "BlogManager", new { area = nameof(Admin), postId = contentId }), LaunchModal = true }, } });
-                    model.Categories.Add(MoreContent(false, true));
+                    model.Categories.Add(Content(false, true));
                     break;
             }
         }
 
-        private static QuickAccessCategory MoreContent(bool isAdmin, bool isEditor)
+        private static QuickAccessCategory Content(bool isAdmin, bool isEditor)
         {
             var moreContent = new QuickAccessCategory
             {
                 Icon = "fa fa-suitcase",
-                DesktopText = "More Content",
-                MobileText = "More",
+                DesktopText = "Content",
+                MobileText = "Content",
                 CssClass = "more",
                 Actions = new System.Collections.Generic.List<QuickAccessAction>()
             };
