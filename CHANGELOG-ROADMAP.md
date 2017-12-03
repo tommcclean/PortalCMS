@@ -3,8 +3,8 @@ This file contains a list of changes between versions of Portal CMS and a roadma
 
 # Changelog
 
-## 1.3.3 - (December 2017) Maintenance Release: General Update with Minor Updates
-1. Change the Default Connection String to not use an SQLExpress Endpoin.
+## 1.3.3 - (December 2017) Maintenance Release: General Update with Minor Changes
+1. Change the Default Connection String to not use an SQLExpress Endpoint.
 2. Consolidation of the 'Edit Freestyle' action as logic was duplicated
 3. Mobile Responsiveness Improvements to the Blog Pages
 4. Improve Usability in the Page Builder by making containers larger when you are trying to drag a component into them.
