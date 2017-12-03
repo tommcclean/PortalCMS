@@ -3,7 +3,17 @@ This file contains a list of changes between versions of Portal CMS and a roadma
 
 # Changelog
 
-## 1.3.2 - Maintenance Release: I am using Portal CMS for another personal project, so I am bringing useful changes back into the PortalCMS repository when applicable.
+## 1.3.3 - (December 2017) Maintenance Release: General Update with Minor Updates
+1. Change the Default Connection String to not use an SQLExpress Endpoin.
+2. Consolidation of the 'Edit Freestyle' action as logic was duplicated
+3. Mobile Responsiveness Improvements to the Blog Pages
+4. Improve Usability in the Page Builder by making containers larger when you are trying to drag a component into them.
+5. Update Packages and Compilers to latest stable verisons
+6. Resolve a bug where widget previews would not load immediately in the 'Add Component' popup
+7. Improve the Visual Appearance of the Page Builder section controls to make it possible to add a much more capable editing experience in future.
+8. Make the Page Builder Quick Controls smaller.
+
+## 1.3.2 - (October 2017) Maintenance Release: I am using Portal CMS for another personal project, so I am bringing useful changes back into the PortalCMS repository when applicable.
 1. Improve Performance while Interacting with the Component Controller in the PageBuilder.
 2. New Ability to Show Content to Anonymous Users Only.
 
