@@ -1,12 +1,13 @@
 ﻿.action-container
 {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 5px;
+    left: 5px;
     z-index: 10;
 }
 
-.action-container-footer{
+.action-container-footer
+{
     position: fixed;
     right: 20px;
     bottom: 20px;
@@ -17,26 +18,36 @@
 .action
 {
     display: inline-block;
-    height: 40px;
-    width: 40px;
-    line-height: 40px;
-    margin: 2px;
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
     background-color: black;
-    border: 2px dashed #191919;
-    border-radius: 50%;
-    color: white;
+    border: 1px dashed #191919;
+    color: #CCCCCC;
     text-align: center;
     font-size: 15px;
     cursor: pointer;
-    -moz-transition: border, background-color 0.2s ease-out;
-    -o-transition: border, background-color 0.2s ease-out;
-    -webkit-transition: border, background-color 0.2s ease-out;
-    transition: border, background-color 0.2s ease-out;
+    -moz-transition: border, background-color, color 0.15s ease-out;
+    -o-transition: border, background-color, color 0.15s ease-out;
+    -webkit-transition: border, background-color, color 0.15s ease-out;
+    transition: border, background-color, color 0.15s ease-out;
 }
+
+    .action:first-child
+    {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+
+    .action:last-child
+    {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
 
 .action-container .action:hover
 {
     color: white;
     background-color: #191919;
-    border: 2px dashed #424242;
+    border: 1px dashed #424242;
 }
