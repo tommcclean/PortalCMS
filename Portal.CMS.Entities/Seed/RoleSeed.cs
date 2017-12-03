@@ -25,7 +25,11 @@ namespace Portal.CMS.Entities.Seed
                 newRoles.Add(new Role { RoleName = "Anonymous", IsAssignable = false });
 
             if (newRoles.Any())
+            {
                 context.Roles.AddRange(newRoles);
+
+                context.SaveChanges();
+            }
         }
     }
 }

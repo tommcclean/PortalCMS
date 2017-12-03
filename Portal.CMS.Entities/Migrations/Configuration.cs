@@ -20,8 +20,8 @@ namespace Portal.CMS.Entities.Migrations
             PageComponentTypeSeed.Seed(context);
             MediaSeed.Seed(context);
             CopySeed.Seed(context);
-
             context.SaveChanges();
+
             MenuSeed.Seed(context);
             PageSeed.Seed(context);
             PostSeed.Seed(context);
