@@ -82,6 +82,24 @@ function TogglePageList() {
 }
 
 $(document).ready(function () {
+    $('body').on('click', '.launch-popover', function (e) {
+        var url = $(this).attr("data-url");
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            cache: false,
+            success: function (data) {
+                $('.dynamic-popover-content').empty();
+                $('.dynamic-popover-content').parent().addClass("dynamic");
+                $('.dynamic-popover-content').html(data);
+            },
+            error: function () {
+                alert("ERROR");
+            }
+        });
+    });
+
     $('body').on('click', '.launch-modal', function (e) {
         e.preventDefault();
         showModalEditor($(this).data('title'), $(this).attr('href'));

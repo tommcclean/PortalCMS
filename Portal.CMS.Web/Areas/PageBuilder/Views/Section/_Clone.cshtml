@@ -18,7 +18,7 @@
         }
         else
         {
-            <div class="alert alert-danger" role="alert">You can't Clone this Section because you don't have any other pages yet...</div>
+            <div class="alert alert-danger" role="alert">You can't clone this Section because you don't have any other pages...</div>
         }
 
         @Html.ValidationMessageFor(x => x.PageId)
@@ -29,7 +29,7 @@
 
         <div class="footer">
             <button class="btn primary"><span class="fa fa-check"></span><span class="hidden-xs">Clone Section</span></button>
-            <button class="btn" data-dismiss="modal"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></button>
+            <a class="btn" data-toggle="popover"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></a>
         </div>
     }
 </div>
