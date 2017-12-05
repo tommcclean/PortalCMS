@@ -44,14 +44,14 @@ function SaveOrder() {
 function ApplySectionControls() {
     $('.section-wrapper .action-container').remove();
 
-    var spinnerMarkup = '<div class=&quot;dynamic-popover-content&quot;><div class=&quot;spinner&quot;></div></div>';
+    var spinnerMarkup = '<div class=&quot;spinner&quot;></div>';
 
-    var sectionButtonsTemplate = '<div class="action-container absolute">' +
-        '<a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/PageBuilder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a>' +
-        '<a class="action launch-modal hidden-xs" data-title="Backup or Restore a Section" href="/PageBuilder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a>' +
-        '<a class="action launch-popover" data-title="Clone Section" data-toggle="popover" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/Clone?pageAssociationId=<associationId>"><span class="fa fa-clone"></span></a>' +
-        '<a class="action edit-section launch-modal" data-title="Edit Section" href="/PageBuilder/Section/EditSection?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a>' +
-
+    var sectionButtonsTemplate =
+        '<div class="action-container absolute">' +
+            '<a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/PageBuilder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a>' +
+            '<a class="action launch-modal hidden-xs" data-title="Backup or Restore a Section" href="/PageBuilder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a>' +
+            '<a class="action launch-popover" data-title="Clone Section" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/Clone?pageAssociationId=<associationId>"><span class="fa fa-clone"></span></a>' +
+            '<a class="action edit-section launch-modal" data-title="Edit Section" href="/PageBuilder/Section/EditSection?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a>' +
         '</div > ';
 
     sectionButtonsTemplate = sectionButtonsTemplate.replace(/<spinner>/g, spinnerMarkup);

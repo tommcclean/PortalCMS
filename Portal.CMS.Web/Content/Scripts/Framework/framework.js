@@ -83,14 +83,13 @@ function TogglePageList() {
 
 $(document).ready(function () {
     $('body').on('click', '.launch-popover', function (e) {
-
         $(this).popover({
             template:
-                '<div class="popover editable-popover">' +
-                    '<div class="arrow"></div>' +
-                    '<h3 class="popover-title"></h3>' +
-                    '<div class="popover-content"></div>' +
-                '</div>'
+            '<div class="popover editable-popover">' +
+            '<div class="arrow"></div>' +
+            '<h3 class="popover-title"></h3>' +
+            '<div class="popover-content"></div>' +
+            '</div>'
         }).popover('show');
 
         $.ajax({
@@ -105,6 +104,10 @@ $(document).ready(function () {
             error: function () {
                 alert("ERROR");
             }
+        });
+
+        $('body').on('click', '.close-popover', function (e) {
+            $('.popover').popover('hide');
         });
     });
 

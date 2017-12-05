@@ -1,7 +1,17 @@
 ﻿.popover.editable-popover
 {
     max-width: none;
+    
 }
+
+.popover.editable-popover .arrow{
+    
+}
+
+    .popover.editable-popover .alert
+    {
+        margin-bottom: 10px;
+    }
 
     .popover.editable-popover .btn
     {
@@ -11,8 +21,8 @@
     .popover.editable-popover .popover-content
     {
         min-width: 400px;
-        min-height: 200px;
-        padding: 20px;
+        min-height: 150px;
+        padding: 17px;
     }
 
     .popover.editable-popover .footer
@@ -23,7 +33,6 @@
     .popover.editable-popover .btn
     {
         margin: 0;
-        margin-top: 10px;
     }
 
         .popover.editable-popover .btn:not(:first-child)

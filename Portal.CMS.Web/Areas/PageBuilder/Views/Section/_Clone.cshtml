@@ -15,21 +15,25 @@
         if (pageList.Any())
         {
             <div class="alert alert-warning" role="alert">Clone a Section onto another Page to keep your content synced across all relevant pages</div>
+
+            @Html.ValidationMessageFor(x => x.PageId)
+            <div class="control-group">
+                @Html.LabelFor(x => x.PageId)
+                @Html.DropDownListFor(m => m.PageId, pageList)
+            </div>
+
+            <div class="footer">
+                <div class="btn primary"><span class="fa fa-check"></span><span class="hidden-xs">Clone</span></div>
+                <div class="btn close-popover"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></div>
+            </div>
         }
         else
         {
             <div class="alert alert-danger" role="alert">You can't clone this Section because you don't have any other pages...</div>
+
+            <div class="footer">
+                <div class="btn close-popover"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></div>
+            </div>
         }
-
-        @Html.ValidationMessageFor(x => x.PageId)
-        <div class="control-group">
-            @Html.LabelFor(x => x.PageId)
-            @Html.DropDownListFor(m => m.PageId, pageList)
-        </div>
-
-        <div class="footer">
-            <button class="btn primary"><span class="fa fa-check"></span><span class="hidden-xs">Clone Section</span></button>
-            <a class="btn" data-toggle="popover"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></a>
-        </div>
     }
 </div>
