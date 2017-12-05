@@ -376,7 +376,7 @@
     <Content Include="Content\Styles\Administration\AppDrawers\widget-preview.css" />
     <Content Include="Content\Styles\Animate\animate.min.css" />
     <Content Include="Content\Styles\Framework\framework-buttons.css" />
-    <Content Include="Content\Styles\Framework\framework-popover-modal.css" />
+    <Content Include="Content\Styles\Framework\framework-editable-popover.css" />
     <Content Include="Content\Styles\Framework\framework-console.css" />
     <Content Include="Content\Styles\Framework\framework-nav.css" />
     <Content Include="Content\Styles\Framework\framework-posts.css" />

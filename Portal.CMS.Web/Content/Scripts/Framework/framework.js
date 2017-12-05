@@ -83,16 +83,24 @@ function TogglePageList() {
 
 $(document).ready(function () {
     $('body').on('click', '.launch-popover', function (e) {
-        var url = $(this).attr("data-url");
+
+        $(this).popover({
+            template:
+                '<div class="popover editable-popover">' +
+                    '<div class="arrow"></div>' +
+                    '<h3 class="popover-title"></h3>' +
+                    '<div class="popover-content"></div>' +
+                '</div>'
+        }).popover('show');
 
         $.ajax({
             type: 'GET',
-            url: url,
+            url: $(this).attr("data-url"),
             cache: false,
             success: function (data) {
-                $('.dynamic-popover-content').empty();
-                $('.dynamic-popover-content').parent().addClass("dynamic");
-                $('.dynamic-popover-content').html(data);
+                $('.popover.editable-popover .popover-content').empty();
+                $('.popover.editable-popover .popover-content').parent().addClass("dynamic");
+                $('.popover.editable-popover .popover-content').html(data);
             },
             error: function () {
                 alert("ERROR");

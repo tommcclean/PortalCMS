@@ -1,0 +1,37 @@
+﻿.popover.editable-popover
+{
+    max-width: none;
+}
+
+    .popover.editable-popover .btn
+    {
+        font-size: 15px;
+    }
+
+    .popover.editable-popover .popover-content
+    {
+        min-width: 400px;
+        min-height: 200px;
+        padding: 20px;
+    }
+
+    .popover.editable-popover .footer
+    {
+        text-align: right;
+    }
+
+    .popover.editable-popover .btn
+    {
+        margin: 0;
+        margin-top: 10px;
+    }
+
+        .popover.editable-popover .btn:not(:first-child)
+        {
+            margin-left: 5px;
+        }
+
+#page-wrapper .popover.editable-popover h3
+{
+    font-size: 20px;
+}
