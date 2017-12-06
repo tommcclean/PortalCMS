@@ -1,6 +1,6 @@
 ﻿using SendGrid;
 using SendGrid.Helpers.Mail;
-using System;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Web.Architecture.Helpers
 {
@@ -10,7 +10,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
         const string EMAIL_FROM_ADDRESS = "Email From Address";
         const string SENDGRID_API_KEY = "SendGrid ApiKey";
 
-        public static async System.Threading.Tasks.Task SendEmailAsync(string recipientEmailAddress, string subject, string messageBody)
+        public static async Task SendEmailAsync(string recipientEmailAddress, string subject, string messageBody)
         {
             var apiKey = SettingHelper.Get(SENDGRID_API_KEY);
             var client = new SendGridClient(apiKey);
