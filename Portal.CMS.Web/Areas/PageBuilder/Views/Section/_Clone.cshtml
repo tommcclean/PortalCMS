@@ -1,39 +1,50 @@
 ﻿@model Portal.CMS.Web.Areas.PageBuilder.ViewModels.Section.CloneViewModel
 @{
     Layout = "";
-
-    var pageList = Model.PageList.Select(x => new SelectListItem { Value = x.PageId.ToString(), Text = x.PageName });
 }
 
-<div class="panel-inner">
-    @using (Html.BeginForm("Clone", "Section", FormMethod.Post))
+<script type="text/javascript">
+    function submit()
     {
-        @Html.AntiForgeryToken()
-
-        @Html.HiddenFor(x => x.PageAssociationId)
-
-        if (pageList.Any())
-        {
-            <div class="alert alert-warning" role="alert">Clone a Section onto another Page to keep your content synced across all relevant pages</div>
-
-            @Html.ValidationMessageFor(x => x.PageId)
-            <div class="control-group">
-                @Html.LabelFor(x => x.PageId)
-                @Html.DropDownListFor(m => m.PageId, pageList)
-            </div>
-
-            <div class="footer">
-                <div class="btn primary"><span class="fa fa-check"></span><span class="hidden-xs">Clone</span></div>
-                <div class="btn close-popover"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></div>
-            </div>
-        }
-        else
-        {
-            <div class="alert alert-danger" role="alert">You can't clone this Section because you don't have any other pages...</div>
-
-            <div class="footer">
-                <div class="btn close-popover"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></div>
-            </div>
-        }
+        $.ajax({
+            type: "POST",
+            url: "/PageBuilder/Section/Clone",
+            data: { 'pageId': @Model.PageId, 'pageAssociationId': @Model.PageAssociationId },
+            success: function (data)
+            {
+                $('.popover').popover('hide');
+            },
+            error: function ()
+            {
+                $('#clone-help').removeClass("alert-warning");
+                $('#clone-help').addClass("alert-danger");
+                $('#clone-help').text("An error occured, please try again");
+            }
+        });
     }
-</div>
+</script>
+
+@if (Model.PageListOptions.Any())
+{
+    <div id="clone=spinner" class="spinner" style="display: none;"></div>
+    <div id="clone-help" class="alert alert-warning" role="alert">Clone a Section onto another Page to keep your content synced across all relevant pages</div>
+
+    @Html.ValidationMessageFor(x => x.PageId)
+    <div class="control-group">
+        @Html.LabelFor(x => x.PageId)
+        @Html.DropDownListFor(m => m.PageId, Model.PageListOptions)
+    </div>
+
+    <div class="footer">
+        <div class="btn primary" onclick="submit();"><span class="fa fa-check"></span><span class="hidden-xs">Clone</span></div>
+        <div class="btn close-popover"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></div>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">You can't clone this Section because you don't have any other pages...</div>
+
+    <div class="footer">
+        <div class="btn close-popover"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></div>
+    </div>
+}

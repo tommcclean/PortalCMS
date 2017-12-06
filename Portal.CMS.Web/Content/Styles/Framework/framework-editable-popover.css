@@ -20,7 +20,7 @@
 
     .popover.editable-popover .popover-content
     {
-        min-width: 400px;
+        min-width: 350px;
         min-height: 150px;
         padding: 17px;
     }

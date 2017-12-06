@@ -312,12 +312,9 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Clone(CloneViewModel model)
+        public async Task Clone(CloneViewModel model)
         {
             await _associationService.CloneAsync(model.PageAssociationId, model.PageId);
-
-            return Content("Refresh");
         }
 
         [HttpGet]
