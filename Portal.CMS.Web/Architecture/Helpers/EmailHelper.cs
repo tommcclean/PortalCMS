@@ -19,7 +19,8 @@ namespace Portal.CMS.Web.Architecture.Helpers
             var plainTextContent = messageBody;
             var htmlContent = messageBody;
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-            var response = await client.SendEmailAsync(msg);
+
+            await client.SendEmailAsync(msg);
         }
     }
 }
