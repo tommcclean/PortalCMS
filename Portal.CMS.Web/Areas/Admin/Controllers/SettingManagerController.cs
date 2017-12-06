@@ -30,8 +30,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 WebsiteDescription = SettingHelper.Get("Description Meta Tag"),
                 GoogleAnalyticsId = SettingHelper.Get("Google Analytics Tracking ID"),
                 EmailFromAddress = SettingHelper.Get("Email From Address"),
-                SendGridUserName = SettingHelper.Get("SendGrid UserName"),
-                SendGridPassword = SettingHelper.Get("SendGrid Password"),
+                SendGridApiKey = SettingHelper.Get("SendGrid ApiKey"),
                 CDNAddress = SettingHelper.Get("CDN Address")
             };
 
@@ -59,11 +58,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             await _settingService.EditAsync("Email From Address", model.EmailFromAddress);
             Session.Remove("Setting-Email From Address");
 
-            await _settingService.EditAsync("SendGrid UserName", model.SendGridUserName);
-            Session.Remove("Setting-SendGrid UserName");
-
-            await _settingService.EditAsync("SendGrid Password", model.SendGridPassword);
-            Session.Remove("Setting-SendGrid Password");
+            await _settingService.EditAsync("SendGrid ApiKey", model.SendGridApiKey);
+            Session.Remove("Setting-SendGrid ApiKey");
 
             await _settingService.EditAsync("CDN Address", model.CDNAddress);
             Session.Remove("Setting-CDN Address");

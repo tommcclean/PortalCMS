@@ -55,12 +55,8 @@
                 @Html.TextBoxFor(x => x.EmailFromAddress)
             </div>
             <div class="control-group">
-                @Html.LabelFor(x => x.SendGridUserName)
-                @Html.TextBoxFor(x => x.SendGridUserName)
-            </div>
-            <div class="control-group">
-                @Html.LabelFor(x => x.SendGridPassword)
-                @Html.PasswordFor(x => x.SendGridPassword)
+                @Html.LabelFor(x => x.SendGridApiKey)
+                @Html.TextBoxFor(x => x.SendGridApiKey)
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-analytics">
