@@ -19,11 +19,8 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.SettingManager
         [DisplayName("Email From Address")]
         public string EmailFromAddress { get; set; }
 
-        [DisplayName("SendGrid User Name")]
-        public string SendGridUserName { get; set; }
-
-        [DisplayName("SendGrid Password")]
-        public string SendGridPassword { get; set; }
+        [DisplayName("SendGrid API Key")]
+        public string SendGridApiKey { get; set; }
 
         [DisplayName("CDN Address")]
         public string CDNAddress { get; set; }

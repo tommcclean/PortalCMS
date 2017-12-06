@@ -1,7 +1,6 @@
 ﻿using SendGrid;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Mail;
+using SendGrid.Helpers.Mail;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Web.Architecture.Helpers
 {
@@ -9,37 +8,19 @@ namespace Portal.CMS.Web.Architecture.Helpers
     {
         const string WEBSITE_NAME = "Website Name";
         const string EMAIL_FROM_ADDRESS = "Email From Address";
-        const string SENDGRID_USERNAME = "SendGrid UserName";
-        const string SENDGRID_PASSWORD = "SendGrid Password";
+        const string SENDGRID_API_KEY = "SendGrid ApiKey";
 
-        public static void Send(List<string> recipients, string subject, string messageBody)
+        public static async Task SendEmailAsync(string recipientEmailAddress, string subject, string messageBody)
         {
-            var myMessage = new SendGridMessage();
+            var apiKey = SettingHelper.Get(SENDGRID_API_KEY);
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress(SettingHelper.Get(EMAIL_FROM_ADDRESS), SettingHelper.Get(WEBSITE_NAME));
+            var to = new EmailAddress(recipientEmailAddress);
+            var plainTextContent = messageBody;
+            var htmlContent = messageBody;
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
 
-            var fromAddress = (SettingHelper.Get(EMAIL_FROM_ADDRESS));
-
-            if (string.IsNullOrEmpty(fromAddress))
-                return;
-
-            myMessage.From = new MailAddress(fromAddress);
-
-            myMessage.AddTo(recipients);
-
-            myMessage.Subject = $"{SettingHelper.Get(WEBSITE_NAME)}: {subject}";
-            myMessage.Html = messageBody;
-
-            myMessage.EnableClickTracking();
-
-            var username = SettingHelper.Get(SENDGRID_USERNAME);
-            var password = SettingHelper.Get(SENDGRID_PASSWORD);
-
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                return;
-
-            var credentials = new NetworkCredential(username, password);
-
-            var transportWeb = new SendGrid.Web(credentials);
-            transportWeb.DeliverAsync(myMessage);
+            await client.SendEmailAsync(msg);
         }
     }
 }
