@@ -4,6 +4,7 @@ This file contains a list of changes between versions of Portal CMS and a roadma
 ## Future Intentions
 1. Upgrade SendGrid Implementation (1.3.4)
 2. Improved User Experience via Modal Popvers to Reduce Post Backs (1.3.4)
+3. Change Authentication Method to use Owin (Unplanned)
 3. Improved Menu Management with more Visual Options OOTB (Unplanned)
 
 # Changelog
