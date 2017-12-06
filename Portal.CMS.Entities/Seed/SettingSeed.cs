@@ -24,17 +24,25 @@ namespace Portal.CMS.Entities.Seed
             if (!settingList.Any(x => x.SettingName == "Email From Address"))
                 newSettings.Add(new Setting { SettingName = "Email From Address", SettingValue = "" });
 
-            if (!settingList.Any(x => x.SettingName == "SendGrid UserName"))
-                newSettings.Add(new Setting { SettingName = "SendGrid UserName", SettingValue = "" });
-
-            if (!settingList.Any(x => x.SettingName == "SendGrid Password"))
-                newSettings.Add(new Setting { SettingName = "SendGrid Password", SettingValue = "" });
+            if (!settingList.Any(x => x.SettingName == "SendGrid ApiKey"))
+                newSettings.Add(new Setting { SettingName = "SendGrid ApiKey", SettingValue = "" });
 
             if (!settingList.Any(x => x.SettingName == "CDN Address"))
                 newSettings.Add(new Setting { SettingName = "CDN Address", SettingValue = "" });
 
             if (newSettings.Any())
                 context.Settings.AddRange(newSettings);
+
+            var obseleteSettings = context.Settings
+                .Where(x =>
+                    "SendGrid UserName".Equals(x.SettingName, System.StringComparison.OrdinalIgnoreCase)
+                    || "SendGrid Password".Equals(x.SettingName, System.StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            if (obseleteSettings.Any())
+            {
+                context.Settings.RemoveRange(obseleteSettings);
+            }
         }
     }
 }
