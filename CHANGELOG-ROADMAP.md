@@ -1,6 +1,11 @@
 # Portal CMS Roadmap / Changelog
 This file contains a list of changes between versions of Portal CMS and a roadmap that provides a brief outline of the features we intend to include in Portal CMS.
 
+## Future Intentions
+1. Upgrade SendGrid Implementation (1.3.4)
+2. Improved User Experience via Modal Popvers to Reduce Post Backs (1.3.4)
+3. Improved Menu Management with more Visual Options OOTB (Unplanned)
+
 # Changelog
 
 ## 1.3.3 - (December 2017) Maintenance Release: General Update with Minor Changes
@@ -103,11 +108,3 @@ This file contains a list of changes between versions of Portal CMS and a roadma
 4. Abilities to manage and view blog posts
   1. Including Inline editing for changing your posts quickly
   2. Including Comments, Photo Galleries and Tie ins to other posts
-
-## Future Intentions
-1. Upgrade from .NET 4.6.1 to .NET Core
-2. Upgrade from Bootstrap 3 to Bootstrap 4
-3. New Mailing List Widgets
-4. Ability to Distribute Custom Mailings
-5. Ability to view and administer Post Comments
-6. Ability to Embed Map into Page Builder Pages.
