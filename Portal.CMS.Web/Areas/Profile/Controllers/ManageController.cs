@@ -133,7 +133,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
 
             var websiteAddress = $@"http://{System.Web.HttpContext.Current.Request.Url.Authority}";
 
-            EmailHelper.Send(new List<string> { UserHelper.EmailAddress }, "Account Notice", $"<p>Hello {UserHelper.FullName}</p><p>We just wanted to let you know that your password was changed at {websiteAddress}. If you didn't change your password, please let us know");
+            await EmailHelper.SendEmailAsync(UserHelper.EmailAddress, "Account Notice", $"<p>Hello {UserHelper.FullName}</p><p>We just wanted to let you know that your password was changed at {websiteAddress}. If you didn't change your password, please let us know");
 
             return Content("Refresh");
         }

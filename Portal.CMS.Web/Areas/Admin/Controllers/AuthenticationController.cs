@@ -139,7 +139,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
                 var recoveryLink = $@"http://{System.Web.HttpContext.Current.Request.Url.Authority}{Url.Action(nameof(Reset), "Authentication", new { id = token })}";
 
-                EmailHelper.Send(new List<string> { model.EmailAddress }, "Password Reset", $"<p>You submitted a request on {websiteName} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{recoveryLink}\">Recover Account</a>");
+                await EmailHelper.SendEmailAsync(model.EmailAddress, "Password Reset", $"<p>You submitted a request on {websiteName} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{recoveryLink}\">Recover Account</a>");
             }
 
             return Content("Refresh");
