@@ -117,7 +117,7 @@
 
 @media (max-width: 767px)
 {
-    .modal-body .btn .fa
+    .btn .fa
     {
         margin-right: 0;
     }
