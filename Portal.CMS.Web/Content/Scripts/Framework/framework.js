@@ -96,10 +96,10 @@ $(document).ready(function () {
                 alert("ERROR");
             }
         });
+    });
 
-        $('body').on('click', '.close-popover', function (e) {
-            $('.popover').popover('hide');
-        });
+    $('body').on('click', '.close-popover', function (e) {
+        $('.popover').popover('hide');
     });
 
     $('body').on('click', '.launch-modal', function (e) {
