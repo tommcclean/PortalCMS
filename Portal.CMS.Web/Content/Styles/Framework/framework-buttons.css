@@ -42,3 +42,8 @@
             background-color: white;
             color: black;
         }
+
+    .btn .fa, .action .fa
+    {
+        pointer-events: none;
+    }

@@ -1,12 +1,11 @@
 ﻿.popover.editable-popover
 {
     max-width: none;
-    
 }
 
-.popover.editable-popover .arrow{
-    
-}
+    .popover.editable-popover .arrow
+    {
+    }
 
     .popover.editable-popover .alert
     {
