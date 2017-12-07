@@ -48,10 +48,10 @@ function ApplySectionControls() {
 
     var sectionButtonsTemplate =
         '<div class="action-container absolute">' +
-            '<a class="action edit-markup launch-modal hidden-xs" data-title="Edit Markup" href="/PageBuilder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a>' +
-            '<a class="action launch-modal hidden-xs" data-title="Backup or Restore a Section" href="/PageBuilder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a>' +
-            '<a class="action launch-popover" data-title="Clone Section" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/Clone?pageAssociationId=<associationId>"><span class="fa fa-clone"></span></a>' +
-            '<a class="action edit-section launch-modal" data-title="Edit Section" href="/PageBuilder/Section/EditSection?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a>' +
+        '<a class="action edit-markup launch-modal hidden-xs" data-association="<associationId>" data-title="Edit Markup" href="/PageBuilder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a>' +
+        '<a class="action launch-modal hidden-xs" data-association="<associationId>" data-title="Backup or Restore a Section" href="/PageBuilder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a>' +
+        '<a class="action launch-popover" data-association="<associationId>" data-title="Clone Section" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/Clone?pageAssociationId=<associationId>"><span class="fa fa-clone"></span></a>' +
+        '<a class="action edit-section launch-modal" data-association="<associationId>" data-title="Edit Section" href="/PageBuilder/Section/EditSection?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a>' +
         '</div > ';
 
     sectionButtonsTemplate = sectionButtonsTemplate.replace(/<spinner>/g, spinnerMarkup);

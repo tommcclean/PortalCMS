@@ -312,9 +312,9 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         }
 
         [HttpPost]
-        public async Task Clone(CloneViewModel model)
+        public async Task Clone(int pageAssociationId, int pageId)
         {
-            await _associationService.CloneAsync(model.PageAssociationId, model.PageId);
+            await _associationService.CloneAsync(pageAssociationId, pageId);
         }
 
         [HttpGet]

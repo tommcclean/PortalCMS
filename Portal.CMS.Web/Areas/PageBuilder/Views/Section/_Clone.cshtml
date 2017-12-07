@@ -3,16 +3,30 @@
     Layout = "";
 }
 
+@Scripts.Render("~/Resources/JavaScript/Bootstrap/Plugins/EditablePopovers")
 <script type="text/javascript">
     function submit()
     {
+        var pageId = $('#PageId').val();
+
         $.ajax({
             type: "POST",
             url: "/PageBuilder/Section/Clone",
-            data: { 'pageId': @Model.PageId, 'pageAssociationId': @Model.PageAssociationId },
+            data: { 'pageAssociationId': @Model.PageAssociationId, 'pageId': pageId },
             success: function (data)
             {
                 $('.popover').popover('hide');
+
+                var buttonElement = $('.action[data-title="Clone Section"][data-association=@Model.PageAssociationId]');
+                var iconElement = $('.action[data-title="Clone Section"][data-association=@Model.PageAssociationId] span');
+
+                iconElement.removeClass('fa-clone').addClass('fa-check');
+                buttonElement.addClass('green');
+
+                setInterval(function () {
+                    iconElement.addClass('fa-clone').removeClass('fa-check');
+                    buttonElement.removeClass('green');
+                }, 2000);
             },
             error: function ()
             {
