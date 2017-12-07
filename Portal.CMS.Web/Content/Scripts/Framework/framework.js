@@ -1,15 +1,6 @@
 ﻿"use strict";
 
 $(document).ready(function () {
-    $("a.admin-item, .action").click(function (event) {
-        var fontAwesomeIcon = $(this).find('.fa');
-        fontAwesomeIcon.addClass('fa-spin');
-
-        setTimeout(function () {
-            fontAwesomeIcon.removeClass('fa-spin');
-        }, 2000);
-    });
-
     $(".load-action:not(.loaded)").each(function () {
         var loadingPanel = $(this);
         var url = $(loadingPanel).attr("data-url");
