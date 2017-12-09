@@ -9,7 +9,6 @@ namespace Portal.CMS.Web.Areas.PageBuilder.ViewModels.Section
 {
     public class CloneViewModel
     {
-        [Required]
         [DisplayName("Page")]
         public int PageId { get; set; }
 
