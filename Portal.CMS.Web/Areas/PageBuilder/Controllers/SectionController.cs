@@ -7,6 +7,7 @@ using Portal.CMS.Web.Areas.PageBuilder.ViewModels.Section;
 using Portal.CMS.Web.ViewModels.Shared;
 using System;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.SessionState;
@@ -312,9 +313,17 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         }
 
         [HttpPost]
-        public async Task Clone(int pageAssociationId, int pageId)
+        public async Task<HttpStatusCodeResult> Clone(int pageAssociationId, int pageId)
         {
-            await _associationService.CloneAsync(pageAssociationId, pageId);
+            try
+            {
+                await _associationService.CloneAsync(pageAssociationId, pageId);
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+            }
+            catch(Exception)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
         }
 
         [HttpGet]
