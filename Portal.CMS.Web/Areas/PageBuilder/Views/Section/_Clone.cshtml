@@ -11,10 +11,10 @@
         $.ajax({
             type: "POST",
             url: "/PageBuilder/Section/Clone",
-            headers: EditablePopover_GenerateAntiForgeryHeader(),
+            headers: EditablePopover.GenerateAntiForgeryHeader(),
             data: { 'pageAssociationId': @Model.PageAssociationId, 'pageId': pageId },
-            success: function () { EditablePopover_OnSuccess("Clone Section", 'fa-clone', '@Model.PageAssociationId'); },
-            error: function () { EditablePopover_OnError("Clone Section", 'fa-clone', '@Model.PageAssociationId'); }
+            success: function () { EditablePopover.OnSuccess("Clone Section", 'fa-clone', '@Model.PageAssociationId'); },
+            error: function () { EditablePopover.OnError("Clone Section", 'fa-clone', '@Model.PageAssociationId'); }
         });
     }
 </script>

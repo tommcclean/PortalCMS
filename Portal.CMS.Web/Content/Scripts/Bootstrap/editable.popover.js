@@ -1,45 +1,43 @@
-﻿function EditablePopover_GenerateAntiForgeryHeader()
-{
-    var token = $('input[name="__RequestVerificationToken"]').val();
-    var headers = {};
-    headers['__RequestVerificationToken'] = token;
+﻿var EditablePopover = {
+    GenerateAntiForgeryHeader: function () {
+        var token = $('input[name="__RequestVerificationToken"]').val();
+        var headers = {};
+        headers['__RequestVerificationToken'] = token;
 
-    return headers;
-}
+        return headers;
+    },
+    OnSuccess: function (popoverTitle, actionIcon, pageAssociationId) {
+        $('.popover').popover('hide');
 
+        var buttonElement = $('.action[data-title="' + popoverTitle + '"][data-association=' + pageAssociationId + ']');
+        var iconElement = $('.action[data-title="' + popoverTitle + '"][data-association=' + pageAssociationId + '] span');
 
-function EditablePopover_OnSuccess(popoverTitle, actionIcon, pageAssociationId) {
-    $('.popover').popover('hide');
+        iconElement.removeClass(actionIcon);
+        iconElement.addClass('fa-check');
+        buttonElement.addClass('green');
 
-    var buttonElement = $('.action[data-title="' + popoverTitle + '"][data-association=' + pageAssociationId + ']');
-    var iconElement = $('.action[data-title="' + popoverTitle + '"][data-association=' + pageAssociationId + '] span');
+        setTimeout(function () {
+            iconElement.addClass(actionIcon);
+            iconElement.removeClass('fa-check');
+            buttonElement.removeClass('green');
+        }, 2500);
+    },
+    OnError: function (popoverTitle, actionIcon, pageAssociationId) {
+        $('#editable-popover-info[data-association=' + pageAssociationId + ']').removeClass("alert-warning");
+        $('#editable-popover-info[data-association=' + pageAssociationId + ']').addClass("alert-danger");
+        $('#editable-popover-info[data-association=' + pageAssociationId + ']').text("An error occured, please try again");
 
-    iconElement.removeClass(actionIcon);
-    iconElement.addClass('fa-check');
-    buttonElement.addClass('green');
+        var buttonElement = $('.action[data-title="' + popoverTitle + '"][data-association=' + pageAssociationId + ']');
+        var iconElement = $('.action[data-title="' + popoverTitle + '"][data-association=' + pageAssociationId + '] span');
 
-    setTimeout(function () {
-        iconElement.addClass(actionIcon);
-        iconElement.removeClass('fa-check');
-        buttonElement.removeClass('green');
-    }, 2500);
-}
+        iconElement.removeClass(actionIcon);
+        iconElement.addClass('fa-exclamation');
+        buttonElement.addClass('red');
 
-function EditablePopover_OnError(popoverTitle, actionIcon, pageAssociationId) {
-    $('#editable-popover-info[data-association=' + pageAssociationId + ']').removeClass("alert-warning");
-    $('#editable-popover-info[data-association=' + pageAssociationId + ']').addClass("alert-danger");
-    $('#editable-popover-info[data-association=' + pageAssociationId + ']').text("An error occured, please try again");
-
-    var buttonElement = $('.action[data-title="' + popoverTitle + '"][data-association=' + pageAssociationId + ']');
-    var iconElement = $('.action[data-title="' + popoverTitle + '"][data-association=' + pageAssociationId + '] span');
-
-    iconElement.removeClass(actionIcon);
-    iconElement.addClass('fa-exclamation');
-    buttonElement.addClass('red');
-
-    setTimeout(function () {
-        iconElement.addClass(actionIcon);
-        iconElement.removeClass('fa-exclamation');
-        buttonElement.removeClass('red');
-    }, 2500);
-}
+        setTimeout(function () {
+            iconElement.addClass(actionIcon);
+            iconElement.removeClass('fa-exclamation');
+            buttonElement.removeClass('red');
+        }, 2500);
+    }
+};
