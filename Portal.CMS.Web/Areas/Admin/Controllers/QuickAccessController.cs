@@ -40,7 +40,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     break;
 
                 case QuickAccessPageType.PageBuilder:
-                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Add", MobileText = "Add", CssClass = "add", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Section", JavaScript = "TogglePanel('section-panel');" }, new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Component", JavaScript = "TogglePanel('component-panel');" }, new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Blank Page", Link = Url.Action("Create", "PageManager", new { area = nameof(Admin) }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-image", Text = "Upload Image", Link = Url.Action("UploadImage", "MediaManager", new { area = nameof(Admin) }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-rss", Text = "Write Blog Post", Link = Url.Action("Create", "BlogManager", new { area = nameof(Admin) }), LaunchModal = true }, } });
+                    model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-plus", DesktopText = "Add", MobileText = "Add", CssClass = "add", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Section", JavaScript = "QuickAccess.TogglePanel('section-panel');" }, new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Component", JavaScript = "QuickAccess.TogglePanel('component-panel');" }, new QuickAccessAction { Icon = "fa fa-plus", Text = "Add Blank Page", Link = Url.Action("Create", "PageManager", new { area = nameof(Admin) }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-image", Text = "Upload Image", Link = Url.Action("UploadImage", "MediaManager", new { area = nameof(Admin) }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-rss", Text = "Write Blog Post", Link = Url.Action("Create", "BlogManager", new { area = nameof(Admin) }), LaunchModal = true }, } });
                     model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-cog", DesktopText = "Page Options", MobileText = "Options", CssClass = "options", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-pencil", Text = "Edit Page", Link = Url.Action("Edit", "PageManager", new { area = nameof(Admin), pageId = contentId }), LaunchModal = true }, new QuickAccessAction { Icon = "fa fa-sort", Text = "Edit Order", JavaScript = "PageBuilder.Order.Edit()" }, } });
                     model.Categories.Add(Content(true, true));
                     model.Categories.Add(AdminButton());
@@ -118,13 +118,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             if (isAdmin)
             {
-                moreContent.Actions.Add(new QuickAccessAction { Icon = "fa fa-list", Text = "Page Manager", JavaScript = "TogglePanel('pages-panel');" });
-                moreContent.Actions.Add(new QuickAccessAction { Icon = "fa fa-paint-brush", Text = "Theme Manager", JavaScript = "TogglePanel('theme-manager-panel');" });
+                moreContent.Actions.Add(new QuickAccessAction { Icon = "fa fa-list", Text = "Page Manager", JavaScript = "QuickAccess.TogglePanel('pages-panel');" });
+                moreContent.Actions.Add(new QuickAccessAction { Icon = "fa fa-paint-brush", Text = "Theme Manager", JavaScript = "QuickAccess.TogglePanel('theme-manager-panel');" });
             }
 
             if (isEditor)
             {
-                moreContent.Actions.Add(new QuickAccessAction { Icon = "fa fa-rss", Text = "Blog Manager", JavaScript = "TogglePanel('blog-manager-panel');" });
+                moreContent.Actions.Add(new QuickAccessAction { Icon = "fa fa-rss", Text = "Blog Manager", JavaScript = "QuickAccess.TogglePanel('blog-manager-panel');" });
             }
 
             return moreContent;
