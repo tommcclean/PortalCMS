@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using SendGrid;
+using SendGrid.Helpers.Mail;
+using System.Threading.Tasks;
 
 namespace Portal.CMS.Web.Architecture.Helpers
 {
