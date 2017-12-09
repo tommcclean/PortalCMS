@@ -224,6 +224,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Architecture\ActionFilters\ActionFilterResponseType.cs" />
+    <Compile Include="Architecture\ActionFilters\ValidateJsonAntiForgeryTokenAttribute.cs" />
     <Compile Include="Architecture\Extensions\FontExtensions.cs" />
     <Compile Include="Architecture\Extensions\ImageExtensions.cs" />
     <Compile Include="Architecture\Extensions\PostExtensions.cs" />

@@ -11,6 +11,7 @@
         $.ajax({
             type: "POST",
             url: "/PageBuilder/Section/Clone",
+            headers: EditablePopover_GenerateAntiForgeryHeader(),
             data: { 'pageAssociationId': @Model.PageAssociationId, 'pageId': pageId },
             success: function () { EditablePopover_OnSuccess("Clone Section", 'fa-clone', '@Model.PageAssociationId'); },
             error: function () { EditablePopover_OnError("Clone Section", 'fa-clone', '@Model.PageAssociationId'); }

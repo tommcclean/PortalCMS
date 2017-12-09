@@ -313,6 +313,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         }
 
         [HttpPost]
+        [ValidateJsonAntiForgeryToken]
         public async Task<HttpStatusCodeResult> Clone(int pageAssociationId, int pageId)
         {
             try
@@ -320,7 +321,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
                 await _associationService.CloneAsync(pageAssociationId, pageId);
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             }

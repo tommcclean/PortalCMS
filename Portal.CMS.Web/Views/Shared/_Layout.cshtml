@@ -41,6 +41,8 @@
     @Html.Partial("_Analytics")
 </head>
 <body class="page-builder">
+    @Html.AntiForgeryToken()
+
     @Html.Partial("_NavBar")
     @RenderBody()
 

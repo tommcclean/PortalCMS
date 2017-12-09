@@ -1,4 +1,14 @@
-﻿function EditablePopover_OnSuccess(popoverTitle, actionIcon, pageAssociationId) {
+﻿function EditablePopover_GenerateAntiForgeryHeader()
+{
+    var token = $('input[name="__RequestVerificationToken"]').val();
+    var headers = {};
+    headers['__RequestVerificationToken'] = token;
+
+    return headers;
+}
+
+
+function EditablePopover_OnSuccess(popoverTitle, actionIcon, pageAssociationId) {
     $('.popover').popover('hide');
 
     var buttonElement = $('.action[data-title="' + popoverTitle + '"][data-association=' + pageAssociationId + ']');
