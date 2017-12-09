@@ -19,10 +19,11 @@
                 var buttonElement = $('.action[data-title="Clone Section"][data-association=@Model.PageAssociationId]');
                 var iconElement = $('.action[data-title="Clone Section"][data-association=@Model.PageAssociationId] span');
 
-                iconElement.removeClass('fa-clone').addClass('fa-check');
+                iconElement.removeClass('fa-clone');
+                iconElement.addClass('fa-check');
                 buttonElement.addClass('green');
 
-                setInterval(function () {
+                setTimeout(function () {
                     iconElement.addClass('fa-clone').removeClass('fa-check');
                     buttonElement.removeClass('green');
                 }, 2000);
