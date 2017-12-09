@@ -95,17 +95,16 @@ var PageBuilder = {
         PartialControls: function () {
             $('.partial-wrapper .action-container').remove();
 
-            var partialButtonsTemplate = '<div class="action-container absolute"><a class="action edit-partial launch-modal" data-title="Edit Partial" href="/PageBuilder/Section/EditPartial?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a></div>';
+            var partialButtonsTemplate =
+                '<div class="action-container absolute">' +
+                    '<a class="action edit-partial launch-modal" data-title="Edit Partial" href="/PageBuilder/Section/EditPartial?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a>' +
+                '</div>';
+
             $(".partial-wrapper").each(function (index) {
                 var associationId = $(this).attr("data-association");
                 partialButtonsMarkup = partialButtonsTemplate.replace(/<associationId>/g, associationId);
 
                 $(this).append(partialButtonsMarkup);
-            });
-        },
-        Containers: function (elementId) {
-            $("#" + elementId).droppable({
-                tolerance: "intersect", activeClass: "ui-state-default", hoverClass: "ui-state-hover", greedy: "true", drop: function (event, ui) { PageBuilder.Edit.DropComponent(this, event, ui); }
             });
         },
         Droppables: function () {
@@ -154,16 +153,14 @@ var PageBuilder = {
             });
         },
         DropComponent: function (control, event, ui) {
-            var newElement = $(ui.draggable).clone();
-
             var componentStamp = new Date().valueOf();
             var sectionId = PageBuilder.Helpers.ExtractSectionId($(control));
-            var newElementId = newElement.attr("id");
 
+            var newElement = $(ui.draggable).clone();
+            var newElementId = newElement.attr("id");
             newElementId = newElementId.replace('<sectionId>', sectionId);
             newElementId = newElementId.replace('<componentStamp>', componentStamp);
             newElement.attr("id", newElementId);
-
             $(control).append(newElement);
 
             $('#' + newElementId).removeClass("ui-draggable");
@@ -184,11 +181,8 @@ var PageBuilder = {
             $('#' + newElementId).replaceWith(newElementContent);
 
             PageBuilder.Initialise.Editor();
+            PageBuilder.Initialise.Droppables();
             InitialiseWidgets();
-
-            if (newElement.hasClass("component-container")) {
-                PageBuilder.Initialise.Containers(newElementId);
-            }
 
             var dataParams = { "pageSectionId": sectionId, "containerElementId": $(control).attr("id"), "elementBody": PageBuilder.Helpers.CleanMarkup(newElementContent) };
             $.ajax({
@@ -308,6 +302,8 @@ var PageBuilder = {
         CleanMarkup: function (htmlContent) {
             htmlContent = htmlContent.replace('mce-content-body', '');
             htmlContent = htmlContent.replace('position: relative;', '');
+            htmlContent = htmlContent.replace('ui-draggable', '');
+            htmlContent = htmlContent.replace('ui-draggable-handle', '');
             htmlContent = htmlContent.replace('ui-droppable', '');
             htmlContent = htmlContent.replace('contenteditable="true" ', '');
 
