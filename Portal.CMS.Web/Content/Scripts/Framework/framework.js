@@ -104,7 +104,19 @@ $(document).ready(function () {
 
     $('body').on('click', '.launch-modal', function (e) {
         e.preventDefault();
-        showModalEditor($(this).data('title'), $(this).attr('href'));
+
+        var modalSubject = $(this).attr('title');
+        var dataTitle = $(this).data("title");
+
+        if (dataTitle !== undefined) {
+            modalSubject = dataTitle;
+        }
+
+        if (modalSubject === undefined) {
+            modalSubject = "Edit";
+        }
+
+        showModalEditor(modalSubject, $(this).attr('href'));
     });
 });
 
