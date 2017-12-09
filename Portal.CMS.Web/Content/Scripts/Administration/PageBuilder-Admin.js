@@ -214,6 +214,7 @@ var PageBuilder = {
     Order: {
         Edit: function () {
             $('section').droppable('disable');
+            $('.section-wrapper').removeClass('animated');
             $('.component-container').droppable('disable');
 
             $('#page-wrapper').toggleClass("zoom");
