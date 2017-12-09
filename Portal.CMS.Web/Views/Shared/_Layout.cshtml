@@ -30,13 +30,13 @@
     @if (UserHelper.IsAdmin)
     {
         @Scripts.Render("~/Resources/JavaScript/Framework/Administration")
+        @Scripts.Render("~/Resources/JavaScript/Bootstrap/Plugins/Popover/Editable")
     }
 
     @if (UserHelper.IsEditor)
     {
         @Scripts.Render("~/Resources/JavaScript/Framework/Editor")
     }
-
     @RenderSection("HEADScripts", false)
     @Html.Partial("_Analytics")
 </head>
