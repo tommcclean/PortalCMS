@@ -16,35 +16,37 @@ $.fn.extend({
     }
 });
 
+$(document).ready(function () {
+    InitialiseEditor();
+});
+
 var PageBuilder = {
-    SectionBuilder: {
-        Order: {
-            Edit: function () {
-                $('section').droppable('disable');
-                $('.component-container').droppable('disable');
+    Order: {
+        Edit: function () {
+            $('section').droppable('disable');
+            $('.component-container').droppable('disable');
 
-                $('#page-wrapper').toggleClass("zoom");
-                $('#page-wrapper').toggleClass("change-order");
-                $('#page-wrapper.change-order').sortable({ placeholder: "ui-state-highlight", helper: 'clone' });
+            $('#page-wrapper').toggleClass("zoom");
+            $('#page-wrapper').toggleClass("change-order");
+            $('#page-wrapper.change-order').sortable({ placeholder: "ui-state-highlight", helper: 'clone' });
 
-                $('.admin-wrapper .button').popover('hide');
-                $('.page-admin-wrapper').fadeOut();
-                $('.action-container.section-order').fadeIn();
+            $('.admin-wrapper .button').popover('hide');
+            $('.page-admin-wrapper').fadeOut();
+            $('.action-container.section-order').fadeIn();
 
-                $('.panel-overlay').slideUp(300);
-                $('.panel-overlay').removeClass('visible');
-            },
-            Save: function () {
-                var associationList = [];
-                var orderId = 1;
-                $("#page-wrapper .sortable").each(function (index) {
-                    var associationId = $(this).attr("data-association");
-                    associationList.push(orderId + "-" + associationId);
-                    orderId += 1;
-                });
-                $('#order-list').val(associationList);
-                $('#order-submit').click();
-            }
+            $('.panel-overlay').slideUp(300);
+            $('.panel-overlay').removeClass('visible');
+        },
+        Save: function () {
+            var associationList = [];
+            var orderId = 1;
+            $("#page-wrapper .sortable").each(function (index) {
+                var associationId = $(this).attr("data-association");
+                associationList.push(orderId + "-" + associationId);
+                orderId += 1;
+            });
+            $('#order-list').val(associationList);
+            $('#order-submit').click();
         }
     }
 };
@@ -83,10 +85,6 @@ function ApplySectionControls() {
         $(this).append(partialButtonsMarkup);
     });
 }
-
-$(document).ready(function () {
-    InitialiseEditor();
-});
 
 function InitialiseEditor() {
     ApplySectionControls();
