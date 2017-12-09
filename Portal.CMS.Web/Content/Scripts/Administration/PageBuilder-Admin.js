@@ -128,6 +128,46 @@ var PageBuilder = {
         }
     },
     Edit: {
+        AddSection: function (selectedSection, pageId)
+        {
+            var sectionTypeId = $(selectedSection).attr("data-sectiontypeid");
+            var sectionContentWrapper = $(selectedSection).find('.section-preview-inner');
+            var sectionTypeContent = $(sectionContentWrapper).html();
+
+            var componentStamp = new Date().valueOf();
+
+            $('#spinner-wrapper').show();
+
+            var dataParams = { "pageId": pageId, "pageSectionTypeId": sectionTypeId, "componentStamp": componentStamp, "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val()
+        };
+        $.ajax({
+            data: dataParams,
+            type: 'POST',
+            cache: false,
+            url: '/PageBuilder/Section/AddSection',
+            success: function (data) {
+                $('#spinner-wrapper').hide();
+
+                if (data.State === false) {
+                    alert("Error: The Page has lost synchronisation. Reloading Page...");
+                    location.reload();
+                }
+
+                var sectionWrapper = "<div id='section-wrapper-" + data.PageSectionId + "' class='section-wrapper admin sortable animated bounce' data-section='" + data.PageSectionId + "' data-association='" + data.PageAssociationId + "'></div>";
+
+                $('#page-wrapper').append(sectionWrapper);
+                $('#section-wrapper-' + data.PageSectionId).append(sectionTypeContent);
+
+                PageBuilder.Helpers.ReplaceChildTokens('section-wrapper-' + data.PageSectionId, data.PageSectionId, componentStamp);
+
+                PageBuilder.Initialise.Editor();
+                InitialiseWidgets();
+                PageBuilder.Initialise.Droppables();
+
+                location.href = '#section-wrapper-' + data.PageSectionId;
+            },
+        });
+        },
         InlineText: function (editorId, editorContent) {
             var elementId = editorId;
             var sectionId = PageBuilder.Helpers.ExtractSectionId($('#' + editorId));
