@@ -40,6 +40,13 @@
         border: 1px solid transparent;
     }
 
+    .action.red
+    {
+        background-color: red;
+        color: white;
+        border: 1px solid transparent;
+    }
+
     .action:first-child
     {
         border-top-left-radius: 8px;

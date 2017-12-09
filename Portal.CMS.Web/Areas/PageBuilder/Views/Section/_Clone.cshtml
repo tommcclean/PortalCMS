@@ -12,38 +12,17 @@
             type: "POST",
             url: "/PageBuilder/Section/Clone",
             data: { 'pageAssociationId': @Model.PageAssociationId, 'pageId': pageId },
-            success: function (data)
-            {
-                $('.popover').popover('hide');
-
-                var buttonElement = $('.action[data-title="Clone Section"][data-association=@Model.PageAssociationId]');
-                var iconElement = $('.action[data-title="Clone Section"][data-association=@Model.PageAssociationId] span');
-
-                iconElement.removeClass('fa-clone');
-                iconElement.addClass('fa-check');
-                buttonElement.addClass('green');
-
-                setTimeout(function () {
-                    iconElement.addClass('fa-clone').removeClass('fa-check');
-                    buttonElement.removeClass('green');
-                }, 2000);
-            },
-            error: function ()
-            {
-                $('#clone-help').removeClass("alert-warning");
-                $('#clone-help').addClass("alert-danger");
-                $('#clone-help').text("An error occured, please try again");
-            }
+            success: function () { EditablePopover_OnSuccess("Clone Section", 'fa-clone', '@Model.PageAssociationId'); },
+            error: function () { EditablePopover_OnError("Clone Section", 'fa-clone', '@Model.PageAssociationId'); }
         });
     }
 </script>
 
 @if (Model.PageListOptions.Any())
 {
-    <div id="clone=spinner" class="spinner" style="display: none;"></div>
-    <div id="clone-help" class="alert alert-warning" role="alert">Clone a Section onto another Page to keep your content synced across all relevant pages</div>
+    <div id="editable-popover-spinner" class="spinner" data-association="@Model.PageAssociationId" style="display: none;"></div>
+    <div id="editable-popover-info" class="alert alert-warning" data-association="@Model.PageAssociationId" role="alert">Clone a Section onto another Page to keep your content synced across all relevant pages</div>
 
-    @Html.ValidationMessageFor(x => x.PageId)
     <div class="control-group">
         @Html.LabelFor(x => x.PageId)
         @Html.DropDownListFor(m => m.PageId, Model.PageListOptions)
