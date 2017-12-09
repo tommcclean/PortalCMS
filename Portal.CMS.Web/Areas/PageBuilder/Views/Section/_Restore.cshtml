@@ -23,9 +23,9 @@
 
                     $('.modal').modal('toggle');
 
-                    InitialiseEditor();
+                    PageBuilder.Initialise.Editor();
                     InitialiseWidgets();
-                    InitialiseDroppables();
+                    PageBuilder.Initialise.Droppables();
 
                     $('html, body').animate({
                         scrollTop: $('#section-@Model.PageSectionId').offset().top - 20

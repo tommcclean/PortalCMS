@@ -32,9 +32,9 @@
 
                     $('#section-wrapper-@Model.SectionId').html(result.SectionMarkup);
 
-                    InitialiseEditor();
+                    PageBuilder.Initialise.Editor();
                     InitialiseWidgets();
-                    InitialiseDroppables();
+                    PageBuilder.Initialise.Droppables();
 
                     $('.modal').modal('toggle');
                 }
