@@ -249,6 +249,7 @@
     <Compile Include="Areas\Forms\Controllers\ContactWidgetsController.cs" />
     <Compile Include="Areas\Forms\FormsAreaRegistration.cs" />
     <Compile Include="Areas\Forms\ViewModels\ContactWidgets\SubmitMessageViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Section\EditAccessViewModel.cs" />
     <Compile Include="Areas\Profile\Controllers\ManageController.cs" />
     <Compile Include="Areas\Profile\ViewModels\Manage\AccountViewModel.cs" />
     <Compile Include="Areas\Profile\ViewModels\Manage\BioViewModel.cs" />
@@ -749,6 +750,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\PageBuilder\Views\Error\SignedOut.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\PageBuilder\Views\Section\_EditAccess.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

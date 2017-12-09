@@ -328,6 +328,36 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         }
 
         [HttpGet]
+        public async Task<ActionResult> EditAccess(int pageAssociationId)
+        {
+            var pageAssociation = await _associationService.GetAsync(pageAssociationId);
+
+            var model = new EditAccessViewModel
+            {
+                PageAssociationId = pageAssociationId,
+                RoleList = await _roleService.GetAsync(),
+                SelectedRoleList = pageAssociation.PageAssociationRoles.Select(x => x.Role.RoleName).ToList()
+            };
+
+            return View("_EditAccess", model);
+        }
+
+        [HttpPost]
+        [ValidateJsonAntiForgeryToken]
+        public async Task<HttpStatusCodeResult> EditAccess(EditAccessViewModel model)
+        {
+            try
+            {
+                await _associationService.EditRolesAsync(model.PageAssociationId, model.SelectedRoleList);
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+            }
+            catch (Exception)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
+        }
+
+        [HttpGet]
         public async Task<ActionResult> Reload(int pageSectionId)
         {
             var pageSection = await _sectionService.GetAsync(pageSectionId);
