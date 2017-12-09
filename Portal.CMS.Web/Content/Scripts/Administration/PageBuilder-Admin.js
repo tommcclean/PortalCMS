@@ -75,6 +75,7 @@ var PageBuilder = {
             var sectionButtonsTemplate =
                 '<div class="action-container absolute">' +
                 '<a class="action edit-markup launch-modal hidden-xs" data-association="<associationId>" data-title="Edit Markup" href="/PageBuilder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a>' +
+                '<a class="action" data-title="Reload Section" onclick="PageBuilder.Helpers.ReloadSection(<sectionId>);"><span class="fa fa-refresh"></span></a>' +
                 '<a class="action launch-modal hidden-xs" data-association="<associationId>" data-title="Backup or Restore a Section" href="/PageBuilder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a>' +
                 '<a class="action launch-popover" data-association="<associationId>" data-title="Clone Section" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/Clone?pageAssociationId=<associationId>"><span class="fa fa-clone"></span></a>' +
                 '<a class="action launch-popover" data-association="<associationId>" data-title="Restrict Access" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/EditAccess?pageAssociationId=<associationId>"><span class="fa fa-lock"></span></a>' +
