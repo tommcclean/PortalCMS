@@ -144,8 +144,6 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
                 PageSectionBackgroundStyle = await _sectionService.DetermineBackgroundStyleAsync(pageSection.PageSectionId),
                 BackgroundType = await _sectionService.DetermineBackgroundTypeAsync(pageSection.PageSectionId),
                 BackgroundColour = await _sectionService.DetermineBackgroundColourAsync(pageSection.PageSectionId),
-                RoleList = await _roleService.GetAsync(),
-                SelectedRoleList = pageAssociation.PageAssociationRoles.Select(x => x.Role.RoleName).ToList()
             };
 
             return View("_EditSection", model);
@@ -179,7 +177,6 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
                 }
 
                 await _sectionService.EditHeightAsync(model.SectionId, model.PageSectionHeight);
-                await _associationService.EditRolesAsync(model.PageAssociationId, model.SelectedRoleList);
 
                 var pageSection = await _sectionService.GetAsync(model.SectionId);
 
