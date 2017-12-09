@@ -360,6 +360,7 @@
     <Content Include="Areas\Profile\Content\Images\admin-icon.png" />
     <Content Include="Areas\Profile\Content\Images\security-image.jpg" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\sample-9.png" />
+    <Content Include="Content\Scripts\Bootstrap\editable.popover.js" />
     <Content Include="Content\Scripts\Framework\PageBuilder-Anonymous.js" />
     <Content Include="Content\Scripts\Administration\ThemeManager-Admin.js" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\sample-help.png" />
