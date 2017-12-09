@@ -27,11 +27,25 @@
     text-align: center;
     font-size: 15px;
     cursor: pointer;
-    -moz-transition: border, background-color, color 0.15s ease-out;
-    -o-transition: border, background-color, color 0.15s ease-out;
-    -webkit-transition: border, background-color, color 0.15s ease-out;
-    transition: border, background-color, color 0.15s ease-out;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
 }
+
+    .action.green
+    {
+        background-color: #004200;
+        color: white;
+        border: 1px solid transparent;
+    }
+
+    .action.red
+    {
+        background-color: red;
+        color: white;
+        border: 1px solid transparent;
+    }
 
     .action:first-child
     {
@@ -50,7 +64,6 @@
     color: white;
     background-color: #191919;
 }
-
 
 @media (max-width: 736px)
 {

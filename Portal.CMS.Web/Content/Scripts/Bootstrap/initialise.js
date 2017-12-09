@@ -8,9 +8,11 @@
     $('[data-toggle="popover"]').popover();
 
     $('body').on('click', function (e) {
-        if ($(e.target).data('toggle') !== 'popover'
-            && $(e.target).parents('.popover.in').length === 0) {
-            $('[data-toggle="popover"]').popover('hide');
+        var toggleAttribute = $(e.target).data('toggle');
+        var hasLaunchPopoverclass = $(e.target).hasClass('launch-popover');
+
+        if (toggleAttribute !== 'popover' && hasLaunchPopoverclass === false && $(e.target).parents('.popover.in').length === 0) {
+            $('.popover').popover('hide');
         }
     });
 

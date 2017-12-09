@@ -7,6 +7,7 @@ using Portal.CMS.Web.Areas.PageBuilder.ViewModels.Section;
 using Portal.CMS.Web.ViewModels.Shared;
 using System;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.SessionState;
@@ -312,12 +313,18 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Clone(CloneViewModel model)
+        [ValidateJsonAntiForgeryToken]
+        public async Task<HttpStatusCodeResult> Clone(int pageAssociationId, int pageId)
         {
-            await _associationService.CloneAsync(model.PageAssociationId, model.PageId);
-
-            return Content("Refresh");
+            try
+            {
+                await _associationService.CloneAsync(pageAssociationId, pageId);
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+            }
+            catch (Exception)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
         }
 
         [HttpGet]

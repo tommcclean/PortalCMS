@@ -82,6 +82,11 @@ label
     font-weight: normal;
 }
 
+.alert
+{
+    padding: 10px;
+}
+
 @media (min-width: 768px)
 {
     .modal-dialog

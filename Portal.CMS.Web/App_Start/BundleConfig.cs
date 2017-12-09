@@ -32,6 +32,8 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Plugins/Popover").Include("~/Content/Scripts/Bootstrap/initialise.js").Include("~/Content/Scripts/Bootstrap/bootstrap-confirmation.min.js"));
 
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Plugins/Popover/Editable").Include("~/Content/Scripts/Bootstrap/editable.popover.js"));
+
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/FancyBox").Include("~/Content/Scripts/FancyBox/jquery.fancybox.js").Include("~/Content/Scripts/FancyBox/jquery.fancybox-thumbs.js").Include("~/Content/Scripts/FancyBox/initialise.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/C3Graphing").Include("~/Content/Scripts/C3Graphing/c3.min.js").Include("~/Content/Scripts/C3Graphing/d3.min.js"));

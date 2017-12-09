@@ -1,15 +1,6 @@
 ﻿"use strict";
 
 $(document).ready(function () {
-    $("a.admin-item, .action").click(function (event) {
-        var fontAwesomeIcon = $(this).find('.fa');
-        fontAwesomeIcon.addClass('fa-spin');
-
-        setTimeout(function () {
-            fontAwesomeIcon.removeClass('fa-spin');
-        }, 2000);
-    });
-
     $(".load-action:not(.loaded)").each(function () {
         var loadingPanel = $(this);
         var url = $(loadingPanel).attr("data-url");
@@ -82,6 +73,35 @@ function TogglePageList() {
 }
 
 $(document).ready(function () {
+    $('body').on('click', '.launch-popover', function (e) {
+        $(this).popover({
+            template:
+            '<div class="popover editable-popover">' +
+            '<div class="arrow"></div>' +
+            '<h3 class="popover-title"></h3>' +
+            '<div class="popover-content"></div>' +
+            '</div>'
+        }).popover('show');
+
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr("data-url"),
+            cache: false,
+            success: function (data) {
+                $('.popover.editable-popover .popover-content').empty();
+                $('.popover.editable-popover .popover-content').parent().addClass("dynamic");
+                $('.popover.editable-popover .popover-content').html(data);
+            },
+            error: function () {
+                alert("ERROR");
+            }
+        });
+    });
+
+    $('body').on('click', '.close-popover', function (e) {
+        $('.popover').popover('hide');
+    });
+
     $('body').on('click', '.launch-modal', function (e) {
         e.preventDefault();
         showModalEditor($(this).data('title'), $(this).attr('href'));
