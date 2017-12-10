@@ -350,6 +350,7 @@
     <Content Include="Areas\Profile\Content\Images\admin-icon.png" />
     <Content Include="Areas\Profile\Content\Images\security-image.jpg" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\sample-9.png" />
+    <Content Include="Content\Plugins\FontAwesome\fontawesome-webfont.svg" />
     <Content Include="Content\Scripts\EditablePopover\editable.popover.js" />
     <Content Include="Content\Scripts\Framework\PageBuilder-Anonymous.js" />
     <Content Include="Content\Scripts\Administration\ThemeManager-Admin.js" />
@@ -376,7 +377,7 @@
     <Content Include="Content\Styles\Framework\framework-text.css" />
     <Content Include="Content\Styles\Framework\pagebuilder-components.css" />
     <Content Include="Content\Styles\Framework\pagebuilder-sections.css" />
-    <Content Include="Content\Scripts\FontAwesome\fontawesome-iconpicker.min.js" />
+    <Content Include="Content\Plugins\FontAwesome\fontawesome-iconpicker.min.js" />
     <Content Include="Content\Scripts\Framework\framework.js" />
     <Content Include="Content\Scripts\Framework\pagination.js" />
     <Content Include="Content\Scripts\Editor\QuickAccess.js" />
@@ -429,8 +430,8 @@
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox-thumbs.js" />
     <Content Include="Content\Scripts\FancyBox\jquery.fancybox.js" />
     <Content Include="Content\Styles\Administration\AppDrawers\app-drawers.css" />
-    <Content Include="Content\Styles\FontAwesome\fontawesome-iconpicker.min.css" />
-    <Content Include="Content\Styles\FontAwesome\font-awesome.min.css" />
+    <Content Include="Content\Plugins\FontAwesome\fontawesome-iconpicker.min.css" />
+    <Content Include="Content\Plugins\FontAwesome\font-awesome.min.css" />
     <Content Include="Content\Styles\Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap.min.js" />
@@ -753,9 +754,18 @@
   <ItemGroup>
     <Content Include="Content\Scripts\EditablePopover\Editable.Popover.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Styles\FontAwesome\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\PageBuilder\Views\Association\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Plugins\FontAwesome\fontawesome-webfont.eot" />
+    <Content Include="Content\Plugins\FontAwesome\fontawesome-webfont.ttf" />
+    <Content Include="Content\Plugins\FontAwesome\fontawesome-webfont.woff" />
+    <Content Include="Content\Plugins\FontAwesome\fontawesome-webfont.woff2" />
+    <Content Include="Content\Plugins\FontAwesome\FontAwesome.otf" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
