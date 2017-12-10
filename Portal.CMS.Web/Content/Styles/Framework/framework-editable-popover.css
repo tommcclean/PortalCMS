@@ -1,19 +1,19 @@
-﻿.popover.editable-popover
+﻿#page-wrapper .popover.editable-popover
 {
     max-width: none;
 }
 
-    .popover.editable-popover .alert
+    #page-wrapper .popover.editable-popover .alert
     {
         margin-bottom: 10px;
     }
 
-    .popover.editable-popover .btn
+    #page-wrapper .popover.editable-popover .btn
     {
         font-size: 15px;
     }
 
-    .popover.editable-popover .popover-content
+    #page-wrapper .popover.editable-popover .popover-content
     {
         position: relative;
         min-width: 350px;
@@ -21,22 +21,22 @@
         padding: 20px;
     }
 
-    .popover.editable-popover .footer
+    #page-wrapper .popover.editable-popover .footer
     {
         text-align: right;
     }
 
-    .popover.editable-popover .btn
+    #page-wrapper .popover.editable-popover .btn
     {
         margin: 0;
     }
 
-        .popover.editable-popover .btn:not(:first-child)
+        #page-wrapper .popover.editable-popover .btn:not(:first-child)
         {
             margin-left: 5px;
         }
 
-#page-wrapper .popover.editable-popover h3
-{
-    font-size: 20px;
-}
+    #page-wrapper .popover.editable-popover h3
+    {
+        font-size: 20px;
+    }
