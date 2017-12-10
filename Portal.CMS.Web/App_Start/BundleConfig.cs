@@ -25,15 +25,13 @@ namespace Portal.CMS.Web
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework/Administration").Include("~/Content/Styles/Administration/*.css", new CssRewriteUrlTransform()));
 
             bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Framework/Editor", "/Content/Scripts/Editor/QuickAccess.js", cdnRootAddress));
-            bundles.Add(new StyleBundle("~/Resources/CSS/Framework/Editor").Include("~/Content/Styles/Administration/AppDrawers/*.css", new CssRewriteUrlTransform()));
+            bundles.Add(GenerateCDNStyleBundle("~/Resources/CSS/Framework/Editor", "~/Content/Styles/Administration/app-drawers.css", cdnRootAddress));
 
             bundles.Add(GenerateCDNScriptBundle("~/Plugins/Popover/Scripts/Editable", "/Content/Scripts/EditablePopover/editable.popover.js", cdnRootAddress));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/ImageSelector").Include("~/Content/Scripts/ImageSelector/*.js"));
             bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/FAQ", "/Content/Scripts/Components/component.expand.js", cdnRootAddress));
             bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/Pagination", "/Content/Scripts/Framework/pagination.js", cdnRootAddress));
             bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/Sliders", "/Content/Scripts/Administration/ThemeManager-Admin.js", cdnRootAddress));
-
         }
 
         private static void RegisterPlugins(BundleCollection bundles, string cdnRootAddress)
@@ -48,7 +46,7 @@ namespace Portal.CMS.Web
             bundles.Add(new StyleBundle("~/Plugins/Bootstrap/Styles", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css").Include("~/Content/Plugins/Bootstrap/bootstrap.min.css", new CssRewriteUrlTransform()));
 
             bundles.Add(GenerateCDNScriptBundle("~/Plugins/Popover/Scripts", "/Content/Scripts/Popover/initialise.js", cdnRootAddress));
-            bundles.Add(GenerateCDNScriptBundle("~/Plugins/Confirmation/Scripts", "/Content/Scripts/Confirmation/bootstrap-confirmation.min.js", cdnRootAddress));
+            bundles.Add(GenerateCDNScriptBundle("~/Plugins/Confirmation/Scripts", "/Content/Plugins/Confirmation/bootstrap-confirmation.min.js", cdnRootAddress));
 
             bundles.Add(new ScriptBundle("~/Plugins/Spectrum/Scripts").Include("~/Content/Plugins/Spectrum/spectrum.min.js").Include("~/Content/Plugins/Spectrum/initialise.js"));
             bundles.Add(GenerateCDNStyleBundle("~/Plugins/Spectrum/Styles", "/Content/Plugins/Spectrum/spectrum.css", cdnRootAddress));
@@ -65,6 +63,8 @@ namespace Portal.CMS.Web
 
             bundles.Add(GenerateCDNStyleBundle("~/Plugins/HoverCSS/Styles", "/Content/Plugins/HoverCSS/hover-min.css", cdnRootAddress));
             bundles.Add(GenerateCDNStyleBundle("~/Plugins/Animate/Styles", "/Content/Plugins/Animate/animate.min.css", cdnRootAddress));
+
+            bundles.Add(GenerateCDNScriptBundle("~/Plugins/ImageSelector/Scripts", "~/Content/Plugins/ImageSelector/imageselector.js", cdnRootAddress));
         }
 
         private static Bundle GenerateCDNScriptBundle(string bundleName, string filePath, string cdnRootAddress)

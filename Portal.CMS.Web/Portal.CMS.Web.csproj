@@ -363,9 +363,6 @@
     <Content Include="Content\Scripts\Administration\MenuBuilder-Admin.js" />
     <Content Include="Content\Plugins\Spectrum\initialise.js" />
     <Content Include="Content\Styles\Administration\action-container.css" />
-    <Content Include="Content\Styles\Administration\AppDrawers\component-preview.css" />
-    <Content Include="Content\Styles\Administration\AppDrawers\section-preview.css" />
-    <Content Include="Content\Styles\Administration\AppDrawers\widget-preview.css" />
     <Content Include="Content\Plugins\Animate\animate.min.css" />
     <Content Include="Content\Styles\Framework\framework-buttons.css" />
     <Content Include="Content\Styles\Framework\framework-editable-popover.css" />
@@ -388,7 +385,7 @@
     <Content Include="Content\Plugins\C3Graphing\c3.min.css" />
     <Content Include="Content\Plugins\C3Graphing\c3.min.js" />
     <Content Include="Content\Plugins\C3Graphing\d3.min.js" />
-    <Content Include="Content\Scripts\Confirmation\bootstrap-confirmation.min.js" />
+    <Content Include="Content\Plugins\Confirmation\bootstrap-confirmation.min.js" />
     <Content Include="Content\Plugins\FancyBox\initialise.js" />
     <Content Include="Content\Plugins\JQueryUI\jquery.ui.touch-punch.min.js" />
     <Content Include="Content\Styles\Framework\framework-images.css" />
@@ -409,7 +406,7 @@
     <Content Include="Areas\PageBuilder\Content\Images\Sample\Sample-5.jpg" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\Sample-6.jpg" />
     <Content Include="Areas\Admin\Content\Images\texture.png" />
-    <Content Include="Content\Scripts\ImageSelector\imageselector.js" />
+    <Content Include="Content\Plugins\ImageSelector\imageselector.js" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\sample-7.jpg" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\Sample-8.jpg" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\small-sample-1.jpg" />
@@ -423,7 +420,7 @@
     <Content Include="Content\Styles\Administration\administration-panel.css" />
     <Content Include="Content\Plugins\FancyBox\jquery.fancybox-thumbs.js" />
     <Content Include="Content\Plugins\FancyBox\jquery.fancybox.js" />
-    <Content Include="Content\Styles\Administration\AppDrawers\app-drawers.css" />
+    <Content Include="Content\Styles\Administration\app-drawers.css" />
     <Content Include="Content\Plugins\FontAwesome\fontawesome-iconpicker.min.css" />
     <Content Include="Content\Plugins\FontAwesome\font-awesome.min.css" />
     <Content Include="Content\Plugins\Bootstrap\bootstrap.min.js" />
@@ -728,9 +725,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\PageBuilder\Views\Section\_EditAccess.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\Scripts\EditablePopover\Editable.Popover.md" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

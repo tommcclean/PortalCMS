@@ -9,7 +9,7 @@
     var userList = Model.UserList.Select(x => new SelectListItem { Value = x.UserId.ToString(), Text = string.Format("{0} {1}", x.GivenName, x.FamilyName) });
 }
 
-@Scripts.Render("~/Resources/JavaScript/Plugins/ImageSelector")
+@Scripts.Render("~/Plugins/ImageSelector/Scripts")
 @Scripts.Render("~/Resources/JavaScript/Plugins/Pagination")
 
 <script type="text/javascript">
