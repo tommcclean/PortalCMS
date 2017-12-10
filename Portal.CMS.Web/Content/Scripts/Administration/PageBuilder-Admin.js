@@ -77,8 +77,8 @@ var PageBuilder = {
                 '<a class="action edit-markup launch-modal hidden-xs" data-association="<associationId>" title="Edit Markup" href="/PageBuilder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a>' +
                 '<a class="action" title="Reload Section" onclick="PageBuilder.Helpers.ReloadSection(<sectionId>);"><span class="fa fa-refresh"></span></a>' +
                 '<a class="action launch-modal hidden-xs" data-association="<associationId>" title="Backup or Restore a Section" href="/PageBuilder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a>' +
-                '<a class="action launch-popover" data-association="<associationId>" title="Clone Section" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/Clone?pageAssociationId=<associationId>"><span class="fa fa-clone"></span></a>' +
-                '<a class="action launch-popover" data-association="<associationId>" title="Restrict Access" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/EditAccess?pageAssociationId=<associationId>"><span class="fa fa-lock"></span></a>' +
+                '<a class="action launch-popover" data-association="<associationId>" title="Clone Section" data-action="Clone Section" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/Clone?pageAssociationId=<associationId>"><span class="fa fa-clone"></span></a>' +
+                '<a class="action launch-popover" data-association="<associationId>" title="Restrict Access" data-action="Restrict Access" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/EditAccess?pageAssociationId=<associationId>"><span class="fa fa-lock"></span></a>' +
                 '<a class="action edit-section launch-modal" data-association="<associationId>" title="Edit Section" href="/PageBuilder/Section/EditSection?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a>' +
                 '</div > ';
 
@@ -128,8 +128,7 @@ var PageBuilder = {
         }
     },
     Edit: {
-        AddSection: function (selectedSection, pageId)
-        {
+        AddSection: function (selectedSection, pageId) {
             var sectionTypeId = $(selectedSection).attr("data-sectiontypeid");
             var sectionContentWrapper = $(selectedSection).find('.section-preview-inner');
             var sectionTypeContent = $(sectionContentWrapper).html();
@@ -138,35 +137,36 @@ var PageBuilder = {
 
             $('#spinner-wrapper').show();
 
-            var dataParams = { "pageId": pageId, "pageSectionTypeId": sectionTypeId, "componentStamp": componentStamp, "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val()
-        };
-        $.ajax({
-            data: dataParams,
-            type: 'POST',
-            cache: false,
-            url: '/PageBuilder/Section/AddSection',
-            success: function (data) {
-                $('#spinner-wrapper').hide();
+            var dataParams = {
+                "pageId": pageId, "pageSectionTypeId": sectionTypeId, "componentStamp": componentStamp, "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val()
+            };
+            $.ajax({
+                data: dataParams,
+                type: 'POST',
+                cache: false,
+                url: '/PageBuilder/Section/AddSection',
+                success: function (data) {
+                    $('#spinner-wrapper').hide();
 
-                if (data.State === false) {
-                    alert("Error: The Page has lost synchronisation. Reloading Page...");
-                    location.reload();
-                }
+                    if (data.State === false) {
+                        alert("Error: The Page has lost synchronisation. Reloading Page...");
+                        location.reload();
+                    }
 
-                var sectionWrapper = "<div id='section-wrapper-" + data.PageSectionId + "' class='section-wrapper admin sortable animated bounce' data-section='" + data.PageSectionId + "' data-association='" + data.PageAssociationId + "'></div>";
+                    var sectionWrapper = "<div id='section-wrapper-" + data.PageSectionId + "' class='section-wrapper admin sortable animated bounce' data-section='" + data.PageSectionId + "' data-association='" + data.PageAssociationId + "'></div>";
 
-                $('#page-wrapper').append(sectionWrapper);
-                $('#section-wrapper-' + data.PageSectionId).append(sectionTypeContent);
+                    $('#page-wrapper').append(sectionWrapper);
+                    $('#section-wrapper-' + data.PageSectionId).append(sectionTypeContent);
 
-                PageBuilder.Helpers.ReplaceChildTokens('section-wrapper-' + data.PageSectionId, data.PageSectionId, componentStamp);
+                    PageBuilder.Helpers.ReplaceChildTokens('section-wrapper-' + data.PageSectionId, data.PageSectionId, componentStamp);
 
-                PageBuilder.Initialise.Editor();
-                InitialiseWidgets();
-                PageBuilder.Initialise.Droppables();
+                    PageBuilder.Initialise.Editor();
+                    InitialiseWidgets();
+                    PageBuilder.Initialise.Droppables();
 
-                location.href = '#section-wrapper-' + data.PageSectionId;
-            },
-        });
+                    location.href = '#section-wrapper-' + data.PageSectionId;
+                },
+            });
         },
         InlineText: function (editorId, editorContent) {
             var elementId = editorId;

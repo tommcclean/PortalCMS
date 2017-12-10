@@ -74,28 +74,40 @@ function TogglePageList() {
 
 $(document).ready(function () {
     $('body').on('click', '.launch-popover', function (e) {
-        $(this).popover({
-            template:
-            '<div class="popover editable-popover">' +
-            '<div class="arrow"></div>' +
-            '<h3 class="popover-title"></h3>' +
-            '<div class="popover-content"></div>' +
-            '</div>'
-        }).popover('show');
+        var actionTitle = $(this).attr("data-action");
+        var associationId = $(this).attr("data-association");
+        var editablePopoverIdentifier = '.popover.editable-popover[data-association=' + associationId + '][data-action="' + actionTitle + '"]';
 
-        $.ajax({
-            type: 'GET',
-            url: $(this).attr("data-url"),
-            cache: false,
-            success: function (data) {
-                $('.popover.editable-popover .popover-content').empty();
-                $('.popover.editable-popover .popover-content').parent().addClass("dynamic");
-                $('.popover.editable-popover .popover-content').html(data);
-            },
-            error: function () {
-                alert("ERROR");
-            }
-        });
+        if ($(editablePopoverIdentifier).length) {
+            $('.popover').popover('destroy')
+        }
+        else {
+            $('.popover').popover('destroy')
+
+            $(this).popover({
+                template:
+                '<div class="popover editable-popover" data-association=' + associationId + ' data-action="' + actionTitle + '">' +
+                '<div class="arrow"></div>' +
+                '<h3 class="popover-title"></h3>' +
+                '<div class="popover-content"></div>' +
+                '</div>'
+            }).popover('show');
+
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr("data-url"),
+                cache: false,
+                success: function (data) {
+                    $(editablePopoverIdentifier + ' .popover-content').empty();
+                    $(editablePopoverIdentifier + ' .popover-content').parent().addClass("dynamic");
+                    $(editablePopoverIdentifier + ' .popover-content').parent().attr("data-association", associationId);
+                    $(editablePopoverIdentifier + ' .popover-content').html(data);
+                },
+                error: function () {
+                    $('.popover').popover('destroy');
+                }
+            });
+        }
     });
 
     $('body').on('click', '.close-popover', function (e) {
