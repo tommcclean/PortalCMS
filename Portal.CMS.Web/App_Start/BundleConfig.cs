@@ -36,7 +36,7 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/FancyBox").Include("~/Content/Scripts/FancyBox/jquery.fancybox.js").Include("~/Content/Scripts/FancyBox/jquery.fancybox-thumbs.js").Include("~/Content/Scripts/FancyBox/initialise.js"));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/C3Graphing").Include("~/Content/Scripts/C3Graphing/c3.min.js").Include("~/Content/Scripts/C3Graphing/d3.min.js"));
+            
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/ImageSelector").Include("~/Content/Scripts/ImageSelector/*.js"));
 
@@ -54,7 +54,7 @@ namespace Portal.CMS.Web
 
             bundles.Add(new StyleBundle("~/Resources/CSS/FancyBox").Include("~/Content/Styles/FancyBox/*.css", new CssRewriteUrlTransform()));
 
-            bundles.Add(new StyleBundle("~/Resources/CSS/C3Graphing").Include("~/Content/Styles/C3Graphing/*.css", new CssRewriteUrlTransform()));
+            
 
             bundles.Add(GenerateCDNStyleBundle("~/Resources/CSS/JQuery/JQueryUI", "/Content/Styles/JQuery/jquery-ui.min.css", cdnRootAddress));
 
@@ -77,8 +77,11 @@ namespace Portal.CMS.Web
 
         private static void RegisterPlugins(BundleCollection bundles, string cdnRootAddress)
         {
-            bundles.Add(new ScriptBundle("~/Plugins/Spectrum/Scripts").Include("~/Content/Plugins/Spectrum/spectrum.min.js").Include("~/Content/Scripts/Spectrum/initialise.js"));
+            bundles.Add(new ScriptBundle("~/Plugins/Spectrum/Scripts").Include("~/Content/Plugins/Spectrum/spectrum.min.js").Include("~/Content/Plugins/Spectrum/initialise.js"));
             bundles.Add(GenerateCDNStyleBundle("~/Plugins/Spectrum/Styles", "/Content/Plugins/Spectrum/spectrum.css", cdnRootAddress));
+
+            bundles.Add(new ScriptBundle("~/Plugins/C3Graphing/Scripts").Include("~/Content/Plugins/C3Graphing/c3.min.js").Include("~/Content/Plugins/C3Graphing/d3.min.js"));
+            bundles.Add(new StyleBundle("~/Plugins/C3Graphing/Styles").Include("~/Content/Plugins/C3Graphing/*.css", new CssRewriteUrlTransform()));
         }
 
         private static Bundle GenerateCDNScriptBundle(string bundleName, string filePath, string cdnRootAddress)

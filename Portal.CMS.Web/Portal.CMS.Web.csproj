@@ -384,12 +384,9 @@
     <Content Include="Content\Scripts\JQuery\jquery-2.2.1.min.js" />
     <Content Include="Content\Scripts\Administration\PageBuilder-Admin.js" />
     <Content Include="Content\Plugins\Spectrum\spectrum.min.js" />
-    <Content Include="Content\Styles\C3Graphing\c3.css" />
-    <Content Include="Content\Styles\C3Graphing\c3.min.css">
-      <DependentUpon>c3.css</DependentUpon>
-    </Content>
-    <Content Include="Content\Scripts\C3Graphing\c3.min.js" />
-    <Content Include="Content\Scripts\C3Graphing\d3.min.js" />
+    <Content Include="Content\Plugins\C3Graphing\c3.css" />
+    <Content Include="Content\Plugins\C3Graphing\c3.min.js" />
+    <Content Include="Content\Plugins\C3Graphing\d3.min.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-confirmation.min.js" />
     <Content Include="Content\Scripts\FancyBox\initialise.js" />
     <Content Include="Content\Styles\FancyBox\jquery.fancybox-thumbs.min.css">
