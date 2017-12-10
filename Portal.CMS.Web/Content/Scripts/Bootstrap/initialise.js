@@ -12,7 +12,8 @@
         var hasLaunchPopoverclass = $(e.target).hasClass('launch-popover');
 
         if (toggleAttribute !== 'popover' && hasLaunchPopoverclass === false && $(e.target).parents('.popover.in').length === 0) {
-            EditablePopover.Destroy();
+            $('.popover.editable-popover').popover('destroy');
+            $('[data-toggle="popover"]').popover('hide');
         }
     });
 

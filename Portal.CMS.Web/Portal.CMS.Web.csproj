@@ -385,7 +385,7 @@
     <Content Include="Content\Scripts\JQuery\jquery-2.2.1.min.js" />
     <Content Include="Content\Scripts\Administration\PageBuilder-Admin.js" />
     <Content Include="Content\Plugins\Spectrum\spectrum.min.js" />
-    <Content Include="Content\Plugins\C3Graphing\c3.css" />
+    <Content Include="Content\Plugins\C3Graphing\c3.min.css" />
     <Content Include="Content\Plugins\C3Graphing\c3.min.js" />
     <Content Include="Content\Plugins\C3Graphing\d3.min.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-confirmation.min.js" />
@@ -658,9 +658,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\MenuItem\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\Plugins\Spectrum\spectrum.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_RenderPage.cshtml" />

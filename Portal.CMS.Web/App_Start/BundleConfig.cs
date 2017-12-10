@@ -59,7 +59,7 @@ namespace Portal.CMS.Web
             bundles.Add(GenerateCDNStyleBundle("~/Plugins/Spectrum/Styles", "/Content/Plugins/Spectrum/spectrum.css", cdnRootAddress));
 
             bundles.Add(new ScriptBundle("~/Plugins/C3Graphing/Scripts").Include("~/Content/Plugins/C3Graphing/c3.min.js").Include("~/Content/Plugins/C3Graphing/d3.min.js"));
-            bundles.Add(GenerateCDNStyleBundle("~/Plugins/C3Graphing/Styles", "/Content/Plugins/C3Graphing/c3.css", cdnRootAddress));
+            bundles.Add(GenerateCDNStyleBundle("~/Plugins/C3Graphing/Styles", "/Content/Plugins/C3Graphing/c3.min.css", cdnRootAddress));
 
             bundles.Add(GenerateCDNScriptBundle("~/Plugins/FontAwesome/Scripts", "/Content/Plugins/FontAwesome/fontawesome-iconpicker.min.js", cdnRootAddress));
             bundles.Add(GenerateCDNStyleBundle("~/Plugins/FontAwesome/Styles", "/Content/Plugins/FontAwesome/font-awesome.min.css", cdnRootAddress));
