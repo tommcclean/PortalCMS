@@ -5,10 +5,10 @@
     var fontList = Model.FontList.Select(x => new SelectListItem { Value = x.FontId.ToString(), Text = x.FontName });
 }
 
-@Styles.Render("~/Resources/CSS/JQuery/JQueryUI")
+@Styles.Render("~/Plugins/JQueryUI/Styles")
 @Styles.Render("~/Plugins/Spectrum/Styles")
 @Scripts.Render("~/Plugins/Spectrum/Scripts")
-@Scripts.Render("~/Resources/JavaScript/JQueryUI")
+@Scripts.Render("~/Plugins/JQueryUI/Scripts")
 @Scripts.Render("~/Resources/JavaScript/Plugins/Sliders")
 
 @using (Html.BeginForm("Create", "ThemeManager", FormMethod.Post))

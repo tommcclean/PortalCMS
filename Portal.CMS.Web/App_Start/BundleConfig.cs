@@ -12,49 +12,44 @@ namespace Portal.CMS.Web
 
             var cdnRootAddress = SettingHelper.Get("CDN Address");
 
+            RegisterFramework(bundles, cdnRootAddress);
+            RegisterPlugins(bundles, cdnRootAddress);
+        }
+
+        private static void RegisterFramework(BundleCollection bundles, string cdnRootAddress)
+        {
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework").Include("~/Content/Scripts/Framework/*.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework/Administration").Include("~/Content/Scripts/Administration/*.js"));
-
-            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Framework/Editor", "/Content/Scripts/Editor/QuickAccess.js", cdnRootAddress));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js").Include("~/Content/Scripts/Bootstrap/bootstrap.min.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/JQueryUI", "https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js").Include("~/Content/Scripts/JQuery/jquery.ui.min.js"));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/JQuery", "https://code.jquery.com/jquery-2.2.1.min.js").Include("~/Content/Scripts/JQuery/jquery-2.2.1.min.js"));
-
-            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/JQueryTouch", "/Content/Scripts/JQuery/jquery.ui.touch-punch.min.js", cdnRootAddress));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Plugins/Popover").Include("~/Content/Scripts/Bootstrap/initialise.js").Include("~/Content/Scripts/Bootstrap/bootstrap-confirmation.min.js"));
-
-            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Bootstrap/Plugins/Popover/Editable", "/Content/Scripts/EditablePopover/editable.popover.js", cdnRootAddress));
-           
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/ImageSelector").Include("~/Content/Scripts/ImageSelector/*.js"));
-
-            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/FAQ", "/Content/Scripts/Components/component.expand.js", cdnRootAddress));
-
-            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/Pagination", "/Content/Scripts/Framework/pagination.js", cdnRootAddress));
-
-            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/Sliders", "/Content/Scripts/Administration/ThemeManager-Admin.js", cdnRootAddress));
-
-            bundles.Add(new StyleBundle("~/Resources/CSS/Bootstrap", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css").Include("~/Content/Styles/Bootstrap/bootstrap.min.css", new CssRewriteUrlTransform()));         
-
-            bundles.Add(GenerateCDNStyleBundle("~/Resources/CSS/JQuery/JQueryUI", "/Content/Styles/JQuery/jquery-ui.min.css", cdnRootAddress));
-
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework").Include("~/Content/Styles/Framework/*.css", new CssRewriteUrlTransform()));
 
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework/Administration").Include("~/Content/Scripts/Administration/*.js"));
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework/Administration").Include("~/Content/Styles/Administration/*.css", new CssRewriteUrlTransform()));
 
+            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Framework/Editor", "/Content/Scripts/Editor/QuickAccess.js", cdnRootAddress));
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework/Editor").Include("~/Content/Styles/Administration/AppDrawers/*.css", new CssRewriteUrlTransform()));
 
-            
+            bundles.Add(GenerateCDNScriptBundle("~/Plugins/Popover/Scripts/Editable", "/Content/Scripts/EditablePopover/editable.popover.js", cdnRootAddress));
 
-            RegisterPlugins(bundles, cdnRootAddress);
+            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/ImageSelector").Include("~/Content/Scripts/ImageSelector/*.js"));
+            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/FAQ", "/Content/Scripts/Components/component.expand.js", cdnRootAddress));
+            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/Pagination", "/Content/Scripts/Framework/pagination.js", cdnRootAddress));
+            bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/Sliders", "/Content/Scripts/Administration/ThemeManager-Admin.js", cdnRootAddress));
+
         }
 
         private static void RegisterPlugins(BundleCollection bundles, string cdnRootAddress)
         {
+            bundles.Add(new ScriptBundle("~/Plugins/JQuery/Scripts", "https://code.jquery.com/jquery-2.2.1.min.js").Include("~/Content/Plugins/JQuery/jquery-2.2.1.min.js"));
+            bundles.Add(GenerateCDNScriptBundle("~/Plugins/Touch/Scripts", "/Content/Plugins/JQueryUI/jquery.ui.touch-punch.min.js", cdnRootAddress));
+
+            bundles.Add(new ScriptBundle("~/Plugins/JQueryUI/Scripts", "https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js").Include("~/Content/Plugins/JQueryUI/jquery.ui.min.js"));
+            bundles.Add(GenerateCDNStyleBundle("~/Plugins/JQueryUI/Styles", "/Content/Plugins/JQueryUI/jquery-ui.min.css", cdnRootAddress));
+
+            bundles.Add(new ScriptBundle("~/Plugins/Bootstrap/Scripts", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js").Include("~/Content/Plugins/Bootstrap/bootstrap.min.js"));
+            bundles.Add(new StyleBundle("~/Plugins/Bootstrap/Styles", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css").Include("~/Content/Plugins/Bootstrap/bootstrap.min.css", new CssRewriteUrlTransform()));
+
+            bundles.Add(GenerateCDNScriptBundle("~/Plugins/Popover/Scripts", "/Content/Scripts/Popover/initialise.js", cdnRootAddress));
+            bundles.Add(GenerateCDNScriptBundle("~/Plugins/Confirmation/Scripts", "/Content/Scripts/Confirmation/bootstrap-confirmation.min.js", cdnRootAddress));
+
             bundles.Add(new ScriptBundle("~/Plugins/Spectrum/Scripts").Include("~/Content/Plugins/Spectrum/spectrum.min.js").Include("~/Content/Plugins/Spectrum/initialise.js"));
             bundles.Add(GenerateCDNStyleBundle("~/Plugins/Spectrum/Styles", "/Content/Plugins/Spectrum/spectrum.css", cdnRootAddress));
 

@@ -11,12 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
 
     @RenderSection("Styles", false)
-    @Styles.Render("~/Resources/CSS/Bootstrap")
+    @Styles.Render("~/Plugins/Bootstrap/Styles")
     @Styles.Render("~/Plugins/FontAwesome/Styles")
     @Styles.Render("~/Resources/CSS/Framework")
 
-    @Scripts.Render("~/Resources/JavaScript/JQuery")
-    @Scripts.Render("~/Resources/JavaScript/JQueryUI")
+    @Scripts.Render("~/Plugins/JQuery/Scripts")
+    @Scripts.Render("~/Plugins/JQueryUI/Scripts")
     @RenderSection("HEADScripts", false)
     @Html.Partial("_Analytics")
 </head>
@@ -25,8 +25,7 @@
 
     @RenderBody()
 
-    @Scripts.Render("~/Resources/JavaScript/Bootstrap")
-    @Scripts.Render("~/Resources/JavaScript/Bootstrap/Plugins/Popover")
+    @Scripts.Render("~/Plugins/Bootstrap/Scripts")
     @Scripts.Render("~/Resources/JavaScript/Framework")
     @RenderSection("DOMScripts", false)
 </body>

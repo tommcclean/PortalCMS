@@ -6,7 +6,7 @@
     <meta name="description" content="@SettingHelper.Get("Description Meta Tag")">
 
     @RenderSection("Styles", false)
-    @Styles.Render("~/Resources/CSS/Bootstrap")
+    @Styles.Render("~/Plugins/Bootstrap/Styles")
     @Styles.Render("~/Plugins/FontAwesome/Styles")
     @Styles.Render("~/Resources/CSS/Framework")
     @Styles.Render("~/Plugins/HoverCSS/Styles")
@@ -24,14 +24,14 @@
 
     <link href="@Url.Action("Render", "Theme", new { area = "PageBuilder" })" rel="stylesheet" type="text/css" />
 
-    @Scripts.Render("~/Resources/JavaScript/JQuery")
-    @Scripts.Render("~/Resources/JavaScript/JQueryUI")
+    @Scripts.Render("~/Plugins/JQuery/Scripts")
+    @Scripts.Render("~/Plugins/JQueryUI/Scripts")
     @Scripts.Render("~/Resources/JavaScript/Plugins/FAQ")
 
     @if (UserHelper.IsAdmin)
     {
         @Scripts.Render("~/Resources/JavaScript/Framework/Administration")
-        @Scripts.Render("~/Resources/JavaScript/Bootstrap/Plugins/Popover/Editable")
+        @Scripts.Render("~/Plugins/Popover/Scripts/Editable")
     }
 
     @if (UserHelper.IsEditor)
@@ -47,8 +47,9 @@
     @Html.Partial("_NavBar")
     @RenderBody()
 
-    @Scripts.Render("~/Resources/JavaScript/Bootstrap")
-    @Scripts.Render("~/Resources/JavaScript/Bootstrap/Plugins/Popover")
+    @Scripts.Render("~/Plugins/Bootstrap/Scripts")
+    @Scripts.Render("~/Plugins/Popover/Scripts")
+    @Scripts.Render("~/Plugins/Confirmation/Scripts")
     @Scripts.Render("~/Resources/JavaScript/Framework")
     @RenderSection("DOMScripts", false)
 </body>
