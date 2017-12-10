@@ -420,7 +420,7 @@
     <Content Include="Content\Styles\Administration\administration-panel.css" />
     <Content Include="Content\Plugins\FancyBox\jquery.fancybox-thumbs.js" />
     <Content Include="Content\Plugins\FancyBox\jquery.fancybox.js" />
-    <Content Include="Content\Styles\Administration\app-drawers.css" />
+    <Content Include="Content\Styles\AppDrawers\app-drawers.css" />
     <Content Include="Content\Plugins\FontAwesome\fontawesome-iconpicker.min.css" />
     <Content Include="Content\Plugins\FontAwesome\font-awesome.min.css" />
     <Content Include="Content\Plugins\Bootstrap\bootstrap.min.js" />

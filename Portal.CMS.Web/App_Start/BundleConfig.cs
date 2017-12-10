@@ -25,7 +25,7 @@ namespace Portal.CMS.Web
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework/Administration").Include("~/Content/Styles/Administration/*.css", new CssRewriteUrlTransform()));
 
             bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Framework/Editor", "/Content/Scripts/Editor/QuickAccess.js", cdnRootAddress));
-            bundles.Add(GenerateCDNStyleBundle("~/Resources/CSS/Framework/Editor", "~/Content/Styles/Administration/app-drawers.css", cdnRootAddress));
+            bundles.Add(GenerateCDNStyleBundle("~/Resources/CSS/Framework/Editor", "/Content/Styles/AppDrawers/app-drawers.css", cdnRootAddress));
 
             bundles.Add(GenerateCDNScriptBundle("~/Plugins/Popover/Scripts/Editable", "/Content/Scripts/EditablePopover/editable.popover.js", cdnRootAddress));
 
@@ -64,7 +64,7 @@ namespace Portal.CMS.Web
             bundles.Add(GenerateCDNStyleBundle("~/Plugins/HoverCSS/Styles", "/Content/Plugins/HoverCSS/hover-min.css", cdnRootAddress));
             bundles.Add(GenerateCDNStyleBundle("~/Plugins/Animate/Styles", "/Content/Plugins/Animate/animate.min.css", cdnRootAddress));
 
-            bundles.Add(GenerateCDNScriptBundle("~/Plugins/ImageSelector/Scripts", "~/Content/Plugins/ImageSelector/imageselector.js", cdnRootAddress));
+            bundles.Add(GenerateCDNScriptBundle("~/Plugins/ImageSelector/Scripts", "/Content/Plugins/ImageSelector/imageselector.js", cdnRootAddress));
         }
 
         private static Bundle GenerateCDNScriptBundle(string bundleName, string filePath, string cdnRootAddress)
