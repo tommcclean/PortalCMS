@@ -349,6 +349,8 @@ var PageBuilder = {
             htmlContent = htmlContent.replace('ui-draggable-handle', '');
             htmlContent = htmlContent.replace('ui-droppable', '');
             htmlContent = htmlContent.replace('contenteditable="true" ', '');
+            htmlContent = htmlContent.replace('class=""', '');
+            htmlContent = htmlContent.replace('style=""', '');
 
             return htmlContent;
         }

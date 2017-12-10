@@ -14,6 +14,10 @@
 
 <script type="text/javascript">
     $('#customForm').submit(function () {
+        var markup = $('textarea[name="PageSectionBody"').val();
+        markup = PageBuilder.Helpers.CleanMarkup(markup);
+        $('textarea[name="PageSectionBody"').val(markup)
+
         $.ajax({
             url: this.action,
             type: this.method,
