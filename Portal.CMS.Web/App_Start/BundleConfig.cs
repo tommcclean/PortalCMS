@@ -48,7 +48,7 @@ namespace Portal.CMS.Web
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework/Editor").Include("~/Content/Styles/Administration/AppDrawers/*.css", new CssRewriteUrlTransform()));
 
-            bundles.Add(new StyleBundle("~/Resources/CSS/Plugins/Effects").Include("~/Content/Styles/Animate/animate.min.css").Include("~/Content/Styles/Hover/hover-min.css"));
+            
 
             RegisterPlugins(bundles, cdnRootAddress);
         }
@@ -67,6 +67,9 @@ namespace Portal.CMS.Web
 
             bundles.Add(new ScriptBundle("~/Plugins/FancyBox/Scripts").Include("~/Content/Plugins/FancyBox/jquery.fancybox.js").Include("~/Content/Plugins/FancyBox/jquery.fancybox-thumbs.js").Include("~/Content/Plugins/FancyBox/initialise.js"));
             bundles.Add(new StyleBundle("~/Plugins/FancyBox/Styles").Include("~/Content/Plugins/FancyBox/*.css", new CssRewriteUrlTransform()));
+
+            bundles.Add(GenerateCDNStyleBundle("~/Plugins/HoverCSS/Styles", "/Content/Plugins/HoverCSS/hover-min.css", cdnRootAddress));
+            bundles.Add(GenerateCDNStyleBundle("~/Plugins/Animate/Styles", "/Content/Plugins/Animate/animate.min.css", cdnRootAddress));
         }
 
         private static Bundle GenerateCDNScriptBundle(string bundleName, string filePath, string cdnRootAddress)
