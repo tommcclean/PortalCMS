@@ -63,7 +63,7 @@ namespace Portal.CMS.Services.PageBuilder
 
             if (pageAssociation.PageSection != null)
             {
-                if (! await _context.PageAssociations.AnyAsync(x => x.PageSectionId == pageAssociation.PageSectionId))
+                if (!await _context.PageAssociations.AnyAsync(x => x.PageSectionId == pageAssociation.PageSectionId))
                 {
                     var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageAssociation.PageSectionId);
 

@@ -73,8 +73,6 @@ function TogglePageList() {
 }
 
 $(document).ready(function () {
-
-
     $('body').on('click', '.launch-modal', function (e) {
         e.preventDefault();
 
