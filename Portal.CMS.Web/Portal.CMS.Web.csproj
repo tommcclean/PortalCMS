@@ -396,8 +396,6 @@
       <DependentUpon>jquery.fancybox-thumbs.css</DependentUpon>
     </Content>
     <Content Include="Content\Scripts\JQuery\jquery.ui.touch-punch.min.js" />
-    <Content Include="Content\Scripts\TinyMCE\initialise.js" />
-    <Content Include="Content\Scripts\TinyMCE\tinymce.min.js" />
     <Content Include="Content\Styles\Framework\framework-images.css" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\icon-1.png" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\icon-2.png" />
@@ -758,10 +756,7 @@
   <ItemGroup>
     <Content Include="Content\Scripts\EditablePopover\Editable.Popover.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Scripts\Spectrum\" />
-    <Folder Include="Content\Styles\Spectrum\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Areas\PageBuilder\Views\Association\Delete.cshtml" />
   </ItemGroup>
