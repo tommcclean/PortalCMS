@@ -360,7 +360,7 @@
     <Content Include="Areas\PageBuilder\Content\Images\Sample\texture-notebook.png" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\texture-office.png" />
     <Content Include="Content\Scripts\Administration\MenuBuilder-Admin.js" />
-    <Content Include="Content\Scripts\Spectrum\initialise.js" />
+    <Content Include="Content\Plugins\Spectrum\initialise.js" />
     <Content Include="Content\Styles\Administration\action-container.css" />
     <Content Include="Content\Styles\Administration\AppDrawers\component-preview.css" />
     <Content Include="Content\Styles\Administration\AppDrawers\section-preview.css" />
@@ -383,7 +383,7 @@
     <Content Include="Content\Scripts\JQuery\jquery-ui.min.js" />
     <Content Include="Content\Scripts\JQuery\jquery-2.2.1.min.js" />
     <Content Include="Content\Scripts\Administration\PageBuilder-Admin.js" />
-    <Content Include="Content\Scripts\Spectrum\spectrum.js" />
+    <Content Include="Content\Plugins\Spectrum\spectrum.min.js" />
     <Content Include="Content\Styles\C3Graphing\c3.css" />
     <Content Include="Content\Styles\C3Graphing\c3.min.css">
       <DependentUpon>c3.css</DependentUpon>
@@ -452,7 +452,7 @@
     <Content Include="Content\Styles\FancyBox\jquery.fancybox.css" />
     <Content Include="Content\Styles\Hover\hover-min.css" />
     <Content Include="Content\Styles\JQuery\jquery-ui.min.css" />
-    <Content Include="Content\Styles\Spectrum\spectrum.css" />
+    <Content Include="Content\Plugins\Spectrum\spectrum.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
@@ -678,7 +678,7 @@
     <Content Include="Areas\Admin\Views\MenuItem\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Scripts\Spectrum\spectrum.md" />
+    <Content Include="Content\Plugins\Spectrum\spectrum.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_RenderPage.cshtml" />
@@ -758,7 +758,10 @@
   <ItemGroup>
     <Content Include="Content\Scripts\EditablePopover\Editable.Popover.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Scripts\Spectrum\" />
+    <Folder Include="Content\Styles\Spectrum\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\PageBuilder\Views\Association\Delete.cshtml" />
   </ItemGroup>

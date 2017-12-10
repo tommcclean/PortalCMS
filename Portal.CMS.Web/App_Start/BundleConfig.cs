@@ -42,8 +42,6 @@ namespace Portal.CMS.Web
 
             bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/FAQ", "/Content/Scripts/Components/component.expand.js", cdnRootAddress));
 
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/Spectrum").Include("~/Content/Scripts/Spectrum/spectrum.js").Include("~/Content/Scripts/Spectrum/initialise.js"));
-
             bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/Pagination", "/Content/Scripts/Framework/pagination.js", cdnRootAddress));
 
             bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/Sliders", "/Content/Scripts/Administration/ThemeManager-Admin.js", cdnRootAddress));
@@ -70,11 +68,17 @@ namespace Portal.CMS.Web
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework/Editor").Include("~/Content/Styles/Administration/AppDrawers/*.css", new CssRewriteUrlTransform()));
 
-            bundles.Add(GenerateCDNStyleBundle("~/Resources/CSS/Spectrum", "/Content/Styles/Spectrum/spectrum.css", cdnRootAddress));
-
             bundles.Add(new StyleBundle("~/Resources/CSS/Plugins/Effects").Include("~/Content/Styles/Animate/animate.min.css").Include("~/Content/Styles/Hover/hover-min.css"));
 
             #endregion Style Bundles
+
+            RegisterPlugins(bundles, cdnRootAddress);
+        }
+
+        private static void RegisterPlugins(BundleCollection bundles, string cdnRootAddress)
+        {
+            bundles.Add(new ScriptBundle("~/Plugins/Spectrum/Scripts").Include("~/Content/Plugins/Spectrum/spectrum.min.js").Include("~/Content/Scripts/Spectrum/initialise.js"));
+            bundles.Add(GenerateCDNStyleBundle("~/Plugins/Spectrum/Styles", "/Content/Plugins/Spectrum/spectrum.css", cdnRootAddress));
         }
 
         private static Bundle GenerateCDNScriptBundle(string bundleName, string filePath, string cdnRootAddress)
