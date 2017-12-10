@@ -55,22 +55,6 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int pageAssociationId)
-        {
-            try
-            {
-                await _associationService.DeleteAsync(pageAssociationId);
-
-                return Json(new { State = true });
-            }
-            catch (Exception)
-            {
-                return Json(new { State = false });
-            }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<JsonResult> AddSection(int pageId, int pageSectionTypeId, string componentStamp)
         {
             try
@@ -346,6 +330,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             try
             {
                 await _associationService.EditRolesAsync(model.PageAssociationId, model.SelectedRoleList);
+
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
             catch (Exception)

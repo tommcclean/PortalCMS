@@ -74,12 +74,13 @@ var PageBuilder = {
 
             var sectionButtonsTemplate =
                 '<div class="action-container absolute">' +
-                '<a class="action edit-markup launch-modal hidden-xs" data-association="<associationId>" title="Edit Markup" href="/PageBuilder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a>' +
-                '<a class="action" title="Reload Section" onclick="PageBuilder.Helpers.ReloadSection(<sectionId>);"><span class="fa fa-refresh"></span></a>' +
-                '<a class="action launch-modal hidden-xs" data-association="<associationId>" title="Backup or Restore a Section" href="/PageBuilder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a>' +
-                '<a class="action launch-popover" data-association="<associationId>" title="Clone Section" data-action="Clone Section" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/Clone?pageAssociationId=<associationId>"><span class="fa fa-clone"></span></a>' +
-                '<a class="action launch-popover" data-association="<associationId>" title="Restrict Access" data-action="Restrict Access" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/EditAccess?pageAssociationId=<associationId>"><span class="fa fa-lock"></span></a>' +
-                '<a class="action edit-section launch-modal" data-association="<associationId>" title="Edit Section" href="/PageBuilder/Section/EditSection?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a>' +
+                    '<a class="action launch-modal hidden-xs" data-association="<associationId>" title="Edit Markup" href="/PageBuilder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a>' +
+                    '<a class="action" title="Reload Section" onclick="PageBuilder.Helpers.ReloadSection(<sectionId>);"><span class="fa fa-refresh"></span></a>' +
+                    '<a class="action launch-modal hidden-xs" data-association="<associationId>" title="Backup or Restore a Section" href="/PageBuilder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a>' +
+                    '<a class="action launch-popover" data-association="<associationId>" title="Clone Section" data-action="Clone Section" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/Clone?pageAssociationId=<associationId>"><span class="fa fa-clone"></span></a>' +
+                    '<a class="action launch-popover" data-association="<associationId>" title="Restrict Access" data-action="Restrict Access" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/EditAccess?pageAssociationId=<associationId>"><span class="fa fa-lock"></span></a>' +
+                    '<a class="action edit-section launch-modal" data-association="<associationId>" title="Edit Section" href="/PageBuilder/Section/EditSection?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a>' +
+                    '<a class="action launch-popover" data-association="<associationId>" title="Delete Section" data-action="Delete Section" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Association/Delete?pageAssociationId=<associationId>"><span class="fa fa-trash"></span></a>' +
                 '</div > ';
 
             sectionButtonsTemplate = sectionButtonsTemplate.replace(/<spinner>/g, spinnerMarkup);

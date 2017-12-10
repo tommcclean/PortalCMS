@@ -51,29 +51,6 @@
         return false;
     });
 
-    function Delete()
-    {
-        $('#section-wrapper-@Model.SectionId').slideUp();
-
-        var dataParams = { "pageAssociationId": @Model.PageAssociationId, "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
-
-        $.ajax({
-            data: dataParams,
-            type: 'POST',
-            cache: false,
-            url: '@Url.Action("Delete", "Section", new { area = "PageBuilder" })',
-            success: function (data) {
-                if (data.State === false)
-                {
-                    alert("Error: The document has lost synchronisation. Reloading document...");
-                    location.reload();
-                }
-            },
-        });
-
-        DestroySpectrum();
-    }
-
     function DestroySpectrum()
     {
         $(".spectrum").spectrum("destroy");
@@ -168,7 +145,6 @@
 
     <div class="footer">
         <button class="btn primary"><span class="fa fa-check"></span><span class="hidden-xs">Save</span></button>
-        <button class="btn delete" onclick="Delete();" data-dismiss="modal"><span class="fa fa-trash"></span><span class="hidden-xs">Delete</span></button>
         <button class="btn" data-dismiss="modal" onclick="DestroySpectrum();"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></button>
     </div>
 }

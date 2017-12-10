@@ -1,0 +1,38 @@
+﻿@model int
+@{
+    Layout = "";
+}
+
+<script type="text/javascript">
+    function submit()
+    {
+        $('.section-wrapper[data-association=' + @Model + ']').slideUp();
+        EditablePopover.Destroy();
+
+        $.ajax({
+            type: "DELETE",
+            url: "/PageBuilder/Association/Delete",
+            headers: EditablePopover.GenerateAntiForgeryHeader(),
+            data: { 'pageAssociationId': @Model },
+            success: function ()
+            {
+
+            },
+            error: function ()
+            {
+                alert("Error: The document has lost synchronisation. Reloading document...");
+                location.reload();
+            }
+        });
+    }
+</script>
+
+<form id="edit-access-@Model">
+    <div id="editable-popover-spinner" class="spinner" data-association="@Model" style="display: none;"></div>
+    <div id="editable-popover-info" class="alert alert-danger" data-association="@Model" role="alert">Deleting a Section is permanent, if the Section does not appear on any other pages it cannot be retrieved.</div>
+</form>
+
+<div class="footer">
+    <div class="btn delete" onclick="submit();"><span class="fa fa-trash"></span><span class="hidden-xs">Delete</span></div>
+    <div class="btn" onclick="EditablePopover.Destroy();"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></div>
+</div>

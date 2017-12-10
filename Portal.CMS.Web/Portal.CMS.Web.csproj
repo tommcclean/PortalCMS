@@ -249,6 +249,7 @@
     <Compile Include="Areas\Forms\Controllers\ContactWidgetsController.cs" />
     <Compile Include="Areas\Forms\FormsAreaRegistration.cs" />
     <Compile Include="Areas\Forms\ViewModels\ContactWidgets\SubmitMessageViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\Controllers\AssociationController.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Section\EditAccessViewModel.cs" />
     <Compile Include="Areas\Profile\Controllers\ManageController.cs" />
     <Compile Include="Areas\Profile\ViewModels\Manage\AccountViewModel.cs" />
@@ -756,6 +757,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Scripts\EditablePopover\Editable.Popover.md" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Areas\PageBuilder\Views\Association\Delete.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
