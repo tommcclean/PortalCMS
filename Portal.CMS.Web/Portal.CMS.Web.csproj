@@ -426,7 +426,6 @@
     <Content Include="Content\Styles\Administration\AppDrawers\app-drawers.css" />
     <Content Include="Content\Plugins\FontAwesome\fontawesome-iconpicker.min.css" />
     <Content Include="Content\Plugins\FontAwesome\font-awesome.min.css" />
-    <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Plugins\Bootstrap\bootstrap.min.js" />
     <Content Include="Content\Plugins\Bootstrap\bootstrap.min.css" />
     <Content Include="Content\Styles\Framework\framework.css" />
@@ -579,10 +578,6 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Areas\Blog\Views\Read\_Comments.cshtml" />
     <Content Include="Areas\Blog\Views\Read\_Gallery.cshtml" />
-    <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\Styles\Fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\PageManager\_AppDrawer.cshtml" />
