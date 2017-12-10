@@ -51,8 +51,8 @@ var EditablePopover = {
     OnSuccess: function (popoverTitle, actionIcon, pageAssociationId) {
         EditablePopover.Destroy();
 
-        var buttonElement = $('.action[data-title="' + popoverTitle + '"][data-association=' + pageAssociationId + ']');
-        var iconElement = $('.action[data-title="' + popoverTitle + '"][data-association=' + pageAssociationId + '] span');
+        var buttonElement = $('.action[data-action="' + popoverTitle + '"][data-association=' + pageAssociationId + ']');
+        var iconElement = $('.action[data-action="' + popoverTitle + '"][data-association=' + pageAssociationId + '] span');
 
         iconElement.removeClass(actionIcon);
         iconElement.addClass('fa-check');
