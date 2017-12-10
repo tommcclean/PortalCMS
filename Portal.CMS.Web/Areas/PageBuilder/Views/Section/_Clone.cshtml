@@ -31,7 +31,7 @@
 
     <div class="footer">
         <div class="btn primary" onclick="submit();"><span class="fa fa-check"></span><span class="hidden-xs">Clone</span></div>
-        <div class="btn close-popover"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></div>
+        <div class="btn" onclick="EditablePopover.Destroy();"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></div>
     </div>
 }
 else
@@ -39,6 +39,6 @@ else
     <div class="alert alert-danger" role="alert">You can't clone this Section because you don't have any other pages...</div>
 
     <div class="footer">
-        <div class="btn close-popover"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></div>
+        <div class="btn" onclick="EditablePopover.Destroy();"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></div>
     </div>
 }

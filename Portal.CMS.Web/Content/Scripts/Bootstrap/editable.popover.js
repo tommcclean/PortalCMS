@@ -1,13 +1,55 @@
-﻿var EditablePopover = {
-    GenerateAntiForgeryHeader: function () {
-        var token = $('input[name="__RequestVerificationToken"]').val();
-        var headers = {};
-        headers['__RequestVerificationToken'] = token;
+﻿'use strict';
 
+$(document).ready(function () {
+    $('body #page-wrapper.admin').on('click', '.launch-popover', function (e) {
+        EditablePopover.Load($(this));
+    });
+});
+
+var EditablePopover = {
+    Load: function (triggerElement) {
+        var actionTitle = $(triggerElement).attr("data-action");
+        var associationId = $(triggerElement).attr("data-association");
+        var editablePopoverIdentifier = '.popover.editable-popover[data-association=' + associationId + '][data-action="' + actionTitle + '"]';
+
+        if ($(editablePopoverIdentifier).length) {
+            EditablePopover.Destroy();
+        }
+        else {
+            EditablePopover.Destroy();
+
+            $(triggerElement).popover({
+                template:
+                '<div class="popover editable-popover" data-association=' + associationId + ' data-action="' + actionTitle + '">' +
+                '<div class="arrow"></div>' +
+                '<h3 class="popover-title"></h3>' +
+                '<div class="popover-content"></div>' +
+                '</div>'
+            }).popover('show');
+
+            $.ajax({
+                type: 'GET',
+                url: $(triggerElement).attr("data-url"),
+                cache: false,
+                success: function (data) {
+                    $(editablePopoverIdentifier + ' .popover-content').empty();
+                    $(editablePopoverIdentifier + ' .popover-content').parent().addClass("dynamic");
+                    $(editablePopoverIdentifier + ' .popover-content').parent().attr("data-association", associationId);
+                    $(editablePopoverIdentifier + ' .popover-content').html(data);
+                },
+                error: function () {
+                    EditablePopover.Destroy();
+                }
+            });
+        }
+    },
+    GenerateAntiForgeryHeader: function () {
+        var headers = {};
+        headers['__RequestVerificationToken'] = $('input[name="__RequestVerificationToken"]').val();
         return headers;
     },
     OnSuccess: function (popoverTitle, actionIcon, pageAssociationId) {
-        $('.popover').popover('hide');
+        EditablePopover.Destroy();
 
         var buttonElement = $('.action[data-title="' + popoverTitle + '"][data-association=' + pageAssociationId + ']');
         var iconElement = $('.action[data-title="' + popoverTitle + '"][data-association=' + pageAssociationId + '] span');
@@ -39,5 +81,8 @@
             iconElement.removeClass('fa-exclamation');
             buttonElement.removeClass('red');
         }, 2500);
+    },
+    Destroy: function () {
+        $('.popover.editable-popover').popover('destroy');
     }
 };

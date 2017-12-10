@@ -12,7 +12,7 @@
         var hasLaunchPopoverclass = $(e.target).hasClass('launch-popover');
 
         if (toggleAttribute !== 'popover' && hasLaunchPopoverclass === false && $(e.target).parents('.popover.in').length === 0) {
-            $('.popover').popover('destroy');
+            EditablePopover.Destroy();
         }
     });
 
