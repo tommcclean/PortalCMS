@@ -67,7 +67,7 @@
 
 @media (max-width: 736px)
 {
-    .action[data-title="Clone Section"]
+    .action[title="Reload Section"]
     {
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
