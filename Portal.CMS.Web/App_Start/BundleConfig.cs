@@ -12,8 +12,6 @@ namespace Portal.CMS.Web
 
             var cdnRootAddress = SettingHelper.Get("CDN Address");
 
-            #region Script Bundles
-
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework").Include("~/Content/Scripts/Framework/*.js"));
 
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Framework/Administration").Include("~/Content/Scripts/Administration/*.js"));
@@ -31,8 +29,6 @@ namespace Portal.CMS.Web
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Bootstrap/Plugins/Popover").Include("~/Content/Scripts/Bootstrap/initialise.js").Include("~/Content/Scripts/Bootstrap/bootstrap-confirmation.min.js"));
 
             bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Bootstrap/Plugins/Popover/Editable", "/Content/Scripts/EditablePopover/editable.popover.js", cdnRootAddress));
-
-            bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/FancyBox").Include("~/Content/Scripts/FancyBox/jquery.fancybox.js").Include("~/Content/Scripts/FancyBox/jquery.fancybox-thumbs.js").Include("~/Content/Scripts/FancyBox/initialise.js"));
            
             bundles.Add(new ScriptBundle("~/Resources/JavaScript/Plugins/ImageSelector").Include("~/Content/Scripts/ImageSelector/*.js"));
 
@@ -42,19 +38,9 @@ namespace Portal.CMS.Web
 
             bundles.Add(GenerateCDNScriptBundle("~/Resources/JavaScript/Plugins/Sliders", "/Content/Scripts/Administration/ThemeManager-Admin.js", cdnRootAddress));
 
-            #endregion Script Bundles
-
-            #region Style Bundles
-
-            bundles.Add(new StyleBundle("~/Resources/CSS/Bootstrap", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css").Include("~/Content/Styles/Bootstrap/bootstrap.min.css", new CssRewriteUrlTransform()));
-
-            bundles.Add(new StyleBundle("~/Resources/CSS/FancyBox").Include("~/Content/Styles/FancyBox/*.css", new CssRewriteUrlTransform()));
-
-            
+            bundles.Add(new StyleBundle("~/Resources/CSS/Bootstrap", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css").Include("~/Content/Styles/Bootstrap/bootstrap.min.css", new CssRewriteUrlTransform()));         
 
             bundles.Add(GenerateCDNStyleBundle("~/Resources/CSS/JQuery/JQueryUI", "/Content/Styles/JQuery/jquery-ui.min.css", cdnRootAddress));
-
-            
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework").Include("~/Content/Styles/Framework/*.css", new CssRewriteUrlTransform()));
 
@@ -63,8 +49,6 @@ namespace Portal.CMS.Web
             bundles.Add(new StyleBundle("~/Resources/CSS/Framework/Editor").Include("~/Content/Styles/Administration/AppDrawers/*.css", new CssRewriteUrlTransform()));
 
             bundles.Add(new StyleBundle("~/Resources/CSS/Plugins/Effects").Include("~/Content/Styles/Animate/animate.min.css").Include("~/Content/Styles/Hover/hover-min.css"));
-
-            #endregion Style Bundles
 
             RegisterPlugins(bundles, cdnRootAddress);
         }
@@ -80,6 +64,9 @@ namespace Portal.CMS.Web
             bundles.Add(GenerateCDNScriptBundle("~/Plugins/FontAwesome/Scripts", "/Content/Plugins/FontAwesome/fontawesome-iconpicker.min.js", cdnRootAddress));
             bundles.Add(GenerateCDNStyleBundle("~/Plugins/FontAwesome/Styles", "/Content/Plugins/FontAwesome/font-awesome.min.css", cdnRootAddress));
             bundles.Add(GenerateCDNStyleBundle("~/Plugins/FontAwesome/Styles/Picker", "/Content/Plugins/FontAwesome/fontawesome-iconpicker.min.css", cdnRootAddress));
+
+            bundles.Add(new ScriptBundle("~/Plugins/FancyBox/Scripts").Include("~/Content/Plugins/FancyBox/jquery.fancybox.js").Include("~/Content/Plugins/FancyBox/jquery.fancybox-thumbs.js").Include("~/Content/Plugins/FancyBox/initialise.js"));
+            bundles.Add(new StyleBundle("~/Plugins/FancyBox/Styles").Include("~/Content/Plugins/FancyBox/*.css", new CssRewriteUrlTransform()));
         }
 
         private static Bundle GenerateCDNScriptBundle(string bundleName, string filePath, string cdnRootAddress)

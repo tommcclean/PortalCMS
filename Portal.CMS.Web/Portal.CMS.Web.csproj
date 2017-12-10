@@ -389,10 +389,7 @@
     <Content Include="Content\Plugins\C3Graphing\c3.min.js" />
     <Content Include="Content\Plugins\C3Graphing\d3.min.js" />
     <Content Include="Content\Scripts\Bootstrap\bootstrap-confirmation.min.js" />
-    <Content Include="Content\Scripts\FancyBox\initialise.js" />
-    <Content Include="Content\Styles\FancyBox\jquery.fancybox-thumbs.min.css">
-      <DependentUpon>jquery.fancybox-thumbs.css</DependentUpon>
-    </Content>
+    <Content Include="Content\Plugins\FancyBox\initialise.js" />
     <Content Include="Content\Scripts\JQuery\jquery.ui.touch-punch.min.js" />
     <Content Include="Content\Styles\Framework\framework-images.css" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\icon-1.png" />
@@ -412,9 +409,6 @@
     <Content Include="Areas\PageBuilder\Content\Images\Sample\Sample-5.jpg" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\Sample-6.jpg" />
     <Content Include="Areas\Admin\Content\Images\texture.png" />
-    <Content Include="Content\Styles\FancyBox\jquery.fancybox.min.css">
-      <DependentUpon>jquery.fancybox.css</DependentUpon>
-    </Content>
     <Content Include="Content\Scripts\ImageSelector\imageselector.js" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\sample-7.jpg" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\Sample-8.jpg" />
@@ -427,8 +421,8 @@
     <Content Include="Content\Styles\Framework\framework-override.css" />
     <Content Include="Content\Styles\Framework\framework-helpers.css" />
     <Content Include="Content\Styles\Administration\administration-panel.css" />
-    <Content Include="Content\Scripts\FancyBox\jquery.fancybox-thumbs.js" />
-    <Content Include="Content\Scripts\FancyBox\jquery.fancybox.js" />
+    <Content Include="Content\Plugins\FancyBox\jquery.fancybox-thumbs.js" />
+    <Content Include="Content\Plugins\FancyBox\jquery.fancybox.js" />
     <Content Include="Content\Styles\Administration\AppDrawers\app-drawers.css" />
     <Content Include="Content\Plugins\FontAwesome\fontawesome-iconpicker.min.css" />
     <Content Include="Content\Plugins\FontAwesome\font-awesome.min.css" />
@@ -438,14 +432,14 @@
     <Content Include="Content\Styles\Bootstrap\bootstrap.min.css" />
     <Content Include="Content\Styles\Framework\framework.css" />
     <Content Include="Content\Styles\Framework\pagebuilder.css" />
-    <Content Include="Content\Styles\FancyBox\blank.gif" />
-    <Content Include="Content\Styles\FancyBox\fancybox_loading%402x.gif" />
-    <Content Include="Content\Styles\FancyBox\fancybox_loading.gif" />
-    <Content Include="Content\Styles\FancyBox\fancybox_overlay.png" />
-    <Content Include="Content\Styles\FancyBox\fancybox_sprite%402x.png" />
-    <Content Include="Content\Styles\FancyBox\fancybox_sprite.png" />
-    <Content Include="Content\Styles\FancyBox\jquery.fancybox-thumbs.css" />
-    <Content Include="Content\Styles\FancyBox\jquery.fancybox.css" />
+    <Content Include="Content\Plugins\FancyBox\blank.gif" />
+    <Content Include="Content\Plugins\FancyBox\fancybox_loading%402x.gif" />
+    <Content Include="Content\Plugins\FancyBox\fancybox_loading.gif" />
+    <Content Include="Content\Plugins\FancyBox\fancybox_overlay.png" />
+    <Content Include="Content\Plugins\FancyBox\fancybox_sprite%402x.png" />
+    <Content Include="Content\Plugins\FancyBox\fancybox_sprite.png" />
+    <Content Include="Content\Plugins\FancyBox\jquery.fancybox-thumbs.css" />
+    <Content Include="Content\Plugins\FancyBox\jquery.fancybox.css" />
     <Content Include="Content\Styles\Hover\hover-min.css" />
     <Content Include="Content\Styles\JQuery\jquery-ui.min.css" />
     <Content Include="Content\Plugins\Spectrum\spectrum.css" />
@@ -755,7 +749,7 @@
     <Content Include="Content\Scripts\EditablePopover\Editable.Popover.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Styles\FontAwesome\" />
+    <Folder Include="Content\Styles\FancyBox\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\PageBuilder\Views\Association\Delete.cshtml" />
