@@ -108,71 +108,6 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         #region Section Edit Methods
 
         [HttpGet]
-        public async Task<ActionResult> EditSection(int pageAssociationId)
-        {
-            var pageAssociation = await _associationService.GetAsync(pageAssociationId);
-
-            var pageSection = await _sectionService.GetAsync(pageAssociation.PageSection.PageSectionId);
-
-            var model = new EditSectionViewModel
-            {
-                PageAssociationId = pageAssociationId,
-                SectionId = pageSection.PageSectionId,
-                MediaLibrary = new PaginationViewModel
-                {
-                    ImageList = await _imageService.GetAsync(),
-                    TargetInputField = "BackgroundImageId",
-                    PaginationType = "section"
-                },
-                PageSectionHeight = await _sectionService.DetermineSectionHeightAsync(pageSection.PageSectionId),
-                PageSectionBackgroundStyle = await _sectionService.DetermineBackgroundStyleAsync(pageSection.PageSectionId),
-                BackgroundType = await _sectionService.DetermineBackgroundTypeAsync(pageSection.PageSectionId),
-                BackgroundColour = await _sectionService.DetermineBackgroundColourAsync(pageSection.PageSectionId),
-            };
-
-            return View("_EditSection", model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<JsonResult> EditSection(EditSectionViewModel model)
-        {
-            try
-            {
-                if ("colour".Equals(model.BackgroundType, StringComparison.OrdinalIgnoreCase))
-                {
-                    await _sectionService.EditBackgroundTypeAsync(model.SectionId, false);
-
-                    if (!string.IsNullOrWhiteSpace(model.BackgroundColour))
-                        await _sectionService.EditBackgroundColourAsync(model.SectionId, model.BackgroundColour);
-                }
-                else
-                {
-                    await _sectionService.EditBackgroundTypeAsync(model.SectionId, true);
-
-                    if (model.BackgroundImageId > 0)
-                    {
-                        var selectedBackgroundImage = await _imageService.GetAsync(model.BackgroundImageId);
-
-                        await _sectionService.EditBackgroundImageAsync(model.SectionId, selectedBackgroundImage.CDNImagePath(), selectedBackgroundImage.ImageCategory);
-                    }
-
-                    await _sectionService.EditBackgroundStyleAsync(model.SectionId, model.PageSectionBackgroundStyle);
-                }
-
-                await _sectionService.EditHeightAsync(model.SectionId, model.PageSectionHeight);
-
-                var pageSection = await _sectionService.GetAsync(model.SectionId);
-
-                return Json(new { State = true, SectionMarkup = pageSection.PageSectionBody });
-            }
-            catch (Exception)
-            {
-                return Json(new { State = false });
-            }
-        }
-
-        [HttpGet]
         public async Task<ActionResult> EditPartial(int pageAssociationId)
         {
             var pageAssociation = await _associationService.GetAsync(pageAssociationId);
@@ -336,6 +271,112 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             catch (Exception)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> EditBackgroundImage(int pageAssociationId)
+        {
+            var pageAssociation = await _associationService.GetAsync(pageAssociationId);
+            var pageSection = await _sectionService.GetAsync(pageAssociation.PageSection.PageSectionId);
+
+            var model = new EditBackgroundImageViewModel
+            {
+                PageAssociationId = pageAssociationId,
+                SectionId = pageSection.PageSectionId,
+                MediaLibrary = new PaginationViewModel
+                {
+                    ImageList = await _imageService.GetAsync(),
+                    TargetInputField = "BackgroundImageId",
+                    PaginationType = "section"
+                },
+            };
+
+            return PartialView("_EditBackgroundImage", model);
+        }
+
+        [HttpPost]
+        [ValidateJsonAntiForgeryToken]
+        public async Task<HttpStatusCodeResult> EditBackgroundImage(EditBackgroundImageViewModel model)
+        {
+            try
+            {
+                var selectedBackgroundImage = await _imageService.GetAsync(model.BackgroundImageId);
+
+                await _sectionService.EditBackgroundImageAsync(model.SectionId, selectedBackgroundImage.CDNImagePath(), selectedBackgroundImage.ImageCategory);
+
+                //await _sectionService.EditBackgroundStyleAsync(model.SectionId, model.PageSectionBackgroundStyle);
+
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+            }
+            catch (Exception)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> EditSection(int pageAssociationId)
+        {
+            var pageAssociation = await _associationService.GetAsync(pageAssociationId);
+
+            var pageSection = await _sectionService.GetAsync(pageAssociation.PageSection.PageSectionId);
+
+            var model = new EditSectionViewModel
+            {
+                PageAssociationId = pageAssociationId,
+                SectionId = pageSection.PageSectionId,
+                MediaLibrary = new PaginationViewModel
+                {
+                    ImageList = await _imageService.GetAsync(),
+                    TargetInputField = "BackgroundImageId",
+                    PaginationType = "section"
+                },
+                PageSectionHeight = await _sectionService.DetermineSectionHeightAsync(pageSection.PageSectionId),
+                PageSectionBackgroundStyle = await _sectionService.DetermineBackgroundStyleAsync(pageSection.PageSectionId),
+                BackgroundType = await _sectionService.DetermineBackgroundTypeAsync(pageSection.PageSectionId),
+                BackgroundColour = await _sectionService.DetermineBackgroundColourAsync(pageSection.PageSectionId),
+            };
+
+            return View("_EditSection", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> EditSection(EditSectionViewModel model)
+        {
+            try
+            {
+                if ("colour".Equals(model.BackgroundType, StringComparison.OrdinalIgnoreCase))
+                {
+                    await _sectionService.EditBackgroundTypeAsync(model.SectionId, false);
+
+                    if (!string.IsNullOrWhiteSpace(model.BackgroundColour))
+                        await _sectionService.EditBackgroundColourAsync(model.SectionId, model.BackgroundColour);
+                }
+                else
+                {
+                    await _sectionService.EditBackgroundTypeAsync(model.SectionId, true);
+
+                    if (model.BackgroundImageId > 0)
+                    {
+                        var selectedBackgroundImage = await _imageService.GetAsync(model.BackgroundImageId);
+
+                        await _sectionService.EditBackgroundImageAsync(model.SectionId, selectedBackgroundImage.CDNImagePath(), selectedBackgroundImage.ImageCategory);
+                    }
+
+                    await _sectionService.EditBackgroundStyleAsync(model.SectionId, model.PageSectionBackgroundStyle);
+                }
+
+                await _sectionService.EditHeightAsync(model.SectionId, model.PageSectionHeight);
+
+                var pageSection = await _sectionService.GetAsync(model.SectionId);
+
+                return Json(new { State = true, SectionMarkup = pageSection.PageSectionBody });
+            }
+            catch (Exception)
+            {
+                return Json(new { State = false });
             }
         }
 

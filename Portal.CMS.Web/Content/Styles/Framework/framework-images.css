@@ -4,9 +4,22 @@
     margin-right: 20px;
 }
 
+.tab-pane.x2 img.thumbnail
+{
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.tab-pane.x2 nav
+{
+    text-align: right;
+    margin-right: 7px;
+    margin-bottom: 10px;
+}
+
 .x2 img.thumbnail
 {
-    max-width: calc((100% - 45px) / 2);
+    max-width: calc((100% - 14px) / 2);
 }
 
 .x3 img.thumbnail

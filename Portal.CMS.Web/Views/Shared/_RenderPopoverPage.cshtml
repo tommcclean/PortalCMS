@@ -1,0 +1,26 @@
+﻿@model Portal.CMS.Web.ViewModels.Shared.PaginationViewModel
+@using Portal.CMS.Web.Architecture.Extensions
+
+@if (Model.PageCount > 1)
+{
+    <nav aria-label="Image Page List">
+        <ul class="pagination">
+            @for (var page = 1; page <= Model.PageCount; page += 1)
+            {
+                <li><a class="pagination-button @(page == 1 ? "active" : "")" data-page="@page" data-type="@Model.PaginationType" href="#page-@page">@page</a></li>
+            }
+        </ul>
+    </nav>
+}
+
+<div class="pagination-wrapper @Model.PaginationType" data-type="@Model.PaginationType" style="text-align: center;">
+    @for (var page = 1; page <= Model.PageCount; page += 1)
+    {
+        <div class="page-@page pagination-page" data-page="@page" style="@(page == 1 ? "" : "display: none;")">
+            @foreach (var image in Model.ImageList.Skip((page - 1) * 8).Take(6))
+            {
+                <img class="thumbnail" data-parent="@Model.PaginationType" data-target="@Model.TargetInputField" data-identifier="@image.ImageId" src="@image.CDNImagePath()" />
+            }
+        </div>
+    }
+</div>

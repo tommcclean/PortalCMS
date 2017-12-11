@@ -251,6 +251,7 @@
     <Compile Include="Areas\Forms\ViewModels\ContactWidgets\SubmitMessageViewModel.cs" />
     <Compile Include="Areas\PageBuilder\Controllers\AssociationController.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Section\EditAccessViewModel.cs" />
+    <Compile Include="Areas\PageBuilder\ViewModels\Section\EditBackgroundImageViewModel.cs" />
     <Compile Include="Areas\Profile\Controllers\ManageController.cs" />
     <Compile Include="Areas\Profile\ViewModels\Manage\AccountViewModel.cs" />
     <Compile Include="Areas\Profile\ViewModels\Manage\BioViewModel.cs" />
@@ -726,7 +727,9 @@
   <ItemGroup>
     <Content Include="Areas\PageBuilder\Views\Section\_EditAccess.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Areas\PageBuilder\Views\Section\_EditBackgroundImage.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\PageBuilder\Views\Association\Delete.cshtml" />
   </ItemGroup>
@@ -736,6 +739,9 @@
     <Content Include="Content\Plugins\FontAwesome\fontawesome-webfont.woff" />
     <Content Include="Content\Plugins\FontAwesome\fontawesome-webfont.woff2" />
     <Content Include="Content\Plugins\FontAwesome\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_RenderPopoverPage.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
