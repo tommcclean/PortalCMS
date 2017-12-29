@@ -9,16 +9,12 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ThemeController : Controller
     {
-        #region Dependencies
-
         readonly IThemeService _themeService;
 
         public ThemeController(IThemeService themeService)
         {
             _themeService = themeService;
         }
-
-        #endregion Dependencies
 
         public ActionResult Render()
         {

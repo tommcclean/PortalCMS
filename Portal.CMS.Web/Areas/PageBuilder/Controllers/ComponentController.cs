@@ -70,10 +70,6 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         [ValidateInput(false)]
         public async Task<ActionResult> Edit(int pageSectionId, string elementId, string elementHtml)
         {
-            // REPLACE: MCE Tokens
-            elementHtml = elementHtml.Replace("ui-draggable ui-draggable-handle mce-content-body", string.Empty);
-            elementHtml = elementHtml.Replace("contenteditable=\"true\" spellcheck=\"false\"", string.Empty);
-
             await _pageComponentService.EditElementAsync(pageSectionId, elementId, elementHtml);
 
             return Content("Refresh");

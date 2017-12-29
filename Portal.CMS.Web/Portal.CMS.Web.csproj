@@ -303,7 +303,6 @@
     <Compile Include="Areas\PageBuilder\ViewModels\Component\VideoViewModel.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Component\ImageViewModel.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Section\CloneViewModel.cs" />
-    <Compile Include="Areas\PageBuilder\ViewModels\Partial\EditPartialViewModel.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Section\RestoreViewModel.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Section\EditMarkupViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ThemeManager\AppDrawerViewModel.cs" />
@@ -684,9 +683,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\PageBuilder\Views\Section\_Restore.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\PageBuilder\Views\Partial\_EditPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Blog\Views\web.config" />

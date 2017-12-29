@@ -25,6 +25,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         }
 
         [HttpGet]
+        [OutputCache(Duration = 86400, VaryByParam = "pageAssociationId")]
         public ActionResult Delete(int pageAssociationId)
         {
             return View("_Delete", pageAssociationId);
