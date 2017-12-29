@@ -25,7 +25,7 @@
             {
                 EditablePopover.OnSuccess("Edit Background Colour", 'fa-paint-brush', '@Model.PageAssociationId');
 
-                PageBuilder.Helpers.ReloadSection(@Model.PageAssociationId);
+                PageBuilder.Helpers.ReloadSection(@Model.PageSectionId);
             },
             error: function ()
             {
