@@ -17,8 +17,6 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ComponentController : Controller
     {
-        #region Dependencies
-
         private readonly IPageSectionService _pageSectionService;
         private readonly IPageComponentService _pageComponentService;
         private readonly IImageService _imageService;
@@ -29,8 +27,6 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             _pageComponentService = pageComponentService;
             _imageService = imageService;
         }
-
-        #endregion Dependencies
 
         [HttpGet]
         [OutputCache(Duration = 86400)]

@@ -7,9 +7,12 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.SessionState;
 
 namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
 {
+    [AdminFilter(ActionFilterResponseType.Modal)]
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class AssociationController : Controller
     {
         private readonly IPageAssociationService _associationService;
