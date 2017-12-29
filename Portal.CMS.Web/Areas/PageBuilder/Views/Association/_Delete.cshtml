@@ -7,6 +7,7 @@
     function submit()
     {
         $('.section-wrapper[data-association=' + @Model + ']').slideUp();
+        $('.partial-wrapper[data-association=' + @Model + ']').slideUp();
         EditablePopover.Destroy();
 
         $.ajax({
@@ -29,7 +30,7 @@
 
 <form id="edit-access-@Model">
     <div id="editable-popover-spinner" class="spinner" data-association="@Model" style="display: none;"></div>
-    <div id="editable-popover-info" class="alert alert-danger" data-association="@Model" role="alert">Deleting a Section is permanent, if the Section does not appear on any other pages it cannot be retrieved.</div>
+    <div id="editable-popover-info" class="alert alert-danger" data-association="@Model" role="alert">Deletion may be permanent, if you have not cloned this Section onto another page it will not be retrievable</div>
 </form>
 
 <div class="footer">

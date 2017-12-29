@@ -1,6 +1,6 @@
 ﻿namespace Portal.CMS.Web.Areas.PageBuilder.ViewModels.Section
 {
-    public class MarkupViewModel
+    public class EditMarkupViewModel
     {
         public int PageSectionId { get; set; }
 

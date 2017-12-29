@@ -74,13 +74,12 @@ var PageBuilder = {
 
             var sectionButtonsTemplate =
                 '<div class="action-container absolute">' +
-                '<a class="action launch-modal hidden-xs" data-association="<associationId>" title="Edit Markup" href="/PageBuilder/Section/Markup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a>' +
-                '<a class="action" title="Reload Section" onclick="PageBuilder.Helpers.ReloadSection(<sectionId>);"><span class="fa fa-refresh"></span></a>' +
+                '<a class="action launch-modal" data-association="<associationId>" title="Edit Markup" href="/PageBuilder/Section/EditMarkup?pageSectionId=<sectionId>"><span class="fa fa-code"></span></a>' +
                 '<a class="action launch-modal hidden-xs" data-association="<associationId>" title="Backup or Restore a Section" href="/PageBuilder/Section/Restore?pageSectionId=<sectionId>"><span class="fa fa-clock-o"></span></a>' +
                 '<a class="action launch-popover" data-association="<associationId>" title="Clone Section" data-action="Clone Section" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/Clone?pageAssociationId=<associationId>"><span class="fa fa-clone"></span></a>' +
-                '<a class="action launch-popover" data-association="<associationId>" title="Restrict Access" data-action="Restrict Access" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/EditAccess?pageAssociationId=<associationId>"><span class="fa fa-lock"></span></a>' +
+                '<a class="action launch-popover" data-association="<associationId>" title="Edit Background Colour" data-action="Edit Background Colour" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/EditBackgroundColour?pageAssociationId=<associationId>"><span class="fa fa-paint-brush"></span></a>' +
                 '<a class="action launch-popover" data-association="<associationId>" title="Edit Background Image" data-action="Edit Background Image" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Section/EditBackgroundImage?pageAssociationId=<associationId>"><span class="fa fa-picture-o"></span></a>' +
-                '<a class="action edit-section launch-modal" data-association="<associationId>" title="Edit Section" href="/PageBuilder/Section/EditSection?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a>' +
+                '<a class="action launch-popover" data-association="<associationId>" title="Restrict Access" data-action="Restrict Access" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Association/EditAccess?pageAssociationId=<associationId>"><span class="fa fa-lock"></span></a>' +
                 '<a class="action launch-popover" data-association="<associationId>" title="Delete Section" data-action="Delete Section" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Association/Delete?pageAssociationId=<associationId>"><span class="fa fa-trash"></span></a>' +
                 '</div > ';
 
@@ -101,7 +100,8 @@ var PageBuilder = {
 
             var partialButtonsTemplate =
                 '<div class="action-container absolute">' +
-                '<a class="action edit-partial launch-modal" data-title="Edit Partial" href="/PageBuilder/Section/EditPartial?pageAssociationId=<associationId>"><span class="fa fa-cog"></span></a>' +
+                '<a class="action launch-popover" data-association="<associationId>" title="Restrict Access" data-action="Restrict Access" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Association/EditAccess?pageAssociationId=<associationId>"><span class="fa fa-lock"></span></a>' +
+                '<a class="action launch-popover" data-association="<associationId>" title="Delete Partial" data-action="Delete Partial" data-placement="bottom" data-trigger="click" data-html="true" data-content="<spinner>" data-url="/PageBuilder/Association/Delete?pageAssociationId=<associationId>"><span class="fa fa-trash"></span></a>' +
                 '</div>';
 
             $(".partial-wrapper").each(function (index) {
@@ -146,7 +146,7 @@ var PageBuilder = {
                 data: dataParams,
                 type: 'POST',
                 cache: false,
-                url: '/PageBuilder/Section/AddSection',
+                url: '/PageBuilder/Section/Add',
                 success: function (data) {
                     $('#spinner-wrapper').hide();
 

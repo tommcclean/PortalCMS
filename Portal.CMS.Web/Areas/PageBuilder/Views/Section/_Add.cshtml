@@ -25,7 +25,7 @@
             <li role="presentation" class="active"><a href="#tab-headers" aria-controls="tab-headers" role="tab" data-toggle="tab">Headers</a></li>
             <li role="presentation" class=""><a href="#tab-content" aria-controls="tab-content" role="tab" data-toggle="tab">Content</a></li>
             <li role="presentation" class=""><a href="#tab-design" aria-controls="tab-design" role="tab" data-toggle="tab">Design</a></li>
-            <li role="presentation" class=""><a href="#tab-custom" aria-controls="tab-custom" role="tab" data-toggle="tab">Custom</a></li>
+            <li role="presentation" class=""><a href="#tab-custom" aria-controls="tab-custom" role="tab" data-toggle="tab">Partial</a></li>
         </ul>
 
         <div class="tab-content">
@@ -60,7 +60,7 @@
                 }
             </div>
             <div role="tabpanel" class="tab-pane float-container" id="tab-custom" style="padding: 9px;">
-                <div class="alert alert-warning" role="alert" style="cursor: pointer;" data-toggle="popover" data-container="body" data-placement="left" data-trigger="hover" data-content="You can use Custom Sections to render your own functionality in the PageBuilder. All you need to do is create a 'Partial Action' in your source code and enter the URL below. Check out the 'CustomController' for working examples."><span class="fa fa-question-circle"></span>Learn More About Custom Sections?</div>
+                <div class="alert alert-warning">You can use Partial Actions to render your own functionality in the PageBuilder. Enter the route to your action below.</div>
 
                 <div class="slim-field">
                     @Html.TextBox("areaName", "", new { @placeholder = "Area Name" })
@@ -88,7 +88,7 @@
                 data: dataParams,
                 type: 'POST',
                 cache: false,
-                url: '@Url.Action("AddPartial", "Section", new { area = "PageBuilder" })',
+                url: '@Url.Action("Add", "Partial", new { area = "PageBuilder" })',
                 success: function (data)
                 {
                     if (data.State === false)
@@ -122,7 +122,7 @@
                 data: dataParams,
                 type: 'POST',
                 cache: false,
-                url: '@Url.Action("AddPartial", "Section", new { area = "PageBuilder" })',
+                url: '@Url.Action("Add", "Partial", new { area = "PageBuilder" })',
                 success: function (data)
                 {
                     if (data.State === false)

@@ -64,12 +64,3 @@
     color: white;
     background-color: #191919;
 }
-
-@media (max-width: 736px)
-{
-    .action[title="Reload Section"]
-    {
-        border-top-left-radius: 8px;
-        border-bottom-left-radius: 8px;
-    }
-}

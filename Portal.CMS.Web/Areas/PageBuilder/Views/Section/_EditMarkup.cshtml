@@ -1,4 +1,4 @@
-﻿@model Portal.CMS.Web.Areas.PageBuilder.ViewModels.Section.MarkupViewModel
+﻿@model Portal.CMS.Web.Areas.PageBuilder.ViewModels.Section.EditMarkupViewModel
 @{
     Layout = "";
     var textareaSelector = DateTime.Now.ToString("ddMMyyyyHHmmss");
@@ -48,7 +48,7 @@
     });
 </script>
 
-@using (Html.BeginForm("Markup", "Section", FormMethod.Post, new { id = "customForm" }))
+@using (Html.BeginForm("EditMarkup", "Section", FormMethod.Post, new { id = "customForm" }))
 {
     @Html.AntiForgeryToken()
 

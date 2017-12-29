@@ -13,7 +13,7 @@
                 data: dataParams,
                 type: 'POST',
                 cache: false,
-                url: '/PageBuilder/Section/RestoreBackup',
+                url: '/PageBuilder/Section/Restore',
                 success: function (data) {
                     if (data.State === false) {
                         alert("Error: The Page has lost synchronisation. Reloading Page..."); location.reload();

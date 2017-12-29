@@ -2,21 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Portal.CMS.Web.Areas.PageBuilder.ViewModels.Section
+namespace Portal.CMS.Web.Areas.PageBuilder.ViewModels.Association
 {
-    public class EditPartialViewModel
+    public class EditAccessViewModel
     {
         public int PageAssociationId { get; set; }
-
-        public int PagePartialId { get; set; }
 
         [DisplayName("Roles")]
         public List<string> SelectedRoleList { get; set; } = new List<string>();
 
-        #region Enumerable Properties
-
         public List<Role> RoleList { get; set; }
-
-        #endregion Enumerable Properties
     }
 }

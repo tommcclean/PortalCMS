@@ -1,4 +1,4 @@
-﻿@model Portal.CMS.Web.Areas.PageBuilder.ViewModels.Section.EditAccessViewModel
+﻿@model Portal.CMS.Web.Areas.PageBuilder.ViewModels.Association.EditAccessViewModel
 @{
     Layout = "";
 }
@@ -8,7 +8,7 @@
     {
         $.ajax({
             type: "POST",
-            url: "/PageBuilder/Section/EditAccess",
+            url: "/PageBuilder/Association/EditAccess",
             headers: EditablePopover.GenerateAntiForgeryHeader(),
             dataType: 'json',
             data: $('#edit-access-@Model.PageAssociationId').serialize(),
