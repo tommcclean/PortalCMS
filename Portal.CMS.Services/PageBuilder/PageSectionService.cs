@@ -262,10 +262,10 @@ namespace Portal.CMS.Services.PageBuilder
         {
             var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
 
-            if (pageSection == null)
+           if (pageSection == null)
                 return "#ffffff";
 
-            var pattern = new Regex(@"(?<existingColour>#\d{6})");
+            var pattern = new Regex(@"background-color: (?<existingColour>#[a-zA-Z0-9]{6,})");
             var match = pattern.Match(pageSection.PageSectionBody);
             var existingColour = match.Groups["existingColour"].Value;
 
