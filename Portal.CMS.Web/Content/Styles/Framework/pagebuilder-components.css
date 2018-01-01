@@ -12,6 +12,11 @@
     min-height: 20px;
 }
 
+.admin .box.component-container
+{
+    min-height: 200px;
+}
+
 .section-wrapper.admin .component-container.ui-state-hover
 {
     min-height: 275px;
