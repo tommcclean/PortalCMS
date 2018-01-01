@@ -12,8 +12,6 @@ namespace Portal.CMS.Entities.Seed
             if (context.Pages.Any())
                 return;
 
-            var authenticatedRole = context.Roles.First(x => x.RoleName == "Authenticated");
-
             context.Pages.Add(new Page
             {
                 PageId = 1,

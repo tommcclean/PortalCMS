@@ -61,9 +61,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View("_UploadImage", model);
 
-            var imageFilePath = SaveImage(model.AttachedImage, nameof(UploadImage));
+            var imageFilePath = SaveImage(model.AttachedImage);
 
-            var imageId = await _imageService.CreateAsync(imageFilePath, model.ImageCategory);
+            await _imageService.CreateAsync(imageFilePath, model.ImageCategory);
 
             return Content("Refresh");
         }
@@ -84,9 +84,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View("_UploadFont", model);
 
-            var fontFilePath = SaveFont(model.AttachedFont, nameof(UploadFont));
+            var fontFilePath = SaveFont(model.AttachedFont);
 
-            var fontId = await _fontService.CreateAsync(model.FontName, model.FontType, fontFilePath);
+            await _fontService.CreateAsync(model.FontName, model.FontType, fontFilePath);
 
             return Content("Refresh");
         }
@@ -131,7 +131,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index), "MediaManager");
         }
 
-        private string SaveImage(HttpPostedFileBase imageFile, string actionName)
+        private string SaveImage(HttpPostedFileBase imageFile)
         {
             var extension = Path.GetExtension(imageFile.FileName).ToUpper();
 
@@ -153,7 +153,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             return relativeFilePath;
         }
 
-        private string SaveFont(HttpPostedFileBase fontFile, string actionName)
+        private string SaveFont(HttpPostedFileBase fontFile)
         {
             var extension = Path.GetExtension(fontFile.FileName).ToUpper();
 

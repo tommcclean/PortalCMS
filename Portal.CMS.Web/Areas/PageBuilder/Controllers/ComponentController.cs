@@ -78,8 +78,6 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
         [HttpGet]
         public async Task<ActionResult> EditImage(int pageSectionId, string elementId, string elementType)
         {
-            var pageSection = await _pageSectionService.GetAsync(pageSectionId);
-
             var imageList = await _imageService.GetAsync();
 
             var model = new ImageViewModel

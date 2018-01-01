@@ -50,16 +50,12 @@ namespace Portal.CMS.Services.PageBuilder
 
     public class PageSectionService : IPageSectionService
     {
-        #region Dependencies
-
         private readonly PortalEntityModel _context;
 
         public PageSectionService(PortalEntityModel context)
         {
             _context = context;
         }
-
-        #endregion Dependencies
 
         public async Task<List<PageSectionType>> GetSectionTypesAsync()
         {
@@ -101,8 +97,6 @@ namespace Portal.CMS.Services.PageBuilder
             _context.PageAssociations.Add(newPageAssociation);
 
             await _context.SaveChangesAsync();
-
-            var document = new Document(newPageAssociation.PageSection.PageSectionBody);
 
             newPageAssociation.PageSection.PageSectionBody = Document.ReplaceTokens(newPageAssociation.PageSection.PageSectionBody, newPageAssociation.PageSection.PageSectionId, componentStamp);
 
@@ -262,7 +256,7 @@ namespace Portal.CMS.Services.PageBuilder
         {
             var pageSection = await _context.PageSections.SingleOrDefaultAsync(x => x.PageSectionId == pageSectionId);
 
-           if (pageSection == null)
+            if (pageSection == null)
                 return "#ffffff";
 
             var pattern = new Regex(@"background-color: (?<existingColour>#[a-zA-Z0-9]{6,})");

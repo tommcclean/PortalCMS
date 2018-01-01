@@ -74,8 +74,6 @@ namespace Portal.CMS.Web
                 return new ScriptBundle(bundleName).Include($"~{filePath}");
             }
 
-            var cdnFilePath = $"{cdnRootAddress}{filePath}";
-
             return new ScriptBundle(bundleName, $"{cdnRootAddress}{filePath}").Include($"~{filePath}");
         }
 
