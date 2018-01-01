@@ -80,7 +80,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-    PageBuilder.Initialise.Droppables();
+        PageBuilder.Initialise.Droppables();
+        InitialiseWidgets();
 
         $('#add-partial').on('click', function (e) {
             var dataParams = { "pageId": @Model.PageId, "areaName": $('#areaName').val(), "controllerName": $('#controllerName').val(), "actionName": $('#actionName').val(), "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
