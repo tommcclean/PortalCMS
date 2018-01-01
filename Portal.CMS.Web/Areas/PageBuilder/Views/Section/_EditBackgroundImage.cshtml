@@ -20,7 +20,7 @@
             {
                 EditablePopover.OnSuccess("Edit Background Image", 'fa-picture-o', '@Model.PageAssociationId');
 
-                PageBuilder.Helpers.ReloadSection(@Model.PageAssociationId);
+                PageBuilder.Helpers.ReloadSection(@Model.SectionId);
             },
             error: function ()
             {
