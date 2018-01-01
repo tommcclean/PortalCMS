@@ -1,9 +1,9 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Authentication.RegisterViewModel
+﻿@model Portal.CMS.Web.Areas.Authentication.ViewModels.Registration.RegisterViewModel
 @{
     Layout = "";
 }
 
-@using (Html.BeginForm("Register", "Authentication", FormMethod.Post))
+@using (Html.BeginForm("Register", "Registration", FormMethod.Post, new { area = "Authentication" }))
 {
     @Html.AntiForgeryToken()
 

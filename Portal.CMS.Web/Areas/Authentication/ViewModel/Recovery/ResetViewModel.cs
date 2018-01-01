@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Portal.CMS.Web.Areas.Admin.ViewModels.Authentication
+namespace Portal.CMS.Web.Areas.Authentication.ViewModels.Recovery
 {
     public class ResetViewModel
     {

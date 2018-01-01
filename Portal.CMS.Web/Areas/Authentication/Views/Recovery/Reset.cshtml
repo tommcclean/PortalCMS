@@ -1,4 +1,4 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Authentication.ResetViewModel
+﻿@model Portal.CMS.Web.Areas.Authentication.ViewModels.Recovery.ResetViewModel
 @{
     ViewBag.Title = "Reset Password";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,7 +16,7 @@
     }
 </style>
 
-<section class="header background-parallax height-tall">
+<section class="header background-parallax height-tall" style="background-image: url('/Areas/Authentication/Content/Images/reset-background-image.jpg');">
     <div class="overlay overlay-medium"></div>
     <div class="vertical-alignment component-container">
         <h1>Reset Password</h1>
@@ -24,7 +24,7 @@
         <br />
 
         <div class="container dark">
-            @using (Html.BeginForm("Reset", "Authentication", FormMethod.Post))
+            @using (Html.BeginForm("Reset", "Recovery", FormMethod.Post, new { area = "Authentication" }))
             {
                 @Html.AntiForgeryToken()
 

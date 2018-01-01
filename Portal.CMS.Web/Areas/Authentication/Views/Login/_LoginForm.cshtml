@@ -1,4 +1,4 @@
-﻿@model Portal.CMS.Web.Areas.Admin.ViewModels.Authentication.LoginViewModel
+﻿@model Portal.CMS.Web.Areas.Authentication.ViewModels.Login.LoginViewModel
 @{
     Layout = "";
 }
@@ -14,7 +14,7 @@
     <div role="tabpanel" class="tab-pane active" id="tab-login">
         @Html.Action("Render", "CopyManager", new { area = "Admin", copyName = "Sign In Message" })
 
-        @using (Html.BeginForm("Login", "Authentication", FormMethod.Post))
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { area = "Authentication" }))
         {
             @Html.AntiForgeryToken()
 
@@ -39,7 +39,7 @@
         }
     </div>
     <div role="tabpanel" class="tab-pane" id="tab-forgot">
-        @using (Html.BeginForm("Forgot", "Authentication", FormMethod.Post))
+        @using (Html.BeginForm("Forgot", "Recovery", FormMethod.Post, new { area = "Authentication" }))
         {
             @Html.AntiForgeryToken()
 

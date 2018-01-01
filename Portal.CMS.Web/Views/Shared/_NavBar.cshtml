@@ -45,7 +45,7 @@
                             <li><a href="@Url.Action("EditAvatar", "Manage", new { area="Profile"})" class="launch-modal" data-title="Upload Avatar"><span class="fa fa-picture-o"></span>Upload Avatar</a></li>
                             <li><a href="@Url.Action("EditPassword", "Manage", new { area="Profile"})" class="launch-modal" data-title="Change Password"><span class="fa fa-key"></span>Change Password</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="@Url.Action("Logout", "Authentication", new { area="Admin"})"><span class="fa fa-lock"></span>Logout</a></li>
+                            <li><a href="@Url.Action("Logout", "Login", new { area="Authentication"})"><span class="fa fa-lock"></span>Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -53,8 +53,8 @@
             else
             {
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="@Url.Action("Login", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Sign In"><span class="fa fa-lock"></span>Login</a></li>
-                    <li><a href="@Url.Action("Register", "Authentication", new { area="Admin"})" class="launch-modal" data-title="Register Account"><span class="fa fa-user"></span>Register</a></li>
+                    <li><a href="@Url.Action("Index", "Login", new { area="Authentication"})" class="launch-modal" data-title="Sign In"><span class="fa fa-lock"></span>Login</a></li>
+                    <li><a href="@Url.Action("Index", "Registration", new { area="Authentication"})" class="launch-modal" data-title="Register Account"><span class="fa fa-user"></span>Register</a></li>
                 </ul>
             }
         </div>
