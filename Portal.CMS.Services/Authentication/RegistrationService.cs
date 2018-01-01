@@ -64,10 +64,10 @@ namespace Portal.CMS.Services.Authentication
         private static string GenerateSecurePassword(string password)
         {
             // http://stackoverflow.com/questions/4181198/how-to-hash-a-password
-            byte[] salt;
             using (var rNGCryptoServiceProvider = new RNGCryptoServiceProvider())
             {
-                rNGCryptoServiceProvider.GetBytes(salt = new byte[16]);
+                var salt = new byte[16];
+                rNGCryptoServiceProvider.GetBytes(salt);
                 using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000))
                 {
                     var hash = pbkdf2.GetBytes(20);

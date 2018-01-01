@@ -1,6 +1,7 @@
 ﻿using Portal.CMS.Web.Architecture.ActionFilters;
 using Portal.CMS.Web.Architecture.Helpers;
 using Portal.CMS.Web.Areas.Admin.ViewModels.Dashboard;
+using System;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Admin.Controllers
@@ -102,6 +103,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     model.Categories.Add(new QuickAccessCategory { Icon = "fa fa-cog", DesktopText = "Post Options", MobileText = "Options", CssClass = "options", Actions = new System.Collections.Generic.List<QuickAccessAction> { new QuickAccessAction { Icon = "fa fa-pencil", Text = "Edit Post", Link = Url.Action("Edit", "BlogManager", new { area = nameof(Admin), postId = contentId }), LaunchModal = true }, } });
                     model.Categories.Add(Content(false, true));
                     break;
+
+                default:
+                    throw new ArgumentException("Relevant Page Type Not Supplied");
             }
         }
 
