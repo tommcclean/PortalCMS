@@ -48,6 +48,14 @@ var EditablePopover = {
         headers['__RequestVerificationToken'] = $('input[name="__RequestVerificationToken"]').val();
         return headers;
     },
+    ShowSpinner: function (pageAssociationId) {
+        $('#editable-popover-spinner[data-association="' + pageAssociationId + '"]').show();
+        $('#editable-popover-content[data-association="' + pageAssociationId + '"]').hide();
+    },
+    HideSpinner: function (pageAssociationId) {
+        $('#editable-popover-content[data-association="' + pageAssociationId + '"]').show();
+        $('#editable-popover-spinner[data-association="' + pageAssociationId + '"]').hide();
+    },
     OnSuccess: function (popoverTitle, actionIcon, pageAssociationId) {
         EditablePopover.Destroy();
 
