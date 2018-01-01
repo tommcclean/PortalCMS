@@ -88,7 +88,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             HttpRuntime.UnloadAppDomain();
 
-            return Content("Refresh");
+            return Content("SSO");
         }
 
         [HttpGet]
