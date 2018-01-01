@@ -1,0 +1,26 @@
+﻿@model Portal.CMS.Entities.Entities.Page
+@{
+    Layout = "";
+    var isAdmin = UserHelper.IsAdmin;
+}
+
+<script type="text/javascript">
+    var dataParams = { "pageId": @Model.PageId, "referrer": "@Request.UrlReferrer", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+    $.ajax({data: dataParams,type: 'POST',cache: false,url: '@Url.Action("Analytic", "Page", new { area = "PageBuilder" })',success: function (data) {},});
+</script>
+
+@foreach (var pageAssociation in Model.PageAssociations.OrderBy(x => x.PageAssociationOrder).ThenBy(x => x.PageAssociationId))
+{
+    if (pageAssociation.PageSection != null)
+    {
+        <div id="section-wrapper-@(pageAssociation.PageSection.PageSectionId)" class="section-wrapper@(isAdmin ? " admin sortable" : "" )" data-section="@(pageAssociation.PageSection.PageSectionId)" data-association="@pageAssociation.PageAssociationId">
+            @Html.Raw(pageAssociation.PageSection.PageSectionBody)
+        </div>
+    }
+    else if (pageAssociation.PagePartial != null)
+    {
+        <div id="partial-wrapper-@(pageAssociation.PagePartialId)" class="partial-wrapper@(isAdmin ? " admin sortable" : "" )" data-partial="@pageAssociation.PagePartialId" data-association="@pageAssociation.PageAssociationId">
+            @Html.Action(pageAssociation.PagePartial.RouteAction, pageAssociation.PagePartial.RouteController, new { area = pageAssociation.PagePartial.RouteArea, pageId = @Model.PageId })
+        </div>
+    }
+}

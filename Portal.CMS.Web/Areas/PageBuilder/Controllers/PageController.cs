@@ -29,9 +29,20 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             var currentPage = await _pageService.ViewAsync(UserHelper.UserId, pageId);
 
             if (currentPage == null)
+            {
                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
+            }
 
-            return View("/Areas/PageBuilder/Views/Page/Index.cshtml", currentPage);
+            if (UserHelper.IsEditor)
+            {
+                return View("/Areas/PageBuilder/Views/Page/Editor.cshtml", currentPage);
+            }
+            else
+            {
+                return View("/Areas/PageBuilder/Views/Page/Guest.cshtml", currentPage);
+            }
+
+            
         }
 
         public async Task<ActionResult> Analytic(int pageId, string referrer)

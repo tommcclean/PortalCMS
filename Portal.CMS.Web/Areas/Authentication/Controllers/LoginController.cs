@@ -30,7 +30,7 @@ namespace Portal.CMS.Web.Areas.Authentication.Controllers
         public async Task<ActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
-                return View("_Login", model);
+                return View("_LoginForm", model);
 
             var userId = await _loginService.LoginAsync(model.EmailAddress, model.Password);
 
@@ -38,7 +38,7 @@ namespace Portal.CMS.Web.Areas.Authentication.Controllers
             {
                 ModelState.AddModelError("InvalidCredentials", "Invalid Account Credentials");
 
-                return View("_Login", model);
+                return View("_LoginForm", model);
             }
 
             Session.Add("UserAccount", await _userService.GetUserAsync(userId.Value));

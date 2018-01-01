@@ -566,7 +566,7 @@
     <Content Include="Areas\Admin\Views\PostCategories\_Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AnalyticManager\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AnalyticManager\_DisplayChart.cshtml" />
-    <Content Include="Areas\PageBuilder\Views\Page\Index.cshtml" />
+    <Content Include="Areas\PageBuilder\Views\Page\_Page.cshtml" />
     <Content Include="Areas\Profile\Views\Manage\_Password.cshtml" />
     <Content Include="Areas\Profile\Views\Manage\_Account.cshtml" />
     <Content Include="Areas\Profile\Views\Manage\_Avatar.cshtml" />
@@ -755,6 +755,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Authentication\Views\SingleSignOn\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\PageBuilder\Views\Page\Editor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\PageBuilder\Views\Page\Guest.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

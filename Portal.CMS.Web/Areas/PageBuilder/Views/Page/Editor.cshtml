@@ -1,0 +1,37 @@
+﻿@model Portal.CMS.Entities.Entities.Page
+@{
+    ViewBag.Title = Model.PageName;
+}
+
+@section HEADScripts
+{
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    @Scripts.Render("~/Plugins/Touch/Scripts")
+}
+
+@Html.Action("Render", "QuickAccess", new { area = "Admin", pageType = QuickAccessPageType.PageBuilder, contentId = Model.PageId })
+
+@using (Html.BeginForm("EditOrder", "Section", FormMethod.Post, new { @style = "display: none;" }))
+{
+    <input id="order-list" name="associationList" />
+    <input id="order-pageId" value="@Model.PageId" name="pageId" />
+    <button id="order-submit"></button>
+}
+
+<div id="spinner-wrapper"><div class="spinner-background"><div class="spinner"></div></div></div>
+
+<div class="action-container action-container-footer section-order" style="display: none;">
+    <div onclick="PageBuilder.Order.Save();" class="action"><span class="fa fa-check"></span></div>
+    <div onclick="location.reload();" class="action"><span class="fa fa-remove"></span></div>
+</div>
+
+<div class="load-action" data-url="@Url.Action("Add", "Section", new { area = "PageBuilder", pageId = Model.PageId })"></div>
+<div class="load-action" data-url="@Url.Action("Add", "Component", new { area = "PageBuilder" })"></div>
+<div class="load-action" data-url="@Url.Action("AppDrawer", "PageManager", new { area = "Admin" })"></div>
+<div class="load-action" data-url="@Url.Action("AppDrawer", "ThemeManager", new { area = "Admin" })"></div>
+<div class="load-action" data-url="@Url.Action("AppDrawer", "BlogManager", new { area = "Admin" })"></div>
+
+<div id="page-wrapper" class="admin">
+    @Html.Partial("/Areas/PageBuilder/Views/Page/_Page.cshtml", Model)
+</div>
