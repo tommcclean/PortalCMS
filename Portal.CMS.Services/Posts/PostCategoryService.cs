@@ -24,23 +24,21 @@ namespace Portal.CMS.Services.Posts
     {
         private PortalEntityModel _context;
 
-        public PortalEntityModel context { get => _context; set => _context = value; }
-
         public PostCategoryService(PortalEntityModel context)
         {
-            this.context = context;
+            _context = context;
         }
 
         public async Task<PostCategory> GetAsync(int postCategoryId)
         {
-            var postCategory = await context.PostCategories.SingleOrDefaultAsync(x => x.PostCategoryId == postCategoryId);
+            var postCategory = await _context.PostCategories.SingleOrDefaultAsync(x => x.PostCategoryId == postCategoryId);
 
             return postCategory;
         }
 
         public async Task<IEnumerable<PostCategory>> GetAsync()
         {
-            var results = await context.PostCategories.OrderBy(x => x.PostCategoryName).ToListAsync();
+            var results = await _context.PostCategories.OrderBy(x => x.PostCategoryName).ToListAsync();
 
             return results;
         }
@@ -52,31 +50,31 @@ namespace Portal.CMS.Services.Posts
                 PostCategoryName = postCategoryName
             };
 
-            context.PostCategories.Add(newPostCategory);
+            _context.PostCategories.Add(newPostCategory);
 
-            await context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return newPostCategory.PostCategoryId;
         }
 
         public async Task EditAsync(int postCategoryId, string postCategoryName)
         {
-            var postCategory = await context.PostCategories.SingleOrDefaultAsync(x => x.PostCategoryId == postCategoryId);
+            var postCategory = await _context.PostCategories.SingleOrDefaultAsync(x => x.PostCategoryId == postCategoryId);
             if (postCategory == null) return;
 
             postCategory.PostCategoryName = postCategoryName;
 
-            await context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int postCategoryId)
         {
-            var postCategory = await context.PostCategories.SingleOrDefaultAsync(x => x.PostCategoryId == postCategoryId);
+            var postCategory = await _context.PostCategories.SingleOrDefaultAsync(x => x.PostCategoryId == postCategoryId);
             if (postCategory == null) return;
 
-            context.PostCategories.Remove(postCategory);
+            _context.PostCategories.Remove(postCategory);
 
-            await context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
     }
 }
