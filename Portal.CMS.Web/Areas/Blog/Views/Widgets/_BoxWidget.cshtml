@@ -1,0 +1,21 @@
+﻿@model Portal.CMS.Web.Areas.Blog.ViewModels.Widgets.PostsWidgetViewModel
+@{
+    Layout = "";
+}
+
+<div class="container container-wide">
+    <div class="row">
+        @foreach (var post in Model.PostList)
+        {
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="box box-tall">
+                    <p class="box-title">@post.PostCategory.PostCategoryName</p>
+                    <img alt="Flexible Image" class="image image-auto" src="@post.BannerImageUrl()">
+                    <h3 class="">@post.PostTitle</h3>
+                    <p class="">@post.PostDescription</p>
+                    <a href="@Url.Action("Index", "Read", new { area = "Blog" })" class="btn">Read Post</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

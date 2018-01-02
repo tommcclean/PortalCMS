@@ -50,5 +50,17 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
 
             return View("_RetroWidget", model);
         }
+
+        public async Task<ActionResult> BoxWidget()
+        {
+            var postList = await _postService.ReadAsync(UserHelper.UserId, string.Empty);
+
+            var model = new PostsWidgetViewModel
+            {
+                PostList = postList.Take(6).ToList()
+            };
+
+            return View("_BoxWidget", model);
+        }
     }
 }
