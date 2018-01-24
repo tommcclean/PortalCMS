@@ -2,12 +2,20 @@
 This file contains a list of changes between versions of Portal CMS and a roadmap that provides a brief outline of the features we intend to include in Portal CMS.
 
 ## Future Intentions
-1. Upgrade SendGrid Implementation (1.3.4)
-2. Improved User Experience via Modal Popvers to Reduce Post Backs (1.3.4)
-3. Change Authentication Method to use Owin (Unplanned)
-3. Improved Menu Management with more Visual Options OOTB (Unplanned)
+1 Change Authentication Method to use Owin (Unplanned)
+1. Improved Menu Management with more Visual Options OOTB (Unplanned)
 
 # Changelog
+
+## 1.3.4 - (January 2018) Maintenance Release
+1. Upgrade SendGrid Implementation (Requires Configuration for Existing Websites)
+2. Improved User Experience via Modal Popvers to Reduce Post Backs and Improve Ease of Use
+3. Improving Code Quality using Codacy Automated Code Reviews
+4. Improved Organisation of Website Assets and Plugins
+5. Content Delivery Network now covers a wider range of website content
+6. Extraction of Authentication Actions to a New Area to Support Integration of Owin Pipeline in a later release.
+7. New Components and Section Types available
+8. New Widget for displaying Blog Posts
 
 ## 1.3.3 - (December 2017) Maintenance Release: General Update with Minor Changes
 1. Change the Default Connection String to not use an SQLExpress Endpoint.
