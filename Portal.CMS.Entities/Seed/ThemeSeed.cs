@@ -27,16 +27,9 @@ namespace Portal.CMS.Entities.Seed
                 fonts.Add(new Font { FontName = "Railway", FontPath = "/Content/Fonts/Railway.otf", FontType = "opentype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
                 fonts.Add(new Font { FontName = "Roboto-Bold", FontPath = "/Content/Fonts/roboto-bold.ttf", FontType = "truetype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
                 fonts.Add(new Font { FontName = "Sniglet", FontPath = "/Content/Fonts/sniglet-regular.otf", FontType = "opentype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
+                fonts.Add(new Font { FontName = "OpenSans-Regular", FontPath = "/Content/Fonts/OpenSans-Regular.ttf", FontType = "truetype", DateAdded = DateTime.Now, DateUpdated = DateTime.Now });
 
                 context.Fonts.AddRange(fonts);
-            }
-
-            if (context.Fonts.Any(x => x.FontPath.Contains("Area")))
-            {
-                foreach (var font in context.Fonts)
-                {
-                    font.FontPath = font.FontPath.Replace("/Areas/Admin/Content/Fonts", "/Content/Fonts");
-                }
             }
 
             context.SaveChanges();
