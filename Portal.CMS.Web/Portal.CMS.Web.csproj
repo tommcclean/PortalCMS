@@ -16,7 +16,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Portal.CMS.Web</RootNamespace>
     <AssemblyName>Portal.CMS.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -216,6 +216,7 @@
     <Compile Include="Architecture\Extensions\ImageExtensions.cs" />
     <Compile Include="Architecture\Extensions\PostExtensions.cs" />
     <Compile Include="Architecture\Helpers\AsyncHelpers.cs" />
+    <Compile Include="Architecture\Helpers\ThemeHelper.cs" />
     <Compile Include="Architecture\Modules\RemoveResponseHeadersModule.cs" />
     <Compile Include="Architecture\ViewEngines\CSSViewEngine.cs" />
     <Compile Include="Architecture\ActionFilters\EditorFilter.cs" />
