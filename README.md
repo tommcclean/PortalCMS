@@ -4,8 +4,7 @@
 - Non technical users can create unlimited pages and blog posts without writing any code using the Page Builder.
 
 ### Learn More
-- Learn more about PortalCMS on its official website: [Official Website](http://www.portalcms.online)
-- Test Drive PortalCMS using our Online Demo: [Online Demo](http://portalcmsdemo.azurewebsites.net)
+- Test Drive PortalCMS using our Online Demo: [Online Demo](https://portalcmsdemo.azurewebsites.net)
 
 ### Why Choose Portal CMS?
 - To build a modern website that is good looking, standards compliant and easy to use with minimal effort and time.
