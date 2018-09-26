@@ -1,8 +1,9 @@
-﻿@model Portal.CMS.Entities.Entities.Page
+﻿
+@model Portal.CMS.Entities.Entities.Page
 @{
     ViewBag.Title = Model.PageName;
 }
 
-<div id="page-wrapper">
+<div id="page-wrapper" class="visitor">
     @Html.Partial("/Areas/PageBuilder/Views/Page/_Page.cshtml", Model)
 </div>
