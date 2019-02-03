@@ -212,3 +212,4 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 /Portal.CMS.Web/Areas/Admin/Content/Media
+/Portal.CMS.Web/Areas/Profile/Content/Media/Avatars/media-*.png

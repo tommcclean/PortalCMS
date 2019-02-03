@@ -38,9 +38,23 @@
             {
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span>@UserHelper.FullName <span class="caret"></span></a>
+											<a href="#" class="dropdown-toggle btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												@if (@UserHelper.AvatarImagePath.Contains("profile-image-male.png"))
+												{
+													<span class="fa fa-user"></span>
+												}
+												else
+												{
+													<img class="avatar navbar-profileImage" alt="My Avatar" src="@UserHelper.AvatarImagePath" />
+												}
+												@UserHelper.FullName <span class="caret"></span>
+											</a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("EditAccount", "Manage", new { area="Profile"})" class="launch-modal" data-title="Update Account"><span class="fa fa-user"></span>Update Account</a></li>
+                            <li>
+															<a href="@Url.Action("EditAccount", "Manage", new { area="Profile"})" class="launch-modal" data-title="Update Account">
+																<span class="fa fa-user"></span>Update Account
+															</a>
+														</li>
                             <li><a href="@Url.Action("EditBio", "Manage", new { area="Profile"})" class="launch-modal" data-title="Update Bio"><span class="fa fa-book"></span>Update Bio</a></li>
                             <li><a href="@Url.Action("EditAvatar", "Manage", new { area="Profile"})" class="launch-modal" data-title="Upload Avatar"><span class="fa fa-picture-o"></span>Upload Avatar</a></li>
                             <li><a href="@Url.Action("EditPassword", "Manage", new { area="Profile"})" class="launch-modal" data-title="Change Password"><span class="fa fa-key"></span>Change Password</a></li>
