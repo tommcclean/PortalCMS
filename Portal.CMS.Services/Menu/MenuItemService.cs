@@ -24,9 +24,9 @@ namespace Portal.CMS.Services.Menu
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
+        readonly PortalDbContext _context;
 
-        public MenuItemService(PortalEntityModel context)
+        public MenuItemService(PortalDbContext context)
         {
             _context = context;
         }

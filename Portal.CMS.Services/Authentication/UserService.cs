@@ -32,9 +32,9 @@ namespace Portal.CMS.Services.Authentication
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
+        readonly PortalDbContext _context;
 
-        public UserService(PortalEntityModel context)
+        public UserService(PortalDbContext context)
         {
             _context = context;
         }

@@ -22,9 +22,9 @@ namespace Portal.CMS.Services.Posts
 
     public class PostCategoryService : IPostCategoryService
     {
-        private PortalEntityModel _context;
+        private PortalDbContext _context;
 
-        public PostCategoryService(PortalEntityModel context)
+        public PostCategoryService(PortalDbContext context)
         {
             _context = context;
         }

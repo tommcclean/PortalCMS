@@ -44,11 +44,11 @@ namespace Portal.CMS.Services.Posts
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
+        readonly PortalDbContext _context;
         readonly IUserService _userService;
         readonly IRoleService _roleService;
 
-        public PostService(PortalEntityModel context, IUserService userService, IRoleService roleService)
+        public PostService(PortalDbContext context, IUserService userService, IRoleService roleService)
         {
             _context = context;
             _userService = userService;

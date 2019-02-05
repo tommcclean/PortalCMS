@@ -27,9 +27,9 @@ namespace Portal.CMS.Services.Copy
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
+        readonly PortalDbContext _context;
 
-        public CopyService(PortalEntityModel context)
+        public CopyService(PortalDbContext context)
         {
             _context = context;
         }

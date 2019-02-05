@@ -50,9 +50,9 @@ namespace Portal.CMS.Services.PageBuilder
 
     public class PageSectionService : IPageSectionService
     {
-        private readonly PortalEntityModel _context;
+        private readonly PortalDbContext _context;
 
-        public PageSectionService(PortalEntityModel context)
+        public PageSectionService(PortalDbContext context)
         {
             _context = context;
         }

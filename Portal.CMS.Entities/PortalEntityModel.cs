@@ -4,15 +4,15 @@ using System.Data.Entity;
 
 namespace Portal.CMS.Entities
 {
-    public class PortalEntityModel : DbContext
+    public class PortalDbContext : DbContext
     {
         #region Dependencies
 
-        public PortalEntityModel(DbConnection connection) : base(connection, true)
+        public PortalDbContext(DbConnection connection) : base(connection, true)
         {
         }
 
-        public PortalEntityModel() : base("name=PortalEntityModel")
+        public PortalDbContext() : base("name=PortalDbConnection")
         {
         }
 

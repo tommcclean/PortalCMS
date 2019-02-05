@@ -18,9 +18,9 @@ namespace Portal.CMS.Services.Posts
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
+        readonly PortalDbContext _context;
 
-        public PostImageService(PortalEntityModel context)
+        public PostImageService(PortalDbContext context)
         {
             _context = context;
         }

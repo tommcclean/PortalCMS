@@ -7,7 +7,7 @@ namespace Portal.CMS.Entities.Seed
 {
     public static class MediaSeed
     {
-        public static void Seed(PortalEntityModel context)
+        public static void Seed(PortalDbContext context)
         {
             if (!context.Images.Any())
             {

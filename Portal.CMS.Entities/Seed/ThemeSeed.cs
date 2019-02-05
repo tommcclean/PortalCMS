@@ -7,7 +7,7 @@ namespace Portal.CMS.Entities.Seed
 {
     public static class ThemeSeed
     {
-        public static void Seed(PortalEntityModel context)
+        public static void Seed(PortalDbContext context)
         {
             var fonts = new List<Font>();
 

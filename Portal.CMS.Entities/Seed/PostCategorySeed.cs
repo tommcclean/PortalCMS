@@ -5,7 +5,7 @@ namespace Portal.CMS.Entities.Seed
 {
     public static class PostCategorySeed
     {
-        public static void Seed(PortalEntityModel context)
+        public static void Seed(PortalDbContext context)
         {
             if (!context.PostCategories.Any())
                 context.PostCategories.Add(new PostCategory { PostCategoryName = "Blog" });

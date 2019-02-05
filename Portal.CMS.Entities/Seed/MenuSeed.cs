@@ -6,7 +6,7 @@ namespace Portal.CMS.Entities.Seed
 {
     public static class MenuSeed
     {
-        public static void Seed(PortalEntityModel context)
+        public static void Seed(PortalDbContext context)
         {
             if (!context.Menus.Any(x => x.MenuName == "Main Menu"))
             {

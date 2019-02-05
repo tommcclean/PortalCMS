@@ -3,14 +3,14 @@ namespace Portal.CMS.Entities.Migrations
     using Seed;
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Portal.CMS.Entities.PortalEntityModel>
+    internal sealed class Configuration : DbMigrationsConfiguration<Portal.CMS.Entities.PortalDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Portal.CMS.Entities.PortalEntityModel context)
+        protected override void Seed(Portal.CMS.Entities.PortalDbContext context)
         {
             ThemeSeed.Seed(context);
             RoleSeed.Seed(context);

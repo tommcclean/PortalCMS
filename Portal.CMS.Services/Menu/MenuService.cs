@@ -21,11 +21,11 @@ namespace Portal.CMS.Services.Menu
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
+        readonly PortalDbContext _context;
         readonly IUserService _userService;
         readonly IRoleService _roleService;
 
-        public MenuService(PortalEntityModel context, IUserService userService, IRoleService roleService)
+        public MenuService(PortalDbContext context, IUserService userService, IRoleService roleService)
         {
             _context = context;
             _userService = userService;

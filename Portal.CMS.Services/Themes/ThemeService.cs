@@ -28,10 +28,10 @@ namespace Portal.CMS.Services.Themes
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
+        readonly PortalDbContext _context;
         readonly IPageService _pageService;
 
-        public ThemeService(PortalEntityModel context, IPageService pageService)
+        public ThemeService(PortalDbContext context, IPageService pageService)
         {
             _context = context;
             _pageService = pageService;

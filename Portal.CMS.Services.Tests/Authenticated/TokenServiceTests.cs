@@ -14,7 +14,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
     {
         #region Dependencies
 
-        private PortalEntityModel _mockContext;
+        private PortalDbContext _mockContext;
 
         private UserService _userService;
         private RegistrationService _registrationService;
@@ -25,7 +25,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
         {
             var connection = Effort.DbConnectionFactory.CreateTransient();
 
-            _mockContext = new PortalEntityModel(connection);
+            _mockContext = new PortalDbContext(connection);
             _mockContext.Database.CreateIfNotExists();
 
             _userService = new UserService(_mockContext);

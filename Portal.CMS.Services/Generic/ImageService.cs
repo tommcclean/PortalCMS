@@ -23,9 +23,9 @@ namespace Portal.CMS.Services.Generic
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
+        readonly PortalDbContext _context;
 
-        public ImageService(PortalEntityModel context)
+        public ImageService(PortalDbContext context)
         {
             _context = context;
         }

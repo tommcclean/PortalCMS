@@ -7,7 +7,7 @@ namespace Portal.CMS.Entities.Seed
 {
     public static class CopySeed
     {
-        public static void Seed(PortalEntityModel context)
+        public static void Seed(PortalDbContext context)
         {
             var copyList = context.CopyItems.ToList();
             var newCopyList = new List<CopyItem>();

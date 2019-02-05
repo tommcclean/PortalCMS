@@ -6,7 +6,7 @@ namespace Portal.CMS.Entities.Seed
 {
     public static class RoleSeed
     {
-        public static void Seed(PortalEntityModel context)
+        public static void Seed(PortalDbContext context)
         {
             var roleList = context.Roles.ToList();
 

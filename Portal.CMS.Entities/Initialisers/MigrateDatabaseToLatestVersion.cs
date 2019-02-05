@@ -3,16 +3,16 @@
     using Portal.CMS.Entities.Migrations;
     using System.Data.Entity;
 
-    internal class MigrateDatabaseToLatestVersion : MigrateDatabaseToLatestVersion<PortalEntityModel, Configuration>
+    internal class MigrateDatabaseToLatestVersion : MigrateDatabaseToLatestVersion<PortalDbContext, Configuration>
     {
-        public override void InitializeDatabase(PortalEntityModel context)
+        public override void InitializeDatabase(PortalDbContext context)
         {
             base.InitializeDatabase(context);
 
             Seed(context);
         }
 
-        public virtual void Seed(PortalEntityModel context)
+        public virtual void Seed(PortalDbContext context)
         {
         }
     }

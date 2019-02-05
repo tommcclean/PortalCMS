@@ -6,7 +6,7 @@ namespace Portal.CMS.Entities.Migrations
 
     public partial class UpdateExistingAdminAndEditorRoles : DbMigration
     {
-        private readonly PortalEntityModel _context = new PortalEntityModel();
+        private readonly PortalDbContext _context = new PortalDbContext();
 
         public override void Up()
         {

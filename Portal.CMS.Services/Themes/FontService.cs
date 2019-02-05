@@ -23,9 +23,9 @@ namespace Portal.CMS.Services.Themes
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
+        readonly PortalDbContext _context;
 
-        public FontService(PortalEntityModel context)
+        public FontService(PortalDbContext context)
         {
             _context = context;
         }

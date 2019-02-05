@@ -9,7 +9,7 @@ namespace Portal.CMS.Entities.Seed
 {
     public static class PageSectionTypeSeed
     {
-        public static void Seed(PortalEntityModel context)
+        public static void Seed(PortalDbContext context)
         {
             var newSections = new List<PageSectionType>();
 

@@ -31,9 +31,9 @@ namespace Portal.CMS.Services.PageBuilder
     {
         #region Dependencies
 
-        readonly PortalEntityModel _context;
+        readonly PortalDbContext _context;
 
-        public PageComponentService(PortalEntityModel context)
+        public PageComponentService(PortalDbContext context)
         {
             _context = context;
         }

@@ -7,7 +7,7 @@ namespace Portal.CMS.Entities.Seed
 {
     public static class PageSeed
     {
-        public static void Seed(PortalEntityModel context)
+        public static void Seed(PortalDbContext context)
         {
             if (context.Pages.Any())
                 return;

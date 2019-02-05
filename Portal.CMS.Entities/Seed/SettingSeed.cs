@@ -6,7 +6,7 @@ namespace Portal.CMS.Entities.Seed
 {
     public static class SettingSeed
     {
-        public static void Seed(PortalEntityModel context)
+        public static void Seed(PortalDbContext context)
         {
             var settingList = context.Settings.ToList();
 

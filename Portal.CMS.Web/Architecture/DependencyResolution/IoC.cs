@@ -13,7 +13,7 @@ namespace Portal.CMS.Web.DependencyResolution
                 {
                     c.AddRegistry<DefaultRegistry>();
                     c.For<AnalyticManagerController>().AlwaysUnique();
-                    c.For<PortalEntityModel>().Use<PortalEntityModel>().SelectConstructor(() => new PortalEntityModel());
+                    c.For<PortalDbContext>().Use<PortalDbContext>().SelectConstructor(() => new PortalDbContext());
                 }
             );
         }
