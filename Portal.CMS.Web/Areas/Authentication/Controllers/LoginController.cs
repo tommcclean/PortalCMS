@@ -41,7 +41,7 @@ namespace Portal.CMS.Web.Areas.Authentication.Controllers
                 return View("_LoginForm", model);
             }
 
-            Session.Add("UserAccount", await _userService.GetUserAsync(userId.Value));
+            Session.Add("UserAccount", await _userService.GetAsync(userId.Value));
             Session.Add("UserRoles", await _roleService.GetAsync(userId));
 
             return Content("Refresh");

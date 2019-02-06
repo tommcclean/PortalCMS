@@ -166,7 +166,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
 
             Session.Remove(USER_ACCOUNT);
 
-            Session.Add(USER_ACCOUNT, await _userService.GetUserAsync(userId.Value));
+            Session.Add(USER_ACCOUNT, await _userService.GetAsync(userId.Value));
         }
     }
 }

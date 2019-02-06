@@ -70,7 +70,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PostCategoryId = postCategories.First().PostCategoryId,
                 PostAuthorUserId = UserHelper.UserId.Value,
                 PostCategoryList = postCategories,
-                UserList = await _userService.GetAsync(new List<string> { nameof(Admin), "Editor" }),
+                UserList = await _userService.GetByRoleAsync(new List<string> { nameof(Admin), "Editor" }),
                 PublicationState = PublicationState.Published,
                 BannerImages = new PaginationViewModel
                 {
@@ -112,7 +112,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     PaginationType = GALLERY
                 };
                 model.PostCategoryList = await _postCategoryService.GetAsync();
-                model.UserList = await _userService.GetAsync(new List<string> { nameof(Admin), "Editor" });
+                model.UserList = await _userService.GetByRoleAsync(new List<string> { nameof(Admin), "Editor" });
                 model.RoleList = await _roleService.GetAsync();
 
                 return View("_Create", model);
@@ -148,7 +148,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PostAuthorUserId = post.PostAuthorUserId,
                 ExistingGalleryImageList = post.PostImages.Where(x => x.PostImageType == PostImageType.Gallery).Select(x => x.ImageId).ToList(),
                 PostCategoryList = await _postCategoryService.GetAsync(),
-                UserList = await _userService.GetAsync(new List<string> { nameof(Admin), "Editor" }),
+                UserList = await _userService.GetByRoleAsync(new List<string> { nameof(Admin), "Editor" }),
                 BannerImages = new PaginationViewModel
                 {
                     ImageList = imageList.Where(x => x.ImageCategory == ImageCategory.General || x.ImageCategory == ImageCategory.Screenshot || x.ImageCategory == ImageCategory.Texture),
@@ -196,7 +196,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     PaginationType = GALLERY
                 };
                 model.PostCategoryList = await _postCategoryService.GetAsync();
-                model.UserList = await _userService.GetAsync(new List<string> { nameof(Admin), "Editor" });
+                model.UserList = await _userService.GetByRoleAsync(new List<string> { nameof(Admin), "Editor" });
                 model.RoleList = await _roleService.GetAsync();
 
                 return View("_Edit", model);

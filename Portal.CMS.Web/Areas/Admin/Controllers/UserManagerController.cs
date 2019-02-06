@@ -59,13 +59,13 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     return View("_Create", model);
 
                 default:
-                    if (await _userService.GetUserCountAsync() == 1)
+                    if (await _userService.CountAsync() == 1)
                         await _roleService.UpdateAsync(userId.Value, new List<string> { nameof(Admin) });
                     else
                         await _roleService.UpdateAsync(userId.Value, new List<string> { "Authenticated" });
 
                     if (!UserHelper.IsLoggedIn)
-                        Session.Add("UserAccount", await _userService.GetUserAsync(userId.Value));
+                        Session.Add("UserAccount", await _userService.GetAsync(userId.Value));
 
                     return Content("Refresh");
             }
@@ -74,7 +74,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<ActionResult> Details(int userId)
         {
-            var user = await _userService.GetUserAsync(userId);
+            var user = await _userService.GetAsync(userId);
 
             var model = new DetailsViewModel
             {
@@ -101,7 +101,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             {
                 Session.Remove("UserAccount");
 
-                Session.Add("UserAccount", await _userService.GetUserAsync(model.UserId));
+                Session.Add("UserAccount", await _userService.GetAsync(model.UserId));
             }
 
             return Content("Refresh");
@@ -138,7 +138,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 Session.Remove("UserAccount");
                 Session.Remove("UserRoles");
 
-                Session.Add("UserAccount", await _userService.GetUserAsync(model.UserId.Value));
+                Session.Add("UserAccount", await _userService.GetAsync(model.UserId.Value));
                 Session.Add("UserRoles", await _roleService.GetAsync(model.UserId));
             }
 

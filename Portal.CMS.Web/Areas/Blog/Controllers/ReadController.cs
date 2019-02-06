@@ -54,7 +54,7 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
             if (model.CurrentPost == null)
                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
-            model.Author = await _userService.GetUserAsync(model.CurrentPost.PostAuthorUserId);
+            model.Author = await _userService.GetAsync(model.CurrentPost.PostAuthorUserId);
 
             var similiarPosts = await _postService.ReadAsync(UserHelper.UserId, model.CurrentPost.PostCategory.PostCategoryName);
 

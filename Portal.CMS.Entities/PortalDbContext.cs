@@ -1,11 +1,13 @@
+using Microsoft.AspNet.Identity.EntityFramework;
 using Portal.CMS.Entities.Entities;
+using Portal.CMS.Entities.Entities.Models;
 using System.Data.Common;
 using System.Data.Entity;
 
 namespace Portal.CMS.Entities
 {
     public class PortalDbContext : DbContext
-    {
+	{
         #region Dependencies
 
         public PortalDbContext(DbConnection connection) : base(connection, true)

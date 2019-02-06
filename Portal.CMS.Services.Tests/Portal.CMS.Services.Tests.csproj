@@ -78,6 +78,10 @@
       <Project>{13103a2e-ff04-442f-95f6-c2e8edb0f274}</Project>
       <Name>Portal.CMS.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Portal.CMS.Repositories\Portal.CMS.Repositories.csproj">
+      <Project>{23880390-2164-409d-a02c-8e3b828fbf37}</Project>
+      <Name>Portal.CMS.Repositories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Portal.CMS.Services\Portal.CMS.Services.csproj">
       <Project>{153c71ed-5f82-4755-aa59-e468b026d4bb}</Project>
       <Name>Portal.CMS.Services</Name>

@@ -31,7 +31,7 @@ namespace Portal.CMS.Web.Areas.Authentication.Controllers
 
                 if (result.HasValue)
                 {
-                    Session.Add("UserAccount", await _userService.GetUserAsync(result.Value));
+                    Session.Add("UserAccount", await _userService.GetAsync(result.Value));
                     Session.Add("UserRoles", await _roleService.GetAsync(result));
                 }
 

@@ -267,7 +267,7 @@
       <DependentUpon>201708101946158_UpdateExistingAdminAndEditorRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="PortalEntityModel.cs" />
+    <Compile Include="PortalDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seed\MediaSeed.cs" />
     <Compile Include="Seed\MenuSeed.cs" />

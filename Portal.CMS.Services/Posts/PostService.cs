@@ -76,7 +76,7 @@ namespace Portal.CMS.Services.Posts
 
             if (userId.HasValue)
             {
-                var user = await _userService.GetUserAsync(userId.Value);
+                var user = await _userService.GetAsync(userId.Value);
 
                 if (user.Roles.Any())
                     userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));

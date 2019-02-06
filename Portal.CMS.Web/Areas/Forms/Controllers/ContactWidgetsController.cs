@@ -42,7 +42,7 @@ namespace Portal.CMS.Web.Areas.Forms.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SubmitMessageWidget(SubmitMessageViewModel model)
         {
-            var recipients = await _userService.GetAsync(new List<string> { nameof(Admin) });
+            var recipients = await _userService.GetByRoleAsync(new List<string> { nameof(Admin) });
 
             await EmailHelper.SendEmailAsync(
                 recipients.Select(x => x.EmailAddress).First(),

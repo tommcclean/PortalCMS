@@ -44,7 +44,7 @@ namespace Portal.CMS.Web.Areas.Authentication.Controllers
                     return View("_RegistrationForm", model);
 
                 default:
-                    if (await _userService.GetUserCountAsync() == 1)
+                    if (await _userService.CountAsync() == 1)
                     {
                         await _roleService.UpdateAsync(userId.Value, new List<string> { nameof(Admin), "Authenticated" });
 
@@ -55,7 +55,7 @@ namespace Portal.CMS.Web.Areas.Authentication.Controllers
                         await _roleService.UpdateAsync(userId.Value, new List<string> { "Authenticated" });
                     }
 
-                    Session.Add("UserAccount", await _userService.GetUserAsync(userId.Value));
+                    Session.Add("UserAccount", await _userService.GetAsync(userId.Value));
                     Session.Add("UserRoles", await _roleService.GetAsync(userId));
 
                     if (isAdministrator)

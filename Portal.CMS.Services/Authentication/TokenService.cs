@@ -35,7 +35,7 @@ namespace Portal.CMS.Services.Authentication
 
         public async Task<string> AddAsync(string emailAddress, UserTokenType userTokenType)
         {
-            var user = await _userService.GetAsync(emailAddress);
+            var user = await _userService.GetByEmailAsync(emailAddress);
             if (user == null) return string.Empty;
 
             var userToken = new UserToken
