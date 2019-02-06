@@ -77,9 +77,9 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             await _pageService.RolesAsync(pageId, model.SelectedRoleList);
 
-            var token = await _tokenService.AddAsync(UserHelper.EmailAddress, UserTokenType.SSO);
+            var token = await _tokenService.AddAsync(UserHelper.Email, UserTokenType.SSO);
 
-            var cookie = new HttpCookie("PortalCMS_SSO", string.Join(",", UserHelper.UserId, HttpContext.Request.Url.AbsoluteUri, token))
+            var cookie = new HttpCookie("PortalCMS_SSO", string.Join(",", UserHelper.Id, HttpContext.Request.Url.AbsoluteUri, token))
             {
                 Expires = DateTime.Now.AddMinutes(5)
             };
@@ -104,7 +104,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 PageController = page.PageController,
                 PageAction = page.PageAction,
                 RoleList = await _roleService.GetAsync(),
-                SelectedRoleList = page.PageRoles.Select(x => x.Role.RoleName).ToList()
+                SelectedRoleList = page.PageRoles.Select(x => x.Role.Name).ToList()
             };
 
             return View("_Edit", model);

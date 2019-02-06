@@ -6,10 +6,10 @@ namespace Portal.CMS.Entities.Entities
     public class Role
     {
         [Key]
-        public int RoleId { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        public string RoleName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [DefaultValue("true")]

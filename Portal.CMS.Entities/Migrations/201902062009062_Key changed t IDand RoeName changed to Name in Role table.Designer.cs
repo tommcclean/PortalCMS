@@ -6,14 +6,14 @@ namespace Portal.CMS.Entities.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ExtendMenuItemWithLinkIcon : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
+    public sealed partial class KeychangedtIDandRoeNamechangedtoNameinRoletable : IMigrationMetadata
     {
-        readonly ResourceManager Resources = new ResourceManager(typeof(ExtendMenuItemWithLinkIcon));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(KeychangedtIDandRoeNamechangedtoNameinRoletable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201609241939510_ExtendMenuItemWithLinkIcon"; }
+            get { return "201902062009062_Key changed t IDand RoeName changed to Name in Role table"; }
         }
         
         string IMigrationMetadata.Source

@@ -40,7 +40,7 @@ namespace Portal.CMS.Services.Authentication
 
             var userToken = new UserToken
             {
-                UserId = user.UserId,
+                UserId = user.Id,
                 Token = Guid.NewGuid().ToString(),
                 UserTokenType = userTokenType,
                 DateAdded = DateTime.Now
@@ -60,13 +60,13 @@ namespace Portal.CMS.Services.Authentication
             if (userToken == null)
                 return "Invalid Token. Please Request Reset Password Token Again...";
 
-            if (!userToken.User.EmailAddress.Equals(emailAddress, StringComparison.OrdinalIgnoreCase))
+            if (!userToken.User.Email.Equals(emailAddress, StringComparison.OrdinalIgnoreCase))
                 return "Invalid Token. This Token does not match the Email Address you entered...";
 
             if (userToken.DateRedeemed.HasValue)
                 return "Invalid Token. This Token has already been used";
 
-            await _registrationService.ChangePasswordAsync(userToken.User.UserId, password);
+            await _registrationService.ChangePasswordAsync(userToken.User.Id, password);
 
             userToken.DateRedeemed = DateTime.Now;
             await _context.SaveChangesAsync();

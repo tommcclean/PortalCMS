@@ -7,7 +7,7 @@ namespace Portal.CMS.Entities.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Portal.CMS.Entities.PortalDbContext context)

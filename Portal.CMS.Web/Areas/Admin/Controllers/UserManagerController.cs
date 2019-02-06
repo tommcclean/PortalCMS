@@ -79,7 +79,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             var model = new DetailsViewModel
             {
                 UserId = userId,
-                EmailAddress = user.EmailAddress,
+                EmailAddress = user.Email,
                 GivenName = user.GivenName,
                 FamilyName = user.FamilyName,
                 DateAdded = user.DateAdded,
@@ -97,7 +97,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             await _userService.UpdateDetailsAsync(model.UserId, model.EmailAddress, model.GivenName, model.FamilyName);
 
-            if (model.UserId == UserHelper.UserId)
+            if (model.UserId == UserHelper.Id)
             {
                 Session.Remove("UserAccount");
 
@@ -119,7 +119,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             var userRoles = await _roleService.GetAsync(userId);
 
             foreach (var role in userRoles)
-                model.SelectedRoleList.Add(role.RoleName);
+                model.SelectedRoleList.Add(role.Name);
 
             return PartialView("_Roles", model);
         }
@@ -133,7 +133,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             await _roleService.UpdateAsync(model.UserId.Value, model.SelectedRoleList);
 
-            if (model.UserId == UserHelper.UserId)
+            if (model.UserId == UserHelper.Id)
             {
                 Session.Remove("UserAccount");
                 Session.Remove("UserRoles");

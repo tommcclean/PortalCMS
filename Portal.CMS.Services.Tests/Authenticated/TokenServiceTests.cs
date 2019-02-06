@@ -53,7 +53,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.Users.AddRange(new List<User>
             {
-                new User { UserId = userId, GivenName = "Test", FamilyName = "User", EmailAddress = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
+                new User { Id = userId, GivenName = "Test", FamilyName = "User", Email = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
             });
 
             _mockContext.UserTokens.AddRange(new List<UserToken>
@@ -76,7 +76,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.Users.AddRange(new List<User>
             {
-                new User { UserId = userId, GivenName = "Test", FamilyName = "User", EmailAddress = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
+                new User { Id = userId, GivenName = "Test", FamilyName = "User", Email = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
             });
 
             _mockContext.UserTokens.AddRange(new List<UserToken>
@@ -99,7 +99,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.Users.AddRange(new List<User>
             {
-                new User { UserId = userId, GivenName = "Test", FamilyName = "User", EmailAddress = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
+                new User { Id = userId, GivenName = "Test", FamilyName = "User", Email = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
             });
 
             _mockContext.UserTokens.AddRange(new List<UserToken>
@@ -135,7 +135,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.Users.AddRange(new List<User>
             {
-                new User { UserId = userId, GivenName = "Test", FamilyName = "User", EmailAddress = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
+                new User { Id = userId, GivenName = "Test", FamilyName = "User", Email = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
             });
 
             _mockContext.UserTokens.AddRange(new List<UserToken>
@@ -158,7 +158,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.Users.AddRange(new List<User>
             {
-                new User { UserId = userId, GivenName = "Test", FamilyName = "User", EmailAddress = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
+                new User { Id = userId, GivenName = "Test", FamilyName = "User", Email = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
             });
 
             _mockContext.UserTokens.AddRange(new List<UserToken>

@@ -6,7 +6,7 @@ namespace Portal.CMS.Entities.Entities
     public class UserRole
     {
         [Key]
-        public int UserRoleId { get; set; }
+        public int Id { get; set; }
 
         [ForeignKey("User")]
         public int UserId { get; set; }

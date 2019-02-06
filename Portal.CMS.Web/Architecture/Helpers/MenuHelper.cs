@@ -28,7 +28,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
 
                 IMenuService menuService = container.GetInstance<MenuService>();
 
-                var menuItems = AsyncHelpers.RunSync(() => menuService.ViewAsync(UserHelper.UserId, menuName));
+                var menuItems = AsyncHelpers.RunSync(() => menuService.ViewAsync(UserHelper.Id, menuName));
 
                 if (validSession)
                 {

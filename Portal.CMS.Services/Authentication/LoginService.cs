@@ -30,13 +30,13 @@ namespace Portal.CMS.Services.Authentication
 
         public async Task<int?> LoginAsync(string emailAddress, string password)
         {
-            var userAccount = await _context.Users.FirstOrDefaultAsync(x => x.EmailAddress.Equals(emailAddress, StringComparison.OrdinalIgnoreCase));
+            var userAccount = await _context.Users.FirstOrDefaultAsync(x => x.Email.Equals(emailAddress, StringComparison.OrdinalIgnoreCase));
             if (userAccount == null) return null;
 
             if (!CompareSecurePassword(password, userAccount.Password))
                 return null;
 
-            return userAccount.UserId;
+            return userAccount.Id;
         }
 
         public async Task<int?> SSOAsync(int userId, string token)

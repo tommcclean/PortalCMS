@@ -32,7 +32,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
                 if (userSession == null || userRoles == null)
                     return false;
 
-                if (userRoles.Any(x => x.RoleName.Equals(ADMIN_ROLE, System.StringComparison.OrdinalIgnoreCase)))
+                if (userRoles.Any(x => x.Name.Equals(ADMIN_ROLE, System.StringComparison.OrdinalIgnoreCase)))
                     return true;
 
                 return false;
@@ -49,14 +49,14 @@ namespace Portal.CMS.Web.Architecture.Helpers
                 if (userSession == null || userRoles == null)
                     return false;
 
-                if (userRoles.Any(x => x.RoleName == EDITOR_ROLE) || userRoles.Any(x => x.RoleName == ADMIN_ROLE))
+                if (userRoles.Any(x => x.Name == EDITOR_ROLE) || userRoles.Any(x => x.Name == ADMIN_ROLE))
                     return true;
 
                 return false;
             }
         }
 
-        public static int? UserId
+        public static int? Id
         {
             get
             {
@@ -65,7 +65,7 @@ namespace Portal.CMS.Web.Architecture.Helpers
                 if (userAccount == null)
                     return null;
 
-                return userAccount.UserId;
+                return userAccount.Id;
             }
         }
 
@@ -109,13 +109,13 @@ namespace Portal.CMS.Web.Architecture.Helpers
             }
         }
 
-        public static string EmailAddress
+        public static string Email
         {
             get
             {
                 var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
-                return userAccount.EmailAddress;
+                return userAccount.Email;
             }
         }
 

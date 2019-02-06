@@ -52,26 +52,26 @@ namespace Portal.CMS.Services.Authentication
                 return userRoles;
             }
 
-            return new List<Role> { new Role { RoleName = "Anonymous" } };
+            return new List<Role> { new Role { Name = "Anonymous" } };
         }
 
         public async Task<List<Role>> GetAsync()
         {
-            var results = await _context.Roles.OrderBy(x => x.RoleName).ToListAsync();
+            var results = await _context.Roles.OrderBy(x => x.Name).ToListAsync();
 
             return results;
         }
 
         public async Task<List<Role>> GetUserAssignableRolesAsync()
         {
-            var results = await _context.Roles.Where(x => x.IsAssignable).OrderBy(x => x.RoleName).ToListAsync();
+            var results = await _context.Roles.Where(x => x.IsAssignable).OrderBy(x => x.Name).ToListAsync();
 
             return results;
         }
 
         public async Task<Role> GetAsync(int roleId)
         {
-            var role = await _context.Roles.SingleOrDefaultAsync(x => x.RoleId == roleId);
+            var role = await _context.Roles.SingleOrDefaultAsync(x => x.Id == roleId);
 
             return role;
         }
@@ -80,28 +80,28 @@ namespace Portal.CMS.Services.Authentication
         {
             var newRole = new Role
             {
-                RoleName = roleName
+                Name = roleName
             };
 
             _context.Roles.Add(newRole);
 
             await _context.SaveChangesAsync();
 
-            return newRole.RoleId;
+            return newRole.Id;
         }
 
         public async Task EditAsync(int roleId, string roleName)
         {
-            var role = await _context.Roles.SingleOrDefaultAsync(x => x.RoleId == roleId);
+            var role = await _context.Roles.SingleOrDefaultAsync(x => x.Id == roleId);
 
-            role.RoleName = roleName;
+            role.Name = roleName;
 
             await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int roleId)
         {
-            var role = await _context.Roles.SingleOrDefaultAsync(x => x.RoleId == roleId);
+            var role = await _context.Roles.SingleOrDefaultAsync(x => x.Id == roleId);
             if (role == null) return;
 
             _context.Roles.Remove(role);
@@ -111,7 +111,7 @@ namespace Portal.CMS.Services.Authentication
 
         public async Task UpdateAsync(int userId, List<string> roleList)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserId == userId);
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.Id == userId);
             if (user == null) return;
 
             var systemRoles = await GetAsync();
@@ -128,15 +128,15 @@ namespace Portal.CMS.Services.Authentication
 
             foreach (var role in roleList)
             {
-                var matchedRole = systemRoles.FirstOrDefault(x => x.RoleName.Equals(role, System.StringComparison.OrdinalIgnoreCase));
+                var matchedRole = systemRoles.FirstOrDefault(x => x.Name.Equals(role, System.StringComparison.OrdinalIgnoreCase));
 
                 if (matchedRole == null)
                     continue;
 
                 var userRole = new UserRole
                 {
-                    RoleId = matchedRole.RoleId,
-                    UserId = user.UserId
+                    RoleId = matchedRole.Id,
+                    UserId = user.Id
                 };
 
                 _context.UserRoles.Add(userRole);
@@ -152,12 +152,12 @@ namespace Portal.CMS.Services.Authentication
                 return true;
 
             // PASS: Administrators can access any content.
-            if (userRoles.Any(x => x.RoleName.Equals("Admin", System.StringComparison.OrdinalIgnoreCase)))
+            if (userRoles.Any(x => x.Name.Equals("Admin", System.StringComparison.OrdinalIgnoreCase)))
                 return true;
 
             // EVALUATE: Every Role on the Entity. One match grants access.
             foreach (var role in entityRoles)
-                if (userRoles.Select(x => x.RoleName).Contains(role.RoleName))
+                if (userRoles.Select(x => x.Name).Contains(role.Name))
                     return true;
 
             return false;

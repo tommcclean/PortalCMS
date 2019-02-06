@@ -68,7 +68,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             var model = new CreatePostViewModel
             {
                 PostCategoryId = postCategories.First().PostCategoryId,
-                PostAuthorUserId = UserHelper.UserId.Value,
+                PostAuthorUserId = UserHelper.Id.Value,
                 PostCategoryList = postCategories,
                 UserList = await _userService.GetByRoleAsync(new List<string> { nameof(Admin), "Editor" }),
                 PublicationState = PublicationState.Published,
@@ -162,7 +162,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                     PaginationType = GALLERY
                 },
                 RoleList = await _roleService.GetAsync(),
-                SelectedRoleList = post.PostRoles.Select(x => x.Role.RoleName).ToList()
+                SelectedRoleList = post.PostRoles.Select(x => x.Role.Name).ToList()
             };
 
             if (post.IsPublished)
@@ -271,7 +271,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet, EditorFilter(ActionFilterResponseType.Modal)]
         public async Task<ActionResult> AppDrawer()
         {
-            var postList = await _postService.ReadAsync(UserHelper.UserId, string.Empty);
+            var postList = await _postService.ReadAsync(UserHelper.Id, string.Empty);
 
             var model = new AppDrawerViewModel
             {

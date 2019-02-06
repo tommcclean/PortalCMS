@@ -97,10 +97,10 @@ namespace Portal.CMS.Services.PageBuilder
 
             foreach (var roleName in roleList)
             {
-                var currentRole = roles.FirstOrDefault(x => x.RoleName == roleName);
+                var currentRole = roles.FirstOrDefault(x => x.Name == roleName);
                 if (currentRole == null) continue;
 
-                _context.PageAssociationRoles.Add(new PageAssociationRole { PageAssociationId = pageAssociationId, RoleId = currentRole.RoleId });
+                _context.PageAssociationRoles.Add(new PageAssociationRole { PageAssociationId = pageAssociationId, RoleId = currentRole.Id });
             }
 
             await _context.SaveChangesAsync();

@@ -79,9 +79,9 @@ namespace Portal.CMS.Services.Posts
                 var user = await _userService.GetAsync(userId.Value);
 
                 if (user.Roles.Any())
-                    userRoleList.AddRange(user.Roles.Select(x => x.Role.RoleName));
+                    userRoleList.AddRange(user.Roles.Select(x => x.Role.Name));
 
-                if (user.Roles.Any(x => x.Role.RoleName == "Admin"))
+                if (user.Roles.Any(x => x.Role.Name == "Admin"))
                     isAdministrator = true;
             }
 
@@ -104,7 +104,7 @@ namespace Portal.CMS.Services.Posts
                     continue;
                 }
 
-                if (userRoleList.Contains(post.PostRoles.SelectMany(x => x.Role.RoleName)))
+                if (userRoleList.Contains(post.PostRoles.SelectMany(x => x.Role.Name)))
                 {
                     returnList.Add(post);
 
@@ -263,12 +263,12 @@ namespace Portal.CMS.Services.Posts
 
             foreach (var roleName in roleList)
             {
-                var currentRole = roles.FirstOrDefault(x => x.RoleName == roleName);
+                var currentRole = roles.FirstOrDefault(x => x.Name == roleName);
 
                 if (currentRole == null)
                     continue;
 
-                _context.PostRoles.Add(new PostRole { PostId = postId, RoleId = currentRole.RoleId });
+                _context.PostRoles.Add(new PostRole { PostId = postId, RoleId = currentRole.Id });
             }
 
             await _context.SaveChangesAsync();

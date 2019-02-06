@@ -6,14 +6,14 @@ namespace Portal.CMS.Entities.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class UpdatePageSectionEntityToRemoveLegacyProperties : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
+    public sealed partial class Columnnamechangeforkeys : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatePageSectionEntityToRemoveLegacyProperties));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Columnnamechangeforkeys));
         
         string IMigrationMetadata.Id
         {
-            get { return "201703101150152_UpdatePageSectionEntityToRemoveLegacyProperties"; }
+            get { return "201902061751282_Column name change for keys"; }
         }
         
         string IMigrationMetadata.Source

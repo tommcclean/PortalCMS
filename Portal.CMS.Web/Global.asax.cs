@@ -41,7 +41,7 @@ namespace Portal.CMS.Web
 
             var exception = Server.GetLastError();
 
-            var user = (UserHelper.IsLoggedIn ? $"{UserHelper.GivenName} {UserHelper.FamilyName} {UserHelper.UserId}" : string.Empty);
+            var user = (UserHelper.IsLoggedIn ? $"{UserHelper.GivenName} {UserHelper.FamilyName} {UserHelper.Id}" : string.Empty);
 
             logHandler.WriteLog(LogType.Error, "Portal CMS", exception, exception.Message, user);
         }

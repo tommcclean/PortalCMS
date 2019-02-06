@@ -18,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.CMS.Repositories", "Portal.CMS.Repositories\Portal.CMS.Repositories.csproj", "{23880390-2164-409D-A02C-8E3B828FBF37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.CMS.Services.Tests", "Portal.CMS.Services.Tests\Portal.CMS.Services.Tests.csproj", "{C087F6DF-B459-4DDD-A509-C57E4CDF2BF1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,10 +40,6 @@ Global
 		{23880390-2164-409D-A02C-8E3B828FBF37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23880390-2164-409D-A02C-8E3B828FBF37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23880390-2164-409D-A02C-8E3B828FBF37}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C087F6DF-B459-4DDD-A509-C57E4CDF2BF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C087F6DF-B459-4DDD-A509-C57E4CDF2BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C087F6DF-B459-4DDD-A509-C57E4CDF2BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C087F6DF-B459-4DDD-A509-C57E4CDF2BF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

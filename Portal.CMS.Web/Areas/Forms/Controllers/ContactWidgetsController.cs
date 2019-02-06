@@ -32,7 +32,7 @@ namespace Portal.CMS.Web.Areas.Forms.Controllers
             if (UserHelper.IsLoggedIn)
             {
                 model.Name = UserHelper.FullName;
-                model.EmailAddress = UserHelper.EmailAddress;
+                model.EmailAddress = UserHelper.Email;
             }
 
             return PartialView("_SubmitMessageWidget", model);
@@ -45,7 +45,7 @@ namespace Portal.CMS.Web.Areas.Forms.Controllers
             var recipients = await _userService.GetByRoleAsync(new List<string> { nameof(Admin) });
 
             await EmailHelper.SendEmailAsync(
-                recipients.Select(x => x.EmailAddress).First(),
+                recipients.Select(x => x.Email).First(),
                 "Contact Submitted",
                 $@"<p>Hello, we thought you might like to know that a visitor to your website has submitted a message, here are the details we recorded.</p>
                 <p>Name: {model.Name}</p>

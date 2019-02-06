@@ -83,7 +83,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
                 LinkIcon = menuItem.LinkIcon,
                 LinkURL = menuItem.LinkURL,
                 RoleList = await _roleService.GetAsync(),
-                SelectedRoleList = menuItem.MenuItemRoles.Select(x => x.Role.RoleName).ToList()
+                SelectedRoleList = menuItem.MenuItemRoles.Select(x => x.Role.Name).ToList()
             };
 
             return View(model);

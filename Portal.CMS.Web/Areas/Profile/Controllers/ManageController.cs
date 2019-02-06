@@ -37,7 +37,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
         {
             var model = new AccountViewModel
             {
-                EmailAddress = UserHelper.EmailAddress,
+                EmailAddress = UserHelper.Email,
                 GivenName = UserHelper.GivenName,
                 FamilyName = UserHelper.FamilyName
             };
@@ -52,7 +52,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
             if (!ModelState.IsValid)
                 return View("_Account", model);
 
-            await _userService.UpdateDetailsAsync(UserHelper.UserId.Value, model.EmailAddress, model.GivenName, model.FamilyName);
+            await _userService.UpdateDetailsAsync(UserHelper.Id.Value, model.EmailAddress, model.GivenName, model.FamilyName);
 
             await ResetUserSessionValueAsync();
 
@@ -76,7 +76,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
 
             var imageFilePath = SaveImage(model.AttachedImage, nameof(EditAvatar));
 
-            await _userService.UpdateAvatarAsync(UserHelper.UserId.Value, imageFilePath);
+            await _userService.UpdateAvatarAsync(UserHelper.Id.Value, imageFilePath);
 
             await ResetUserSessionValueAsync();
 
@@ -98,7 +98,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditBio(BioViewModel model)
         {
-            await _userService.UpdateBioAsync(UserHelper.UserId.Value, model.Bio);
+            await _userService.UpdateBioAsync(UserHelper.Id.Value, model.Bio);
 
             await ResetUserSessionValueAsync();
 
@@ -128,11 +128,11 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
                 return View("_Password", model);
             }
 
-            await _registrationService.ChangePasswordAsync(UserHelper.UserId.Value, model.NewPassword);
+            await _registrationService.ChangePasswordAsync(UserHelper.Id.Value, model.NewPassword);
 
             var websiteAddress = $@"http://{System.Web.HttpContext.Current.Request.Url.Authority}";
 
-            await EmailHelper.SendEmailAsync(UserHelper.EmailAddress, "Account Notice", $"<p>Hello {UserHelper.FullName}</p><p>We just wanted to let you know that your password was changed at {websiteAddress}. If you didn't change your password, please let us know");
+            await EmailHelper.SendEmailAsync(UserHelper.Email, "Account Notice", $"<p>Hello {UserHelper.FullName}</p><p>We just wanted to let you know that your password was changed at {websiteAddress}. If you didn't change your password, please let us know");
 
             return Content("Refresh");
         }
@@ -149,7 +149,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
             if (!Directory.Exists(destinationDirectory))
                 Directory.CreateDirectory(destinationDirectory);
 
-            var imageFileName = $"media-{DateTime.Now.ToString("ddMMyyyyHHmmss")}-{UserHelper.UserId}-{imageFile.FileName}";
+            var imageFileName = $"media-{DateTime.Now.ToString("ddMMyyyyHHmmss")}-{UserHelper.Id}-{imageFile.FileName}";
             var path = Path.Combine(Server.MapPath(IMAGE_DIRECTORY), imageFileName);
 
             imageFile.SaveAs(path);
@@ -162,7 +162,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
 
         private async Task ResetUserSessionValueAsync()
         {
-            var userId = UserHelper.UserId;
+            var userId = UserHelper.Id;
 
             Session.Remove(USER_ACCOUNT);
 

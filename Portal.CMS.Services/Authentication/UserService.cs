@@ -35,14 +35,14 @@ namespace Portal.CMS.Services.Authentication
 
 		public async Task<User> GetByEmailAsync(string emailAddress)
 		{
-			var result = await base.DbContext.Users.FirstOrDefaultAsync(x => x.EmailAddress.Equals(emailAddress, System.StringComparison.OrdinalIgnoreCase));
+			var result = await base.DbContext.Users.FirstOrDefaultAsync(x => x.Email.Equals(emailAddress, System.StringComparison.OrdinalIgnoreCase));
 
 			return result;
 		}
 
 		public async Task<IEnumerable<User>> GetAsync()
 		{
-			var userList = await base.DbContext.Users.OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName).ThenBy(x => x.UserId).ToListAsync();
+			var userList = await base.DbContext.Users.OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName).ThenBy(x => x.Id).ToListAsync();
 
 			return userList;
 		}
@@ -55,20 +55,20 @@ namespace Portal.CMS.Services.Authentication
 			{
 				foreach (var roleName in roleNames)
 				{
-					if (user.Roles.Any(x => x.Role.RoleName == roleName))
+					if (user.Roles.Any(x => x.Role.Name == roleName))
 						results.Add(user);
 				}
 			}
 
-			return results.Distinct().OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName).ThenBy(x => x.UserId);
+			return results.Distinct().OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName).ThenBy(x => x.Id);
 		}
 
 
 		public async Task UpdateDetailsAsync(int userId, string emailAddress, string givenName, string familyName)
 		{
-			var user = await base.DbContext.Users.SingleOrDefaultAsync(x => x.UserId == userId);
+			var user = await base.DbContext.Users.SingleOrDefaultAsync(x => x.Id == userId);
 
-			user.EmailAddress = emailAddress;
+			user.Email = emailAddress;
 			user.GivenName = givenName;
 			user.FamilyName = familyName;
 
@@ -77,7 +77,7 @@ namespace Portal.CMS.Services.Authentication
 
 		public async Task UpdateAvatarAsync(int userId, string avatarImagePath)
 		{
-			var user = await base.DbContext.Users.SingleOrDefaultAsync(x => x.UserId == userId);
+			var user = await base.DbContext.Users.SingleOrDefaultAsync(x => x.Id == userId);
 
 			user.AvatarImagePath = avatarImagePath;
 
@@ -86,7 +86,7 @@ namespace Portal.CMS.Services.Authentication
 
 		public async Task UpdateBioAsync(int userId, string bio)
 		{
-			var user = await base.DbContext.Users.SingleOrDefaultAsync(x => x.UserId == userId);
+			var user = await base.DbContext.Users.SingleOrDefaultAsync(x => x.Id == userId);
 
 			user.Bio = bio;
 
@@ -95,7 +95,7 @@ namespace Portal.CMS.Services.Authentication
 
 		public async Task DeleteUserAsync(int userId)
 		{
-			var user = await base.DbContext.Users.SingleOrDefaultAsync(x => x.UserId == userId);
+			var user = await base.DbContext.Users.SingleOrDefaultAsync(x => x.Id == userId);
 
 			base.DbContext.Users.Remove(user);
 

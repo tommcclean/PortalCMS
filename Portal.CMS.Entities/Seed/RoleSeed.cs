@@ -12,17 +12,17 @@ namespace Portal.CMS.Entities.Seed
 
             var newRoles = new List<Role>();
 
-            if (!roleList.Any(x => x.RoleName == "Admin"))
-                newRoles.Add(new Role { RoleName = "Admin", IsAssignable = true });
+            if (!roleList.Any(x => x.Name == "Admin"))
+                newRoles.Add(new Role { Name = "Admin", IsAssignable = true });
 
-            if (!roleList.Any(x => x.RoleName == "Editor"))
-                newRoles.Add(new Role { RoleName = "Editor", IsAssignable = true });
+            if (!roleList.Any(x => x.Name == "Editor"))
+                newRoles.Add(new Role { Name = "Editor", IsAssignable = true });
 
-            if (!roleList.Any(x => x.RoleName == "Authenticated"))
-                newRoles.Add(new Role { RoleName = "Authenticated", IsAssignable = false });
+            if (!roleList.Any(x => x.Name == "Authenticated"))
+                newRoles.Add(new Role { Name = "Authenticated", IsAssignable = false });
 
-            if (!roleList.Any(x => x.RoleName == "Anonymous"))
-                newRoles.Add(new Role { RoleName = "Anonymous", IsAssignable = false });
+            if (!roleList.Any(x => x.Name == "Anonymous"))
+                newRoles.Add(new Role { Name = "Anonymous", IsAssignable = false });
 
             if (newRoles.Any())
             {

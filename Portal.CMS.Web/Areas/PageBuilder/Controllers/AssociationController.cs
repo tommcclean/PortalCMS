@@ -56,7 +56,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             {
                 PageAssociationId = pageAssociationId,
                 RoleList = await _roleService.GetAsync(),
-                SelectedRoleList = pageAssociation.PageAssociationRoles.Select(x => x.Role.RoleName).ToList()
+                SelectedRoleList = pageAssociation.PageAssociationRoles.Select(x => x.Role.Name).ToList()
             };
 
             return View("_EditAccess", model);

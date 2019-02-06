@@ -128,12 +128,12 @@ namespace Portal.CMS.Services.PageBuilder
 
             foreach (var roleName in roleList)
             {
-                var currentRole = roles.FirstOrDefault(x => x.RoleName == roleName);
+                var currentRole = roles.FirstOrDefault(x => x.Name == roleName);
 
                 if (currentRole == null)
                     continue;
 
-                _context.PageRoles.Add(new PageRole { PageId = pageId, RoleId = currentRole.RoleId });
+                _context.PageRoles.Add(new PageRole { PageId = pageId, RoleId = currentRole.Id });
             }
 
             await _context.SaveChangesAsync();

@@ -26,7 +26,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             if (pageId == 0)
                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
-            var currentPage = await _pageService.ViewAsync(UserHelper.UserId, pageId);
+            var currentPage = await _pageService.ViewAsync(UserHelper.Id, pageId);
 
             if (currentPage == null)
             {
@@ -50,7 +50,7 @@ namespace Portal.CMS.Web.Areas.PageBuilder.Controllers
             var page = await _pageService.GetAsync(pageId);
 
             if (UserHelper.IsLoggedIn)
-                await _analyticService.LogPageViewAsync(page.PageArea, page.PageController, page.PageAction, referrer, Request.UserHostAddress, Request.Browser.Browser, UserHelper.UserId);
+                await _analyticService.LogPageViewAsync(page.PageArea, page.PageController, page.PageAction, referrer, Request.UserHostAddress, Request.Browser.Browser, UserHelper.Id);
             else
                 await _analyticService.LogPageViewAsync(page.PageArea, page.PageController, page.PageAction, referrer, Request.UserHostAddress, Request.Browser.Browser, null);
 

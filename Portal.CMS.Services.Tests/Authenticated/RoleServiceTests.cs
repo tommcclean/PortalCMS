@@ -42,7 +42,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.Users.AddRange(new List<User>
             {
-                new User { UserId = userId.Value, GivenName = "Test", FamilyName = "User", EmailAddress = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
+                new User { Id = userId.Value, GivenName = "Test", FamilyName = "User", Email = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
             });
 
             _mockContext.SaveChanges();
@@ -57,8 +57,8 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.UserRoles.AddRange(new List<UserRole>
             {
-                new UserRole { UserRoleId = 1 , UserId = userId.Value, RoleId = 1 },
-                new UserRole { UserRoleId = 1 , UserId = userId.Value, RoleId = 2 },
+                new UserRole { Id = 1 , UserId = userId.Value, RoleId = 1 },
+                new UserRole { Id = 1 , UserId = userId.Value, RoleId = 2 },
             });
 
             _mockContext.SaveChanges();
@@ -76,7 +76,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.Users.AddRange(new List<User>
             {
-                new User { UserId = userId.Value, GivenName = "Test", FamilyName = "User", EmailAddress = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
+                new User { Id = userId.Value, GivenName = "Test", FamilyName = "User", Email = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
             });
 
             _mockContext.SaveChanges();
@@ -91,7 +91,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             var userRoles = new List<UserRole>
             {
-                new UserRole { UserRoleId = 1 , UserId = userId.Value, RoleId = 1 },
+                new UserRole { Id = 1 , UserId = userId.Value, RoleId = 1 },
             };
 
             _mockContext.UserRoles.AddRange(userRoles);
@@ -138,7 +138,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.Users.AddRange(new List<User>
             {
-                new User { UserId = userId.Value, GivenName = "Test", FamilyName = "User", EmailAddress = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
+                new User { Id = userId.Value, GivenName = "Test", FamilyName = "User", Email = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
             });
 
             _mockContext.SaveChanges();
@@ -153,8 +153,8 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.UserRoles.AddRange(new List<UserRole>
             {
-                new UserRole { UserRoleId = 1 , UserId = userId.Value, RoleId = 1 },
-                new UserRole { UserRoleId = 1 , UserId = userId.Value, RoleId = 2 },
+                new UserRole { Id = 1 , UserId = userId.Value, RoleId = 1 },
+                new UserRole { Id = 1 , UserId = userId.Value, RoleId = 2 },
             });
 
             _mockContext.SaveChanges();
@@ -183,7 +183,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.Users.AddRange(new List<User>
             {
-                new User { UserId = userId.Value, GivenName = "Test", FamilyName = "User", EmailAddress = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
+                new User { Id = userId.Value, GivenName = "Test", FamilyName = "User", Email = "Email", Password = "Password", DateAdded = DateTime.Now, DateUpdated = DateTime.Now }
             });
 
             _mockContext.SaveChanges();
@@ -198,7 +198,7 @@ namespace Portal.CMS.Services.Tests.Authenticated
 
             _mockContext.UserRoles.AddRange(new List<UserRole>
             {
-                new UserRole { UserRoleId = 1 , UserId = userId.Value, RoleId = 1 },
+                new UserRole { Id = 1 , UserId = userId.Value, RoleId = 1 },
             });
 
             _mockContext.SaveChanges();

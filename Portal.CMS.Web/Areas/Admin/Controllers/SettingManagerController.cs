@@ -35,7 +35,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             };
 
             if (string.IsNullOrWhiteSpace(model.EmailFromAddress))
-                model.EmailFromAddress = UserHelper.EmailAddress;
+                model.EmailFromAddress = UserHelper.Email;
 
             return View("_Setup", model);
         }

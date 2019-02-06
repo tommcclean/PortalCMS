@@ -29,12 +29,12 @@ namespace Portal.CMS.Services.Authentication
 
 		public async Task<int?> RegisterAsync(string emailAddress, string password, string givenName, string familyName)
 		{
-			if (await _context.Users.AnyAsync(x => x.EmailAddress.Equals(emailAddress, StringComparison.OrdinalIgnoreCase)))
+			if (await _context.Users.AnyAsync(x => x.Email.Equals(emailAddress, StringComparison.OrdinalIgnoreCase)))
 				return -1;
 
 			var userAccount = new User
 			{
-				EmailAddress = emailAddress,
+				Email = emailAddress,
 				Password = GenerateSecurePassword(password),
 				GivenName = givenName,
 				FamilyName = familyName,
@@ -47,12 +47,12 @@ namespace Portal.CMS.Services.Authentication
 
 			await _context.SaveChangesAsync();
 
-			return userAccount.UserId;
+			return userAccount.Id;
 		}
 
 		public async Task ChangePasswordAsync(int userId, string newPassword)
 		{
-			var userAccount = await _context.Users.SingleOrDefaultAsync(x => x.UserId == userId);
+			var userAccount = await _context.Users.SingleOrDefaultAsync(x => x.Id == userId);
 			if (userAccount == null) return;
 
 			userAccount.Password = GenerateSecurePassword(newPassword);

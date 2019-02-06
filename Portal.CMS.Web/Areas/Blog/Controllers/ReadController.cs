@@ -36,7 +36,7 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
         [HttpGet]
         public async Task<ActionResult> Index(int? id)
         {
-            var recentPosts = await _postService.ReadAsync(UserHelper.UserId, string.Empty);
+            var recentPosts = await _postService.ReadAsync(UserHelper.Id, string.Empty);
 
             var model = new BlogViewModel
             {
@@ -47,7 +47,7 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
             if (id.HasValue)
-                model.CurrentPost = await _postService.ReadAsync(UserHelper.UserId, id.Value);
+                model.CurrentPost = await _postService.ReadAsync(UserHelper.Id, id.Value);
             else
                 model.CurrentPost = model.RecentPosts.First();
 
@@ -56,7 +56,7 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
 
             model.Author = await _userService.GetAsync(model.CurrentPost.PostAuthorUserId);
 
-            var similiarPosts = await _postService.ReadAsync(UserHelper.UserId, model.CurrentPost.PostCategory.PostCategoryName);
+            var similiarPosts = await _postService.ReadAsync(UserHelper.Id, model.CurrentPost.PostCategory.PostCategoryName);
 
             model.SimiliarPosts = similiarPosts.ToList();
 
@@ -69,7 +69,7 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> Comment(int postId, string commentBody)
         {
-            await _postCommentService.AddAsync(UserHelper.UserId.Value, postId, commentBody);
+            await _postCommentService.AddAsync(UserHelper.Id.Value, postId, commentBody);
 
             return RedirectToAction(nameof(Index), "Read", new { postId = postId });
         }
@@ -77,7 +77,7 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
         public async Task<ActionResult> Analytic(int postId, string referrer)
         {
             if (UserHelper.IsLoggedIn)
-                await _analyticsService.LogPostViewAsync(postId, referrer, Request.UserHostAddress, Request.Browser.Browser, UserHelper.UserId);
+                await _analyticsService.LogPostViewAsync(postId, referrer, Request.UserHostAddress, Request.Browser.Browser, UserHelper.Id);
             else
                 await _analyticsService.LogPostViewAsync(postId, referrer, Request.UserHostAddress, Request.Browser.Browser, null);
 

@@ -53,8 +53,8 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             var model = new EditViewModel
             {
-                RoleId = role.RoleId,
-                RoleName = role.RoleName
+                RoleId = role.Id,
+                RoleName = role.Name
             };
 
             return View("_Edit", model);
