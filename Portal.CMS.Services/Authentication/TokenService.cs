@@ -13,7 +13,7 @@ namespace Portal.CMS.Services.Authentication
 
         Task<string> RedeemPasswordTokenAsync(string token, string emailAddress, string password);
 
-        Task<string> RedeemSSOTokenAsync(int userid, string token);
+        Task<string> RedeemSSOTokenAsync(string userId, string token);
     }
 
     public class TokenService : ITokenService
@@ -74,9 +74,9 @@ namespace Portal.CMS.Services.Authentication
             return string.Empty;
         }
 
-        public async Task<string> RedeemSSOTokenAsync(int userid, string token)
+        public async Task<string> RedeemSSOTokenAsync(string userId, string token)
         {
-            var userToken = await _context.UserTokens.FirstOrDefaultAsync(x => x.Token.Equals(token, StringComparison.OrdinalIgnoreCase) && x.UserId == userid);
+            var userToken = await _context.UserTokens.FirstOrDefaultAsync(x => x.Token.Equals(token, StringComparison.OrdinalIgnoreCase) && x.UserId == userId);
 
             if (userToken == null)
                 return "Invalid Token.";

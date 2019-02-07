@@ -20,7 +20,7 @@ namespace Portal.CMS.Entities.Entities
         public string PostBody { get; set; }
 
         [Required]
-        public int PostAuthorUserId { get; set; }
+        public string PostAuthorUserId { get; set; }
 
         [Required]
         public DateTime DateAdded { get; set; }

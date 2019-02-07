@@ -1,5 +1,4 @@
 ﻿using Portal.CMS.Entities;
-using Portal.CMS.Entities.Entities;
 using Portal.CMS.Entities.Entities.Models;
 using Portal.CMS.Repositories.Base;
 using System.Collections.Generic;
@@ -9,26 +8,26 @@ using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Authentication
 {
-    public interface IRoleService : IRepositoryBase<CustomRole>
+	public interface IRoleService : IRepositoryBase<ApplicationRole>
 	{
-        Task<IEnumerable<Role>> GetByUserAsync(int userId);
+        Task<IEnumerable<string>> GetByUserAsync(string userId);
 
-        Task<List<Role>> GetAsync();
+        Task<List<ApplicationRole>> GetAsync();
 
-        Task<List<Role>> GetUserAssignableRolesAsync();
+        Task<List<ApplicationRole>> GetUserAssignableRolesAsync();
 
-        Task<int> AddAsync(string roleName);
+        Task<string> AddAsync(string roleName);
 
-        Task EditAsync(int roleId, string roleName);
+        Task EditAsync(string roleId, string roleName);
 
-        Task UpdateAsync(int userId, List<string> roleList);
+        Task UpdateAsync(string userId, List<string> roleList);
 
-        Task DeleteAsync(int roleId);
+        Task DeleteAsync(string roleId);
 
-        bool Validate(IEnumerable<Role> entityRoles, IEnumerable<Role> userRoles);
+        bool Validate(IEnumerable<ApplicationRole> entityRoles, IEnumerable<string> userRoles);
     }
 
-	public class RoleService : ServiceBase<CustomRole>, IRoleService
+	public class RoleService : ServiceBase<ApplicationRole>, IRoleService
 	{
 		#region Dependencies
 
@@ -43,37 +42,40 @@ namespace Portal.CMS.Services.Authentication
 
 		#endregion Dependencies
 
-		public async Task<IEnumerable<Role>> GetByUserAsync(int userId)
+		public async Task<IEnumerable<string>> GetByUserAsync(string userId)
 		{
-			if (userId > 0)
+			if (!string.IsNullOrEmpty(userId))
 			{
-				//var user = await UserManager.FindByIdAsync(userId);
-				//var xR = RoleManager.Roles.Where(u => u.Users == xx);
-				var userRoles = await _context.UserRoles.Where(x => x.UserId == userId).Select(x => x.Role).ToListAsync();
+				var user = await UserManager.FindByIdAsync(userId);
 
-				return userRoles;
+				// get user roles
+				if(user != null)
+				{
+					IList<string> roles = await UserManager.GetRolesAsync(userId);
+					return roles;
+				}
 			}
 
-			return new List<Role> { new Role { Name = "Anonymous" } };
+			return new List<string> { "Anonymous"  };
 		}
 
-		public async Task<List<Role>> GetAsync()
+		public async Task<List<ApplicationRole>> GetAsync()
 		{
-			var results = await _context.Roles.OrderBy(x => x.Name).ToListAsync();
+			var results = await RoleManager.Roles.ToListAsync();
 
 			return results;
 		}
 
-		public async Task<List<Role>> GetUserAssignableRolesAsync()
+		public async Task<List<ApplicationRole>> GetUserAssignableRolesAsync()
 		{
-			var results = await _context.Roles.Where(x => x.IsAssignable).OrderBy(x => x.Name).ToListAsync();
+			var results = await RoleManager.Roles.Where(x => x.IsAssignable).OrderBy(x => x.Name).ToListAsync();
 
 			return results;
 		}
 
-		public async Task<int> AddAsync(string roleName)
+		public async Task<string> AddAsync(string roleName)
 		{
-			var newRole = new Role
+			var newRole = new ApplicationRole
 			{
 				Name = roleName
 			};
@@ -85,7 +87,7 @@ namespace Portal.CMS.Services.Authentication
 			return newRole.Id;
 		}
 
-		public async Task EditAsync(int roleId, string roleName)
+		public async Task EditAsync(string roleId, string roleName)
 		{
 			var role = await _context.Roles.SingleOrDefaultAsync(x => x.Id == roleId);
 
@@ -94,7 +96,7 @@ namespace Portal.CMS.Services.Authentication
 			await _context.SaveChangesAsync();
 		}
 
-		public async Task DeleteAsync(int roleId)
+		public async Task DeleteAsync(string roleId)
 		{
 			var role = await _context.Roles.SingleOrDefaultAsync(x => x.Id == roleId);
 			if (role == null) return;
@@ -104,55 +106,40 @@ namespace Portal.CMS.Services.Authentication
 			await _context.SaveChangesAsync();
 		}
 
-		public async Task UpdateAsync(int userId, List<string> roleList)
+		public async Task UpdateAsync(string userId, List<string> roleList)
 		{
-			var user = await _context.Users.SingleOrDefaultAsync(x => x.Id == userId);
+			var user = await UserManager.FindByIdAsync(userId);
 			if (user == null) return;
 
-			var systemRoles = await GetAsync();
+			var roles = await UserManager.GetRolesAsync(userId);
+			await UserManager.RemoveFromRolesAsync(userId, roles.ToArray());
 
-			if (user.Roles != null)
-			{
-				while (user.Roles.Any())
-				{
-					var role = user.Roles.First();
-
-					_context.UserRoles.Remove(role);
-				}
-			}
+			var systemRoles = await RoleManager.Roles.ToListAsync();
 
 			foreach (var role in roleList)
 			{
-				var matchedRole = systemRoles.FirstOrDefault(x => x.Name.Equals(role, System.StringComparison.OrdinalIgnoreCase));
+				var matchedRole = await RoleManager.FindByNameAsync(role);
 
 				if (matchedRole == null)
 					continue;
 
-				var userRole = new UserRole
-				{
-					RoleId = matchedRole.Id,
-					UserId = user.Id
-				};
-
-				_context.UserRoles.Add(userRole);
+				await UserManager.AddToRoleAsync(userId, role);
 			}
-
-			await _context.SaveChangesAsync();
 		}
 
-		public bool Validate(IEnumerable<Role> entityRoles, IEnumerable<Role> userRoles)
+		public bool Validate(IEnumerable<ApplicationRole> entityRoles, IEnumerable<string> userRoles)
 		{
 			// PASS: Where no roles are specified on the entity, access is granted to all users.
 			if (!entityRoles.Any())
 				return true;
 
 			// PASS: Administrators can access any content.
-			if (userRoles.Any(x => x.Name.Equals("Admin", System.StringComparison.OrdinalIgnoreCase)))
+			if (userRoles.Any(x => x.Equals("Admin", System.StringComparison.OrdinalIgnoreCase)))
 				return true;
 
 			// EVALUATE: Every Role on the Entity. One match grants access.
 			foreach (var role in entityRoles)
-				if (userRoles.Select(x => x.Name).Contains(role.Name))
+				if (userRoles.Contains(role.Name))
 					return true;
 
 			return false;

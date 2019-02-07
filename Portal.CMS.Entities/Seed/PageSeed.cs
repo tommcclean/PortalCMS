@@ -14,7 +14,6 @@ namespace Portal.CMS.Entities.Seed
 
             context.Pages.Add(new Page
             {
-                PageId = 1,
                 PageName = "Home",
                 PageController = "Home",
                 PageAction = "Index",

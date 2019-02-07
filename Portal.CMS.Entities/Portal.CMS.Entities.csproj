@@ -92,9 +92,6 @@
     <Compile Include="Enumerators\ChartSize.cs" />
     <Compile Include="Enumerators\ChartType.cs" />
     <Compile Include="Enumerators\TimePeriod.cs" />
-    <Compile Include="Entities\Role.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\UserRole.cs" />
     <Compile Include="Entities\UserToken.cs" />
     <Compile Include="Enumerators\UserTokenType.cs" />
     <Compile Include="Entities\CopyItem.cs" />

@@ -1,4 +1,6 @@
-﻿using Portal.CMS.Entities.Entities;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Portal.CMS.Entities.Entities;
+using Portal.CMS.Entities.Entities.Models;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -27,6 +29,6 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.PageManager
         [DisplayName("Roles")]
         public List<string> SelectedRoleList { get; set; } = new List<string>();
 
-        public List<Role> RoleList { get; set; }
+        public List<ApplicationRole> RoleList { get; set; }
     }
 }

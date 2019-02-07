@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Portal.CMS.Entities.Entities.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portal.CMS.Entities.Entities
@@ -14,8 +15,8 @@ namespace Portal.CMS.Entities.Entities
         public virtual PageAssociation PageAssociation { get; set; }
 
         [ForeignKey(nameof(Role))]
-        public int RoleId { get; set; }
+        public string RoleId { get; set; }
 
-        public virtual Role Role { get; set; }
+        public virtual ApplicationRole Role { get; set; }
     }
 }

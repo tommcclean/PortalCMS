@@ -1,5 +1,7 @@
-﻿using Portal.CMS.Entities;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities;
+using Portal.CMS.Entities.Entities.Models;
 using System;
 using System.Data.Entity;
 using System.Security.Cryptography;
@@ -9,9 +11,9 @@ namespace Portal.CMS.Services.Authentication
 {
     public interface IRegistrationService
     {
-        Task<int> RegisterAsync(string emailAddress, string password, string givenName, string familyName);
+        Task<string> RegisterAsync(string emailAddress, string password, string givenName, string familyName);
 
-        Task ChangePasswordAsync(int userId, string newPassword);
+        Task ChangePasswordAsync(string userId, string newPassword);
     }
 
 	public class RegistrationService : IRegistrationService
@@ -19,65 +21,75 @@ namespace Portal.CMS.Services.Authentication
 		#region Dependencies
 
 		readonly PortalDbContext _context;
+		readonly ApplicationUserManager UserManager;
+		readonly ApplicationRoleManager RoleManager;
 
 		public RegistrationService(PortalDbContext context)
 		{
 			_context = context;
+			UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(_context));
+			RoleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(_context));
 		}
 
 		#endregion Dependencies
 
-		public async Task<int> RegisterAsync(string emailAddress, string password, string givenName, string familyName)
+		public async Task<string> RegisterAsync(string emailAddress, string password, string givenName, string familyName)
 		{
 			if (await _context.Users.AnyAsync(x => x.Email.Equals(emailAddress, StringComparison.OrdinalIgnoreCase)))
-				return -1;
+				return "-1";
 
-			var userAccount = new User
+			var userAccount = new ApplicationUser
 			{
 				Email = emailAddress,
-				Password = GenerateSecurePassword(password),
 				GivenName = givenName,
 				FamilyName = familyName,
 				AvatarImagePath = "/Areas/Admin/Content/Images/profile-image-male.png",
 				DateAdded = DateTime.Now,
-				DateUpdated = DateTime.Now
+				DateUpdated = DateTime.Now,
+				UserName = GenerateUserName(),
+				RegistrationDate = DateTime.Now
 			};
 
-			_context.Users.Add(userAccount);
+			var result = await UserManager.CreateAsync(userAccount, password);
 
-			await _context.SaveChangesAsync();
+			//_context.Users.Add(userAccount);
+
+			//await _context.SaveChangesAsync();
 
 			return userAccount.Id;
 		}
 
-		public async Task ChangePasswordAsync(int userId, string newPassword)
+		public async Task ChangePasswordAsync(string userId, string newPassword)
 		{
-			var userAccount = await _context.Users.SingleOrDefaultAsync(x => x.Id == userId);
+			var userAccount = await UserManager.FindByIdAsync(userId);
 			if (userAccount == null) return;
 
-			userAccount.Password = GenerateSecurePassword(newPassword);
 			userAccount.DateUpdated = DateTime.Now;
-
-			await _context.SaveChangesAsync();
+			userAccount.PasswordHash = UserManager.PasswordHasher.HashPassword(newPassword);
+			await UserManager.UpdateAsync(userAccount);
 		}
 
-		private static string GenerateSecurePassword(string password)
+		private string  GenerateUserName(int length=10)
 		{
-			// http://stackoverflow.com/questions/4181198/how-to-hash-a-password
-			using (var rNGCryptoServiceProvider = new RNGCryptoServiceProvider())
+			string alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			string small_alphabets = "abcdefghijklmnopqrstuvwxyz";
+			string numbers = "1234567890";
+
+			string characters = alphabets + small_alphabets + numbers;
+
+			string userName = string.Empty;
+			for (int i = 0; i < length; i++)
 			{
-				var salt = new byte[16];
-				rNGCryptoServiceProvider.GetBytes(salt);
-				using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000))
+				string character = string.Empty;
+				do
 				{
-					var hash = pbkdf2.GetBytes(20);
-					var hashBytes = new byte[36];
-					Array.Copy(salt, 0, hashBytes, 0, 16);
-					Array.Copy(hash, 0, hashBytes, 16, 20);
-					var savedPasswordHash = Convert.ToBase64String(hashBytes);
-					return savedPasswordHash;
-				}
+					int index = new Random().Next(0, characters.Length);
+					character = characters.ToCharArray()[index].ToString();
+				} while (userName.IndexOf(character) != -1);
+				userName += character;
 			}
+
+			return userName;
 		}
 	}
 }

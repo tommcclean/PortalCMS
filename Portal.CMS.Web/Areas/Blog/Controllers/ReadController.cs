@@ -36,7 +36,7 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
         [HttpGet]
         public async Task<ActionResult> Index(int? id)
         {
-            var recentPosts = await _postService.ReadAsync(UserHelper.Id, string.Empty);
+            var recentPosts = await _postService.ListByCategoryAsync(UserHelper.Id, string.Empty);
 
             var model = new BlogViewModel
             {
@@ -47,7 +47,7 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
 
             if (id.HasValue)
-                model.CurrentPost = await _postService.ReadAsync(UserHelper.Id, id.Value);
+                model.CurrentPost = await _postService.ReadSingleAsync(UserHelper.Id, id.Value);
             else
                 model.CurrentPost = model.RecentPosts.First();
 
@@ -56,7 +56,7 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
 
             model.Author = await _userService.GetAsync(model.CurrentPost.PostAuthorUserId);
 
-            var similiarPosts = await _postService.ReadAsync(UserHelper.Id, model.CurrentPost.PostCategory.PostCategoryName);
+            var similiarPosts = await _postService.ListByCategoryAsync(UserHelper.Id, model.CurrentPost.PostCategory.PostCategoryName);
 
             model.SimiliarPosts = similiarPosts.ToList();
 

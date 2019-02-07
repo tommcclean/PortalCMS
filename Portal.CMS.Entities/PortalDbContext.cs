@@ -7,7 +7,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Portal.CMS.Entities
 {
-	public class PortalDbContext : IdentityDbContext<CustomUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>
+	public class PortalDbContext : IdentityDbContext<ApplicationUser>
 	{
 		#region Dependencies
 
@@ -20,12 +20,6 @@ namespace Portal.CMS.Entities
 		}
 
 		#endregion Dependencies
-
-		public virtual DbSet<User> Users { get; set; }
-
-		public virtual DbSet<Role> Roles { get; set; }
-
-		public virtual DbSet<UserRole> UserRoles { get; set; }
 
 		public virtual DbSet<UserToken> UserTokens { get; set; }
 

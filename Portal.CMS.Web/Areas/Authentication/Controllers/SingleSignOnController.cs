@@ -27,9 +27,9 @@ namespace Portal.CMS.Web.Areas.Authentication.Controllers
             {
                 var cookieValues = resetCookie.Value.Split(',');
 
-                var result = await _loginService.SSOAsync(Convert.ToInt32(cookieValues[0]), cookieValues[2]);
+                var result = await _loginService.SSOAsync(cookieValues[0], cookieValues[2]);
 
-                if (result>0)
+                if (!string.IsNullOrEmpty(result))
                 {
                     Session.Add("UserAccount", await _userService.GetAsync(result));
                     Session.Add("UserRoles", await _roleService.GetAsync(result));

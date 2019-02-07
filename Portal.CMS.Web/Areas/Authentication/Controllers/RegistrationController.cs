@@ -39,7 +39,7 @@ namespace Portal.CMS.Web.Areas.Authentication.Controllers
 
             switch (userId)
             {
-                case -1:
+                case "-1":
                     ModelState.AddModelError("EmailAddressUsed", "The Email Address you entered is already registered");
                     return View("_RegistrationForm", model);
 

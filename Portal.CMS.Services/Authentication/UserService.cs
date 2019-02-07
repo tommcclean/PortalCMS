@@ -1,5 +1,6 @@
 ﻿using Portal.CMS.Entities;
 using Portal.CMS.Entities.Entities;
+using Portal.CMS.Entities.Entities.Models;
 using Portal.CMS.Repositories.Base;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,54 +9,55 @@ using System.Threading.Tasks;
 
 namespace Portal.CMS.Services.Authentication
 {
-	public interface IUserService : IRepositoryBase<User>
+	public interface IUserService : IRepositoryBase<ApplicationUser>
 	{
-		Task<IEnumerable<User>> GetAsync();
+		Task<IEnumerable<ApplicationUser>> GetAsync();
 
-		Task<User> GetByEmailAsync(string emailAddress);
+		Task<ApplicationUser> GetByEmailAsync(string emailAddress);
 
-		Task<IEnumerable<User>> GetByRoleAsync(List<string> roleNames);
+		Task<IEnumerable<ApplicationUser>> GetByRoleAsync(List<string> roleNames);
 
-		Task UpdateDetailsAsync(int userId, string emailAddress, string givenName, string familyName);
+		Task UpdateDetailsAsync(string userId, string emailAddress, string givenName, string familyName);
 
-		Task UpdateAvatarAsync(int userId, string avatarImagePath);
+		Task UpdateAvatarAsync(string userId, string avatarImagePath);
 
-		Task UpdateBioAsync(int userId, string bio);
+		Task UpdateBioAsync(string userId, string bio);
 
-		Task DeleteUserAsync(int userId);
+		Task DeleteUserAsync(string userId);
 	}
 
-	public class UserService : ServiceBase<User>, IUserService
+	public class UserService : ServiceBase<ApplicationUser>, IUserService
 	{
 		#region Dependencies
 
-		public UserService(PortalDbContext context) : base(context){ }
+		public UserService(PortalDbContext context) : base(context) { }
 
 		#endregion Dependencies
 
-		public async Task<User> GetByEmailAsync(string emailAddress)
+		public async Task<ApplicationUser> GetByEmailAsync(string emailAddress)
 		{
 			var result = await base.DbContext.Users.FirstOrDefaultAsync(x => x.Email.Equals(emailAddress, System.StringComparison.OrdinalIgnoreCase));
 
 			return result;
 		}
 
-		public async Task<IEnumerable<User>> GetAsync()
+		public async Task<IEnumerable<ApplicationUser>> GetAsync()
 		{
 			var userList = await base.DbContext.Users.OrderBy(x => x.GivenName).ThenBy(x => x.FamilyName).ThenBy(x => x.Id).ToListAsync();
 
 			return userList;
 		}
 
-		public async Task<IEnumerable<User>> GetByRoleAsync(List<string> roleNames)
+		public async Task<IEnumerable<ApplicationUser>> GetByRoleAsync(List<string> roleNames)
 		{
-			var results = new List<User>();
+			var results = new List<ApplicationUser>();
 
 			foreach (var user in await base.DbContext.Users.ToListAsync())
 			{
 				foreach (var roleName in roleNames)
 				{
-					if (user.Roles.Any(x => x.Role.Name == roleName))
+					var role = await RoleManager.FindByNameAsync(roleName);
+					if (user.Roles.Any(x => x.RoleId == role.Id))
 						results.Add(user);
 				}
 			}
@@ -64,7 +66,7 @@ namespace Portal.CMS.Services.Authentication
 		}
 
 
-		public async Task UpdateDetailsAsync(int userId, string emailAddress, string givenName, string familyName)
+		public async Task UpdateDetailsAsync(string userId, string emailAddress, string givenName, string familyName)
 		{
 			var user = await base.DbContext.Users.SingleOrDefaultAsync(x => x.Id == userId);
 
@@ -75,7 +77,7 @@ namespace Portal.CMS.Services.Authentication
 			await base.DbContext.SaveChangesAsync();
 		}
 
-		public async Task UpdateAvatarAsync(int userId, string avatarImagePath)
+		public async Task UpdateAvatarAsync(string userId, string avatarImagePath)
 		{
 			var user = await base.DbContext.Users.SingleOrDefaultAsync(x => x.Id == userId);
 
@@ -84,7 +86,7 @@ namespace Portal.CMS.Services.Authentication
 			await base.DbContext.SaveChangesAsync();
 		}
 
-		public async Task UpdateBioAsync(int userId, string bio)
+		public async Task UpdateBioAsync(string userId, string bio)
 		{
 			var user = await base.DbContext.Users.SingleOrDefaultAsync(x => x.Id == userId);
 
@@ -93,7 +95,7 @@ namespace Portal.CMS.Services.Authentication
 			await base.DbContext.SaveChangesAsync();
 		}
 
-		public async Task DeleteUserAsync(int userId)
+		public async Task DeleteUserAsync(string userId)
 		{
 			var user = await base.DbContext.Users.SingleOrDefaultAsync(x => x.Id == userId);
 

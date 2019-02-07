@@ -11,9 +11,9 @@ namespace Portal.CMS.Services.Analytics
 {
     public interface IAnalyticsService
     {
-        Task LogPageViewAsync(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, int? userId);
+        Task LogPageViewAsync(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, string userId);
 
-        Task LogPostViewAsync(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId);
+        Task LogPostViewAsync(int postId, string referredUrl, string ipAddress, string userAgent, string UserId);
 
         Task<List<KeyValuePair<string, int>>> TotalHitsTodayAsync();
 
@@ -43,7 +43,7 @@ namespace Portal.CMS.Services.Analytics
 
         #endregion Dependencies
 
-        public async Task LogPageViewAsync(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, int? userId)
+        public async Task LogPageViewAsync(string area, string controller, string action, string referredUrl, string ipAddress, string userAgent, string userId)
         {
             var newAnalyticPageView = new AnalyticPageView
             {
@@ -53,7 +53,7 @@ namespace Portal.CMS.Services.Analytics
                 ReferredUrl = referredUrl,
                 IPAddress = ipAddress,
                 UserAgent = userAgent,
-                UserId = userId ?? 0,
+                UserId = userId ?? string.Empty,
                 DateAdded = DateTime.Now
             };
 
@@ -62,7 +62,7 @@ namespace Portal.CMS.Services.Analytics
             await _context.SaveChangesAsync();
         }
 
-        public async Task LogPostViewAsync(int postId, string referredUrl, string ipAddress, string userAgent, int? UserId)
+        public async Task LogPostViewAsync(int postId, string referredUrl, string ipAddress, string userAgent, string UserId)
         {
             var analyticPostView = new AnalyticPostView
             {
@@ -70,7 +70,7 @@ namespace Portal.CMS.Services.Analytics
                 ReferredUrl = referredUrl,
                 IPAddress = ipAddress,
                 UserAgent = userAgent,
-                UserId = UserId ?? 0,
+                UserId = UserId ?? string.Empty,
                 DateAdded = DateTime.Now
             };
 

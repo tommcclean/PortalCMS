@@ -34,7 +34,7 @@ namespace Portal.CMS.Web.Areas.Authentication.Controllers
 
             var userId = await _loginService.LoginAsync(model.EmailAddress, model.Password);
 
-            if (!(userId>0))
+            if (!string.IsNullOrEmpty(userId))
             {
                 ModelState.AddModelError("InvalidCredentials", "Invalid Account Credentials");
 

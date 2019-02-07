@@ -73,7 +73,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Delete(int roleId)
+        public async Task<ActionResult> Delete(string roleId)
         {
             await _roleService.DeleteAsync(roleId);
 

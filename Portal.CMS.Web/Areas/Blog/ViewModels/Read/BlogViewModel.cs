@@ -1,4 +1,5 @@
 ﻿using Portal.CMS.Entities.Entities;
+using Portal.CMS.Entities.Entities.Models;
 using System.Collections.Generic;
 
 namespace Portal.CMS.Web.Areas.BlogManager.ViewModels.Read
@@ -11,6 +12,6 @@ namespace Portal.CMS.Web.Areas.BlogManager.ViewModels.Read
 
         public List<Post> SimiliarPosts { get; set; }
 
-        public User Author { get; set; }
+        public ApplicationUser Author { get; set; }
     }
 }

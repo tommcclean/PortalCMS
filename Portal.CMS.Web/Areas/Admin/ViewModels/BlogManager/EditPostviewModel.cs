@@ -1,4 +1,6 @@
-﻿using Portal.CMS.Entities.Entities;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Portal.CMS.Entities.Entities;
+using Portal.CMS.Entities.Entities.Models;
 using Portal.CMS.Entities.Enumerators;
 using Portal.CMS.Web.ViewModels.Shared;
 using System.Collections.Generic;
@@ -29,7 +31,7 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager
 
         [DisplayName("Author")]
         [Required]
-        public int PostAuthorUserId { get; set; }
+        public string PostAuthorUserId { get; set; }
 
         [DisplayName("Status")]
         public PublicationState PublicationState { get; set; }
@@ -55,9 +57,9 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.BlogManager
 
         public IEnumerable<PostCategory> PostCategoryList { get; set; }
 
-        public IEnumerable<User> UserList { get; set; }
+        public IEnumerable<ApplicationUser> UserList { get; set; }
 
-        public List<Role> RoleList { get; set; }
+        public List<ApplicationRole> RoleList { get; set; }
 
         #endregion Enumerable Properties
     }

@@ -6,7 +6,7 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.UserManager
 {
     public class DetailsViewModel
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [DisplayName("Email")]
         [Required]

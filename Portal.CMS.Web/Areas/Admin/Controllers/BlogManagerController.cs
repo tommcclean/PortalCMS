@@ -271,7 +271,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         [HttpGet, EditorFilter(ActionFilterResponseType.Modal)]
         public async Task<ActionResult> AppDrawer()
         {
-            var postList = await _postService.ReadAsync(UserHelper.Id, string.Empty);
+            var postList = await _postService.ListByCategoryAsync(UserHelper.Id, string.Empty);
 
             var model = new AppDrawerViewModel
             {

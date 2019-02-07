@@ -8,36 +8,18 @@ using System.Threading.Tasks;
 
 namespace Portal.CMS.Entities.Entities.Models
 {
-	public class CustomUserRole : IdentityUserRole<int> {  }
-	public class CustomUserClaim : IdentityUserClaim<int> { }
-	public class CustomUserLogin : IdentityUserLogin<int> { }
-
-	public class CustomRole : IdentityRole<int, CustomUserRole>
+	public class ApplicationRole : IdentityRole
 	{
-		public CustomRole() { }
-		public CustomRole(string name) { Name = name; }
+		public ApplicationRole() { }
+		public ApplicationRole(string name) { Name = name; }
 
 		[Required]
 		[DefaultValue("true")]
 		public bool IsAssignable { get; set; }
 	}
 
-	public class CustomUserStore : UserStore<CustomUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>
-	{
-		public CustomUserStore(PortalDbContext context): base(context)
-		{
-		}
-	}
-
-	public class CustomRoleStore : RoleStore<CustomRole, int, CustomUserRole>
-	{
-		public CustomRoleStore(PortalDbContext context): base(context)
-		{
-		}
-	}
-
 	// You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-	public class CustomUser : IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim>
+	public class ApplicationUser : IdentityUser
 	{
 		[Required]
 		public string GivenName { get; set; }
@@ -77,7 +59,7 @@ namespace Portal.CMS.Entities.Entities.Models
 		[DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy hh:mm}")]
 		public virtual DateTime? LastLogoutTime { get; set; }
 
-		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<CustomUser, int> manager)
+		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
 		{
 			// Note the authenticationType must match the one defined in
 			// CookieAuthenticationOptions.AuthenticationType 

@@ -1,135 +1,144 @@
 ﻿using Portal.CMS.Entities.Entities;
+using Portal.CMS.Entities.Entities.Models;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Portal.CMS.Web.Architecture.Helpers
 {
-    public static class UserHelper
-    {
-        const string USER_ACCOUNT = "UserAccount";
-        const string USER_ROLES = "UserRoles";
-        const string ADMIN_ROLE = "Admin";
-        const string EDITOR_ROLE = "Editor";
+	public static class UserHelper
+	{
+		const string USER_ACCOUNT = "UserAccount";
+		const string USER_ROLES = "UserRoles";
+		const string ADMIN_ROLE = "Admin";
+		const string EDITOR_ROLE = "Editor";
 
-        public static bool IsLoggedIn
-        {
-            get
-            {
-                if (System.Web.HttpContext.Current.Session[USER_ACCOUNT] == null)
-                    return false;
+		public static bool IsLoggedIn
+		{
+			get
+			{
+				if (System.Web.HttpContext.Current.Session[USER_ACCOUNT] == null)
+					return false;
 
-                return true;
-            }
-        }
+				return true;
+			}
+		}
 
-        public static bool IsAdmin
-        {
-            get
-            {
-                var userSession = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
-                var userRoles = (IEnumerable<Role>)System.Web.HttpContext.Current.Session[USER_ROLES];
+		public static bool IsAdmin
+		{
+			get
+			{
+				var userSession = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				var userRoles = (IEnumerable<string>)System.Web.HttpContext.Current.Session[USER_ROLES];
 
-                if (userSession == null || userRoles == null)
-                    return false;
+				if (userSession == null || userRoles == null)
+					return false;
 
-                if (userRoles.Any(x => x.Name.Equals(ADMIN_ROLE, System.StringComparison.OrdinalIgnoreCase)))
-                    return true;
+				if (userRoles.Any(x => x.Equals(ADMIN_ROLE, System.StringComparison.OrdinalIgnoreCase)))
+					return true;
 
-                return false;
-            }
-        }
+				return false;
+			}
+		}
 
-        public static bool IsEditor
-        {
-            get
-            {
-                var userSession = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
-                var userRoles = (IEnumerable<Role>)System.Web.HttpContext.Current.Session[USER_ROLES];
+		public static bool IsEditor
+		{
+			get
+			{
+				var userSession = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				var userRoles = (IEnumerable<string>)System.Web.HttpContext.Current.Session[USER_ROLES];
 
-                if (userSession == null || userRoles == null)
-                    return false;
+				if (userSession == null || userRoles == null)
+					return false;
 
-                if (userRoles.Any(x => x.Name == EDITOR_ROLE) || userRoles.Any(x => x.Name == ADMIN_ROLE))
-                    return true;
+				foreach(var role in userRoles)
+				{
+					if (role == EDITOR_ROLE || role == ADMIN_ROLE)
+					{
+						return true;
+					}
+				}
 
-                return false;
-            }
-        }
+				if (userRoles.Any(x => x.Equals(EDITOR_ROLE, System.StringComparison.OrdinalIgnoreCase)) || userRoles.Any(x => x.Equals(ADMIN_ROLE, System.StringComparison.OrdinalIgnoreCase)))
+					return true;
 
-        public static int Id
-        {
-            get
-            {
-                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				return false;
+			}
+		}
 
-                if (userAccount == null)
-                    return 0;
+		public static string Id
+		{
+			get
+			{
+				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
-                return userAccount.Id;
-            }
-        }
+				if (userAccount == null)
+					return string.Empty;
 
-        public static string AvatarImagePath
-        {
-            get
-            {
-                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				return userAccount.Id;
+			}
+		}
 
-                return userAccount.AvatarImagePath;
-            }
-        }
+		public static string AvatarImagePath
+		{
+			get
+			{
+				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
-        public static string FullName
-        {
-            get
-            {
-                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				return userAccount.AvatarImagePath;
+			}
+		}
 
-                return $"{userAccount.GivenName} {userAccount.FamilyName}";
-            }
-        }
+		public static string FullName
+		{
+			get
+			{
+				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
-        public static string GivenName
-        {
-            get
-            {
-                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				return $"{userAccount.GivenName} {userAccount.FamilyName}";
+			}
+		}
 
-                return userAccount.GivenName;
-            }
-        }
+		public static string GivenName
+		{
+			get
+			{
+				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
-        public static string FamilyName
-        {
-            get
-            {
-                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				return userAccount.GivenName;
+			}
+		}
 
-                return userAccount.FamilyName;
-            }
-        }
+		public static string FamilyName
+		{
+			get
+			{
+				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
-        public static string Email
-        {
-            get
-            {
-                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				return userAccount.FamilyName;
+			}
+		}
 
-                return userAccount.Email;
-            }
-        }
+		public static string Email
+		{
+			get
+			{
+				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
-        public static string Bio
-        {
-            get
-            {
-                var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				return userAccount.Email;
+			}
+		}
 
-                if (string.IsNullOrWhiteSpace(userAccount.Bio))
-                    return "You haven't written a Bio yet...";
+		public static string Bio
+		{
+			get
+			{
+				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
-                return userAccount.Bio;
-            }
-        }
-    }
+				if (string.IsNullOrWhiteSpace(userAccount.Bio))
+					return "You haven't written a Bio yet...";
+
+				return userAccount.Bio;
+			}
+		}
+	}
 }

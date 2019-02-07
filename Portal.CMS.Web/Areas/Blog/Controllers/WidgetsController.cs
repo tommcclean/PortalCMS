@@ -29,7 +29,7 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
 
         public async Task<ActionResult> TilesWidget()
         {
-            var postList = await _postService.ReadAsync(UserHelper.Id, string.Empty);
+            var postList = await _postService.ListByCategoryAsync(UserHelper.Id, string.Empty);
 
             var model = new PostsWidgetViewModel
             {
@@ -41,7 +41,7 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
 
         public async Task<ActionResult> RetroWidget()
         {
-            var postList = await _postService.ReadAsync(UserHelper.Id, string.Empty);
+            var postList = await _postService.ListByCategoryAsync(UserHelper.Id, string.Empty);
 
             var model = new PostsWidgetViewModel
             {
@@ -53,7 +53,7 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
 
         public async Task<ActionResult> BoxWidget()
         {
-            var postList = await _postService.ReadAsync(UserHelper.Id, string.Empty);
+            var postList = await _postService.ListByCategoryAsync(UserHelper.Id, string.Empty);
 
             var model = new PostsWidgetViewModel
             {

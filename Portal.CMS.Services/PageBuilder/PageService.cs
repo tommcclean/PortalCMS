@@ -13,7 +13,7 @@ namespace Portal.CMS.Services.PageBuilder
     {
         Task<List<Page>> GetAsync();
 
-        Task<Page> ViewAsync(int userId, int pageId);
+        Task<Page> ViewAsync(string userId, int pageId);
 
         Task<Page> GetAsync(int pageId);
 
@@ -48,7 +48,7 @@ namespace Portal.CMS.Services.PageBuilder
             return results;
         }
 
-        public async Task<Page> ViewAsync(int userId, int pageId)
+        public async Task<Page> ViewAsync(string userId, int pageId)
         {
             var page = await _context.Pages.Include(x => x.PageAssociations).SingleOrDefaultAsync(x => x.PageId == pageId);
 
@@ -141,7 +141,7 @@ namespace Portal.CMS.Services.PageBuilder
 
         #region Private Methods
 
-        private async Task<Page> FilterSectionListAsync(Page page, int userId)
+        private async Task<Page> FilterSectionListAsync(Page page, string userId)
         {
             for (int loop = 0; loop < page.PageAssociations.Count(); loop += 1)
             {

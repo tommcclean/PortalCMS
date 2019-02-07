@@ -7,7 +7,7 @@ namespace Portal.CMS.Services.Posts
 {
     public interface IPostCommentService
     {
-        Task AddAsync(int userId, int postId, string commentBody);
+        Task AddAsync(string userId, int postId, string commentBody);
     }
 
     public class PostCommentService : IPostCommentService
@@ -23,7 +23,7 @@ namespace Portal.CMS.Services.Posts
 
         #endregion Dependencies
 
-        public async Task AddAsync(int userId, int postId, string commentBody)
+        public async Task AddAsync(string userId, int postId, string commentBody)
         {
             var comment = new PostComment
             {

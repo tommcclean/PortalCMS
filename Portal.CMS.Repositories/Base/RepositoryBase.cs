@@ -27,12 +27,12 @@ namespace Portal.CMS.Repositories.Base
 			return await DbContext.Set<TObject>().ToListAsync();
 		}
 
-		public TObject Get(int id)
+		public TObject Get(object id)
 		{
 			return DbContext.Set<TObject>().Find(id);
 		}
 
-		public async Task<TObject> GetAsync(int id)
+		public async Task<TObject> GetAsync(object id)
 		{
 			return await DbContext.Set<TObject>().FindAsync(id);
 		}
@@ -71,7 +71,7 @@ namespace Portal.CMS.Repositories.Base
 			return t;
 		}
 
-		public TObject Update(TObject updated, int key)
+		public TObject Update(TObject updated, object key)
 		{
 			if (updated == null)
 				return null;
@@ -85,7 +85,7 @@ namespace Portal.CMS.Repositories.Base
 			return existing;
 		}
 
-		public async Task<TObject> UpdateAsync(TObject updated, int key)
+		public async Task<TObject> UpdateAsync(TObject updated, object key)
 		{
 			if (updated == null)
 				return null;

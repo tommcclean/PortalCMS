@@ -5,7 +5,7 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.RoleManager
 {
     public class EditViewModel
     {
-        public int RoleId { get; set; }
+        public string RoleId { get; set; }
 
         [Required]
         [DisplayName("Role Name")]

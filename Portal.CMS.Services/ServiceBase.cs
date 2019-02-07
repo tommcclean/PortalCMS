@@ -7,14 +7,14 @@ namespace Portal.CMS.Services
 {
 	public abstract class ServiceBase<TObject>: RepositoryBase<TObject> where TObject : class
 	{
-		protected CustomUserManager UserManager;
-		protected CustomRoleManager RoleManager;
+		protected ApplicationUserManager UserManager;
+		protected ApplicationRoleManager RoleManager;
 
 		public ServiceBase() : this(new PortalDbContext()){}
     public ServiceBase(PortalDbContext context):base(context)
 		{
-			UserManager = new CustomUserManager(new CustomUserStore(context));
-			RoleManager = new CustomRoleManager(new RoleStore<IdentityRole>(context));
+			UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+			RoleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(context));
 		}
 	}
 }

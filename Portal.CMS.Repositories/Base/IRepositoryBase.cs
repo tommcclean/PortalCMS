@@ -17,11 +17,11 @@ namespace Portal.CMS.Repositories.Base
 		ICollection<TObject> FindAll(Expression<Func<TObject, bool>> match);
 		Task<ICollection<TObject>> FindAllAsync(Expression<Func<TObject, bool>> match);
 		Task<TObject> FindAsync(Expression<Func<TObject, bool>> match);
-		TObject Get(int id);
+		TObject Get(object id);
 		ICollection<TObject> GetAll();
 		Task<ICollection<TObject>> GetAllAsync();
-		Task<TObject> GetAsync(int id);
-		TObject Update(TObject updated, int key);
-		Task<TObject> UpdateAsync(TObject updated, int key);
+		Task<TObject> GetAsync(object id);
+		TObject Update(TObject updated, object key);
+		Task<TObject> UpdateAsync(TObject updated, object key);
 	}
 }

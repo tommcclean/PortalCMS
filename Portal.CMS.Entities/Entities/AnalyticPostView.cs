@@ -22,6 +22,6 @@ namespace Portal.CMS.Entities.Entities
 
         public string ReferredUrl { get; set; }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

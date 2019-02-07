@@ -1,4 +1,5 @@
-﻿using Portal.CMS.Entities.Enumerators;
+﻿using Portal.CMS.Entities.Entities.Models;
+using Portal.CMS.Entities.Enumerators;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,13 +18,13 @@ namespace Portal.CMS.Entities.Entities
 		public string Token { get; set; }
 
 		[ForeignKey("User")]
-		public int UserId { get; set; }
+		public string UserId { get; set; }
 
 		[Required]
 		public DateTime DateAdded { get; set; }
 
 		public DateTime? DateRedeemed { get; set; }
 
-		public virtual User User { get; set; }
+		public virtual ApplicationUser User { get; set; }
 	}
 }

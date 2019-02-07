@@ -1,68 +1,63 @@
-﻿using Portal.CMS.Entities;
+﻿using Microsoft.AspNet.Identity.Owin;
+using Portal.CMS.Entities;
+using Portal.CMS.Entities.Entities.Models;
 using System;
 using System.Data.Entity;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Portal.CMS.Services.Authentication
 {
     public interface ILoginService
     {
-        Task<int> LoginAsync(string emailAddress, string password);
+        Task<string> LoginAsync(string emailAddress, string password);
 
-        Task<int> SSOAsync(int userId, string token);
+        Task<string> SSOAsync(string userId, string token);
     }
 
-    public class LoginService : ILoginService
-    {
-        #region Dependencies
+	public class LoginService : ILoginService
+	{
+		#region Dependencies
 
-        readonly PortalDbContext _context;
-        readonly ITokenService _tokenService;
+		readonly PortalDbContext _context;
+		readonly ITokenService _tokenService;
 
-        public LoginService(PortalDbContext context, ITokenService tokenService)
-        {
-            _context = context;
-            _tokenService = tokenService;
-        }
+		private ApplicationSignInManager _signInManager;
+		public ApplicationSignInManager SignInManager
+		{
+			get
+			{
+				return _signInManager ?? HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>();
+			}
+			private set { _signInManager = value; }
+		}
 
-        #endregion Dependencies
+		public LoginService(PortalDbContext context, ITokenService tokenService)
+		{
+			_context = context;
+			_tokenService = tokenService;
+		}
 
-        public async Task<int> LoginAsync(string emailAddress, string password)
-        {
-            var userAccount = await _context.Users.FirstOrDefaultAsync(x => x.Email.Equals(emailAddress, StringComparison.OrdinalIgnoreCase));
-            if (userAccount == null) return 0;
+		#endregion Dependencies
 
-            if (!CompareSecurePassword(password, userAccount.Password))
-                return 0;
+		public async Task<string> LoginAsync(string emailAddress, string password)
+		{
+			var result = await SignInManager.PasswordSignInAsync(emailAddress, password, true, shouldLockout: false);
+			var userAccount = await _context.Users.FirstOrDefaultAsync(x => x.Email.Equals(emailAddress, StringComparison.OrdinalIgnoreCase));
+			if (userAccount == null) return string.Empty;
 
-            return userAccount.Id;
-        }
+			return userAccount.Id;
+		}
 
-        public async Task<int> SSOAsync(int userId, string token)
-        {
-            var tokenResult = await _tokenService.RedeemSSOTokenAsync(userId, token);
+		public async Task<string> SSOAsync(string userId, string token)
+		{
+			var tokenResult = await _tokenService.RedeemSSOTokenAsync(userId, token);
 
-            if (string.IsNullOrWhiteSpace(tokenResult))
-                return userId;
+			if (string.IsNullOrWhiteSpace(tokenResult))
+				return userId;
 
-            return 0;
-        }
-
-        private static bool CompareSecurePassword(string passwordAttempt, string passwordActual)
-        {
-            var savedPasswordHash = passwordActual;
-            var hashBytes = Convert.FromBase64String(savedPasswordHash);
-            var salt = new byte[16];
-            Array.Copy(hashBytes, 0, salt, 0, 16);
-            using (var pbkdf2 = new Rfc2898DeriveBytes(passwordAttempt, salt, 10000))
-            {
-                var hash = pbkdf2.GetBytes(20);
-                for (int i = 0; i < 20; i++)
-                    if (hashBytes[i + 16] != hash[i])
-                        return false;
-                return true;
-            }
-        }
-    }
+			return string.Empty;
+		}
+	}
 }

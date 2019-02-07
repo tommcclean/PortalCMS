@@ -54,7 +54,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             switch (userId)
             {
-                case -1:
+                case "-1":
                     ModelState.AddModelError("EmailAddressUsed", "The Email Address you entered is already registered");
                     return View("_Create", model);
 
@@ -72,7 +72,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Details(int userId)
+        public async Task<ActionResult> Details(string userId)
         {
             var user = await _userService.GetAsync(userId);
 
@@ -108,7 +108,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Roles(int userId)
+        public async Task<ActionResult> Roles(string userId)
         {
             var model = new RolesViewModel
             {
@@ -119,7 +119,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             var userRoles = await _roleService.GetByUserAsync(userId);
 
             foreach (var role in userRoles)
-                model.SelectedRoleList.Add(role.Name);
+                model.SelectedRoleList.Add(role);
 
             return PartialView("_Roles", model);
         }
@@ -146,7 +146,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Delete(int userId)
+        public async Task<ActionResult> Delete(string userId)
         {
             await _userService.DeleteUserAsync(userId);
 
