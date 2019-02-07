@@ -16,25 +16,25 @@
                     <div class="col-xs-3 vertical-alignment">
                         <img src="@user.AvatarImagePath" class="avatar" alt="User Avatar" style="border-radius: 50%;" />
                     </div>
-                    <div class="col-xs-9 vertical-alignment" style="text-align: left; padding-left: 40px;">
+                    <div class="col-xs-9 vertical-alignment" style="text-align: left; padding-left: 50px;">
                         <h3>@user.GivenName @user.FamilyName</h3>
-                        <p>@user.EmailAddress</p>
+                        <p>@user.Email</p>
                     </div>
                 </div>
 
-                @if (user.UserId == UserHelper.UserId)
+                @if (user.Id == UserHelper.Id)
                 {
                     <div class="admin-container x2">
-                        <a href="@Url.Action("Details", "UserManager", new { userId = @user.UserId })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Details</a>
-                        <a href="@Url.Action("Roles", "UserManager", new { userId = @user.UserId })" class="admin-item launch-modal" data-title="Edit Roles"><span class="fa fa-building"></span>Roles</a>
+                        <a href="@Url.Action("Details", "UserManager", new { userId = @user.Id })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Details</a>
+                        <a href="@Url.Action("Roles", "UserManager", new { userId = @user.Id })" class="admin-item launch-modal" data-title="Edit Roles"><span class="fa fa-building"></span>Roles</a>
                     </div>
                 }
                 else
                 {
                     <div class="admin-container x3">
-                        <a href="@Url.Action("Details", "UserManager", new { userId = @user.UserId })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Details</a>
-                        <a href="@Url.Action("Roles", "UserManager", new { userId = @user.UserId })" class="admin-item launch-modal" data-title="Edit Roles"><span class="fa fa-building"></span>Roles</a>
-                        <a href="@Url.Action("Delete", "UserManager", new { userId = @user.UserId })" class="admin-item" data-toggle="confirmation" data-placement="top" data-container="body"><span class="fa fa-trash"></span>Delete</a>
+                        <a href="@Url.Action("Details", "UserManager", new { userId = @user.Id })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Details</a>
+                        <a href="@Url.Action("Roles", "UserManager", new { userId = @user.Id })" class="admin-item launch-modal" data-title="Edit Roles"><span class="fa fa-building"></span>Roles</a>
+                        <a href="@Url.Action("Delete", "UserManager", new { userId = @user.Id })" class="admin-item" data-toggle="confirmation" data-placement="top" data-container="body"><span class="fa fa-trash"></span>Delete</a>
                     </div>
                 }
             </div>

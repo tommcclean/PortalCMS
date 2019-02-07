@@ -28,7 +28,7 @@
     {
         <img class="avatar" alt="My Avatar" src="@UserHelper.AvatarImagePath" style="margin-bottom: 10px;" />
         <h4>@UserHelper.FullName</h4>
-        <p>@UserHelper.EmailAddress</p>
+        <p>@UserHelper.Email</p>
 
         <div class="admin-container x2">
             <a href="@Url.Action("EditAvatar", "Manage", new { area = "Profile" })" c class="admin-item launch-modal" data-title="Edit Avatar"><span class="fa fa-picture-o"></span>Edit Avatar</a>

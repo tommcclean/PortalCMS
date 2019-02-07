@@ -88,7 +88,8 @@
     <Compile Include="Entities\AnalyticPageView.cs" />
     <Compile Include="Entities\AnalyticPostView.cs" />
     <Compile Include="Entities\Models\IdentityConfig.cs" />
-    <Compile Include="Entities\Models\IdentityModels.cs" />
+    <Compile Include="Entities\Models\ApplicationRole.cs" />
+    <Compile Include="Entities\Models\ApplicationUser.cs" />
     <Compile Include="Enumerators\ChartSize.cs" />
     <Compile Include="Enumerators\ChartType.cs" />
     <Compile Include="Enumerators\TimePeriod.cs" />

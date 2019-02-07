@@ -8,16 +8,6 @@ using System.Threading.Tasks;
 
 namespace Portal.CMS.Entities.Entities.Models
 {
-	public class ApplicationRole : IdentityRole
-	{
-		public ApplicationRole() { }
-		public ApplicationRole(string name) { Name = name; }
-
-		[Required]
-		[DefaultValue("true")]
-		public bool IsAssignable { get; set; }
-	}
-
 	// You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
 	public class ApplicationUser : IdentityUser
 	{

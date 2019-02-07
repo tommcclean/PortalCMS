@@ -8,14 +8,14 @@
             </div>
             <div class="col-xs-7 vertical-alignment" style="text-align: left;">
                 <h3>@UserHelper.FullName</h3>
-                <p>@UserHelper.EmailAddress</p>
+                <p>@UserHelper.Email</p>
             </div>
         </div>
 
         <div class="admin-container x3">
             <a href="@Url.Action("EditAvatar", "Manage", new { area = "Profile" })" class="admin-item launch-modal" data-title="Change Avatar"><span class="fa fa-picture-o"></span>Avatar</a>
-            <a href="@Url.Action("EditAccount", "Manage", new { area = "Profile", userId = UserHelper.UserId })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Details</a>
-            <a href="@Url.Action("Roles", "UserManager", new { area = "Admin", userId = UserHelper.UserId })" class="admin-item launch-modal" data-title="Edit Roles"><span class="fa fa-building"></span>Roles</a>
+            <a href="@Url.Action("EditAccount", "Manage", new { area = "Profile", userId = UserHelper.Id })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Details</a>
+            <a href="@Url.Action("Roles", "UserManager", new { area = "Admin", userId = UserHelper.Id })" class="admin-item launch-modal" data-title="Edit Roles"><span class="fa fa-building"></span>Roles</a>
         </div>
     </div>
 </div>
