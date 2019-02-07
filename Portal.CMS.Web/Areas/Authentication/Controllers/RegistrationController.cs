@@ -37,7 +37,7 @@ namespace Portal.CMS.Web.Areas.Authentication.Controllers
 
             var userId = await _registrationService.RegisterAsync(model.EmailAddress, model.Password, model.GivenName, model.FamilyName);
 
-            switch (userId.Value)
+            switch (userId)
             {
                 case -1:
                     ModelState.AddModelError("EmailAddressUsed", "The Email Address you entered is already registered");
@@ -46,17 +46,17 @@ namespace Portal.CMS.Web.Areas.Authentication.Controllers
                 default:
                     if (await _userService.CountAsync() == 1)
                     {
-                        await _roleService.UpdateAsync(userId.Value, new List<string> { nameof(Admin), "Authenticated" });
+                        await _roleService.UpdateAsync(userId, new List<string> { nameof(Admin), "Authenticated" });
 
                         isAdministrator = true;
                     }
                     else
                     {
-                        await _roleService.UpdateAsync(userId.Value, new List<string> { "Authenticated" });
+                        await _roleService.UpdateAsync(userId, new List<string> { "Authenticated" });
                     }
 
-                    Session.Add("UserAccount", await _userService.GetAsync(userId.Value));
-                    Session.Add("UserRoles", await _roleService.GetAsync(userId));
+                    Session.Add("UserAccount", await _userService.GetAsync(userId));
+                    Session.Add("UserRoles", await _roleService.GetByUserAsync(userId));
 
                     if (isAdministrator)
                         return Content("Setup");

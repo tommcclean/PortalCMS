@@ -69,7 +69,7 @@ namespace Portal.CMS.Web.Areas.BlogManager.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> Comment(int postId, string commentBody)
         {
-            await _postCommentService.AddAsync(UserHelper.Id.Value, postId, commentBody);
+            await _postCommentService.AddAsync(UserHelper.Id, postId, commentBody);
 
             return RedirectToAction(nameof(Index), "Read", new { postId = postId });
         }

@@ -52,7 +52,7 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
             var userId = await _registrationService.RegisterAsync(model.EmailAddress, model.Password, model.GivenName, model.FamilyName);
 
-            switch (userId.Value)
+            switch (userId)
             {
                 case -1:
                     ModelState.AddModelError("EmailAddressUsed", "The Email Address you entered is already registered");
@@ -60,12 +60,12 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
 
                 default:
                     if (await _userService.CountAsync() == 1)
-                        await _roleService.UpdateAsync(userId.Value, new List<string> { nameof(Admin) });
+                        await _roleService.UpdateAsync(userId, new List<string> { nameof(Admin) });
                     else
-                        await _roleService.UpdateAsync(userId.Value, new List<string> { "Authenticated" });
+                        await _roleService.UpdateAsync(userId, new List<string> { "Authenticated" });
 
                     if (!UserHelper.IsLoggedIn)
-                        Session.Add("UserAccount", await _userService.GetAsync(userId.Value));
+                        Session.Add("UserAccount", await _userService.GetAsync(userId));
 
                     return Content("Refresh");
             }
@@ -108,15 +108,15 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Roles(int? userId)
+        public async Task<ActionResult> Roles(int userId)
         {
             var model = new RolesViewModel
             {
-                UserId = userId.Value,
+                UserId = userId,
                 RoleList = await _roleService.GetUserAssignableRolesAsync()
             };
 
-            var userRoles = await _roleService.GetAsync(userId);
+            var userRoles = await _roleService.GetByUserAsync(userId);
 
             foreach (var role in userRoles)
                 model.SelectedRoleList.Add(role.Name);
@@ -131,15 +131,15 @@ namespace Portal.CMS.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View("_Roles", model);
 
-            await _roleService.UpdateAsync(model.UserId.Value, model.SelectedRoleList);
+            await _roleService.UpdateAsync(model.UserId, model.SelectedRoleList);
 
             if (model.UserId == UserHelper.Id)
             {
                 Session.Remove("UserAccount");
                 Session.Remove("UserRoles");
 
-                Session.Add("UserAccount", await _userService.GetAsync(model.UserId.Value));
-                Session.Add("UserRoles", await _roleService.GetAsync(model.UserId));
+                Session.Add("UserAccount", await _userService.GetAsync(model.UserId));
+                Session.Add("UserRoles", await _roleService.GetByUserAsync(model.UserId));
             }
 
             return Content("Refresh");

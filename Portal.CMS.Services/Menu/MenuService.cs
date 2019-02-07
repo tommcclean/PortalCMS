@@ -14,7 +14,7 @@ namespace Portal.CMS.Services.Menu
 
         Task<MenuSystem> GetAsync(int menuId);
 
-        Task<List<MenuItem>> ViewAsync(int? userId, string menuName);
+        Task<List<MenuItem>> ViewAsync(int userId, string menuName);
     }
 
     public class MenuService : IMenuService
@@ -48,13 +48,13 @@ namespace Portal.CMS.Services.Menu
             return result;
         }
 
-        public async Task<List<MenuItem>> ViewAsync(int? userId, string menuName)
+        public async Task<List<MenuItem>> ViewAsync(int userId, string menuName)
         {
             var menu = await _context.Menus.FirstOrDefaultAsync(x => x.MenuName == menuName);
 
             var menuItemList = new List<MenuItem>();
 
-            var userRoleList = await _roleService.GetAsync(userId);
+            var userRoleList = await _roleService.GetByUserAsync(userId);
 
             foreach (var menuItem in menu.MenuItems)
             {

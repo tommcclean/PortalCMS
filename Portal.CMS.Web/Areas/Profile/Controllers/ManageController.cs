@@ -52,7 +52,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
             if (!ModelState.IsValid)
                 return View("_Account", model);
 
-            await _userService.UpdateDetailsAsync(UserHelper.Id.Value, model.EmailAddress, model.GivenName, model.FamilyName);
+            await _userService.UpdateDetailsAsync(UserHelper.Id, model.EmailAddress, model.GivenName, model.FamilyName);
 
             await ResetUserSessionValueAsync();
 
@@ -76,7 +76,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
 
             var imageFilePath = SaveImage(model.AttachedImage, nameof(EditAvatar));
 
-            await _userService.UpdateAvatarAsync(UserHelper.Id.Value, imageFilePath);
+            await _userService.UpdateAvatarAsync(UserHelper.Id, imageFilePath);
 
             await ResetUserSessionValueAsync();
 
@@ -98,7 +98,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditBio(BioViewModel model)
         {
-            await _userService.UpdateBioAsync(UserHelper.Id.Value, model.Bio);
+            await _userService.UpdateBioAsync(UserHelper.Id, model.Bio);
 
             await ResetUserSessionValueAsync();
 
@@ -128,7 +128,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
                 return View("_Password", model);
             }
 
-            await _registrationService.ChangePasswordAsync(UserHelper.Id.Value, model.NewPassword);
+            await _registrationService.ChangePasswordAsync(UserHelper.Id, model.NewPassword);
 
             var websiteAddress = $@"http://{System.Web.HttpContext.Current.Request.Url.Authority}";
 
@@ -166,7 +166,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
 
             Session.Remove(USER_ACCOUNT);
 
-            Session.Add(USER_ACCOUNT, await _userService.GetAsync(userId.Value));
+            Session.Add(USER_ACCOUNT, await _userService.GetAsync(userId));
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Portal.CMS.Services.Authentication
 {
     public interface IRegistrationService
     {
-        Task<int?> RegisterAsync(string emailAddress, string password, string givenName, string familyName);
+        Task<int> RegisterAsync(string emailAddress, string password, string givenName, string familyName);
 
         Task ChangePasswordAsync(int userId, string newPassword);
     }
@@ -27,7 +27,7 @@ namespace Portal.CMS.Services.Authentication
 
 		#endregion Dependencies
 
-		public async Task<int?> RegisterAsync(string emailAddress, string password, string givenName, string familyName)
+		public async Task<int> RegisterAsync(string emailAddress, string password, string givenName, string familyName)
 		{
 			if (await _context.Users.AnyAsync(x => x.Email.Equals(emailAddress, StringComparison.OrdinalIgnoreCase)))
 				return -1;

@@ -8,9 +8,9 @@ namespace Portal.CMS.Services.Authentication
 {
     public interface ILoginService
     {
-        Task<int?> LoginAsync(string emailAddress, string password);
+        Task<int> LoginAsync(string emailAddress, string password);
 
-        Task<int?> SSOAsync(int userId, string token);
+        Task<int> SSOAsync(int userId, string token);
     }
 
     public class LoginService : ILoginService
@@ -28,25 +28,25 @@ namespace Portal.CMS.Services.Authentication
 
         #endregion Dependencies
 
-        public async Task<int?> LoginAsync(string emailAddress, string password)
+        public async Task<int> LoginAsync(string emailAddress, string password)
         {
             var userAccount = await _context.Users.FirstOrDefaultAsync(x => x.Email.Equals(emailAddress, StringComparison.OrdinalIgnoreCase));
-            if (userAccount == null) return null;
+            if (userAccount == null) return 0;
 
             if (!CompareSecurePassword(password, userAccount.Password))
-                return null;
+                return 0;
 
             return userAccount.Id;
         }
 
-        public async Task<int?> SSOAsync(int userId, string token)
+        public async Task<int> SSOAsync(int userId, string token)
         {
             var tokenResult = await _tokenService.RedeemSSOTokenAsync(userId, token);
 
             if (string.IsNullOrWhiteSpace(tokenResult))
                 return userId;
 
-            return null;
+            return 0;
         }
 
         private static bool CompareSecurePassword(string passwordAttempt, string passwordActual)

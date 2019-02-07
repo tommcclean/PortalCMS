@@ -34,14 +34,14 @@ namespace Portal.CMS.Web.Areas.Authentication.Controllers
 
             var userId = await _loginService.LoginAsync(model.EmailAddress, model.Password);
 
-            if (!userId.HasValue)
+            if (!(userId>0))
             {
                 ModelState.AddModelError("InvalidCredentials", "Invalid Account Credentials");
 
                 return View("_LoginForm", model);
             }
 
-            Session.Add("UserAccount", await _userService.GetAsync(userId.Value));
+            Session.Add("UserAccount", await _userService.GetAsync(userId));
             Session.Add("UserRoles", await _roleService.GetAsync(userId));
 
             return Content("Refresh");

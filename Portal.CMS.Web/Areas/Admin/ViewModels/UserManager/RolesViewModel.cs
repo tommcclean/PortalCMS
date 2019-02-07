@@ -6,7 +6,7 @@ namespace Portal.CMS.Web.Areas.Admin.ViewModels.UserManager
 {
     public class RolesViewModel
     {
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
 
         [DisplayName("Roles")]
         public List<string> SelectedRoleList { get; set; } = new List<string>();

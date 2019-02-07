@@ -56,14 +56,14 @@ namespace Portal.CMS.Web.Architecture.Helpers
             }
         }
 
-        public static int? Id
+        public static int Id
         {
             get
             {
                 var userAccount = (User)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
                 if (userAccount == null)
-                    return null;
+                    return 0;
 
                 return userAccount.Id;
             }

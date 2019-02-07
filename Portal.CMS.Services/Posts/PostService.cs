@@ -11,7 +11,7 @@ namespace Portal.CMS.Services.Posts
 {
     public interface IPostService
     {
-        Task<Post> ReadAsync(int? userId, int postId);
+        Task<Post> ReadAsync(int userId, int postId);
 
         Task<List<Post>> ReadAsync(int? userId, string postCategoryName);
 
@@ -57,11 +57,11 @@ namespace Portal.CMS.Services.Posts
 
         #endregion Dependencies
 
-        public async Task<Post> ReadAsync(int? userId, int postId)
+        public async Task<Post> ReadAsync(int userId, int postId)
         {
             var post = await _context.Posts.SingleOrDefaultAsync(x => x.PostId == postId && x.IsPublished);
 
-            var userRoles = await _roleService.GetAsync(userId);
+            var userRoles = await _roleService.GetByUserAsync(userId);
 
             if (_roleService.Validate(post.PostRoles.Select(x => x.Role), userRoles))
                 return post;
