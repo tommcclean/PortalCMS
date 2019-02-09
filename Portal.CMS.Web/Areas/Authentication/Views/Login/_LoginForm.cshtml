@@ -2,12 +2,6 @@
 @{
     Layout = "";
 }
-<style>
-	.large_checkbox {
-		width: 5vw;
-		height: 5vh;
-	}
-</style>
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#tab-login" aria-controls="tab-login" role="tab" data-toggle="tab"><span class="fa fa-lock"></span>Login</a></li>
 </ul>
@@ -33,10 +27,11 @@
 				@Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
 			</div>
 
-			<div class="control-group">
-				@Html.LabelFor(m => m.RememberMe)
+			<label class="control-checkbox-group">
 				@Html.CheckBoxFor(m => m.RememberMe)
-			</div>
+				@Html.LabelFor(x => x.RememberMe)
+				<span class="checkmark"></span>
+			</label>
 
 			<div class="button-group float-container">
 				<button class="btn primary"><span class="fa fa-check"></span><span class="hidden-xs">Sign In</span></button>
