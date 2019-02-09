@@ -78,13 +78,13 @@ namespace Portal.CMS.Web.Architecture.Helpers
 			}
 		}
 
-		public static string AvatarImagePath
+		public static FileDetail AvatarImage
 		{
 			get
 			{
 				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
 
-				return userAccount.AvatarImagePath;
+				return userAccount.AvatarImage;
 			}
 		}
 

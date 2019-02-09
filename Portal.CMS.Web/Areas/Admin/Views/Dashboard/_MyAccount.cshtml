@@ -3,9 +3,9 @@
         <div class="box-title">My Account</div>
 
         <div class="row" style="height: 150px; padding-top: 40px;">
-            <div class="col-xs-5 vertical-alignment">
-                <img class="avatar" alt="My Avatar" src="@UserHelper.AvatarImagePath" />
-            </div>
+					<div class="col-xs-5 vertical-alignment">
+						<img class="avatar" alt="My Avatar" src="data:image/jpeg;base64,@Convert.ToBase64String(UserHelper.AvatarImage.FileContent)" />
+					</div>
             <div class="col-xs-7 vertical-alignment" style="text-align: left;">
                 <h3>@UserHelper.FullName</h3>
                 <p>@UserHelper.Email</p>

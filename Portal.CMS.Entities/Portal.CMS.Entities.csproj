@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="Entities\AnalyticPageView.cs" />
     <Compile Include="Entities\AnalyticPostView.cs" />
+    <Compile Include="Entities\Models\FileDetail.cs" />
     <Compile Include="Entities\Models\IdentityConfig.cs" />
     <Compile Include="Entities\Models\ApplicationRole.cs" />
     <Compile Include="Entities\Models\ApplicationUser.cs" />

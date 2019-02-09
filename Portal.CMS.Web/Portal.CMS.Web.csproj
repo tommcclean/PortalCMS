@@ -362,6 +362,7 @@
     <Content Include="Areas\Admin\Content\Images\icon-settings.png" />
     <Content Include="Areas\Admin\Content\Images\icon-thememanager.png" />
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
+    <Content Include="Areas\Admin\Content\Images\Noimage.png" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
     <Content Include="Areas\Authentication\Content\Images\reset-background-image.jpg" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\icon-7.png" />

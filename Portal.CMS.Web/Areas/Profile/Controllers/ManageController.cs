@@ -74,9 +74,7 @@ namespace Portal.CMS.Web.Areas.Profile.Controllers
             if (!ModelState.IsValid)
                 return View("_Avatar", model);
 
-            var imageFilePath = SaveImage(model.AttachedImage, nameof(EditAvatar));
-
-            await _userService.UpdateAvatarAsync(UserHelper.Id, imageFilePath);
+            await _userService.UpdateAvatarAsync(UserHelper.Id, model.AttachedImage);
 
             await ResetUserSessionValueAsync();
 

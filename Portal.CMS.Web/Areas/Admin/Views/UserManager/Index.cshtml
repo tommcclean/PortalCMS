@@ -13,9 +13,9 @@
             <div class="box float-container">
 
                 <div class="row" style="height: 120px;">
-                    <div class="col-xs-3 vertical-alignment">
-                        <img src="@user.AvatarImagePath" class="avatar" alt="User Avatar" style="border-radius: 50%;" />
-                    </div>
+									<div class="col-xs-3 vertical-alignment">
+										<img class="avatar" alt="User Avatar" src="data:image/jpeg;base64,@Convert.ToBase64String(UserHelper.AvatarImage.FileContent)" />
+									</div>
                     <div class="col-xs-9 vertical-alignment" style="text-align: left; padding-left: 50px;">
                         <h3>@user.GivenName @user.FamilyName</h3>
                         <p>@user.Email</p>

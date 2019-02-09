@@ -4,10 +4,10 @@ using System.Web;
 
 namespace Portal.CMS.Web.Areas.Profile.ViewModels.Manage
 {
-    public class AvatarViewModel
-    {
-        [DisplayName("Avatar")]
-        [Required]
-        public HttpPostedFileBase AttachedImage { get; set; }
-    }
+	public class AvatarViewModel
+	{
+		[Required]
+		[DisplayName("Avatar")]
+		public HttpPostedFileBase AttachedImage { get; set; }
+	}
 }

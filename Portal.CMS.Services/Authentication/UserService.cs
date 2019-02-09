@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Portal.CMS.Services.Authentication
 {
@@ -19,7 +20,7 @@ namespace Portal.CMS.Services.Authentication
 
 		Task UpdateDetailsAsync(string userId, string emailAddress, string givenName, string familyName);
 
-		Task UpdateAvatarAsync(string userId, string avatarImagePath);
+		Task UpdateAvatarAsync(string userId, HttpPostedFileBase avatarImage);
 
 		Task UpdateBioAsync(string userId, string bio);
 
@@ -77,11 +78,11 @@ namespace Portal.CMS.Services.Authentication
 			await base.DbContext.SaveChangesAsync();
 		}
 
-		public async Task UpdateAvatarAsync(string userId, string avatarImagePath)
+		public async Task UpdateAvatarAsync(string userId, HttpPostedFileBase fileUpload)
 		{
 			var user = await base.DbContext.Users.SingleOrDefaultAsync(x => x.Id == userId);
 
-			user.AvatarImagePath = avatarImagePath;
+			user.AvatarImage = new FileDetail(fileUpload);
 
 			await base.DbContext.SaveChangesAsync();
 		}

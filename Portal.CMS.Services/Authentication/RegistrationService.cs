@@ -43,7 +43,7 @@ namespace Portal.CMS.Services.Authentication
 				Email = emailAddress,
 				GivenName = givenName,
 				FamilyName = familyName,
-				AvatarImagePath = "/Areas/Admin/Content/Images/profile-image-male.png",
+				AvatarImage = FileDetail.LoadImageFromPath("/Areas/Admin/Content/Images/", "profile-image-male.png"),
 				DateAdded = DateTime.Now,
 				DateUpdated = DateTime.Now,
 				UserName = GenerateUserName(),
@@ -51,10 +51,6 @@ namespace Portal.CMS.Services.Authentication
 			};
 
 			var result = await UserManager.CreateAsync(userAccount, password);
-
-			//_context.Users.Add(userAccount);
-
-			//await _context.SaveChangesAsync();
 
 			return userAccount.Id;
 		}

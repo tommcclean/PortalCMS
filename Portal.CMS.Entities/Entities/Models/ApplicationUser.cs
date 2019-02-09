@@ -23,7 +23,7 @@ namespace Portal.CMS.Entities.Entities.Models
 		[Required]
 		public DateTime DateUpdated { get; set; }
 
-		public string AvatarImagePath { get; set; }
+		public FileDetail AvatarImage { get; set; }
 
 		public string Bio { get; set; }
 
@@ -48,6 +48,11 @@ namespace Portal.CMS.Entities.Entities.Models
 		[Display(Name = "Last LogOff")]
 		[DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy hh:mm}")]
 		public virtual DateTime? LastLogoutTime { get; set; }
+
+		public ApplicationUser()
+		{
+			AvatarImage = new FileDetail();
+		}
 
 		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
 		{
