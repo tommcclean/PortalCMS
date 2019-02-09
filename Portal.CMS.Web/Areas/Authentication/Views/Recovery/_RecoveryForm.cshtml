@@ -1,0 +1,29 @@
+﻿@model Portal.CMS.Web.Areas.Authentication.ViewModels.Login.LoginViewModel
+@{
+    Layout = "";
+}
+
+<ul class="nav nav-tabs">
+	<li role="presentation" class=""><a href="#tab-forgot" aria-controls="tab-forgot" role="tab" data-toggle="tab"><span class="fa fa-question"></span>Forgot Password?</a></li>
+</ul>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="tab-forgot">
+        @using (Html.BeginForm("Forgot", "Recovery", FormMethod.Post, new { area = "Authentication" }))
+				{
+            @Html.AntiForgeryToken()
+
+            <div class="alert alert-warning" role="alert">We will send you a link by email that you can use to reset your password.</div>
+
+            @Html.ValidationMessage("EmailAddress")
+            <div class="control-group">
+                @Html.LabelFor(x => x.EmailAddress)
+                @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
+            </div>
+
+            <div class="button-group float-container">
+                <button class="btn primary">Send Email</button>
+                <button class="btn" data-dismiss="modal">Cancel</button>
+            </div>
+				}
+    </div>
+</div>

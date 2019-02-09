@@ -2,59 +2,51 @@
 @{
     Layout = "";
 }
-
+<style>
+	.large_checkbox {
+		width: 5vw;
+		height: 5vh;
+	}
+</style>
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#tab-login" aria-controls="tab-login" role="tab" data-toggle="tab"><span class="fa fa-lock"></span>Login</a></li>
-    @if (!string.IsNullOrWhiteSpace(SettingHelper.Get("SendGrid ApiKey")))
-    {
-        <li role="presentation" class=""><a href="#tab-forgot" aria-controls="tab-forgot" role="tab" data-toggle="tab"><span class="fa fa-question"></span>Forgot Password?</a></li>
-    }
 </ul>
 <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="tab-login">
-        @Html.Action("Render", "CopyManager", new { area = "Admin", copyName = "Sign In Message" })
+	<div role="tabpanel" class="tab-pane active" id="tab-login">
+		@Html.Action("Render", "CopyManager", new { area = "Admin", copyName = "Sign In Message" })
 
-        @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { area = "Authentication" }))
-        {
-            @Html.AntiForgeryToken()
+		@using (Html.BeginForm("Login", "Login", FormMethod.Post, new { area = "Authentication" }))
+		{
+			@Html.AntiForgeryToken()
 
-            @Html.ValidationMessage("InvalidCredentials")
+			@Html.ValidationMessage("InvalidCredentials")
 
-            @Html.ValidationMessage("EmailAddress")
-            <div class="control-group">
-                @Html.LabelFor(x => x.EmailAddress)
-                @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
-            </div>
+			@Html.ValidationMessage("EmailAddress")
+			<div class="control-group">
+				@Html.LabelFor(x => x.EmailAddress)
+				@Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
+			</div>
 
-            @Html.ValidationMessage("Password")
-            <div class="control-group">
-                @Html.LabelFor(x => x.Password)
-                @Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
-            </div>
+			@Html.ValidationMessage("Password")
+			<div class="control-group">
+				@Html.LabelFor(x => x.Password)
+				@Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
+			</div>
 
-            <div class="button-group float-container">
-                <button class="btn primary"><span class="fa fa-check"></span><span class="hidden-xs">Sign In</span></button>
-                <button class="btn" data-dismiss="modal"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></button>
-            </div>
-        }
-    </div>
-    <div role="tabpanel" class="tab-pane" id="tab-forgot">
-        @using (Html.BeginForm("Forgot", "Recovery", FormMethod.Post, new { area = "Authentication" }))
-        {
-            @Html.AntiForgeryToken()
+			<div class="control-group">
+				@Html.LabelFor(m => m.RememberMe)
+				@Html.CheckBoxFor(m => m.RememberMe)
+			</div>
 
-            <div class="alert alert-warning" role="alert">We will send you a link by email that you can use to reset your password.</div>
+			<div class="button-group float-container">
+				<button class="btn primary"><span class="fa fa-check"></span><span class="hidden-xs">Sign In</span></button>
+				<button class="btn" data-dismiss="modal"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></button>
 
-            @Html.ValidationMessage("EmailAddress")
-            <div class="control-group">
-                @Html.LabelFor(x => x.EmailAddress)
-                @Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
-            </div>
-
-            <div class="button-group float-container">
-                <button class="btn primary">Send Email</button>
-                <button class="btn" data-dismiss="modal">Cancel</button>
-            </div>
-        }
-    </div>
+				@if (!string.IsNullOrWhiteSpace(SettingHelper.Get("SendGrid ApiKey")))
+				{
+					<a href="@Url.Action("Index","Recovery", new { area="Authentication"})" class="btn launch-modal" data-title="Recovery">Forgotten Password</a>
+				}
+			</div>
+		}
+	</div>
 </div>

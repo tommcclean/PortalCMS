@@ -1,58 +1,78 @@
-﻿using Portal.CMS.Services.Authentication;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Portal.CMS.Services.Authentication;
 using Portal.CMS.Web.Areas.Authentication.ViewModels.Login;
+using Portal.CMS.Web.Controllers.Base;
+using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Authentication.Controllers
 {
-    public class LoginController : Controller
-    {
-        private readonly ILoginService _loginService;
-        private readonly IUserService _userService;
-        private readonly IRoleService _roleService;
+	public class LoginController : SignInController
+	{
+		private readonly ILoginService _loginService;
+		private readonly IUserService _userService;
+		private readonly IRoleService _roleService;
 
-        public LoginController(ILoginService loginService, IUserService userService, IRoleService roleService)
-        {
-            _loginService = loginService;
-            _userService = userService;
-            _roleService = roleService;
-        }
+		public LoginController(ILoginService loginService, IUserService userService, IRoleService roleService)
+		{
+			_loginService = loginService;
+			_userService = userService;
+			_roleService = roleService;
+		}
 
-        [HttpGet]
-        [OutputCache(Duration = 86400)]
-        public ActionResult Index()
-        {
-            return View("_LoginForm", new LoginViewModel());
-        }
+		[HttpGet]
+		[OutputCache(Duration = 86400)]
+		public ActionResult Index()
+		{
+			return View("_LoginForm", new LoginViewModel());
+		}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return View("_LoginForm", model);
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> Login(LoginViewModel model, string returnUrl="")
+		{
+			if (!ModelState.IsValid)
+				return View("_LoginForm", model);
 
-            var userId = await _loginService.LoginAsync(model.EmailAddress, model.Password);
+			var user = UserManager.FindByEmail(model.EmailAddress);
+			if (user == null)
+			{
+				ModelState.AddModelError("InvalidCredentials", "Invalid Account Credentials");
+				return View("_LoginForm", model);
+			}
 
-            if (!string.IsNullOrEmpty(userId))
-            {
-                ModelState.AddModelError("InvalidCredentials", "Invalid Account Credentials");
+			var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
+			switch (result)
+			{
+				case SignInStatus.Success:
+					user.LastLoginTime = DateTime.Now;
+					UserManager.Update(user);
 
-                return View("_LoginForm", model);
-            }
+					Session.Add("UserAccount", await _userService.GetAsync(user.Id));
+					Session.Add("UserRoles", await _roleService.GetByUserAsync(user.Id));
+					return Content("Refresh");
 
-            Session.Add("UserAccount", await _userService.GetAsync(userId));
-            Session.Add("UserRoles", await _roleService.GetAsync(userId));
+				case SignInStatus.LockedOut:
+					return View("_LockoutForm", model);
 
-            return Content("Refresh");
-        }
+				case SignInStatus.RequiresVerification:
+					return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, model.RememberMe });
 
-        [HttpGet]
-        public ActionResult Logout()
-        {
-            Session.Clear();
+				case SignInStatus.Failure:
+				default:
+					ModelState.AddModelError("InvalidCredentials", "Invalid Account Credentials");
+					return View("_LoginForm", model);
+			}
+		}
 
-            return RedirectToAction("Index", "Home", new { area = "" });
-        }
-    }
+		[HttpGet]
+		public ActionResult Logout()
+		{
+			Session.Clear();
+
+			return RedirectToAction("Index", "Home", new { area = "" });
+		}
+	}
 }

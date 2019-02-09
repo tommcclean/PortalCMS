@@ -29,6 +29,7 @@
     <ApplicationInsightsResourceId>/subscriptions/e8f8f441-c044-4326-a56c-cfee09da6b3b/resourcegroups/Group/providers/microsoft.insights/components/PortalCMS</ApplicationInsightsResourceId>
     <TargetFrameworkProfile />
     <Use64BitIISExpress />
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,6 +59,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="LinkedIn.NET, Version=1.0.2.0, Culture=neutral, PublicKeyToken=88e61090765d8c56, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinkedIn.NET.1.0.2.0\lib\net40-client\LinkedIn.NET.dll</HintPath>
+    </Reference>
     <Reference Include="LogBook.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\tommcclean.LogBook.1.0.4\lib\net452\LogBook.Entities.dll</HintPath>
       <Private>True</Private>
@@ -85,8 +89,8 @@
     <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
@@ -100,8 +104,8 @@
     <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.0\lib\net451\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
@@ -111,6 +115,12 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.LinkedIn, Version=2.0.0.0, Culture=neutral, PublicKeyToken=1328b8c16b108c43, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.LinkedIn.2.25.0\lib\net45\Owin.Security.Providers.LinkedIn.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.6.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.6.7\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="SendGrid, Version=9.8.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>..\packages\Sendgrid.9.9.0\lib\net452\SendGrid.dll</HintPath>
@@ -210,6 +220,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Architecture\ActionFilters\ActionFilterResponseType.cs" />
     <Compile Include="Architecture\ActionFilters\ValidateJsonAntiForgeryTokenAttribute.cs" />
@@ -245,6 +256,7 @@
     <Compile Include="Areas\Admin\ViewModels\AnalyticManager\ColumnViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\AnalyticManager\LogEntriesViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\AnalyticManager\ReviewExceptionViewModel.cs" />
+    <Compile Include="Areas\Authentication\Controllers\LinkedInController.cs" />
     <Compile Include="Areas\Authentication\Controllers\RecoveryController.cs" />
     <Compile Include="Areas\Authentication\Controllers\RegistrationController.cs" />
     <Compile Include="Areas\Authentication\Controllers\SingleSignOnController.cs" />
@@ -252,6 +264,7 @@
     <Compile Include="Areas\Authentication\ViewModel\Recovery\ResetViewModel.cs" />
     <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
     <Compile Include="Areas\Authentication\Controllers\LoginController.cs" />
+    <Compile Include="Areas\BaseController.cs" />
     <Compile Include="Areas\Forms\Controllers\ContactWidgetsController.cs" />
     <Compile Include="Areas\Forms\FormsAreaRegistration.cs" />
     <Compile Include="Areas\Forms\ViewModels\ContactWidgets\SubmitMessageViewModel.cs" />
@@ -315,6 +328,8 @@
     <Compile Include="Areas\PageBuilder\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Profile\Controllers\WidgetsController.cs" />
     <Compile Include="Areas\Profile\ProfileAreaRegistration.cs" />
+    <Compile Include="Areas\SignInController.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Shared\PaginationViewModel.cs" />
     <Compile Include="Areas\PageBuilder\ViewModels\Theme\ThemeViewModel.cs" />
     <Compile Include="Areas\Blog\ViewModels\Widgets\PostsWidgetViewModel.cs" />
@@ -774,6 +789,12 @@
   <ItemGroup>
     <Content Include="Content\Fonts\OpenSans-Regular.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Authentication\Views\Login\_LockoutForm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Authentication\Views\Recovery\_RecoveryForm.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -798,6 +819,9 @@
           <CustomServerUrl>
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <servers defaultServer="">
+            <server name="OwinHost" exePath="{solutiondir}\packages\OwinHost.4.0.1\tools\OwinHost.exe" cmdArgs="-u {url}" url="http://localhost:12345/" workingDir="{projectdir}" />
+          </servers>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

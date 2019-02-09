@@ -10,40 +10,40 @@ using System.Web.WebPages;
 
 namespace Portal.CMS.Web
 {
-    public class MvcApplication : System.Web.HttpApplication
-    {
-        protected void Application_Start()
-        {
-            AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+	public class MvcApplication : System.Web.HttpApplication
+	{
+		protected void Application_Start()
+		{
+			AreaRegistration.RegisterAllAreas();
+			RouteConfig.RegisterRoutes(RouteTable.Routes);
+			BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(new RazorViewEngine());
-            ViewEngines.Engines.Add(new CSSViewEngine());
+			ViewEngines.Engines.Clear();
+			ViewEngines.Engines.Add(new RazorViewEngine());
+			ViewEngines.Engines.Add(new CSSViewEngine());
 
-            RazorCodeLanguage.Languages.Add("cscss", new CSharpRazorCodeLanguage());
-            WebPageHttpHandler.RegisterExtension("cscss");
+			RazorCodeLanguage.Languages.Add("cscss", new CSharpRazorCodeLanguage());
+			WebPageHttpHandler.RegisterExtension("cscss");
 
-            MvcHandler.DisableMvcResponseHeader = true;
+			MvcHandler.DisableMvcResponseHeader = true;
 
-            new LogHandler().WriteLog(LogType.Information, "Website Started Up", string.Empty);
-        }
+			new LogHandler().WriteLog(LogType.Information, "Website Started Up", string.Empty);
+		}
 
-        protected void Application_End()
-        {
-            new LogHandler().WriteLog(LogType.Information, "Website Shutting Down", string.Empty);
-        }
+		protected void Application_End()
+		{
+			new LogHandler().WriteLog(LogType.Information, "Website Shutting Down", string.Empty);
+		}
 
-        protected void Application_Error()
-        {
-            var logHandler = new LogHandler();
+		protected void Application_Error()
+		{
+			var logHandler = new LogHandler();
 
-            var exception = Server.GetLastError();
+			var exception = Server.GetLastError();
 
-            var user = (UserHelper.IsLoggedIn ? $"{UserHelper.GivenName} {UserHelper.FamilyName} {UserHelper.Id}" : string.Empty);
+			var user = (UserHelper.IsLoggedIn ? $"{UserHelper.GivenName} {UserHelper.FamilyName} {UserHelper.Id}" : string.Empty);
 
-            logHandler.WriteLog(LogType.Error, "Portal CMS", exception, exception.Message, user);
-        }
-    }
+			logHandler.WriteLog(LogType.Error, "Portal CMS", exception, exception.Message, user);
+		}
+	}
 }

@@ -35,7 +35,7 @@
     <div class="alert alert-warning" role="alert">A user must have at least one of the roles selected below to see this Page. To show the Page to all users select no roles.</div>
     <div class="control-group control-textarea float-container">
         @Html.LabelFor(x => x.SelectedRoleList)
-        @Html.ListBoxFor(m => m.SelectedRoleList, Model.RoleList.Select(r => new SelectListItem { Text = r.RoleName, Value = r.RoleName.ToString(), Selected = Model.SelectedRoleList != null && Model.SelectedRoleList.Contains(r.RoleName) }))
+        @Html.ListBoxFor(m => m.SelectedRoleList, Model.RoleList.Select(r => new SelectListItem { Text = r.Name, Value = r.Name.ToString(), Selected = Model.SelectedRoleList != null && Model.SelectedRoleList.Contains(r.Name) }))
     </div>
 
     <br />

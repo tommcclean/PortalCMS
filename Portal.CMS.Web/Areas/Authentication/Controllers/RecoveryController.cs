@@ -9,62 +9,69 @@ using System.Web.Mvc;
 
 namespace Portal.CMS.Web.Areas.Authentication.Controllers
 {
-    public class RecoveryController : Controller
-    {
-        private readonly ITokenService _tokenService;
+	public class RecoveryController : Controller
+	{
+		private readonly ITokenService _tokenService;
 
-        public RecoveryController(ITokenService tokenService)
-        {
-            _tokenService = tokenService;
-        }
+		public RecoveryController(ITokenService tokenService)
+		{
+			_tokenService = tokenService;
+		}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Forgot(LoginViewModel model)
-        {
-            var token = await _tokenService.AddAsync(model.EmailAddress, UserTokenType.ForgottenPassword);
+		[HttpGet]
+		[OutputCache(Duration = 86400)]
+		public ActionResult Index()
+		{
+			return View("_RecoveryForm", new LoginViewModel());
+		}
 
-            if (!string.IsNullOrWhiteSpace(token))
-            {
-                var websiteName = SettingHelper.Get("Website Name");
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> Forgot(LoginViewModel model)
+		{
+			var token = await _tokenService.AddAsync(model.EmailAddress, UserTokenType.ForgottenPassword);
 
-                var recoveryLink = $@"http://{System.Web.HttpContext.Current.Request.Url.Authority}{Url.Action(nameof(Reset), "Recovery", new { area = "Authentication", id = token })}";
+			if (!string.IsNullOrWhiteSpace(token))
+			{
+				var websiteName = SettingHelper.Get("Website Name");
 
-                await EmailHelper.SendEmailAsync(model.EmailAddress, "Password Reset", $"<p>You submitted a request on {websiteName} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{recoveryLink}\">Recover Account</a>");
-            }
+				var recoveryLink = $@"http://{System.Web.HttpContext.Current.Request.Url.Authority}{Url.Action(nameof(Reset), "Recovery", new { area = "Authentication", id = token })}";
 
-            return Content("Refresh");
-        }
+				await EmailHelper.SendEmailAsync(model.EmailAddress, "Password Reset", $"<p>You submitted a request on {websiteName} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{recoveryLink}\">Recover Account</a>");
+			}
 
-        [HttpGet]
-        public ActionResult Reset(string id)
-        {
-            return View(new ResetViewModel { Token = id });
-        }
+			return Content("Refresh");
+		}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Reset(ResetViewModel model)
-        {
-            if (!string.IsNullOrWhiteSpace(model.Password) && !string.IsNullOrWhiteSpace(model.ConfirmPassword))
-            {
-                if (!model.Password.Equals(model.ConfirmPassword, StringComparison.Ordinal))
-                    ModelState.AddModelError("Confirmation", "The passwords you entered do not match.");
-            }
+		[HttpGet]
+		public ActionResult Reset(string id)
+		{
+			return View(new ResetViewModel { Token = id });
+		}
 
-            if (!ModelState.IsValid)
-                return View(model);
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> Reset(ResetViewModel model)
+		{
+			if (!string.IsNullOrWhiteSpace(model.Password) && !string.IsNullOrWhiteSpace(model.ConfirmPassword))
+			{
+				if (!model.Password.Equals(model.ConfirmPassword, StringComparison.Ordinal))
+					ModelState.AddModelError("Confirmation", "The passwords you entered do not match.");
+			}
 
-            var result = await _tokenService.RedeemPasswordTokenAsync(model.Token, model.EmailAddress, model.Password);
+			if (!ModelState.IsValid)
+				return View(model);
 
-            if (!string.IsNullOrWhiteSpace(result))
-            {
-                ModelState.AddModelError("Execution", result);
+			var result = await _tokenService.RedeemPasswordTokenAsync(model.Token, model.EmailAddress, model.Password);
 
-                return View(model);
-            }
+			if (!string.IsNullOrWhiteSpace(result))
+			{
+				ModelState.AddModelError("Execution", result);
 
-            return RedirectToAction("Index", "Home", new { area = "" });
-        }
-    }
+				return View(model);
+			}
+
+			return RedirectToAction("Index", "Home", new { area = "" });
+		}
+	}
 }

@@ -11,7 +11,7 @@
 
     .control-group label
     {
-        width: 110px;
+        width: 120px;
         padding: 12px 10px 11px 10px;
         background-color: #eee;
         text-align: center;
@@ -19,16 +19,26 @@
         border-bottom-left-radius: 5px;
     }
 
-    .control-group input, .control-group select
-    {
-        height: 45px;
-        width: calc(100% - 110px);
-        background-color: #fff;
-        border-left: 0;
-        font-size: 16px;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
+	.control-group input:not([type="checkbox"]), .control-group select {
+		height: 45px;
+		width: calc(100% - 120px);
+		background-color: #fff;
+		border-left: 0;
+		font-size: 16px;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+	}
+
+	.control-group input[type="checkbox"] {
+		height: 45px;
+		width: 45px;
+		background-color: #fff;
+		border-left: 0;
+		font-size: 16px;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		margin: 0px;
+	}
 
     .control-group.control-textarea label
     {

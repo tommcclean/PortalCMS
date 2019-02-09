@@ -95,5 +95,10 @@ namespace Portal.CMS.Entities
 
 			#endregion
 		}
+
+		public static PortalDbContext Create()
+		{
+			return new PortalDbContext();
+		}
 	}
 }
