@@ -1,0 +1,108 @@
+﻿@model PortalCMS.Web.Areas.PageBuilder.ViewModels.Component.ImageViewModel
+@{
+    Layout = "";
+}
+
+@Scripts.Render("~/Plugins/ImageSelector/Scripts")
+@Scripts.Render("~/Resources/JavaScript/Plugins/Pagination")
+
+<script type="text/javascript">
+    $('#customForm').submit(function (e) {
+        var selectedImageId = $('#SelectedImageId').val();
+        var selectedImageSource = $('#SelectedImageSource').val();
+        var elementType = $('#ElementType').val();
+
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            cache: false,
+            beforeSend: function () {
+                setModalEditorContent('<div class="spinner"></div>');
+            },
+            success: function (result) {
+                if (result.State === true)
+                {
+                    if (elementType === "img")
+                    {
+                        $('#@Model.ElementId').attr("src", result.Source);
+                    }
+                    else
+                    {
+                        $('#@Model.ElementId').attr("style", "background-image: url('" + result.Source + "')");
+                    }
+
+                    $('.modal').modal('toggle');
+                }
+                else
+                {
+                    alert("Error: The document has lost synchronisation. Reloading document...");
+                    location.reload();
+                }
+            }
+        });
+        return false;
+    });
+
+    function Delete()
+    {
+        $('#@Model.ElementId').animateOut('flipOutX');
+
+        var dataParams = { "pageSectionId": @Model.SectionId , "elementId": "@Model.ElementId", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+
+        $.ajax({
+            data: dataParams,
+            type: 'POST',
+            cache: false,
+            url: '/PageBuilder/Component/Delete',
+            success: function (data) {
+                if (data.State === false)
+                {
+                    alert("Error: The document has lost synchronisation. Reloading document...");
+                    location.reload();
+                }
+            },
+        });
+    }
+</script>
+
+@using (Html.BeginForm("EditImage", "Component", FormMethod.Post, new { id = "customForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.SectionId)
+    @Html.HiddenFor(x => x.ElementId)
+    @Html.HiddenFor(x => x.SelectedImageId)
+    @Html.HiddenFor(x => x.ElementType)
+
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#tab-general" aria-controls="tab-general" role="tab" data-toggle="tab">General<span class="badge">@Model.GeneralImages.ImageList.Count()</span></a></li>
+        <li role="presentation" class=""><a href="#tab-icon" aria-controls="tab-icon" role="tab" data-toggle="tab">Icon<span class="badge">@Model.IconImages.ImageList.Count()</span></a></li>
+        <li role="presentation" class=""><a href="#tab-screenshot" aria-controls="tab-screenshot" role="tab" data-toggle="tab">Screenshot<span class="badge">@Model.ScreenshotImages.ImageList.Count()</span></a></li>
+        <li role="presentation" class=""><a href="#tab-texture" aria-controls="tab-texture" role="tab" data-toggle="tab">Texture<span class="badge">@Model.TextureImages.ImageList.Count()</span></a></li>
+    </ul>
+    <div id="banner-selector" class="image-selector x4 single float-container">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="tab-general">
+                @Html.Partial("_RenderPage", Model.GeneralImages)
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-icon">
+                @Html.Partial("_RenderPage", Model.IconImages)
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-screenshot">
+                @Html.Partial("_RenderPage", Model.ScreenshotImages)
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-texture">
+                @Html.Partial("_RenderPage", Model.TextureImages)
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="footer">
+        <button class="btn primary">Save</button>
+        <a onclick="Delete()" data-dismiss="modal" class="btn delete">Delete</a>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

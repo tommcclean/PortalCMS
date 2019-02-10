@@ -1,0 +1,125 @@
+﻿@model PortalCMS.Web.Areas.Admin.ViewModels.ThemeManager.UpsertViewModel
+@{
+    Layout = "";
+
+    var fontList = Model.FontList.Select(x => new SelectListItem { Value = x.FontId.ToString(), Text = x.FontName });
+}
+
+@Styles.Render("~/Plugins/JQueryUI/Styles")
+@Styles.Render("~/Plugins/Spectrum/Styles")
+@Scripts.Render("~/Plugins/Spectrum/Scripts")
+@Scripts.Render("~/Plugins/JQueryUI/Scripts")
+@Scripts.Render("~/Resources/JavaScript/Plugins/Sliders")
+
+@using (Html.BeginForm("Edit", "ThemeManager", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.ThemeId)
+    @Html.HiddenFor(x => x.IsDefault)
+
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#tab-theme-details" aria-controls="tab-theme-details" role="tab" data-toggle="tab">Details</a></li>
+        <li role="presentation" class=""><a href="#tab-theme-colour" aria-controls="tab-theme-colour" role="tab" data-toggle="tab">Colour</a></li>
+        <li role="presentation" class=""><a href="#tab-theme-text" aria-controls="tab-theme-text" role="tab" data-toggle="tab">Text</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab-theme-details">
+            @if (Model.IsDefault)
+            {
+                <div class="alert alert-danger" role="alert">Warning: This theme is currently active. Any changes you make will affect your pages.</div>
+            }
+            else
+            {
+                <div class="alert alert-warning" role="alert">Please note: This theme is not currently active as your default theme.</div>
+            }
+
+            @Html.ValidationMessage("ThemeName")
+            <div class="control-group">
+                @Html.LabelFor(x => x.ThemeName)
+                @Html.TextBoxFor(x => x.ThemeName, new { placeholder = "Theme Name" })
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-theme-colour">
+
+            @Html.ValidationMessage("PageBackgroundColour")
+            <div class="control-group wide-label">
+                @Html.LabelFor(x => x.PageBackgroundColour)
+                @Html.TextBoxFor(x => x.PageBackgroundColour, new { @class = "spectrum" })
+            </div>
+
+            @Html.ValidationMessage("MenuBackgroundColour")
+            <div class="control-group wide-label">
+                @Html.LabelFor(x => x.MenuBackgroundColour)
+                @Html.TextBoxFor(x => x.MenuBackgroundColour, new { @class = "spectrum" })
+            </div>
+
+            @Html.ValidationMessage("MenuTextColour")
+            <div class="control-group wide-label">
+                @Html.LabelFor(x => x.MenuTextColour)
+                @Html.TextBoxFor(x => x.MenuTextColour, new { @class = "spectrum" })
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-theme-text">
+            <h3>Font Selection</h3>
+            <p>Select the fonts you want to use below. Upload custom fonts in the Media Manager.</p>
+            <br />
+
+            @Html.ValidationMessage("TitleFontId")
+            <div class="control-group">
+                @Html.LabelFor(x => x.TitleFontId)
+                @Html.DropDownListFor(m => m.TitleFontId, fontList)
+            </div>
+
+            @Html.ValidationMessage("TextFontId")
+            <div class="control-group">
+                @Html.LabelFor(x => x.TextFontId)
+                @Html.DropDownListFor(m => m.TextFontId, fontList)
+            </div>
+
+            <h3>Change Font Size</h3>
+            <p>Use the sliders below to change the size of the fonts in the Page Builder and your Blog Posts.</p>
+            <br />
+
+            @Html.ValidationMessage("LargeTitleFontSize")
+            <div class="control-group wide-label">
+                @Html.LabelFor(x => x.LargeTitleFontSize)
+                @Html.TextBoxFor(x => x.LargeTitleFontSize, new { @class = "jquery-slider-value", @data_slider = "largeTitleSlider" })
+                <div id="largeTitleSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="LargeTitleFontSize"></div></div>
+            </div>
+
+            @Html.ValidationMessage("MediumTitleFontSize")
+            <div class="control-group wide-label">
+                @Html.LabelFor(x => x.MediumTitleFontSize)
+                @Html.TextBoxFor(x => x.MediumTitleFontSize, new { @class = "jquery-slider-value", @data_slider = "mediumTitleSlider" })
+                <div id="mediumTitleSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="MediumTitleFontSize"></div></div>
+            </div>
+
+            @Html.ValidationMessage("SmallTitleFontSize")
+            <div class="control-group wide-label">
+                @Html.LabelFor(x => x.SmallTitleFontSize)
+                @Html.TextBoxFor(x => x.SmallTitleFontSize, new { @class = "jquery-slider-value", @data_slider = "smallTitleSlider" })
+                <div id="smallTitleSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="SmallTitleFontSize"></div></div>
+            </div>
+
+            @Html.ValidationMessage("TinyTitleFontSize")
+            <div class="control-group wide-label">
+                @Html.LabelFor(x => x.TinyTitleFontSize)
+                @Html.TextBoxFor(x => x.TinyTitleFontSize, new { @class = "jquery-slider-value", @data_slider = "tinyTitleSlider" })
+                <div id="tinyTitleSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="TinyTitleFontSize"></div></div>
+            </div>
+
+            @Html.ValidationMessage("TextStandardFontSize")
+            <div class="control-group wide-label">
+                @Html.LabelFor(x => x.TextStandardFontSize)
+                @Html.TextBoxFor(x => x.TextStandardFontSize, new { @class = "jquery-slider-value", @data_slider = "textStandardSlider" })
+                <div id="textStandardSlider" class="jquery-slider-wrapper"><div class="jquery-slider-control" data-parent="TextStandardFontSize"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <button class="btn primary"><span class="fa fa-check"></span><span class="hidden-xs">Edit Theme</span></button>
+        <button class="btn" data-dismiss="modal"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></button>
+    </div>
+}

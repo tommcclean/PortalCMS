@@ -1,0 +1,20 @@
+﻿@model PortalCMS.Web.Areas.Profile.ViewModels.Manage.BioViewModel
+@{
+    Layout = "";
+}
+
+@using (Html.BeginForm("EditBio", "Manage", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationMessage("Bio")
+    <div class="control-group control-textarea float-container">
+        @Html.LabelFor(x => x.Bio)
+        @Html.TextAreaFor(x => x.Bio, new { placeholder = "Describe yourself" })
+    </div>
+
+    <div class="button-group float-container">
+        <button class="btn primary">Save</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

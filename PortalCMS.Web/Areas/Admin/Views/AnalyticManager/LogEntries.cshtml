@@ -1,0 +1,36 @@
+﻿@model PortalCMS.Web.Areas.Admin.ViewModels.AnalyticManager.LogEntriesViewModel
+@{
+    ViewBag.Title = "Latest Log Entries";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-reports.png";
+}
+
+<div class="table-data">
+    <div class="row header">
+        <div class="col-xs-3 col-sm-2 col-md-2">Time</div>
+        <div class="hidden-xs col-sm-3 col-md-2">Host</div>
+        <div class="hidden-xs hidden-sm col-md-2">Source</div>
+        <div class="col-xs-6 col-sm-5 col-md-4">Message</div>
+        <div class="hidden-xs hidden-sm col-md-1">User</div>
+        <div class="col-xs-3 col-sm-2 col-md-1">Actions</div>
+    </div>
+    @foreach (var logEntry in Model.LogEntries)
+    {
+        <div class="row record">
+            <div class="col-xs-3 col-sm-2 col-md-2">@logEntry.LogTime</div>
+            <div class="hidden-xs col-sm-3 col-md-2">@logEntry.HostName</div>
+            <div class="hidden-xs hidden-sm col-md-2">@(string.IsNullOrWhiteSpace(logEntry.Source) ? "Unspecified" : logEntry.Source)</div>
+            <div class="col-xs-6 col-sm-5 col-md-4">@logEntry.Message</div>
+            <div class="hidden-xs hidden-sm col-md-1">@(string.IsNullOrWhiteSpace(logEntry.UserName) ? "Unspecified" : logEntry.UserName)</div>
+            <div class="col-xs-3 col-sm-2 col-md-1">
+                @if (logEntry.LogExceptions.Any())
+                {
+                    <a href="@Url.Action("ReviewException", "AnalyticManager", new { logEntryId = @logEntry.LogEntryId })" class="launch-modal" data-title="Review Exception">Review Exception</a>
+                }
+                else
+                {
+                    <span>None</span>
+                }
+            </div>
+        </div>
+    }
+</div>

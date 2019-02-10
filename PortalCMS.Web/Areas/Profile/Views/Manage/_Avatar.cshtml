@@ -1,0 +1,56 @@
+﻿@model PortalCMS.Web.Areas.Profile.ViewModels.Manage.AvatarViewModel
+@{
+	Layout = "";
+}
+
+@using (Html.BeginForm("EditAvatar", "Manage", FormMethod.Post, new { id = "uploadImageForm", enctype = "multipart/form-data" }))
+{
+	@Html.AntiForgeryToken()
+
+	@Html.ValidationMessage("AttachedImage")
+	<style>
+		img.avatarUpload {
+			height: 130px;
+			width: 130px;
+			border-radius: 50%;
+			border: 1px solid gray;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom:20px;
+		}
+	</style>
+
+	<img class="avatarUpload" alt="User Avatar" src="data:image/jpeg;base64,@Convert.ToBase64String(UserHelper.AvatarImage.FileContent)" />
+
+	<div class="control-group">
+		@Html.LabelFor(x => x.AttachedImage)
+		@Html.TextBoxFor(m => m.AttachedImage, new { @type = "file" })
+	</div>
+
+	<div class="footer">
+		<button class="btn primary">Upload Avatar</button>
+		<button class="btn" data-dismiss="modal">Cancel</button>
+	</div>
+}
+<script>
+	//What happens if the File changes?
+	$('#AttachedImage').change(function (event) {
+		var ext = this.value.match(/\.(.+)$/)[1];
+		switch (ext) {
+			case 'jpg':
+			case 'bmp':
+			case 'png':
+			case 'tif':
+				break;
+			default:
+				alert("The selected file does not appear to be an image.");
+				this.value = '';
+		}
+
+		var f = event.target.files[0];
+		var reader = new FileReader();
+		reader.onload = function (e) { $(".avatarUpload").attr('src', e.target.result); };
+		reader.readAsDataURL(f);
+	});
+</script>

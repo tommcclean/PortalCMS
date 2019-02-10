@@ -1,0 +1,110 @@
+﻿@model PortalCMS.Web.Areas.Admin.ViewModels.BlogManager.CreatePostViewModel
+@{
+    ViewBag.Title = "Create Post";
+    Layout = "";
+
+    var textareaSelector = DateTime.Now.ToString("ddMMyyyyHHmmss");
+
+    var postCategoryList = Model.PostCategoryList.Select(x => new SelectListItem { Value = x.PostCategoryId.ToString(), Text = x.PostCategoryName });
+    var userList = Model.UserList.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = string.Format("{0} {1}", x.GivenName, x.FamilyName) });
+}
+
+@Scripts.Render("~/Plugins/ImageSelector/Scripts")
+@Scripts.Render("~/Resources/JavaScript/Plugins/Pagination")
+
+<script type="text/javascript">
+    tinymce.init({
+        selector: "#@textareaSelector",
+        theme: "modern",
+        plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor colorpicker textpattern imagetools"
+        ],
+        toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+        toolbar2: "print preview media | forecolor backcolor emoticons",
+        image_advtab: true,
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ]
+    });
+</script>
+
+@using (Html.BeginForm("Create", "BlogManager", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.BannerImageId)
+    @Html.HiddenFor(x => x.GalleryImageList)
+
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#tab-post" aria-controls="tab-post" role="tab" data-toggle="tab">Post</a></li>
+        <li role="presentation" class=""><a href="#tab-publication" aria-controls="tab-publication" role="tab" data-toggle="tab">Publication</a></li>
+        <li role="presentation" class=""><a href="#tab-banner" aria-controls="tab-banner" role="tab" data-toggle="tab">Banner</a></li>
+        <li role="presentation" class=""><a href="#tab-gallery" aria-controls="tab-gallery" role="tab" data-toggle="tab">Gallery</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab-post">
+            @Html.ValidationMessage("PostTitle")
+            <div class="control-group">
+                @Html.LabelFor(x => x.PostTitle)
+                @Html.TextBoxFor(x => x.PostTitle, new { placeholder = "Headline" })
+            </div>
+
+            @Html.ValidationMessage("PostDescription")
+            <div class="control-group">
+                @Html.LabelFor(x => x.PostDescription)
+                @Html.TextBoxFor(x => x.PostDescription, new { placeholder = "Description" })
+            </div>
+
+            @Html.ValidationMessage("PostBody")
+            @Html.TextAreaFor(x => x.PostBody, new { id = textareaSelector })
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-publication">
+            <div class="control-group">
+                @Html.LabelFor(x => x.PublicationState)
+                @Html.EnumDropDownListFor(m => m.PublicationState, new { @class = "form-control" })
+            </div>
+
+            @Html.ValidationMessage("PostCategoryId")
+            <div class="control-group">
+                @Html.LabelFor(x => x.PostCategoryId)
+                @Html.DropDownListFor(m => m.PostCategoryId, postCategoryList)
+            </div>
+
+            @Html.ValidationMessage("PostAuthorUserId")
+            <div class="control-group">
+                @Html.LabelFor(x => x.PostAuthorUserId)
+                @Html.DropDownListFor(m => m.PostAuthorUserId, userList)
+            </div>
+
+            <br />
+            <div class="alert alert-warning" role="alert">A user must have at least one of the roles selected below to see this Post. To show the Post to all users select no roles.</div>
+            <div class="control-group control-textarea float-container">
+                @Html.LabelFor(x => x.SelectedRoleList)
+                @Html.ListBoxFor(m => m.SelectedRoleList, Model.RoleList.Select(r => new SelectListItem { Text = r.Name, Value = r.Name.ToString(), Selected = Model.SelectedRoleList != null && Model.SelectedRoleList.Contains(r.Name) }))
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-banner">
+            <div id="banner-selector" class="image-selector x4 single float-container">
+                <div class="alert alert-warning" role="alert">Upload new images for use in your blog posts using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
+                @Html.Partial("_RenderPage", Model.BannerImages)
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-gallery">
+            <div id="gallery-selector" class="image-selector x4 multiple float-container">
+                <div class="alert alert-warning" role="alert">Upload new images for use in your blog posts using the <a href="@Url.Action("Index", "MediaManager", new { area = "Admin" })" class="alert-link">Media Manager</a>.</div>
+                @Html.Partial("_RenderPage", Model.GalleryImages)
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="footer">
+        <button class="btn primary">Create Post</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

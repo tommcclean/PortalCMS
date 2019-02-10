@@ -1,0 +1,140 @@
+﻿@model PortalCMS.Web.Areas.BlogManager.ViewModels.Read.BlogViewModel
+@{
+    ViewBag.Title = Model.CurrentPost.PostTitle;
+
+    var galleryCount = Model.CurrentPost.PostImages.Where(x => x.PostImageType == PostImageType.Gallery).Count();
+    var commentCount = Model.CurrentPost.PostComments.Count();
+
+    var isAdmin = UserHelper.IsAdmin;
+    var isEditor = UserHelper.IsEditor;
+}
+
+@section Styles
+{
+    @Styles.Render("~/Plugins/FancyBox/Styles")
+}
+
+@section HEADScripts
+{
+    @Scripts.Render("~/Plugins/FancyBox/Scripts")
+
+    @if (isEditor)
+    {
+        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".admin-wrapper .button").click(function (event) {
+                    $('.admin-wrapper .button').popover('hide');
+                });
+
+                tinymce.init({
+                    selector: '.edit-post-body', inline: true, plugins: ['advlist autolink lists link image charmap anchor searchreplace visualblocks code fullscreen media table contextmenu paste'],
+                    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                    setup:function(ed) {
+                        ed.on('change', function(e) {
+                            var dataParams = { "postId": @Model.CurrentPost.PostId, "markup": ed.getContent() };
+                            $.ajax({data: dataParams, type: 'POST', cache: false, url: '/Admin/BlogManager/Inline'});
+                        });
+                    }
+                });
+
+                tinymce.init({
+                    selector: '.post-description', inline: true, menubar: false,
+                    toolbar: 'undo redo',
+                    setup:function(ed) {
+                        ed.on('change', function(e) {
+                            var dataParams = { "postId": @Model.CurrentPost.PostId, "markup": ed.getContent() };
+                            $.ajax({data: dataParams, type: 'POST', cache: false, url: '/Admin/BlogManager/Description'});
+                        });
+                    }
+                });
+
+                tinymce.init({
+                    selector: '.post-title', inline: true, menubar: false,
+                    toolbar: 'undo redo',
+                    setup:function(ed) {
+                        ed.on('change', function(e) {
+                            var dataParams = { "postId": @Model.CurrentPost.PostId, "markup": ed.getContent() };
+                            $.ajax({data: dataParams, type: 'POST', cache: false, url: '/Admin/BlogManager/Headline'});
+                        });
+                    }
+                });
+            });
+        </script>
+    }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var dataParams = { "postId": @Model.CurrentPost.PostId, "referrer": "@Request.UrlReferrer", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+            $.ajax({data: dataParams, type: 'POST', cache: false, url: '@Url.Action("Analytic", "Read")', success: function (data) { }, });
+        });
+    </script>
+}
+
+@if (isAdmin)
+{
+    <div class="load-action" data-url="@Url.Action("AppDrawer", "PageManager", new { area = "Admin" })"></div>
+    <div class="load-action" data-url="@Url.Action("AppDrawer", "ThemeManager", new { area = "Admin" })"></div>
+}
+
+@if (isEditor)
+{
+    <div class="load-action" data-url="@Url.Action("AppDrawer", "BlogManager", new { area = "Admin" })"></div>
+    @Html.Action("Render", "QuickAccess", new { area = "Admin", pageType = QuickAccessPageType.BlogManager, contentId = Model.CurrentPost.PostId })
+}
+
+<div class="post" style="background-color: white; min-height: 100vh;">
+    <div class="post-banner animated slideInDown" style="@string.Format("background-image: url('{0}'); color: white;", Model.CurrentPost.BannerImageUrl())">
+        <div class="overlay overlay-medium"></div>
+        <div class="inner vertical-alignment">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-lg-7">
+                    <div title="Category" class="category-item"><span class="fa fa-tag"></span>@Model.CurrentPost.PostCategory.PostCategoryName</div>
+                    <div title="Views" class="hidden-xs category-item"><span class="fa fa-users"></span>@Model.CurrentPost.PostViews.Count()</div>
+                    <div title="Comments" class="hidden-xs category-item"><span class="fa fa-comment"></span>@Model.CurrentPost.PostComments.Count()</div>
+
+                    <h1 class="post-title">@Model.CurrentPost.PostTitle</h1>
+                    <p class="post-description">@Model.CurrentPost.PostDescription</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-md-7">
+                <div class="post-body">
+                    @if (Model.Author != null)
+                    {
+                        <div class="post-details float-container">
+                            <img class="pull-left author-image" src="@Model.Author.AvatarImagePath" alt="Author Avatar" style="border-radius: 50%;" />
+                            <div class="pull-left">
+                                <p><strong>Author: </strong>@Model.Author.GivenName @Model.Author.FamilyName</p>
+                                <p><strong>Updated: </strong>@Model.CurrentPost.DateUpdated.ToString("dd MMM yyyy HH:mm")</p>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="@(isEditor ? "edit-post-body" : "")">
+                        @Html.Raw(Model.CurrentPost.PostBody)
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-5 blog-sidebar">
+                <ul class="nav nav-tabs nav-justified">
+                    <li role="presentation" class="active"><a href="#tab-comments" aria-controls="tab-comments" role="tab" data-toggle="tab"><span class="hidden-xs fa fa-comment"></span>Comments<span class="badge">@commentCount</span></a></li>
+                    <li role="presentation" class=""><a href="#tab-viewgallery" aria-controls="tab-viewgallery" role="tab" data-toggle="tab"><span class="hidden-xs fa fa-camera"></span>Gallery<span class="badge">@galleryCount</span></a></li>
+                    <li role="presentation" class=""><a href="#tab-recent-posts" aria-controls="tab-recent-posts" role="tab" data-toggle="tab"><span class="hidden-xs fa fa-clock-o"></span>Recent<span class="badge">@Model.RecentPosts.Count()</span></a></li>
+                    <li role="presentation" class="hidden-xs hidden-md"><a href="#tab-similiar-posts" aria-controls="tab-similiar-posts" role="tab" data-toggle="tab"><span class="hidden-xs fa fa-tags"></span>Similiar<span class="badge">@Model.SimiliarPosts.Count()</span></a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="tab-comments">@Html.Partial("_Comments", Model.CurrentPost)</div>
+                    <div role="tabpanel" class="tab-pane" id="tab-viewgallery">@Html.Partial("_Gallery", Model.CurrentPost)</div>
+                    <div role="tabpanel" class="tab-pane float-container" id="tab-recent-posts">@Html.Partial("_List", Model.RecentPosts)</div>
+                    <div role="tabpanel" class="tab-pane float-container" id="tab-similiar-posts">@Html.Partial("_List", Model.SimiliarPosts)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

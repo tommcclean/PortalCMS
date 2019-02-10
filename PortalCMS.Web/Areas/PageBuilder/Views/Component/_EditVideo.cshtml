@@ -1,0 +1,77 @@
+﻿@model PortalCMS.Web.Areas.PageBuilder.ViewModels.Component.VideoViewModel
+@{
+    Layout = "";
+}
+
+<script type="text/javascript">
+    $('#customForm').submit(function (e) {
+        var videoUrl = $('#VideoUrl').val();
+
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            cache: false,
+            beforeSend: function () {
+                setModalEditorContent('<div class="spinner"></div>');
+            },
+            success: function (result) {
+                if (result.State === true)
+                {
+                    $('#@Model.VideoPlayerElementId').attr("src", videoUrl);
+
+                    $('.modal').modal('toggle');
+                }
+                else
+                {
+                    alert("Error: The document has lost synchronisation. Reloading document...");
+                    location.reload();
+                }
+            }
+        });
+        return false;
+    });
+
+    function Delete()
+    {
+        $('#@Model.WidgetWrapperElementId').animateOut('flipOutX');
+
+        var dataParams = { "pageSectionId": @Model.SectionId , "elementId": "@Model.WidgetWrapperElementId", "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() };
+
+        $.ajax({
+            data: dataParams,
+            type: 'POST',
+            cache: false,
+            url: '/PageBuilder/Component/Delete',
+            success: function (data) {
+                if (data.State === false)
+                {
+                    alert("Error: The document has lost synchronisation. Reloading document...");
+                    location.reload();
+                }
+            },
+        });
+    }
+</script>
+
+@using (Html.BeginForm("EditVideo", "Component", FormMethod.Post, new { id = "customForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.SectionId)
+    @Html.HiddenFor(x => x.WidgetWrapperElementId)
+    @Html.HiddenFor(x => x.VideoPlayerElementId)
+
+    <div class="control-group">
+        @Html.LabelFor(x => x.VideoUrl)
+        @Html.TextBoxFor(m => m.VideoUrl)
+    </div>
+
+    <br />
+
+    <div class="footer">
+        <button class="btn primary">Save</button>
+        <a onclick="Delete()" data-dismiss="modal" class="btn delete">Delete</a>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

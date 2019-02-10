@@ -1,0 +1,107 @@
+﻿@model PortalCMS.Web.Areas.PageBuilder.ViewModels.Component.AddViewModel
+@{
+    Layout = "";
+}
+
+<div id="component-panel" class="panel-overlay animated fadeInRight">
+    <div class="panel-title">
+        <h4>Add Component</h4>
+        <div class="panel-action" onclick="QuickAccess.ClosePanels();"><span class="fa fa-remove"></span></div>
+        <div class="panel-action right" onclick="QuickAccess.TogglePanel('section-panel');"><span class="fa fa-columns"></span></div>
+        <div class="panel-action right hidden-xs" onclick="QuickAccess.FloatPanel('component-panel')"><span class="fa fa-arrows-h"></span></div>
+    </div>
+
+    <div class="panel-inner">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#tab-text" aria-controls="tab-text" role="tab" data-toggle="tab">Text</a></li>
+            <li role="presentation" class=""><a href="#tab-images" aria-controls="tab-images" role="tab" data-toggle="tab">Media</a></li>
+            <li role="presentation" class=""><a href="#tab-ui" aria-controls="tab-ui" role="tab" data-toggle="tab">UI</a></li>
+            <li role="presentation" class=""><a href="#tab-widget" aria-controls="tab-widget" role="tab" data-toggle="tab">Widgets</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active float-container" id="tab-text">
+                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == PageComponentTypeCategory.Text))
+                {
+                    <div class="component-preview float-container">@Html.Raw(componentType.PageComponentBody)</div>
+                }
+            </div>
+            <div role="tabpanel" class="tab-pane float-container" id="tab-images">
+                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == PageComponentTypeCategory.Image))
+                {
+                    <div class="component-preview border float-container">
+                        <div class="component-title">@componentType.PageComponentTypeName</div>
+                        @Html.Raw(componentType.PageComponentBody)
+                    </div>
+                }
+            </div>
+            <div role="tabpanel" class="tab-pane float-container" id="tab-ui">
+                <div class="accordion">
+                    <h4>Bootstrap Components</h4>
+                    @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == PageComponentTypeCategory.Bootstrap))
+                    {
+                        <div class="component-preview border float-container">
+                            <div class="component-title">@componentType.PageComponentTypeName</div>
+                            @Html.Raw(componentType.PageComponentBody)
+                        </div>
+                    }
+                    <br />
+                    <h4>UI Helpers</h4>
+                    @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == PageComponentTypeCategory.UI))
+                    {
+                        <div class="component-preview border float-container">
+                            <div class="component-title">@componentType.PageComponentTypeName</div>
+                            @Html.Raw(componentType.PageComponentBody)
+                        </div>
+                    }
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane float-container" id="tab-widget">
+                @foreach (var componentType in Model.PageComponentTypeList.Where(x => x.PageComponentTypeCategory == PageComponentTypeCategory.Widget))
+                {
+                    <div class="widget-preview float-container">
+                        @Html.Raw(componentType.PageComponentBody)
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        PageBuilder.Initialise.Droppables();
+        InitialiseWidgets();
+
+        $("#component-panel .component-preview, #component-panel .widget-preview").mousedown(function (event) {
+            if ($(window).width() < 739) {
+                $('#component-panel').fadeOut();
+                $('#component-panel').removeClass("visible");
+            }
+        });
+
+        $(function () {
+            $("#component-panel .component-preview *").draggable({
+                appendTo: 'body',
+                cursor: 'move',
+                helper: 'clone',
+                revert: 'invalid',
+                zIndex: 300
+            });
+        });
+
+        $(function () {
+            $("#component-panel .widget-wrapper").draggable({
+                appendTo: 'body',
+                cursor: 'move',
+                helper: 'clone',
+                revert: 'invalid',
+                zIndex: 300
+            });
+        });
+
+        $("#component-panel .component-preview .component-title").draggable({
+
+        });
+    });
+</script>

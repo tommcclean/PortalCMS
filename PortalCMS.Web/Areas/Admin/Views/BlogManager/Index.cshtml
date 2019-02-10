@@ -1,0 +1,71 @@
+﻿@model PortalCMS.Web.Areas.Admin.ViewModels.BlogManager.PostsViewModel
+@{
+    ViewBag.Title = "Blog Manager";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-articles.png";
+}
+
+@section HEADScripts
+{
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+}
+
+<div class="alert alert-warning" role="alert">Upload new images for use in your posts using the <a href="@Url.Action("Index", "MediaManager")" class="alert-link">Media Manager</a>.</div>
+
+@Html.Action("Render", "QuickAccess", new { area = "Admin", pageType = QuickAccessPageType.BlogManager_Admin })
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#tab-posts" aria-controls="tab-posts" role="tab" data-toggle="tab"><span class="fa fa-pencil"></span>Posts</a></li>
+    <li role="presentation" class=""><a href="#tab-categories" aria-controls="tab-categories" role="tab" data-toggle="tab"><span class="fa fa-bookmark"></span>Categories</a></li>
+</ul>
+
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="tab-posts">
+        <div class="row">
+            @foreach (var post in Model.Posts)
+            {
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <div class="box article-item float-container dark" style="@string.Format("background-image: url('{0}'); color: white;", post.BannerImageUrl())">
+                        <div class="inner">
+                            <div class="category-item">@post.PostCategory.PostCategoryName</div>
+                            <h3>@(post.IsPublished ? "" : "Draft: ") @post.PostTitle</h3>
+                            <p>@post.PostDescription</p>
+
+                            <div class="admin-container x3">
+                                @if (post.IsPublished)
+                                {
+                                    <a href="@Url.Action("Draft", "BlogManager", new { postId = @post.PostId })" class="admin-item" data-title="Set as Draft"><span class="fa fa-file-text-o"></span>Draft</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Publish", "BlogManager", new { postId = @post.PostId })" class="admin-item" data-title="Publish Post"><span class="fa fa-file-text"></span>Publish</a>
+                                }
+
+                                <a href="@Url.Action("Edit", "BlogManager", new { postId = @post.PostId })" class="admin-item launch-modal" data-title="Edit Post: @post.PostTitle"><span class="fa fa-pencil"></span>Edit</a>
+                                <a href="@Url.Action("Delete", "BlogManager", new { postId = @post.PostId })" class="admin-item" data-title="Delete Post" data-container="body" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
+                            </div>
+                        </div>
+                        <div class="overlay overlay-medium"></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab-categories">
+        <div class="row">
+            @foreach (var postCategory in Model.PostCategories)
+            {
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <div class="box float-container" style="height: 220px; min-height: 220px;">
+                        <h3>@postCategory.PostCategoryName</h3>
+                        <p>Total Posts: @postCategory.Posts.Count()</p>
+
+                        <div class="admin-container x2">
+                            <a href="@Url.Action("Edit", "PostCategories", new { postCategoryId = postCategory.PostCategoryId })" class="admin-item launch-modal" data-title="Edit Post Category"><span class="fa fa-pencil"></span>Edit</a>
+                            <a href="@Url.Action("Delete", "PostCategories", new { postCategoryId = postCategory.PostCategoryId })" class="admin-item" data-title="Delete Post Category" data-toggle="confirmation" data-placement="top"><span class="fa fa-trash"></span>Delete</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

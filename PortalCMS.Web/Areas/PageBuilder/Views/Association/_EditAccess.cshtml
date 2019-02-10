@@ -1,0 +1,48 @@
+﻿@model PortalCMS.Web.Areas.PageBuilder.ViewModels.Association.EditAccessViewModel
+@{
+    Layout = "";
+}
+
+<script type="text/javascript">
+    function submit()
+    {
+        EditablePopover.ShowSpinner(@Model.PageAssociationId);
+
+        $.ajax({
+            type: "POST",
+            url: "/PageBuilder/Association/EditAccess",
+            headers: EditablePopover.GenerateAntiForgeryHeader(),
+            dataType: 'json',
+            data: $('#edit-access-@Model.PageAssociationId').serialize(),
+            success: function ()
+            {
+                EditablePopover.OnSuccess("Restrict Access", 'fa-lock', '@Model.PageAssociationId');
+            },
+            error: function ()
+            {
+                EditablePopover.OnError("Restrict Access", 'fa-lock', '@Model.PageAssociationId');
+                EditablePopover.HideSpinner(@Model.PageAssociationId);
+            }
+        });
+    }
+</script>
+
+<form id="edit-access-@Model.PageAssociationId">
+    @Html.HiddenFor(x => x.PageAssociationId)
+
+    <div id="editable-popover-spinner" class="spinner" data-association="@Model.PageAssociationId" style="display: none;"></div>
+
+    <div id="editable-popover-content" data-association="@Model.PageAssociationId">
+        <div id="editable-popover-info" class="alert alert-warning" data-association="@Model.PageAssociationId" role="alert">A user must have at least one of the roles selected below to see this Section. To show the Section to all users select no roles.</div>
+
+        <div class="control-group control-textarea float-container">
+            @Html.LabelFor(x => x.SelectedRoleList)
+            @Html.ListBoxFor(m => m.SelectedRoleList, Model.RoleList.Select(r => new SelectListItem { Text = r.RoleName, Value = r.RoleName.ToString(), Selected = Model.SelectedRoleList != null && Model.SelectedRoleList.Contains(r.RoleName) }))
+        </div>
+
+        <div class="footer">
+            <div class="btn primary" onclick="submit();"><span class="fa fa-check"></span><span class="hidden-xs">Save</span></div>
+            <div class="btn" onclick="EditablePopover.Destroy();"><span class="fa fa-times"></span><span class="hidden-xs">Cancel</span></div>
+        </div>
+    </div>
+</form>
