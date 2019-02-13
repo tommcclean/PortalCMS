@@ -11,13 +11,11 @@ namespace PortalCMS.Web.Areas.Authentication.Controllers
 {
 	public class LoginController : SignInController
 	{
-		private readonly ILoginService _loginService;
 		private readonly IUserService _userService;
 		private readonly IRoleService _roleService;
 
-		public LoginController(ILoginService loginService, IUserService userService, IRoleService roleService)
+		public LoginController(IUserService userService, IRoleService roleService)
 		{
-			_loginService = loginService;
 			_userService = userService;
 			_roleService = roleService;
 		}

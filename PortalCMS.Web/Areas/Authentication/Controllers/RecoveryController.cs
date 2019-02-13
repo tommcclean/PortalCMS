@@ -3,21 +3,15 @@ using PortalCMS.Services.Authentication;
 using PortalCMS.Web.Architecture.Helpers;
 using PortalCMS.Web.Areas.Authentication.ViewModels.Login;
 using PortalCMS.Web.Areas.Authentication.ViewModels.Recovery;
+using PortalCMS.Web.Controllers.Base;
 using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace PortalCMS.Web.Areas.Authentication.Controllers
 {
-	public class RecoveryController : Controller
+	public class RecoveryController : BaseController
 	{
-		private readonly ITokenService _tokenService;
-
-		public RecoveryController(ITokenService tokenService)
-		{
-			_tokenService = tokenService;
-		}
-
 		[HttpGet]
 		[OutputCache(Duration = 86400)]
 		public ActionResult Index()
@@ -29,16 +23,22 @@ namespace PortalCMS.Web.Areas.Authentication.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<ActionResult> Forgot(LoginViewModel model)
 		{
-			var token = await _tokenService.AddAsync(model.EmailAddress, UserTokenType.ForgottenPassword);
-
-			if (!string.IsNullOrWhiteSpace(token))
+			var user = await UserManager.FindByNameAsync(model.EmailAddress);
+			if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
 			{
-				var websiteName = SettingHelper.Get("Website Name");
-
-				var recoveryLink = $@"http://{System.Web.HttpContext.Current.Request.Url.Authority}{Url.Action(nameof(Reset), "Recovery", new { area = "Authentication", id = token })}";
-
-				await EmailHelper.SendEmailAsync(model.EmailAddress, "Password Reset", $"<p>You submitted a request on {websiteName} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{recoveryLink}\">Recover Account</a>");
+				// Don't reveal that the user does not exist or is not confirmed
+				return Content("Refresh");
 			}
+
+			// For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+			// Send an email with this link
+			string token = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+
+			var websiteName = SettingHelper.Get("Website Name");
+
+			var recoveryLink = $@"http://{System.Web.HttpContext.Current.Request.Url.Authority}{Url.Action(nameof(Reset), "Recovery", new { area = "Authentication", id = token })}";
+
+			await EmailHelper.SendEmailAsync(model.EmailAddress, "Password Reset", $"<p>You submitted a request on {websiteName} for assistance in resetting your password. To change your password please click on the link below and complete the requested information.</p><a href=\"{recoveryLink}\">Recover Account</a>");
 
 			return Content("Refresh");
 		}
@@ -53,23 +53,17 @@ namespace PortalCMS.Web.Areas.Authentication.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<ActionResult> Reset(ResetViewModel model)
 		{
-			if (!string.IsNullOrWhiteSpace(model.Password) && !string.IsNullOrWhiteSpace(model.ConfirmPassword))
-			{
-				if (!model.Password.Equals(model.ConfirmPassword, StringComparison.Ordinal))
-					ModelState.AddModelError("Confirmation", "The passwords you entered do not match.");
-			}
-
 			if (!ModelState.IsValid)
 				return View(model);
 
-			var result = await _tokenService.RedeemPasswordTokenAsync(model.Token, model.EmailAddress, model.Password);
-
-			if (!string.IsNullOrWhiteSpace(result))
+			var user = await UserManager.FindByNameAsync(model.EmailAddress);
+			if (user == null)
 			{
-				ModelState.AddModelError("Execution", result);
-
-				return View(model);
+				// Don't reveal that the user does not exist
+				return RedirectToAction("Index", "Home", new { area = "" });
 			}
+
+			var result = await UserManager.ResetPasswordAsync(user.Id, model.Token, model.Password);
 
 			return RedirectToAction("Index", "Home", new { area = "" });
 		}

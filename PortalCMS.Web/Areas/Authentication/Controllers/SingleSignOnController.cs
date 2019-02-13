@@ -6,40 +6,36 @@ using System.Web.Mvc;
 
 namespace PortalCMS.Web.Areas.Authentication.Controllers
 {
-    public class SingleSignOnController : Controller
-    {
-        private readonly ILoginService _loginService;
-        private readonly IRoleService _roleService;
-        private readonly IUserService _userService;
+	public class SingleSignOnController : Controller
+	{
+		private readonly IRoleService _roleService;
+		private readonly IUserService _userService;
 
-        public SingleSignOnController(ILoginService loginService, IRoleService roleService, IUserService userService)
-        {
-            _loginService = loginService;
-            _roleService = roleService;
-            _userService = userService;
-        }
+		public SingleSignOnController(IRoleService roleService, IUserService userService)
+		{
+			_roleService = roleService;
+			_userService = userService;
+		}
 
-        public async Task<ActionResult> Index()
-        {
-            var resetCookie = Request.Cookies["PortalCMS_SSO"];
+		public async Task<ActionResult> Index()
+		{
+			var resetCookie = Request.Cookies["PortalCMS_SSO"];
 
-            if (!UserHelper.IsLoggedIn && resetCookie != null)
-            {
-                var cookieValues = resetCookie.Value.Split(',');
+			if (!UserHelper.IsLoggedIn && resetCookie != null)
+			{
+				var cookieValues = resetCookie.Value.Split(',');
 
-                var result = await _loginService.SSOAsync(cookieValues[0], cookieValues[2]);
+				if (!string.IsNullOrEmpty(cookieValues[0]))
+				{
+					Session.Add("UserAccount", await _userService.GetAsync(cookieValues[0]));
+					Session.Add("UserRoles", await _roleService.GetByUserAsync(cookieValues[0]));
+				}
 
-                if (!string.IsNullOrEmpty(result))
-                {
-                    Session.Add("UserAccount", await _userService.GetAsync(result));
-                    Session.Add("UserRoles", await _roleService.GetAsync(result));
-                }
+				resetCookie.Expires = DateTime.Now.AddDays(-1);
+				Response.Cookies.Add(resetCookie);
+			}
 
-                resetCookie.Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies.Add(resetCookie);
-            }
-
-            return RedirectToAction("Index", "Home", new { area = "" });
-        }
-    }
+			return RedirectToAction("Index", "Home", new { area = "" });
+		}
+	}
 }

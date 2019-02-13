@@ -108,7 +108,6 @@
     <Compile Include="Authentication\LoginService.cs" />
     <Compile Include="Authentication\RegistrationService.cs" />
     <Compile Include="Authentication\RoleService.cs" />
-    <Compile Include="Authentication\TokenService.cs" />
     <Compile Include="Authentication\UserService.cs" />
     <Compile Include="ServiceBase.cs" />
     <Compile Include="Copy\CopyService.cs" />

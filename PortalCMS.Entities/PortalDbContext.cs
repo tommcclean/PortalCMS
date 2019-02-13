@@ -21,8 +21,6 @@ namespace PortalCMS.Entities
 
 		#endregion Dependencies
 
-		public virtual DbSet<UserToken> UserTokens { get; set; }
-
 		public virtual DbSet<AnalyticPageView> AnalyticPageViews { get; set; }
 
 		public virtual DbSet<AnalyticPostView> AnalyticPostViews { get; set; }
