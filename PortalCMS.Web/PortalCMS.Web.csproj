@@ -254,11 +254,12 @@
     <Compile Include="Areas\Admin\ViewModels\AnalyticManager\LogEntriesViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\AnalyticManager\ReviewExceptionViewModel.cs" />
     <Compile Include="Areas\Authentication\Controllers\LinkedInController.cs" />
-    <Compile Include="Areas\Authentication\Controllers\RecoveryController.cs" />
+    <Compile Include="Areas\Authentication\Controllers\PasswordRecoveryController.cs" />
     <Compile Include="Areas\Authentication\Controllers\RegistrationController.cs" />
     <Compile Include="Areas\Authentication\Controllers\SingleSignOnController.cs" />
     <Compile Include="Areas\Authentication\ViewModel\Login\LoginViewModel.cs" />
-    <Compile Include="Areas\Authentication\ViewModel\Recovery\ResetViewModel.cs" />
+    <Compile Include="Areas\Authentication\ViewModel\Login\SendCodeViewModel.cs" />
+    <Compile Include="Areas\Authentication\ViewModel\PasswordRecovery\ResetViewModel.cs" />
     <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
     <Compile Include="Areas\Authentication\Controllers\LoginController.cs" />
     <Compile Include="Areas\BaseController.cs" />
@@ -371,6 +372,12 @@
     <Content Include="Areas\Profile\Content\Images\admin-icon.png" />
     <Content Include="Areas\Profile\Content\Images\security-image.jpg" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\sample-9.png" />
+    <Content Include="Content\EmailTemplates\AccountActivationLink.html" />
+    <Content Include="Content\EmailTemplates\Base\Base.html" />
+    <Content Include="Content\EmailTemplates\PasswordChanged.html" />
+    <Content Include="Content\EmailTemplates\Default.html" />
+    <Content Include="Content\EmailTemplates\ContactUsMessage.html" />
+    <Content Include="Content\EmailTemplates\PasswordResetLink.html" />
     <Content Include="Content\Plugins\FontAwesome\fontawesome-webfont.svg" />
     <Content Include="Content\Scripts\EditablePopover\editable.popover.js" />
     <Content Include="Content\Scripts\Framework\PageBuilder-Anonymous.js" />
@@ -719,7 +726,7 @@
     <Content Include="Areas\Profile\Views\Widgets\_SignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Authentication\Views\Recovery\Reset.cshtml" />
+    <Content Include="Areas\Authentication\Views\PasswordRecovery\Reset.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Blog\Views\Widgets\_RetroWidget.cshtml" />
@@ -777,7 +784,7 @@
     <Content Include="Areas\Authentication\Views\Login\_LockoutForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Authentication\Views\Recovery\_RecoveryForm.cshtml" />
+    <Content Include="Areas\Authentication\Views\PasswordRecovery\_RecoveryForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PortalCMS.Entities\PortalCMS.Entities.csproj">
@@ -797,6 +804,15 @@
       <Name>PortalCMS.Services</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Authentication\Views\Login\_SendCode.cshtml" />
+    <Content Include="Areas\Authentication\Views\Login\_VerifyCode.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Authentication\Views\Registration\_Welcome.cshtml" />
+    <Content Include="Areas\Authentication\Views\Registration\_EmailConfirmed.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -811,11 +827,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52001</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52001/</IISUrl>
+          <IISUrl>http://localhost:56500</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

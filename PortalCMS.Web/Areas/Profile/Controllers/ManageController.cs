@@ -127,10 +127,7 @@ namespace PortalCMS.Web.Areas.Profile.Controllers
             }
 
             await _registrationService.ChangePasswordAsync(UserHelper.Id, model.NewPassword);
-
-            var websiteAddress = $@"http://{System.Web.HttpContext.Current.Request.Url.Authority}";
-
-            await EmailHelper.SendEmailAsync(UserHelper.Email, "Account Notice", $"<p>Hello {UserHelper.FullName}</p><p>We just wanted to let you know that your password was changed at {websiteAddress}. If you didn't change your password, please let us know");
+            await EmailHelper.SendPasswordChangedAsync(UserHelper.Email, UserHelper.FullName);
 
             return Content("Refresh");
         }

@@ -26,7 +26,7 @@ namespace PortalCMS.Web.Areas.Authentication.ViewModels.Registration
 
 		public RegisterViewModel()
 		{
-			HumanCheck = Captcha.Generate();
+			this.HumanCheck = new Captcha();
 		}
 	}
 }

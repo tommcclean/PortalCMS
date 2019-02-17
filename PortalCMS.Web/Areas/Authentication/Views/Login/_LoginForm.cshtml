@@ -39,7 +39,7 @@
 
 				@if (!string.IsNullOrWhiteSpace(SettingHelper.Get("SendGrid ApiKey")))
 				{
-					<a href="@Url.Action("Index","Recovery", new { area="Authentication"})" class="btn launch-modal" data-title="Recovery">Forgotten Password</a>
+					<a href="@Url.Action("Index","PasswordRecovery", new { area="Authentication"})" class="btn launch-modal" data-title="Recovery">Forgotten Password</a>
 				}
 			</div>
 		}

@@ -76,20 +76,20 @@ namespace PortalCMS.Entities
 
 			#region Rename identity tables
 
-			//modelBuilder.Entity<IdentityUser>()
-			//		.ToTable("User");
+			modelBuilder.Entity<IdentityUser>()
+					.ToTable("User");
 
-			//modelBuilder.Entity<IdentityUserRole>()
-			//		.ToTable("UserRole");
+			modelBuilder.Entity<IdentityUserRole>()
+					.ToTable("UserRole");
 
-			//modelBuilder.Entity<IdentityUserLogin>()
-			//		.ToTable("UserLogin");
+			modelBuilder.Entity<IdentityUserLogin>()
+					.ToTable("UserLogin");
 
-			//modelBuilder.Entity<IdentityUserClaim>()
-			//		.ToTable("UserClaim");
+			modelBuilder.Entity<IdentityUserClaim>()
+					.ToTable("UserClaim");
 
-			//modelBuilder.Entity<IdentityRole>()
-			//		.ToTable("Role");
+			modelBuilder.Entity<IdentityRole>()
+					.ToTable("Role");
 
 			#endregion
 		}

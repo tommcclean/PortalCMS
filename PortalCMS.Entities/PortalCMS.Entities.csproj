@@ -93,6 +93,7 @@
     <Compile Include="Entities\Models\ApplicationUser.cs" />
     <Compile Include="Enumerators\ChartSize.cs" />
     <Compile Include="Enumerators\ChartType.cs" />
+    <Compile Include="Enumerators\RecordStatus.cs" />
     <Compile Include="Enumerators\TimePeriod.cs" />
     <Compile Include="Enumerators\UserTokenType.cs" />
     <Compile Include="Entities\CopyItem.cs" />

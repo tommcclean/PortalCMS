@@ -63,7 +63,7 @@ namespace PortalCMS.Entities.Entities.Models
 			var dataProtectionProvider = options.DataProtectionProvider;
 			if (dataProtectionProvider != null)
 			{
-				manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser, string>(dataProtectionProvider.Create("ASP.NET Identity"));
+				manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser, string>(dataProtectionProvider.Create("PortalCMS"));
 			}
 
 			return manager;

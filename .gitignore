@@ -6,6 +6,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+Web.Release.config
+Web.Debug.config
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -213,3 +215,9 @@ _Pvt_Extensions/
 ModelManifest.xml
 /Portal.CMS.Web/Areas/Admin/Content/Media
 /Portal.CMS.Web/Areas/Profile/Content/Media/Avatars/media-*.png
+/PortalCMS.Web/Web.Debug.config
+/PortalCMS.Web/Web.Debug.config
+/PortalCMS.Web/*.config
+/PortalCMS.Web/Web.Debug.config
+/PortalCMS.Web/Web.config
+/PortalCMS.Web/Web.Release.config

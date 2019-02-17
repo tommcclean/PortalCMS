@@ -82,29 +82,6 @@ namespace PortalCMS.Web
 					}
 				}
 			});
-
-
-			//var linkedInOptions = new LinkedInAuthenticationOptions();
-			//linkedInOptions.ClientId = "78mdcz8uqdnazz";
-			//linkedInOptions.ClientSecret = "KIwNVVXNnzZicXwJ";
-			//linkedInOptions.CallbackPath = new PathString("/LinkedIn/Authenticated");
-
-			//linkedInOptions.Scope.Add("r_fullprofile");
-			//linkedInOptions.Scope.Add("r_emailaddress");
-			//linkedInOptions.Scope.Add("rw_company_admin");
-			//linkedInOptions.Scope.Add("w_share");
-
-			//linkedInOptions.Provider = new LinkedInAuthenticationProvider()
-			//{
-			//	OnAuthenticated = async context =>
-			//	{
-			//		context.Identity.AddClaim(new System.Security.Claims.Claim("LinkedIn_AccessToken", context.AccessToken));
-			//	}
-			//};
-
-			//linkedInOptions.SignInAsAuthenticationType = DefaultAuthenticationTypes.ExternalCookie;
-
-			//app.UseLinkedInAuthentication(linkedInOptions);
 		}
 	}
 }

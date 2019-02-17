@@ -8,7 +8,7 @@
 </ul>
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="tab-forgot">
-        @using (Html.BeginForm("Forgot", "Recovery", FormMethod.Post, new { area = "Authentication" }))
+        @using (Html.BeginForm("Forgot", "PasswordRecovery", new { area = "Authentication" }, FormMethod.Post))
 				{
             @Html.AntiForgeryToken()
 

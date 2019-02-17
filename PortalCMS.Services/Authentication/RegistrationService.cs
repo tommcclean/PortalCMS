@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace PortalCMS.Services.Authentication
 {
 	public interface IRegistrationService
-    {
-        Task<string> RegisterAsync(string emailAddress, string password, string givenName, string familyName);
+	{
+		Task<string> RegisterAsync(string emailAddress, string password, string givenName, string familyName, bool emailConfirmed = false);
 
-        Task ChangePasswordAsync(string userId, string newPassword);
-    }
+		Task ChangePasswordAsync(string userId, string newPassword);
+	}
 
 	public class RegistrationService : IRegistrationService
 	{
@@ -31,10 +31,10 @@ namespace PortalCMS.Services.Authentication
 
 		#endregion Dependencies
 
-		public async Task<string> RegisterAsync(string emailAddress, string password, string givenName, string familyName)
+		public async Task<string> RegisterAsync(string emailAddress, string password, string givenName, string familyName, bool emailConfirmed = false)
 		{
 			if (await _context.Users.AnyAsync(x => x.Email.Equals(emailAddress, StringComparison.OrdinalIgnoreCase)))
-				return "-1";
+				return null;
 
 			var userAccount = new ApplicationUser
 			{
@@ -42,13 +42,17 @@ namespace PortalCMS.Services.Authentication
 				GivenName = givenName,
 				FamilyName = familyName,
 				AvatarImage = FileDetail.LoadImageFromPath("/Areas/Admin/Content/Images/", "profile-image-male.png"),
-				DateAdded = DateTime.Now,
-				DateUpdated = DateTime.Now,
+				LastUpdatedDate = DateTime.Now,
 				UserName = GenerateUserName(),
-				RegistrationDate = DateTime.Now
+				RegistrationDate = DateTime.Now,
+				EmailConfirmed = emailConfirmed
 			};
 
 			var result = await UserManager.CreateAsync(userAccount, password);
+			if (!result.Succeeded)
+			{
+				return null;
+			}
 
 			return userAccount.Id;
 		}
@@ -58,7 +62,7 @@ namespace PortalCMS.Services.Authentication
 			var userAccount = await UserManager.FindByIdAsync(userId);
 			if (userAccount == null) return;
 
-			userAccount.DateUpdated = DateTime.Now;
+			userAccount.LastUpdatedDate = DateTime.Now;
 			userAccount.PasswordHash = UserManager.PasswordHasher.HashPassword(newPassword);
 			await UserManager.UpdateAsync(userAccount);
 		}
