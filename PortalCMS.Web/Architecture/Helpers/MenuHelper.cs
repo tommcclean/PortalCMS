@@ -5,38 +5,38 @@ using System.Collections.Generic;
 
 namespace PortalCMS.Web.Architecture.Helpers
 {
-    public static class MenuHelper
-    {
-        public static List<MenuItem> Get(string menuName)
-        {
-            var validSession = System.Web.HttpContext.Current.Session != null;
+	public static class MenuHelper
+	{
+		public static List<MenuItem> Get(string menuName)
+		{
+			var validSession = System.Web.HttpContext.Current.Session != null;
 
-            object sessionMenu = null;
+			object sessionMenu = null;
 
-            if (validSession)
-            {
-                sessionMenu = System.Web.HttpContext.Current.Session[$"Menu-{menuName}"];
-            }
+			if (validSession)
+			{
+				sessionMenu = System.Web.HttpContext.Current.Session[$"Menu-{menuName}"];
+			}
 
-            if (sessionMenu != null)
-            {
-                return (List<MenuItem>)sessionMenu;
-            }
-            else
-            {
-                var container = IoC.Initialize();
+			if (sessionMenu != null)
+			{
+				return (List<MenuItem>)sessionMenu;
+			}
+			else
+			{
+				var container = IoC.Initialize();
 
-                IMenuService menuService = container.GetInstance<MenuService>();
+				IMenuService menuService = container.GetInstance<MenuService>();
 
-                var menuItems = AsyncHelpers.RunSync(() => menuService.ViewAsync(UserHelper.Id, menuName));
+				var menuItems = AsyncHelpers.RunSync(() => menuService.ViewAsync(UserHelper.Id, menuName));
 
-                if (validSession)
-                {
-                    System.Web.HttpContext.Current.Session.Add($"Menu-{menuName}", menuItems);
-                }
+				if (validSession)
+				{
+					System.Web.HttpContext.Current.Session.Add($"Menu-{menuName}", menuItems);
+				}
 
-                return menuItems;
-            }
-        }
-    }
+				return menuItems;
+			}
+		}
+	}
 }

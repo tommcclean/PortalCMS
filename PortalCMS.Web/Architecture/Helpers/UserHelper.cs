@@ -1,25 +1,35 @@
 ﻿using PortalCMS.Entities.Entities;
 using PortalCMS.Entities.Entities.Models;
 using System.Collections.Generic;
+using Microsoft.AspNet.Identity;
 using System.Linq;
+using System.Web;
+using PortalCMS.Entities;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace PortalCMS.Web.Architecture.Helpers
 {
-	public static class UserHelper
+	public class UserHelper
 	{
-		const string USER_ACCOUNT = "UserAccount";
-		const string USER_ROLES = "UserRoles";
 		const string ADMIN_ROLE = "Admin";
 		const string EDITOR_ROLE = "Editor";
+	
+		private static ApplicationUser CurrentUser
+		{
+			get
+			{
+				var store = new UserStore<ApplicationUser>(new PortalDbContext());
+				var userManager = new UserManager<ApplicationUser>(store);
+				var userId = HttpContext.Current.User.Identity.GetUserId();
+				return userManager.FindById(userId);
+			}
+		}
 
 		public static bool IsLoggedIn
 		{
 			get
 			{
-				if (System.Web.HttpContext.Current.Session[USER_ACCOUNT] == null)
-					return false;
-
-				return true;
+				return HttpContext.Current.User.Identity.IsAuthenticated;
 			}
 		}
 
@@ -27,14 +37,10 @@ namespace PortalCMS.Web.Architecture.Helpers
 		{
 			get
 			{
-				var userSession = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
-				var userRoles = (IEnumerable<string>)System.Web.HttpContext.Current.Session[USER_ROLES];
-
-				if (userSession == null || userRoles == null)
-					return false;
-
-				if (userRoles.Any(x => x.Equals(ADMIN_ROLE, System.StringComparison.OrdinalIgnoreCase)))
-					return true;
+				if (HttpContext.Current.User.Identity.IsAuthenticated)
+				{
+					return HttpContext.Current.User.IsInRole(ADMIN_ROLE);
+				}
 
 				return false;
 			}
@@ -44,22 +50,10 @@ namespace PortalCMS.Web.Architecture.Helpers
 		{
 			get
 			{
-				var userSession = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
-				var userRoles = (IEnumerable<string>)System.Web.HttpContext.Current.Session[USER_ROLES];
-
-				if (userSession == null || userRoles == null)
-					return false;
-
-				foreach(var role in userRoles)
+				if (HttpContext.Current.User.Identity.IsAuthenticated)
 				{
-					if (role == EDITOR_ROLE || role == ADMIN_ROLE)
-					{
-						return true;
-					}
+					return HttpContext.Current.User.IsInRole(ADMIN_ROLE) || HttpContext.Current.User.IsInRole(EDITOR_ROLE);
 				}
-
-				if (userRoles.Any(x => x.Equals(EDITOR_ROLE, System.StringComparison.OrdinalIgnoreCase)) || userRoles.Any(x => x.Equals(ADMIN_ROLE, System.StringComparison.OrdinalIgnoreCase)))
-					return true;
 
 				return false;
 			}
@@ -69,22 +63,25 @@ namespace PortalCMS.Web.Architecture.Helpers
 		{
 			get
 			{
-				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				if (HttpContext.Current.User.Identity.IsAuthenticated)
+				{
+					return CurrentUser.Id;
+				}
 
-				if (userAccount == null)
-					return string.Empty;
-
-				return userAccount.Id;
+				return string.Empty;
 			}
 		}
 
-		public static FileDetail AvatarImage
+		public static byte[] AvatarImage
 		{
 			get
 			{
-				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				if (HttpContext.Current.User.Identity.IsAuthenticated)
+				{ 
+					return CurrentUser.AvatarImage.FileContent;
+				}
 
-				return userAccount.AvatarImage;
+				return null;
 			}
 		}
 
@@ -92,9 +89,12 @@ namespace PortalCMS.Web.Architecture.Helpers
 		{
 			get
 			{
-				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				if (HttpContext.Current.User.Identity.IsAuthenticated)
+				{
+					return CurrentUser.FullName;
+				}
 
-				return $"{userAccount.GivenName} {userAccount.FamilyName}";
+				return string.Empty;
 			}
 		}
 
@@ -102,9 +102,12 @@ namespace PortalCMS.Web.Architecture.Helpers
 		{
 			get
 			{
-				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				if (HttpContext.Current.User.Identity.IsAuthenticated)
+				{
+					return CurrentUser.GivenName;
+				}
 
-				return userAccount.GivenName;
+				return string.Empty;
 			}
 		}
 
@@ -112,9 +115,12 @@ namespace PortalCMS.Web.Architecture.Helpers
 		{
 			get
 			{
-				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				if (HttpContext.Current.User.Identity.IsAuthenticated)
+				{
+					return CurrentUser.FamilyName;
+				}
 
-				return userAccount.FamilyName;
+				return string.Empty;
 			}
 		}
 
@@ -122,9 +128,12 @@ namespace PortalCMS.Web.Architecture.Helpers
 		{
 			get
 			{
-				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				if (HttpContext.Current.User.Identity.IsAuthenticated)
+				{
+					return CurrentUser.Email;
+				}
 
-				return userAccount.Email;
+				return string.Empty;
 			}
 		}
 
@@ -132,12 +141,12 @@ namespace PortalCMS.Web.Architecture.Helpers
 		{
 			get
 			{
-				var userAccount = (ApplicationUser)System.Web.HttpContext.Current.Session[USER_ACCOUNT];
+				if (HttpContext.Current.User.Identity.IsAuthenticated)
+				{
+					return CurrentUser.Bio;
+				}
 
-				if (string.IsNullOrWhiteSpace(userAccount.Bio))
-					return "You haven't written a Bio yet...";
-
-				return userAccount.Bio;
+				return "You haven't written a Bio yet...";
 			}
 		}
 	}

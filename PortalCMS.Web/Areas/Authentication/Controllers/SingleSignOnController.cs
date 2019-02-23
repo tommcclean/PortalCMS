@@ -24,13 +24,6 @@ namespace PortalCMS.Web.Areas.Authentication.Controllers
 			if (!UserHelper.IsLoggedIn && resetCookie != null)
 			{
 				var cookieValues = resetCookie.Value.Split(',');
-
-				if (!string.IsNullOrEmpty(cookieValues[0]))
-				{
-					Session.Add("UserAccount", await _userService.GetAsync(cookieValues[0]));
-					Session.Add("UserRoles", await _roleService.GetByUserAsync(cookieValues[0]));
-				}
-
 				resetCookie.Expires = DateTime.Now.AddDays(-1);
 				Response.Cookies.Add(resetCookie);
 			}

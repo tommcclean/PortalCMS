@@ -1,8 +1,13 @@
-﻿using PortalCMS.Services.Settings;
+﻿using PortalCMS.Entities.Enumerators;
+using PortalCMS.Services.Generic;
+using PortalCMS.Services.Settings;
 using PortalCMS.Web.Architecture.ActionFilters;
 using PortalCMS.Web.Architecture.Helpers;
 using PortalCMS.Web.Areas.Admin.ViewModels.SettingManager;
+using System;
+using System.IO;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace PortalCMS.Web.Areas.Admin.Controllers
@@ -10,13 +15,17 @@ namespace PortalCMS.Web.Areas.Admin.Controllers
 	[AdminFilter(ActionFilterResponseType.Page)]
 	public class SettingManagerController : Controller
 	{
+		private const string IMAGE_DIRECTORY = "/Areas/Admin/Content/Media/";
+
 		#region Dependencies
 
 		private readonly ISettingService _settingService;
+		private readonly IImageService _imageService;
 
-		public SettingManagerController(ISettingService settingService)
+		public SettingManagerController(ISettingService settingService, IImageService imageService)
 		{
 			_settingService = settingService;
+			_imageService = imageService;
 		}
 
 		#endregion Dependencies
@@ -41,13 +50,31 @@ namespace PortalCMS.Web.Areas.Admin.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult> Setup(SetupViewModel model)
+		public async Task<ActionResult> Setup(SetupViewModel model, HttpPostedFileBase AttachedLogoImage, HttpPostedFileBase AttachedIconImage)
 		{
 			if (!ModelState.IsValid)
 				return View("_Setup", model);
 
 			await _settingService.EditAsync("Website Name", model.WebsiteName);
 			Session.Remove("Setting-Website Name");
+
+			if (AttachedLogoImage != null)
+			{
+				var imageFilePath = SaveImage(AttachedLogoImage);
+				await _imageService.CreateAsync(imageFilePath, ImageCategory.Logo);
+
+				await _settingService.EditAsync("Website Logo", imageFilePath);
+				Session.Remove("Setting-Website Logo");
+			}
+
+			if (AttachedIconImage != null)
+			{
+				var imageFilePath = SaveImage(AttachedIconImage);
+				await _imageService.CreateAsync(imageFilePath, ImageCategory.Logo);
+
+				await _settingService.EditAsync("Website FavIcon", imageFilePath);
+				Session.Remove("Setting-Website FavIcon");
+			}
 
 			await _settingService.EditAsync("Description Meta Tag", model.WebsiteDescription);
 			Session.Remove("Setting-Description Meta Tag");
@@ -66,5 +93,31 @@ namespace PortalCMS.Web.Areas.Admin.Controllers
 
 			return Content("Refresh");
 		}
+
+		#region private methods
+
+		private string SaveImage(HttpPostedFileBase imageFile)
+		{
+			var extension = Path.GetExtension(imageFile.FileName).ToUpper();
+
+			if (extension != ".PNG" && extension != ".JPG" && extension != ".GIF")
+				throw new ArgumentException("Unexpected Image Format Provided");
+
+			var destinationDirectory = Path.Combine(Server.MapPath(IMAGE_DIRECTORY));
+
+			if (!Directory.Exists(destinationDirectory))
+				Directory.CreateDirectory(destinationDirectory);
+
+			var imageFileName = $"media-{DateTime.Now.ToString("ddMMyyyyHHmmss")}-{imageFile.FileName}";
+			var path = Path.Combine(Server.MapPath(IMAGE_DIRECTORY), imageFileName);
+
+			imageFile.SaveAs(path);
+
+			var relativeFilePath = $"{IMAGE_DIRECTORY}/{imageFileName}";
+
+			return relativeFilePath;
+		}
+
+		#endregion
 	}
 }

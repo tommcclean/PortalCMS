@@ -6,6 +6,7 @@
 		Icon = 1,
 		Screenshot = 2,
 		Texture = 3,
-		Profile = 4
+		Profile = 4,
+		Logo = 5
 	}
 }

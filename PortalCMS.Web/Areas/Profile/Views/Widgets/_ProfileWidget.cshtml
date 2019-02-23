@@ -26,7 +26,7 @@
     <div class="box-title">My Profile</div>
     @if (UserHelper.IsLoggedIn)
     {
-        <img class="avatar" alt="My Avatar" src="@UserHelper.AvatarImagePath" style="margin-bottom: 10px;" />
+        <img class="avatar" alt="My Avatar" src="data:image/jpeg;base64,@Convert.ToBase64String(@UserHelper.AvatarImage)" style="margin-bottom: 10px;" />
         <h4>@UserHelper.FullName</h4>
         <p>@UserHelper.Email</p>
 

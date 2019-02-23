@@ -50,9 +50,6 @@ namespace PortalCMS.Web.Areas.Authentication.Controllers
 				case SignInStatus.Success:
 					user.LastLoginDate = DateTime.Now;
 					UserManager.Update(user);
-
-					Session.Add("UserAccount", await _userService.GetAsync(user.Id));
-					Session.Add("UserRoles", await _roleService.GetByUserAsync(user.Id));
 					return Content("Refresh");
 
 				case SignInStatus.LockedOut:

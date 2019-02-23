@@ -99,7 +99,7 @@
 
 /* When the checkbox is checked, add a colored background */
 .control-checkbox-group input:checked ~ .checkmark {
-	background-color: forestgreen;
+	background-color: #337ab7;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */

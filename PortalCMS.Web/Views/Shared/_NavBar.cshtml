@@ -5,12 +5,26 @@
     var isAdmin = UserHelper.IsAdmin;
     var isEditor = UserHelper.IsEditor;
 }
-
+<style>
+	.websiteLogo {
+		height: 30px;
+		margin-top: -4px;
+	}
+</style>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            <a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "" })">@SettingHelper.Get("Website Name")</a>
+						<a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "" })">
+							@if (SettingHelper.GetImage("Website Logo") == null)
+							{
+								@SettingHelper.Get("Website Name")
+							}
+							else
+							{
+								<img src="data:image/jpeg;base64,@Convert.ToBase64String(SettingHelper.GetImage("Website Logo"))" class="websiteLogo" />
+							}
+						</a>
         </div>
 
         <div class="collapse navbar-collapse" id="main-menu">
@@ -35,35 +49,35 @@
             </ul>
 
             @if (isLoggedIn)
-            {
+						{
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
 											<a href="#" class="dropdown-toggle btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-												<img class="avatar navbar-profileImage" alt="My Avatar" src="data:image/jpeg;base64,@Convert.ToBase64String(UserHelper.AvatarImage.FileContent)" />
+												<img class="avatar navbar-profileImage" alt="My Avatar" src="data:image/jpeg;base64,@Convert.ToBase64String(UserHelper.AvatarImage)" />
 												@UserHelper.FullName <span class="caret"></span>
 											</a>
                         <ul class="dropdown-menu">
                             <li>
-															<a href="@Url.Action("EditAccount", "Manage", new { area="Profile"})" class="launch-modal" data-title="Update Account">
+															<a href="@Url.Action("EditAccount", "Manage", new { area = "Profile" })" class="launch-modal" data-title="Update Account">
 																<span class="fa fa-user"></span>Update Account
 															</a>
 														</li>
-                            <li><a href="@Url.Action("EditBio", "Manage", new { area="Profile"})" class="launch-modal" data-title="Update Bio"><span class="fa fa-book"></span>Update Bio</a></li>
-                            <li><a href="@Url.Action("EditAvatar", "Manage", new { area="Profile"})" class="launch-modal" data-title="Upload Avatar"><span class="fa fa-picture-o"></span>Upload Avatar</a></li>
-                            <li><a href="@Url.Action("EditPassword", "Manage", new { area="Profile"})" class="launch-modal" data-title="Change Password"><span class="fa fa-key"></span>Change Password</a></li>
+                            <li><a href="@Url.Action("EditBio", "Manage", new { area = "Profile" })" class="launch-modal" data-title="Update Bio"><span class="fa fa-book"></span>Update Bio</a></li>
+                            <li><a href="@Url.Action("EditAvatar", "Manage", new { area = "Profile" })" class="launch-modal" data-title="Upload Avatar"><span class="fa fa-picture-o"></span>Upload Avatar</a></li>
+                            <li><a href="@Url.Action("EditPassword", "Manage", new { area = "Profile" })" class="launch-modal" data-title="Change Password"><span class="fa fa-key"></span>Change Password</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="@Url.Action("Logout", "Login", new { area="Authentication"})"><span class="fa fa-lock"></span>Logout</a></li>
+                            <li><a href="@Url.Action("Logout", "Login", new { area = "Authentication" })"><span class="fa fa-lock"></span>Logout</a></li>
                         </ul>
                     </li>
                 </ul>
-            }
-            else
-            {
+						}
+						else
+						{
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="@Url.Action("Index", "Login", new { area="Authentication"})" class="launch-modal" data-title="Sign In"><span class="fa fa-lock"></span>Login</a></li>
-                    <li><a href="@Url.Action("Index", "Registration", new { area="Authentication"})" class="launch-modal" data-title="Register Account"><span class="fa fa-user"></span>Register</a></li>
+                    <li><a href="@Url.Action("Index", "Login", new { area = "Authentication" })" class="launch-modal" data-title="Sign In"><span class="fa fa-lock"></span>Login</a></li>
+                    <li><a href="@Url.Action("Index", "Registration", new { area = "Authentication" })" class="launch-modal" data-title="Register Account"><span class="fa fa-user"></span>Register</a></li>
                 </ul>
-            }
+						}
         </div>
     </div>
 </nav>

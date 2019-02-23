@@ -65,9 +65,6 @@ namespace PortalCMS.Web.Areas.Authentication.Controllers
 
 						var user = UserManager.FindByEmail(model.EmailAddress);
 						await SignInManager.PasswordSignInAsync(user.UserName, model.Password, true, shouldLockout: false);
-
-						Session.Add("UserAccount", await _userService.GetAsync(user.Id));
-						Session.Add("UserRoles", await _roleService.GetByUserAsync(user.Id));
 						return Content("Setup");
 					}
 					else

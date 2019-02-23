@@ -12,34 +12,39 @@ namespace PortalCMS.Services.Settings
         Task EditAsync(string settingName, string settingValue);
     }
 
-    public class SettingService : ISettingService
-    {
-        #region Dependencies
+	public class SettingService : ISettingService
+	{
+		#region Dependencies
 
-        readonly PortalDbContext _context;
+		readonly PortalDbContext _context;
 
-        public SettingService(PortalDbContext context)
-        {
-            _context = context;
-        }
+		public SettingService(PortalDbContext context)
+		{
+			_context = context;
+		}
 
-        #endregion Dependencies
+		#endregion Dependencies
 
-        public async Task<Setting> GetAsync(string settingName)
-        {
-            var setting = await _context.Settings.FirstOrDefaultAsync(x => x.SettingName == settingName);
+		public async Task<Setting> GetAsync(string settingName)
+		{
+			var setting = await _context.Settings.FirstOrDefaultAsync(x => x.SettingName == settingName);
 
-            return setting;
-        }
+			return setting;
+		}
 
-        public async Task EditAsync(string settingName, string settingValue)
-        {
-            var setting = await _context.Settings.FirstOrDefaultAsync(x => x.SettingName == settingName);
-            if (setting == null) return;
+		public async Task EditAsync(string settingName, string settingValue)
+		{
+			var setting = await _context.Settings.FirstOrDefaultAsync(x => x.SettingName == settingName);
+			if (setting == null)
+			{
+				_context.Settings.Add(new Setting { SettingName = settingName, SettingValue = settingValue });
+			}
+			else
+			{
+				setting.SettingValue = settingValue;
+			}
 
-            setting.SettingValue = settingValue;
-
-            await _context.SaveChangesAsync();
-        }
-    }
+			await _context.SaveChangesAsync();
+		}
+	}
 }

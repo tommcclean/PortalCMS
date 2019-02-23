@@ -59,14 +59,7 @@ namespace PortalCMS.Web.Areas.Admin.Controllers
 					return View("_Create", model);
 
 				default:
-					//if (await _userService.CountAsync() == 1)
-					//	await _roleService.UpdateAsync(userId, new List<string> { nameof(Admin) });
-					//else
 					await _roleService.UpdateAsync(userId, new List<string> { "Authenticated" });
-
-					//if (!UserHelper.IsLoggedIn)
-					//	Session.Add("UserAccount", await _userService.GetAsync(userId));
-
 					return Content("Refresh");
 			}
 		}
@@ -97,13 +90,6 @@ namespace PortalCMS.Web.Areas.Admin.Controllers
 
 			await _userService.UpdateDetailsAsync(model.UserId, model.EmailAddress, model.GivenName, model.FamilyName);
 
-			if (model.UserId == UserHelper.Id)
-			{
-				Session.Remove("UserAccount");
-
-				Session.Add("UserAccount", await _userService.GetAsync(model.UserId));
-			}
-
 			return Content("Refresh");
 		}
 
@@ -132,15 +118,6 @@ namespace PortalCMS.Web.Areas.Admin.Controllers
 				return View("_Roles", model);
 
 			await _roleService.UpdateAsync(model.UserId, model.SelectedRoleList);
-
-			if (model.UserId == UserHelper.Id)
-			{
-				Session.Remove("UserAccount");
-				Session.Remove("UserRoles");
-
-				Session.Add("UserAccount", await _userService.GetAsync(model.UserId));
-				Session.Add("UserRoles", await _roleService.GetByUserAsync(model.UserId));
-			}
 
 			return Content("Refresh");
 		}
