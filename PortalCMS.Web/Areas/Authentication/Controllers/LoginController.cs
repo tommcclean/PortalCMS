@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using PortalCMS.Services.Authentication;
 using PortalCMS.Web.Areas.Authentication.ViewModel.Login;
 using PortalCMS.Web.Areas.Authentication.ViewModels.Login;
@@ -7,6 +8,7 @@ using PortalCMS.Web.Controllers.Base;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace PortalCMS.Web.Areas.Authentication.Controllers
@@ -146,14 +148,28 @@ namespace PortalCMS.Web.Areas.Authentication.Controllers
 		[HttpGet]
 		public ActionResult Logout()
 		{
-			CurrentUser.LastLogoutDate = DateTime.Now;
-			UserManager.Update(CurrentUser);
-			Session.Clear();
+			if (User.Identity.IsAuthenticated == true)
+			{
+				var user = UserManager.FindById(User.Identity.GetUserId());
+				user.LastLogoutDate = DateTime.Now;
+				UserManager.Update(user);
+			}
+
+			AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+			Session.Abandon();
 
 			return RedirectToAction("Index", "Home", new { area = "" });
 		}
 
 		#region Private methods
+
+		private IAuthenticationManager AuthenticationManager
+		{
+			get
+			{
+				return HttpContext.GetOwinContext().Authentication;
+			}
+		}
 
 		private ActionResult RedirectToLocal(string returnUrl)
 		{
