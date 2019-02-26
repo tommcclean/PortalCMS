@@ -10,34 +10,60 @@
     @foreach (var user in Model.Users)
     {
         <div class="col-xs-12 col-md-6 col-lg-4">
-            <div class="box float-container">
+					<div class="box" style="height:260px;">
+						<div class="box-title" style="background-color:green;">
 
-                <div class="row" style="height: 120px;">
-									<div class="col-xs-3 vertical-alignment">
-										<img class="avatar" alt="User Avatar" src="data:image/jpeg;base64,@Convert.ToBase64String(UserHelper.AvatarImage)" />
-									</div>
-                    <div class="col-xs-9 vertical-alignment" style="text-align: left; padding-left: 50px;">
-                        <h3>@user.GivenName @user.FamilyName</h3>
-                        <p>@user.Email</p>
-                    </div>
-                </div>
+							@if (user.EmailConfirmed)
+							{
+								<span style="color:white;" title="Email Verified">@user.Email</span>
+							}
+							else
+							{
+								<span style="color:white;" title="Email Unverified">@user.Email</span>
+							}
 
-                @if (user.Id == UserHelper.Id)
-                {
-                    <div class="admin-container x2">
-                        <a href="@Url.Action("Details", "UserManager", new { userId = @user.Id })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Details</a>
-                        <a href="@Url.Action("Roles", "UserManager", new { userId = @user.Id })" class="admin-item launch-modal" data-title="Edit Roles"><span class="fa fa-building"></span>Roles</a>
-                    </div>
-                }
-                else
-                {
-                    <div class="admin-container x3">
-                        <a href="@Url.Action("Details", "UserManager", new { userId = @user.Id })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Details</a>
-                        <a href="@Url.Action("Roles", "UserManager", new { userId = @user.Id })" class="admin-item launch-modal" data-title="Edit Roles"><span class="fa fa-building"></span>Roles</a>
-                        <a href="@Url.Action("Delete", "UserManager", new { userId = @user.Id })" class="admin-item" data-toggle="confirmation" data-placement="top" data-container="body"><span class="fa fa-trash"></span>Delete</a>
-                    </div>
-                }
-            </div>
+						</div>
+						<div class="row" style="height:80px;margin-top:60px;">
+							<div class="col-xs-3 vertical-alignment">
+								<img class="avatar" alt="User Avatar" src="data:image/jpeg;base64,@Convert.ToBase64String(UserHelper.AvatarImage)" />
+							</div>
+							<div class="col-xs-9 vertical-alignment" style="text-align: left; padding-left: 60px;">
+								<p class="h3">@user.GivenName @user.FamilyName</p>
+
+								<p style="text-align:left;" class="h6">
+									Registered:<span style="float:right;">@string.Format("{0:dd-MMM-yyyy HH:mm}", @user.RegistrationDate)</span>
+								</p>
+
+								<p style="text-align:left;" class="h6">
+									Last Updated:<span style="float:right;">@string.Format("{0:dd-MMM-yyyy HH:mm}", @user.LastUpdatedDate)</span>
+								</p>
+
+								<p style="text-align:left;" class="h6">
+									Last Login:<span style="float:right;">@string.Format("{0:dd-MMM-yyyy HH:mm}", @user.LastLoginDate)</span>
+								</p>
+
+								<p style="text-align:left;" class="h6">
+									Last Logout:<span style="float:right;">@string.Format("{0:dd-MMM-yyyy HH:mm}", @user.LastLogoutDate)</span>
+								</p>
+							</div>
+						</div>
+
+						@if (user.Id == UserHelper.Id)
+						{
+							<div class="admin-container x2">
+								<a href="@Url.Action("Details", "UserManager", new { userId = @user.Id })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Details</a>
+								<a href="@Url.Action("Roles", "UserManager", new { userId = @user.Id })" class="admin-item launch-modal" data-title="Edit Roles"><span class="fa fa-building"></span>Roles</a>
+							</div>
+						}
+						else
+						{
+							<div class="admin-container x3">
+								<a href="@Url.Action("Details", "UserManager", new { userId = @user.Id })" class="admin-item launch-modal" data-title="Edit Details"><span class="fa fa-pencil"></span>Details</a>
+								<a href="@Url.Action("Roles", "UserManager", new { userId = @user.Id })" class="admin-item launch-modal" data-title="Edit Roles"><span class="fa fa-building"></span>Roles</a>
+								<a href="@Url.Action("Delete", "UserManager", new { userId = @user.Id })" class="admin-item" data-toggle="confirmation" data-placement="top" data-container="body"><span class="fa fa-trash"></span>Delete</a>
+							</div>
+						}
+					</div>
         </div>
     }
 </div>
