@@ -40,7 +40,9 @@ namespace PortalCMS.Web.Areas.Admin.Controllers
 				GoogleAnalyticsId = SettingHelper.Get("Google Analytics Tracking ID"),
 				EmailFromAddress = SettingHelper.Get("Email From Address"),
 				SendGridApiKey = SettingHelper.Get("SendGrid ApiKey"),
-				CDNAddress = SettingHelper.Get("CDN Address")
+				CDNAddress = SettingHelper.Get("CDN Address"),
+				RecaptchaSiteKey = SettingHelper.Get("Recaptcha Site Key"),
+				RecaptchaSecretKey = SettingHelper.Get("Recaptcha Secret Key"),
 			};
 
 			if (string.IsNullOrWhiteSpace(model.EmailFromAddress))
@@ -90,6 +92,12 @@ namespace PortalCMS.Web.Areas.Admin.Controllers
 
 			await _settingService.EditAsync("CDN Address", model.CDNAddress);
 			Session.Remove("Setting-CDN Address");
+
+			await _settingService.EditAsync("Recaptcha Site Key", model.RecaptchaSiteKey);
+			Session.Remove("Setting-Recaptcha Site Key");
+
+			await _settingService.EditAsync("Recaptcha Secret Key", model.RecaptchaSecretKey);
+			Session.Remove("Setting-Recaptcha Secret Key");
 
 			return Content("Refresh");
 		}

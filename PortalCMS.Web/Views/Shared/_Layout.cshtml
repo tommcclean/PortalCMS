@@ -43,15 +43,18 @@
     @Html.Partial("_Analytics")
 </head>
 <body class="page-builder">
-    @Html.AntiForgeryToken()
+	@Html.AntiForgeryToken()
 
-    @Html.Partial("_NavBar")
-    @RenderBody()
+	@Html.Partial("_NavBar")
+	@RenderBody()
 
-    @Scripts.Render("~/Plugins/Bootstrap/Scripts")
-    @Scripts.Render("~/Plugins/Popover/Scripts")
-    @Scripts.Render("~/Plugins/Confirmation/Scripts")
-    @Scripts.Render("~/Resources/JavaScript/Framework")
-    @RenderSection("DOMScripts", false)
+	@Scripts.Render("~/Plugins/Bootstrap/Scripts")
+	@Scripts.Render("~/Plugins/Popover/Scripts")
+	@Scripts.Render("~/Plugins/Confirmation/Scripts")
+	@Scripts.Render("~/Resources/JavaScript/Framework")
+
+	<script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
+	
+	@RenderSection("DOMScripts", false)
 </body>
 </html>

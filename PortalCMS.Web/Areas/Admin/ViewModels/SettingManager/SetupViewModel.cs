@@ -28,6 +28,12 @@ namespace PortalCMS.Web.Areas.Admin.ViewModels.SettingManager
 		[DisplayName("SendGrid API Key")]
 		public string SendGridApiKey { get; set; }
 
+		[DisplayName("Recaptcha Site Key")]
+		public string RecaptchaSiteKey { get; set; }
+
+		[DisplayName("Recaptcha Secret Key")]
+		public string RecaptchaSecretKey { get; set; }
+
 		[DisplayName("CDN Address")]
 		public string CDNAddress { get; set; }
 	}

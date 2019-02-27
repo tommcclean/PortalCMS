@@ -1,9 +1,8 @@
 ﻿@model PortalCMS.Web.Areas.Authentication.ViewModels.Registration.RegisterViewModel
 @{
 	Layout = "";
-	bool recapture = string.IsNullOrEmpty(SettingHelper.Get("Recaptcha Secret Key"));
 }
-@using (Html.BeginForm("Register", "Registration", FormMethod.Post, new { area = "Authentication" }))
+@using (Html.BeginForm("RegisterSimple", "Registration", FormMethod.Post, new { area = "Authentication" }))
 {
 	@Html.AntiForgeryToken()
 
@@ -32,11 +31,8 @@
 		@Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
 	</div>
 
-	<div id="reCaptcha" name="reCaptcha" class="g-recaptcha"></div>
-
 	<div class="button-group float-container">
 		<button class="btn primary">Register</button>
 		<button class="btn" data-dismiss="modal">Cancel</button>
 	</div>
 }
-<script>grecaptcha.render('reCaptcha', { 'sitekey': '@SettingHelper.Get("Recaptcha Site Key")' });</script>

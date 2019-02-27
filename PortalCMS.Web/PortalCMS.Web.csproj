@@ -113,11 +113,14 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin.Security.Providers.LinkedIn, Version=2.0.0.0, Culture=neutral, PublicKeyToken=1328b8c16b108c43, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.Security.Providers.LinkedIn.2.25.0\lib\net45\Owin.Security.Providers.LinkedIn.dll</HintPath>
+    </Reference>
+    <Reference Include="Recaptcha.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=171a6ec5fa4b1644, processorArchitecture=MSIL">
+      <HintPath>..\packages\RecaptchaNet.2.1.0\lib\net451\Recaptcha.Web.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=106.6.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.6.7\lib\net452\RestSharp.dll</HintPath>
@@ -360,8 +363,9 @@
     <Content Include="Areas\Admin\Content\Images\icon-settings.png" />
     <Content Include="Areas\Admin\Content\Images\icon-thememanager.png" />
     <Content Include="Areas\Admin\Content\Images\icon-users.png" />
-    <Content Include="Areas\Admin\Content\Images\Noimage.png" />
+    <Content Include="Areas\Admin\Content\Images\noimage.png" />
     <Content Include="Areas\Admin\Content\Images\profile-image-male.png" />
+    <Content Include="Areas\Admin\Content\Images\recaptcha.png" />
     <Content Include="Areas\Authentication\Content\Images\reset-background-image.jpg" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\icon-7.png" />
     <Content Include="Areas\PageBuilder\Content\Images\Sample\icon-8.png" />
@@ -811,6 +815,7 @@
   <ItemGroup>
     <Content Include="Areas\Authentication\Views\Registration\_Welcome.cshtml" />
     <Content Include="Areas\Authentication\Views\Registration\_EmailConfirmed.cshtml" />
+    <Content Include="Areas\Authentication\Views\Registration\_RegistrationSimpleForm.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <PropertyGroup>

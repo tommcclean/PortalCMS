@@ -6,27 +6,19 @@ namespace PortalCMS.Web.Areas.Authentication.ViewModels.Registration
 {
 	public class RegisterViewModel
 	{
-		[DisplayName("Email")]
 		[Required]
+		[DisplayName("Email")]
 		public string EmailAddress { get; set; }
 
-		[DisplayName("Password")]
 		[Required]
+		[DisplayName("Password")]
 		public string Password { get; set; }
 
-		[DisplayName("First Name")]
 		[Required]
+		[DisplayName("First Name")]
 		public string GivenName { get; set; }
 
 		[DisplayName("Last Name")]
-		[Required]
 		public string FamilyName { get; set; }
-
-		public Captcha HumanCheck { get; set; }
-
-		public RegisterViewModel()
-		{
-			this.HumanCheck = new Captcha();
-		}
 	}
 }
