@@ -2,6 +2,7 @@
 using PortalCMS.Entities.Entities;
 using PortalCMS.Entities.Entities.Models;
 using PortalCMS.Repositories.Base;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -53,12 +54,11 @@ namespace PortalCMS.Services.Authentication
 		{
 			var results = new List<ApplicationUser>();
 
-			foreach (var user in await base.DbContext.Users.ToListAsync())
+			foreach (var user in UserManager.Users)
 			{
 				foreach (var roleName in roleNames)
 				{
-					var role = await RoleManager.FindByNameAsync(roleName);
-					if (user.Roles.Any(x => x.RoleId == role.Id))
+					if (await UserManager.IsInRoleAsync(user.Id, roleName))
 						results.Add(user);
 				}
 			}
