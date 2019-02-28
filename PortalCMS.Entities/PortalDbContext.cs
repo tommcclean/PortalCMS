@@ -3,7 +3,6 @@ using PortalCMS.Entities.Entities;
 using PortalCMS.Entities.Entities.Models;
 using System.Data.Common;
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace PortalCMS.Entities
@@ -14,6 +13,7 @@ namespace PortalCMS.Entities
 
 		public PortalDbContext(DbConnection connection) : base(connection, true)
 		{
+			Database.SetInitializer<PortalDbContext>(null);
 		}
 
 		public PortalDbContext() : base("name=PortalDbConnection")
@@ -77,11 +77,17 @@ namespace PortalCMS.Entities
 
 			#region Rename identity tables
 
+			// Add this - so that IdentityUser can share a table with ApplicationUser
 			modelBuilder.Entity<IdentityUser>().ToTable("User");
-			modelBuilder.Entity<IdentityUserRole>().ToTable("UserRole");
+			modelBuilder.Entity<ApplicationUser>().ToTable("User");
+
+			// Add this - so that IdentityRole can share a table with ApplicationRole
+			modelBuilder.Entity<IdentityRole>().ToTable("UserRole");
+			modelBuilder.Entity<ApplicationRole>().ToTable("UserRole");
+
+			modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");
 			modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogin");
 			modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaim");
-			modelBuilder.Entity<IdentityRole>().ToTable("Role");
 
 			#endregion
 		}

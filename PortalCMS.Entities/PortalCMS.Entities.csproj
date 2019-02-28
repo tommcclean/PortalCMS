@@ -126,10 +126,6 @@
     <Compile Include="Entities\Setting.cs" />
     <Compile Include="Entities\Font.cs" />
     <Compile Include="Entities\CustomTheme.cs" />
-    <Compile Include="Initialisers\DropAndMigrateDatabaseToLatestVersion.cs" />
-    <Compile Include="Initialisers\Environments\DefaultInitialiser.cs" />
-    <Compile Include="Initialisers\MigrateDatabaseToLatestVersion.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortalDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seed\MediaSeed.cs" />
@@ -145,7 +141,9 @@
     <Compile Include="Seed\ThemeSeed.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
