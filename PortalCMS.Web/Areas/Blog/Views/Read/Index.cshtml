@@ -107,7 +107,7 @@
                     @if (Model.Author != null)
                     {
                         <div class="post-details float-container">
-                            <img class="pull-left author-image" src="@Model.Author.AvatarImagePath" alt="Author Avatar" style="border-radius: 50%;" />
+                            <img class="pull-left author-image" src="data:image/jpeg;base64,@Convert.ToBase64String(UserHelper.AvatarImage)" alt="Author Avatar" style="border-radius: 50%;" />
                             <div class="pull-left">
                                 <p><strong>Author: </strong>@Model.Author.GivenName @Model.Author.FamilyName</p>
                                 <p><strong>Updated: </strong>@Model.CurrentPost.DateUpdated.ToString("dd MMM yyyy HH:mm")</p>

@@ -73,23 +73,15 @@ namespace PortalCMS.Entities
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
+			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
 			#region Rename identity tables
 
-			//// Add this - so that IdentityUser can share a table with ApplicationUser
 			modelBuilder.Entity<IdentityUser>().ToTable("User");
-			EntityTypeConfiguration<ApplicationUser> tableUsers = modelBuilder.Entity<ApplicationUser>().ToTable("User");
-
-			// EF won't let us swap out IdentityUserRole for ApplicationUserRole here:
-			modelBuilder.Entity<ApplicationUser>().HasMany<IdentityUserRole>((ApplicationUser u) => u.Roles);
-			modelBuilder.Entity<IdentityUserRole>().HasKey((IdentityUserRole r) => new { r.UserId, r.RoleId }).ToTable("UserRoles");
-
-			//// Add this - so that IdentityRole can share a table with ApplicationRole
-			modelBuilder.Entity<IdentityRole>().ToTable("UserRole");
-			EntityTypeConfiguration<ApplicationRole> tableRoles = modelBuilder.Entity<ApplicationRole>().ToTable("UserRole");
-
-			modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaim");
+			modelBuilder.Entity<IdentityUserRole>().ToTable("UserRole");
 			modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogin");
+			modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaim");
+			modelBuilder.Entity<IdentityRole>().ToTable("Role");
 
 			#endregion
 		}
