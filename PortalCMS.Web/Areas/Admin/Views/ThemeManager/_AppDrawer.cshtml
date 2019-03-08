@@ -1,0 +1,107 @@
+﻿@model PortalCMS.Web.Areas.Admin.ViewModels.ThemeManager.AppDrawerViewModel
+@{
+    Layout = "";
+}
+
+<style>
+    @foreach(var font in Model.Fonts)
+    {
+        <text>@@font-face { font-family: '@font.FontName'; src: url('@font.FontPath') format('@font.FontType'); }</text>
+
+        <text>div.font-@font.FontName { font-family: '@font.FontName'; }</text>
+    }
+
+    .blocks
+    {
+        float: left;
+        margin-right: 20px;
+        margin-top: 20px;
+        border: 1px solid #E6E6ED;
+        border-radius: 5px;
+        display: none;
+    }
+
+    .theme-preview
+    {
+        float: left;
+    }
+
+    .blocks .primary
+    {
+        background-color: red;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        height: 35px;
+        width: 35px;
+    }
+
+    .blocks .secondary
+    {
+        height: 35px;
+        width: 35px;
+        background-color: green;
+    }
+
+    .blocks .tertiary
+    {
+        height: 35px;
+        width: 35px;
+        background-color: orange;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .admin-container { font-family: 'Emeric'; }
+</style>
+
+<div id="theme-manager-panel" class="panel-overlay animated fadeInRight">
+    <div class="panel-title">
+        <h4>Theme Manager</h4>
+        <div class="panel-action right" onclick="QuickAccess.ClosePanels();"><span class="fa fa-remove"></span></div>
+    </div>
+
+    <div class="panel-inner">
+        <a href="@Url.Action("Create", "ThemeManager", new { area = "Admin" })" class="btn primary launch-modal" data-title="New Theme" style="font-size: 15px;"><span class="fa fa-plus"></span>New</a>
+        <a href="@Url.Action("Index", "ThemeManager", new { area = "Admin" })" class="btn" style="font-size: 15px;"><span class="fa fa-th-list"></span>Theme Manager</a>
+
+        <div class="tab-content" style="padding-top: 10px; padding-right: 10px; padding-left: 2px; border: 0; max-height: 74vh;">
+            @foreach (var theme in Model.Themes)
+            {
+                <div class="box float-container" style="height: auto; min-height: initial; padding-bottom: 75px;">
+                    @if (theme.IsDefault)
+                    {
+                        <div class="category-item">Active</div>
+                    }
+
+                    <div>
+                        <div class="blocks">
+                            <div class="primary">
+                            </div>
+                            <div class="secondary">
+                            </div>
+                            <div class="tertiary">
+                            </div>
+                        </div>
+                        <div class="theme-preview">
+                            <h1 style="font-family: '@theme.TitleFont.FontName'; font-size: @(theme.TitleLargeFontSize)px;">@theme.ThemeName</h1>
+                            <p style="word-wrap: break-word; font-family: '@theme.TextFont.FontName'; font-size: @(theme.TextStandardFontSize)px;">abcdefg ABCDEFG</p>
+                        </div>
+                    </div>
+                    @if (!theme.IsDefault)
+                    {
+                        <div class="admin-container x2">
+                            <a href="@Url.Action("Default", "ThemeManager", new { area = "Admin", themeId = @theme.ThemeId })" class="admin-item launch-modal" data-title="Set Default Theme: @theme.ThemeName"><span class="fa fa-check"></span>Apply</a>
+                            <a href="@Url.Action("Edit", "ThemeManager", new { area = "Admin", themeId = @theme.ThemeId})" class="admin-item launch-modal" data-title="Edit Theme: @theme.ThemeName" data-container="body" data-placement="top"><span class="fa fa-pencil"></span>Edit</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="admin-container x1">
+                            <a href="@Url.Action("Edit", "ThemeManager", new { area = "Admin", themeId = @theme.ThemeId})" class="admin-item launch-modal" data-title="Edit Theme: @theme.ThemeName" data-container="body" data-placement="top"><span class="fa fa-pencil"></span>Edit</a>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

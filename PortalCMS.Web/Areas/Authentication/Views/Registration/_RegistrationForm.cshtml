@@ -1,0 +1,42 @@
+﻿@model PortalCMS.Web.Areas.Authentication.ViewModels.Registration.RegisterViewModel
+@{
+	Layout = "";
+	bool recapture = string.IsNullOrEmpty(SettingHelper.Get("Recaptcha Secret Key"));
+}
+@using (Html.BeginForm("Register", "Registration", FormMethod.Post, new { area = "Authentication" }))
+{
+	@Html.AntiForgeryToken()
+
+	@Html.ValidationMessage("GivenName")
+	<div class="control-group">
+		@Html.LabelFor(x => x.GivenName)
+		@Html.TextBoxFor(x => x.GivenName, new { placeholder = "First Name" })
+	</div>
+
+	@Html.ValidationMessage("FamilyName")
+	<div class="control-group">
+		@Html.LabelFor(x => x.FamilyName)
+		@Html.TextBoxFor(x => x.FamilyName, new { placeholder = "Last Name" })
+	</div>
+
+	@Html.ValidationMessage("EmailAddress")
+	@Html.ValidationMessage("EmailAddressUsed")
+	<div class="control-group">
+		@Html.LabelFor(x => x.EmailAddress)
+		@Html.TextBoxFor(x => x.EmailAddress, new { placeholder = "Email Address" })
+	</div>
+
+	@Html.ValidationMessage("Password")
+	<div class="control-group">
+		@Html.LabelFor(x => x.Password)
+		@Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
+	</div>
+
+	<div id="reCaptcha" name="reCaptcha" class="g-recaptcha"></div>
+
+	<div class="button-group float-container">
+		<button class="btn primary">Register</button>
+		<button class="btn" data-dismiss="modal">Cancel</button>
+	</div>
+}
+<script>grecaptcha.render('reCaptcha', { 'sitekey': '@SettingHelper.Get("Recaptcha Site Key")' });</script>

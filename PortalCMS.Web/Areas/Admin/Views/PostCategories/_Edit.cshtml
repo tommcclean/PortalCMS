@@ -1,0 +1,24 @@
+﻿@model PortalCMS.Web.Areas.Admin.ViewModels.PostCategories.EditViewModel
+@{
+    Layout = "";
+}
+
+@using (Html.BeginForm("Edit", "PostCategories", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.PostCategoryId)
+
+    @Html.ValidationMessage("PostCategoryName")
+    <div class="control-group">
+        @Html.LabelFor(x => x.PostCategoryName)
+        @Html.TextBoxFor(x => x.PostCategoryName, new { placeholder = "Post Category Name" })
+    </div>
+
+    <br />
+
+    <div class="footer">
+        <button class="btn primary">Save</button>
+        <button class="btn" data-dismiss="modal">Cancel</button>
+    </div>
+}

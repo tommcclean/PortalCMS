@@ -1,0 +1,20 @@
+﻿@{
+	Layout = "";
+}
+<ul class="nav nav-tabs">
+	<li role="presentation" class="active"><a href="#tab-general" aria-controls="tab-welcome" role="tab" data-toggle="tab">Email Confirmed</a></li>
+</ul>
+
+<div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="tab-welcome">
+		<h4>Welcome to @SettingHelper.Get("Website Name")</h4>
+		<p>Thank you for confirming your email address!.</p>
+
+		<br />
+		<div class="alert alert-warning" role="alert">We will be contacting you shortly with some useful information about mentoring over the next few weeks.</div>
+	</div>
+</div>
+
+<div class="footer">
+	<button class="btn" data-dismiss="modal">Cancel</button>
+</div>

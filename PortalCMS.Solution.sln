@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CDDB34D9-DF99-4052-9C28-E260C1CF0C9B}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG-ROADMAP.md = CHANGELOG-ROADMAP.md
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalCMS.Entities", "PortalCMS.Entities\PortalCMS.Entities.csproj", "{13103A2E-FF04-442F-95F6-C2E8EDB0F274}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalCMS.Services", "PortalCMS.Services\PortalCMS.Services.csproj", "{153C71ED-5F82-4755-AA59-E468B026D4BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalCMS.Web", "PortalCMS.Web\PortalCMS.Web.csproj", "{0AA59984-5211-4C28-91A4-B7DBB71AEFAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalCMS.Library", "PortalCMS.Library\PortalCMS.Library.csproj", "{C846D9FA-206A-4D28-B6B3-2E5A8DCC31F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalCMS.Repositories", "PortalCMS.Repositories\PortalCMS.Repositories.csproj", "{7DDE9D80-5C8B-4A3A-9193-14DC827BD07C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13103A2E-FF04-442F-95F6-C2E8EDB0F274}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13103A2E-FF04-442F-95F6-C2E8EDB0F274}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13103A2E-FF04-442F-95F6-C2E8EDB0F274}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13103A2E-FF04-442F-95F6-C2E8EDB0F274}.Release|Any CPU.Build.0 = Release|Any CPU
+		{153C71ED-5F82-4755-AA59-E468B026D4BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{153C71ED-5F82-4755-AA59-E468B026D4BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{153C71ED-5F82-4755-AA59-E468B026D4BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{153C71ED-5F82-4755-AA59-E468B026D4BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AA59984-5211-4C28-91A4-B7DBB71AEFAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA59984-5211-4C28-91A4-B7DBB71AEFAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA59984-5211-4C28-91A4-B7DBB71AEFAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA59984-5211-4C28-91A4-B7DBB71AEFAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C846D9FA-206A-4D28-B6B3-2E5A8DCC31F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C846D9FA-206A-4D28-B6B3-2E5A8DCC31F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C846D9FA-206A-4D28-B6B3-2E5A8DCC31F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C846D9FA-206A-4D28-B6B3-2E5A8DCC31F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DDE9D80-5C8B-4A3A-9193-14DC827BD07C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DDE9D80-5C8B-4A3A-9193-14DC827BD07C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DDE9D80-5C8B-4A3A-9193-14DC827BD07C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DDE9D80-5C8B-4A3A-9193-14DC827BD07C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E205765-38ED-4D71-84FF-A098ADA9F8A2}
+	EndGlobalSection
+EndGlobal

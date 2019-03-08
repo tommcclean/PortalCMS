@@ -1,0 +1,33 @@
+﻿@model PortalCMS.Web.Areas.Admin.ViewModels.PageManager.AppDrawerViewModel
+@{
+    Layout = "";
+}
+
+<div id="pages-panel" class="panel-overlay animated fadeInRight">
+    <div class="panel-title">
+        <h4>Page Manager</h4>
+        <div class="panel-action right" onclick="QuickAccess.ClosePanels();"><span class="fa fa-remove"></span></div>
+    </div>
+
+    <div class="panel-inner">
+        <a href="@Url.Action("Create", "PageManager", new { area = "Admin" })" class="btn primary launch-modal" data-title="New Page" style="font-size: 15px;"><span class="fa fa-plus"></span>New</a>
+        <a href="@Url.Action("Index", "PageManager", new { area = "Admin" })" class="btn" style="font-size: 15px;"><span class="fa fa-th-list"></span>Page Manager</a>
+
+        <div class="tab-content" style="padding-top: 10px; padding-right: 10px; padding-left: 2px; border: 0; max-height: 74vh;">
+            @foreach (var page in Model.PageList)
+            {
+                var url = string.IsNullOrWhiteSpace(page.PageArea) ? string.Format("{0}/{1}", page.PageController, page.PageAction) : string.Format("{0}/{1}/{2}", page.PageArea, page.PageController, page.PageAction);
+
+                <div class="box float-container" style="height: auto; min-height: initial; padding-bottom: 75px;">
+                    <h4>@page.PageName</h4>
+                    <p style="font-size: 16px;"><span class="fa fa-globe"></span>@url.ToLower()</p>
+
+                    <div class="admin-container x2">
+                        <a href="@Url.Action("Edit", "PageManager", new { area = "Admin", pageId = @page.PageId })" class="admin-item launch-modal" data-title="Edit Page Details: @page.PageName"><span class="fa fa-pencil"></span>Edit</a>
+                        <a href="@page.PageArea/@page.PageController/@page.PageAction" class="admin-item"><span class="fa fa-briefcase"></span>Build</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

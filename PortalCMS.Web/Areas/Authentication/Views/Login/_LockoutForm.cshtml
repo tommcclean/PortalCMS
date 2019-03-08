@@ -1,0 +1,13 @@
+﻿@model PortalCMS.Web.Areas.Authentication.ViewModels.Login.LoginViewModel
+@{
+    Layout = "";
+}
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#tab-lockout" aria-controls="tab-lockout" role="tab" data-toggle="tab"><span class="fa fa-lock"></span>Locked Out</a></li>
+</ul>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="tab-lockout">
+			<div class="alert alert-warning" role="alert">Your account has been locked out - please contact admin support!</div>
+    </div>
+</div>

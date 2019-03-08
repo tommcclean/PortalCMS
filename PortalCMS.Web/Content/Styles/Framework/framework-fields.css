@@ -1,0 +1,178 @@
+﻿.control-group
+{
+    margin-bottom: 10px;
+}
+
+    .control-group label, .control-group input, .control-group select
+    {
+        float: left;
+        border: 1px solid #ccc;
+    }
+
+    .control-group label
+    {
+        width: 110px;
+        padding: 12px 10px 11px 10px;
+        background-color: #eee;
+        text-align: center;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .control-group input, .control-group select
+    {
+        height: 45px;
+        width: calc(100% - 110px);
+        background-color: #fff;
+        border-left: 0;
+        font-size: 16px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .control-group.control-textarea label
+    {
+        width: 100%;
+        margin-bottom: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .control-group.control-textarea textarea, .control-group.control-textarea select[multiple="multiple"]
+    {
+        width: 100%;
+        height: 100px;
+        border-left: 1px solid #ccc;
+        border-top: 0;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .control-group.wide-label label
+    {
+        width: 200px;
+    }
+
+    .control-group.wide-label input, .control-group.wide-label select
+    {
+        width: calc(100% - 200px);
+    }
+
+/* The container */
+.control-checkbox-group {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 14px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+	.control-checkbox-group label {
+		padding-top: 4px;
+		cursor: pointer;
+	}
+
+	.control-checkbox-group input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	}
+
+/* Create a custom checkbox */
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+}
+
+/* When the checkbox is checked, add a colored background */
+.control-checkbox-group input:checked ~ .checkmark {
+	background-color: #337ab7;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+/* Show the checkmark when checked */
+.control-checkbox-group input:checked ~ .checkmark:after {
+	display: block;
+}
+
+/* Style the checkmark/indicator */
+.control-checkbox-group .checkmark:after {
+	left: 9px;
+	top: 5px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+/* end of checkboxes */
+
+.jquery-slider-wrapper
+{
+    width: calc(100% - 300px);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-left: 0;
+    float: left;
+    height: 45px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 15px;
+}
+
+.control-group input.jquery-slider-value
+{
+    float: left;
+    width: 100px;
+    border: 1px solid #ccc;
+    border-left: 0;
+    border-right: 0;
+    text-align: center;
+    line-height: 45px;
+}
+
+.slim-field input
+{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+input, textarea, select
+{
+    padding: 5px 10px 5px 10px;
+    outline: none;
+}
+
+    select[multiple="multiple"]
+    {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+    }
+
+textarea
+{
+    height: 125px;
+}

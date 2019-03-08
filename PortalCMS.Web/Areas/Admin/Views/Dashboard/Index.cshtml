@@ -1,0 +1,30 @@
+﻿@model PortalCMS.Web.Areas.Admin.ViewModels.Dashboard.DashboardViewModel
+@{
+    ViewBag.Title = "Dashboard";
+    ViewBag.Icon = "/Areas/Admin/Content/Images/icon-dashboard.png";
+}
+
+@section Styles
+{
+    @Styles.Render("~/Plugins/FancyBox/Styles")
+    @Styles.Render("~/Plugins/C3Graphing/Styles")
+}
+
+@section HEADScripts
+{
+    @Scripts.Render("~/Plugins/FancyBox/Scripts")
+    @Scripts.Render("~/Plugins/C3Graphing/Scripts")
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+}
+
+<div class="row">
+    @Html.Action("Render", "QuickAccess", new { area = "Admin", pageType = QuickAccessPageType.AdministrationPanel_Admin })
+
+    @Html.Partial("_Welcome")
+    @Html.Partial("_MyAccount")
+    @Html.Partial("_LatestPost", new ViewDataDictionary(Model.LatestPost))
+    <div class="load-action" data-url="@Url.Action("ErrorPercentage", "AnalyticManager", new { chartName = "Error Percentage (Today)", chartSize = ChartSize.Third, sinceDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day) })"></div>
+    <div class="load-action" data-url="@Url.Action("TotalHitsWeekly", "AnalyticManager", new { chartSize = ChartSize.Third })"></div>
+
+    @Html.Partial("_MediaManager", new ViewDataDictionary(Model.Media))
+</div>

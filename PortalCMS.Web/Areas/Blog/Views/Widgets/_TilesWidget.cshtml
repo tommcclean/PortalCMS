@@ -1,0 +1,24 @@
+﻿@model PortalCMS.Web.Areas.Blog.ViewModels.Widgets.PostsWidgetViewModel
+@{
+    Layout = "";
+}
+
+<div class="container-fluid post-list-wrapper">
+    <div class="row">
+        @foreach (var post in Model.PostList)
+        {
+            <a class="col-xs-12 col-sm-6 col-lg-4" href="@Url.Action("Index", "Read", new { area = "Blog", id = @post.PostId })">
+                <div class="box article-item float-container" style="@string.Format("background-image: url('{0}'); color: white;", post.BannerImageUrl())">
+                    <div class="inner">
+                        <div title="Category" class="category-item"><span class="fa fa-tag"></span>@post.PostCategory.PostCategoryName</div>
+                        <div title="Views" class="hidden-xs category-item"><span class="fa fa-users"></span>@post.PostViews.Count()</div>
+                        <div title="Comments" class="hidden-xs category-item"><span class="fa fa-comment"></span>@post.PostComments.Count()</div>
+                        <h3>@post.PostTitle</h3>
+                        <p>@post.PostDescription</p>
+                    </div>
+                    <div class="overlay overlay-medium padding-none"></div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
