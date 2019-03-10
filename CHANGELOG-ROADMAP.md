@@ -2,10 +2,16 @@
 This file contains a list of changes between versions of Portal CMS and a roadmap that provides a brief outline of the features we intend to include in Portal CMS.
 
 ## Future Intentions
-1 Change Authentication Method to use Owin (Unplanned)
-1. Improved Menu Management with more Visual Options OOTB (Unplanned)
+1. There aren't any plans to add new features to this repository at this time
 
 # Changelog
+
+## 1.3.5 - (March 2019) Maintenance Release
+1. Updated packages so that PortalCMS is using modern tooling and libraries
+2. Resolved an issue where one of the projects was using a different sub version of .NET
+3. Resolved an issue where font's were moved incorrectly following deployment
+4. Set website theme colours for mobile devices to set the browser window colour
+5. Resolved a couple of issues with the FAQ/Spoiler widget where the JS was broken, resulting in the wrong behaviour being exhibited
 
 ## 1.3.4 - (January 2018) Maintenance Release
 1. Upgrade SendGrid Implementation (Requires Configuration for Existing Websites)
