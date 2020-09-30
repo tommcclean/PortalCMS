@@ -6,7 +6,7 @@
 
 ### Learn More
 - Test Drive PortalCMS using our Online Demo: [Online Demo](https://portalcmsdemo.azurewebsites.net)
-- Let us know how you use PortalCMS so we can list you on this repo.
+- Let us know how you use PortalCMS so we can list you on this report.
 
 ### Why Choose Portal CMS?
 - To build a modern website that is good looking, standards compliant and easy to use with minimal effort and time.
