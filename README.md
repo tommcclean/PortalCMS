@@ -1,3 +1,5 @@
+> PortalCMS is now archived; let me know if you think there is a need for this repo in more modern tech.
+
 # PortalCMS (1.3.5) (March 2019)
 - PortalCMS is a free and open source developer framework built in C# MVC featuring a powerful integrated page builder with inline editing, drag and drop and content management.
 - PortalCMS gives you a fully featured .NET MVC website out of the box which can be easily extended by web developers.
